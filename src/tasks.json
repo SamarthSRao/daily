@@ -1,7 +1,500 @@
 [
   {
+    "title": "The Complete Engineer: JavaScript Deep → Go Mastery → Systems → AI",
+    "weeks": [
+      {
+        "title": "DungBeetle · PayCore · SideCar · StreamDB · KVault · FleetPulse · AeroOps · RouteMaster · OpsAI",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "> **Philosophy:** You don't learn Redis in isolation. You learn Redis because a payment API needs it.",
+              "> Every week ends with deployed, benchmarked, documented code.",
+              "> Every concept from the checklist is **implemented in a real project** — not watched in a tutorial.\n>",
+              "> ❌ Not: \"I rushed past JavaScript fundamentals to get to frameworks faster\"",
+              "> ✅ Yes: \"I can explain the event loop, predict Promise execution order, explain Go's M:N scheduler, implement an LRU cache — and I have benchmarks proving each one works\""
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Why This Order Matters",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "| Phase | Months | Reasoning |\n|-------|--------|-----------|\n| **JavaScript Deep + TypeScript + Node.js** | 1–2 | JS is the runtime under Node.js, the language of every frontend framework, and the mental model for async I/O everywhere. Two full months — not two days. |\n| **Go Mastery** | 3 | Go is the backend language for 6 of 9 projects. One full month on the language before any framework — goroutines, channels, stdlib, concurrency patterns, benchmarking. |\n| **React + Frameworks + Testing** | 4 | Frameworks make sense once you know vanilla JS deeply. You know what React abstracts because you did it by hand. |\n| **Infrastructure + Real-Time + SideCar** | 5 | Docker, K8s, gRPC, WebSockets, SSE — the plumbing every production system needs. |\n| **Backend Systems + Distributed Patterns** | 6–8 | DungBeetle, PayCore, StreamDB, KVault — each month builds on the last. |\n| **AI Engineering + All Case Studies** | 9 | AI is backend engineering with embeddings. Build it on a solid base. |\n| **Performance + Polish + Hiring** | 10–11 | Benchmark everything. Polish 3 projects. Sprint to interviews. |"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "The 9 Flagship Projects",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "| # | Project | Mirrors | Stack | System Design Covered |\n|---|---------|---------|-------|-----------------------|\n| 🪲 | **DungBeetle** | Zerodha's dukgbeetle | Go + Kafka + PostgreSQL + Redis + AI | Job scheduler, Webhook manager, Leader election |\n| 💳 | **PayCore** | Razorpay / Stripe | Go + PostgreSQL + Redis + Kafka + gRPC | Double-entry ledger, Saga transfers, Idempotency |\n| 🔭 | **SideCar** | Istio/Envoy proxy | Go + gRPC + OTel + Prometheus | Circuit breaker, mTLS, Observability proxy |\n| 📊 | **StreamDB** | Mixpanel / Amplitude | Go + Kafka Streams + TimescaleDB + WebSocket | Real-time analytics, CDC, Kafka pipelines |\n| 🗄️ | **KVault** | Redis internals | Go stdlib only | LRU/AOF/RESP3/Consistent hashing from scratch |\n| 🚗 | **FleetPulse** | Uber internal ops | Next.js + Go + PostgreSQL + Kafka + WebSocket | GPS tracking, Surge pricing, Fraud detection |\n| ✈️ | **AeroOps** | Boeing internal tooling | Next.js + Go + PostgreSQL + MongoDB + RAG | Maintenance, Compliance, Web crawler |\n| 📦 | **RouteMaster** | DoorDash operations | Next.js + Go + Elasticsearch + Kafka | Orders, Delivery, Notifications at scale |\n| 🧠 | **OpsAI** | Cross-platform AI ops | Next.js + Go + pgvector + Multi-agent | AI agents, RAG, Semantic search |"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "10–11 Month Overview",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "| Month | Theme | Key Milestone |\n|-------|-------|--------------|\n| **1** | JavaScript Engine Deep — Types, Closures, Event Loop, Prototypes, Async | FleetPulse raw GPS server in vanilla Node.js |\n| **2** | JavaScript Applied — Modules, Streams, Node.js Internals, TypeScript | All 4 platforms on Express + PostgreSQL + TypeScript |\n| **3** | Go Mastery — Language, Concurrency, Stdlib, Benchmarking | DungBeetle v0.1 in pure Go |\n| **4** | React + Frameworks + Testing | All 4 platforms full React, Tailwind, Shadcn, full test suite |\n| **5** | Infrastructure + Real-Time + SideCar | All 9 projects deployed, K8s, SideCar v1.0, DungBeetle v1.0 |\n| **6** | Financial Systems + PayCore | PayCore v1.0 + v2.0: double-entry, Saga, CQRS, Event Sourcing |\n| **7** | Stream Processing + StreamDB + Case Studies 1–6 | StreamDB v1.0, Bloom Filters, Consistent Hashing |\n| **8** | DB Internals + KVault + Case Studies 7–11 | KVault v1.0, LSM-tree, all 11 case studies live |\n| **9** | AI Engineering + DungBeetle v3.0 + OpsAI | Multi-agent system, RAG, pgvector, Semantic Code Search |\n| **10–11** | Performance + Polish + Hiring Sprint | k6 benchmarks, pprof, ADRs, cold emails, interviews |"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "✅ Master Concept Implementation Checklist",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "> Every item is **implemented in running, deployed code** — not watched in a tutorial."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🌐 Fundamentals & Web Basics",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **HTTP/HTTPS model** — methods, status codes, headers, HTTP/2 multiplexing, HTTP/3 + QUIC; `curl -v` on every endpoint you build; implemented: FleetPulse GPS receiver",
+              "- [ ] **Client/Server concepts** — stateless vs stateful, who holds state, REST resource design; implemented: all 4 platform APIs",
+              "- [ ] **DNS** — A, CNAME, MX, TXT, TTL, full resolution path (`dig +trace`); implemented: custom subdomains for all 4 platforms on Cloudflare",
+              "- [ ] **How browsers work** — HTML → DOM → CSSOM → Render Tree → Layout → Paint → Composite; Lighthouse 100/100/100/100; implemented: all frontend platforms"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "💛 JavaScript — Deep Fundamentals (Months 1–2, not a day)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Types and coercion** — primitive vs reference, `typeof`, `===` vs `==`, truthy/falsy, `null` vs `undefined` vs `NaN`; implemented: GPS ping validation before any Zod",
+              "- [ ] **Scope and closures** — lexical scope, closure over loop variable (the classic bug + fix), IIFE, module scope; implemented: `retry`, `memoize`, `debounce` from scratch",
+              "- [ ] **`var`/`let`/`const`** — hoisting, temporal dead zone, block scope vs function scope; demonstrated via tests that fail predictably",
+              "- [ ] **Prototypes and inheritance** — prototype chain, `Object.create`, `class` as syntax sugar, the 4 steps of `new`; implemented: `EventEmitter` from scratch",
+              "- [ ] **`this` binding** — default, implicit, explicit (`call`/`apply`/`bind`), arrow functions (no own `this`); demonstrated via 10 prediction exercises",
+              "- [ ] **Event loop** — call stack → Web APIs → macrotask queue (setTimeout/setInterval/I/O) → microtask queue (Promise.then/queueMicrotask); `process.nextTick` fires before Promise microtasks; can predict output of any snippet",
+              "- [ ] **Promises** — constructor, `then`/`catch`/`finally`, `Promise.all`/`allSettled`/`race`/`any`, microtask scheduling; implemented: `withRetry` + `ConcurrencyLimiter`",
+              "- [ ] **async/await** — sugar over Promises, try/catch, parallel with `Promise.all`, sequential vs concurrent; demonstrated: same function as `.then` chain vs async/await",
+              "- [ ] **Generators and iterators** — `function*`, `yield`, `for...of`, lazy infinite sequences, custom iterables; implemented: lazy paginator for Kafka consumer offsets",
+              "- [ ] **Modules** — CommonJS (`require`/`module.exports`) vs ESM (`import`/`export`), dynamic `import()`, circular dependency problem; both used in project",
+              "- [ ] **DOM and Browser APIs** — `querySelector`, `createElement`, event bubbling/capturing, event delegation, `fetch`, `AbortController`, `IntersectionObserver`; implemented: FleetPulse driver list in vanilla JS before React",
+              "- [ ] **Functional patterns** — `map`/`filter`/`reduce` from scratch, currying, composition (`pipe`/`compose`); implemented: `packages/utils/fp.ts`",
+              "- [ ] **Debounce and throttle** — implemented from scratch; connect: rate limiting at the browser level; used in FleetPulse search",
+              "- [ ] **Immutability** — spread shallow copy vs deep clone, structural sharing, why mutation breaks React equality checks; demonstrated: before/after re-render comparison",
+              "- [ ] **WeakMap / WeakRef** — garbage collection, memory leak prevention; implemented: memoize with WeakMap to avoid leaking DOM nodes",
+              "- [ ] **Error handling** — custom Error classes, `unhandledRejection`, error boundaries; implemented: every utility in `packages/utils`"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🟢 Node.js — Deep Internals (Month 2)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **V8 architecture** — JIT compilation, hidden classes (property order matters), inline caching, GC (generational: young/old generation, GC pause impact on event loop); profiled with `--inspect`",
+              "- [ ] **libuv** — provides the event loop + thread pool (I/O, crypto, DNS), `UV_THREADPOOL_SIZE`, async I/O via epoll/kqueue/IOCP",
+              "- [ ] **Event loop phases** — timers → pending callbacks → idle/prepare → poll (wait for I/O here) → check (setImmediate) → close callbacks; `process.nextTick` before each phase; demonstrated with timing tests",
+              "- [ ] **`worker_threads`** — true parallelism, `SharedArrayBuffer`, `Atomics`, MessageChannel; benchmarked: CPU hashing single-thread vs 4 workers",
+              "- [ ] **`cluster`** — fork one process per CPU, shared port, OS load balancing; compared to K8s HPA (same idea at infra level)",
+              "- [ ] **Streams** — `Readable` (push vs pull), `Writable` (drain, `highWaterMark`), `Transform`, `Duplex`, backpressure, `pipeline()` from `stream/promises`, `stream.compose()`; implemented: FleetPulse GPS pipeline (200MB log → 20MB constant RAM)",
+              "- [ ] **`Buffer`** — `Buffer.from`, `Buffer.alloc`, encodings (`utf8`/`hex`/`base64`); why binary matters for crypto and protocol parsing",
+              "- [ ] **`EventEmitter`** — `on`/`emit`/`once`/`removeListener`, memory leak from forgotten listeners (`maxListeners`); implemented from scratch in Month 1",
+              "- [ ] **`process`** — `process.env`, `process.argv`, `process.exit`, `SIGTERM` graceful shutdown, `uncaughtException` last resort",
+              "- [ ] **`crypto`** — `createHash`, `createHmac`, `randomBytes`, `pbkdf2`; HMAC-SHA256 webhook signing (reused in DungBeetle)",
+              "- [ ] **`AsyncLocalStorage`** — request-scoped context without threading through every function; used by OpenTelemetry for trace context",
+              "- [ ] **`net` module** — raw TCP server; understand how `http` is built on top; KVault RESP3 protocol uses this pattern",
+              "- [ ] **`http`/`https`** — `http.createServer`, `http.Agent` connection pooling, keep-alive; built before using Express",
+              "- [ ] **Performance** — `perf_hooks`, `v8.getHeapStatistics()`, `--inspect` Chrome DevTools profiling, `clinic.js` flame graphs",
+              "- [ ] **`child_process`** — `spawn`/`exec`/`fork`; piping stdin/stdout; security of `exec` with user input"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🔷 TypeScript (Month 2)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Type system** — `string`, `number`, `boolean`, `null`, `undefined`, `never`, `unknown`, `any` (and why to avoid it)",
+              "- [ ] **Generics** — `function identity<T>(x: T): T`, constraints (`T extends object`), conditional types `T extends U ? X : Y`, `infer`",
+              "- [ ] **Utility types** — `Partial`, `Required`, `Pick`, `Omit`, `Record`, `ReturnType`, `Parameters`, `Awaited`, `NonNullable`",
+              "- [ ] **Discriminated unions** — type guards, narrowing, exhaustive `switch` with `never`",
+              "- [ ] **`tsconfig.json`** — `strict: true`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `paths` aliases",
+              "- [ ] **Branded types** — `type UserId = string & { _brand: 'UserId' }` — can't pass `DriverId` where `OrderId` is expected; implemented in `packages/types`",
+              "- [ ] **Template literal types** — `type EventName = \\`on${Capitalize<string>}\\``",
+              "- [ ] **Zod** — `z.object`, `safeParse`, `z.infer<typeof schema>`, one schema = runtime validation + TypeScript type; `packages/schemas` shared frontend + backend"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🐹 Go — Language Mastery (Month 3, full month)",
+        "days": [
+          {
+            "title": "Core Language",
+            "tasks": [
+              "- [ ] **Packages and modules** — `go mod init`, `go.mod`, `go.sum`, `internal/`, `go install`, build tags",
+              "- [ ] **Types and zero values** — value vs reference types, zero values (`0`/`\"\"`/`false`/`nil`), type aliases vs type definitions",
+              "- [ ] **Structs and methods** — value receiver vs pointer receiver (mutation requires pointer), embedding (composition not inheritance)",
+              "- [ ] **Interfaces** — implicit satisfaction (no `implements`), composition, `any`, type assertions, type switches; the `io.Reader`/`io.Writer` pattern",
+              "- [ ] **Error handling** — `error` interface, `fmt.Errorf(\"wrap: %w\", err)`, `errors.Is`/`errors.As`, sentinel errors, custom types; never ignore errors",
+              "- [ ] **Slices** — underlying array, `len`/`cap`, `append` re-allocation, slice tricks, slice-of-slice shares memory",
+              "- [ ] **Maps** — nil map must be initialized, concurrent read safe/write unsafe, random iteration order (by design)",
+              "- [ ] **Closures** — same loop variable bug as JS, same fix; function values as first-class; demonstrated with tests",
+              "- [ ] **`defer`** — LIFO, `panic`/`recover`, resource cleanup; why `defer mu.Unlock()` immediately follows `mu.Lock()`",
+              "- [ ] **`init()` and `main()`** — initialization order, multiple `init()` per file, when to use"
+            ]
+          },
+          {
+            "title": "Go Concurrency",
+            "tasks": [
+              "- [ ] **Goroutines** — 2KB stack, M:N scheduling (many goroutines on few OS threads), work stealing between Ps; `go test -race` on every package",
+              "- [ ] **Channels** — typed pipe, buffered vs unbuffered, `close()`, ranging over channel, direction constraints (`chan<-`/`<-chan`)",
+              "- [ ] **`select`** — non-blocking with `default`, timeout with `time.After`, `nil` channel blocks forever (useful pattern)",
+              "- [ ] **`sync.WaitGroup`** — fan-out + fan-in, `Add` before goroutine launch, `Done` in `defer`",
+              "- [ ] **`sync.Mutex` / `sync.RWMutex`** — protect shared state, RW for read-heavy workloads, lock granularity",
+              "- [ ] **`sync.Map`** — concurrent-safe, when to use vs `Mutex`+`map`",
+              "- [ ] **`sync.Pool`** — object reuse, reduce GC pressure, `Get`/`Put`, reset before returning",
+              "- [ ] **`sync.Once`** — guaranteed single execution; `sync.OnceValue` (Go 1.21)",
+              "- [ ] **`errgroup.WithContext`** — parallel goroutines, cancel all if one fails, collect first error",
+              "- [ ] **`singleflight`** — deduplicate concurrent requests for same key (thundering herd on cache miss)",
+              "- [ ] **`atomic`** — `atomic.Int64`, `atomic.Bool`, `atomic.Pointer[T]`, CAS; when to use over Mutex",
+              "- [ ] **Context** — `context.Background()`, `WithCancel`/`WithTimeout`/`WithDeadline`/`WithValue`; first arg to every function; never store in struct",
+              "- [ ] **Channel patterns** — pipeline, fan-out/fan-in, cancellation via done channel, semaphore via buffered channel, timer/ticker"
+            ]
+          },
+          {
+            "title": "Go Stdlib Deep",
+            "tasks": [
+              "- [ ] **`net/http`** — `http.Handler`, `http.HandlerFunc`, `ServeMux` (Go 1.22 pattern matching), middleware chain `func(http.Handler) http.Handler`, server timeouts, `http.Transport` pooling",
+              "- [ ] **`encoding/json`** — `Marshal`/`Unmarshal`, struct tags, custom JSON interfaces, streaming `json.Decoder`",
+              "- [ ] **`io`** — `io.Reader`/`io.Writer`/`io.ReadCloser`/`io.Pipe`/`io.TeeReader`/`io.LimitReader`; compose without buffering",
+              "- [ ] **`bufio`** — `Scanner` line reading, `Writer` batched writes, block-aligned I/O (KVault AOF, SSTable)",
+              "- [ ] **`testing`** — `*testing.T`, table-driven tests, `t.Run` subtests, `testify/assert`, `go test -race`, `go test -bench`, `-coverprofile`",
+              "- [ ] **`pprof`** — CPU + heap profiling, flame graph interpretation, goroutine dump, mutex contention; `go tool pprof`",
+              "- [ ] **`slog`** — structured logging (Go 1.21+), JSON handler, context-scoped attributes, `slog.With` for consistent fields per request"
+            ]
+          },
+          {
+            "title": "Go Tools",
+            "tasks": [
+              "- [ ] **`sqlc`** — SQL → type-safe Go, compile-time query validation; never write `rows.Scan` by hand",
+              "- [ ] **`cobra`** — CLI framework, `fleetctl` subcommands, persistent flags, tab completion",
+              "- [ ] **`chi` router** — lightweight, idiomatic, middleware-first",
+              "- [ ] **`pgx/v5`** — `pgxpool.Pool`, `CopyFrom` bulk insert, `pgx.Batch`, named args",
+              "- [ ] **`go-redis/v9`** — all commands, pipelining, Lua scripts, pub/sub",
+              "- [ ] **`uber-go/goleak`** — goroutine leak detector; `goleak.VerifyNone(t)` in every test file",
+              "- [ ] **Race detector** — `go test -race ./...` passes before every commit"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "⚛️ Frontend Frameworks (Month 4)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **ReactJS** — `UI = f(state)`, reconciliation, all hooks (`useState`/`useEffect`/`useRef`/`useCallback`/`useMemo`/`useContext`/`useReducer`), `React.memo`, DevTools Profiler; all 4 platforms",
+              "- [ ] **Next.js** — App Router, Server Components, `'use client'`, ISR, streaming Suspense, Server Actions; RouteMaster customer app",
+              "- [ ] **Tanstack Start** — type-safe routing, compile-time route validation; RouteMaster admin panel",
+              "- [ ] **Svelte + SvelteKit** — compiler model, reactive `$:`, 14KB bundle, edge deploy on Cloudflare; FleetPulse driver widget",
+              "- [ ] **Vue 3 + Nuxt** — Composition API, `ref()`/`reactive()`/`computed()`, Pinia, SSR; AeroOps admin panel"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "📦 React Libraries (Month 4)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Zod** — same schema validates frontend and Go backend",
+              "- [ ] **Zustand** — `create<State>`, selective subscription, devtools middleware",
+              "- [ ] **Immer.js** — write mutating code, get immutable output",
+              "- [ ] **Tanstack Query** — `useQuery`/`useMutation`, optimistic updates + rollback, `staleTime`/`gcTime`",
+              "- [ ] **Tailwind CSS** — `cn()`/`cva()`, state variants, deleted all `.css` files",
+              "- [ ] **Motion (Framer Motion)** — `AnimatePresence`, `layoutId` shared transitions",
+              "- [ ] **Shadcn UI** — command palette, DataTable, Dialog; source owned",
+              "- [ ] **Radix UI** — headless accessible primitives underlying Shadcn"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🖥️ Backend",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Shell/Linux** — `ls`/`find`/`grep`/`sed`/`awk`, `free`/`top`/`htop`/`ulimit`, process management, cron, deployment scripts",
+              "- [ ] **Node.js** — V8 + libuv, event loop phases, streams with backpressure, `worker_threads`, graceful shutdown (full Month 2 depth)",
+              "- [ ] **Go** — complete language, concurrency model, all stdlib tools (full Month 3 depth)",
+              "- [ ] **Streams** — Node.js Transform pipeline, backpressure, `pipeline()` (200MB log → 20MB constant RAM)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🧪 Testing",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Unit Testing** — Vitest + `@testing-library/react`, Go `testing` package + `testify`, table-driven tests, 80%+ core logic coverage",
+              "- [ ] **E2E (Playwright)** — `getByRole`, auto-wait, network mocking, cross-browser (Chromium/Firefox/WebKit)",
+              "- [ ] **Puppeteer** — PDF generation, visual regression baselines at 320/768/1280px",
+              "- [ ] **Cypress** — component testing in real browser",
+              "- [ ] **TestSprite** — AI-generated E2E tests, reviewed and refined"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🗄️ Databases",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **PostgreSQL** — schemas, B-tree/partial/covering/GIN/BRIN indexes, `EXPLAIN ANALYZE`, MVCC, WAL, pgx, connection pooling, N+1 fix",
+              "- [ ] **MySQL** — compared to PostgreSQL in ADR",
+              "- [ ] **Redis** — all data structures (String/Hash/List/Set/Sorted Set/Stream), Lua scripts, pub/sub, pipelines, TTL jitter",
+              "- [ ] **PGVector** — `vector(1536)`, HNSW index, cosine `<=>`, hybrid BM25+vector search",
+              "- [ ] **AWS S3 Vector** — large-scale embedding storage",
+              "- [ ] **TurboBuffer** — bulk vector batch operations",
+              "- [ ] **SQLite** — embedded, offline, zero-config (AeroOps hangar mode)",
+              "- [ ] **Convex** — reactive queries, auto-push to subscribed clients",
+              "- [ ] **Isolation Levels** — all 4 levels with live anomaly demos, `SELECT FOR UPDATE`, `ON CONFLICT`",
+              "- [ ] **Scaling Databases** — read replicas, PgBouncer, connection pool monitoring",
+              "- [ ] **Sharding and Partitioning** — consistent hash router, monthly range partitioning",
+              "- [ ] **Non-relational** — MongoDB (schema-flexible docs), Cassandra (time-series)",
+              "- [ ] **Picking the right DB** — ADR for every choice"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "☁️ DevOps",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **AWS** — ECS Fargate, RDS (Multi-AZ), ElastiCache, MSK, S3, CloudFront",
+              "- [ ] **GCP** — Cloud Run, Cloud SQL, GCS, Pub/Sub",
+              "- [ ] **Azure** — Container Apps, Azure DB",
+              "- [ ] **Railway** — fast iteration deploys (DungBeetle + OpsAI dev)",
+              "- [ ] **Terraform** — HCL, state (S3 + DynamoDB lock), modules, `plan → apply`",
+              "- [ ] **Pulumi** — TypeScript IaC (loops + conditions impossible in HCL)",
+              "- [ ] **GitHub Actions** — matrix builds, `paths` filter, Trivy CVE scan, branch protection, Slack notifications",
+              "- [ ] **Docker** — multi-stage builds (900MB → 85MB), non-root user, health checks",
+              "- [ ] **Kubernetes** — Pod/Deployment/Service/Ingress/HPA, rolling update (`maxSurge:1, maxUnavailable:0`), readiness/liveness probes",
+              "- [ ] **Firecracker** — MicroVM, 125ms boot, OpsAI script sandbox",
+              "- [ ] **S3 / Blob Storage** — versioning, presigned URLs, lifecycle, multipart, WAL archive",
+              "- [ ] **Cloudflare** — Workers (edge JWT), Pages, R2, KV, CDN"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "⚡ Real-Time & Edge",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **SSE** — `text/event-stream`, Redis pub/sub bridge, `EventSource` auto-reconnect, 50K concurrent",
+              "- [ ] **WebSockets** — bidirectional, Redis pub/sub multi-replica bridge",
+              "- [ ] **WebRTC** — P2P video, STUN/TURN, Socket.io signaling",
+              "- [ ] **CDNs** — `immutable`, `stale-while-revalidate`, `no-cache`, `CF-Cache-Status`",
+              "- [ ] **Edge Computing** — Cloudflare Workers, WASI, R2 from edge",
+              "- [ ] **Convex** — reactive database, auto-update subscribed clients"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🤖 AI Engineering",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **AI SDK (Vercel)** — `streamText`, `generateObject`, `useChat`, provider abstraction",
+              "- [ ] **AI Agents** — ReAct loop, multi-agent orchestration, parallel agents (`errgroup`), typed tool calling",
+              "- [ ] **RAG** — chunk → embed → pgvector HNSW → hybrid BM25+vector → rerank → generate with citations",
+              "- [ ] **WebAssembly** — AssemblyScript → Wasm, near-native browser speed, WASI"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🔄 Caching",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Cache patterns** — cache-aside, write-through, write-behind",
+              "- [ ] **LRU from scratch** — doubly-linked list + HashMap, O(1) get and put",
+              "- [ ] **LFU from scratch** — min-heap + frequency map",
+              "- [ ] **Populating caches** — warm-up job, `singleflight` dedup (thundering herd prevention)",
+              "- [ ] **PER Algorithm** — Probabilistic Early Recomputation before TTL expires",
+              "- [ ] **TTL Jitter** — prevent synchronized expiry storms",
+              "- [ ] **Multi-level caching** — L1 in-process LRU (~100μs) → L2 Redis (~1ms) → L3 PG read replica (~10ms)",
+              "- [ ] **Cache audit tool** — inspect all layers for any URL"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "📨 Asynchronous Systems",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Message Queues** — DLQ, retry + exponential backoff, poison messages, `BLPOP`",
+              "- [ ] **Kafka Essentials** — KRaft, topics, partitions, consumer groups, `acks=all`, idempotent producer, manual offset commit, exactly-once, Schema Registry",
+              "- [ ] **Kafka Streams** — KTable, KStream, sliding windows, Kafka Connect S3 Sink → Parquet → Athena",
+              "- [ ] **Real-time PubSub** — Redis pub/sub fan-out (50K concurrent), WebSocket multi-server bridge"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🛡️ Resiliency",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Load Balancers** — Round Robin, Least Connections, IP Hash, health checks + failover",
+              "- [ ] **Circuit Breakers** — Closed → Open → Half-Open, Go implementation from scratch, SideCar proxy layer",
+              "- [ ] **Data Redundancy and Recovery** — PITR drill (`DROP TABLE` → restore from WAL), RTO < 10 min, cross-region backup",
+              "- [ ] **Leader Election** — Redis `SETNX` + heartbeat, exactly-1-replica for cron and surge pricing"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "📐 Essentials at Scale",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **Bloom Filters** — false positive math, built from scratch; URL dedup + fraud pre-filter + cache penetration",
+              "- [ ] **Consistent Hashing** — hash ring, virtual nodes (150 per node), add node → 25% keys reassign",
+              "- [ ] **Communication Protocols** — HTTP/1.1 vs /2 vs /3, gRPC (4 modes), tRPC, GraphQL, REST (idempotency, cursor pagination)",
+              "- [ ] **Blob Storage and S3** — versioning, presigned URLs, lifecycle, Kafka → S3 Parquet pipeline",
+              "- [ ] **Big Data** — Kafka Connect → S3 Parquet → Athena (~$5/TB scanned, no DB to manage)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🏪 System Design Case Studies (All 11 Deployed as Real Platform Features)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] **E-Commerce Product Listing** — RouteMaster restaurants: Elasticsearch 12ms vs PG 8000ms, ISR, atomic slot reservation, Bloom Filter",
+              "- [ ] **Tinder Feed** — FleetPulse driver job feed: PostGIS, score formula, Redis Sorted Set, SSE",
+              "- [ ] **Notifications at 1B/day** — FleetPulse: APNs batch (1 call = 1000 tokens), Redis dedup, DLQ, A/B test",
+              "- [ ] **Twitter Trends** — FleetPulse surge map: Count-Min Sketch (10MB for 1M zones), Kafka Streams, Mapbox heatmap",
+              "- [ ] **URL Shortener** — AeroOps: Snowflake ID → Base62, Cloudflare Worker (0.3ms redirect)",
+              "- [ ] **API Rate Limiter** — all 4 algorithms as Redis Lua scripts across all platforms",
+              "- [ ] **Realtime Abuse Masker** — FleetPulse fraud: Wasm + Go rules + ONNX, total < 15ms",
+              "- [ ] **Web Crawler** — AeroOps: 1000 goroutines, Bloom Filter (100M URL dedup), politeness, Kafka → ES",
+              "- [ ] **GitHub Gists** — AeroOps snippets: S3 versioning, fork = zero byte copy, Wasm syntax highlight",
+              "- [ ] **Fraud Detection** — FleetPulse: feature store, CDC feedback loop, A/B test threshold",
+              "- [ ] **Recommendation Systems** — OpsAI: SVD + pgvector hybrid, A/B test MTTR improvement"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "🔐 Auth & Security",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "- [ ] JWT RS256 (asymmetric — public key verification, no secret sharing between services)",
+              "- [ ] Access token (15min) + refresh token (7d in Redis, `DEL` on logout)",
+              "- [ ] OAuth 2.0 PKCE flow for frontend",
+              "- [ ] RBAC: driver / dispatcher / admin",
+              "- [ ] HMAC-SHA256 webhook signing (`X-Signature: sha256=...`)",
+              "- [ ] Trivy CVE scan in CI (fail on HIGH/CRITICAL), `govulncheck` in Go CI",
+              "- [ ] Firecracker sandbox for user-submitted scripts",
+              "- [ ] mTLS between internal services (SideCar handles this at the proxy layer)"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Monorepo Structure (Set Up Month 1 Week 1 — Used All 10–11 Months)",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "```\n/\n├── apps/\n│   ├── fleetpulse/        ← Uber-style: GPS, dispatch, surge, fraud\n│   │   ├── web/           ← Next.js frontend\n│   │   ├── aggregator/    ← Go GPS ingestion (1M pings/sec by Month 5)\n│   │   ├── api/           ← Go backend API\n│   │   └── worker/        ← Go background workers\n│   ├── aeroops/           ← Boeing-style: maintenance, compliance, RAG\n│   │   ├── web/           ← Next.js + Vue admin\n│   │   ├── api/           ← Go backend\n│   │   └── crawler/       ← Go regulation crawler (1000 goroutines)\n│   ├── routemaster/       ← DoorDash-style: orders, delivery, notifications\n│   │   ├── web/           ← Next.js ISR customer app\n│   │   ├── api/           ← Go backend\n│   │   └── analytics/     ← Kafka Streams + TimescaleDB\n│   ├── opsai/             ← AI ops: multi-agent, RAG, pgvector\n│   │   ├── web/           ← Next.js chat interface\n│   │   └── api/           ← Go + Vercel AI SDK\n│   ├── dungbeetle/        ← Zerodha's dukgbeetle: background jobs\n│   │   ├── api/           ← Go HTTP + gRPC\n│   │   ├── scheduler/     ← Cron parser, leader election\n│   │   └── worker/        ← Job executor pool\n│   ├── paycore/           ← Razorpay-scale: double-entry, Saga\n│   │   ├── api/           ← Go payments API\n│   │   ├── ledger/        ← Double-entry engine\n│   │   └── reconciler/    ← Daily reconciliation via DungBeetle cron\n│   ├── sidecar/           ← Envoy-style: gRPC + HTTP observability proxy\n│   ├── streamdb/          ← Kafka Streams + TimescaleDB analytics\n│   └── kvault/            ← Redis clone from scratch in Go stdlib only\n├── packages/\n│   ├── types/             ← Shared TypeScript interfaces (Month 1 Week 1)\n│   ├── schemas/           ← Zod schemas (same schema → frontend type + Go validation)\n│   ├── ui/                ← Shadcn components (Month 4)\n│   └── api/               ← Typed fetch client\n└── infrastructure/\n    ├── terraform/         ← AWS infra (FleetPulse)\n    ├── pulumi/            ← GCP infra — TypeScript (AeroOps)\n    └── k8s/               ← Kubernetes manifests + operators\n```"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "MONTH 1: JavaScript Engine Deep — Types, Closures, Event Loop, Async",
     "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "> **Narrative:** No HTML/CSS. No frameworks. One month with the JavaScript engine itself. You understand closures because you build a `memoize` function. You understand the event loop because you predict the output of 20 execution order puzzles. You understand async because you reimplement `Promise.all` from scratch. Every concept is demonstrated with a test."
+            ]
+          }
+        ]
+      },
       {
         "title": "Week 1: The JavaScript Engine — Types, Scope, Closures, Prototypes, `this`",
         "days": [
@@ -9,32 +502,46 @@
             "title": "Monday — Setup + HTTP From Scratch + Types and Coercion",
             "tasks": [
               "**Morning (2h):** Dev environment: Node.js 22 LTS, VS Code (Prettier + ESLint + Error Lens + GitLens), `pnpm` workspaces. Monorepo scaffold: `packages/types`, `packages/schemas`, `packages/utils`. HTTP from first principles: `curl -v https://google.com` — TLS handshake, redirect chain, response headers. DNS: `dig +trace google.com`. Cloudflare: register `fleetpulse.dev`, `aeroops.dev`, `routemaster.dev`, `opsai.dev` subdomains.",
-              "**Evening (2h) — FleetPulse: Raw GPS Receiver**\n```javascript\n// apps/fleetpulse/aggregator/server.js — Day 1. This file evolves for 11 months.\n// Stack: Node.js http stdlib. No Express. No framework. You build up to it.\nconst http = require('http');\nconst server = http.createServer((req, res) => {\n  let body = '';\n  req.on('data', chunk => (body += chunk));  // body arrives in chunks — this IS streaming\n  req.on('end', () => {\n    try {\n      const ping = JSON.parse(body);\n      // Type coercion exercise: ping.lat could be \"12.97\" (string from JSON) or 12.97 (number)\n      // === catches this. == does not. Which do you want when validating GPS coordinates?\n      console.log(`driver=${ping.driverId} lat=${ping.lat} (${typeof ping.lat})`);\n      res.writeHead(200, { 'Content-Type': 'application/json' });\n      res.end(JSON.stringify({ ok: true, serverTime: Date.now() }));\n    } catch (e) {\n      res.writeHead(400);\n      res.end(JSON.stringify({ error: e.message }));\n    }\n  });\n});\nserver.listen(3000, () => console.log('FleetPulse GPS receiver on :3000'));\n```\nSend 10 malformed requests. Observe how the error handler fires. Understand: this is the exact same request parsing Express does for you — you're just seeing the plumbing.",
+              "**Evening (2h) — FleetPulse: Raw GPS Receiver**",
+              "```javascript\n// apps/fleetpulse/aggregator/server.js — Day 1. This file evolves for 11 months.\n// Stack: Node.js http stdlib. No Express. No framework. You build up to it.\nconst http = require('http');\nconst server = http.createServer((req, res) => {\n  let body = '';\n  req.on('data', chunk => (body += chunk));  // body arrives in chunks — this IS streaming\n  req.on('end', () => {\n    try {\n      const ping = JSON.parse(body);\n      // Type coercion exercise: ping.lat could be \"12.97\" (string from JSON) or 12.97 (number)\n      // === catches this. == does not. Which do you want when validating GPS coordinates?\n      console.log(`driver=${ping.driverId} lat=${ping.lat} (${typeof ping.lat})`);\n      res.writeHead(200, { 'Content-Type': 'application/json' });\n      res.end(JSON.stringify({ ok: true, serverTime: Date.now() }));\n    } catch (e) {\n      res.writeHead(400);\n      res.end(JSON.stringify({ error: e.message }));\n    }\n  });\n});\nserver.listen(3000, () => console.log('FleetPulse GPS receiver on :3000'));\n```",
+              "Send 10 malformed requests. Observe how the error handler fires. Understand: this is the exact same request parsing Express does for you — you're just seeing the plumbing.",
               "**DSA (30m):** Two Sum — implement with brute force O(N²) then HashMap O(N). Connect: this is why Redis GET is O(1), why hash indexes exist in PostgreSQL."
             ]
           },
           {
             "title": "Tuesday — Scope, Closures, and the Loop Variable Bug",
             "tasks": [
-              "**Morning (2h):** Lexical scope (determined at write time, not call time). Closure: a function that retains a reference to its enclosing scope variables even after the outer function returns. The infamous loop bug:\n```javascript\n// Bug: all callbacks fire with i=3 because var is function-scoped, not block-scoped\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 100);  // prints 3, 3, 3\n}\n// Fix 1: let (block scope — each iteration gets its own i)\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 100);  // prints 0, 1, 2\n}\n// Fix 2: IIFE — creates a new scope per iteration\nfor (var i = 0; i < 3; i++) {\n  (function(j) { setTimeout(() => console.log(j), 100); })(i);\n}\n// Fix 3: pass as parameter (same principle — new binding per iteration)\nfor (var i = 0; i < 3; i++) {\n  setTimeout(console.log, 100, i);\n}\n```",
-              "**Evening (2h):** Build `packages/utils/retry.ts` — demonstrates closures over attempt count and configuration:\n```typescript\n// Closure captures maxAttempts, baseDelayMs, jitter — config is sealed at creation time\nexport function withRetry<T>(\n  fn: () => Promise<T>,\n  opts: { maxAttempts?: number; baseDelayMs?: number; jitter?: boolean } = {}\n): () => Promise<T> {\n  const { maxAttempts = 3, baseDelayMs = 100, jitter = true } = opts;\n  return async function retried(): Promise<T> {\n    for (let attempt = 1; attempt <= maxAttempts; attempt++) {\n      try {\n        return await fn();  // fn is closed over — called fresh each attempt\n      } catch (err) {\n        if (attempt === maxAttempts) throw err;\n        const delay = baseDelayMs * 2 ** (attempt - 1)\n                    + (jitter ? Math.random() * baseDelayMs : 0);\n        await sleep(delay);\n      }\n    }\n    throw new Error('unreachable');\n  };\n}\n```\nWrite 8 Vitest tests: verify attempt count, verify jitter range, verify throws after max attempts, verify success on 3rd attempt. Run `vitest --coverage`. Target 100%.",
+              "**Morning (2h):** Lexical scope (determined at write time, not call time). Closure: a function that retains a reference to its enclosing scope variables even after the outer function returns. The infamous loop bug:",
+              "```javascript\n// Bug: all callbacks fire with i=3 because var is function-scoped, not block-scoped\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 100);  // prints 3, 3, 3\n}\n\n// Fix 1: let (block scope — each iteration gets its own i)\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 100);  // prints 0, 1, 2\n}\n\n// Fix 2: IIFE — creates a new scope per iteration\nfor (var i = 0; i < 3; i++) {\n  (function(j) { setTimeout(() => console.log(j), 100); })(i);\n}\n\n// Fix 3: pass as parameter (same principle — new binding per iteration)\nfor (var i = 0; i < 3; i++) {\n  setTimeout(console.log, 100, i);\n}\n```",
+              "**Evening (2h):** Build `packages/utils/retry.ts` — demonstrates closures over attempt count and configuration:",
+              "```typescript\n// Closure captures maxAttempts, baseDelayMs, jitter — config is sealed at creation time\nexport function withRetry<T>(\n  fn: () => Promise<T>,\n  opts: { maxAttempts?: number; baseDelayMs?: number; jitter?: boolean } = {}\n): () => Promise<T> {\n  const { maxAttempts = 3, baseDelayMs = 100, jitter = true } = opts;\n\n  return async function retried(): Promise<T> {\n    for (let attempt = 1; attempt <= maxAttempts; attempt++) {\n      try {\n        return await fn();  // fn is closed over — called fresh each attempt\n      } catch (err) {\n        if (attempt === maxAttempts) throw err;\n        const delay = baseDelayMs * 2 ** (attempt - 1)\n                    + (jitter ? Math.random() * baseDelayMs : 0);\n        await sleep(delay);\n      }\n    }\n    throw new Error('unreachable');\n  };\n}\n```",
+              "Write 8 Vitest tests: verify attempt count, verify jitter range, verify throws after max attempts, verify success on 3rd attempt. Run `vitest --coverage`. Target 100%.",
               "**DSA (30m):** Implement `memoize(fn)` — closure over a `Map`. Connect: this is an L1 cache. The Map is the cache. The function is the miss handler."
             ]
           },
           {
             "title": "Wednesday — Prototypes, `class`, and the Four Rules of `this`",
             "tasks": [
-              "**Morning (2h):** Prototype chain: `obj → Constructor.prototype → Object.prototype → null`. `Object.create(proto)` creates object with explicit prototype. `class` is syntax sugar — same chain underneath. Steps of `new`: (1) create empty object, (2) set `__proto__`, (3) bind `this`, (4) run constructor body, (5) return `this` if constructor returns non-object.\nThe four rules of `this`:\n1. **Default** — `this` is `globalThis` (or `undefined` in strict mode)\n2. **Implicit** — the object before the dot: `obj.method()` → `this = obj`\n3. **Explicit** — `fn.call(ctx)`, `fn.apply(ctx, args)`, `fn.bind(ctx)` → `this = ctx`\n4. **`new`** — `this` is the newly created object\nArrow functions have no own `this` — they inherit from the enclosing lexical scope. This is why `setTimeout(() => this.method(), 0)` works inside a class but `setTimeout(function() { this.method() }, 0)` does not.",
-              "**Evening (2h):** Build `packages/utils/emitter.ts` — `EventEmitter` from scratch, demonstrates prototypes and `this`:\n```typescript\nexport class EventEmitter<Events extends Record<string, unknown[]>> {\n  #listeners = new Map<keyof Events, Function[]>();\n  on<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this {\n    if (!this.#listeners.has(event)) this.#listeners.set(event, []);\n    this.#listeners.get(event)!.push(listener);\n    return this;  // fluent API — method chaining works because `this` is returned\n  }\n  once<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this {\n    const wrapper = (...args: Events[K]) => {\n      listener.apply(this, args);  // explicit `this` — wrapper closes over outer `this`\n      this.off(event, wrapper);\n    };\n    return this.on(event, wrapper);\n  }\n  off<K extends keyof Events>(event: K, listener: Function): this {\n    const arr = this.#listeners.get(event) ?? [];\n    this.#listeners.set(event, arr.filter(l => l !== listener));\n    return this;\n  }\n  emit<K extends keyof Events>(event: K, ...args: Events[K]): boolean {\n    const listeners = this.#listeners.get(event) ?? [];\n    listeners.forEach(l => l.apply(this, args));\n    return listeners.length > 0;\n  }\n}\n```",
+              "**Morning (2h):** Prototype chain: `obj → Constructor.prototype → Object.prototype → null`. `Object.create(proto)` creates object with explicit prototype. `class` is syntax sugar — same chain underneath. Steps of `new`: (1) create empty object, (2) set `__proto__`, (3) bind `this`, (4) run constructor body, (5) return `this` if constructor returns non-object.",
+              "The four rules of `this`:",
+              "1. **Default** — `this` is `globalThis` (or `undefined` in strict mode)",
+              "2. **Implicit** — the object before the dot: `obj.method()` → `this = obj`",
+              "3. **Explicit** — `fn.call(ctx)`, `fn.apply(ctx, args)`, `fn.bind(ctx)` → `this = ctx`",
+              "4. **`new`** — `this` is the newly created object\nArrow functions have no own `this` — they inherit from the enclosing lexical scope. This is why `setTimeout(() => this.method(), 0)` works inside a class but `setTimeout(function() { this.method() }, 0)` does not.",
+              "**Evening (2h):** Build `packages/utils/emitter.ts` — `EventEmitter` from scratch, demonstrates prototypes and `this`:",
+              "```typescript\nexport class EventEmitter<Events extends Record<string, unknown[]>> {\n  #listeners = new Map<keyof Events, Function[]>();\n\n  on<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this {\n    if (!this.#listeners.has(event)) this.#listeners.set(event, []);\n    this.#listeners.get(event)!.push(listener);\n    return this;  // fluent API — method chaining works because `this` is returned\n  }\n\n  once<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this {\n    const wrapper = (...args: Events[K]) => {\n      listener.apply(this, args);  // explicit `this` — wrapper closes over outer `this`\n      this.off(event, wrapper);\n    };\n    return this.on(event, wrapper);\n  }\n\n  off<K extends keyof Events>(event: K, listener: Function): this {\n    const arr = this.#listeners.get(event) ?? [];\n    this.#listeners.set(event, arr.filter(l => l !== listener));\n    return this;\n  }\n\n  emit<K extends keyof Events>(event: K, ...args: Events[K]): boolean {\n    const listeners = this.#listeners.get(event) ?? [];\n    listeners.forEach(l => l.apply(this, args));\n    return listeners.length > 0;\n  }\n}\n```",
               "**DSA (30m):** Implement a stack using a linked list (not array). Each node is a closure over its value and next pointer. This is how JavaScript's call stack conceptually works."
             ]
           },
           {
             "title": "Thursday — The Event Loop: The Most Important JS Concept",
             "tasks": [
-              "**Morning (2h):** The event loop in depth. Draw the diagram from memory:\n```\nCall Stack                Web APIs / libuv          Queues\n─────────                ────────────────           ──────\n│ fn3   │  ←────────    │ setTimeout(cb, 0) │ →  Macrotask: [cb]\n│ fn2   │               │ fetch(url)        │ →  Microtask: [then1, then2]\n│ fn1   │               │ fs.readFile()     │    (nextTick: [tick1] — Node only)\n│ main  │               └──────────────────-┘\n└───────┘\n      ↑  event loop picks next task when stack is EMPTY\n```",
+              "**Morning (2h):** The event loop in depth. Draw the diagram from memory:",
+              "```\nCall Stack                Web APIs / libuv          Queues\n─────────                ────────────────           ──────\n│ fn3   │  ←────────    │ setTimeout(cb, 0) │ →  Macrotask: [cb]\n│ fn2   │               │ fetch(url)        │ →  Microtask: [then1, then2]\n│ fn1   │               │ fs.readFile()     │    (nextTick: [tick1] — Node only)\n│ main  │               └──────────────────-┘\n└───────┘\n      ↑  event loop picks next task when stack is EMPTY\n```",
               "**Rule:** Microtasks drain completely before the next macrotask. Always. No exceptions.",
-              "**Predict the output of each snippet before running:**\n```javascript\n// Puzzle 1 — basic ordering\nconsole.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');\n// Answer: A D C B   (sync → microtask → macrotask)\n// Puzzle 2 — nested microtasks\nPromise.resolve()\n  .then(() => { console.log('1'); return Promise.resolve(); })\n  .then(() => console.log('2'));\nPromise.resolve().then(() => console.log('3'));\n// Answer: 1 3 2   (each .then schedules a new microtask — interleaves)\n// Puzzle 3 — Node.js specific\nprocess.nextTick(() => console.log('tick'));\nPromise.resolve().then(() => console.log('promise'));\nsetImmediate(() => console.log('immediate'));\nconsole.log('sync');\n// Answer: sync tick promise immediate\n```\nRun each puzzle. If you got any wrong — re-read the event loop phase diagram and try again.",
+              "**Predict the output of each snippet before running:**",
+              "```javascript\n// Puzzle 1 — basic ordering\nconsole.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');\n// Answer: A D C B   (sync → microtask → macrotask)\n\n// Puzzle 2 — nested microtasks\nPromise.resolve()\n  .then(() => { console.log('1'); return Promise.resolve(); })\n  .then(() => console.log('2'));\nPromise.resolve().then(() => console.log('3'));\n// Answer: 1 3 2   (each .then schedules a new microtask — interleaves)\n\n// Puzzle 3 — Node.js specific\nprocess.nextTick(() => console.log('tick'));\nPromise.resolve().then(() => console.log('promise'));\nsetImmediate(() => console.log('immediate'));\nconsole.log('sync');\n// Answer: sync tick promise immediate\n```",
+              "Run each puzzle. If you got any wrong — re-read the event loop phase diagram and try again.",
               "**Evening (2h):** Build `packages/utils/scheduler.ts` — priority task scheduler using a min-heap. Tasks scheduled with `delayMs: 0` use `setImmediate` (after I/O). Tasks with delay use `setTimeout`. Tasks with `priority` run before lower-priority tasks scheduled for the same tick.",
               "**DSA (30m):** Implement a min-heap from scratch: `push`, `pop`, `peek`. All O(log N). This is the data structure inside the scheduler and later inside KVault's LFU cache."
             ]
@@ -43,7 +550,9 @@
             "title": "Friday — Promises, async/await, and Generators",
             "tasks": [
               "**Morning (2h):** Promise constructor internals. `async/await` desugared to `.then` chains — the exact transformation. `Promise.all` (fail-fast), `Promise.allSettled` (all results regardless), `Promise.race` (first settles), `Promise.any` (first fulfills). Generators: `function*`, `yield`, lazy pull sequences. Custom iterables with `[Symbol.iterator]`.",
-              "**Evening (2h):** Implement `packages/utils/concurrent.ts`:\n```typescript\n// 1. ConcurrencyLimiter — max N concurrent async operations\nexport class ConcurrencyLimiter {\n  #queue: Array<() => void> = [];\n  #active = 0;\n  constructor(private limit: number) {}\n  async run<T>(fn: () => Promise<T>): Promise<T> {\n    if (this.#active >= this.limit) {\n      await new Promise<void>(resolve => this.#queue.push(resolve));\n    }\n    this.#active++;\n    try {\n      return await fn();\n    } finally {\n      this.#active--;\n      this.#queue.shift()?.();  // wake next waiter\n    }\n  }\n}\n// 2. Implement Promise.all from scratch — do not use the built-in\nexport function promiseAll<T>(promises: Promise<T>[]): Promise<T[]> {\n  return new Promise((resolve, reject) => {\n    const results: T[] = [];\n    let remaining = promises.length;\n    if (remaining === 0) { resolve(results); return; }\n    promises.forEach((p, i) => {\n      Promise.resolve(p).then(val => {\n        results[i] = val;       // preserve order even if they settle out-of-order\n        if (--remaining === 0) resolve(results);\n      }, reject);\n    });\n  });\n}\n```\nWrite 10 tests: verify `ConcurrencyLimiter` never exceeds N concurrent (use a counter + `sleep`), verify `promiseAll` matches built-in behavior including rejection."
+              "**Evening (2h):** Implement `packages/utils/concurrent.ts`:",
+              "```typescript\n// 1. ConcurrencyLimiter — max N concurrent async operations\nexport class ConcurrencyLimiter {\n  #queue: Array<() => void> = [];\n  #active = 0;\n  constructor(private limit: number) {}\n\n  async run<T>(fn: () => Promise<T>): Promise<T> {\n    if (this.#active >= this.limit) {\n      await new Promise<void>(resolve => this.#queue.push(resolve));\n    }\n    this.#active++;\n    try {\n      return await fn();\n    } finally {\n      this.#active--;\n      this.#queue.shift()?.();  // wake next waiter\n    }\n  }\n}\n\n// 2. Implement Promise.all from scratch — do not use the built-in\nexport function promiseAll<T>(promises: Promise<T>[]): Promise<T[]> {\n  return new Promise((resolve, reject) => {\n    const results: T[] = [];\n    let remaining = promises.length;\n    if (remaining === 0) { resolve(results); return; }\n    promises.forEach((p, i) => {\n      Promise.resolve(p).then(val => {\n        results[i] = val;       // preserve order even if they settle out-of-order\n        if (--remaining === 0) resolve(results);\n      }, reject);\n    });\n  });\n}\n```",
+              "Write 10 tests: verify `ConcurrencyLimiter` never exceeds N concurrent (use a counter + `sleep`), verify `promiseAll` matches built-in behavior including rejection."
             ]
           },
           {
@@ -52,7 +561,11 @@
               "- All utilities tested and benchmarked: `retry`, `memoize`, `emitter`, `scheduler`, `ConcurrencyLimiter`, `promiseAll`",
               "- FleetPulse GPS receiver handles 500 concurrent requests",
               "- Monorepo CI: `pnpm lint && pnpm typecheck && pnpm test` on every PR",
-              "- `packages/types` has `Driver`, `WorkOrder`, `Order`, `GpsPing` interfaces\n> **🔬 Biweekly Deep Project — Weeks 1–2**\n>\n> **In-Memory Driver Registry with Spatial Prefix Search**\n>\n> Designed an in-memory driver registry using a sorted array of geohash-encoded locations and binary search so that proximity queries like \"find all online drivers within 2km\" run in O(log N) without a database round-trip during the sub-second dispatch window — where a full table scan would add 40–80ms of unacceptable latency.\n>\n> *Technologies from Weeks 1–2:* TypeScript (geohash encoding to prefix-sortable string, binary search on sorted `string[]`), Node.js `http` stdlib (raw HTTP server — no framework), `packages/types` shared `Driver`/`LatLng`, Zod (validate GPS ping before registry insert). Benchmark: 100K drivers, `GET /drivers/nearby` p99 < 0.5ms. Zero database touched."
+              "- `packages/types` has `Driver`, `WorkOrder`, `Order`, `GpsPing` interfaces",
+              "> **🔬 Biweekly Deep Project — Weeks 1–2**\n>",
+              "> **In-Memory Driver Registry with Spatial Prefix Search**\n>",
+              "> Designed an in-memory driver registry using a sorted array of geohash-encoded locations and binary search so that proximity queries like \"find all online drivers within 2km\" run in O(log N) without a database round-trip during the sub-second dispatch window — where a full table scan would add 40–80ms of unacceptable latency.\n>",
+              "> *Technologies from Weeks 1–2:* TypeScript (geohash encoding to prefix-sortable string, binary search on sorted `string[]`), Node.js `http` stdlib (raw HTTP server — no framework), `packages/types` shared `Driver`/`LatLng`, Zod (validate GPS ping before registry insert). Benchmark: 100K drivers, `GET /drivers/nearby` p99 < 0.5ms. Zero database touched."
             ]
           }
         ]
@@ -84,7 +597,8 @@
           {
             "title": "Thursday — TypeScript Deep: Generics, Conditional Types, Branded Types",
             "tasks": [
-              "**Morning (2h):** Generic constraints, conditional types (`T extends U ? X : Y`), `infer`, mapped types (`{ [K in keyof T]: Transform<T[K]> }`), template literal types. The `satisfies` operator. Branded/nominal types:\n```typescript\ntype UserId = string & { readonly _brand: 'UserId' };\ntype DriverId = string & { readonly _brand: 'DriverId' };\nconst asUserId = (id: string): UserId => id as UserId;\nfunction getUser(id: UserId) { /* ... */ }\nconst driverId = asUserId('d-123');  // wrong brand\ngetUser(driverId);  // ✅ TypeScript error — can't pass DriverId where UserId expected\n```",
+              "**Morning (2h):** Generic constraints, conditional types (`T extends U ? X : Y`), `infer`, mapped types (`{ [K in keyof T]: Transform<T[K]> }`), template literal types. The `satisfies` operator. Branded/nominal types:",
+              "```typescript\ntype UserId = string & { readonly _brand: 'UserId' };\ntype DriverId = string & { readonly _brand: 'DriverId' };\nconst asUserId = (id: string): UserId => id as UserId;\n\nfunction getUser(id: UserId) { /* ... */ }\nconst driverId = asUserId('d-123');  // wrong brand\ngetUser(driverId);  // ✅ TypeScript error — can't pass DriverId where UserId expected\n```",
               "**Evening (2h):** Update `packages/types` — all IDs use branded types. Add conditional types for API responses (`ApiResponse<T>` = `{ ok: true; data: T } | { ok: false; error: string }`). Every platform immediately gets compile-time protection against passing the wrong ID type."
             ]
           },
@@ -117,7 +631,8 @@
             "title": "Tuesday — Node.js Streams: Backpressure and `pipeline()`",
             "tasks": [
               "**Morning (2h):** `Readable` — push model (`this.push(chunk)`) vs pull model (`_read` called when consumer is ready). `Writable` — `_write`, `drain` event when buffer clears, `highWaterMark`. `Transform` — implements both. `Duplex` — independent readable and writable. Backpressure: `writable.write()` returns `false` when internal buffer exceeds `highWaterMark` — you must pause the readable and resume on `drain`. `pipeline()` handles this automatically and destroys all streams on error. `stream.compose()` creates reusable pipeline stages.",
-              "**Evening (2h) — FleetPulse GPS Pipeline:**\n```javascript\n// 200MB GPS event log — with streams: 20MB constant RAM. Without: 200MB spike.\nconst { pipeline } = require('stream/promises');\nconst { Transform, Writable } = require('stream');\nclass ValidateTransform extends Transform {\n  constructor() { super({ objectMode: true }); }\n  _transform(line, _enc, cb) {\n    const result = GpsPingSchema.safeParse(JSON.parse(line));\n    if (result.success) this.push(result.data);\n    else this.emit('invalid', result.error);\n    cb();\n  }\n}\nclass BatchWritable extends Writable {\n  #batch = []; #db; #batchSize;\n  constructor(db, batchSize = 500) {\n    super({ objectMode: true, highWaterMark: batchSize });\n    this.#db = db; this.#batchSize = batchSize;\n  }\n  _write(chunk, _enc, cb) {\n    this.#batch.push(chunk);\n    if (this.#batch.length >= this.#batchSize) this.#flush().then(cb, cb);\n    else cb();\n  }\n  _final(cb) { this.#flush().then(cb, cb); }\n  async #flush() {\n    if (this.#batch.length === 0) return;\n    await this.#db.copyFrom(this.#batch);  // PostgreSQL CopyFrom — bulk insert\n    this.#batch = [];\n  }\n}\nawait pipeline(\n  fs.createReadStream('gps_events.jsonl'),\n  new SplitLines(),\n  new ValidateTransform(),\n  new EnrichTransform(zoneService),\n  new BatchWritable(db),\n);\n// process.memoryUsage().heapUsed stays below 25MB for any file size\n```"
+              "**Evening (2h) — FleetPulse GPS Pipeline:**",
+              "```javascript\n// 200MB GPS event log — with streams: 20MB constant RAM. Without: 200MB spike.\nconst { pipeline } = require('stream/promises');\nconst { Transform, Writable } = require('stream');\n\nclass ValidateTransform extends Transform {\n  constructor() { super({ objectMode: true }); }\n  _transform(line, _enc, cb) {\n    const result = GpsPingSchema.safeParse(JSON.parse(line));\n    if (result.success) this.push(result.data);\n    else this.emit('invalid', result.error);\n    cb();\n  }\n}\n\nclass BatchWritable extends Writable {\n  #batch = []; #db; #batchSize;\n  constructor(db, batchSize = 500) {\n    super({ objectMode: true, highWaterMark: batchSize });\n    this.#db = db; this.#batchSize = batchSize;\n  }\n  _write(chunk, _enc, cb) {\n    this.#batch.push(chunk);\n    if (this.#batch.length >= this.#batchSize) this.#flush().then(cb, cb);\n    else cb();\n  }\n  _final(cb) { this.#flush().then(cb, cb); }\n  async #flush() {\n    if (this.#batch.length === 0) return;\n    await this.#db.copyFrom(this.#batch);  // PostgreSQL CopyFrom — bulk insert\n    this.#batch = [];\n  }\n}\n\nawait pipeline(\n  fs.createReadStream('gps_events.jsonl'),\n  new SplitLines(),\n  new ValidateTransform(),\n  new EnrichTransform(zoneService),\n  new BatchWritable(db),\n);\n// process.memoryUsage().heapUsed stays below 25MB for any file size\n```"
             ]
           },
           {
@@ -167,19 +682,25 @@
           {
             "title": "Thursday — Redis: All Data Structures with Real Use Cases",
             "tasks": [
-              "```\nString  → cache, counters, SETNX (leader election, idempotency)\nHash    → objects: HGET/HSET driverProfile\nList    → queues: LPUSH jobs, BLPOP worker\nSet     → membership: SADD active_drivers, SISMEMBER\nSorted Set → leaderboards, rate limiting: ZADD/ZRANGEBYSCORE/ZREMRANGEBYSCORE\nStream  → append-only log: XADD/XREAD (preview of Kafka's model)\n```\nTTL jitter on every cache key: `EX ${base + Math.floor(Math.random() * jitter)}` — prevents synchronized expiry storms."
+              "```\nString  → cache, counters, SETNX (leader election, idempotency)\nHash    → objects: HGET/HSET driverProfile\nList    → queues: LPUSH jobs, BLPOP worker\nSet     → membership: SADD active_drivers, SISMEMBER\nSorted Set → leaderboards, rate limiting: ZADD/ZRANGEBYSCORE/ZREMRANGEBYSCORE\nStream  → append-only log: XADD/XREAD (preview of Kafka's model)\n```",
+              "TTL jitter on every cache key: `EX ${base + Math.floor(Math.random() * jitter)}` — prevents synchronized expiry storms."
             ]
           },
           {
             "title": "Friday — Database Decision Day: SQLite + MongoDB + PGVector + Convex",
             "tasks": [
-              "Write an ADR for every database choice:\n| Database | When | Platform Feature |\n|----------|------|-----------------|\n| PostgreSQL | Relational, ACID, joins | Default all platforms |\n| SQLite | Embedded, offline | AeroOps hangar mode |\n| MongoDB | Schema-flexible nested docs | AeroOps inspection reports |\n| PGVector | Embeddings + relational | OpsAI semantic search |\n| Convex | Reactive, auto-push | RouteMaster real-time tracking |"
+              "Write an ADR for every database choice:",
+              "| Database | When | Platform Feature |\n|----------|------|-----------------|\n| PostgreSQL | Relational, ACID, joins | Default all platforms |\n| SQLite | Embedded, offline | AeroOps hangar mode |\n| MongoDB | Schema-flexible nested docs | AeroOps inspection reports |\n| PGVector | Embeddings + relational | OpsAI semantic search |\n| Convex | Reactive, auto-push | RouteMaster real-time tracking |"
             ]
           },
           {
             "title": "Weekend Capstone: All 4 Platforms Full-Stack v1.0",
             "tasks": [
-              "All 4 platforms: React (vanilla JS for now) ← Express ← PostgreSQL + Redis + JWT (3 roles). RouteMaster: + Convex. AeroOps: + MongoDB + SQLite offline. OpsAI: + PGVector.\n> **🔬 Biweekly Deep Project — Weeks 3–4**\n>\n> **Stock Order Matching Engine**\n>\n> Designed a stock order matching system using separate buy/sell books, price-level grouping, FIFO queues per price level, and a balanced ordered structure (skip list keyed by price) so matching achieves O(log P) per operation instead of brute-force O(N) scans — matching the architecture used inside NSE/BSE trading engines where each microsecond of matching latency directly affects exchange revenue.\n>\n> *Technologies from Weeks 1–4:* TypeScript/Node.js (skip list for price book, doubly-linked list FIFO per price level), Express (REST API: `POST /orders`, `GET /orderbook`, `GET /trades`), PostgreSQL + `node-postgres` (persist fills with `DECIMAL(19,4)` prices, batch insert), Redis pub/sub (publish each fill to `trades:live`), Zod + `packages/schemas` (`OrderSchema` validates frontend and backend). Benchmark: 50K orders/sec sustained, zero missed matches verified by invariant checker."
+              "All 4 platforms: React (vanilla JS for now) ← Express ← PostgreSQL + Redis + JWT (3 roles). RouteMaster: + Convex. AeroOps: + MongoDB + SQLite offline. OpsAI: + PGVector.",
+              "> **🔬 Biweekly Deep Project — Weeks 3–4**\n>",
+              "> **Stock Order Matching Engine**\n>",
+              "> Designed a stock order matching system using separate buy/sell books, price-level grouping, FIFO queues per price level, and a balanced ordered structure (skip list keyed by price) so matching achieves O(log P) per operation instead of brute-force O(N) scans — matching the architecture used inside NSE/BSE trading engines where each microsecond of matching latency directly affects exchange revenue.\n>",
+              "> *Technologies from Weeks 1–4:* TypeScript/Node.js (skip list for price book, doubly-linked list FIFO per price level), Express (REST API: `POST /orders`, `GET /orderbook`, `GET /trades`), PostgreSQL + `node-postgres` (persist fills with `DECIMAL(19,4)` prices, batch insert), Redis pub/sub (publish each fill to `trades:live`), Zod + `packages/schemas` (`OrderSchema` validates frontend and backend). Benchmark: 50K orders/sec sustained, zero missed matches verified by invariant checker."
             ]
           }
         ]
@@ -189,6 +710,17 @@
   {
     "title": "MONTH 2: JavaScript Applied — Node.js Mastery + Streams + Performance",
     "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "> **Narrative:** Month 1 was the engine. Month 2 is the vehicle. You learn the Node.js stdlib deeply — every module you'll use in production. You build the kind of utilities that get extracted into shared packages at real companies. By the end of Month 2, you can write production Node.js without reaching for tutorials."
+            ]
+          }
+        ]
+      },
       {
         "title": "Week 5: Node.js Stdlib Deep — `net`, `crypto`, `child_process`, `perf_hooks`",
         "days": [
@@ -221,10 +753,6 @@
             "tasks": [
               "Profile the FleetPulse GPS pipeline under load with `--inspect`. Find top allocator in flame graph — it's almost always `JSON.parse` in the hot path. Replace with streaming `JSON.parse`. Before/after: allocations per request. `clinic.js doctor` — automatic bottleneck detection. `autocannon` for HTTP load testing."
             ]
-          },
-          {
-            "title": "Weekend: All Node.js Stdlib Mastered + GPS Pipeline Optimized",
-            "tasks": []
           }
         ]
       },
@@ -252,7 +780,10 @@
           {
             "title": "Weekend Capstone: All Packages Production-Ready + DungBeetle Node.js v0.1",
             "tasks": [
-              "> **🔬 Biweekly Deep Project — Weeks 5–6**\n>\n> **Distributed WebSocket Presence System**\n>\n> Built a distributed presence system where any server replica can accurately report which users are online and broadcast presence changes to all connected clients, using Redis pub/sub as the inter-replica bus and a heartbeat protocol with TTL-based expiry to detect silent disconnects — eliminating the split-brain where one replica shows a user online while another shows them offline.\n>\n> *Technologies from Weeks 1–6:* Node.js (`ws` library, `Map` for local connection registry, heartbeat via `setInterval`), Redis (`HSET presence:{userId}` with 10s TTL refreshed every 4s, pub/sub `presence.changes` fans out across replicas), PostgreSQL (presence history for audit), Express (REST endpoints for presence query), Docker Compose (3 replicas behind nginx). Test: kill one replica — all other clients see correct presence within 12s. 10K concurrent connections, p99 heartbeat < 20ms."
+              "> **🔬 Biweekly Deep Project — Weeks 5–6**\n>",
+              "> **Distributed WebSocket Presence System**\n>",
+              "> Built a distributed presence system where any server replica can accurately report which users are online and broadcast presence changes to all connected clients, using Redis pub/sub as the inter-replica bus and a heartbeat protocol with TTL-based expiry to detect silent disconnects — eliminating the split-brain where one replica shows a user online while another shows them offline.\n>",
+              "> *Technologies from Weeks 1–6:* Node.js (`ws` library, `Map` for local connection registry, heartbeat via `setInterval`), Redis (`HSET presence:{userId}` with 10s TTL refreshed every 4s, pub/sub `presence.changes` fans out across replicas), PostgreSQL (presence history for audit), Express (REST endpoints for presence query), Docker Compose (3 replicas behind nginx). Test: kill one replica — all other clients see correct presence within 12s. 10K concurrent connections, p99 heartbeat < 20ms."
             ]
           }
         ]
@@ -262,6 +793,17 @@
   {
     "title": "MONTH 3: Go Mastery — Language, Concurrency, Stdlib, Benchmarking",
     "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "> **Narrative:** Go is the primary backend language for 6 of the 9 projects. One full month on the language before any project uses it in production. Week 1: language core. Week 2: concurrency model. Week 3: stdlib deep + tooling. Week 4: first Go service — DungBeetle rewritten. Every day ends with `go test -race ./...` passing and `goleak.VerifyNone(t)` confirming zero goroutine leaks."
+            ]
+          }
+        ]
+      },
       {
         "title": "Week 7: Go Language Core — Types, Interfaces, Error Handling, Closures",
         "days": [
@@ -321,7 +863,8 @@
           {
             "title": "Tuesday — Channels: Every Pattern",
             "tasks": [
-              "**Morning (2h):** Every channel pattern with working code:\n```go\n// Pipeline\nfunc generate(nums ...int) <-chan int {\n    out := make(chan int)\n    go func() { defer close(out); for _, n := range nums { out <- n } }()\n    return out\n}\n// Fan-out: distribute work across N workers\nfunc fanOut(in <-chan int, workers int) []<-chan int {\n    channels := make([]<-chan int, workers)\n    for i := range workers {\n        ch := make(chan int)\n        channels[i] = ch\n        go func() { defer close(ch); for n := range in { ch <- n * n } }()\n    }\n    return channels\n}\n// Fan-in: merge N channels into one\nfunc fanIn(channels ...<-chan int) <-chan int {\n    merged := make(chan int)\n    var wg sync.WaitGroup\n    for _, ch := range channels {\n        wg.Add(1)\n        go func(c <-chan int) { defer wg.Done(); for n := range c { merged <- n } }(ch)\n    }\n    go func() { wg.Wait(); close(merged) }()\n    return merged\n}\n// Semaphore via buffered channel\nsem := make(chan struct{}, 10)  // max 10 concurrent\nsem <- struct{}{}               // acquire\ndefer func() { <-sem }()       // release\n```"
+              "**Morning (2h):** Every channel pattern with working code:",
+              "```go\n// Pipeline\nfunc generate(nums ...int) <-chan int {\n    out := make(chan int)\n    go func() { defer close(out); for _, n := range nums { out <- n } }()\n    return out\n}\n\n// Fan-out: distribute work across N workers\nfunc fanOut(in <-chan int, workers int) []<-chan int {\n    channels := make([]<-chan int, workers)\n    for i := range workers {\n        ch := make(chan int)\n        channels[i] = ch\n        go func() { defer close(ch); for n := range in { ch <- n * n } }()\n    }\n    return channels\n}\n\n// Fan-in: merge N channels into one\nfunc fanIn(channels ...<-chan int) <-chan int {\n    merged := make(chan int)\n    var wg sync.WaitGroup\n    for _, ch := range channels {\n        wg.Add(1)\n        go func(c <-chan int) { defer wg.Done(); for n := range c { merged <- n } }(ch)\n    }\n    go func() { wg.Wait(); close(merged) }()\n    return merged\n}\n\n// Semaphore via buffered channel\nsem := make(chan struct{}, 10)  // max 10 concurrent\nsem <- struct{}{}               // acquire\ndefer func() { <-sem }()       // release\n```"
             ]
           },
           {
@@ -334,7 +877,8 @@
             "title": "Thursday — `context`, `errgroup`, `singleflight`",
             "tasks": [
               "**Morning (2h):** `context.Context` — propagates cancellation, deadlines, and request-scoped values across goroutines. Never store in struct — always first function argument. `WithCancel`: cancel when done. `WithTimeout`/`WithDeadline`: cancel after time. `WithValue`: attach request-scoped data (use non-exported key type to prevent collisions). `errgroup.WithContext`: launch N goroutines, cancel parent context if any one fails, collect first error. `singleflight.Group`: deduplicate concurrent calls for the same key — the thundering herd solution.",
-              "**Evening (2h):** Build FleetPulse zone + surge pricer lookup using `errgroup`:\n```go\nfunc getDriverContext(ctx context.Context, lat, lng float64) (*DriverContext, error) {\n    var zone *Zone\n    var surgeMultiplier float64\n    var activeDrivers int\n    g, ctx := errgroup.WithContext(ctx)\n    g.Go(func() error {\n        // singleflight: 100 concurrent requests for same coordinates → 1 geocoding call\n        v, err, _ := sf.Do(key(lat, lng), func() (interface{}, error) {\n            return lookupZone(ctx, lat, lng)\n        })\n        if err != nil { return err }\n        zone = v.(*Zone)\n        return nil\n    })\n    g.Go(func() error { surgeMultiplier, err = getSurgeMultiplier(ctx, zone); return err })\n    g.Go(func() error { activeDrivers, err = countActiveDrivers(ctx, zone); return err })\n    if err := g.Wait(); err != nil { return nil, err }\n    return &DriverContext{Zone: zone, SurgeMultiplier: surgeMultiplier, ActiveDrivers: activeDrivers}, nil\n}\n```"
+              "**Evening (2h):** Build FleetPulse zone + surge pricer lookup using `errgroup`:",
+              "```go\nfunc getDriverContext(ctx context.Context, lat, lng float64) (*DriverContext, error) {\n    var zone *Zone\n    var surgeMultiplier float64\n    var activeDrivers int\n\n    g, ctx := errgroup.WithContext(ctx)\n    g.Go(func() error {\n        // singleflight: 100 concurrent requests for same coordinates → 1 geocoding call\n        v, err, _ := sf.Do(key(lat, lng), func() (interface{}, error) {\n            return lookupZone(ctx, lat, lng)\n        })\n        if err != nil { return err }\n        zone = v.(*Zone)\n        return nil\n    })\n    g.Go(func() error { surgeMultiplier, err = getSurgeMultiplier(ctx, zone); return err })\n    g.Go(func() error { activeDrivers, err = countActiveDrivers(ctx, zone); return err })\n    if err := g.Wait(); err != nil { return nil, err }\n    return &DriverContext{Zone: zone, SurgeMultiplier: surgeMultiplier, ActiveDrivers: activeDrivers}, nil\n}\n```"
             ]
           },
           {
@@ -346,7 +890,10 @@
           {
             "title": "Weekend: Go Concurrency Complete — Concurrent Data Structures Benchmarked",
             "tasks": [
-              "> **🔬 Biweekly Deep Project — Weeks 7–8**\n>\n> **Self-Healing Job Queue with Fencing Tokens**\n>\n> Built a distributed job queue in Go where a worker crash mid-execution is automatically detected and re-queued — with fencing tokens (monotonically increasing integers from Redis `INCR`) preventing a zombie worker from completing a job it already lost the lock on, guaranteeing exactly-once execution under partial failures, network partitions, and GC pauses.\n>\n> *Technologies from Weeks 1–8:* Go (`sync.WaitGroup`, goroutine worker pool, `SELECT FOR UPDATE SKIP LOCKED`), PostgreSQL (`jobs(id, status, fence_token INT)`, `UPDATE ... WHERE fence_token=$2` rejects zombie commit), Redis (`INCR fence:{jobId}` monotonic token, `SETNX lock:{jobId}` heartbeat), Docker Compose (3 worker replicas, kill one mid-job via `docker stop`). Chaos: kill any worker mid-batch → all jobs reclaimed within 15s, zero duplicate results verified."
+              "> **🔬 Biweekly Deep Project — Weeks 7–8**\n>",
+              "> **Self-Healing Job Queue with Fencing Tokens**\n>",
+              "> Built a distributed job queue in Go where a worker crash mid-execution is automatically detected and re-queued — with fencing tokens (monotonically increasing integers from Redis `INCR`) preventing a zombie worker from completing a job it already lost the lock on, guaranteeing exactly-once execution under partial failures, network partitions, and GC pauses.\n>",
+              "> *Technologies from Weeks 1–8:* Go (`sync.WaitGroup`, goroutine worker pool, `SELECT FOR UPDATE SKIP LOCKED`), PostgreSQL (`jobs(id, status, fence_token INT)`, `UPDATE ... WHERE fence_token=$2` rejects zombie commit), Redis (`INCR fence:{jobId}` monotonic token, `SETNX lock:{jobId}` heartbeat), Docker Compose (3 worker replicas, kill one mid-job via `docker stop`). Chaos: kill any worker mid-batch → all jobs reclaimed within 15s, zero duplicate results verified."
             ]
           }
         ]
@@ -357,7 +904,8 @@
           {
             "title": "Monday — `net/http`, Middleware Chain, Server Timeouts",
             "tasks": [
-              "Production HTTP server template used for all 6 Go services:\n```go\ntype Middleware func(http.Handler) http.Handler\nfunc Chain(h http.Handler, mw ...Middleware) http.Handler {\n    for i := len(mw) - 1; i >= 0; i-- { h = mw[i](h) }\n    return h\n}\nsrv := &http.Server{\n    Addr:         \":8080\",\n    Handler:      Chain(router, RequestID, Logger, Recover, Auth),\n    ReadTimeout:  5 * time.Second,\n    WriteTimeout: 10 * time.Second,\n    IdleTimeout:  120 * time.Second,\n}\n// Graceful shutdown: drain in-flight requests before exit\ngo srv.ListenAndServe()\n<-ctx.Done()\nshutCtx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\ndefer cancel()\nsrv.Shutdown(shutCtx)\n```"
+              "Production HTTP server template used for all 6 Go services:",
+              "```go\ntype Middleware func(http.Handler) http.Handler\n\nfunc Chain(h http.Handler, mw ...Middleware) http.Handler {\n    for i := len(mw) - 1; i >= 0; i-- { h = mw[i](h) }\n    return h\n}\n\nsrv := &http.Server{\n    Addr:         \":8080\",\n    Handler:      Chain(router, RequestID, Logger, Recover, Auth),\n    ReadTimeout:  5 * time.Second,\n    WriteTimeout: 10 * time.Second,\n    IdleTimeout:  120 * time.Second,\n}\n// Graceful shutdown: drain in-flight requests before exit\ngo srv.ListenAndServe()\n<-ctx.Done()\nshutCtx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\ndefer cancel()\nsrv.Shutdown(shutCtx)\n```"
             ]
           },
           {
@@ -416,7 +964,10 @@
           {
             "title": "Weekend Capstone: Go Mastery Complete + DungBeetle v0.2",
             "tasks": [
-              "> **🔬 Biweekly Deep Project — Weeks 9–10**\n>\n> **Event-Sourced Wallet with Snapshot Optimization**\n>\n> Implemented an event-sourced wallet where balance is derived by replaying all debit/credit events — adding a snapshot mechanism that checkpoints every 100 events so cold reads never scan unbounded history, and a point-in-time query API that reconstructs any historical balance in O(snapshot_load + events_since_snapshot), making regulatory audit requirements a trivially satisfied side-effect of the data model.\n>\n> *Technologies from Weeks 1–10:* Go (aggregate replay loop, `GetByIDOptimized` with snapshot + delta), PostgreSQL (`events` append-only, `REVOKE UPDATE DELETE ON events`, `UNIQUE(aggregate_id, version)` optimistic concurrency, `snapshots` upsert), Kafka (`wallet.events` via Outbox, CQRS projection consumer rebuilds `wallet_balances`), Redis (`SETNX snapshot:lock:{id}` prevents duplicate snapshotting), gRPC (`GetBalanceAt(timestamp)`). Benchmark: 10K events — cold read 420ms → with snapshot 3ms."
+              "> **🔬 Biweekly Deep Project — Weeks 9–10**\n>",
+              "> **Event-Sourced Wallet with Snapshot Optimization**\n>",
+              "> Implemented an event-sourced wallet where balance is derived by replaying all debit/credit events — adding a snapshot mechanism that checkpoints every 100 events so cold reads never scan unbounded history, and a point-in-time query API that reconstructs any historical balance in O(snapshot_load + events_since_snapshot), making regulatory audit requirements a trivially satisfied side-effect of the data model.\n>",
+              "> *Technologies from Weeks 1–10:* Go (aggregate replay loop, `GetByIDOptimized` with snapshot + delta), PostgreSQL (`events` append-only, `REVOKE UPDATE DELETE ON events`, `UNIQUE(aggregate_id, version)` optimistic concurrency, `snapshots` upsert), Kafka (`wallet.events` via Outbox, CQRS projection consumer rebuilds `wallet_balances`), Redis (`SETNX snapshot:lock:{id}` prevents duplicate snapshotting), gRPC (`GetBalanceAt(timestamp)`). Benchmark: 10K events — cold read 420ms → with snapshot 3ms."
             ]
           }
         ]
@@ -426,6 +977,17 @@
   {
     "title": "MONTH 4: React + Frontend Frameworks + Testing + All Platforms Full-Stack",
     "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "> **Narrative:** You know JavaScript deeply. React's `useState` is a closure. Reconciliation is virtual DOM diffing. You know what every abstraction replaces because you built the vanilla version in Months 1–2. Frameworks stop being magic and become informed choices."
+            ]
+          }
+        ]
+      },
       {
         "title": "Week 11: React From First Principles + All Hooks + Profiler",
         "days": [
@@ -447,7 +1009,8 @@
           {
             "title": "Thursday — Next.js App Router + Server Components",
             "tasks": [
-              "Server Components have zero client JS bundle — they render HTML on the server, period. `'use client'` marks a component as the boundary where client JS begins. Layouts persist across navigation without unmounting (preserve scroll position, avoid refetch). ISR `revalidate: 30`: Cloudflare serves cached HTML for 30s, then one request triggers background revalidation. Streaming with Suspense: HTML arrives progressively, not all-or-nothing.\nRouteMaster customer app: `app/track/[orderId]/page.tsx` async Server Component, `loading.tsx` skeleton, `<InteractiveMap>` as `'use client'` inside Server Component — map JS only loads on the client, everything else is HTML."
+              "Server Components have zero client JS bundle — they render HTML on the server, period. `'use client'` marks a component as the boundary where client JS begins. Layouts persist across navigation without unmounting (preserve scroll position, avoid refetch). ISR `revalidate: 30`: Cloudflare serves cached HTML for 30s, then one request triggers background revalidation. Streaming with Suspense: HTML arrives progressively, not all-or-nothing.",
+              "RouteMaster customer app: `app/track/[orderId]/page.tsx` async Server Component, `loading.tsx` skeleton, `<InteractiveMap>` as `'use client'` inside Server Component — map JS only loads on the client, everything else is HTML."
             ]
           },
           {
@@ -455,10 +1018,6 @@
             "tasks": [
               "Delete every `.css` file across all 4 platforms. Tailwind: `cn()` (clsx + tailwind-merge), `cva()` for typed component variants (`driverCardVariants` driven by status). Shadcn UI command palette (Cmd+K), DataTable with sorting, Dialog with `AnimatePresence` slide-up. Motion `layoutId` shared layout transitions on FleetPulse driver rows."
             ]
-          },
-          {
-            "title": "Weekend: All 4 Platforms Fully in React + Next.js + Tailwind",
-            "tasks": []
           }
         ]
       },
@@ -476,7 +1035,8 @@
           {
             "title": "Tuesday — Full Testing Suite",
             "tasks": [
-              "| Tool | What You Test | Platform |\n|------|--------------|----------|\n| Vitest + `@testing-library/react` | `GpsPingSchema`, Zustand actions, custom hooks | All 4 |\n| Playwright | \"Assign trip to driver\" E2E, `getByRole`, network mocking, Chromium + Firefox + WebKit | FleetPulse |\n| Puppeteer | PDF work orders, visual regression at 320/768/1280px | AeroOps |\n| Cypress | `<WorkOrderForm />` component in real browser | AeroOps |\n| TestSprite | AI-generate E2E for work order creation, review + refine | AeroOps |\nCI: every PR runs `vitest --coverage` + `playwright --project=chromium,firefox,webkit` headless."
+              "| Tool | What You Test | Platform |\n|------|--------------|----------|\n| Vitest + `@testing-library/react` | `GpsPingSchema`, Zustand actions, custom hooks | All 4 |\n| Playwright | \"Assign trip to driver\" E2E, `getByRole`, network mocking, Chromium + Firefox + WebKit | FleetPulse |\n| Puppeteer | PDF work orders, visual regression at 320/768/1280px | AeroOps |\n| Cypress | `<WorkOrderForm />` component in real browser | AeroOps |\n| TestSprite | AI-generate E2E for work order creation, review + refine | AeroOps |",
+              "CI: every PR runs `vitest --coverage` + `playwright --project=chromium,firefox,webkit` headless."
             ]
           },
           {
@@ -500,7 +1060,10 @@
           {
             "title": "Weekend: All Platforms Production-Grade Frontend + All Tests Passing",
             "tasks": [
-              "> **🔬 Biweekly Deep Project — Weeks 11–12**\n>\n> **Real-Time Leaderboard with Count-Min Sketch Approximation**\n>\n> Built a real-time leaderboard over 10 million distinct keys (delivery zones, restaurant IDs, driver scores) using a Count-Min Sketch for approximate frequency counting alongside a Redis Sorted Set for top-K retrieval — reducing memory from 800MB (exact HashMap) to 12MB while maintaining 99.97% rank-order accuracy, because the cost of an exact answer is 67× more memory for a difference users cannot perceive.\n>\n> *Technologies from Weeks 1–12:* Go (Count-Min Sketch from scratch: `[d][w]uint32`, FNV-1a with seed rotation, error bound `ε = e/w` at confidence `1 − e^(−d)`), Kafka (streaming consumer updates sketch + Sorted Set), Redis (`ZADD leaderboard {score} {id}`, `ZREVRANGE` top-K), TimescaleDB (raw events for validation), Next.js (live leaderboard via SSE, updates every second). Benchmark: 1M events/sec ingested. Rank accuracy vs exact: 99.97%."
+              "> **🔬 Biweekly Deep Project — Weeks 11–12**\n>",
+              "> **Real-Time Leaderboard with Count-Min Sketch Approximation**\n>",
+              "> Built a real-time leaderboard over 10 million distinct keys (delivery zones, restaurant IDs, driver scores) using a Count-Min Sketch for approximate frequency counting alongside a Redis Sorted Set for top-K retrieval — reducing memory from 800MB (exact HashMap) to 12MB while maintaining 99.97% rank-order accuracy, because the cost of an exact answer is 67× more memory for a difference users cannot perceive.\n>",
+              "> *Technologies from Weeks 1–12:* Go (Count-Min Sketch from scratch: `[d][w]uint32`, FNV-1a with seed rotation, error bound `ε = e/w` at confidence `1 − e^(−d)`), Kafka (streaming consumer updates sketch + Sorted Set), Redis (`ZADD leaderboard {score} {id}`, `ZREVRANGE` top-K), TimescaleDB (raw events for validation), Next.js (live leaderboard via SSE, updates every second). Benchmark: 1M events/sec ingested. Rank accuracy vs exact: 99.97%."
             ]
           }
         ]
@@ -536,10 +1099,6 @@
             "tasks": [
               "Terraform: FleetPulse on AWS (ECS Fargate + RDS Multi-AZ + ElastiCache + MSK). S3 state + DynamoDB lock (prevent concurrent applies). Pulumi TypeScript: AeroOps on GCP (loops over zones impossible in HCL). Railway: DungBeetle + OpsAI (deploy in 2 minutes, iterate fast). Cloudflare: Pages for all 4 frontends, Workers for edge JWT, R2 for AeroOps PDF storage."
             ]
-          },
-          {
-            "title": "Weekend: All 9 Projects Deployed with Full Observability",
-            "tasks": []
           }
         ]
       },
@@ -573,7 +1132,11 @@
           {
             "title": "Weekend Capstone: DungBeetle v1.0 — Production Job System",
             "tasks": [
-              "```\nDungBeetle v1.0:\n✅ Go HTTP + gRPC (chi router, graceful shutdown, SideCar sidecar)\n✅ PostgreSQL: sqlc, SELECT FOR UPDATE SKIP LOCKED, partial index\n✅ Redis: cache (singleflight + TTL jitter), rate limiter (Lua), leader election (SETNX)\n✅ Kafka: Outbox relay, DLQ, idempotent consumers\n✅ Webhook delivery: HMAC-SHA256, circuit breaker, retry pipeline\n✅ Cron scheduler: Redis leader election (exactly 1 replica runs cron)\n✅ OTel: full trace per job HTTP → Kafka → Worker → DB\n✅ Prometheus: job_duration_seconds, dlq_depth, kafka_lag\n✅ go test -race + goleak passes\n```\n> **🔬 Biweekly Deep Project — Weeks 13–14**\n>\n> **LSM-Tree Storage Engine with Compaction**\n>\n> Implemented a Log-Structured Merge-tree storage engine with an in-memory memtable, immutable SSTables on disk, a sparse index for O(log N) key lookup within each SSTable block, and a background compaction goroutine that merges overlapping SSTables to bound read amplification — demonstrating concretely why RocksDB, Cassandra, and ScyllaDB choose this architecture over B-Trees for write-heavy workloads.\n>\n> *Technologies from Weeks 1–14:* Go stdlib only (`container/heap` for SSTable merge priority queue, `bufio` for block-aligned reads/writes, `sync.RWMutex` on memtable), Bloom Filter from Week 11 (per-SSTable filter eliminates disk read for missing keys), HTTP API (`PUT`/`GET`/`DELETE /kv/{key}`), Prometheus (`compaction_duration_seconds`, `sstable_count`, `read_amplification`). Benchmark: write throughput = 280K ops/sec vs PostgreSQL B-Tree = 45K ops/sec for sequential writes."
+              "```\nDungBeetle v1.0:\n✅ Go HTTP + gRPC (chi router, graceful shutdown, SideCar sidecar)\n✅ PostgreSQL: sqlc, SELECT FOR UPDATE SKIP LOCKED, partial index\n✅ Redis: cache (singleflight + TTL jitter), rate limiter (Lua), leader election (SETNX)\n✅ Kafka: Outbox relay, DLQ, idempotent consumers\n✅ Webhook delivery: HMAC-SHA256, circuit breaker, retry pipeline\n✅ Cron scheduler: Redis leader election (exactly 1 replica runs cron)\n✅ OTel: full trace per job HTTP → Kafka → Worker → DB\n✅ Prometheus: job_duration_seconds, dlq_depth, kafka_lag\n✅ go test -race + goleak passes\n```",
+              "> **🔬 Biweekly Deep Project — Weeks 13–14**\n>",
+              "> **LSM-Tree Storage Engine with Compaction**\n>",
+              "> Implemented a Log-Structured Merge-tree storage engine with an in-memory memtable, immutable SSTables on disk, a sparse index for O(log N) key lookup within each SSTable block, and a background compaction goroutine that merges overlapping SSTables to bound read amplification — demonstrating concretely why RocksDB, Cassandra, and ScyllaDB choose this architecture over B-Trees for write-heavy workloads.\n>",
+              "> *Technologies from Weeks 1–14:* Go stdlib only (`container/heap` for SSTable merge priority queue, `bufio` for block-aligned reads/writes, `sync.RWMutex` on memtable), Bloom Filter from Week 11 (per-SSTable filter eliminates disk read for missing keys), HTTP API (`PUT`/`GET`/`DELETE /kv/{key}`), Prometheus (`compaction_duration_seconds`, `sstable_count`, `read_amplification`). Benchmark: write throughput = 280K ops/sec vs PostgreSQL B-Tree = 45K ops/sec for sequential writes."
             ]
           }
         ]
@@ -589,19 +1152,21 @@
           {
             "title": "Monday — REST Deep + Idempotency + Rate Limiting Intro",
             "tasks": [
-              "REST production patterns: cursor pagination (never offset — breaks on concurrent inserts), `Idempotency-Key` header → Redis-backed response cache. Rate limiting introduction: all 4 algorithms.\nAll 4 platforms: idempotency middleware added. Every mutation has idempotency key."
+              "REST production patterns: cursor pagination (never offset — breaks on concurrent inserts), `Idempotency-Key` header → Redis-backed response cache. Rate limiting introduction: all 4 algorithms.",
+              "All 4 platforms: idempotency middleware added. Every mutation has idempotency key."
             ]
           },
           {
             "title": "Tuesday — gRPC: All 4 Modes + PayCore Internal Service",
             "tasks": [
-              "```protobuf\nservice PayCore {\n  rpc ProcessPayment(PaymentRequest) returns (Payment);                // Unary\n  rpc StreamTransactions(StreamRequest) returns (stream Transaction);  // Server streaming\n  rpc BatchPayments(stream PaymentRequest) returns (BatchResult);      // Client streaming\n  rpc BillingChat(stream Message) returns (stream Message);            // Bidirectional\n}\n```\ngRPC = internal service-to-service. REST = external APIs. Measure: 30% smaller payload, 2× throughput vs REST JSON."
+              "```protobuf\nservice PayCore {\n  rpc ProcessPayment(PaymentRequest) returns (Payment);                // Unary\n  rpc StreamTransactions(StreamRequest) returns (stream Transaction);  // Server streaming\n  rpc BatchPayments(stream PaymentRequest) returns (BatchResult);      // Client streaming\n  rpc BillingChat(stream Message) returns (stream Message);            // Bidirectional\n}\n```",
+              "gRPC = internal service-to-service. REST = external APIs. Measure: 30% smaller payload, 2× throughput vs REST JSON."
             ]
           },
           {
             "title": "Wednesday — gRPC Interceptors + SideCar First Steps",
             "tasks": [
-              "```go\n// SideCar prototype: gRPC proxy with automatic OTel span creation\n// Client → [SideCar :8081] → PayCore :8080\n// Zero code changes to PayCore\nfunc tracingInterceptor(ctx context.Context, req interface{},\n    info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {\n    ctx, span := tracer.Start(ctx, info.FullMethod)\n    defer span.End()\n    resp, err := handler(ctx, req)\n    if err != nil { span.RecordError(err) }\n    return resp, err\n}\n```"
+              "```go\n// SideCar prototype: gRPC proxy with automatic OTel span creation\n// Client → [SideCar :8081] → PayCore :8080\n// Zero code changes to PayCore\n\nfunc tracingInterceptor(ctx context.Context, req interface{},\n    info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {\n    ctx, span := tracer.Start(ctx, info.FullMethod)\n    defer span.End()\n    resp, err := handler(ctx, req)\n    if err != nil { span.RecordError(err) }\n    return resp, err\n}\n```"
             ]
           },
           {
@@ -609,7 +1174,8 @@
             "tasks": [
               "- **SSE (FleetPulse GPS):** `text/event-stream`, Redis pub/sub bridges all replicas. 50K concurrent connections. `EventSource` auto-reconnects.",
               "- **WebSocket (FleetPulse chat):** bidirectional driver ↔ dispatcher. Redis pub/sub bridge. `gorilla/websocket` concurrent write mutex.",
-              "- **WebRTC (AeroOps expert calls):** P2P video. Socket.io signaling (offer/answer/ICE), then P2P direct. STUN/TURN servers.\nTest SSE: 3 dispatcher browser tabs + 3 server replicas. Move driver via `curl`. All 6 windows update simultaneously. This demonstrates Redis pub/sub fan-out."
+              "- **WebRTC (AeroOps expert calls):** P2P video. Socket.io signaling (offer/answer/ICE), then P2P direct. STUN/TURN servers.",
+              "Test SSE: 3 dispatcher browser tabs + 3 server replicas. Move driver via `curl`. All 6 windows update simultaneously. This demonstrates Redis pub/sub fan-out."
             ]
           },
           {
@@ -621,7 +1187,7 @@
           {
             "title": "Weekend: SideCar v1.0 — HTTP + gRPC Observability Proxy",
             "tasks": [
-              "```\nSideCar features:\n✅ HTTP reverse proxy (transparent, zero target code changes)\n✅ gRPC proxy (unary + streaming interceptors)\n✅ OTel span creation + W3C traceparent header propagation\n✅ Prometheus /metrics endpoint\n✅ Structured logging with requestId\nDeploy: Docker Compose sidecar alongside DungBeetle + PayCore\n```"
+              "```\nSideCar features:\n✅ HTTP reverse proxy (transparent, zero target code changes)\n✅ gRPC proxy (unary + streaming interceptors)\n✅ OTel span creation + W3C traceparent header propagation\n✅ Prometheus /metrics endpoint\n✅ Structured logging with requestId\n\nDeploy: Docker Compose sidecar alongside DungBeetle + PayCore\n```"
             ]
           }
         ]
@@ -651,19 +1217,20 @@
           {
             "title": "Thursday — Transactional Outbox Pattern",
             "tasks": [
-              "```go\n// Stack: Go + PostgreSQL + Kafka\n// DungBeetle job completion: writes to both jobs table + outbox in ONE transaction\nfunc completeJob(ctx context.Context, db *pgxpool.Pool, jobID string) error {\n    return db.BeginFunc(ctx, func(tx pgx.Tx) error {\n        tx.Exec(ctx, \"UPDATE jobs SET status='success' WHERE id=$1\", jobID)\n        tx.Exec(ctx, `INSERT INTO outbox(id,topic,key,payload)\n                      VALUES($1,'jobs.completed',$2,$3)`,\n            uuid.New(), jobID, mustMarshal(JobCompletedEvent{JobID: jobID}))\n        return nil\n    })\n}\n// Relay polls outbox → Kafka → marks published. Guaranteed delivery.\n```"
+              "```go\n// Stack: Go + PostgreSQL + Kafka\n// DungBeetle job completion: writes to both jobs table + outbox in ONE transaction\n\nfunc completeJob(ctx context.Context, db *pgxpool.Pool, jobID string) error {\n    return db.BeginFunc(ctx, func(tx pgx.Tx) error {\n        tx.Exec(ctx, \"UPDATE jobs SET status='success' WHERE id=$1\", jobID)\n        tx.Exec(ctx, `INSERT INTO outbox(id,topic,key,payload)\n                      VALUES($1,'jobs.completed',$2,$3)`,\n            uuid.New(), jobID, mustMarshal(JobCompletedEvent{JobID: jobID}))\n        return nil\n    })\n}\n// Relay polls outbox → Kafka → marks published. Guaranteed delivery.\n```"
             ]
           },
           {
             "title": "Friday — Leader Election + Schema Registry",
             "tasks": [
-              "Leader Election: Redis `SETNX \"leader:cron-scheduler\" EX 10` — only 1 DungBeetle replica runs cron. Heartbeat: `EXPIRE` every 4s. Instance dies → key expires → another wins.\nSchema Registry: Avro schemas for all Kafka events. Breaking change rejected at publish time."
+              "Leader Election: Redis `SETNX \"leader:cron-scheduler\" EX 10` — only 1 DungBeetle replica runs cron. Heartbeat: `EXPIRE` every 4s. Instance dies → key expires → another wins.",
+              "Schema Registry: Avro schemas for all Kafka events. Breaking change rejected at publish time."
             ]
           },
           {
             "title": "Weekend Capstone: DungBeetle v1.0 — Production Job System",
             "tasks": [
-              "```\nDungBeetle v1.0 Architecture:\n┌────────────────────────────────────────────────────────────┐\n│                      DungBeetle v1.0                       │\n├──────────────┬───────────────┬───────────────────────────--┤\n│  HTTP + gRPC │   Cron Sched. │      Worker Pool            │\n│  API         │  (Redis SETNX │   (20 goroutines,           │\n│              │   leader)     │    semaphore, drain)        │\n└──────────────┴───────┬───────┴──────────────┬──────────────┘\n                       │                       │\n              Kafka (jobs.pending | retry.1 | retry.2 | dlq)\n                       │\nPostgreSQL (jobs | job_runs | outbox | processed_events) + Redis (cache | idempotency | rate-limit)\nFeatures: webhook (HMAC-SHA256) | cron | ai_summary | cleanup\nOTel: full trace per job (HTTP → Kafka → Worker → DB)\nPrometheus: job_duration_seconds, jobs_total{status}, dlq_depth, kafka_lag\n```"
+              "```\nDungBeetle v1.0 Architecture:\n┌────────────────────────────────────────────────────────────┐\n│                      DungBeetle v1.0                       │\n├──────────────┬───────────────┬───────────────────────────--┤\n│  HTTP + gRPC │   Cron Sched. │      Worker Pool            │\n│  API         │  (Redis SETNX │   (20 goroutines,           │\n│              │   leader)     │    semaphore, drain)        │\n└──────────────┴───────┬───────┴──────────────┬──────────────┘\n                       │                       │\n              Kafka (jobs.pending | retry.1 | retry.2 | dlq)\n                       │\nPostgreSQL (jobs | job_runs | outbox | processed_events) + Redis (cache | idempotency | rate-limit)\n\nFeatures: webhook (HMAC-SHA256) | cron | ai_summary | cleanup\nOTel: full trace per job (HTTP → Kafka → Worker → DB)\nPrometheus: job_duration_seconds, jobs_total{status}, dlq_depth, kafka_lag\n```"
             ]
           },
           {
@@ -713,7 +1280,7 @@
           {
             "title": "Monday — Double-Entry Bookkeeping + Financial Schema",
             "tasks": [
-              "```sql\n-- Never FLOAT for money. DECIMAL(19,4) always.\n-- Trigger enforces: SUM(debit) = SUM(credit) per journal entry\nCREATE TABLE accounts (id UUID PRIMARY KEY, name TEXT NOT NULL,\n    type TEXT CHECK (type IN ('asset','liability','equity','revenue','expense')),\n    currency CHAR(3) NOT NULL DEFAULT 'INR');\nCREATE TABLE journal_entries (id UUID PRIMARY KEY, description TEXT NOT NULL,\n    idempotency_key TEXT UNIQUE, entry_date DATE NOT NULL);\nCREATE TABLE journal_lines (id UUID PRIMARY KEY,\n    journal_entry_id UUID REFERENCES journal_entries(id),\n    account_id UUID REFERENCES accounts(id),\n    debit DECIMAL(19,4) NOT NULL DEFAULT 0,\n    credit DECIMAL(19,4) NOT NULL DEFAULT 0,\n    CONSTRAINT one_side CHECK ((debit > 0 AND credit = 0) OR (debit = 0 AND credit > 0)));\n```"
+              "```sql\n-- Never FLOAT for money. DECIMAL(19,4) always.\n-- Trigger enforces: SUM(debit) = SUM(credit) per journal entry\nCREATE TABLE accounts (id UUID PRIMARY KEY, name TEXT NOT NULL,\n    type TEXT CHECK (type IN ('asset','liability','equity','revenue','expense')),\n    currency CHAR(3) NOT NULL DEFAULT 'INR');\n\nCREATE TABLE journal_entries (id UUID PRIMARY KEY, description TEXT NOT NULL,\n    idempotency_key TEXT UNIQUE, entry_date DATE NOT NULL);\n\nCREATE TABLE journal_lines (id UUID PRIMARY KEY,\n    journal_entry_id UUID REFERENCES journal_entries(id),\n    account_id UUID REFERENCES accounts(id),\n    debit DECIMAL(19,4) NOT NULL DEFAULT 0,\n    credit DECIMAL(19,4) NOT NULL DEFAULT 0,\n    CONSTRAINT one_side CHECK ((debit > 0 AND credit = 0) OR (debit = 0 AND credit > 0)));\n```"
             ]
           },
           {
@@ -743,7 +1310,7 @@
           {
             "title": "Weekend Capstone: PayCore v1.0",
             "tasks": [
-              "```\nPayCore v1.0 = DungBeetle (cron + webhooks) + SideCar (OTel + circuit breaking)\n             + double-entry ledger + idempotent payments + reconciliation + fraud\nTechnologies: Go + PostgreSQL (double-entry) + Redis (idempotency + velocity)\n              + Kafka (payment events via outbox) + gRPC (internal fraud call)\n              + OpenTelemetry (full payment lifecycle trace) + Prometheus\n```"
+              "```\nPayCore v1.0 = DungBeetle (cron + webhooks) + SideCar (OTel + circuit breaking)\n             + double-entry ledger + idempotent payments + reconciliation + fraud\n\nTechnologies: Go + PostgreSQL (double-entry) + Redis (idempotency + velocity)\n              + Kafka (payment events via outbox) + gRPC (internal fraud call)\n              + OpenTelemetry (full payment lifecycle trace) + Prometheus\n```"
             ]
           }
         ]
@@ -754,18 +1321,20 @@
     "title": "MONTH 7: Distributed Patterns — CQRS + Event Sourcing + Saga",
     "weeks": [
       {
-        "title": "Uncategorized Week",
+        "title": "General Context",
         "days": [
           {
             "title": "Monday — All 4 Isolation Levels: Live Anomaly Demos",
             "tasks": [
-              "**Build a demo service that shows each anomaly with real PostgreSQL:**\n| Level | Problem it prevents | PayCore use |\n|-------|--------------------|-----------| \n| Read Uncommitted | None | Never use |\n| Read Committed (default) | Dirty reads | Most read queries |\n| Repeatable Read | Non-repeatable reads | Analytical reports |\n| Serializable | All anomalies | Payment balance updates |\nPayCore: `Serializable` + `SELECT FOR UPDATE` on balance rows. Concurrent transfers → no lost update anomaly."
+              "**Build a demo service that shows each anomaly with real PostgreSQL:**",
+              "| Level | Problem it prevents | PayCore use |\n|-------|--------------------|-----------| \n| Read Uncommitted | None | Never use |\n| Read Committed (default) | Dirty reads | Most read queries |\n| Repeatable Read | Non-repeatable reads | Analytical reports |\n| Serializable | All anomalies | Payment balance updates |",
+              "PayCore: `Serializable` + `SELECT FOR UPDATE` on balance rows. Concurrent transfers → no lost update anomaly."
             ]
           },
           {
             "title": "Tuesday — Event Sourcing: Append-Only Event Store",
             "tasks": [
-              "```go\n// Events table: REVOKE UPDATE, DELETE. Only INSERT + SELECT.\n// Account balance = sum of all events (no stored balance — computed on read)\n// Point-in-time query: \"what was balance on Jan 1?\" → replay events up to that date\nfunc (repo *AccountRepo) GetBalanceAt(ctx context.Context, id string, at time.Time) decimal.Decimal {\n    rows, _ := db.Query(ctx,\n        \"SELECT event_type, amount FROM account_events WHERE account_id=$1 AND created_at<=$2 ORDER BY version\",\n        id, at)\n    // replay events, sum credits - debits\n}\n```"
+              "```go\n// Events table: REVOKE UPDATE, DELETE. Only INSERT + SELECT.\n// Account balance = sum of all events (no stored balance — computed on read)\n// Point-in-time query: \"what was balance on Jan 1?\" → replay events up to that date\n\nfunc (repo *AccountRepo) GetBalanceAt(ctx context.Context, id string, at time.Time) decimal.Decimal {\n    rows, _ := db.Query(ctx,\n        \"SELECT event_type, amount FROM account_events WHERE account_id=$1 AND created_at<=$2 ORDER BY version\",\n        id, at)\n    // replay events, sum credits - debits\n}\n```"
             ]
           },
           {
@@ -774,7 +1343,8 @@
               "3 read projections built from same PayCore event stream:",
               "- `payments_summary` — dashboard (latest status, amount)",
               "- `user_payment_history` — per-user sorted list",
-              "- `fraud_signals` — denormalized for fast fraud scoring\nAll rebuilt from Kafka CDC pipeline. Driver search: 800ms (PostgreSQL JOIN) → 8ms (read model)."
+              "- `fraud_signals` — denormalized for fast fraud scoring",
+              "All rebuilt from Kafka CDC pipeline. Driver search: 800ms (PostgreSQL JOIN) → 8ms (read model)."
             ]
           },
           {
@@ -792,7 +1362,7 @@
           {
             "title": "Weekend Capstone: PayCore v2.0 — Event-Sourced + Saga",
             "tasks": [
-              "```\nNew in v2.0:\n✅ Event-sourced bank accounts (full audit trail, time-travel queries)\n✅ CQRS: 3 read projections from same event stream\n✅ Fund Transfer Saga (choreography + orchestration, both tested)\n✅ Compensating transactions under failure injection\n✅ Outbox for all event publishing\nCross-project composition:\n- DungBeetle runs reconciliation cron (2am)\n- SideCar proxies PayCore (OTel + circuit breaking + mTLS)\n- PayCore events feed StreamDB analytics (Month 5)\n```"
+              "```\nNew in v2.0:\n✅ Event-sourced bank accounts (full audit trail, time-travel queries)\n✅ CQRS: 3 read projections from same event stream\n✅ Fund Transfer Saga (choreography + orchestration, both tested)\n✅ Compensating transactions under failure injection\n✅ Outbox for all event publishing\n\nCross-project composition:\n- DungBeetle runs reconciliation cron (2am)\n- SideCar proxies PayCore (OTel + circuit breaking + mTLS)\n- PayCore events feed StreamDB analytics (Month 5)\n```"
             ]
           }
         ]
@@ -803,19 +1373,22 @@
           {
             "title": "Monday — Circuit Breaker Full Implementation + Bulkhead",
             "tasks": [
-              "```go\n// States: Closed → Open (5 failures/10s) → Half-Open (1 trial/30s) → Closed\n// Bulkhead: separate semaphore pools per downstream service\n// Stripe slow does NOT slow Google Maps calls\ntype CircuitBreaker struct {\n    mu       sync.Mutex\n    state    string  // \"closed\" | \"open\" | \"half-open\"\n    failures int\n    openedAt time.Time\n}\n```\nSideCar adds circuit breaking at the proxy layer: zero code changes to target services."
+              "```go\n// States: Closed → Open (5 failures/10s) → Half-Open (1 trial/30s) → Closed\n// Bulkhead: separate semaphore pools per downstream service\n// Stripe slow does NOT slow Google Maps calls\n\ntype CircuitBreaker struct {\n    mu       sync.Mutex\n    state    string  // \"closed\" | \"open\" | \"half-open\"\n    failures int\n    openedAt time.Time\n}\n```",
+              "SideCar adds circuit breaking at the proxy layer: zero code changes to target services."
             ]
           },
           {
             "title": "Tuesday — Rate Limiting: All 4 Algorithms as Redis Lua Scripts",
             "tasks": [
-              "| Algorithm | Platform Use | Why |\n|-----------|-------------|-----|\n| Fixed Window | GPS pings (100/min/driver) | Simple, boundary burst OK for GPS |\n| Sliding Window Log | API key quota | Exact count, no boundary bug |\n| Token Bucket | General API endpoints | Burst-friendly |\n| Leaky Bucket | Payment endpoint | Strict constant rate, zero burst |\nAll return: `Retry-After`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`."
+              "| Algorithm | Platform Use | Why |\n|-----------|-------------|-----|\n| Fixed Window | GPS pings (100/min/driver) | Simple, boundary burst OK for GPS |\n| Sliding Window Log | API key quota | Exact count, no boundary bug |\n| Token Bucket | General API endpoints | Burst-friendly |\n| Leaky Bucket | Payment endpoint | Strict constant rate, zero burst |",
+              "All return: `Retry-After`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`."
             ]
           },
           {
             "title": "Wednesday — Leader Election Deep + PITR Drill",
             "tasks": [
-              "Leader election already built (DungBeetle cron). Add: FleetPulse surge pricing runs on exactly 1 replica.\nPITR Drill: `DROP TABLE work_orders` → restore from S3 WAL → measure RTO (target < 10 min). Write runbook. This is real disaster recovery practice."
+              "Leader election already built (DungBeetle cron). Add: FleetPulse surge pricing runs on exactly 1 replica.",
+              "PITR Drill: `DROP TABLE work_orders` → restore from S3 WAL → measure RTO (target < 10 min). Write runbook. This is real disaster recovery practice."
             ]
           },
           {
@@ -827,7 +1400,8 @@
           {
             "title": "Friday — Load Balancers + CAP Theorem Demo Service",
             "tasks": [
-              "K8s NGINX Ingress (Round Robin). Health checks + automatic failover.\nCAP theorem demo service (Go): same endpoint, toggle `CAP_MODE=cp|ap`. CP: read from primary only. AP: read from any replica. Side-by-side latency + consistency visible in UI."
+              "K8s NGINX Ingress (Round Robin). Health checks + automatic failover.",
+              "CAP theorem demo service (Go): same endpoint, toggle `CAP_MODE=cp|ap`. CP: read from primary only. AP: read from any replica. Side-by-side latency + consistency visible in UI."
             ]
           },
           {
@@ -844,7 +1418,7 @@
     "title": "MONTH 8: Stream Processing + StreamDB + Case Studies 1–6",
     "weeks": [
       {
-        "title": "Uncategorized Week",
+        "title": "General Context",
         "days": [
           {
             "title": "Monday — Kafka Streams: Windowed Aggregation",
@@ -855,13 +1429,14 @@
           {
             "title": "Tuesday — CDC Pipeline: Multiple Consumers",
             "tasks": [
-              "```\nPayCore PostgreSQL → Debezium → Kafka paycore.cdc\n  → Consumer A: StreamDB TimescaleDB (analytics)\n  → Consumer B: Redis auto-invalidation (no more manual cache.del())\n  → Consumer C: Audit log (append-only)\n  → Consumer D: Fraud signal aggregator\n```\nAll 4 consumers: independent, idempotent, restartable without data loss."
+              "```\nPayCore PostgreSQL → Debezium → Kafka paycore.cdc\n  → Consumer A: StreamDB TimescaleDB (analytics)\n  → Consumer B: Redis auto-invalidation (no more manual cache.del())\n  → Consumer C: Audit log (append-only)\n  → Consumer D: Fraud signal aggregator\n```",
+              "All 4 consumers: independent, idempotent, restartable without data loss."
             ]
           },
           {
             "title": "Wednesday — TimescaleDB: Time-Series at Scale",
             "tasks": [
-              "```sql\n-- Hypertable: automatic time-based partitioning\nSELECT create_hypertable('events', 'timestamp');\n-- Continuous aggregate: pre-computed hourly rollups (automatic)\nCREATE MATERIALIZED VIEW events_hourly WITH (timescaledb.continuous) AS\n    SELECT time_bucket('1 hour', timestamp) AS bucket, event_type, COUNT(*)\n    FROM events GROUP BY 1, 2;\n-- Compression: 20× reduction for events older than 7 days\nALTER TABLE events SET (timescaledb.compress);\nSELECT add_compression_policy('events', INTERVAL '7 days');\n```"
+              "```sql\n-- Hypertable: automatic time-based partitioning\nSELECT create_hypertable('events', 'timestamp');\n\n-- Continuous aggregate: pre-computed hourly rollups (automatic)\nCREATE MATERIALIZED VIEW events_hourly WITH (timescaledb.continuous) AS\n    SELECT time_bucket('1 hour', timestamp) AS bucket, event_type, COUNT(*)\n    FROM events GROUP BY 1, 2;\n\n-- Compression: 20× reduction for events older than 7 days\nALTER TABLE events SET (timescaledb.compress);\nSELECT add_compression_policy('events', INTERVAL '7 days');\n```"
             ]
           },
           {
@@ -873,13 +1448,14 @@
           {
             "title": "Friday — Bloom Filters: From Scratch",
             "tasks": [
-              "**False positive math:** `P = (1 - e^(-kn/m))^k`. Use cases: unknown `restaurantId` → 404 before Redis/DB, URL dedup in crawler (100M URLs, 100MB RAM), fraud pre-filter (known spoof coordinates).\n```go\n// Stack: Go (pure math + bitset, no library)\n// Implemented in: FleetPulse fraud + AeroOps crawler + RouteMaster restaurant lookup\ntype BloomFilter struct {\n    bits    []uint64\n    m, k    uint  // m = bit count, k = hash functions\n}\nfunc (b *BloomFilter) Add(item []byte) {\n    for i := uint(0); i < b.k; i++ {\n        bit := b.hash(item, i) % b.m\n        b.bits[bit/64] |= 1 << (bit % 64)\n    }\n}\nfunc (b *BloomFilter) MayContain(item []byte) bool {\n    for i := uint(0); i < b.k; i++ {\n        bit := b.hash(item, i) % b.m\n        if b.bits[bit/64]&(1<<(bit%64)) == 0 { return false }\n    }\n    return true\n}\n```"
+              "**False positive math:** `P = (1 - e^(-kn/m))^k`. Use cases: unknown `restaurantId` → 404 before Redis/DB, URL dedup in crawler (100M URLs, 100MB RAM), fraud pre-filter (known spoof coordinates).",
+              "```go\n// Stack: Go (pure math + bitset, no library)\n// Implemented in: FleetPulse fraud + AeroOps crawler + RouteMaster restaurant lookup\n\ntype BloomFilter struct {\n    bits    []uint64\n    m, k    uint  // m = bit count, k = hash functions\n}\n\nfunc (b *BloomFilter) Add(item []byte) {\n    for i := uint(0); i < b.k; i++ {\n        bit := b.hash(item, i) % b.m\n        b.bits[bit/64] |= 1 << (bit % 64)\n    }\n}\n\nfunc (b *BloomFilter) MayContain(item []byte) bool {\n    for i := uint(0); i < b.k; i++ {\n        bit := b.hash(item, i) % b.m\n        if b.bits[bit/64]&(1<<(bit%64)) == 0 { return false }\n    }\n    return true\n}\n```"
             ]
           },
           {
             "title": "Weekend Capstone: StreamDB v1.0 — Full Analytics Pipeline",
             "tasks": [
-              "```\nEvent Sources (PayCore, DungBeetle, FleetPulse, HTTP API)\n    ↓ Kafka (3 topics: events.raw, events.processed, events.alerts)\nKafka Streams (Go, 5-min tumbling window → Count-Min Sketch for top-N)\n    ↓\n  ├── TimescaleDB (raw events + continuous hourly aggregates)\n  ├── Redis Sorted Sets (real-time leaderboards, top-10 zones)\n  └── WebSocket Hub → browser dashboard (1-second updates)\n    ↓\nAlert engine → Slack when anomaly detected\nTechnologies: Go + Kafka + TimescaleDB + Redis + WebSockets + Bloom Filters\n```"
+              "```\nEvent Sources (PayCore, DungBeetle, FleetPulse, HTTP API)\n    ↓ Kafka (3 topics: events.raw, events.processed, events.alerts)\nKafka Streams (Go, 5-min tumbling window → Count-Min Sketch for top-N)\n    ↓\n  ├── TimescaleDB (raw events + continuous hourly aggregates)\n  ├── Redis Sorted Sets (real-time leaderboards, top-10 zones)\n  └── WebSocket Hub → browser dashboard (1-second updates)\n    ↓\nAlert engine → Slack when anomaly detected\n\nTechnologies: Go + Kafka + TimescaleDB + Redis + WebSockets + Bloom Filters\n```"
             ]
           }
         ]
@@ -896,13 +1472,14 @@
               "- PGVector: \"similar to past orders\" semantic recommendations",
               "- Redis Lua: atomic slot reservation (zero oversells at 10K concurrent)",
               "- Next.js ISR: `stale-while-revalidate=30`, HTML from Cloudflare CDN edge",
-              "- Bloom Filter: unknown restaurantId → 404 before Redis/DB hit\nk6: 1M VUs, p99 < 200ms globally. ADR written."
+              "- Bloom Filter: unknown restaurantId → 404 before Redis/DB hit",
+              "k6: 1M VUs, p99 < 200ms globally. ADR written."
             ]
           },
           {
             "title": "Case Study 2: Tinder Feed → FleetPulse Driver Job Feed",
             "tasks": [
-              "```\nNew trip → Kafka → Go fan-out worker\n  → PostGIS ST_DWithin: drivers within 2km\n  → score = fare/distance × demand_multiplier\n  → ZADD feed:{driverId} {score} {tripId}\n  → SSE push \"new job\"\nDriver opens app:\n  → ZREVRANGE feed:{driverId} 0 9 → instant from Redis Sorted Set\n```"
+              "```\nNew trip → Kafka → Go fan-out worker\n  → PostGIS ST_DWithin: drivers within 2km\n  → score = fare/distance × demand_multiplier\n  → ZADD feed:{driverId} {score} {tripId}\n  → SSE push \"new job\"\n\nDriver opens app:\n  → ZREVRANGE feed:{driverId} 0 9 → instant from Redis Sorted Set\n```"
             ]
           },
           {
@@ -926,7 +1503,10 @@
           {
             "title": "Case Study 6: Realtime Abuse Masker → FleetPulse GPS Fraud",
             "tasks": [
-              "3-layer pipeline, total < 15ms:\n1. **Wasm Layer (0ms):** AssemblyScript Bloom Filter, impossible speed > 250kph check\n2. **Go Rules (< 2ms):** velocity (5 trips/hr), teleportation (50km/min), device mismatch\n3. **ONNX Inference Go (< 10ms):** ML model embedded in binary. score > 0.7 → block"
+              "3-layer pipeline, total < 15ms:",
+              "1. **Wasm Layer (0ms):** AssemblyScript Bloom Filter, impossible speed > 250kph check",
+              "2. **Go Rules (< 2ms):** velocity (5 trips/hr), teleportation (50km/min), device mismatch",
+              "3. **ONNX Inference Go (< 10ms):** ML model embedded in binary. score > 0.7 → block"
             ]
           },
           {
@@ -943,12 +1523,13 @@
     "title": "MONTH 9: Database Internals + KVault + Case Studies 7–11",
     "weeks": [
       {
-        "title": "Uncategorized Week",
+        "title": "General Context",
         "days": [
           {
             "title": "Monday — LRU Engine + Multi-Tenant Namespace",
             "tasks": [
-              "```go\n// Stack: Go stdlib only (zero external deps for core)\n// LRU: doubly-linked list + HashMap, O(1) get + O(1) put\ntype KVStore struct {\n    data     map[string]*Entry  // \"tenantId:key\" → Entry\n    lru      *LRUList\n    mu       sync.RWMutex\n    maxBytes int64\n    usedBytes int64\n}\n```\nDSA: LeetCode 146 (LRU Cache) — this IS the code you're writing."
+              "```go\n// Stack: Go stdlib only (zero external deps for core)\n// LRU: doubly-linked list + HashMap, O(1) get + O(1) put\n\ntype KVStore struct {\n    data     map[string]*Entry  // \"tenantId:key\" → Entry\n    lru      *LRUList\n    mu       sync.RWMutex\n    maxBytes int64\n    usedBytes int64\n}\n```",
+              "DSA: LeetCode 146 (LRU Cache) — this IS the code you're writing."
             ]
           },
           {
@@ -960,7 +1541,7 @@
           {
             "title": "Wednesday — RESP3 Protocol + TCP Server",
             "tasks": [
-              "```go\n// redis-cli -p 6400 PING → +PONG\n// redis-cli -p 6400 SET foo bar EX 10 → +OK\n// redis-cli -p 6400 GET foo → $3\\r\\nbar\nfunc (s *KVServer) handleConn(conn net.Conn) {\n    reader := bufio.NewReader(conn)\n    for {\n        cmd, args, _ := parseRESP(reader)\n        conn.Write(serializeRESP(s.execute(cmd, args)))\n    }\n}\n```"
+              "```go\n// redis-cli -p 6400 PING → +PONG\n// redis-cli -p 6400 SET foo bar EX 10 → +OK\n// redis-cli -p 6400 GET foo → $3\\r\\nbar\n\nfunc (s *KVServer) handleConn(conn net.Conn) {\n    reader := bufio.NewReader(conn)\n    for {\n        cmd, args, _ := parseRESP(reader)\n        conn.Write(serializeRESP(s.execute(cmd, args)))\n    }\n}\n```"
             ]
           },
           {
@@ -978,7 +1559,7 @@
           {
             "title": "Weekend Capstone: KVault v1.0",
             "tasks": [
-              "```\nKVault = Redis clone:\n✅ LRU eviction (O(1)), TTL with lazy + background expiry\n✅ AOF persistence (everysec fsync)\n✅ RDB snapshots (binary dump)\n✅ RESP3 protocol (redis-cli compatible!)\n✅ TCP server (goroutine per connection)\n✅ 3-node consistent hash cluster\n✅ Go client library with connection pooling\n✅ Prometheus metrics + Grafana dashboard\n✅ 650K ops/sec benchmarked\nPortfolio: \"I understand Redis well enough to build it\"\n```"
+              "```\nKVault = Redis clone:\n✅ LRU eviction (O(1)), TTL with lazy + background expiry\n✅ AOF persistence (everysec fsync)\n✅ RDB snapshots (binary dump)\n✅ RESP3 protocol (redis-cli compatible!)\n✅ TCP server (goroutine per connection)\n✅ 3-node consistent hash cluster\n✅ Go client library with connection pooling\n✅ Prometheus metrics + Grafana dashboard\n✅ 650K ops/sec benchmarked\n\nPortfolio: \"I understand Redis well enough to build it\"\n```"
             ]
           }
         ]
@@ -998,7 +1579,8 @@
               "- GIN: `JSONB` containment, full-text, arrays",
               "- BRIN: time-series timestamp (90% smaller than B-tree for sequential data)",
               "- Partial: `WHERE status = 'pending'` (DungBeetle jobs — only indexes pending rows)",
-              "- Covering: `INCLUDE (amount)` — index-only scan without heap fetch\nEXPLAIN ANALYZE before/after for each. Document."
+              "- Covering: `INCLUDE (amount)` — index-only scan without heap fetch",
+              "EXPLAIN ANALYZE before/after for each. Document."
             ]
           },
           {
@@ -1022,13 +1604,15 @@
           {
             "title": "Weekend: Case Studies 7–9 Live + StreamDB v2.0",
             "tasks": [
-              "StreamDB v2.0: all queries EXPLAIN-analyzed and optimized. BRIN on `timestamp`. Monthly partitions. PgBouncer front-end. k6: 10K events/sec, p99 < 50ms.\n```\nL1: singleflight (dedup concurrent misses) → in-process LRU (~100μs, 100MB)\nL2: Redis (TTL + jitter + write-through, ~1ms)\nL3: PostgreSQL read replica (~10ms)\nPrometheus: cache_hit_ratio{layer} gauge\nGrafana dashboard: hit rate at each level in real-time\nAlert: L3 hit rate > 20% → caching needs tuning\n```"
+              "StreamDB v2.0: all queries EXPLAIN-analyzed and optimized. BRIN on `timestamp`. Monthly partitions. PgBouncer front-end. k6: 10K events/sec, p99 < 50ms.",
+              "```\nL1: singleflight (dedup concurrent misses) → in-process LRU (~100μs, 100MB)\nL2: Redis (TTL + jitter + write-through, ~1ms)\nL3: PostgreSQL read replica (~10ms)\n\nPrometheus: cache_hit_ratio{layer} gauge\nGrafana dashboard: hit rate at each level in real-time\nAlert: L3 hit rate > 20% → caching needs tuning\n```"
             ]
           },
           {
             "title": "Tuesday — PER Algorithm + Write-Through + Cache Invalidation via CDC",
             "tasks": [
-              "PER (Probabilistic Early Recomputation): recompute before TTL expires. `Math.random() < delta × beta × ln(1/U)`. No thundering herd on popular keys.\nWrite-through: update DB and cache atomically. PostgreSQL `NOTIFY` → Go listener → Redis `DEL`. Zero stale reads."
+              "PER (Probabilistic Early Recomputation): recompute before TTL expires. `Math.random() < delta × beta × ln(1/U)`. No thundering herd on popular keys.",
+              "Write-through: update DB and cache atomically. PostgreSQL `NOTIFY` → Go listener → Redis `DEL`. Zero stale reads."
             ]
           },
           {
@@ -1046,7 +1630,8 @@
           {
             "title": "Friday — WebAssembly Deep + Cache Audit Tool",
             "tasks": [
-              "**Wasm use cases:** CPU-bound in browser (route math, image processing, fraud pre-filter). AssemblyScript → `.wasm` → `WebAssembly.instantiate`.\nCache audit tool: inspect all 4 layers (browser `ETag`/`Cache-Control`, `CF-Cache-Status`, Redis TTL, PG buffer hit ratio) for any URL. OpsAI uses this as a tool."
+              "**Wasm use cases:** CPU-bound in browser (route math, image processing, fraud pre-filter). AssemblyScript → `.wasm` → `WebAssembly.instantiate`.",
+              "Cache audit tool: inspect all 4 layers (browser `ETag`/`Cache-Control`, `CF-Cache-Status`, Redis TTL, PG buffer hit ratio) for any URL. OpsAI uses this as a tool."
             ]
           },
           {
@@ -1069,7 +1654,8 @@
             "title": "Monday — Go Intermediate + K8s Operator",
             "tasks": [
               "Go intermediate: `context` propagation, graceful shutdown (`SIGTERM` drain), `sync.Pool` (60% allocation reduction), `slog` structured logging.",
-              "**FleetPulseLocationAggregator CRD:**\n```go\n// kubectl apply -f fleet-aggregator.yaml → operator creates Deployment + HPA automatically\n// Operator reads live Prometheus metric rate(gps_pings_total[1m])\n// Scales aggregator replicas based on current ping rate\nfunc (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {\n    pingsPerSec, _ := r.queryPrometheus(ctx, \"rate(gps_pings_total[1m])\")\n    desired := int32(pingsPerSec/500_000) + 1  // 500K pings/sec per replica\n    r.ensureHPA(ctx, desired)\n    return ctrl.Result{RequeueAfter: 30 * time.Second}, nil\n}\n```"
+              "**FleetPulseLocationAggregator CRD:**",
+              "```go\n// kubectl apply -f fleet-aggregator.yaml → operator creates Deployment + HPA automatically\n// Operator reads live Prometheus metric rate(gps_pings_total[1m])\n// Scales aggregator replicas based on current ping rate\n\nfunc (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {\n    pingsPerSec, _ := r.queryPrometheus(ctx, \"rate(gps_pings_total[1m])\")\n    desired := int32(pingsPerSec/500_000) + 1  // 500K pings/sec per replica\n    r.ensureHPA(ctx, desired)\n    return ctrl.Result{RequeueAfter: 30 * time.Second}, nil\n}\n```"
             ]
           },
           {
@@ -1081,25 +1667,38 @@
           {
             "title": "Wednesday — RAG Pipeline: AeroOps Boeing 737 Maintenance Manual",
             "tasks": [
-              "1. **Ingest:** chunk 5,000-page Boeing 737 manual (512 token chunks, 50 overlap, split at headings)\n2. **Embed:** OpenAI `text-embedding-3-small` → 1536-dim vectors\n3. **Store:** PGVector HNSW index + metadata (`chapter`, `page`, `section`)\n4. **Retrieve:** Hybrid search = 0.7 × vector cosine ANN + 0.3 × BM25\n5. **Rerank:** cross-encoder reranks top-20 → final top-5\n6. **Generate:** with citations — *\"Section 29-11-01, Page 7: 35 ft-lb ± 5\"*"
+              "1. **Ingest:** chunk 5,000-page Boeing 737 manual (512 token chunks, 50 overlap, split at headings)",
+              "2. **Embed:** OpenAI `text-embedding-3-small` → 1536-dim vectors",
+              "3. **Store:** PGVector HNSW index + metadata (`chapter`, `page`, `section`)",
+              "4. **Retrieve:** Hybrid search = 0.7 × vector cosine ANN + 0.3 × BM25",
+              "5. **Rerank:** cross-encoder reranks top-20 → final top-5",
+              "6. **Generate:** with citations — *\"Section 29-11-01, Page 7: 35 ft-lb ± 5\"*"
             ]
           },
           {
             "title": "Thursday — Multi-Agent System: OpsAI 3-Agent Incident Response",
             "tasks": [
-              "**3-agent system:**\n1. **Detector Agent** — monitors Kafka `fleetpulse.cdc` (Month 4 CDC pipeline)\n2. **Analyst Agent** — queries FleetPulse DB + pgvector past incidents + Boeing RAG\n3. **Escalation Agent** — determines severity → pages on-call → drafts runbook\nAnalyst + Escalation run concurrently via `Promise.all`. P1 anomaly → on-call paged in < 15s."
+              "**3-agent system:**",
+              "1. **Detector Agent** — monitors Kafka `fleetpulse.cdc` (Month 4 CDC pipeline)",
+              "2. **Analyst Agent** — queries FleetPulse DB + pgvector past incidents + Boeing RAG",
+              "3. **Escalation Agent** — determines severity → pages on-call → drafts runbook",
+              "Analyst + Escalation run concurrently via `Promise.all`. P1 anomaly → on-call paged in < 15s."
             ]
           },
           {
             "title": "Friday — DungBeetle v3.0: AI-Powered Jobs + Agent Orchestration",
             "tasks": [
-              "```\nDungBeetle v3.0 new features:\n✅ Semantic job search (pgvector HNSW + hybrid retrieval)\n✅ ai_job type: natural language → structured task → execute\n✅ Admin chat: \"why are my webhook jobs failing?\" (RAG over job logs)\n✅ Agent workflows: DungBeetle runs multi-agent systems as scheduled jobs\n✅ AI cost tracking: tokens/job, cost/day, Prometheus metrics\n✅ Streaming job output: AI result streams token-by-token via WebSocket\nCross-project: OpsAI agent orchestration platform uses DungBeetle to\nschedule investigation workflows as background jobs\n```"
+              "```\nDungBeetle v3.0 new features:\n✅ Semantic job search (pgvector HNSW + hybrid retrieval)\n✅ ai_job type: natural language → structured task → execute\n✅ Admin chat: \"why are my webhook jobs failing?\" (RAG over job logs)\n✅ Agent workflows: DungBeetle runs multi-agent systems as scheduled jobs\n✅ AI cost tracking: tokens/job, cost/day, Prometheus metrics\n✅ Streaming job output: AI result streams token-by-token via WebSocket\n\nCross-project: OpsAI agent orchestration platform uses DungBeetle to\nschedule investigation workflows as background jobs\n```"
             ]
           },
           {
             "title": "Weekend Capstone: OpsAI Full AI Layer + DungBeetle v3.0",
             "tasks": [
-              "Both systems complete and integrated. Every AI tool calls real systems. Token cost dashboard in Grafana. Human-in-the-loop approval queue via WebSocket.\n> **🔬 Biweekly Deep Project — Weeks 15–16**\n>\n> **Semantic Code Search Engine with Hybrid Retrieval**\n>\n> Built a code search engine for the 9-project monorepo that parses every function and type declaration using Go/TypeScript ASTs, embeds them with a code-specialized model, indexes the vectors in pgvector with HNSW, and merges vector similarity with BM25 full-text scoring using Reciprocal Rank Fusion — so that a query like \"function that validates GPS coordinates and rejects spoofed locations\" finds `validateAndScoreGpsPing` even though the query and function name share zero keywords.\n>\n> *Technologies from Weeks 1–16:* Go (`go/ast` parses function signatures + doc comments for all 6 Go services), TypeScript AST via `ts-morph` (extracts React component props and hook signatures), pgvector (`vector(1536)` on `code_chunks`; HNSW `m=16, ef_construction=64`; hybrid query `0.7 × (1 − embedding <=> $1) + 0.3 × ts_rank(fts, plainto_tsquery($2))`), OpenAI `text-embedding-3-small` (embed each chunk at index time), PostgreSQL FTS (`tsvector` column + GIN index updated via trigger), Next.js + Vercel AI SDK (streaming search results with source file and line number citations), DungBeetle (nightly re-index job triggered by GitHub webhook on each push). Evaluation: MRR on 50 hand-labeled queries = 0.74 vs keyword-only 0.31. Index: 94K functions, 1.1GB."
+              "Both systems complete and integrated. Every AI tool calls real systems. Token cost dashboard in Grafana. Human-in-the-loop approval queue via WebSocket.",
+              "> **🔬 Biweekly Deep Project — Weeks 15–16**\n>",
+              "> **Semantic Code Search Engine with Hybrid Retrieval**\n>",
+              "> Built a code search engine for the 9-project monorepo that parses every function and type declaration using Go/TypeScript ASTs, embeds them with a code-specialized model, indexes the vectors in pgvector with HNSW, and merges vector similarity with BM25 full-text scoring using Reciprocal Rank Fusion — so that a query like \"function that validates GPS coordinates and rejects spoofed locations\" finds `validateAndScoreGpsPing` even though the query and function name share zero keywords.\n>",
+              "> *Technologies from Weeks 1–16:* Go (`go/ast` parses function signatures + doc comments for all 6 Go services), TypeScript AST via `ts-morph` (extracts React component props and hook signatures), pgvector (`vector(1536)` on `code_chunks`; HNSW `m=16, ef_construction=64`; hybrid query `0.7 × (1 − embedding <=> $1) + 0.3 × ts_rank(fts, plainto_tsquery($2))`), OpenAI `text-embedding-3-small` (embed each chunk at index time), PostgreSQL FTS (`tsvector` column + GIN index updated via trigger), Next.js + Vercel AI SDK (streaming search results with source file and line number citations), DungBeetle (nightly re-index job triggered by GitHub webhook on each push). Evaluation: MRR on 50 hand-labeled queries = 0.74 vs keyword-only 0.31. Index: 94K functions, 1.1GB."
             ]
           }
         ]
@@ -1120,7 +1719,8 @@
               "- `json.Marshal` in hot path → streaming encoder",
               "- `fmt.Sprintf` → `strings.Builder`",
               "- `sync.Mutex` contention → `sync.RWMutex` or per-key sharding",
-              "- GC pressure → `sync.Pool`\nProfile DungBeetle under job queue load. Fix top allocator. Before/after benchmark."
+              "- GC pressure → `sync.Pool`",
+              "Profile DungBeetle under job queue load. Fix top allocator. Before/after benchmark."
             ]
           },
           {
@@ -1178,7 +1778,27 @@
               "- **Uber / Ola / Grab** — FleetPulse: GPS at 1M pings/sec, surge pricing, fraud",
               "- **DoorDash / Swiggy / Zomato** — RouteMaster: Kafka, Elasticsearch, notifications",
               "- **Stripe / Brex** — PayCore idempotency + reconciliation directly relevant",
-              "**Template:**\n```\nSubject: Backend engineer — built Zerodha-scale job system + \n         payments API from scratch (Go + Kafka + PostgreSQL)\nI built 9 production systems over 8 months. Most relevant to [role]:\n• DungBeetle: background job system (like dukgbeetle) — Kafka exactly-once,\n  cron with Redis leader election, DLQ, HMAC webhooks, AI job orchestration\n• PayCore: double-entry ledger, idempotent payments (0 double charges tested),\n  daily reconciliation engine, Saga-based fund transfers\n• FleetPulse: 1M GPS pings/sec, PostGIS driver matching, fraud detection\n  (Wasm + rules + ONNX, < 15ms), surge pricing\nAll projects: OTel traces, Prometheus metrics, k6 load tested, ADRs written.\n[GitHub] [Portfolio with live demos + benchmark numbers]\n30-min call to walk through the idempotency design or GPS aggregator?\n```\n> **🔬 Biweekly Deep Project — Weeks 17–18**\n>\n> **Adaptive Rate Limiter with Gradient Descent on SLO**\n>\n> Built a rate limiter that continuously measures upstream service p99 latency and applies a gradient descent update rule to increase allowed throughput when headroom exists and shed load when the SLO is at risk — converging to maximum sustainable throughput without manual capacity planning, which is how Envoy's adaptive concurrency filter and Netflix's CONCURRENCY_LIMIT work in production.\n>\n> *Technologies from Weeks 1–18:* Go (token bucket with atomically adjustable cap via `atomic.Int64`, Prometheus histogram client reads live p99 every 200ms, EMA damping of gradient to prevent oscillation), Redis Lua (atomic token check-and-decrement, `HSET adaptive:limit:{service} current_limit ema_p99` persists state across restarts), SideCar (adaptive limiter deployed as a zero-code-change proxy feature, span attribute `rate_limit.decision=allowed|shed`), Prometheus + Grafana (`adaptive_limit_current{service}`, `adaptive_limit_rejections_total`, EMA p99 overlay on same panel as limit), k6 (ramp 0 → 5K VUs over 5 min; fixed limit breaches SLO at 3K VUs; adaptive limiter holds p99 ≤ 100ms across full ramp by oscillating between 200–1,400 RPS). Portfolio framing: \"I built an adaptive rate limiter that uses gradient descent to find maximum sustainable throughput — no manual tuning required.\"\n## MONTHS 10–11: Performance + Polish + Hiring Sprint\n### Final Polish Checklist (Every Project)",
+              "**Template:**",
+              "```\nSubject: Backend engineer — built Zerodha-scale job system + \n         payments API from scratch (Go + Kafka + PostgreSQL)\n\nI built 9 production systems over 8 months. Most relevant to [role]:\n\n• DungBeetle: background job system (like dukgbeetle) — Kafka exactly-once,\n  cron with Redis leader election, DLQ, HMAC webhooks, AI job orchestration\n• PayCore: double-entry ledger, idempotent payments (0 double charges tested),\n  daily reconciliation engine, Saga-based fund transfers\n• FleetPulse: 1M GPS pings/sec, PostGIS driver matching, fraud detection\n  (Wasm + rules + ONNX, < 15ms), surge pricing\n\nAll projects: OTel traces, Prometheus metrics, k6 load tested, ADRs written.\n[GitHub] [Portfolio with live demos + benchmark numbers]\n\n30-min call to walk through the idempotency design or GPS aggregator?\n```",
+              "> **🔬 Biweekly Deep Project — Weeks 17–18**\n>",
+              "> **Adaptive Rate Limiter with Gradient Descent on SLO**\n>",
+              "> Built a rate limiter that continuously measures upstream service p99 latency and applies a gradient descent update rule to increase allowed throughput when headroom exists and shed load when the SLO is at risk — converging to maximum sustainable throughput without manual capacity planning, which is how Envoy's adaptive concurrency filter and Netflix's CONCURRENCY_LIMIT work in production.\n>",
+              "> *Technologies from Weeks 1–18:* Go (token bucket with atomically adjustable cap via `atomic.Int64`, Prometheus histogram client reads live p99 every 200ms, EMA damping of gradient to prevent oscillation), Redis Lua (atomic token check-and-decrement, `HSET adaptive:limit:{service} current_limit ema_p99` persists state across restarts), SideCar (adaptive limiter deployed as a zero-code-change proxy feature, span attribute `rate_limit.decision=allowed|shed`), Prometheus + Grafana (`adaptive_limit_current{service}`, `adaptive_limit_rejections_total`, EMA p99 overlay on same panel as limit), k6 (ramp 0 → 5K VUs over 5 min; fixed limit breaches SLO at 3K VUs; adaptive limiter holds p99 ≤ 100ms across full ramp by oscillating between 200–1,400 RPS). Portfolio framing: \"I built an adaptive rate limiter that uses gradient descent to find maximum sustainable throughput — no manual tuning required.\""
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "MONTHS 10–11: Performance + Polish + Hiring Sprint",
+    "weeks": [
+      {
+        "title": "Final Polish Checklist (Every Project)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
               "- [ ] `go test -race ./...` passes (data races = silent production bugs)",
               "- [ ] `go test -bench` on every data structure (know your performance)",
               "- [ ] `tsc --noEmit` passes (TypeScript strict: no `any`, no `ts-ignore`)",
@@ -1193,7 +1813,54 @@
               "- [ ] ADR for every major technology decision",
               "- [ ] README: Mermaid architecture diagram + benchmark numbers + live demo link",
               "- [ ] CONTRIBUTING.md: how to run locally, test, deploy",
-              "- [ ] X/LinkedIn post every weekend: screenshot + benchmark + architecture diagram\n## How All 9 Projects Connect\n```\nDungBeetle evolves: Week 1 → raw queue → Kafka → leader election → AI jobs\n    ↓ feeds PayCore reconciliation cron (runs at 2am)\n    ↓ feeds StreamDB data archival jobs\n    ↓ runs OpsAI agent workflows as scheduled background jobs\nPayCore: double-entry → Saga → event-sourced\n    ↓ payment events → StreamDB analytics (via CDC)\n    ↓ fraud signals → FleetPulse fraud engine\n    ↓ SideCar wraps PayCore (OTel + circuit breaking + mTLS)\nSideCar: deployed alongside every service\n    ↓ provides: OTel, circuit breaking, mTLS, rate limiting\n    ↓ deployed to: DungBeetle, PayCore, StreamDB, FleetPulse\nStreamDB: real-time analytics\n    ↓ ingests from: PayCore (CDC), DungBeetle (job events), FleetPulse (GPS)\n    ↓ feeds: OpsAI anomaly detection → investigation agent workflow\nKVault: Redis built from scratch\n    ↓ used as high-throughput cache in DungBeetle + PayCore (Months 8–9)\nFleetPulse evolves: raw Node.js → Express → Go → K8s Operator → AI-fraud\n    ↓ GPS events → StreamDB analytics\n    ↓ fraud signals → PayCore fraud scoring\n    ↓ surge pricing → DungBeetle cron coordination\nOpsAI: AI engineering hub\n    ↓ tools call: FleetPulse PostgreSQL, pgvector incidents, Redis driver status\n    ↓ runs on: DungBeetle (AI job type)\n    ↓ Boeing RAG: AeroOps maintenance documentation\n```\n## Daily Schedule\n| Block | Duration | Activity |\n|-------|----------|----------|\n| **Morning** | 2 hours | Learn concept. Not passive — run code, break it, read the library source. Concept is introduced because a project needs it. |\n| **Evening** | 2 hours | Build the named feature. **Must use ≥ 3 technologies together.** Never a tutorial project. Always \"FleetPulse needs X\" or \"DungBeetle needs X.\" |\n| **DSA** | 30 min | 1 problem. Connect it to what you built. LRU = KVault. Sliding Window = Rate Limiter. Bloom Filter = you built it. |\n| **Saturday** | 5 hours | Weekend capstone: wire the week's features into the flagship project. Deploy. Benchmark with k6. |\n| **Sunday** | 3 hours | Document: README update, ADR, benchmark numbers, X/LinkedIn post. CI must be green. |\n## Non-Negotiable Rules",
+              "- [ ] X/LinkedIn post every weekend: screenshot + benchmark + architecture diagram"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "How All 9 Projects Connect",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "```\nDungBeetle evolves: Week 1 → raw queue → Kafka → leader election → AI jobs\n    ↓ feeds PayCore reconciliation cron (runs at 2am)\n    ↓ feeds StreamDB data archival jobs\n    ↓ runs OpsAI agent workflows as scheduled background jobs\n\nPayCore: double-entry → Saga → event-sourced\n    ↓ payment events → StreamDB analytics (via CDC)\n    ↓ fraud signals → FleetPulse fraud engine\n    ↓ SideCar wraps PayCore (OTel + circuit breaking + mTLS)\n\nSideCar: deployed alongside every service\n    ↓ provides: OTel, circuit breaking, mTLS, rate limiting\n    ↓ deployed to: DungBeetle, PayCore, StreamDB, FleetPulse\n\nStreamDB: real-time analytics\n    ↓ ingests from: PayCore (CDC), DungBeetle (job events), FleetPulse (GPS)\n    ↓ feeds: OpsAI anomaly detection → investigation agent workflow\n\nKVault: Redis built from scratch\n    ↓ used as high-throughput cache in DungBeetle + PayCore (Months 8–9)\n\nFleetPulse evolves: raw Node.js → Express → Go → K8s Operator → AI-fraud\n    ↓ GPS events → StreamDB analytics\n    ↓ fraud signals → PayCore fraud scoring\n    ↓ surge pricing → DungBeetle cron coordination\n\nOpsAI: AI engineering hub\n    ↓ tools call: FleetPulse PostgreSQL, pgvector incidents, Redis driver status\n    ↓ runs on: DungBeetle (AI job type)\n    ↓ Boeing RAG: AeroOps maintenance documentation\n```"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Daily Schedule",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "| Block | Duration | Activity |\n|-------|----------|----------|\n| **Morning** | 2 hours | Learn concept. Not passive — run code, break it, read the library source. Concept is introduced because a project needs it. |\n| **Evening** | 2 hours | Build the named feature. **Must use ≥ 3 technologies together.** Never a tutorial project. Always \"FleetPulse needs X\" or \"DungBeetle needs X.\" |\n| **DSA** | 30 min | 1 problem. Connect it to what you built. LRU = KVault. Sliding Window = Rate Limiter. Bloom Filter = you built it. |\n| **Saturday** | 5 hours | Weekend capstone: wire the week's features into the flagship project. Deploy. Benchmark with k6. |\n| **Sunday** | 3 hours | Document: README update, ADR, benchmark numbers, X/LinkedIn post. CI must be green. |"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Non-Negotiable Rules",
+    "weeks": [
+      {
+        "title": "General Context",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
               "- [ ] **`go test -race ./...` passes** before every commit",
               "- [ ] **`tsc --noEmit` passes** — no `any`, no suppressed TypeScript errors",
               "- [ ] **Lighthouse 100/100/100/100** — set Week 1, maintained all 8 months",

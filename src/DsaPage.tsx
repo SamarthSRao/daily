@@ -63,7 +63,7 @@ export default function DsaPage() {
                   <span>Prerequisite</span>
                 </div>
                 <div className="dsa-list">
-                  {level.problems.map((prob: any, pIdx: number) => {
+                  {level.problems.map((prob: any) => {
                     const taskId = `dsa-${prob.id}`;
                     const isDone = completedDsa[taskId];
 

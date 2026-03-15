@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "./index.css";
 
 const DEFAULT_CATEGORIES = [
-  { id: "commission", name: "Commission", color: "#3b82f6", w: 8, h: 1 },
-  { id: "creation", name: "Creation", color: "#a855f7", w: 2, h: 4 },
-  { id: "research", name: "Research", color: "#f59e0b", w: 1, h: 1 },
-  { id: "life", name: "Life", color: "#10b981", w: 7, h: 12 },
-  { id: "sleep", name: "Sleep", color: "#ef4444", w: 6, h: 6 },
+  { id: "commission", name: "Commission", color: "#3b82f6", w: 8, h: 1, locked: false },
+  { id: "creation", name: "Creation", color: "#a855f7", w: 2, h: 4, locked: false },
+  { id: "research", name: "Research", color: "#f59e0b", w: 1, h: 1, locked: false },
+  { id: "life", name: "Life", color: "#10b981", w: 7, h: 12, locked: true },
+  { id: "sleep", name: "Sleep", color: "#ef4444", w: 6, h: 6, locked: true },
 ];
 
 type StatRow = { totH: number; remH: number; totD: number; remD: number };
@@ -266,7 +266,21 @@ export default function Dashboard() {
               </div>
               {categories.map((c: any, i: number) => (
                 <div key={c.id} className="edit-row">
-                  <span className="edit-name" style={{ color: c.color }}>{c.name}</span>
+                  {c.locked ? (
+                    <span className="edit-name" style={{ color: c.color }}>{c.name}</span>
+                  ) : (
+                    <input
+                      type="text"
+                      className="edit-name-input"
+                      value={c.name}
+                      style={{ color: c.color }}
+                      onChange={(e) => {
+                        const newCats = [...categories];
+                        newCats[i] = { ...newCats[i], name: e.target.value };
+                        setCategories(newCats);
+                      }}
+                    />
+                  )}
                   <input 
                     type="number" 
                     value={c.w} 

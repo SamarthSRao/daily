@@ -459,6 +459,12 @@ body {
   font-size: 1rem;
 }
 
+.edit-name-input {
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left !important;
+}
+
 .edit-row input {
   background-color: var(--bg-sidebar);
   border: 1px solid var(--border-color);
@@ -492,6 +498,66 @@ body {
   background-color: #e4e4e7;
 }
 
+/* Plan Selector Pills */
+.plan-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.plan-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.plan-pill:hover {
+  background-color: var(--bg-hover);
+  border-color: #3f3f46;
+  color: var(--text-primary);
+}
+
+.plan-pill--active {
+  font-weight: 600;
+}
+
+/* Alternate Plan Progress Bar */
+.alt-progress-bar-wrap {
+  height: 6px;
+  background-color: var(--bg-hover);
+  border-radius: 999px;
+  margin-top: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+}
+
+.alt-progress-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.alt-progress-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 6px;
+  display: block;
+}
+
 /* Media Queries for Responsiveness */
 @media (max-width: 1100px) {
   .bottom-split-section {
@@ -500,22 +566,106 @@ body {
   }
 }
 
+@media (max-width: 900px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .remaining-huge {
+    font-size: 3.5rem;
+  }
+
+  .datetime {
+    font-size: 1.1rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .dashboard-section { padding: 40px 16px; }
-  .grid-container { grid-template-columns: 1fr; }
+  .dashboard-section {
+    padding: 32px 16px;
+  }
+
+  .datetime {
+    font-size: 0.95rem;
+  }
+
   .remaining-huge-container {
     flex-direction: column;
-    gap: 30px;
+    gap: 24px;
   }
-  .remaining-huge { font-size: 3rem; }
-  .dsa-grid-header, .dsa-row {
+
+  .remaining-huge {
+    font-size: 2.5rem;
+  }
+
+  .timer-label {
+    font-size: 0.85rem;
+  }
+
+  .progress-bar-container {
+    height: 32px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+  }
+
+  .grid-container {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 24px;
   }
-  .dsa-grid-header { display: none; }
+
+  .bottom-split-section {
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .split-column {
+    max-width: 100%;
+  }
+
+  .tasks-title {
+    font-size: 1.75rem;
+  }
+
+  .tasks-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .modal-content {
+    max-width: calc(100vw - 32px);
+    padding: 24px 16px;
+  }
+
+  .edit-header,
+  .edit-row {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .dsa-grid-header {
+    display: none;
+  }
+
   .dsa-row {
-    padding: 12px 20px;
+    padding: 12px 16px;
     display: flex;
     flex-direction: column;
+    gap: 4px;
+  }
+
+  .dsa-check {
+    margin-bottom: 4px;
+  }
+
+  .dsa-id {
+    font-size: 0.8rem;
+  }
+
+  .month-header {
+    padding: 16px;
+  }
+
+  .month-content {
+    padding: 0 16px 16px 16px;
   }
 }

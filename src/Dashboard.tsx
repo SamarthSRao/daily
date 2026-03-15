@@ -284,6 +284,8 @@ export default function Dashboard() {
                   <input 
                     type="number" 
                     value={c.w} 
+                    min="0"
+                    max="24"
                     onChange={(e) => {
                       const newCats = [...categories];
                       newCats[i].w = Number(e.target.value);
@@ -293,6 +295,8 @@ export default function Dashboard() {
                   <input 
                     type="number" 
                     value={c.h} 
+                    min="0"
+                    max="24"
                     onChange={(e) => {
                       const newCats = [...categories];
                       newCats[i].h = Number(e.target.value);
@@ -301,6 +305,26 @@ export default function Dashboard() {
                   />
                 </div>
               ))}
+              
+              {/* Total Calculation Row */}
+              {(() => {
+                const totalW = categories.reduce((sum: number, c: any) => sum + (c.w || 0), 0);
+                const totalH = categories.reduce((sum: number, c: any) => sum + (c.h || 0), 0);
+                const isWValid = totalW === 24;
+                const isHValid = totalH === 24;
+
+                return (
+                  <div className="edit-row total-row" style={{ borderTop: '1px solid #3f3f46', marginTop: '8px', paddingTop: '8px', fontWeight: 'bold' }}>
+                    <span className="edit-name">TOTAL</span>
+                    <span style={{ color: isWValid ? '#10b981' : '#ef4444', textAlign: 'center' }}>
+                      {totalW}h {!isWValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
+                    </span>
+                    <span style={{ color: isHValid ? '#10b981' : '#ef4444', textAlign: 'center' }}>
+                      {totalH}h {!isHValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
+                    </span>
+                  </div>
+                );
+              })()}
             </div>
             <div className="modal-actions">
               <button className="edit-btn" onClick={() => setIsEditing(false)}>Close & Save</button>

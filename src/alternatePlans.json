@@ -1,5 +1,6 @@
 [
   {
+    "file": "plan_datadog_confluent.md",
     "id": "datadog",
     "name": "Datadog · Confluent",
     "emoji": "🔭",
@@ -15,18 +16,19 @@
               {
                 "title": "MONDAY — HTTP + OpenTelemetry Protocol + CLI + Git",
                 "tasks": [
-                  "Morning (3h):",
+                  "**Morning (3h):**",
                   "Full HTTP/HTTPS/DNS/TLS depth. Plus: **mTLS** — mutual TLS where both sides present certificates. Used between ObserveFlow collector and ObserveFlow backend (same pattern Datadog agent → Datadog backend uses)",
                   "**OpenTelemetry (OTel):** trace (request journey across services), metric (numerical measurement over time), log (structured event). All share `resource` (what produced it) + `attributes` (key-value metadata)",
                   "**OTLP:** OpenTelemetry Protocol. gRPC + HTTP/protobuf. What every OTel SDK speaks to send data",
                   "**ObserveFlow mental model:** application → OTel SDK → OTLP → ObserveFlow Collector (Go) → storage (ClickHouse + Elasticsearch) → query API → dashboard (React)",
                   "CLI, VS Code, Git, ESLint, Prettier — same as reference",
-                  "Evening (2h): ObserveFlow Raw OTLP Receiver",
+                  "**Evening (2h): ObserveFlow Raw OTLP Receiver**",
                   "Feature: **ObserveFlow needs a server that receives OTLP/HTTP telemetry from applications**",
                   "Raw Node.js HTTP server: `POST /v1/traces` + `POST /v1/metrics` + `POST /v1/logs` (OTLP/HTTP endpoints)",
                   "Parse protobuf body → extract span count, metric count → log structured summary",
                   "Test: configure a simple Node.js app with `@opentelemetry/sdk-node` to send to `localhost:4318` — see your own traces arrive",
-                  "This exact server becomes the full ObserveFlow ingestion pipeline in Week 9"
+                  "This exact server becomes the full ObserveFlow ingestion pipeline in Week 9",
+                  "**X Post:**"
                 ]
               },
               {
@@ -61,6 +63,38 @@
                   "`packages/types`: `Span`, `Metric`, `LogRecord`, `KafkaCluster`, `KafkaTopic`, `Column`, `QueryResult`, `AuthUser`, `ApiKey`, `AuditEvent`",
                   "`packages/schemas`: Zod schemas for all 4 platforms",
                   "`packages/sdk`: ObserveFlow JS SDK (tiny wrapper over OTel SDK — `ObserveFlow.init({ apiKey, endpoint })`). VaultAuth JS SDK (`VaultAuth.authorize()`, `VaultAuth.getUser()`). Both published as npm packages Week 5"
+                ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms v0.1 Deployed",
+                "tasks": []
+              }
+            ]
+          },
+          {
+            "title": "Week 2: React — All 4 Platforms in React",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**ObserveFlow**: `<MetricChart>` (Recharts LineChart, real-time updates via useQuery). `<TraceList>` (latency waterfall, D3.js). Zustand: `selectedTimeRange`, `selectedService`, `filterQuery`",
+                  "**StreamBridge**: Kafka cluster topology (SVG + React, broker nodes, partition replicas). Consumer lag chart",
+                  "**CrystalDB**: SQL editor with CodeMirror (React), query result table (virtual scroll for large results), schema browser (Tanstack Query for table list)",
+                  "**VaultAuth**: multi-step auth flow (RHF + Zod: email → password → MFA), user management table"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 3: Tailwind + Next.js + Svelte + Vue + Testing",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**Next.js (ObserveFlow)**: `app/dashboards/[id]/page.tsx` Server Component (dashboard config from DB, metric data from ClickHouse). SSR for dashboards ensures no layout shift on load",
+                  "**Svelte**: ObserveFlow status badge embed (customers embed `<script src=\"status.observeflow.io/widget.js\">` — public status page widget, 6KB)",
+                  "**Vue**: CrystalDB notebook interface (data scientists prefer Vue for this)",
+                  "**Testing**: Vitest (alert threshold logic, SQL parser, OIDC token validation), Playwright (full auth flow E2E), TestSprite"
                 ]
               }
             ]
@@ -107,6 +141,10 @@
                   "**TimescaleDB**: continuous aggregates for metrics (pre-compute 1-min, 5-min, 1-hour rollups — dashboard queries hit rollups, not raw data)",
                   "**Delta Lake / Parquet (CrystalDB)**: CrystalDB stores analytical datasets as Parquet on S3. Query engine reads them with partition pruning"
                 ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms Full-Stack + Real Observability",
+                "tasks": []
               }
             ]
           }
@@ -150,6 +188,21 @@
                   "ObserveFlow: SSE live metric stream → chart auto-updates without polling. `GET /api/metrics/stream?q=...` → `data: {timestamp, value}\\n\\n`",
                   "StreamBridge: WebSocket → live consumer group lag (updates every second during Kafka rebalance)",
                   "Redis pub/sub bridges all SSE connections across replicas"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 6: Docker + GitHub Actions + K8s + Terraform",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**ObserveFlow → AWS**: EKS + ClickHouse (self-hosted on EKS) + TimescaleDB RDS + Elasticsearch Service + ElastiCache + S3 (archived traces)",
+                  "**StreamBridge → GCP**: GKE + managed Kafka (Confluent Cloud or MSK) + Bigtable for stream state",
+                  "**CrystalDB → AWS**: S3 (Parquet files) + Athena (serverless query fallback) + EKS (query engine pods)",
+                  "**VaultAuth → Railway** (fast iteration for auth infra)",
+                  "**OTel sidecar** (Go): zero-code instrumentation — deployed as K8s sidecar, auto-instruments every pod"
                 ]
               }
             ]
@@ -497,6 +550,51 @@
                 "tasks": [
                   "Wasm pre-screen + Go rules + ONNX ML. Full anomalous login detection deployed."
                 ]
+              },
+              {
+                "title": "WEEKEND — All 11 Case Studies Deployed + Portfolio Site Live",
+                "tasks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Hiring Sprint",
+        "weeks": [
+          {
+            "title": "Week 17-18: Portfolio Polish + Open Source",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "All 4 platform READMEs with architecture diagrams, benchmark numbers, ADRs",
+                  "CNCF contributions: `opentelemetry-go` (collector improvements), `opentelemetry-collector-contrib` (new receiver), `cert-manager` (Go)",
+                  "LFX application: ObserveFlowCollector operator + CNCF PRs"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 19-20: Mock Interviews + Applications",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "Design a distributed metrics pipeline ingesting 100M metrics/sec",
+                  "Design an alerting engine with noise reduction",
+                  "Design a distributed tracing system with tail-based sampling",
+                  "**System design mocks (Confluent-specific):**",
+                  "Design a Kafka cluster management platform",
+                  "Design Schema Registry with compatibility enforcement",
+                  "Design exactly-once Kafka consumer",
+                  "**System design mocks (Okta-specific):**",
+                  "Design an OIDC provider at scale",
+                  "Design an API key management system with rotation",
+                  "Design anomalous auth detection",
+                  "**Target applications:**",
+                  "**Cold email:**"
+                ]
               }
             ]
           }
@@ -505,6 +603,7 @@
     ]
   },
   {
+    "file": "plan_jiohotstar_razorpay.md",
     "id": "jiohotstar",
     "name": "JioHotstar · Razorpay",
     "emoji": "📺",
@@ -520,17 +619,18 @@
               {
                 "title": "MONDAY — HTTP + HLS Protocol + CLI + Git",
                 "tasks": [
-                  "Morning (3h):",
+                  "**Morning (3h):**",
                   "Full HTTP/HTTPS/DNS/TLS depth (same as reference)",
                   "**HLS (HTTP Live Streaming):** `m3u8` playlist → chunks (`.ts` files, 2-6s each) → adaptive bitrate (multiple quality renditions). Player downloads playlist → requests chunks → switches quality based on bandwidth",
                   "**CDN for video:** chunks pre-cached at PoPs. Cache-Control on `.ts` files: long TTL. Cache-Control on `.m3u8`: short TTL (live stream, always fresh)",
                   "Why India needs edge: viewer in Ahmedabad should hit Mumbai PoP, not US-East",
-                  "Evening (2h): StreamEdge Live Stream Ingest Server",
+                  "**Evening (2h): StreamEdge Live Stream Ingest Server**",
                   "Feature: **StreamEdge needs a server that receives an HLS stream from an encoder and serves it to viewers**",
                   "Raw Node.js HTTP server: receives `PUT /live/{streamId}/{segment}` (encoder pushes `.ts` chunks)",
                   "Stores to memory map, serves via `GET /live/{streamId}/playlist.m3u8` and `GET /live/{streamId}/{segment}`",
                   "Test: `ffmpeg -re -i sample.mp4 -f hls http://localhost:3000/live/cricket-ipl2025` — push a real stream",
-                  "This same server becomes the full HLS origin in Week 9 (Express + S3 + CloudFront)"
+                  "This same server becomes the full HLS origin in Week 9 (Express + S3 + CloudFront)",
+                  "**X Post:**"
                 ]
               },
               {
@@ -563,6 +663,38 @@
                   "`packages/types`: `Stream`, `Viewer`, `PaymentIntent`, `UpiTransaction`, `Product`, `Order`, `CartItem`, `RecommendationEvent`",
                   "`packages/schemas`: Zod schemas for all + UPI-specific validations (`upiId: z.string().regex(/^[a-zA-Z0-9._-]+@[a-zA-Z]+$/)`)",
                   "`packages/api`: typed fetch with automatic retry (3× with jitter) and idempotency key injection — critical for payment APIs from Day 1"
+                ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms v0.1 Deployed",
+                "tasks": []
+              }
+            ]
+          },
+          {
+            "title": "Week 2: React — All 4 Platforms Rebuilt in React",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**StreamEdge**: `<VideoPlayer>` component (HLS.js in `useRef`), `<LiveBadge>` (SSE for viewer count), `<QualitySelector>` (Zustand for selected quality)",
+                  "**PayRail**: multi-step payment wizard (RHF + Zod, same Zod schema validates frontend + backend), `<PaymentStatus>` (optimistic UI with rollback)",
+                  "**BazaarFast**: product list + cart (Tanstack Query + Zustand). Flash sale countdown with `useEffect` cleanup",
+                  "**InsightHub**: trending products list (Tanstack Query, real-time updates every 30s)"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 3: Tailwind + Next.js + Svelte + Vue + Testing",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**Next.js (BazaarFast)**: ISR product listing (`revalidate: 60`), dynamic `app/products/[id]/page.tsx` Server Component, flash sale countdown as `'use client'` island",
+                  "**Svelte**: StreamEdge embeddable score widget (IPL score overlay — 8KB bundle, Cloudflare edge)",
+                  "**Vue**: PayRail merchant dashboard (separate team, same REST API)",
+                  "**Testing**: Vitest (payment state machine, cart calculations, UPI validation), Playwright (full checkout E2E with network mock for payment gateway)"
                 ]
               }
             ]
@@ -607,6 +739,10 @@
                   "**Cassandra (StreamEdge)**: viewer telemetry (`stream_id, viewer_id, timestamp, bitrate, buffer_events` — `PRIMARY KEY (stream_id, timestamp)`)",
                   "**PGVector (InsightHub)**: product embedding search — `\"show me products similar to what I just bought\"`"
                 ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms Full-Stack + Real DBs + UPI Payment Flow",
+                "tasks": []
               }
             ]
           }
@@ -971,34 +1107,74 @@
                 ]
               }
             ]
+          },
+          {
+            "title": "Week 15-16: Fraud Detection + Recommendation + Reconciliation + Remaining Case Studies",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**PayRail Fraud Detection (Case Study 6)**: Wasm pre-filter + rules (Go) + ONNX ML. < 200ms decision. RBI-compliant logging",
+                  "**InsightHub Recommendation Engine (Case Study 7)**: collaborative filtering + PGVector hybrid. Trained on BazaarFast purchase history",
+                  "**PayRail Distributed Ledger (Case Study 8)**: double-entry bookkeeping, reconciliation, audit trail",
+                  "**BazaarFast Real-Time Delivery Tracking (Case Study 9)**: driver GPS → Kafka → SSE → customer order page",
+                  "**Rate Limiter (Case Study 10)**: all 4 algorithms on PayRail payment APIs",
+                  "**Real-Time Abuse Masker (Case Study 11)**: StreamEdge piracy detection (concurrent sessions from same account)"
+                ]
+              },
+              {
+                "title": "WEEKEND — All 11 Case Studies Deployed + Portfolio Site Live",
+                "tasks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Hiring Sprint",
+        "weeks": [
+          {
+            "title": "Week 17-18: Portfolio Polish + Open Source",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "All 4 platform READMEs with architecture diagrams, benchmark numbers",
+                  "ADRs: why Cassandra for viewer telemetry, why Redis DECR for inventory, why Go for HLS pipeline",
+                  "Open source: contribute to `HLS.js`, `video.js`, or a Kafka connector"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 19-20: Mock Interviews + Applications",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "Design a live sports streaming platform for 50M concurrent viewers",
+                  "Design the score overlay + push notification system for IPL",
+                  "**System design mocks (Razorpay-specific):**",
+                  "Design a UPI payment gateway with no double charges",
+                  "Design a reconciliation system for payment rails",
+                  "**Target applications:**",
+                  "**Cold email:**"
+                ]
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
+    "file": "plan_rippling_databricks.md",
     "id": "rippling",
     "name": "Rippling · Databricks",
     "emoji": "⚙️",
     "subtitle": "WorkOS · SparkFlow · PayCore · LakeAI — Multi-Tenant SaaS + Data Platform",
     "color": "#a855f7",
     "months": [
-      {
-        "title": "Introduction",
-        "weeks": [
-          {
-            "title": "Week 1",
-            "days": [
-              {
-                "title": "Weekend (12h):",
-                "tasks": [
-                  "Wire the week's features together — each platform takes a version step forward."
-                ]
-              }
-            ]
-          }
-        ]
-      },
       {
         "title": "Full-Stack From Day One — All 4 Platforms Introduced",
         "weeks": [
@@ -1008,12 +1184,12 @@
               {
                 "title": "MONDAY — HTTP + CLI + Git + Multi-Tenancy Mental Model",
                 "tasks": [
-                  "Morning (3h):",
+                  "**Morning (3h):**",
                   "HTTP model, DNS, TLS, Client/Server, browser rendering pipeline — same depth as reference roadmap",
                   "**Multi-tenancy decision:** schema-per-tenant (strong isolation, expensive) vs row-level-security (shared schema, `tenant_id` on every table, PostgreSQL RLS policies). Rippling uses RLS-style with extreme isolation guarantees",
                   "**`X-Tenant-ID` header pattern:** every API request carries tenant context. Middleware extracts → attaches to `req.tenant`. Every DB query automatically scoped. This is Day 1 and it never changes",
                   "CLI, VS Code, Git, ESLint, Prettier — same as reference",
-                  "Evening (2h): WorkOS Tenant-Scoped HTTP Server",
+                  "**Evening (2h): WorkOS Tenant-Scoped HTTP Server**",
                   "Feature: **WorkOS needs a server that accepts employee event payloads and is tenant-scoped from Day 1**",
                   "Raw Node.js HTTP server: reads `X-Tenant-ID` header, logs `[tenant:acme] employee.created payload`",
                   "Tenant context stored in `AsyncLocalStorage` — no prop drilling through every function",
@@ -1063,6 +1239,34 @@
                   "PayCore v0.1: pricing page + subscription form",
                   "LakeAI v0.1: model registry shell",
                   "GitHub Actions: on push → `tsc --noEmit` → ESLint → deploy"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 2: React + State Management — All 4 Platforms in React",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**WorkOS**: multi-step employee onboarding wizard (RHF + Zod, step validation before proceeding). Tenant-scoped employee directory (Tanstack Query with `queryKey: ['employees', tenantId]`)",
+                  "**SparkFlow**: pipeline DAG visualization (React + SVG, Zustand for selected node state)",
+                  "**PayCore**: plan comparison + checkout flow (RHF + Zod, credit card validation)",
+                  "**LakeAI**: experiment comparison table (Tanstack Query, sort/filter by metric)"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 3: Tailwind + Shadcn + Next.js + Svelte + Vue + Testing",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**Next.js (WorkOS)**: `[tenantSlug]` dynamic segment. `app/[tenantSlug]/employees/page.tsx` — Server Component fetches tenant-specific data. Each tenant has their own Next.js layout with their brand colors (from Tailwind config seeded from tenant data)",
+                  "**Svelte**: SparkFlow pipeline status embeddable widget (embed in partner BI tools)",
+                  "**Vue**: PayCore billing portal (separate app, same REST API)",
+                  "**Testing**: Vitest (WorkOS RBAC logic, billing calculations, pipeline state machines), Playwright, TestSprite"
                 ]
               }
             ]
@@ -1171,6 +1375,26 @@
                   "WorkOS: WebSocket for real-time org chart updates (employee added → all HR tabs update)",
                   "Redis pub/sub bridges all SSE/WS connections across replicas"
                 ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms v0.5: All API Styles + Real-Time",
+                "tasks": []
+              }
+            ]
+          },
+          {
+            "title": "Week 6: Docker + CI/CD + Kubernetes + Multi-Cloud",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**WorkOS → AWS** (Terraform): EKS + RDS PostgreSQL (per-tenant schema isolation) + ElastiCache Redis + S3 (employee documents)",
+                  "**SparkFlow → GCP** (Pulumi): GKE + Dataproc (managed Spark) + BigQuery + GCS",
+                  "**PayCore → AWS**: ECS Fargate + RDS + ElastiCache + SQS (webhook queue)",
+                  "**LakeAI → Railway** (fast iteration)",
+                  "**OTel sidecar** (Go): distributed traces across all 4 platforms",
+                  "**Kubernetes Operator preview**: `WorkOSTenantProvisioner` CRD — auto-provisions DB schema + Redis keyspace + S3 bucket per tenant (full implementation Week 9)"
+                ]
               }
             ]
           }
@@ -1188,7 +1412,7 @@
                   "Python: types, dataclasses, Pydantic, async/await, context managers, decorators, generators",
                   "FastAPI: type-annotated routes, Pydantic request/response models, dependency injection, async handlers",
                   "Pydantic schemas = same field names as Zod schemas in `packages/schemas` — change field name → error in both",
-                  "Evening: SparkFlow Python Job Submission API",
+                  "**Evening: SparkFlow Python Job Submission API**",
                   "Feature: SparkFlow UI submits PySpark jobs via a Python FastAPI backend (Spark runs on Dataproc/EMR)",
                   "`POST /api/jobs` → validate with Pydantic → enqueue to Kafka → return `{ jobId, status: 'queued' }`",
                   "Same TypeScript `packages/types` shapes now have Python Pydantic equivalents"
@@ -1236,6 +1460,20 @@
                   "dbt models for WorkOS data",
                   "Great Expectations validation on every run",
                   "SparkFlow dashboard: pipeline runs, data quality scores, Delta table metadata — all live"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 8: Kafka + Saga + CDC + Database Scaling",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "**WorkOS CDC** (WAL → Kafka): employee data changes → Kafka → SparkFlow consumes for analytics",
+                  "**PayCore Saga**: subscription lifecycle — `payment.reserved` → `subscription.activated` → `access.granted`. Compensating: `payment.reversed` + `subscription.cancelled`",
+                  "**Database scaling**: WorkOS tenant isolation: schema-per-tenant for payroll, RLS for HRIS. PgBouncer per-tenant connection pooling. Partitioned `audit_log` table (range partition by month)",
+                  "**ClickHouse scaling**: SparkFlow pipeline metrics — materialized views, `ReplicatedMergeTree`, per-tenant aggregate queries in < 50ms on billions of rows"
                 ]
               }
             ]
@@ -1493,6 +1731,47 @@
                   "Content-based: model description → PGVector cosine ANN",
                   "Hybrid + A/B test (same architecture as reference)"
                 ]
+              },
+              {
+                "title": "WEEKEND — All 11 Case Studies Deployed + Portfolio Site Live",
+                "tasks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Hiring Sprint",
+        "weeks": [
+          {
+            "title": "Week 17-18: Portfolio Polish + Open Source",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "All 4 platform READMEs: architecture diagrams, benchmark numbers, ADRs",
+                  "CNCF contributions: `opentelemetry-go`, `delta-rs` (Rust/Python Delta Lake), `airflow` (Python DAG improvements)",
+                  "LFX application: `WorkOSTenantProvisioner` operator + CNCF PRs"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 19-20: Mock Interviews + Applications",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "Design a multi-tenant HRIS platform with strong data isolation",
+                  "Design a usage-based billing system that doesn't lose events",
+                  "Design an employee onboarding workflow engine",
+                  "**System design mocks (Databricks-specific):**",
+                  "Design a distributed data pipeline for 1M events/sec",
+                  "Design a data catalog with lineage tracking",
+                  "Design an ML model serving platform",
+                  "**Target applications:**",
+                  "**Cold email:**"
+                ]
               }
             ]
           }
@@ -1501,28 +1780,13 @@
     ]
   },
   {
+    "file": "plan_uber_doordash_palantir.md",
     "id": "uber",
     "name": "Uber · DoorDash · Palantir",
     "emoji": "🚗",
     "subtitle": "DispatchOS · CourierNet · FoundryOS · AIPilot — Real-Time Marketplace + Data/AI",
     "color": "#10b981",
     "months": [
-      {
-        "title": "Introduction",
-        "weeks": [
-          {
-            "title": "Week 1",
-            "days": [
-              {
-                "title": "Weekend (12h):",
-                "tasks": [
-                  "Wire the week's features together — each platform takes a version step forward."
-                ]
-              }
-            ]
-          }
-        ]
-      },
       {
         "title": "Full-Stack From Day One — All 4 Platforms Introduced",
         "weeks": [
@@ -1532,19 +1796,20 @@
               {
                 "title": "MONDAY — HTTP + Geospatial Fundamentals + CLI + Git",
                 "tasks": [
-                  "Morning (3h):",
+                  "**Morning (3h):**",
                   "Full HTTP/HTTPS/DNS/TLS depth (same as reference roadmap)",
                   "**H3 Hexagonal Grid (Uber's geospatial system):** divide the Earth into hexagons at multiple resolutions. Resolution 7: ~5km² (city zones for surge pricing). Resolution 9: ~0.1km² (pickup areas). `h3.latLngToCell(lat, lng, resolution)` — driver location → H3 cell instantly. `h3.gridDisk(cell, k)` — find all cells within k rings (nearby drivers)",
                   "**Why hexagons beat squares:** 6 equidistant neighbors (not 4 + 4 diagonal), consistent cell areas, hierarchical (resolution 7 cell contains exactly 7 resolution 8 cells). Uber, Airbnb, Lyft all use H3",
                   "**PostGIS:** PostgreSQL extension for geospatial data. `geography` type handles Earth's curvature. `ST_DWithin(a, b, meters)` — fast radius search. `ST_Distance(a, b)` — great-circle distance. Spatial index: `GIST` — essential for `ST_DWithin` to be fast",
                   "CLI, VS Code, Git, ESLint, Prettier — same depth as reference",
-                  "Evening (2h): DispatchOS Driver Location Event Receiver",
+                  "**Evening (2h): DispatchOS Driver Location Event Receiver**",
                   "Feature: **DispatchOS needs a server that receives driver location pings and immediately publishes them to FoundryOS as dataset records**",
                   "Raw Node.js HTTP server: `POST /events/location` receives `{ driverId, lat, lng, speedKph, heading, timestamp }`",
                   "H3: convert `lat, lng` → H3 cell (resolution 9) immediately on receipt — every location event is spatially indexed from arrival",
                   "Log: `[dispatch] driver D001 in cell 8928308280fffff → zone Downtown`",
                   "Also `POST /events/location` to FoundryOS (same server, second route) — DispatchOS feeds FoundryOS from Day 1",
-                  "Test: `curl -X POST http://localhost:3000/events/location -d '{\"driverId\":\"D001\",\"lat\":37.775,\"lng\":-122.418,\"speedKph\":32}'`"
+                  "Test: `curl -X POST http://localhost:3000/events/location -d '{\"driverId\":\"D001\",\"lat\":37.775,\"lng\":-122.418,\"speedKph\":32}'`",
+                  "**X Post:**"
                 ]
               },
               {
@@ -1582,6 +1847,10 @@
                   "`packages/geo`: shared geospatial utilities — `latLngToH3(lat, lng, resolution)`, `h3Distance(cell1, cell2)`, `cellsInRadius(centerCell, radiusKm)`, `h3ToLatLng(cell)`. Used by all 4 platforms throughout 10 months",
                   "`packages/api`: typed fetch with retry + idempotency built in. Used everywhere"
                 ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms v0.1 Deployed + Already Interconnected",
+                "tasks": []
               },
               {
                 "title": "Saturday (6h):",
@@ -1679,6 +1948,10 @@
                   "Playwright: full trip assignment flow (DispatchOS), complete order checkout (CourierNet)",
                   "TestSprite: generate E2E for AIPilot approval flow"
                 ]
+              },
+              {
+                "title": "WEEKEND — All 4 Platforms v0.3: All Frameworks + Tests Running in CI",
+                "tasks": []
               }
             ]
           },
@@ -1935,7 +2208,12 @@
                   "Exactly-once: idempotent producers + transactional API on DispatchOS trip assignment (no duplicate trip events)",
                   "Schema Registry: Avro schemas for all topics — FoundryOS schema compatibility enforced at publish time"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "title": "Week 9: Kafka Saga + CDC + DB Scaling",
+            "days": [
               {
                 "title": "MONDAY — Trip Booking Saga — DispatchOS",
                 "tasks": [
@@ -2216,6 +2494,61 @@
                   "GPS Spoofing (Case Study 9): Wasm pre-filter (known spoof coordinates) + Go rules (impossible speed, teleportation) + ONNX ML. < 15ms. But suspicious accounts → `proposeAction: suspend` → human review",
                   "Restaurant Recommendation (Case Study 10): collaborative filtering (PGVector user embeddings) + content-based (dish embeddings) + hybrid. A/B test cohorts",
                   "API Rate Limiter (Case Study 11): all 4 algorithms, DispatchOS GPS endpoints"
+                ]
+              },
+              {
+                "title": "WEEKEND — All 11 Case Studies Deployed + Portfolio Site + Hiring Materials",
+                "tasks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Hiring Sprint",
+        "weeks": [
+          {
+            "title": "Week 17-18: Portfolio Polish + Open Source",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "All 4 platform READMEs: architecture diagrams (Mermaid.js), k6 benchmarks, ADRs for every major decision",
+                  "CNCF contributions: `opentelemetry-go`, `controller-runtime` — operator work from Month 4 is the portfolio piece",
+                  "LFX application: `DispatchOSMatcherPool` operator + CNCF PRs",
+                  "ADR examples: \"Why H3 hexagons over PostGIS for matching hot path\", \"Why Kafka choreography over orchestration for trip Saga\", \"Why ONNX Go for ETA prediction over Python microservice\""
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Week 19-20: Mock Interviews + Applications",
+            "days": [
+              {
+                "title": "Key Objectives",
+                "tasks": [
+                  "Design the real-time driver-rider matching system (you built this — answer from code)",
+                  "Design the surge pricing engine (you built this — explain the ONNX model, Redis cache, A/B test)",
+                  "Design GPS fraud detection (you built this — Wasm + rules + ONNX layers)",
+                  "**System design mocks (DoorDash-specific):**",
+                  "Design the dasher assignment system for optimal delivery time",
+                  "Design the real-time delivery tracking for customers",
+                  "Design a restaurant recommendation system",
+                  "**System design mocks (Palantir-specific — hardest interviews):**",
+                  "Design a data integration platform that unifies heterogeneous sources with full lineage",
+                  "Design a human-in-the-loop AI workflow where the AI cannot act without approval",
+                  "Design a pipeline reliability system that handles cascading failures",
+                  "**Target applications:**",
+                  "Uber — DispatchOS: H3 matching, surge pricing ONNX, GPS fraud, Kubernetes Operator for scale",
+                  "DoorDash — CourierNet: dasher assignment optimization, ETA prediction, restaurant marketplace",
+                  "Palantir — FoundryOS + AIPilot: pipeline reliability, ontology-based data model, constrained AI autonomy",
+                  "Lyft, Instacart, Rappi — same marketplace + logistics vocabulary",
+                  "Airbnb — H3 geospatial + pricing + fraud detection + data platform work",
+                  "Stripe — payment Saga, idempotency, fraud detection (ONNX Go inference)",
+                  "Scale AI / Weights & Biases — data platform + human-in-the-loop AI workflow work",
+                  "Any company running Palantir internally — FoundryOS shows you understand what they're running",
+                  "**Cold email — Uber:**",
+                  "**Cold email — Palantir:**"
                 ]
               }
             ]

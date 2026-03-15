@@ -1,0 +1,2161 @@
+# 🚀 10–11 Month Full-Stack + Backend + Distributed Systems Mastery Plan
+## The Complete Engineer: JavaScript Deep → Go Mastery → Systems → AI
+### DungBeetle · PayCore · SideCar · StreamDB · KVault · FleetPulse · AeroOps · RouteMaster · OpsAI
+
+> **Philosophy:** You don't learn Redis in isolation. You learn Redis because a payment API needs it.
+> Every week ends with deployed, benchmarked, documented code.
+> Every concept from the checklist is **implemented in a real project** — not watched in a tutorial.
+>
+> ❌ Not: "I rushed past JavaScript fundamentals to get to frameworks faster"
+> ✅ Yes: "I can explain the event loop, predict Promise execution order, explain Go's M:N scheduler, implement an LRU cache — and I have benchmarks proving each one works"
+
+---
+
+## Why This Order Matters
+
+| Phase | Months | Reasoning |
+|-------|--------|-----------|
+| **JavaScript Deep + TypeScript + Node.js** | 1–2 | JS is the runtime under Node.js, the language of every frontend framework, and the mental model for async I/O everywhere. Two full months — not two days. |
+| **Go Mastery** | 3 | Go is the backend language for 6 of 9 projects. One full month on the language before any framework — goroutines, channels, stdlib, concurrency patterns, benchmarking. |
+| **React + Frameworks + Testing** | 4 | Frameworks make sense once you know vanilla JS deeply. You know what React abstracts because you did it by hand. |
+| **Infrastructure + Real-Time + SideCar** | 5 | Docker, K8s, gRPC, WebSockets, SSE — the plumbing every production system needs. |
+| **Backend Systems + Distributed Patterns** | 6–8 | DungBeetle, PayCore, StreamDB, KVault — each month builds on the last. |
+| **AI Engineering + All Case Studies** | 9 | AI is backend engineering with embeddings. Build it on a solid base. |
+| **Performance + Polish + Hiring** | 10–11 | Benchmark everything. Polish 3 projects. Sprint to interviews. |
+
+---
+
+## The 9 Flagship Projects
+
+| # | Project | Mirrors | Stack | System Design Covered |
+|---|---------|---------|-------|-----------------------|
+| 🪲 | **DungBeetle** | Zerodha's dukgbeetle | Go + Kafka + PostgreSQL + Redis + AI | Job scheduler, Webhook manager, Leader election |
+| 💳 | **PayCore** | Razorpay / Stripe | Go + PostgreSQL + Redis + Kafka + gRPC | Double-entry ledger, Saga transfers, Idempotency |
+| 🔭 | **SideCar** | Istio/Envoy proxy | Go + gRPC + OTel + Prometheus | Circuit breaker, mTLS, Observability proxy |
+| 📊 | **StreamDB** | Mixpanel / Amplitude | Go + Kafka Streams + TimescaleDB + WebSocket | Real-time analytics, CDC, Kafka pipelines |
+| 🗄️ | **KVault** | Redis internals | Go stdlib only | LRU/AOF/RESP3/Consistent hashing from scratch |
+| 🚗 | **FleetPulse** | Uber internal ops | Next.js + Go + PostgreSQL + Kafka + WebSocket | GPS tracking, Surge pricing, Fraud detection |
+| ✈️ | **AeroOps** | Boeing internal tooling | Next.js + Go + PostgreSQL + MongoDB + RAG | Maintenance, Compliance, Web crawler |
+| 📦 | **RouteMaster** | DoorDash operations | Next.js + Go + Elasticsearch + Kafka | Orders, Delivery, Notifications at scale |
+| 🧠 | **OpsAI** | Cross-platform AI ops | Next.js + Go + pgvector + Multi-agent | AI agents, RAG, Semantic search |
+
+---
+
+## 10–11 Month Overview
+
+| Month | Theme | Key Milestone |
+|-------|-------|--------------|
+| **1** | JavaScript Engine Deep — Types, Closures, Event Loop, Prototypes, Async | FleetPulse raw GPS server in vanilla Node.js |
+| **2** | JavaScript Applied — Modules, Streams, Node.js Internals, TypeScript | All 4 platforms on Express + PostgreSQL + TypeScript |
+| **3** | Go Mastery — Language, Concurrency, Stdlib, Benchmarking | DungBeetle v0.1 in pure Go |
+| **4** | React + Frameworks + Testing | All 4 platforms full React, Tailwind, Shadcn, full test suite |
+| **5** | Infrastructure + Real-Time + SideCar | All 9 projects deployed, K8s, SideCar v1.0, DungBeetle v1.0 |
+| **6** | Financial Systems + PayCore | PayCore v1.0 + v2.0: double-entry, Saga, CQRS, Event Sourcing |
+| **7** | Stream Processing + StreamDB + Case Studies 1–6 | StreamDB v1.0, Bloom Filters, Consistent Hashing |
+| **8** | DB Internals + KVault + Case Studies 7–11 | KVault v1.0, LSM-tree, all 11 case studies live |
+| **9** | AI Engineering + DungBeetle v3.0 + OpsAI | Multi-agent system, RAG, pgvector, Semantic Code Search |
+| **10–11** | Performance + Polish + Hiring Sprint | k6 benchmarks, pprof, ADRs, cold emails, interviews |
+
+---
+
+## ✅ Master Concept Implementation Checklist
+
+> Every item is **implemented in running, deployed code** — not watched in a tutorial.
+
+---
+
+### 🌐 Fundamentals & Web Basics
+- [ ] **HTTP/HTTPS model** — methods, status codes, headers, HTTP/2 multiplexing, HTTP/3 + QUIC; `curl -v` on every endpoint you build; implemented: FleetPulse GPS receiver
+- [ ] **Client/Server concepts** — stateless vs stateful, who holds state, REST resource design; implemented: all 4 platform APIs
+- [ ] **DNS** — A, CNAME, MX, TXT, TTL, full resolution path (`dig +trace`); implemented: custom subdomains for all 4 platforms on Cloudflare
+- [ ] **How browsers work** — HTML → DOM → CSSOM → Render Tree → Layout → Paint → Composite; Lighthouse 100/100/100/100; implemented: all frontend platforms
+
+---
+
+### 💛 JavaScript — Deep Fundamentals (Months 1–2, not a day)
+- [ ] **Types and coercion** — primitive vs reference, `typeof`, `===` vs `==`, truthy/falsy, `null` vs `undefined` vs `NaN`; implemented: GPS ping validation before any Zod
+- [ ] **Scope and closures** — lexical scope, closure over loop variable (the classic bug + fix), IIFE, module scope; implemented: `retry`, `memoize`, `debounce` from scratch
+- [ ] **`var`/`let`/`const`** — hoisting, temporal dead zone, block scope vs function scope; demonstrated via tests that fail predictably
+- [ ] **Prototypes and inheritance** — prototype chain, `Object.create`, `class` as syntax sugar, the 4 steps of `new`; implemented: `EventEmitter` from scratch
+- [ ] **`this` binding** — default, implicit, explicit (`call`/`apply`/`bind`), arrow functions (no own `this`); demonstrated via 10 prediction exercises
+- [ ] **Event loop** — call stack → Web APIs → macrotask queue (setTimeout/setInterval/I/O) → microtask queue (Promise.then/queueMicrotask); `process.nextTick` fires before Promise microtasks; can predict output of any snippet
+- [ ] **Promises** — constructor, `then`/`catch`/`finally`, `Promise.all`/`allSettled`/`race`/`any`, microtask scheduling; implemented: `withRetry` + `ConcurrencyLimiter`
+- [ ] **async/await** — sugar over Promises, try/catch, parallel with `Promise.all`, sequential vs concurrent; demonstrated: same function as `.then` chain vs async/await
+- [ ] **Generators and iterators** — `function*`, `yield`, `for...of`, lazy infinite sequences, custom iterables; implemented: lazy paginator for Kafka consumer offsets
+- [ ] **Modules** — CommonJS (`require`/`module.exports`) vs ESM (`import`/`export`), dynamic `import()`, circular dependency problem; both used in project
+- [ ] **DOM and Browser APIs** — `querySelector`, `createElement`, event bubbling/capturing, event delegation, `fetch`, `AbortController`, `IntersectionObserver`; implemented: FleetPulse driver list in vanilla JS before React
+- [ ] **Functional patterns** — `map`/`filter`/`reduce` from scratch, currying, composition (`pipe`/`compose`); implemented: `packages/utils/fp.ts`
+- [ ] **Debounce and throttle** — implemented from scratch; connect: rate limiting at the browser level; used in FleetPulse search
+- [ ] **Immutability** — spread shallow copy vs deep clone, structural sharing, why mutation breaks React equality checks; demonstrated: before/after re-render comparison
+- [ ] **WeakMap / WeakRef** — garbage collection, memory leak prevention; implemented: memoize with WeakMap to avoid leaking DOM nodes
+- [ ] **Error handling** — custom Error classes, `unhandledRejection`, error boundaries; implemented: every utility in `packages/utils`
+
+---
+
+### 🟢 Node.js — Deep Internals (Month 2)
+- [ ] **V8 architecture** — JIT compilation, hidden classes (property order matters), inline caching, GC (generational: young/old generation, GC pause impact on event loop); profiled with `--inspect`
+- [ ] **libuv** — provides the event loop + thread pool (I/O, crypto, DNS), `UV_THREADPOOL_SIZE`, async I/O via epoll/kqueue/IOCP
+- [ ] **Event loop phases** — timers → pending callbacks → idle/prepare → poll (wait for I/O here) → check (setImmediate) → close callbacks; `process.nextTick` before each phase; demonstrated with timing tests
+- [ ] **`worker_threads`** — true parallelism, `SharedArrayBuffer`, `Atomics`, MessageChannel; benchmarked: CPU hashing single-thread vs 4 workers
+- [ ] **`cluster`** — fork one process per CPU, shared port, OS load balancing; compared to K8s HPA (same idea at infra level)
+- [ ] **Streams** — `Readable` (push vs pull), `Writable` (drain, `highWaterMark`), `Transform`, `Duplex`, backpressure, `pipeline()` from `stream/promises`, `stream.compose()`; implemented: FleetPulse GPS pipeline (200MB log → 20MB constant RAM)
+- [ ] **`Buffer`** — `Buffer.from`, `Buffer.alloc`, encodings (`utf8`/`hex`/`base64`); why binary matters for crypto and protocol parsing
+- [ ] **`EventEmitter`** — `on`/`emit`/`once`/`removeListener`, memory leak from forgotten listeners (`maxListeners`); implemented from scratch in Month 1
+- [ ] **`process`** — `process.env`, `process.argv`, `process.exit`, `SIGTERM` graceful shutdown, `uncaughtException` last resort
+- [ ] **`crypto`** — `createHash`, `createHmac`, `randomBytes`, `pbkdf2`; HMAC-SHA256 webhook signing (reused in DungBeetle)
+- [ ] **`AsyncLocalStorage`** — request-scoped context without threading through every function; used by OpenTelemetry for trace context
+- [ ] **`net` module** — raw TCP server; understand how `http` is built on top; KVault RESP3 protocol uses this pattern
+- [ ] **`http`/`https`** — `http.createServer`, `http.Agent` connection pooling, keep-alive; built before using Express
+- [ ] **Performance** — `perf_hooks`, `v8.getHeapStatistics()`, `--inspect` Chrome DevTools profiling, `clinic.js` flame graphs
+- [ ] **`child_process`** — `spawn`/`exec`/`fork`; piping stdin/stdout; security of `exec` with user input
+
+---
+
+### 🔷 TypeScript (Month 2)
+- [ ] **Type system** — `string`, `number`, `boolean`, `null`, `undefined`, `never`, `unknown`, `any` (and why to avoid it)
+- [ ] **Generics** — `function identity<T>(x: T): T`, constraints (`T extends object`), conditional types `T extends U ? X : Y`, `infer`
+- [ ] **Utility types** — `Partial`, `Required`, `Pick`, `Omit`, `Record`, `ReturnType`, `Parameters`, `Awaited`, `NonNullable`
+- [ ] **Discriminated unions** — type guards, narrowing, exhaustive `switch` with `never`
+- [ ] **`tsconfig.json`** — `strict: true`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `paths` aliases
+- [ ] **Branded types** — `type UserId = string & { _brand: 'UserId' }` — can't pass `DriverId` where `OrderId` is expected; implemented in `packages/types`
+- [ ] **Template literal types** — `type EventName = \`on${Capitalize<string>}\``
+- [ ] **Zod** — `z.object`, `safeParse`, `z.infer<typeof schema>`, one schema = runtime validation + TypeScript type; `packages/schemas` shared frontend + backend
+
+---
+
+### 🐹 Go — Language Mastery (Month 3, full month)
+
+#### Core Language
+- [ ] **Packages and modules** — `go mod init`, `go.mod`, `go.sum`, `internal/`, `go install`, build tags
+- [ ] **Types and zero values** — value vs reference types, zero values (`0`/`""`/`false`/`nil`), type aliases vs type definitions
+- [ ] **Structs and methods** — value receiver vs pointer receiver (mutation requires pointer), embedding (composition not inheritance)
+- [ ] **Interfaces** — implicit satisfaction (no `implements`), composition, `any`, type assertions, type switches; the `io.Reader`/`io.Writer` pattern
+- [ ] **Error handling** — `error` interface, `fmt.Errorf("wrap: %w", err)`, `errors.Is`/`errors.As`, sentinel errors, custom types; never ignore errors
+- [ ] **Slices** — underlying array, `len`/`cap`, `append` re-allocation, slice tricks, slice-of-slice shares memory
+- [ ] **Maps** — nil map must be initialized, concurrent read safe/write unsafe, random iteration order (by design)
+- [ ] **Closures** — same loop variable bug as JS, same fix; function values as first-class; demonstrated with tests
+- [ ] **`defer`** — LIFO, `panic`/`recover`, resource cleanup; why `defer mu.Unlock()` immediately follows `mu.Lock()`
+- [ ] **`init()` and `main()`** — initialization order, multiple `init()` per file, when to use
+
+#### Go Concurrency
+- [ ] **Goroutines** — 2KB stack, M:N scheduling (many goroutines on few OS threads), work stealing between Ps; `go test -race` on every package
+- [ ] **Channels** — typed pipe, buffered vs unbuffered, `close()`, ranging over channel, direction constraints (`chan<-`/`<-chan`)
+- [ ] **`select`** — non-blocking with `default`, timeout with `time.After`, `nil` channel blocks forever (useful pattern)
+- [ ] **`sync.WaitGroup`** — fan-out + fan-in, `Add` before goroutine launch, `Done` in `defer`
+- [ ] **`sync.Mutex` / `sync.RWMutex`** — protect shared state, RW for read-heavy workloads, lock granularity
+- [ ] **`sync.Map`** — concurrent-safe, when to use vs `Mutex`+`map`
+- [ ] **`sync.Pool`** — object reuse, reduce GC pressure, `Get`/`Put`, reset before returning
+- [ ] **`sync.Once`** — guaranteed single execution; `sync.OnceValue` (Go 1.21)
+- [ ] **`errgroup.WithContext`** — parallel goroutines, cancel all if one fails, collect first error
+- [ ] **`singleflight`** — deduplicate concurrent requests for same key (thundering herd on cache miss)
+- [ ] **`atomic`** — `atomic.Int64`, `atomic.Bool`, `atomic.Pointer[T]`, CAS; when to use over Mutex
+- [ ] **Context** — `context.Background()`, `WithCancel`/`WithTimeout`/`WithDeadline`/`WithValue`; first arg to every function; never store in struct
+- [ ] **Channel patterns** — pipeline, fan-out/fan-in, cancellation via done channel, semaphore via buffered channel, timer/ticker
+
+#### Go Stdlib Deep
+- [ ] **`net/http`** — `http.Handler`, `http.HandlerFunc`, `ServeMux` (Go 1.22 pattern matching), middleware chain `func(http.Handler) http.Handler`, server timeouts, `http.Transport` pooling
+- [ ] **`encoding/json`** — `Marshal`/`Unmarshal`, struct tags, custom JSON interfaces, streaming `json.Decoder`
+- [ ] **`io`** — `io.Reader`/`io.Writer`/`io.ReadCloser`/`io.Pipe`/`io.TeeReader`/`io.LimitReader`; compose without buffering
+- [ ] **`bufio`** — `Scanner` line reading, `Writer` batched writes, block-aligned I/O (KVault AOF, SSTable)
+- [ ] **`testing`** — `*testing.T`, table-driven tests, `t.Run` subtests, `testify/assert`, `go test -race`, `go test -bench`, `-coverprofile`
+- [ ] **`pprof`** — CPU + heap profiling, flame graph interpretation, goroutine dump, mutex contention; `go tool pprof`
+- [ ] **`slog`** — structured logging (Go 1.21+), JSON handler, context-scoped attributes, `slog.With` for consistent fields per request
+
+#### Go Tools
+- [ ] **`sqlc`** — SQL → type-safe Go, compile-time query validation; never write `rows.Scan` by hand
+- [ ] **`cobra`** — CLI framework, `fleetctl` subcommands, persistent flags, tab completion
+- [ ] **`chi` router** — lightweight, idiomatic, middleware-first
+- [ ] **`pgx/v5`** — `pgxpool.Pool`, `CopyFrom` bulk insert, `pgx.Batch`, named args
+- [ ] **`go-redis/v9`** — all commands, pipelining, Lua scripts, pub/sub
+- [ ] **`uber-go/goleak`** — goroutine leak detector; `goleak.VerifyNone(t)` in every test file
+- [ ] **Race detector** — `go test -race ./...` passes before every commit
+
+---
+
+### ⚛️ Frontend Frameworks (Month 4)
+- [ ] **ReactJS** — `UI = f(state)`, reconciliation, all hooks (`useState`/`useEffect`/`useRef`/`useCallback`/`useMemo`/`useContext`/`useReducer`), `React.memo`, DevTools Profiler; all 4 platforms
+- [ ] **Next.js** — App Router, Server Components, `'use client'`, ISR, streaming Suspense, Server Actions; RouteMaster customer app
+- [ ] **Tanstack Start** — type-safe routing, compile-time route validation; RouteMaster admin panel
+- [ ] **Svelte + SvelteKit** — compiler model, reactive `$:`, 14KB bundle, edge deploy on Cloudflare; FleetPulse driver widget
+- [ ] **Vue 3 + Nuxt** — Composition API, `ref()`/`reactive()`/`computed()`, Pinia, SSR; AeroOps admin panel
+
+---
+
+### 📦 React Libraries (Month 4)
+- [ ] **Zod** — same schema validates frontend and Go backend
+- [ ] **Zustand** — `create<State>`, selective subscription, devtools middleware
+- [ ] **Immer.js** — write mutating code, get immutable output
+- [ ] **Tanstack Query** — `useQuery`/`useMutation`, optimistic updates + rollback, `staleTime`/`gcTime`
+- [ ] **Tailwind CSS** — `cn()`/`cva()`, state variants, deleted all `.css` files
+- [ ] **Motion (Framer Motion)** — `AnimatePresence`, `layoutId` shared transitions
+- [ ] **Shadcn UI** — command palette, DataTable, Dialog; source owned
+- [ ] **Radix UI** — headless accessible primitives underlying Shadcn
+
+---
+
+### 🖥️ Backend
+- [ ] **Shell/Linux** — `ls`/`find`/`grep`/`sed`/`awk`, `free`/`top`/`htop`/`ulimit`, process management, cron, deployment scripts
+- [ ] **Node.js** — V8 + libuv, event loop phases, streams with backpressure, `worker_threads`, graceful shutdown (full Month 2 depth)
+- [ ] **Go** — complete language, concurrency model, all stdlib tools (full Month 3 depth)
+- [ ] **Streams** — Node.js Transform pipeline, backpressure, `pipeline()` (200MB log → 20MB constant RAM)
+
+---
+
+### 🧪 Testing
+- [ ] **Unit Testing** — Vitest + `@testing-library/react`, Go `testing` package + `testify`, table-driven tests, 80%+ core logic coverage
+- [ ] **E2E (Playwright)** — `getByRole`, auto-wait, network mocking, cross-browser (Chromium/Firefox/WebKit)
+- [ ] **Puppeteer** — PDF generation, visual regression baselines at 320/768/1280px
+- [ ] **Cypress** — component testing in real browser
+- [ ] **TestSprite** — AI-generated E2E tests, reviewed and refined
+
+---
+
+### 🗄️ Databases
+- [ ] **PostgreSQL** — schemas, B-tree/partial/covering/GIN/BRIN indexes, `EXPLAIN ANALYZE`, MVCC, WAL, pgx, connection pooling, N+1 fix
+- [ ] **MySQL** — compared to PostgreSQL in ADR
+- [ ] **Redis** — all data structures (String/Hash/List/Set/Sorted Set/Stream), Lua scripts, pub/sub, pipelines, TTL jitter
+- [ ] **PGVector** — `vector(1536)`, HNSW index, cosine `<=>`, hybrid BM25+vector search
+- [ ] **AWS S3 Vector** — large-scale embedding storage
+- [ ] **TurboBuffer** — bulk vector batch operations
+- [ ] **SQLite** — embedded, offline, zero-config (AeroOps hangar mode)
+- [ ] **Convex** — reactive queries, auto-push to subscribed clients
+- [ ] **Isolation Levels** — all 4 levels with live anomaly demos, `SELECT FOR UPDATE`, `ON CONFLICT`
+- [ ] **Scaling Databases** — read replicas, PgBouncer, connection pool monitoring
+- [ ] **Sharding and Partitioning** — consistent hash router, monthly range partitioning
+- [ ] **Non-relational** — MongoDB (schema-flexible docs), Cassandra (time-series)
+- [ ] **Picking the right DB** — ADR for every choice
+
+---
+
+### ☁️ DevOps
+- [ ] **AWS** — ECS Fargate, RDS (Multi-AZ), ElastiCache, MSK, S3, CloudFront
+- [ ] **GCP** — Cloud Run, Cloud SQL, GCS, Pub/Sub
+- [ ] **Azure** — Container Apps, Azure DB
+- [ ] **Railway** — fast iteration deploys (DungBeetle + OpsAI dev)
+- [ ] **Terraform** — HCL, state (S3 + DynamoDB lock), modules, `plan → apply`
+- [ ] **Pulumi** — TypeScript IaC (loops + conditions impossible in HCL)
+- [ ] **GitHub Actions** — matrix builds, `paths` filter, Trivy CVE scan, branch protection, Slack notifications
+- [ ] **Docker** — multi-stage builds (900MB → 85MB), non-root user, health checks
+- [ ] **Kubernetes** — Pod/Deployment/Service/Ingress/HPA, rolling update (`maxSurge:1, maxUnavailable:0`), readiness/liveness probes
+- [ ] **Firecracker** — MicroVM, 125ms boot, OpsAI script sandbox
+- [ ] **S3 / Blob Storage** — versioning, presigned URLs, lifecycle, multipart, WAL archive
+- [ ] **Cloudflare** — Workers (edge JWT), Pages, R2, KV, CDN
+
+---
+
+### ⚡ Real-Time & Edge
+- [ ] **SSE** — `text/event-stream`, Redis pub/sub bridge, `EventSource` auto-reconnect, 50K concurrent
+- [ ] **WebSockets** — bidirectional, Redis pub/sub multi-replica bridge
+- [ ] **WebRTC** — P2P video, STUN/TURN, Socket.io signaling
+- [ ] **CDNs** — `immutable`, `stale-while-revalidate`, `no-cache`, `CF-Cache-Status`
+- [ ] **Edge Computing** — Cloudflare Workers, WASI, R2 from edge
+- [ ] **Convex** — reactive database, auto-update subscribed clients
+
+---
+
+### 🤖 AI Engineering
+- [ ] **AI SDK (Vercel)** — `streamText`, `generateObject`, `useChat`, provider abstraction
+- [ ] **AI Agents** — ReAct loop, multi-agent orchestration, parallel agents (`errgroup`), typed tool calling
+- [ ] **RAG** — chunk → embed → pgvector HNSW → hybrid BM25+vector → rerank → generate with citations
+- [ ] **WebAssembly** — AssemblyScript → Wasm, near-native browser speed, WASI
+
+---
+
+### 🔄 Caching
+- [ ] **Cache patterns** — cache-aside, write-through, write-behind
+- [ ] **LRU from scratch** — doubly-linked list + HashMap, O(1) get and put
+- [ ] **LFU from scratch** — min-heap + frequency map
+- [ ] **Populating caches** — warm-up job, `singleflight` dedup (thundering herd prevention)
+- [ ] **PER Algorithm** — Probabilistic Early Recomputation before TTL expires
+- [ ] **TTL Jitter** — prevent synchronized expiry storms
+- [ ] **Multi-level caching** — L1 in-process LRU (~100μs) → L2 Redis (~1ms) → L3 PG read replica (~10ms)
+- [ ] **Cache audit tool** — inspect all layers for any URL
+
+---
+
+### 📨 Asynchronous Systems
+- [ ] **Message Queues** — DLQ, retry + exponential backoff, poison messages, `BLPOP`
+- [ ] **Kafka Essentials** — KRaft, topics, partitions, consumer groups, `acks=all`, idempotent producer, manual offset commit, exactly-once, Schema Registry
+- [ ] **Kafka Streams** — KTable, KStream, sliding windows, Kafka Connect S3 Sink → Parquet → Athena
+- [ ] **Real-time PubSub** — Redis pub/sub fan-out (50K concurrent), WebSocket multi-server bridge
+
+---
+
+### 🛡️ Resiliency
+- [ ] **Load Balancers** — Round Robin, Least Connections, IP Hash, health checks + failover
+- [ ] **Circuit Breakers** — Closed → Open → Half-Open, Go implementation from scratch, SideCar proxy layer
+- [ ] **Data Redundancy and Recovery** — PITR drill (`DROP TABLE` → restore from WAL), RTO < 10 min, cross-region backup
+- [ ] **Leader Election** — Redis `SETNX` + heartbeat, exactly-1-replica for cron and surge pricing
+
+---
+
+### 📐 Essentials at Scale
+- [ ] **Bloom Filters** — false positive math, built from scratch; URL dedup + fraud pre-filter + cache penetration
+- [ ] **Consistent Hashing** — hash ring, virtual nodes (150 per node), add node → 25% keys reassign
+- [ ] **Communication Protocols** — HTTP/1.1 vs /2 vs /3, gRPC (4 modes), tRPC, GraphQL, REST (idempotency, cursor pagination)
+- [ ] **Blob Storage and S3** — versioning, presigned URLs, lifecycle, Kafka → S3 Parquet pipeline
+- [ ] **Big Data** — Kafka Connect → S3 Parquet → Athena (~$5/TB scanned, no DB to manage)
+
+---
+
+### 🏪 System Design Case Studies (All 11 Deployed as Real Platform Features)
+- [ ] **E-Commerce Product Listing** — RouteMaster restaurants: Elasticsearch 12ms vs PG 8000ms, ISR, atomic slot reservation, Bloom Filter
+- [ ] **Tinder Feed** — FleetPulse driver job feed: PostGIS, score formula, Redis Sorted Set, SSE
+- [ ] **Notifications at 1B/day** — FleetPulse: APNs batch (1 call = 1000 tokens), Redis dedup, DLQ, A/B test
+- [ ] **Twitter Trends** — FleetPulse surge map: Count-Min Sketch (10MB for 1M zones), Kafka Streams, Mapbox heatmap
+- [ ] **URL Shortener** — AeroOps: Snowflake ID → Base62, Cloudflare Worker (0.3ms redirect)
+- [ ] **API Rate Limiter** — all 4 algorithms as Redis Lua scripts across all platforms
+- [ ] **Realtime Abuse Masker** — FleetPulse fraud: Wasm + Go rules + ONNX, total < 15ms
+- [ ] **Web Crawler** — AeroOps: 1000 goroutines, Bloom Filter (100M URL dedup), politeness, Kafka → ES
+- [ ] **GitHub Gists** — AeroOps snippets: S3 versioning, fork = zero byte copy, Wasm syntax highlight
+- [ ] **Fraud Detection** — FleetPulse: feature store, CDC feedback loop, A/B test threshold
+- [ ] **Recommendation Systems** — OpsAI: SVD + pgvector hybrid, A/B test MTTR improvement
+
+---
+
+### 🔐 Auth & Security
+- [ ] JWT RS256 (asymmetric — public key verification, no secret sharing between services)
+- [ ] Access token (15min) + refresh token (7d in Redis, `DEL` on logout)
+- [ ] OAuth 2.0 PKCE flow for frontend
+- [ ] RBAC: driver / dispatcher / admin
+- [ ] HMAC-SHA256 webhook signing (`X-Signature: sha256=...`)
+- [ ] Trivy CVE scan in CI (fail on HIGH/CRITICAL), `govulncheck` in Go CI
+- [ ] Firecracker sandbox for user-submitted scripts
+- [ ] mTLS between internal services (SideCar handles this at the proxy layer)
+
+---
+
+## Monorepo Structure (Set Up Month 1 Week 1 — Used All 10–11 Months)
+
+```
+/
+├── apps/
+│   ├── fleetpulse/        ← Uber-style: GPS, dispatch, surge, fraud
+│   │   ├── web/           ← Next.js frontend
+│   │   ├── aggregator/    ← Go GPS ingestion (1M pings/sec by Month 5)
+│   │   ├── api/           ← Go backend API
+│   │   └── worker/        ← Go background workers
+│   ├── aeroops/           ← Boeing-style: maintenance, compliance, RAG
+│   │   ├── web/           ← Next.js + Vue admin
+│   │   ├── api/           ← Go backend
+│   │   └── crawler/       ← Go regulation crawler (1000 goroutines)
+│   ├── routemaster/       ← DoorDash-style: orders, delivery, notifications
+│   │   ├── web/           ← Next.js ISR customer app
+│   │   ├── api/           ← Go backend
+│   │   └── analytics/     ← Kafka Streams + TimescaleDB
+│   ├── opsai/             ← AI ops: multi-agent, RAG, pgvector
+│   │   ├── web/           ← Next.js chat interface
+│   │   └── api/           ← Go + Vercel AI SDK
+│   ├── dungbeetle/        ← Zerodha's dukgbeetle: background jobs
+│   │   ├── api/           ← Go HTTP + gRPC
+│   │   ├── scheduler/     ← Cron parser, leader election
+│   │   └── worker/        ← Job executor pool
+│   ├── paycore/           ← Razorpay-scale: double-entry, Saga
+│   │   ├── api/           ← Go payments API
+│   │   ├── ledger/        ← Double-entry engine
+│   │   └── reconciler/    ← Daily reconciliation via DungBeetle cron
+│   ├── sidecar/           ← Envoy-style: gRPC + HTTP observability proxy
+│   ├── streamdb/          ← Kafka Streams + TimescaleDB analytics
+│   └── kvault/            ← Redis clone from scratch in Go stdlib only
+├── packages/
+│   ├── types/             ← Shared TypeScript interfaces (Month 1 Week 1)
+│   ├── schemas/           ← Zod schemas (same schema → frontend type + Go validation)
+│   ├── ui/                ← Shadcn components (Month 4)
+│   └── api/               ← Typed fetch client
+└── infrastructure/
+    ├── terraform/         ← AWS infra (FleetPulse)
+    ├── pulumi/            ← GCP infra — TypeScript (AeroOps)
+    └── k8s/               ← Kubernetes manifests + operators
+```
+
+---
+
+## MONTH 1: JavaScript Engine Deep — Types, Closures, Event Loop, Async
+
+> **Narrative:** No HTML/CSS. No frameworks. One month with the JavaScript engine itself. You understand closures because you build a `memoize` function. You understand the event loop because you predict the output of 20 execution order puzzles. You understand async because you reimplement `Promise.all` from scratch. Every concept is demonstrated with a test.
+
+### Week 1: The JavaScript Engine — Types, Scope, Closures, Prototypes, `this`
+
+#### Monday — Setup + HTTP From Scratch + Types and Coercion
+
+**Morning (2h):** Dev environment: Node.js 22 LTS, VS Code (Prettier + ESLint + Error Lens + GitLens), `pnpm` workspaces. Monorepo scaffold: `packages/types`, `packages/schemas`, `packages/utils`. HTTP from first principles: `curl -v https://google.com` — TLS handshake, redirect chain, response headers. DNS: `dig +trace google.com`. Cloudflare: register `fleetpulse.dev`, `aeroops.dev`, `routemaster.dev`, `opsai.dev` subdomains.
+
+**Evening (2h) — FleetPulse: Raw GPS Receiver**
+
+```javascript
+// apps/fleetpulse/aggregator/server.js — Day 1. This file evolves for 11 months.
+// Stack: Node.js http stdlib. No Express. No framework. You build up to it.
+const http = require('http');
+const server = http.createServer((req, res) => {
+  let body = '';
+  req.on('data', chunk => (body += chunk));  // body arrives in chunks — this IS streaming
+  req.on('end', () => {
+    try {
+      const ping = JSON.parse(body);
+      // Type coercion exercise: ping.lat could be "12.97" (string from JSON) or 12.97 (number)
+      // === catches this. == does not. Which do you want when validating GPS coordinates?
+      console.log(`driver=${ping.driverId} lat=${ping.lat} (${typeof ping.lat})`);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true, serverTime: Date.now() }));
+    } catch (e) {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: e.message }));
+    }
+  });
+});
+server.listen(3000, () => console.log('FleetPulse GPS receiver on :3000'));
+```
+
+Send 10 malformed requests. Observe how the error handler fires. Understand: this is the exact same request parsing Express does for you — you're just seeing the plumbing.
+
+**DSA (30m):** Two Sum — implement with brute force O(N²) then HashMap O(N). Connect: this is why Redis GET is O(1), why hash indexes exist in PostgreSQL.
+
+---
+
+#### Tuesday — Scope, Closures, and the Loop Variable Bug
+
+**Morning (2h):** Lexical scope (determined at write time, not call time). Closure: a function that retains a reference to its enclosing scope variables even after the outer function returns. The infamous loop bug:
+
+```javascript
+// Bug: all callbacks fire with i=3 because var is function-scoped, not block-scoped
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);  // prints 3, 3, 3
+}
+
+// Fix 1: let (block scope — each iteration gets its own i)
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);  // prints 0, 1, 2
+}
+
+// Fix 2: IIFE — creates a new scope per iteration
+for (var i = 0; i < 3; i++) {
+  (function(j) { setTimeout(() => console.log(j), 100); })(i);
+}
+
+// Fix 3: pass as parameter (same principle — new binding per iteration)
+for (var i = 0; i < 3; i++) {
+  setTimeout(console.log, 100, i);
+}
+```
+
+**Evening (2h):** Build `packages/utils/retry.ts` — demonstrates closures over attempt count and configuration:
+
+```typescript
+// Closure captures maxAttempts, baseDelayMs, jitter — config is sealed at creation time
+export function withRetry<T>(
+  fn: () => Promise<T>,
+  opts: { maxAttempts?: number; baseDelayMs?: number; jitter?: boolean } = {}
+): () => Promise<T> {
+  const { maxAttempts = 3, baseDelayMs = 100, jitter = true } = opts;
+
+  return async function retried(): Promise<T> {
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        return await fn();  // fn is closed over — called fresh each attempt
+      } catch (err) {
+        if (attempt === maxAttempts) throw err;
+        const delay = baseDelayMs * 2 ** (attempt - 1)
+                    + (jitter ? Math.random() * baseDelayMs : 0);
+        await sleep(delay);
+      }
+    }
+    throw new Error('unreachable');
+  };
+}
+```
+
+Write 8 Vitest tests: verify attempt count, verify jitter range, verify throws after max attempts, verify success on 3rd attempt. Run `vitest --coverage`. Target 100%.
+
+**DSA (30m):** Implement `memoize(fn)` — closure over a `Map`. Connect: this is an L1 cache. The Map is the cache. The function is the miss handler.
+
+---
+
+#### Wednesday — Prototypes, `class`, and the Four Rules of `this`
+
+**Morning (2h):** Prototype chain: `obj → Constructor.prototype → Object.prototype → null`. `Object.create(proto)` creates object with explicit prototype. `class` is syntax sugar — same chain underneath. Steps of `new`: (1) create empty object, (2) set `__proto__`, (3) bind `this`, (4) run constructor body, (5) return `this` if constructor returns non-object.
+
+The four rules of `this`:
+1. **Default** — `this` is `globalThis` (or `undefined` in strict mode)
+2. **Implicit** — the object before the dot: `obj.method()` → `this = obj`
+3. **Explicit** — `fn.call(ctx)`, `fn.apply(ctx, args)`, `fn.bind(ctx)` → `this = ctx`
+4. **`new`** — `this` is the newly created object
+Arrow functions have no own `this` — they inherit from the enclosing lexical scope. This is why `setTimeout(() => this.method(), 0)` works inside a class but `setTimeout(function() { this.method() }, 0)` does not.
+
+**Evening (2h):** Build `packages/utils/emitter.ts` — `EventEmitter` from scratch, demonstrates prototypes and `this`:
+
+```typescript
+export class EventEmitter<Events extends Record<string, unknown[]>> {
+  #listeners = new Map<keyof Events, Function[]>();
+
+  on<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this {
+    if (!this.#listeners.has(event)) this.#listeners.set(event, []);
+    this.#listeners.get(event)!.push(listener);
+    return this;  // fluent API — method chaining works because `this` is returned
+  }
+
+  once<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this {
+    const wrapper = (...args: Events[K]) => {
+      listener.apply(this, args);  // explicit `this` — wrapper closes over outer `this`
+      this.off(event, wrapper);
+    };
+    return this.on(event, wrapper);
+  }
+
+  off<K extends keyof Events>(event: K, listener: Function): this {
+    const arr = this.#listeners.get(event) ?? [];
+    this.#listeners.set(event, arr.filter(l => l !== listener));
+    return this;
+  }
+
+  emit<K extends keyof Events>(event: K, ...args: Events[K]): boolean {
+    const listeners = this.#listeners.get(event) ?? [];
+    listeners.forEach(l => l.apply(this, args));
+    return listeners.length > 0;
+  }
+}
+```
+
+**DSA (30m):** Implement a stack using a linked list (not array). Each node is a closure over its value and next pointer. This is how JavaScript's call stack conceptually works.
+
+---
+
+#### Thursday — The Event Loop: The Most Important JS Concept
+
+**Morning (2h):** The event loop in depth. Draw the diagram from memory:
+
+```
+Call Stack                Web APIs / libuv          Queues
+─────────                ────────────────           ──────
+│ fn3   │  ←────────    │ setTimeout(cb, 0) │ →  Macrotask: [cb]
+│ fn2   │               │ fetch(url)        │ →  Microtask: [then1, then2]
+│ fn1   │               │ fs.readFile()     │    (nextTick: [tick1] — Node only)
+│ main  │               └──────────────────-┘
+└───────┘
+      ↑  event loop picks next task when stack is EMPTY
+```
+
+**Rule:** Microtasks drain completely before the next macrotask. Always. No exceptions.
+
+**Predict the output of each snippet before running:**
+
+```javascript
+// Puzzle 1 — basic ordering
+console.log('A');
+setTimeout(() => console.log('B'), 0);
+Promise.resolve().then(() => console.log('C'));
+console.log('D');
+// Answer: A D C B   (sync → microtask → macrotask)
+
+// Puzzle 2 — nested microtasks
+Promise.resolve()
+  .then(() => { console.log('1'); return Promise.resolve(); })
+  .then(() => console.log('2'));
+Promise.resolve().then(() => console.log('3'));
+// Answer: 1 3 2   (each .then schedules a new microtask — interleaves)
+
+// Puzzle 3 — Node.js specific
+process.nextTick(() => console.log('tick'));
+Promise.resolve().then(() => console.log('promise'));
+setImmediate(() => console.log('immediate'));
+console.log('sync');
+// Answer: sync tick promise immediate
+```
+
+Run each puzzle. If you got any wrong — re-read the event loop phase diagram and try again.
+
+**Evening (2h):** Build `packages/utils/scheduler.ts` — priority task scheduler using a min-heap. Tasks scheduled with `delayMs: 0` use `setImmediate` (after I/O). Tasks with delay use `setTimeout`. Tasks with `priority` run before lower-priority tasks scheduled for the same tick.
+
+**DSA (30m):** Implement a min-heap from scratch: `push`, `pop`, `peek`. All O(log N). This is the data structure inside the scheduler and later inside KVault's LFU cache.
+
+---
+
+#### Friday — Promises, async/await, and Generators
+
+**Morning (2h):** Promise constructor internals. `async/await` desugared to `.then` chains — the exact transformation. `Promise.all` (fail-fast), `Promise.allSettled` (all results regardless), `Promise.race` (first settles), `Promise.any` (first fulfills). Generators: `function*`, `yield`, lazy pull sequences. Custom iterables with `[Symbol.iterator]`.
+
+**Evening (2h):** Implement `packages/utils/concurrent.ts`:
+
+```typescript
+// 1. ConcurrencyLimiter — max N concurrent async operations
+export class ConcurrencyLimiter {
+  #queue: Array<() => void> = [];
+  #active = 0;
+  constructor(private limit: number) {}
+
+  async run<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.#active >= this.limit) {
+      await new Promise<void>(resolve => this.#queue.push(resolve));
+    }
+    this.#active++;
+    try {
+      return await fn();
+    } finally {
+      this.#active--;
+      this.#queue.shift()?.();  // wake next waiter
+    }
+  }
+}
+
+// 2. Implement Promise.all from scratch — do not use the built-in
+export function promiseAll<T>(promises: Promise<T>[]): Promise<T[]> {
+  return new Promise((resolve, reject) => {
+    const results: T[] = [];
+    let remaining = promises.length;
+    if (remaining === 0) { resolve(results); return; }
+    promises.forEach((p, i) => {
+      Promise.resolve(p).then(val => {
+        results[i] = val;       // preserve order even if they settle out-of-order
+        if (--remaining === 0) resolve(results);
+      }, reject);
+    });
+  });
+}
+```
+
+Write 10 tests: verify `ConcurrencyLimiter` never exceeds N concurrent (use a counter + `sleep`), verify `promiseAll` matches built-in behavior including rejection.
+
+#### Weekend: FleetPulse v0.1 + Packages Foundation
+
+- All utilities tested and benchmarked: `retry`, `memoize`, `emitter`, `scheduler`, `ConcurrencyLimiter`, `promiseAll`
+- FleetPulse GPS receiver handles 500 concurrent requests
+- Monorepo CI: `pnpm lint && pnpm typecheck && pnpm test` on every PR
+- `packages/types` has `Driver`, `WorkOrder`, `Order`, `GpsPing` interfaces
+
+> **🔬 Biweekly Deep Project — Weeks 1–2**
+>
+> **In-Memory Driver Registry with Spatial Prefix Search**
+>
+> Designed an in-memory driver registry using a sorted array of geohash-encoded locations and binary search so that proximity queries like "find all online drivers within 2km" run in O(log N) without a database round-trip during the sub-second dispatch window — where a full table scan would add 40–80ms of unacceptable latency.
+>
+> *Technologies from Weeks 1–2:* TypeScript (geohash encoding to prefix-sortable string, binary search on sorted `string[]`), Node.js `http` stdlib (raw HTTP server — no framework), `packages/types` shared `Driver`/`LatLng`, Zod (validate GPS ping before registry insert). Benchmark: 100K drivers, `GET /drivers/nearby` p99 < 0.5ms. Zero database touched.
+
+---
+
+### Week 2: JavaScript Applied — Modules, Functional Patterns, DOM, Immutability
+
+#### Monday — CommonJS vs ESM, Functional Patterns
+
+**Morning (2h):** CommonJS — synchronous `require`, cached after first load, circular dependency resolution (partial object at time of require). ESM — static analysis enables tree shaking, dynamic `import()`, `import.meta.url`. Why both coexist in Node.js and how to handle dual-module packages. Functional patterns: `map`/`filter`/`reduce` are just loops with a pattern — implement each from scratch, then use the built-in with confidence.
+
+**Evening (2h):** `packages/utils/fp.ts` — implement `pipe`, `compose`, `curry`, `partial`, `memoize` with proper TypeScript generics. 20 Vitest tests covering edge cases: empty array, single element, function composition order, curry arity.
+
+#### Tuesday — Immutability and Structural Sharing
+
+**Morning (2h):** Spread creates shallow copy — nested objects still share reference. `structuredClone` for deep clone (handles cycles, Date, Map, Set). Why mutation causes React re-render bugs: referential equality (`===`) on the same object always returns `true` even after mutation. Immer.js structural sharing: `O(changed nodes)` not `O(total size)`. `Object.freeze` for runtime immutability. `WeakMap` for private data without memory leaks.
+
+**Evening (2h):** Implement a persistent (immutable) linked list and persistent binary search tree where `insert` creates a new path from root to inserted node, leaving the old tree intact. Vitest tests verify old versions are unchanged after "mutations".
+
+#### Wednesday — DOM, Browser APIs, and Vanilla JS Data Fetching
+
+**Morning (2h):** DOM tree, `querySelector`, `createElement`/`append`/`remove`, `dataset`, event bubbling (child → parent) vs capturing (parent → child), `stopPropagation` vs `preventDefault`. Event delegation: one listener on `<ul>` handles all `<li>` clicks — O(1) listeners regardless of list length. `AbortController` cancels both `fetch` and `addEventListener`. `IntersectionObserver` for lazy loading. `ResizeObserver` for element size.
+
+**Evening (2h):** FleetPulse + RouteMaster driver/order lists in pure vanilla JS — no React, no libraries. `fetch` with `AbortController` cleanup. Event delegation on dynamically added list items. Auto-refresh with `setInterval` + `clearInterval` on unmount. Canvas-based driver map with `requestAnimationFrame`. You will appreciate what React does because you did it by hand.
+
+#### Thursday — TypeScript Deep: Generics, Conditional Types, Branded Types
+
+**Morning (2h):** Generic constraints, conditional types (`T extends U ? X : Y`), `infer`, mapped types (`{ [K in keyof T]: Transform<T[K]> }`), template literal types. The `satisfies` operator. Branded/nominal types:
+
+```typescript
+type UserId = string & { readonly _brand: 'UserId' };
+type DriverId = string & { readonly _brand: 'DriverId' };
+const asUserId = (id: string): UserId => id as UserId;
+
+function getUser(id: UserId) { /* ... */ }
+const driverId = asUserId('d-123');  // wrong brand
+getUser(driverId);  // ✅ TypeScript error — can't pass DriverId where UserId expected
+```
+
+**Evening (2h):** Update `packages/types` — all IDs use branded types. Add conditional types for API responses (`ApiResponse<T>` = `{ ok: true; data: T } | { ok: false; error: string }`). Every platform immediately gets compile-time protection against passing the wrong ID type.
+
+#### Friday — Zod Deep + `packages/schemas`
+
+**Morning (2h):** Zod composition: `z.union`, `z.discriminatedUnion`, `z.lazy` (recursive schemas), transforms (`z.string().trim()`), refinements (`z.refine`, `z.superRefine`). The key pattern: `z.infer<typeof schema>` = TypeScript type for free. One source of truth. Runtime validation AND compile-time types from the same declaration.
+
+**Evening (2h):** Build out all schemas for all 4 platforms in `packages/schemas`. Every schema: Zod validator, TypeScript type (`z.infer`), error formatter. Show: change one field in `GpsPingSchema` → TypeScript errors appear across every consumer in every package.
+
+#### Weekend: All 4 Platform Shells + All Utilities Complete
+
+All 4 platforms have raw Node.js HTTP servers (no Express yet). `packages/utils` is complete with tests. `packages/types` and `packages/schemas` are the shared foundation. GitHub Actions CI green.
+
+---
+
+### Week 3: Node.js Internals — V8, libuv, Streams, `worker_threads`, `crypto`
+
+#### Monday — V8 Architecture and Hidden Classes
+
+**Morning (2h):** V8 JIT pipeline: parsing → AST → bytecode (Ignition) → optimized machine code (Turbofan). Hidden classes: objects with the same property order share a hidden class — V8 can generate optimized native code. Adding properties in different order creates different hidden classes — deoptimization. Inline caching: V8 caches the type of the receiver at a callsite. GC: minor GC (scavenge) on young generation — fast. Major GC (mark-and-sweep) on old generation — stop-the-world pause.
+
+**Evening (2h):** `node --inspect` — profile two versions of the same function: one with consistent property order, one inconsistent. Observe hidden class deoptimization in the flame graph. Fix it. Document the speedup. Profile heap: create a closure-based memory leak, observe it in DevTools Memory tab, fix with `WeakRef`.
+
+#### Tuesday — Node.js Streams: Backpressure and `pipeline()`
+
+**Morning (2h):** `Readable` — push model (`this.push(chunk)`) vs pull model (`_read` called when consumer is ready). `Writable` — `_write`, `drain` event when buffer clears, `highWaterMark`. `Transform` — implements both. `Duplex` — independent readable and writable. Backpressure: `writable.write()` returns `false` when internal buffer exceeds `highWaterMark` — you must pause the readable and resume on `drain`. `pipeline()` handles this automatically and destroys all streams on error. `stream.compose()` creates reusable pipeline stages.
+
+**Evening (2h) — FleetPulse GPS Pipeline:**
+
+```javascript
+// 200MB GPS event log — with streams: 20MB constant RAM. Without: 200MB spike.
+const { pipeline } = require('stream/promises');
+const { Transform, Writable } = require('stream');
+
+class ValidateTransform extends Transform {
+  constructor() { super({ objectMode: true }); }
+  _transform(line, _enc, cb) {
+    const result = GpsPingSchema.safeParse(JSON.parse(line));
+    if (result.success) this.push(result.data);
+    else this.emit('invalid', result.error);
+    cb();
+  }
+}
+
+class BatchWritable extends Writable {
+  #batch = []; #db; #batchSize;
+  constructor(db, batchSize = 500) {
+    super({ objectMode: true, highWaterMark: batchSize });
+    this.#db = db; this.#batchSize = batchSize;
+  }
+  _write(chunk, _enc, cb) {
+    this.#batch.push(chunk);
+    if (this.#batch.length >= this.#batchSize) this.#flush().then(cb, cb);
+    else cb();
+  }
+  _final(cb) { this.#flush().then(cb, cb); }
+  async #flush() {
+    if (this.#batch.length === 0) return;
+    await this.#db.copyFrom(this.#batch);  // PostgreSQL CopyFrom — bulk insert
+    this.#batch = [];
+  }
+}
+
+await pipeline(
+  fs.createReadStream('gps_events.jsonl'),
+  new SplitLines(),
+  new ValidateTransform(),
+  new EnrichTransform(zoneService),
+  new BatchWritable(db),
+);
+// process.memoryUsage().heapUsed stays below 25MB for any file size
+```
+
+#### Wednesday — Event Loop Phases Deep + `worker_threads` + `cluster`
+
+**Morning (2h):** Node.js event loop phases in order: timers (expired `setTimeout`/`setInterval`) → pending callbacks (I/O errors deferred from previous tick) → idle/prepare (internal) → poll (new I/O events — will wait here if queue is empty and no timers) → check (`setImmediate`) → close callbacks. `process.nextTick` fires after current operation, before any I/O. `setImmediate` fires after I/O, before timers. `worker_threads`: true parallelism, `SharedArrayBuffer` + `Atomics` for lock-free shared memory. `cluster`: one process per CPU, shared port.
+
+**Evening (2h):** Benchmark: hash 1M strings single-threaded vs `worker_threads` pool of 4 vs `cluster` of 4. Plot results. Document: for I/O-bound work, event loop + single thread is fastest. For CPU-bound, `worker_threads` wins. `cluster` is for isolating crashes per CPU.
+
+#### Thursday — `crypto`, `AsyncLocalStorage`, `EventEmitter` in Node.js
+
+**Morning (2h):** `crypto.createHmac('sha256', secret).update(body).digest('hex')` — this exact call is DungBeetle's webhook signing later. `crypto.randomBytes(32)` for tokens. `crypto.scrypt` for password hashing. `AsyncLocalStorage` — request-scoped context propagation without threading through every function call. How OpenTelemetry uses it: every span in a request lifecycle shares the same trace ID without explicit passing.
+
+**Evening (2h):** Add HMAC webhook signature to FleetPulse GPS receiver. Add `AsyncLocalStorage` for `requestId` propagation — every `console.log` in a request automatically includes the request ID without explicit parameter threading.
+
+#### Friday — Express: Middleware Chain, Error Handling, `Pino`
+
+**Morning (2h):** What Express adds over raw `http`: routing, middleware chain, `next()`, 4-arg error handler. The middleware chain is literally a linked list of functions. `express.json()` is the body parser you wrote manually in Week 1. `Pino` structured JSON logging: `requestId`, `userId`, `duration` in every log line — grep-able in production.
+
+**Evening (2h):** Upgrade all 4 raw HTTP servers to Express with: Zod validation middleware, Pino logger + `AsyncLocalStorage` `requestId`, `cors`, `helmet`, idempotency key middleware on all mutations, rate limiting middleware (fixed window for now).
+
+#### Weekend: Node.js Foundation Complete
+
+All 4 platforms on Express with full middleware stack. Streams pipeline in constant memory. HMAC signing. `AsyncLocalStorage` requestId in every log. `pnpm test` passes.
+
+---
+
+### Week 4: TypeScript Advanced + Auth + PostgreSQL + Redis + All Databases
+
+#### Monday–Tuesday — Advanced TypeScript + JWT Auth + RBAC
+
+TypeScript: branded types across all platforms, conditional types for API responses, declaration merging for Express `Request` to add `userId` and `requestId`. JWT RS256 (asymmetric — verify with public key only, no secret sharing across services). Access token 15min, refresh token 7d in Redis. `DEL refresh:{userId}:{tokenId}` on logout. RBAC middleware: driver / dispatcher / admin. `packages/auth` — shared middleware used by all 4 Express APIs.
+
+#### Wednesday — PostgreSQL First Contact + `node-postgres`
+
+All 4 platforms get PostgreSQL schemas. Partial index on `trips WHERE status='pending'`. `EXPLAIN ANALYZE` on every endpoint before and after adding indexes — document seq scans and their cost. N+1 query demo: fetch 20 trips, then 20 separate queries for driver names — fix with one JOIN.
+
+#### Thursday — Redis: All Data Structures with Real Use Cases
+
+```
+String  → cache, counters, SETNX (leader election, idempotency)
+Hash    → objects: HGET/HSET driverProfile
+List    → queues: LPUSH jobs, BLPOP worker
+Set     → membership: SADD active_drivers, SISMEMBER
+Sorted Set → leaderboards, rate limiting: ZADD/ZRANGEBYSCORE/ZREMRANGEBYSCORE
+Stream  → append-only log: XADD/XREAD (preview of Kafka's model)
+```
+
+TTL jitter on every cache key: `EX ${base + Math.floor(Math.random() * jitter)}` — prevents synchronized expiry storms.
+
+#### Friday — Database Decision Day: SQLite + MongoDB + PGVector + Convex
+
+Write an ADR for every database choice:
+
+| Database | When | Platform Feature |
+|----------|------|-----------------|
+| PostgreSQL | Relational, ACID, joins | Default all platforms |
+| SQLite | Embedded, offline | AeroOps hangar mode |
+| MongoDB | Schema-flexible nested docs | AeroOps inspection reports |
+| PGVector | Embeddings + relational | OpsAI semantic search |
+| Convex | Reactive, auto-push | RouteMaster real-time tracking |
+
+#### Weekend Capstone: All 4 Platforms Full-Stack v1.0
+
+All 4 platforms: React (vanilla JS for now) ← Express ← PostgreSQL + Redis + JWT (3 roles). RouteMaster: + Convex. AeroOps: + MongoDB + SQLite offline. OpsAI: + PGVector.
+
+> **🔬 Biweekly Deep Project — Weeks 3–4**
+>
+> **Stock Order Matching Engine**
+>
+> Designed a stock order matching system using separate buy/sell books, price-level grouping, FIFO queues per price level, and a balanced ordered structure (skip list keyed by price) so matching achieves O(log P) per operation instead of brute-force O(N) scans — matching the architecture used inside NSE/BSE trading engines where each microsecond of matching latency directly affects exchange revenue.
+>
+> *Technologies from Weeks 1–4:* TypeScript/Node.js (skip list for price book, doubly-linked list FIFO per price level), Express (REST API: `POST /orders`, `GET /orderbook`, `GET /trades`), PostgreSQL + `node-postgres` (persist fills with `DECIMAL(19,4)` prices, batch insert), Redis pub/sub (publish each fill to `trades:live`), Zod + `packages/schemas` (`OrderSchema` validates frontend and backend). Benchmark: 50K orders/sec sustained, zero missed matches verified by invariant checker.
+
+---
+
+## MONTH 2: JavaScript Applied — Node.js Mastery + Streams + Performance
+
+> **Narrative:** Month 1 was the engine. Month 2 is the vehicle. You learn the Node.js stdlib deeply — every module you'll use in production. You build the kind of utilities that get extracted into shared packages at real companies. By the end of Month 2, you can write production Node.js without reaching for tutorials.
+
+### Week 5: Node.js Stdlib Deep — `net`, `crypto`, `child_process`, `perf_hooks`
+
+#### Monday — Raw TCP, HTTP Internals, `net` module
+
+Build a raw TCP echo server with `net.createServer`. Then implement a minimal HTTP/1.1 parser on top of it — parse request line, headers, body. This is what `http.createServer` does for you. Understanding the protocol makes debugging production issues (connection resets, chunked encoding, keep-alive) tractable.
+
+#### Tuesday — `child_process`, Shell Scripting, `worker_threads` Deep
+
+`spawn` vs `exec` vs `fork`. Piping stdin/stdout between processes. Security: never use `exec` with unsanitized user input (`shell injection`). `worker_threads` deep: `SharedArrayBuffer` memory layout, `Atomics.wait` and `Atomics.notify` for lock-free synchronization between threads.
+
+#### Wednesday — `perf_hooks`, `v8`, Memory Profiling
+
+`performance.now()`, `PerformanceObserver`, `performance.mark`/`measure`. `v8.getHeapStatistics()` — track GC pressure under load. `--expose-gc` + `global.gc()` for testing GC behavior. Build a memory usage tracker that samples heap every 100ms and alerts when old generation exceeds threshold.
+
+#### Thursday — `AsyncLocalStorage` Advanced + OpenTelemetry Preview
+
+`AsyncLocalStorage` propagates through `async/await`, `Promise.then`, `setImmediate`, `setTimeout`, `EventEmitter`. But NOT through `new Worker` (different thread). Build a request-scoped logger that automatically includes `requestId`, `userId`, `traceId` in every log line throughout the entire async call chain.
+
+#### Friday — Performance: Profiling + Benchmarking + `clinic.js`
+
+Profile the FleetPulse GPS pipeline under load with `--inspect`. Find top allocator in flame graph — it's almost always `JSON.parse` in the hot path. Replace with streaming `JSON.parse`. Before/after: allocations per request. `clinic.js doctor` — automatic bottleneck detection. `autocannon` for HTTP load testing.
+
+#### Weekend: All Node.js Stdlib Mastered + GPS Pipeline Optimized
+
+---
+
+### Week 6: TypeScript Mastery + Shared Packages Complete + DungBeetle Scaffold
+
+#### Monday–Tuesday — TypeScript Compiler API + Declaration Files + Module Augmentation
+
+Extend Express `Request` type to include `user: AuthUser`. Extend `process.env` type to include required environment variables. Write a compile-time test: `expectType<UserId>(driverId)` — fails to compile if the types don't match. Understand `tsc --noEmit` as a test that costs zero runtime.
+
+#### Wednesday — `packages/api` — Typed Fetch Client
+
+Build a typed fetch client that wraps `fetch` and ensures: request body matches schema, response body is parsed through a Zod schema, errors are typed and not silently swallowed, `AbortController` is handled correctly. All 4 platforms use this client — zero untyped API calls.
+
+#### Thursday–Friday — DungBeetle Scaffold + PostgreSQL + Redis
+
+DungBeetle's first Node.js implementation — a raw job queue with PostgreSQL + Redis + Express. Jobs table: `SELECT FOR UPDATE SKIP LOCKED` for concurrent claim. Redis: job status cache with `singleflight` dedup. This is the Node.js baseline that Month 3 replaces with Go.
+
+#### Weekend Capstone: All Packages Production-Ready + DungBeetle Node.js v0.1
+
+> **🔬 Biweekly Deep Project — Weeks 5–6**
+>
+> **Distributed WebSocket Presence System**
+>
+> Built a distributed presence system where any server replica can accurately report which users are online and broadcast presence changes to all connected clients, using Redis pub/sub as the inter-replica bus and a heartbeat protocol with TTL-based expiry to detect silent disconnects — eliminating the split-brain where one replica shows a user online while another shows them offline.
+>
+> *Technologies from Weeks 1–6:* Node.js (`ws` library, `Map` for local connection registry, heartbeat via `setInterval`), Redis (`HSET presence:{userId}` with 10s TTL refreshed every 4s, pub/sub `presence.changes` fans out across replicas), PostgreSQL (presence history for audit), Express (REST endpoints for presence query), Docker Compose (3 replicas behind nginx). Test: kill one replica — all other clients see correct presence within 12s. 10K concurrent connections, p99 heartbeat < 20ms.
+
+---
+
+## MONTH 3: Go Mastery — Language, Concurrency, Stdlib, Benchmarking
+
+> **Narrative:** Go is the primary backend language for 6 of the 9 projects. One full month on the language before any project uses it in production. Week 1: language core. Week 2: concurrency model. Week 3: stdlib deep + tooling. Week 4: first Go service — DungBeetle rewritten. Every day ends with `go test -race ./...` passing and `goleak.VerifyNone(t)` confirming zero goroutine leaks.
+
+### Week 7: Go Language Core — Types, Interfaces, Error Handling, Closures
+
+#### Monday — Setup + Go Module System + Types + Interfaces
+
+**Morning (2h):** `go mod init`, `go.mod`, `go.sum`, `go install`, `internal/` package (not importable outside module). Primitive types and zero values — Go's zero values are meaningful: `0`, `""`, `false`, `nil` — a zero-valued struct is always valid. Type aliases vs type definitions (alias: same type; definition: new type, cannot use interchangeably). Interfaces: **implicit satisfaction** — no `implements` keyword. If your type has the methods, it satisfies the interface. Compose interfaces: `io.ReadWriter = io.Reader + io.Writer`.
+
+**Evening (2h):** Reimplement `packages/utils` in Go — `retry`, `emitter`, `concurrent`. Notice: Go's explicit error return vs JS's `try/catch`. Which makes you more aware of failure modes? Write `go test ./...` with 100% coverage. `go test -race` passes.
+
+#### Tuesday — Error Handling, Slices, Maps, Structs
+
+**Morning (2h):** `fmt.Errorf("operation %s: %w", name, err)` — the `%w` verb wraps so `errors.Is` and `errors.As` can unwrap. Sentinel errors: `var ErrNotFound = errors.New("not found")`. Custom error types: `type ValidationError struct { Field string; Message string }`. Slices vs arrays: slice is a header (pointer, len, cap) over an underlying array. `append` may reallocate — if you need no reallocation, `make([]T, 0, knownSize)`. Maps: nil map panics on write — always `make(map[K]V)`.
+
+**Evening (2h):** Build FleetPulse zone lookup in Go — `map[string]Zone` for zone data, struct with value vs pointer receivers, custom error types for "zone not found" vs "coordinate invalid". Table-driven tests covering 20 cases.
+
+#### Wednesday — Closures, `defer`, `panic`/`recover`
+
+**Morning (2h):** Go closures work exactly like JS closures — same loop variable bug, same fixes. `defer`: LIFO, runs even if the function returns early via `return` or panics. Use `defer mu.Unlock()` immediately after `mu.Lock()` — they should never be separated. `panic`/`recover`: not for normal error flow — only for truly unrecoverable state. `recover` only works inside a deferred function.
+
+**Evening (2h):** Build a resource pool that uses `defer` for guaranteed cleanup. Show: even if `panic` occurs inside the critical section, `defer` still releases the resource. Add `goleak.VerifyNone(t)` to every test — find any goroutine that was started but not cleaned up.
+
+#### Thursday — Build System, `go vet`, `golangci-lint`, `go generate`
+
+**Morning (2h):** `go build`, `go run`, `go test`, `go vet` (catches real bugs the compiler misses: unreachable code, wrong `Printf` format verbs, shadowed context), `golangci-lint` with `staticcheck`, `errcheck`, `gocritic`. Build tags for OS-specific code. `go generate` for code generation (preview of `sqlc`).
+
+**Evening (2h):** Set up `golangci-lint` for the entire monorepo. Fix every lint warning. The discipline of fixing lint warnings at the time of writing — not accumulating debt — is what separates professional Go from tutorial Go.
+
+#### Friday — Generics (Go 1.18+)
+
+**Morning (2h):** Type parameters, constraints (`any`, `comparable`, `~int`), generic functions and types. When to use generics: when the algorithm is identical for multiple types and you're duplicating code. When NOT to use: when interfaces suffice, when it makes the code harder to read. Implement a generic `Result[T]` type, generic `Set[T comparable]`, generic `OrderedMap[K, V]`.
+
+**Evening (2h):** Rewrite the `ConcurrencyLimiter` and `withRetry` utilities in Go using generics. `go test -race` passes. Benchmark: how does Go's generic version compare to the TypeScript version at 1M iterations?
+
+#### Weekend: Go Language Core Complete — All Utilities Benchmarked and Race-Free
+
+All Go utilities have 100% test coverage, `go test -race` passes, `goleak.VerifyNone` passes, benchmarks documented in `BENCHMARKS.md`.
+
+---
+
+### Week 8: Go Concurrency — Goroutines, Channels, `sync`, `errgroup`
+
+#### Monday — Goroutines and the Go Scheduler
+
+**Morning (2h):** M:N scheduler: G (goroutines), M (OS threads), P (processors). GOMAXPROCS = number of Ps = number of Ps running simultaneously. Work stealing: if P1 is idle, it steals goroutines from P2's local run queue. Goroutine stack: starts at 2KB, grows in 8KB increments, never shrinks below 8KB after growing. The Go scheduler is cooperative (goroutines yield at function calls, channel ops, syscalls) — not preemptive except for long-running loops (added in Go 1.14 via async preemption).
+
+**Evening (2h):** Write 10 programs that create goroutines in different patterns. For each: predict how many OS threads will be used (`runtime.NumGoroutine()`, `runtime.NumCPU()`). Add `goleak.VerifyNone(t)` — find and fix every goroutine that doesn't terminate.
+
+#### Tuesday — Channels: Every Pattern
+
+**Morning (2h):** Every channel pattern with working code:
+
+```go
+// Pipeline
+func generate(nums ...int) <-chan int {
+    out := make(chan int)
+    go func() { defer close(out); for _, n := range nums { out <- n } }()
+    return out
+}
+
+// Fan-out: distribute work across N workers
+func fanOut(in <-chan int, workers int) []<-chan int {
+    channels := make([]<-chan int, workers)
+    for i := range workers {
+        ch := make(chan int)
+        channels[i] = ch
+        go func() { defer close(ch); for n := range in { ch <- n * n } }()
+    }
+    return channels
+}
+
+// Fan-in: merge N channels into one
+func fanIn(channels ...<-chan int) <-chan int {
+    merged := make(chan int)
+    var wg sync.WaitGroup
+    for _, ch := range channels {
+        wg.Add(1)
+        go func(c <-chan int) { defer wg.Done(); for n := range c { merged <- n } }(ch)
+    }
+    go func() { wg.Wait(); close(merged) }()
+    return merged
+}
+
+// Semaphore via buffered channel
+sem := make(chan struct{}, 10)  // max 10 concurrent
+sem <- struct{}{}               // acquire
+defer func() { <-sem }()       // release
+```
+
+#### Wednesday — `sync` Package: Every Tool
+
+`sync.Mutex` vs `sync.RWMutex`: benchmark both with 90% reads — `RWMutex` wins. `sync.Map` vs `Mutex`+`map`: benchmark with many goroutines — `sync.Map` wins when many goroutines rarely write the same key. `sync.Pool`: benchmark with and without — shows GC pressure reduction. `sync.Once`: guaranteed single init. Build a concurrent LRU cache using `sync.RWMutex` — same data structure that goes into KVault.
+
+#### Thursday — `context`, `errgroup`, `singleflight`
+
+**Morning (2h):** `context.Context` — propagates cancellation, deadlines, and request-scoped values across goroutines. Never store in struct — always first function argument. `WithCancel`: cancel when done. `WithTimeout`/`WithDeadline`: cancel after time. `WithValue`: attach request-scoped data (use non-exported key type to prevent collisions). `errgroup.WithContext`: launch N goroutines, cancel parent context if any one fails, collect first error. `singleflight.Group`: deduplicate concurrent calls for the same key — the thundering herd solution.
+
+**Evening (2h):** Build FleetPulse zone + surge pricer lookup using `errgroup`:
+
+```go
+func getDriverContext(ctx context.Context, lat, lng float64) (*DriverContext, error) {
+    var zone *Zone
+    var surgeMultiplier float64
+    var activeDrivers int
+
+    g, ctx := errgroup.WithContext(ctx)
+    g.Go(func() error {
+        // singleflight: 100 concurrent requests for same coordinates → 1 geocoding call
+        v, err, _ := sf.Do(key(lat, lng), func() (interface{}, error) {
+            return lookupZone(ctx, lat, lng)
+        })
+        if err != nil { return err }
+        zone = v.(*Zone)
+        return nil
+    })
+    g.Go(func() error { surgeMultiplier, err = getSurgeMultiplier(ctx, zone); return err })
+    g.Go(func() error { activeDrivers, err = countActiveDrivers(ctx, zone); return err })
+    if err := g.Wait(); err != nil { return nil, err }
+    return &DriverContext{Zone: zone, SurgeMultiplier: surgeMultiplier, ActiveDrivers: activeDrivers}, nil
+}
+```
+
+#### Friday — `atomic`, `pprof`, Race Detector Mastery
+
+`atomic.Int64` / `atomic.Bool` / `atomic.Pointer[T]` — lock-free updates for single values. Compare-and-swap: `atomic.CompareAndSwap`. When to use over `Mutex`: single integer counters, flags, pointers. `go test -race` internals: ThreadSanitizer instruments every memory access. Profile the concurrent LRU cache: find mutex contention, replace with sharded locks (16 shards = 16 mutexes). Before/after benchmark.
+
+#### Weekend: Go Concurrency Complete — Concurrent Data Structures Benchmarked
+
+> **🔬 Biweekly Deep Project — Weeks 7–8**
+>
+> **Self-Healing Job Queue with Fencing Tokens**
+>
+> Built a distributed job queue in Go where a worker crash mid-execution is automatically detected and re-queued — with fencing tokens (monotonically increasing integers from Redis `INCR`) preventing a zombie worker from completing a job it already lost the lock on, guaranteeing exactly-once execution under partial failures, network partitions, and GC pauses.
+>
+> *Technologies from Weeks 1–8:* Go (`sync.WaitGroup`, goroutine worker pool, `SELECT FOR UPDATE SKIP LOCKED`), PostgreSQL (`jobs(id, status, fence_token INT)`, `UPDATE ... WHERE fence_token=$2` rejects zombie commit), Redis (`INCR fence:{jobId}` monotonic token, `SETNX lock:{jobId}` heartbeat), Docker Compose (3 worker replicas, kill one mid-job via `docker stop`). Chaos: kill any worker mid-batch → all jobs reclaimed within 15s, zero duplicate results verified.
+
+---
+
+### Week 9: Go Stdlib Deep + Tooling + DungBeetle Rewritten in Go
+
+#### Monday — `net/http`, Middleware Chain, Server Timeouts
+
+Production HTTP server template used for all 6 Go services:
+
+```go
+type Middleware func(http.Handler) http.Handler
+
+func Chain(h http.Handler, mw ...Middleware) http.Handler {
+    for i := len(mw) - 1; i >= 0; i-- { h = mw[i](h) }
+    return h
+}
+
+srv := &http.Server{
+    Addr:         ":8080",
+    Handler:      Chain(router, RequestID, Logger, Recover, Auth),
+    ReadTimeout:  5 * time.Second,
+    WriteTimeout: 10 * time.Second,
+    IdleTimeout:  120 * time.Second,
+}
+// Graceful shutdown: drain in-flight requests before exit
+go srv.ListenAndServe()
+<-ctx.Done()
+shutCtx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+defer cancel()
+srv.Shutdown(shutCtx)
+```
+
+#### Tuesday — `sqlc` + `pgx/v5` + `CopyFrom` Bulk Insert
+
+`sqlc`: write SQL in `.sql` files → generate type-safe Go. Zero `rows.Scan` boilerplate. `pgx/v5`: `pgxpool.Pool`, `CopyFrom` (bulk insert — 1000× faster than individual INSERTs), `pgx.Batch`. `EXPLAIN ANALYZE` for every query. Partial index on `(status='pending', next_run_at)` for DungBeetle job claim.
+
+#### Wednesday — `go-redis/v9`, Lua Scripts, `cobra` CLI
+
+Redis Lua scripts: atomic — runs on single Redis thread, no race conditions. DungBeetle rate limiter as Lua script (sliding window). `cobra` CLI: `fleetctl jobs list`, `fleetctl jobs cancel {id}`, `fleetctl jobs retry {id}`. Persistent `--server` flag. Tab completion. Shell completion scripts generated.
+
+#### Thursday — `slog`, `pprof`, `golangci-lint` in CI
+
+`slog` structured logging (Go 1.21): JSON handler, `slog.With(ctx, "requestId", id)` — all subsequent log lines in this request include `requestId` automatically. `pprof` HTTP handler: `import _ "net/http/pprof"`. Profile DungBeetle under load: find top allocator (`encoding/json`). Replace with streaming decoder. Before/after benchmark.
+
+#### Friday — Kafka + Outbox Pattern in Go
+
+```go
+// DungBeetle job completion: write to jobs table AND outbox in ONE transaction
+// If Kafka is down, outbox holds events until relay can publish
+func completeJob(ctx context.Context, db *pgxpool.Pool, jobID string) error {
+    return pgx.BeginFunc(ctx, db, func(tx pgx.Tx) error {
+        _, err := tx.Exec(ctx, "UPDATE jobs SET status='success' WHERE id=$1", jobID)
+        if err != nil { return err }
+        _, err = tx.Exec(ctx, `
+            INSERT INTO outbox(id, topic, key, payload)
+            VALUES($1, 'jobs.completed', $2, $3)`,
+            uuid.New(), jobID, mustJSON(JobCompletedEvent{JobID: jobID, CompletedAt: time.Now()}))
+        return err
+    })
+}
+// Background relay: SELECT from outbox, publish to Kafka, mark published
+// Runs every 100ms, processes up to 1000 outbox rows per tick
+```
+
+#### Weekend Capstone: DungBeetle v0.1 Rewritten in Go
+
+```
+DungBeetle v0.1 (Go):
+✅ chi router + full middleware stack (RequestID, Logger, Recover, Auth)
+✅ Graceful shutdown (drains in-flight requests)
+✅ PostgreSQL: sqlc queries, SELECT FOR UPDATE SKIP LOCKED, partial index
+✅ Redis: job status cache (singleflight + TTL jitter), rate limiter (Lua)
+✅ Kafka: Outbox pattern, idempotent consumer (processed_events table)
+✅ fleetctl CLI (cobra)
+✅ go test -race passes on all packages
+✅ goleak.VerifyNone(t) passes — zero goroutine leaks
+✅ go test -bench: all hot paths benchmarked
+```
+
+---
+
+### Week 10: Go Advanced — gRPC + Generics + K8s Operator Preview
+
+#### Monday–Tuesday — gRPC: All 4 Modes + Interceptors
+
+All 4 gRPC streaming modes. Interceptors for auth, logging, tracing. DungBeetle gRPC admin interface alongside HTTP API. SideCar first steps: transparent gRPC proxy that adds OTel spans without changing the target service.
+
+#### Wednesday — `text/template` + Code Generation + `go generate`
+
+Use `text/template` to generate boilerplate CRUD handlers from table definitions. `go generate` runs this template. `sqlc` generates query code. The discipline: repetitive code is generated, not written.
+
+#### Thursday–Friday — Benchmarking, Profiling, Optimization
+
+Profile every DungBeetle endpoint. Fix top 3 allocators. Document before/after. `go test -bench` baseline for every data structure. Write a benchmark regression test: if throughput drops more than 10%, CI fails.
+
+#### Weekend Capstone: Go Mastery Complete + DungBeetle v0.2
+
+> **🔬 Biweekly Deep Project — Weeks 9–10**
+>
+> **Event-Sourced Wallet with Snapshot Optimization**
+>
+> Implemented an event-sourced wallet where balance is derived by replaying all debit/credit events — adding a snapshot mechanism that checkpoints every 100 events so cold reads never scan unbounded history, and a point-in-time query API that reconstructs any historical balance in O(snapshot_load + events_since_snapshot), making regulatory audit requirements a trivially satisfied side-effect of the data model.
+>
+> *Technologies from Weeks 1–10:* Go (aggregate replay loop, `GetByIDOptimized` with snapshot + delta), PostgreSQL (`events` append-only, `REVOKE UPDATE DELETE ON events`, `UNIQUE(aggregate_id, version)` optimistic concurrency, `snapshots` upsert), Kafka (`wallet.events` via Outbox, CQRS projection consumer rebuilds `wallet_balances`), Redis (`SETNX snapshot:lock:{id}` prevents duplicate snapshotting), gRPC (`GetBalanceAt(timestamp)`). Benchmark: 10K events — cold read 420ms → with snapshot 3ms.
+
+
+---
+
+## MONTH 4: React + Frontend Frameworks + Testing + All Platforms Full-Stack
+
+> **Narrative:** You know JavaScript deeply. React's `useState` is a closure. Reconciliation is virtual DOM diffing. You know what every abstraction replaces because you built the vanilla version in Months 1–2. Frameworks stop being magic and become informed choices.
+
+### Week 11: React From First Principles + All Hooks + Profiler
+
+#### Monday — `UI = f(state)`, Reconciliation, Every Hook
+
+**Morning (2h):** React's model: `UI = f(state)` — pure function from state to DOM description. Reconciliation: virtual DOM diff, fiber architecture, why keys matter (without them React reuses the wrong DOM node). Every hook with correct mental model: `useState` (functional updates for derived state), `useEffect` (cleanup pattern — the `setInterval` leak you saw in Month 1 now formally named), `useRef` (mutable, no re-render, DOM refs), `useCallback`/`useMemo` (only when measured — premature memoization adds cost), `useContext`, `useReducer` (for state machines). `React.memo` — `===` referential equality check on props. DevTools Profiler: find re-renders, add `memo`, verify.
+
+**Evening (2h):** Migrate FleetPulse driver list from Month 1 vanilla JS to React. Open Profiler. Find the component re-rendering on every GPS ping even when its data is unchanged. Fix with `React.memo`. Before/after: 40 re-renders → 3 per update cycle.
+
+#### Tuesday–Wednesday — Tanstack Query + Zustand + Immer.js + React Hook Form
+
+**Tanstack Query:** The mental model shift — server state is NOT client state. `useQuery` handles caching, deduplication, background refresh, stale-while-revalidate. `useMutation` with optimistic updates + rollback. Replace all `useState` + `useEffect` fetch patterns across all 4 platforms. Before/after Profiler: dramatic reduction in re-renders.
+
+**Zustand:** `create<State>`, selective subscription — a component that only subscribes to `state.drivers` will NOT re-render when `state.orders` changes. Devtools middleware for time-travel debugging.
+
+**React Hook Form + Zod:** `WorkOrderSchema` from `packages/schemas` — same validator on frontend and Go backend. Field-level errors under each input. `onBlur` validation. `register`, `handleSubmit`, `formState.errors`.
+
+#### Thursday — Next.js App Router + Server Components
+
+Server Components have zero client JS bundle — they render HTML on the server, period. `'use client'` marks a component as the boundary where client JS begins. Layouts persist across navigation without unmounting (preserve scroll position, avoid refetch). ISR `revalidate: 30`: Cloudflare serves cached HTML for 30s, then one request triggers background revalidation. Streaming with Suspense: HTML arrives progressively, not all-or-nothing.
+
+RouteMaster customer app: `app/track/[orderId]/page.tsx` async Server Component, `loading.tsx` skeleton, `<InteractiveMap>` as `'use client'` inside Server Component — map JS only loads on the client, everything else is HTML.
+
+#### Friday — Tailwind + Shadcn + Motion
+
+Delete every `.css` file across all 4 platforms. Tailwind: `cn()` (clsx + tailwind-merge), `cva()` for typed component variants (`driverCardVariants` driven by status). Shadcn UI command palette (Cmd+K), DataTable with sorting, Dialog with `AnimatePresence` slide-up. Motion `layoutId` shared layout transitions on FleetPulse driver rows.
+
+#### Weekend: All 4 Platforms Fully in React + Next.js + Tailwind
+
+---
+
+### Week 12: Alternative Frameworks + Full Testing Suite + WebRTC + CDN
+
+#### Monday — Svelte + Vue + Tanstack Start
+
+- **Svelte/SvelteKit (FleetPulse driver widget):** 14KB bundle vs React 45KB. Compiler eliminates the virtual DOM entirely. Reactive `$:` declarations. Built-in transitions. Deploy to Cloudflare Workers edge — no Node.js runtime needed.
+- **Vue 3 + Nuxt (AeroOps admin):** Composition API, `ref()`/`reactive()`/`computed()`, Pinia for state, SSR with same Go backend API.
+- **Tanstack Start (RouteMaster admin):** wrong route name = TypeScript compile error. Type-safe route parameters. No runtime routing errors.
+
+#### Tuesday — Full Testing Suite
+
+| Tool | What You Test | Platform |
+|------|--------------|----------|
+| Vitest + `@testing-library/react` | `GpsPingSchema`, Zustand actions, custom hooks | All 4 |
+| Playwright | "Assign trip to driver" E2E, `getByRole`, network mocking, Chromium + Firefox + WebKit | FleetPulse |
+| Puppeteer | PDF work orders, visual regression at 320/768/1280px | AeroOps |
+| Cypress | `<WorkOrderForm />` component in real browser | AeroOps |
+| TestSprite | AI-generate E2E for work order creation, review + refine | AeroOps |
+
+CI: every PR runs `vitest --coverage` + `playwright --project=chromium,firefox,webkit` headless.
+
+#### Wednesday — WebRTC + CDN Cache Strategies + Edge Computing
+
+AeroOps expert video calls: Socket.io signaling (offer/answer/ICE exchange) → P2P direct. STUN/TURN servers. Test: open two tabs — video streams P2P, not through server. CDN: `Cache-Control: immutable` for hashed assets, `stale-while-revalidate` for ISR pages, `no-cache` for API responses. Cloudflare Workers: edge JWT verification — bad token rejected at CDN edge, zero origin hits.
+
+#### Thursday — Convex + Real-Time UI Patterns
+
+RouteMaster order tracking with Convex: subscribe to `orders.getByCustomer({customerId})` — when any order status changes, the UI updates automatically. Compare: Convex (reactive DB) vs polling vs WebSocket — side-by-side latency and code complexity comparison.
+
+#### Friday — WebAssembly Introduction
+
+AssemblyScript (TypeScript subset) compiles to `.wasm`. RouteMaster route distance calculator: Haversine formula in Wasm — 8× faster than JS for the same calculation at 10K iterations. FleetPulse fraud pre-filter: Bloom Filter in Wasm — runs client-side before any server request.
+
+#### Weekend: All Platforms Production-Grade Frontend + All Tests Passing
+
+> **🔬 Biweekly Deep Project — Weeks 11–12**
+>
+> **Real-Time Leaderboard with Count-Min Sketch Approximation**
+>
+> Built a real-time leaderboard over 10 million distinct keys (delivery zones, restaurant IDs, driver scores) using a Count-Min Sketch for approximate frequency counting alongside a Redis Sorted Set for top-K retrieval — reducing memory from 800MB (exact HashMap) to 12MB while maintaining 99.97% rank-order accuracy, because the cost of an exact answer is 67× more memory for a difference users cannot perceive.
+>
+> *Technologies from Weeks 1–12:* Go (Count-Min Sketch from scratch: `[d][w]uint32`, FNV-1a with seed rotation, error bound `ε = e/w` at confidence `1 − e^(−d)`), Kafka (streaming consumer updates sketch + Sorted Set), Redis (`ZADD leaderboard {score} {id}`, `ZREVRANGE` top-K), TimescaleDB (raw events for validation), Next.js (live leaderboard via SSE, updates every second). Benchmark: 1M events/sec ingested. Rank accuracy vs exact: 99.97%.
+
+---
+
+## MONTH 5: Infrastructure + Real-Time + SideCar + DungBeetle v1.0
+
+### Week 13: Docker + CI/CD + Kubernetes + Cloud Deploy
+
+#### Monday — Docker: Multi-Stage Builds + Firecracker
+
+Multi-stage Go build: 900MB → 85MB. Layer caching. Non-root user (`RUN adduser -D app`, `USER app`). `.dockerignore`. Health checks. `docker compose` with service dependencies and health-check conditions. Firecracker MicroVM: OpsAI script sandbox — 125ms boot, 256MB RAM, no network access.
+
+#### Tuesday — GitHub Actions: Matrix Builds + Security Scanning
+
+Matrix strategy: build each platform independently, `paths` filter triggers only changed services. Trivy CVE scan: `fail-on-severity: HIGH,CRITICAL`. `govulncheck` for Go. `pnpm audit` for Node. Cosign image signing. Branch protection: merge requires green CI + 1 review.
+
+#### Wednesday–Thursday — Kubernetes: Deploy All 9 Projects
+
+Deployment, Service, Ingress (NGINX, round-robin), HPA (CPU 70% target), ConfigMap, Secret, rolling update (`maxSurge: 1, maxUnavailable: 0`), readiness probe (wait for health check before routing traffic), liveness probe (restart if stuck). DungBeetle + PayCore on K8s.
+
+#### Friday — Terraform + Pulumi + Railway + Cloudflare
+
+Terraform: FleetPulse on AWS (ECS Fargate + RDS Multi-AZ + ElastiCache + MSK). S3 state + DynamoDB lock (prevent concurrent applies). Pulumi TypeScript: AeroOps on GCP (loops over zones impossible in HCL). Railway: DungBeetle + OpsAI (deploy in 2 minutes, iterate fast). Cloudflare: Pages for all 4 frontends, Workers for edge JWT, R2 for AeroOps PDF storage.
+
+#### Weekend: All 9 Projects Deployed with Full Observability
+
+---
+
+### Week 14: Real-Time Patterns + gRPC Advanced + SideCar v1.0
+
+#### Monday–Tuesday — gRPC: All 4 Modes + SideCar Proxy
+
+All 4 gRPC streaming modes on PayCore internal service. Interceptors: auth, logging, tracing. `grpc.health.v1`. SideCar v1.0: transparent HTTP + gRPC proxy, OTel span creation + W3C `traceparent` propagation, Prometheus `/metrics`, circuit breaker (Go from scratch, Closed → Open → Half-Open), rate limiting (Redis Lua).
+
+#### Wednesday — SSE + WebSockets + Redis Multi-Replica Bridge
+
+FleetPulse GPS live map: SSE with Redis pub/sub bridge. 3 server replicas — every driver dot on every tab updates when one GPS ping arrives. FleetPulse driver ↔ dispatcher chat: WebSocket with same Redis bridge. Test: open 6 browser tabs on 3 replicas. Move a driver in one tab. All 5 others update < 100ms.
+
+#### Thursday — OpenTelemetry + Prometheus + Grafana + Alerting
+
+OTel distributed traces: HTTP → Kafka header → Worker → PostgreSQL — all 4 spans in one Jaeger trace tree. Custom Prometheus metrics: `job_duration_seconds{type,status}` histogram, `kafka_consumer_lag` gauge. Grafana dashboards: p50/p95/p99 per service, error rate, DLQ depth. Alert: DLQ > 100 for 5min → Slack.
+
+#### Friday — Kafka Fundamentals + DLQ + Outbox Relay
+
+Full Kafka producer: `acks=all`, `idempotent: true`, snappy compression. Manual offset commit (commit ONLY after processing). Dead letter queue: retry.1 (5s) → retry.2 (30s) → DLQ (Slack alert). Outbox relay in DungBeetle: reads outbox every 100ms, publishes to Kafka, marks published, at-least-once delivery.
+
+#### Weekend Capstone: DungBeetle v1.0 — Production Job System
+
+```
+DungBeetle v1.0:
+✅ Go HTTP + gRPC (chi router, graceful shutdown, SideCar sidecar)
+✅ PostgreSQL: sqlc, SELECT FOR UPDATE SKIP LOCKED, partial index
+✅ Redis: cache (singleflight + TTL jitter), rate limiter (Lua), leader election (SETNX)
+✅ Kafka: Outbox relay, DLQ, idempotent consumers
+✅ Webhook delivery: HMAC-SHA256, circuit breaker, retry pipeline
+✅ Cron scheduler: Redis leader election (exactly 1 replica runs cron)
+✅ OTel: full trace per job HTTP → Kafka → Worker → DB
+✅ Prometheus: job_duration_seconds, dlq_depth, kafka_lag
+✅ go test -race + goleak passes
+```
+
+> **🔬 Biweekly Deep Project — Weeks 13–14**
+>
+> **LSM-Tree Storage Engine with Compaction**
+>
+> Implemented a Log-Structured Merge-tree storage engine with an in-memory memtable, immutable SSTables on disk, a sparse index for O(log N) key lookup within each SSTable block, and a background compaction goroutine that merges overlapping SSTables to bound read amplification — demonstrating concretely why RocksDB, Cassandra, and ScyllaDB choose this architecture over B-Trees for write-heavy workloads.
+>
+> *Technologies from Weeks 1–14:* Go stdlib only (`container/heap` for SSTable merge priority queue, `bufio` for block-aligned reads/writes, `sync.RWMutex` on memtable), Bloom Filter from Week 11 (per-SSTable filter eliminates disk read for missing keys), HTTP API (`PUT`/`GET`/`DELETE /kv/{key}`), Prometheus (`compaction_duration_seconds`, `sstable_count`, `read_amplification`). Benchmark: write throughput = 280K ops/sec vs PostgreSQL B-Tree = 45K ops/sec for sequential writes.
+
+## MONTH 6: Kafka + Redis Deep + PayCore v1.0
+
+### Week 15 (detail): gRPC + WebSockets + SSE + WebRTC + Real-Time Patterns
+
+#### Monday — REST Deep + Idempotency + Rate Limiting Intro
+
+REST production patterns: cursor pagination (never offset — breaks on concurrent inserts), `Idempotency-Key` header → Redis-backed response cache. Rate limiting introduction: all 4 algorithms.
+
+All 4 platforms: idempotency middleware added. Every mutation has idempotency key.
+
+#### Tuesday — gRPC: All 4 Modes + PayCore Internal Service
+
+```protobuf
+service PayCore {
+  rpc ProcessPayment(PaymentRequest) returns (Payment);                // Unary
+  rpc StreamTransactions(StreamRequest) returns (stream Transaction);  // Server streaming
+  rpc BatchPayments(stream PaymentRequest) returns (BatchResult);      // Client streaming
+  rpc BillingChat(stream Message) returns (stream Message);            // Bidirectional
+}
+```
+
+gRPC = internal service-to-service. REST = external APIs. Measure: 30% smaller payload, 2× throughput vs REST JSON.
+
+#### Wednesday — gRPC Interceptors + SideCar First Steps
+
+```go
+// SideCar prototype: gRPC proxy with automatic OTel span creation
+// Client → [SideCar :8081] → PayCore :8080
+// Zero code changes to PayCore
+
+func tracingInterceptor(ctx context.Context, req interface{},
+    info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+    ctx, span := tracer.Start(ctx, info.FullMethod)
+    defer span.End()
+    resp, err := handler(ctx, req)
+    if err != nil { span.RecordError(err) }
+    return resp, err
+}
+```
+
+#### Thursday — SSE + WebSockets + WebRTC: Three Real-Time Patterns
+
+- **SSE (FleetPulse GPS):** `text/event-stream`, Redis pub/sub bridges all replicas. 50K concurrent connections. `EventSource` auto-reconnects.
+- **WebSocket (FleetPulse chat):** bidirectional driver ↔ dispatcher. Redis pub/sub bridge. `gorilla/websocket` concurrent write mutex.
+- **WebRTC (AeroOps expert calls):** P2P video. Socket.io signaling (offer/answer/ICE), then P2P direct. STUN/TURN servers.
+
+Test SSE: 3 dispatcher browser tabs + 3 server replicas. Move driver via `curl`. All 6 windows update simultaneously. This demonstrates Redis pub/sub fan-out.
+
+#### Friday — CDN Cache Strategies + Edge Computing + Convex
+
+CDN patterns: `Cache-Control: immutable` (hashed assets), `stale-while-revalidate` (ISR), no-cache (APIs). Cloudflare Workers: edge JWT verification (zero origin hits for bad tokens). Compare: Convex reactive queries vs polling vs WebSocket.
+
+#### Weekend: SideCar v1.0 — HTTP + gRPC Observability Proxy
+
+```
+SideCar features:
+✅ HTTP reverse proxy (transparent, zero target code changes)
+✅ gRPC proxy (unary + streaming interceptors)
+✅ OTel span creation + W3C traceparent header propagation
+✅ Prometheus /metrics endpoint
+✅ Structured logging with requestId
+
+Deploy: Docker Compose sidecar alongside DungBeetle + PayCore
+```
+
+---
+
+### Week 16 (detail): Kafka Fundamentals + Outbox + DungBeetle v1.0
+
+#### Monday — Kafka Architecture + Exactly-Once Producer
+
+**Concepts:** KRaft (no ZooKeeper), topics, partitions, offsets, consumer groups, ISR. `acks=all`, `idempotent: true` (sequence numbers), batching + snappy compression.
+
+**DungBeetle feed:** Job completion events published to Kafka with exactly-once semantics. Downstream consumers (StreamDB, audit log) receive every event exactly once.
+
+#### Tuesday — Kafka Consumer + Idempotent Processing
+
+Manual offset commit (commit ONLY after processing). Idempotent consumer pattern: `processed_events(event_id UUID PRIMARY KEY)` — insert before processing, check before processing.
+
+#### Wednesday — Dead Letter Queue + Retry Topics
+
+`dungbeetle.jobs.retry.1` → wait 5s, `dungbeetle.jobs.retry.2` → wait 30s, `dungbeetle.jobs.dlq` → Slack alert. Prometheus metric `dlq_depth`. Alert: > 100 for 5 minutes.
+
+#### Thursday — Transactional Outbox Pattern
+
+```go
+// Stack: Go + PostgreSQL + Kafka
+// DungBeetle job completion: writes to both jobs table + outbox in ONE transaction
+
+func completeJob(ctx context.Context, db *pgxpool.Pool, jobID string) error {
+    return db.BeginFunc(ctx, func(tx pgx.Tx) error {
+        tx.Exec(ctx, "UPDATE jobs SET status='success' WHERE id=$1", jobID)
+        tx.Exec(ctx, `INSERT INTO outbox(id,topic,key,payload)
+                      VALUES($1,'jobs.completed',$2,$3)`,
+            uuid.New(), jobID, mustMarshal(JobCompletedEvent{JobID: jobID}))
+        return nil
+    })
+}
+// Relay polls outbox → Kafka → marks published. Guaranteed delivery.
+```
+
+#### Friday — Leader Election + Schema Registry
+
+Leader Election: Redis `SETNX "leader:cron-scheduler" EX 10` — only 1 DungBeetle replica runs cron. Heartbeat: `EXPIRE` every 4s. Instance dies → key expires → another wins.
+
+Schema Registry: Avro schemas for all Kafka events. Breaking change rejected at publish time.
+
+#### Weekend Capstone: DungBeetle v1.0 — Production Job System
+
+```
+DungBeetle v1.0 Architecture:
+┌────────────────────────────────────────────────────────────┐
+│                      DungBeetle v1.0                       │
+├──────────────┬───────────────┬───────────────────────────--┤
+│  HTTP + gRPC │   Cron Sched. │      Worker Pool            │
+│  API         │  (Redis SETNX │   (20 goroutines,           │
+│              │   leader)     │    semaphore, drain)        │
+└──────────────┴───────┬───────┴──────────────┬──────────────┘
+                       │                       │
+              Kafka (jobs.pending | retry.1 | retry.2 | dlq)
+                       │
+PostgreSQL (jobs | job_runs | outbox | processed_events) + Redis (cache | idempotency | rate-limit)
+
+Features: webhook (HMAC-SHA256) | cron | ai_summary | cleanup
+OTel: full trace per job (HTTP → Kafka → Worker → DB)
+Prometheus: job_duration_seconds, jobs_total{status}, dlq_depth, kafka_lag
+```
+
+---
+
+#### Monday — Docker + Multi-Stage Builds + Firecracker
+
+Multi-stage builds: `deps` → `builder` → `runner`. Go images: 900MB → 85MB. Non-root user. Docker Compose with health checks for all 9 projects.
+
+**Firecracker (OpsAI):** MicroVM, 125ms boot. User submits diagnostic script → Firecracker MicroVM (256MB, 1 vCPU, 5s timeout, no network) → execute → destroy. Stronger isolation than Docker.
+
+#### Tuesday — GitHub Actions: Matrix CI/CD
+
+```yaml
+# matrix: platform × node version × go version
+strategy:
+  matrix:
+    platform: [fleetpulse, aeroops, routemaster, opsai, dungbeetle, paycore]
+    node: [20, 22]
+# paths filter: only runs FleetPulse pipeline when apps/fleetpulse/** changes
+# branch protection: PRs cannot merge without all checks passing
+# Trivy CVE scan: fail on HIGH/CRITICAL
+```
+
+#### Wednesday — Kubernetes: All Services on K8s
+
+Deployment, Service, Ingress, ConfigMap, Secret, HPA (scale on CPU + custom Prometheus metrics), rolling update (`maxSurge:1, maxUnavailable:0` = zero-downtime), readiness probe `GET /health`.
+
+#### Thursday — Terraform + Pulumi + Multi-Cloud
+
+- **Terraform (FleetPulse → AWS):** ECS Fargate + RDS + ElastiCache + MSK. State in S3 + DynamoDB.
+- **Pulumi TypeScript (AeroOps → GCP):** Cloud Run + Cloud SQL. TypeScript enables loops impossible in HCL.
+- **Railway (DungBeetle + OpsAI):** fastest iteration.
+
+#### Friday — Cloudflare Workers + CDN + Edge Auth
+
+Edge JWT verification on Cloudflare Workers: bad token → 401 at edge, zero origin hits. R2 for AeroOps PDF reports: presigned URL from Cloudflare Worker, served from CDN forever after first request.
+
+#### Weekend: All 9 Projects Deployed + Full Observability
+
+All frontends on Cloudflare Pages. All backends: AWS/GCP/Railway. OpenTelemetry sidecar: distributed traces to Jaeger. Prometheus + Grafana: p50/p95/p99, error rate, DB query time. PagerDuty alert: p99 > 500ms.
+
+---
+
+### Week 18 (detail): PayCore v1.0 — Double-Entry Ledger + Idempotent Payments + Reconciliation
+
+#### Monday — Double-Entry Bookkeeping + Financial Schema
+
+```sql
+-- Never FLOAT for money. DECIMAL(19,4) always.
+-- Trigger enforces: SUM(debit) = SUM(credit) per journal entry
+CREATE TABLE accounts (id UUID PRIMARY KEY, name TEXT NOT NULL,
+    type TEXT CHECK (type IN ('asset','liability','equity','revenue','expense')),
+    currency CHAR(3) NOT NULL DEFAULT 'INR');
+
+CREATE TABLE journal_entries (id UUID PRIMARY KEY, description TEXT NOT NULL,
+    idempotency_key TEXT UNIQUE, entry_date DATE NOT NULL);
+
+CREATE TABLE journal_lines (id UUID PRIMARY KEY,
+    journal_entry_id UUID REFERENCES journal_entries(id),
+    account_id UUID REFERENCES accounts(id),
+    debit DECIMAL(19,4) NOT NULL DEFAULT 0,
+    credit DECIMAL(19,4) NOT NULL DEFAULT 0,
+    CONSTRAINT one_side CHECK ((debit > 0 AND credit = 0) OR (debit = 0 AND credit > 0)));
+```
+
+#### Tuesday — Idempotency: The Most Important Payment Engineering Pattern
+
+Redis `SETNX` + distributed lock + PostgreSQL `ON CONFLICT` — belt and suspenders. Tested: 100 concurrent requests with same idempotency key → exactly 1 charge.
+
+#### Wednesday — Payment State Machine + Fraud Scoring
+
+State machine: `pending → processing → succeeded/failed`. Fraud: Redis velocity checks (Sorted Set sliding window) + device fingerprinting + OpenAI risk scoring.
+
+#### Thursday — Reconciliation Engine (Runs via DungBeetle Cron)
+
+Daily at 2am via DungBeetle cron: fetch Stripe balance, compare to internal ledger, generate discrepancy report, Slack alert on mismatch.
+
+#### Friday — HMAC Webhook Delivery + Circuit Breaker
+
+```go
+// SideCar circuit breaker wraps every external webhook call
+// If endpoint returns 5 errors in 10s → circuit opens → skip for 30s
+err := circuitBreaker.Call(func() error {
+    return deliverWebhook(ctx, endpoint, secret, event)
+})
+```
+
+#### Weekend Capstone: PayCore v1.0
+
+```
+PayCore v1.0 = DungBeetle (cron + webhooks) + SideCar (OTel + circuit breaking)
+             + double-entry ledger + idempotent payments + reconciliation + fraud
+
+Technologies: Go + PostgreSQL (double-entry) + Redis (idempotency + velocity)
+              + Kafka (payment events via outbox) + gRPC (internal fraud call)
+              + OpenTelemetry (full payment lifecycle trace) + Prometheus
+```
+
+---
+
+## MONTH 7: Distributed Patterns — CQRS + Event Sourcing + Saga
+
+#### Monday — All 4 Isolation Levels: Live Anomaly Demos
+
+**Build a demo service that shows each anomaly with real PostgreSQL:**
+
+| Level | Problem it prevents | PayCore use |
+|-------|--------------------|-----------| 
+| Read Uncommitted | None | Never use |
+| Read Committed (default) | Dirty reads | Most read queries |
+| Repeatable Read | Non-repeatable reads | Analytical reports |
+| Serializable | All anomalies | Payment balance updates |
+
+PayCore: `Serializable` + `SELECT FOR UPDATE` on balance rows. Concurrent transfers → no lost update anomaly.
+
+#### Tuesday — Event Sourcing: Append-Only Event Store
+
+```go
+// Events table: REVOKE UPDATE, DELETE. Only INSERT + SELECT.
+// Account balance = sum of all events (no stored balance — computed on read)
+// Point-in-time query: "what was balance on Jan 1?" → replay events up to that date
+
+func (repo *AccountRepo) GetBalanceAt(ctx context.Context, id string, at time.Time) decimal.Decimal {
+    rows, _ := db.Query(ctx,
+        "SELECT event_type, amount FROM account_events WHERE account_id=$1 AND created_at<=$2 ORDER BY version",
+        id, at)
+    // replay events, sum credits - debits
+}
+```
+
+#### Wednesday — CQRS: Separate Write from Read Projections
+
+3 read projections built from same PayCore event stream:
+- `payments_summary` — dashboard (latest status, amount)
+- `user_payment_history` — per-user sorted list
+- `fraud_signals` — denormalized for fast fraud scoring
+
+All rebuilt from Kafka CDC pipeline. Driver search: 800ms (PostgreSQL JOIN) → 8ms (read model).
+
+#### Thursday — Saga Pattern: Fund Transfer (Choreography + Orchestration)
+
+Choreography (Kafka events) vs Orchestration (central coordinator with `saga_state` table). Test: kill payment service mid-transfer → compensation fires → debit reversed → zero money lost.
+
+#### Friday — Outbox + Idempotent Consumers Across All Services
+
+`FOR UPDATE SKIP LOCKED` for multiple outbox processors without duplicates. Idempotent consumers: `processed_events(event_id UUID PRIMARY KEY)` — simulate Kafka consumer restart, verify no projection corruption.
+
+#### Weekend Capstone: PayCore v2.0 — Event-Sourced + Saga
+
+```
+New in v2.0:
+✅ Event-sourced bank accounts (full audit trail, time-travel queries)
+✅ CQRS: 3 read projections from same event stream
+✅ Fund Transfer Saga (choreography + orchestration, both tested)
+✅ Compensating transactions under failure injection
+✅ Outbox for all event publishing
+
+Cross-project composition:
+- DungBeetle runs reconciliation cron (2am)
+- SideCar proxies PayCore (OTel + circuit breaking + mTLS)
+- PayCore events feed StreamDB analytics (Month 5)
+```
+
+---
+
+### Week 20 (detail): Resiliency Patterns + Load Balancers + Big Data
+
+#### Monday — Circuit Breaker Full Implementation + Bulkhead
+
+```go
+// States: Closed → Open (5 failures/10s) → Half-Open (1 trial/30s) → Closed
+// Bulkhead: separate semaphore pools per downstream service
+// Stripe slow does NOT slow Google Maps calls
+
+type CircuitBreaker struct {
+    mu       sync.Mutex
+    state    string  // "closed" | "open" | "half-open"
+    failures int
+    openedAt time.Time
+}
+```
+
+SideCar adds circuit breaking at the proxy layer: zero code changes to target services.
+
+#### Tuesday — Rate Limiting: All 4 Algorithms as Redis Lua Scripts
+
+| Algorithm | Platform Use | Why |
+|-----------|-------------|-----|
+| Fixed Window | GPS pings (100/min/driver) | Simple, boundary burst OK for GPS |
+| Sliding Window Log | API key quota | Exact count, no boundary bug |
+| Token Bucket | General API endpoints | Burst-friendly |
+| Leaky Bucket | Payment endpoint | Strict constant rate, zero burst |
+
+All return: `Retry-After`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`.
+
+#### Wednesday — Leader Election Deep + PITR Drill
+
+Leader election already built (DungBeetle cron). Add: FleetPulse surge pricing runs on exactly 1 replica.
+
+PITR Drill: `DROP TABLE work_orders` → restore from S3 WAL → measure RTO (target < 10 min). Write runbook. This is real disaster recovery practice.
+
+#### Thursday — Big Data: Kafka → S3 Parquet → Athena
+
+Kafka Connect S3 Sink → S3 Parquet files → Athena (serverless SQL). `SELECT restaurant_id, COUNT(*) FROM orders WHERE year=2025 GROUP BY 1`. No database to manage. ~$5/TB scanned.
+
+#### Friday — Load Balancers + CAP Theorem Demo Service
+
+K8s NGINX Ingress (Round Robin). Health checks + automatic failover.
+
+CAP theorem demo service (Go): same endpoint, toggle `CAP_MODE=cp|ap`. CP: read from primary only. AP: read from any replica. Side-by-side latency + consistency visible in UI.
+
+#### Weekend: All Services on K8s with Full Resiliency
+
+All 9 projects: circuit breakers on all external calls, rate limiting on all APIs, leader election where needed, PITR runbook written and tested.
+
+---
+
+## MONTH 8: Stream Processing + StreamDB + Case Studies 1–6
+
+#### Monday — Kafka Streams: Windowed Aggregation
+
+KTable (current state per key), KStream (event stream), tumbling window (5-min aggregation), sliding window (surge map). Kafka Connect Debezium CDC: PostgreSQL changes → Kafka within milliseconds.
+
+#### Tuesday — CDC Pipeline: Multiple Consumers
+
+```
+PayCore PostgreSQL → Debezium → Kafka paycore.cdc
+  → Consumer A: StreamDB TimescaleDB (analytics)
+  → Consumer B: Redis auto-invalidation (no more manual cache.del())
+  → Consumer C: Audit log (append-only)
+  → Consumer D: Fraud signal aggregator
+```
+
+All 4 consumers: independent, idempotent, restartable without data loss.
+
+#### Wednesday — TimescaleDB: Time-Series at Scale
+
+```sql
+-- Hypertable: automatic time-based partitioning
+SELECT create_hypertable('events', 'timestamp');
+
+-- Continuous aggregate: pre-computed hourly rollups (automatic)
+CREATE MATERIALIZED VIEW events_hourly WITH (timescaledb.continuous) AS
+    SELECT time_bucket('1 hour', timestamp) AS bucket, event_type, COUNT(*)
+    FROM events GROUP BY 1, 2;
+
+-- Compression: 20× reduction for events older than 7 days
+ALTER TABLE events SET (timescaledb.compress);
+SELECT add_compression_policy('events', INTERVAL '7 days');
+```
+
+#### Thursday — WebSocket Real-Time Dashboard
+
+StreamDB: every event processed → Redis Sorted Set → Redis pub/sub → WebSocket → browser chart updates every second. Handle 10K concurrent WebSocket connections. Redis bridges all server replicas.
+
+#### Friday — Bloom Filters: From Scratch
+
+**False positive math:** `P = (1 - e^(-kn/m))^k`. Use cases: unknown `restaurantId` → 404 before Redis/DB, URL dedup in crawler (100M URLs, 100MB RAM), fraud pre-filter (known spoof coordinates).
+
+```go
+// Stack: Go (pure math + bitset, no library)
+// Implemented in: FleetPulse fraud + AeroOps crawler + RouteMaster restaurant lookup
+
+type BloomFilter struct {
+    bits    []uint64
+    m, k    uint  // m = bit count, k = hash functions
+}
+
+func (b *BloomFilter) Add(item []byte) {
+    for i := uint(0); i < b.k; i++ {
+        bit := b.hash(item, i) % b.m
+        b.bits[bit/64] |= 1 << (bit % 64)
+    }
+}
+
+func (b *BloomFilter) MayContain(item []byte) bool {
+    for i := uint(0); i < b.k; i++ {
+        bit := b.hash(item, i) % b.m
+        if b.bits[bit/64]&(1<<(bit%64)) == 0 { return false }
+    }
+    return true
+}
+```
+
+#### Weekend Capstone: StreamDB v1.0 — Full Analytics Pipeline
+
+```
+Event Sources (PayCore, DungBeetle, FleetPulse, HTTP API)
+    ↓ Kafka (3 topics: events.raw, events.processed, events.alerts)
+Kafka Streams (Go, 5-min tumbling window → Count-Min Sketch for top-N)
+    ↓
+  ├── TimescaleDB (raw events + continuous hourly aggregates)
+  ├── Redis Sorted Sets (real-time leaderboards, top-10 zones)
+  └── WebSocket Hub → browser dashboard (1-second updates)
+    ↓
+Alert engine → Slack when anomaly detected
+
+Technologies: Go + Kafka + TimescaleDB + Redis + WebSockets + Bloom Filters
+```
+
+---
+
+### Week 22 (detail): Case Studies 1–6 (All Deployed as Platform Features)
+
+#### Case Study 1: E-Commerce Product Listing → RouteMaster Restaurants
+
+**Back of envelope:** 50M DAU / 86K sec = 578 req/sec avg, 3× peak = 1,734 req/sec. Read/write 1000:1.
+
+**Architecture built:**
+- Elasticsearch: 12ms vs PostgreSQL LIKE 8,000ms on 100K restaurants
+- PGVector: "similar to past orders" semantic recommendations
+- Redis Lua: atomic slot reservation (zero oversells at 10K concurrent)
+- Next.js ISR: `stale-while-revalidate=30`, HTML from Cloudflare CDN edge
+- Bloom Filter: unknown restaurantId → 404 before Redis/DB hit
+
+k6: 1M VUs, p99 < 200ms globally. ADR written.
+
+#### Case Study 2: Tinder Feed → FleetPulse Driver Job Feed
+
+```
+New trip → Kafka → Go fan-out worker
+  → PostGIS ST_DWithin: drivers within 2km
+  → score = fare/distance × demand_multiplier
+  → ZADD feed:{driverId} {score} {tripId}
+  → SSE push "new job"
+
+Driver opens app:
+  → ZREVRANGE feed:{driverId} 0 9 → instant from Redis Sorted Set
+```
+
+#### Case Study 3: URL Shortener → AeroOps Compliance Links
+
+Snowflake ID → Base62 → 7-char code (3.5T possible). Cloudflare Worker: 0.3ms redirect, origin never hit for repeat clicks. Kafka async click analytics (never slows redirect path).
+
+#### Case Study 4: API Rate Limiter → All Platforms
+
+Full case study: all 4 algorithms as Redis Lua scripts. Per-endpoint configuration. Grafana dashboard: rejection rate, top rejected IDs.
+
+#### Case Study 5: Web Crawler → AeroOps Regulation Crawler
+
+1000 Go goroutines, Bloom Filter (100M URL dedup), politeness (1 req/sec/domain, Redis SETNX), robots.txt cached 24h, content hash (skip if unchanged), Kafka → Elasticsearch indexer.
+
+#### Case Study 6: Realtime Abuse Masker → FleetPulse GPS Fraud
+
+3-layer pipeline, total < 15ms:
+1. **Wasm Layer (0ms):** AssemblyScript Bloom Filter, impossible speed > 250kph check
+2. **Go Rules (< 2ms):** velocity (5 trips/hr), teleportation (50km/min), device mismatch
+3. **ONNX Inference Go (< 10ms):** ML model embedded in binary. score > 0.7 → block
+
+#### Weekend: 6 Case Studies Live + Portfolio Site Started
+
+Portfolio site (Next.js + MDX, Cloudflare Pages): one page per case study with live demo. Lighthouse 100/100/100/100.
+
+---
+
+## MONTH 9: Database Internals + KVault + Case Studies 7–11
+
+#### Monday — LRU Engine + Multi-Tenant Namespace
+
+```go
+// Stack: Go stdlib only (zero external deps for core)
+// LRU: doubly-linked list + HashMap, O(1) get + O(1) put
+
+type KVStore struct {
+    data     map[string]*Entry  // "tenantId:key" → Entry
+    lru      *LRUList
+    mu       sync.RWMutex
+    maxBytes int64
+    usedBytes int64
+}
+```
+
+DSA: LeetCode 146 (LRU Cache) — this IS the code you're writing.
+
+#### Tuesday — AOF Persistence + RDB Snapshot
+
+AOF: every write appended as RESP3 command. `fsync everysec` strategy. RDB: binary state dump with `BGSAVE` (background, no blocking). Recovery: load latest RDB → replay AOF since RDB timestamp.
+
+#### Wednesday — RESP3 Protocol + TCP Server
+
+```go
+// redis-cli -p 6400 PING → +PONG
+// redis-cli -p 6400 SET foo bar EX 10 → +OK
+// redis-cli -p 6400 GET foo → $3\r\nbar
+
+func (s *KVServer) handleConn(conn net.Conn) {
+    reader := bufio.NewReader(conn)
+    for {
+        cmd, args, _ := parseRESP(reader)
+        conn.Write(serializeRESP(s.execute(cmd, args)))
+    }
+}
+```
+
+#### Thursday — Consistent Hashing: 3-Node Cluster
+
+Hash ring, 150 virtual nodes per physical node. Add node 4 → only 25% keys reassign (vs 75% with modulo). Client hashes key → picks node → connects.
+
+#### Friday — Benchmarking + Go Client Library
+
+KVault GET/SET throughput vs real Redis. Document: "KVault achieves 650K ops/sec (59% of Redis 1.1M). Written in 1 week to understand Redis internals."
+
+#### Weekend Capstone: KVault v1.0
+
+```
+KVault = Redis clone:
+✅ LRU eviction (O(1)), TTL with lazy + background expiry
+✅ AOF persistence (everysec fsync)
+✅ RDB snapshots (binary dump)
+✅ RESP3 protocol (redis-cli compatible!)
+✅ TCP server (goroutine per connection)
+✅ 3-node consistent hash cluster
+✅ Go client library with connection pooling
+✅ Prometheus metrics + Grafana dashboard
+✅ 650K ops/sec benchmarked
+
+Portfolio: "I understand Redis well enough to build it"
+```
+
+---
+
+### Week 24 (detail): Database Internals Deep + Sharding + Case Studies 7–9
+
+#### Monday — EXPLAIN ANALYZE Mastery
+
+Read every node type: `Seq Scan`, `Index Scan`, `Index Only Scan`, `Bitmap Heap Scan`, `Hash Join`, `Nested Loop`, `Merge Join`, `Parallel Seq Scan`. `pg_stat_statements` top-10 slowest queries under real load.
+
+#### Tuesday — Index Deep Dive: GIN + GiST + BRIN + Partial + Covering
+
+- GIN: `JSONB` containment, full-text, arrays
+- BRIN: time-series timestamp (90% smaller than B-tree for sequential data)
+- Partial: `WHERE status = 'pending'` (DungBeetle jobs — only indexes pending rows)
+- Covering: `INCLUDE (amount)` — index-only scan without heap fetch
+
+EXPLAIN ANALYZE before/after for each. Document.
+
+#### Wednesday — Case Study 7: GitHub Gists → AeroOps Maintenance Snippets
+
+S3 object versioning (every edit = new version, no byte copy). Fork = new PostgreSQL row + same S3 key. Cloudflare Worker serve + cache at edge. AssemblyScript Wasm client-side syntax highlighting.
+
+#### Thursday — Case Study 8: Fraud Detection → FleetPulse Complete
+
+Feature store: Redis velocity counters + PostgreSQL historical features. CDC feedback loop: fraud decision → Kafka → feature store update. A/B test: threshold 0.35 vs 0.40 — measure false positive rate vs catch rate.
+
+#### Friday — Case Study 9: Recommendation Systems → OpsAI
+
+SVD collaborative filtering + pgvector content-based → hybrid (0.6 + 0.4). Redis: pre-computed top-10 per incident type → 2ms. A/B test 3 cohorts → measure MTTR improvement.
+
+#### Weekend: Case Studies 7–9 Live + StreamDB v2.0
+
+StreamDB v2.0: all queries EXPLAIN-analyzed and optimized. BRIN on `timestamp`. Monthly partitions. PgBouncer front-end. k6: 10K events/sec, p99 < 50ms.
+
+---
+
+```
+L1: singleflight (dedup concurrent misses) → in-process LRU (~100μs, 100MB)
+L2: Redis (TTL + jitter + write-through, ~1ms)
+L3: PostgreSQL read replica (~10ms)
+
+Prometheus: cache_hit_ratio{layer} gauge
+Grafana dashboard: hit rate at each level in real-time
+Alert: L3 hit rate > 20% → caching needs tuning
+```
+
+#### Tuesday — PER Algorithm + Write-Through + Cache Invalidation via CDC
+
+PER (Probabilistic Early Recomputation): recompute before TTL expires. `Math.random() < delta × beta × ln(1/U)`. No thundering herd on popular keys.
+
+Write-through: update DB and cache atomically. PostgreSQL `NOTIFY` → Go listener → Redis `DEL`. Zero stale reads.
+
+#### Wednesday — Case Study 10: Notifications 1B/day → FleetPulse
+
+11,574/sec average, 35K/sec peak. APNs batch (1 HTTP/2 call = 1000 push tokens). Redis dedup (`SET NX EX 86400`). DLQ → Slack < 30s. A/B test notification timing (sent at 9am vs 11am → measure open rate).
+
+#### Thursday — Case Study 11: Twitter Trends → FleetPulse Surge Map
+
+Count-Min Sketch: 10MB for 1M zones, 99.9% accurate. Kafka Streams 30s sliding window. Mapbox GL heatmap. H3 hexagonal zone system.
+
+#### Friday — WebAssembly Deep + Cache Audit Tool
+
+**Wasm use cases:** CPU-bound in browser (route math, image processing, fraud pre-filter). AssemblyScript → `.wasm` → `WebAssembly.instantiate`.
+
+Cache audit tool: inspect all 4 layers (browser `ETag`/`Cache-Control`, `CF-Cache-Status`, Redis TTL, PG buffer hit ratio) for any URL. OpsAI uses this as a tool.
+
+#### Weekend: All 11 Case Studies Live + Full Portfolio
+
+All 11 case studies deployed as real platform features with architecture diagrams, k6 benchmarks, ADRs, and portfolio pages.
+
+---
+
+## MONTH 10: AI Engineering + DungBeetle v3.0 + OpsAI Platform
+
+### Week 26 (detail): Go Deep + K8s Operator + AI Engineering
+
+#### Monday — Go Intermediate + K8s Operator
+
+Go intermediate: `context` propagation, graceful shutdown (`SIGTERM` drain), `sync.Pool` (60% allocation reduction), `slog` structured logging.
+
+**FleetPulseLocationAggregator CRD:**
+```go
+// kubectl apply -f fleet-aggregator.yaml → operator creates Deployment + HPA automatically
+// Operator reads live Prometheus metric rate(gps_pings_total[1m])
+// Scales aggregator replicas based on current ping rate
+
+func (r *Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+    pingsPerSec, _ := r.queryPrometheus(ctx, "rate(gps_pings_total[1m])")
+    desired := int32(pingsPerSec/500_000) + 1  // 500K pings/sec per replica
+    r.ensureHPA(ctx, desired)
+    return ctrl.Result{RequeueAfter: 30 * time.Second}, nil
+}
+```
+
+#### Tuesday — Vercel AI SDK + Tool Use + OpsAI Incident Triage
+
+```typescript
+// OpsAI: every tool calls a real system from earlier months
+const result = await streamText({
+  model: anthropic('claude-sonnet-4-20250514'),
+  messages,
+  tools: {
+    queryFleetPulseDB: {
+      parameters: z.object({ sql: z.string().startsWith('SELECT') }),
+      execute: async ({ sql }) => fleetPulseDb.query(sql),  // Month 1 PostgreSQL
+    },
+    searchPastIncidents: {
+      parameters: z.object({ description: z.string() }),
+      execute: async ({ desc }) => pgVectorSearch(desc),    // Month 1 pgvector
+    },
+    getDriverStatus: {
+      parameters: z.object({ driverId: z.string() }),
+      execute: async ({ id }) => redis.hgetall(`driver:${id}`), // Month 1 Redis
+    },
+    escalateToHuman: {
+      parameters: z.object({ severity: z.enum(['P1','P2','P3']), summary: z.string() }),
+      execute: async ({ severity, summary }) => pagerDuty.createIncident({ severity, summary }),
+    },
+  },
+});
+```
+
+#### Wednesday — RAG Pipeline: AeroOps Boeing 737 Maintenance Manual
+
+1. **Ingest:** chunk 5,000-page Boeing 737 manual (512 token chunks, 50 overlap, split at headings)
+2. **Embed:** OpenAI `text-embedding-3-small` → 1536-dim vectors
+3. **Store:** PGVector HNSW index + metadata (`chapter`, `page`, `section`)
+4. **Retrieve:** Hybrid search = 0.7 × vector cosine ANN + 0.3 × BM25
+5. **Rerank:** cross-encoder reranks top-20 → final top-5
+6. **Generate:** with citations — *"Section 29-11-01, Page 7: 35 ft-lb ± 5"*
+
+#### Thursday — Multi-Agent System: OpsAI 3-Agent Incident Response
+
+**3-agent system:**
+1. **Detector Agent** — monitors Kafka `fleetpulse.cdc` (Month 4 CDC pipeline)
+2. **Analyst Agent** — queries FleetPulse DB + pgvector past incidents + Boeing RAG
+3. **Escalation Agent** — determines severity → pages on-call → drafts runbook
+
+Analyst + Escalation run concurrently via `Promise.all`. P1 anomaly → on-call paged in < 15s.
+
+#### Friday — DungBeetle v3.0: AI-Powered Jobs + Agent Orchestration
+
+```
+DungBeetle v3.0 new features:
+✅ Semantic job search (pgvector HNSW + hybrid retrieval)
+✅ ai_job type: natural language → structured task → execute
+✅ Admin chat: "why are my webhook jobs failing?" (RAG over job logs)
+✅ Agent workflows: DungBeetle runs multi-agent systems as scheduled jobs
+✅ AI cost tracking: tokens/job, cost/day, Prometheus metrics
+✅ Streaming job output: AI result streams token-by-token via WebSocket
+
+Cross-project: OpsAI agent orchestration platform uses DungBeetle to
+schedule investigation workflows as background jobs
+```
+
+#### Weekend Capstone: OpsAI Full AI Layer + DungBeetle v3.0
+
+Both systems complete and integrated. Every AI tool calls real systems. Token cost dashboard in Grafana. Human-in-the-loop approval queue via WebSocket.
+
+---
+
+> **🔬 Biweekly Deep Project — Weeks 15–16**
+>
+> **Semantic Code Search Engine with Hybrid Retrieval**
+>
+> Built a code search engine for the 9-project monorepo that parses every function and type declaration using Go/TypeScript ASTs, embeds them with a code-specialized model, indexes the vectors in pgvector with HNSW, and merges vector similarity with BM25 full-text scoring using Reciprocal Rank Fusion — so that a query like "function that validates GPS coordinates and rejects spoofed locations" finds `validateAndScoreGpsPing` even though the query and function name share zero keywords.
+>
+> *Technologies from Weeks 1–16:* Go (`go/ast` parses function signatures + doc comments for all 6 Go services), TypeScript AST via `ts-morph` (extracts React component props and hook signatures), pgvector (`vector(1536)` on `code_chunks`; HNSW `m=16, ef_construction=64`; hybrid query `0.7 × (1 − embedding <=> $1) + 0.3 × ts_rank(fts, plainto_tsquery($2))`), OpenAI `text-embedding-3-small` (embed each chunk at index time), PostgreSQL FTS (`tsvector` column + GIN index updated via trigger), Next.js + Vercel AI SDK (streaming search results with source file and line number citations), DungBeetle (nightly re-index job triggered by GitHub webhook on each push). Evaluation: MRR on 50 hand-labeled queries = 0.74 vs keyword-only 0.31. Index: 94K functions, 1.1GB.
+
+
+### Week 27 (detail): Performance Engineering + Security + Portfolio Polish
+
+#### Monday — k6 Load Testing All 9 Projects
+
+k6 scenarios: ramp-up → steady-state → spike. Custom Prometheus output. Baseline every project. Target: p99 < 100ms at design load. Find the bottleneck using Jaeger traces. Fix. Re-measure.
+
+#### Tuesday — Go CPU + Memory Profiling
+
+`pprof` on production endpoint. Flame graph interpretation. Common findings under load:
+- `json.Marshal` in hot path → streaming encoder
+- `fmt.Sprintf` → `strings.Builder`
+- `sync.Mutex` contention → `sync.RWMutex` or per-key sharding
+- GC pressure → `sync.Pool`
+
+Profile DungBeetle under job queue load. Fix top allocator. Before/after benchmark.
+
+#### Wednesday — Security: JWT + mTLS + Secrets + Trivy
+
+`govulncheck ./...`, `trivy image` in CI, Vault for dynamic PostgreSQL credentials, mTLS via SideCar for all internal services.
+
+#### Thursday — Portfolio Polish: All Projects
+
+For every project:
+- `README.md`: Mermaid architecture diagram, benchmark numbers, live demo link
+- `docs/adr/`: one ADR per major decision (< 1 page)
+- `docs/runbooks/`: PITR recovery, Kafka lag, Redis failover
+
+#### Friday — Open Source Contribution
+
+Find `good first issue` in `opentelemetry-go`, `controller-runtime`, or `jackc/pgx`. Fix a real bug found while building these projects. Open PR. Document in X thread.
+
+---
+
+### Week 28 (detail): System Design Interviews + DSA Sprint + Applications
+
+#### System Design: All 11 Case Studies Cold
+
+| Day | System | Your Direct Experience |
+|-----|--------|----------------------|
+| 1 | Job scheduler | DungBeetle: Kafka, leader election, DLQ |
+| 2 | Payment system | PayCore: double-entry, idempotency, Saga |
+| 3 | Rate limiter | Redis Sorted Set Lua (deployed in 4 projects) |
+| 4 | Real-time GPS tracking | FleetPulse: 1M pings/sec, SSE, PostGIS |
+| 5 | Notifications 1B/day | FleetPulse: APNs batch, dedup, DLQ |
+| 6 | URL shortener | AeroOps: Snowflake ID, Cloudflare Worker |
+| 7 | Web crawler | AeroOps: 1000 goroutines, Bloom Filter |
+| 8 | Key-value store | KVault: LRU, AOF, RESP3, consistent hashing |
+| 9 | Recommendation system | OpsAI: SVD + pgvector hybrid, A/B tested |
+| 10 | Real-time analytics | StreamDB: Kafka Streams, TimescaleDB, WebSocket |
+| 11 | Fraud detection | FleetPulse: feature store, Wasm + ONNX, CDC loop |
+
+#### DSA Sprint (30 min/day)
+
+Top patterns: Sliding Window (rate limiters, analytics), Heap (top-K, Kafka internals), Graph BFS/DFS (dependency resolution, DAGs), Bloom Filter (already built!), Consistent Hashing (already built!), LRU Cache (already built!). Target: Medium problem in < 20 minutes.
+
+#### Behavioral Stories (STAR Format)
+
+| Question | Story |
+|----------|-------|
+| "Debug a hard production issue" | DungBeetle DLQ → Prometheus alert → Jaeger trace → PayCore circuit breaker open → downstream webhook timeout → fixed + jitter added |
+| "Technical decision + trade-offs" | "Why Saga over 2PC for PayCore fund transfers" — testability, no coordinator SPOF |
+| "Learn something quickly" | Go (Month 1): built FleetPulse GPS aggregator, same PostgreSQL, 13× throughput |
+| "Most complex system" | PayCore v2: event-sourced, CQRS, Saga — 4 patterns composing |
+| "Performance improvement" | StreamDB: `json.Marshal` in hot path → streaming encoder → p99 50ms → 12ms |
+
+#### Target Companies + Cold Email
+
+**India Tier 1:**
+- **Zerodha** — DungBeetle IS dukgbeetle (same architecture, same patterns)
+- **Razorpay / PhonePe / CRED** — PayCore: double-entry + idempotency + Saga at scale
+- **Groww / Navi / Jupiter** — event-sourced financial systems + Kafka pipelines
+
+**Global Tier 1:**
+- **Uber / Ola / Grab** — FleetPulse: GPS at 1M pings/sec, surge pricing, fraud
+- **DoorDash / Swiggy / Zomato** — RouteMaster: Kafka, Elasticsearch, notifications
+- **Stripe / Brex** — PayCore idempotency + reconciliation directly relevant
+
+**Template:**
+```
+Subject: Backend engineer — built Zerodha-scale job system + 
+         payments API from scratch (Go + Kafka + PostgreSQL)
+
+I built 9 production systems over 8 months. Most relevant to [role]:
+
+• DungBeetle: background job system (like dukgbeetle) — Kafka exactly-once,
+  cron with Redis leader election, DLQ, HMAC webhooks, AI job orchestration
+• PayCore: double-entry ledger, idempotent payments (0 double charges tested),
+  daily reconciliation engine, Saga-based fund transfers
+• FleetPulse: 1M GPS pings/sec, PostGIS driver matching, fraud detection
+  (Wasm + rules + ONNX, < 15ms), surge pricing
+
+All projects: OTel traces, Prometheus metrics, k6 load tested, ADRs written.
+[GitHub] [Portfolio with live demos + benchmark numbers]
+
+30-min call to walk through the idempotency design or GPS aggregator?
+```
+
+---
+
+> **🔬 Biweekly Deep Project — Weeks 17–18**
+>
+> **Adaptive Rate Limiter with Gradient Descent on SLO**
+>
+> Built a rate limiter that continuously measures upstream service p99 latency and applies a gradient descent update rule to increase allowed throughput when headroom exists and shed load when the SLO is at risk — converging to maximum sustainable throughput without manual capacity planning, which is how Envoy's adaptive concurrency filter and Netflix's CONCURRENCY_LIMIT work in production.
+>
+> *Technologies from Weeks 1–18:* Go (token bucket with atomically adjustable cap via `atomic.Int64`, Prometheus histogram client reads live p99 every 200ms, EMA damping of gradient to prevent oscillation), Redis Lua (atomic token check-and-decrement, `HSET adaptive:limit:{service} current_limit ema_p99` persists state across restarts), SideCar (adaptive limiter deployed as a zero-code-change proxy feature, span attribute `rate_limit.decision=allowed|shed`), Prometheus + Grafana (`adaptive_limit_current{service}`, `adaptive_limit_rejections_total`, EMA p99 overlay on same panel as limit), k6 (ramp 0 → 5K VUs over 5 min; fixed limit breaches SLO at 3K VUs; adaptive limiter holds p99 ≤ 100ms across full ramp by oscillating between 200–1,400 RPS). Portfolio framing: "I built an adaptive rate limiter that uses gradient descent to find maximum sustainable throughput — no manual tuning required."
+
+
+## MONTHS 10–11: Performance + Polish + Hiring Sprint
+
+### Final Polish Checklist (Every Project)
+- [ ] `go test -race ./...` passes (data races = silent production bugs)
+- [ ] `go test -bench` on every data structure (know your performance)
+- [ ] `tsc --noEmit` passes (TypeScript strict: no `any`, no `ts-ignore`)
+- [ ] Vitest 80%+ coverage on core business logic
+- [ ] Playwright E2E in CI (branch protection enforced)
+- [ ] Lighthouse 100/100/100/100 on all 4 platform frontends
+- [ ] `EXPLAIN ANALYZE` on every query — no seq scans on large tables
+- [ ] k6 load test documented: p50/p95/p99 at target RPS
+- [ ] Prometheus + Grafana dashboard live for every service
+- [ ] PITR drill: DROP TABLE → restore → RTO < 10 min → runbook written
+- [ ] `govulncheck` passes, `trivy image` passes (no HIGH/CRITICAL CVEs)
+- [ ] ADR for every major technology decision
+- [ ] README: Mermaid architecture diagram + benchmark numbers + live demo link
+- [ ] CONTRIBUTING.md: how to run locally, test, deploy
+- [ ] X/LinkedIn post every weekend: screenshot + benchmark + architecture diagram
+
+---
+
+## How All 9 Projects Connect
+
+```
+DungBeetle evolves: Week 1 → raw queue → Kafka → leader election → AI jobs
+    ↓ feeds PayCore reconciliation cron (runs at 2am)
+    ↓ feeds StreamDB data archival jobs
+    ↓ runs OpsAI agent workflows as scheduled background jobs
+
+PayCore: double-entry → Saga → event-sourced
+    ↓ payment events → StreamDB analytics (via CDC)
+    ↓ fraud signals → FleetPulse fraud engine
+    ↓ SideCar wraps PayCore (OTel + circuit breaking + mTLS)
+
+SideCar: deployed alongside every service
+    ↓ provides: OTel, circuit breaking, mTLS, rate limiting
+    ↓ deployed to: DungBeetle, PayCore, StreamDB, FleetPulse
+
+StreamDB: real-time analytics
+    ↓ ingests from: PayCore (CDC), DungBeetle (job events), FleetPulse (GPS)
+    ↓ feeds: OpsAI anomaly detection → investigation agent workflow
+
+KVault: Redis built from scratch
+    ↓ used as high-throughput cache in DungBeetle + PayCore (Months 8–9)
+
+FleetPulse evolves: raw Node.js → Express → Go → K8s Operator → AI-fraud
+    ↓ GPS events → StreamDB analytics
+    ↓ fraud signals → PayCore fraud scoring
+    ↓ surge pricing → DungBeetle cron coordination
+
+OpsAI: AI engineering hub
+    ↓ tools call: FleetPulse PostgreSQL, pgvector incidents, Redis driver status
+    ↓ runs on: DungBeetle (AI job type)
+    ↓ Boeing RAG: AeroOps maintenance documentation
+```
+
+---
+
+## Daily Schedule
+
+| Block | Duration | Activity |
+|-------|----------|----------|
+| **Morning** | 2 hours | Learn concept. Not passive — run code, break it, read the library source. Concept is introduced because a project needs it. |
+| **Evening** | 2 hours | Build the named feature. **Must use ≥ 3 technologies together.** Never a tutorial project. Always "FleetPulse needs X" or "DungBeetle needs X." |
+| **DSA** | 30 min | 1 problem. Connect it to what you built. LRU = KVault. Sliding Window = Rate Limiter. Bloom Filter = you built it. |
+| **Saturday** | 5 hours | Weekend capstone: wire the week's features into the flagship project. Deploy. Benchmark with k6. |
+| **Sunday** | 3 hours | Document: README update, ADR, benchmark numbers, X/LinkedIn post. CI must be green. |
+
+---
+
+## Non-Negotiable Rules
+
+- [ ] **`go test -race ./...` passes** before every commit
+- [ ] **`tsc --noEmit` passes** — no `any`, no suppressed TypeScript errors
+- [ ] **Lighthouse 100/100/100/100** — set Week 1, maintained all 8 months
+- [ ] **`EXPLAIN ANALYZE` on every SQL query** — no blind queries ever
+- [ ] **Idempotency key on every mutation** that could be retried
+- [ ] **Outbox pattern for every Kafka publish** that must be guaranteed
+- [ ] **ADR for every major technology decision** — < 1 page, always
+- [ ] **k6 load test** before calling anything "production-ready"
+- [ ] **PITR drill** executed and RTO documented (monthly, Month 4 onward)
+- [ ] **X/Twitter post** every weekend — benchmark number or architecture diagram
+

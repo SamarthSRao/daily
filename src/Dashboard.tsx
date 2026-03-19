@@ -43,7 +43,7 @@ export default function Dashboard() {
     return saved ? JSON.parse(saved) : DEFAULT_CATEGORIES;
   });
   const [isEditing, setIsEditing] = useState(false);
-  const [now, setNow] = useState(new Date("2026-03-15T10:29:45")); 
+  const [now, setNow] = useState(new Date()); 
 
   useEffect(() => {
     localStorage.setItem("properrr-categories", JSON.stringify(categories));
@@ -79,37 +79,41 @@ export default function Dashboard() {
       fractionRemaining = Math.max(0, 1 - (hoursPassed / 24));
     }
 
-    totalStats.Y.totD += 1;
-    totalStats.Y.totH += 24;
-    totalStats.Y.remD += fractionRemaining;
-    totalStats.Y.remH += 24 * fractionRemaining;
-    if (isPast) passedYearHours += 24;
-    if (isToday) passedYearHours += 24 * (1 - fractionRemaining);
+    const dailyTotalAlloc = categories.reduce((sum: number, c: any) => sum + (isH ? c.h : c.w), 0);
+    const dailyPassedAlloc = dailyTotalAlloc * (1 - fractionRemaining);
+
+    totalStats.Y.totD += dailyTotalAlloc / 24;
+    totalStats.Y.totH += dailyTotalAlloc;
+    totalStats.Y.remH += dailyTotalAlloc * fractionRemaining;
+    totalStats.Y.remD = totalStats.Y.remH / 24;
+
+    if (isPast) passedYearHours += dailyTotalAlloc;
+    if (isToday) passedYearHours += dailyPassedAlloc;
 
     if (d.getMonth() === month) {
-      totalStats.M.totD += 1;
-      totalStats.M.totH += 24;
-      totalStats.M.remD += fractionRemaining;
-      totalStats.M.remH += 24 * fractionRemaining;
+      totalStats.M.totD += dailyTotalAlloc / 24;
+      totalStats.M.totH += dailyTotalAlloc;
+      totalStats.M.remH += dailyTotalAlloc * fractionRemaining;
+      totalStats.M.remD = totalStats.M.remH / 24;
     }
 
     if (isH) {
-      totalStats.H.totD += 1;
-      totalStats.H.totH += 24;
-      totalStats.H.remD += fractionRemaining;
-      totalStats.H.remH += 24 * fractionRemaining;
+      totalStats.H.totD += dailyTotalAlloc / 24;
+      totalStats.H.totH += dailyTotalAlloc;
+      totalStats.H.remH += dailyTotalAlloc * fractionRemaining;
+      totalStats.H.remD = totalStats.H.remH / 24;
     } else {
-      totalStats.W.totD += 1;
-      totalStats.W.totH += 24;
-      totalStats.W.remD += fractionRemaining;
-      totalStats.W.remH += 24 * fractionRemaining;
+      totalStats.W.totD += dailyTotalAlloc / 24;
+      totalStats.W.totH += dailyTotalAlloc;
+      totalStats.W.remH += dailyTotalAlloc * fractionRemaining;
+      totalStats.W.remD = totalStats.W.remH / 24;
     }
 
     if (isToday) {
-      totalStats.D.totD = 1;
-      totalStats.D.totH = 24;
-      totalStats.D.remD = fractionRemaining;
-      totalStats.D.remH = 24 * fractionRemaining;
+      totalStats.D.totH = dailyTotalAlloc;
+      totalStats.D.remH = dailyTotalAlloc * fractionRemaining;
+      totalStats.D.totD = dailyTotalAlloc / 24;
+      totalStats.D.remD = totalStats.D.remH / 24;
     }
 
     categories.forEach((c: any) => {
@@ -159,6 +163,10 @@ export default function Dashboard() {
   const remM = Math.floor((totalRemainingS % 3600) / 60);
   const remS = Math.floor(totalRemainingS % 60);
 
+  const startOfYear = new Date(year, 0, 1);
+  const endOfYear = new Date(year + 1, 0, 1);
+  const calendarProgress = ((now.getTime() - startOfYear.getTime()) / (endOfYear.getTime() - startOfYear.getTime())) * 100;
+
   const displayRemStr = `${remH}h ${remM}m ${remS}s`;
 
   const dailyRemainingS = totalStats.D.remH * 3600;
@@ -167,8 +175,12 @@ export default function Dashboard() {
   const dayRemS = Math.floor(dailyRemainingS % 60);
 
   const dayRemStr = `${dayRemH}h ${dayRemM}m ${dayRemS}s`;
-
+  const yearProgressStr = `${calendarProgress.toFixed(2)}%`;
+  
   const renderStatRow = (label: string, row: StatRow, hideDays = false) => {
+    const passedH = row.totH - row.remH;
+    const pct = row.totH > 0 ? (passedH / row.totH) * 100 : 0;
+    
     return (
       <div className="stat-row">
         <span className="label">{label}</span> : <span className="value">{Math.floor(row.remH)}h</span>
@@ -184,6 +196,9 @@ export default function Dashboard() {
             <span className="sub-value">({Math.floor(row.totD)}d)</span>
           </>
         )}
+        <span className="pct-value" style={{ marginLeft: '8px', opacity: 0.7, fontSize: '0.85em' }}>
+          {pct.toFixed(1)}%
+        </span>
       </div>
     );
   };
@@ -211,6 +226,10 @@ export default function Dashboard() {
         <div className="datetime">{timeStr}</div>
         <div className="remaining-huge-container">
           <div className="timer-box">
+            <span className="timer-label">Year Progress</span>
+            <span className="remaining-huge">{yearProgressStr}</span>
+          </div>
+          <div className="timer-box">
             <span className="timer-label">Yearly Remaining</span>
             <span className="remaining-huge">{displayRemStr}</span>
           </div>
@@ -218,6 +237,13 @@ export default function Dashboard() {
             <span className="timer-label">Today Remaining</span>
             <span className="remaining-huge">{dayRemStr}</span>
           </div>
+        </div>
+
+        <div className="calendar-progress-wrapper" title="Calendar Year Progress">
+           <div className="calendar-progress-bar">
+             <div className="calendar-progress-fill" style={{ width: `${calendarProgress}%` }} />
+           </div>
+           <span className="calendar-progress-text">CALENDAR YEAR PASSING — {calendarProgress.toFixed(2)}%</span>
         </div>
 
         <div className="progress-bar-container">
@@ -288,7 +314,7 @@ export default function Dashboard() {
                     max="24"
                     onChange={(e) => {
                       const newCats = [...categories];
-                      newCats[i].w = Number(e.target.value);
+                      newCats[i] = { ...newCats[i], w: Number(e.target.value) };
                       setCategories(newCats);
                     }}
                   />
@@ -299,7 +325,7 @@ export default function Dashboard() {
                     max="24"
                     onChange={(e) => {
                       const newCats = [...categories];
-                      newCats[i].h = Number(e.target.value);
+                      newCats[i] = { ...newCats[i], h: Number(e.target.value) };
                       setCategories(newCats);
                     }}
                   />
@@ -310,17 +336,17 @@ export default function Dashboard() {
               {(() => {
                 const totalW = categories.reduce((sum: number, c: any) => sum + (c.w || 0), 0);
                 const totalH = categories.reduce((sum: number, c: any) => sum + (c.h || 0), 0);
-                const isWValid = totalW === 24;
-                const isHValid = totalH === 24;
+                const isWValid = Math.abs(totalW - 24) < 0.001;
+                const isHValid = Math.abs(totalH - 24) < 0.001;
 
                 return (
                   <div className="edit-row total-row" style={{ borderTop: '1px solid #3f3f46', marginTop: '8px', paddingTop: '8px', fontWeight: 'bold' }}>
                     <span className="edit-name">TOTAL</span>
                     <span style={{ color: isWValid ? '#10b981' : '#ef4444', textAlign: 'center' }}>
-                      {totalW}h {!isWValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
+                      {parseFloat(totalW.toFixed(2))}h {!isWValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
                     </span>
                     <span style={{ color: isHValid ? '#10b981' : '#ef4444', textAlign: 'center' }}>
-                      {totalH}h {!isHValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
+                      {parseFloat(totalH.toFixed(2))}h {!isHValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
                     </span>
                   </div>
                 );

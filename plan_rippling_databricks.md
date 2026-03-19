@@ -1,730 +1,698 @@
-# 10-Month Full-Stack Engineering Mastery Plan
+# Full-Stack Engineering Mastery Plan
 ## Targeting Rippling · Databricks · Stripe · NVIDIA / OpenAI
-### "Change Your Life" Comp + Insane Learning — SaaS Infra + Data/AI Platform Track
+### SaaS Infra + Data/AI Platform Track — Sequential Projects
+
+---
+
+## The Core Principle: One Project at a Time
+
+You finish one project completely before starting the next. No juggling four codebases at once. Each project is built deeply, deployed, benchmarked, and documented before you touch the next one. Every project is **specifically modelled on real internal tooling** at the target company — not a generic portfolio piece.
 
 ---
 
 ## Why This Track
 
-**Rippling** (India SDE bands: 40L–1Cr+) builds workforce infrastructure — every company on earth needs it. Their India teams own entire product surfaces: payroll, HRIS, identity, device management. Small teams, massive ownership, brutal engineering bar. Your portfolio must show: multi-tenant SaaS, RBAC, billing, API-first design, workflow engines.
+**Rippling** builds workforce infrastructure. Their India teams own entire surfaces: payroll, HRIS, identity, device management. Their engineering bar requires: multi-tenant SaaS, RBAC, billing, API-first design, workflow engines — the exact vocabulary of their internal platform.
 
-**Databricks** (very high India bands) builds the world's data + AI infrastructure. Spark, Delta Lake, Unity Catalog, LLM fine-tuning pipelines. Deep distributed systems, exceptional peer group. Your portfolio must show: streaming data pipelines, columnar storage, Python + Go, distributed compute patterns.
+**Databricks** builds the world's data + AI infrastructure: Spark, Delta Lake, Unity Catalog, LLM fine-tuning pipelines. They need engineers who understand streaming data pipelines, columnar storage, distributed compute — things you learn by building, not watching.
 
-**The engineer who gets both** understands: multi-tenant platform design, data pipelines, AI engineering, and the infrastructure that runs them. That's the exact combination both companies hire for at high bands.
-
----
-
-## Philosophy: One Codebase. Everything Connected.
-
-Every concept you learn exists because one of your four platforms *needs* it. Nothing is a tutorial project. Nothing is thrown away. Every mini-project is a named feature of a named platform.
-
-**The thread that runs through everything:**
-- The raw HTTP server you write on Day 1 becomes the multi-tenant API gateway in Week 4, the gRPC service mesh in Week 5, and the Python Spark job orchestrator in Month 3.
-- The tenant schema you design in Week 4 is the same schema that gets row-level security in Month 2, usage-based billing in Month 3, and data lineage tracking in Month 5.
-- Nothing is thrown away. Everything compounds.
+**Stripe** is API-first to its core. Their internal tools are extensions of the API-first philosophy. Idempotency, webhook delivery guarantees, usage-based metering — these are not aspirational features, they are correctness requirements.
 
 ---
 
-## The 4 Platform Projects
+## The 4 Projects (Sequential — Complete One Before Starting the Next)
 
-These share a monorepo, shared TypeScript/Python types, shared infrastructure, and grow in parallel across all 10 months.
+| Order | Project | Mirrors | Duration | What Rippling / Databricks Actually Uses This For |
+|-------|---------|---------|----------|--------------------------------------------------|
+| **1st** | **WorkOS** | Rippling's internal HRIS + identity platform | Months 1–2 | The multi-tenant workforce platform every Rippling customer interacts with. Rippling's India team owns HRIS record management, employee provisioning workflows, and cross-product identity. |
+| **2nd** | **PayCore** | Stripe's payment + metering infrastructure | Month 3 | Stripe's internal billing engine, webhook delivery system, and usage metering — the infrastructure their own product teams build on. Databricks also uses Stripe's metering model for DBU billing. |
+| **3rd** | **SparkFlow** | Databricks' internal pipeline + job management UI | Months 4–5 | Databricks engineers build and manage Spark job pipelines, Delta Lake tables, and dbt transformations through internal tooling very similar to what you build here. |
+| **4th** | **LakeAI** | Databricks Unity Catalog + MLflow internal platform | Month 6 | Unity Catalog is Databricks' internal data governance layer. MLflow is their ML experiment tracking system. LakeAI mirrors both. |
 
-- 🏢 **WorkOS** — Multi-tenant workforce platform (mirrors Rippling: HRIS + payroll + identity + device management)
-- 🔥 **SparkFlow** — Distributed data pipeline platform (mirrors Databricks: ingestion + transformation + serving)
-- 💳 **PayCore** — Payment processing + billing engine (mirrors Stripe: API-first, webhooks, idempotency, usage billing)
-- 🧠 **LakeAI** — AI/ML model serving + data catalog platform (mirrors Databricks Unity Catalog + MLflow)
+---
 
-**Monorepo structure (Week 1, used for all 10 months):**
+## Project 1: WorkOS — Multi-Tenant Workforce Platform
+### Months 1–2 · Mirrors Rippling's HRIS + Identity Infrastructure
+
+**What Rippling actually uses:** Rippling's core product is a multi-tenant platform where each company (tenant) has employees, departments, roles, devices, and payroll. Their engineering challenge is: every DB query must be tenant-scoped, provisioning a new tenant must be fully automated, and employee onboarding must trigger cross-system workflows without manual steps. WorkOS mirrors this exactly.
+
+**The one rule for WorkOS:** Multi-tenancy is decided on Day 1 and never revisited. Every table has `tenant_id`. Every API request carries `X-Tenant-ID`. Every cache key is `tenant:{tenantId}:...`. This decision is baked into the monorepo scaffold from hour one — just like Rippling's real codebase.
+
+---
+
+### Month 1, Week 1: HTTP + HTML + CSS + Multi-Tenant Foundation
+
+**Monday — HTTP + CLI + Multi-Tenancy Mental Model**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js 22, VS Code, pnpm workspaces, `curl`, `dig`, ESLint, Prettier |
+| 📖 **Concepts** | HTTP/HTTPS model, DNS, TLS handshake, `curl -v` anatomy, multi-tenancy decision (schema-per-tenant vs RLS), `X-Tenant-ID` header pattern |
+| 🎯 **You Build** | WorkOS raw Node.js server — `POST /events` requires `X-Tenant-ID` header. Missing header → 400. Valid header → tenant context attached to request. |
+| 🔗 **Why It Matters** | Rippling's entire backend runs this pattern. The middleware that extracts tenant context from headers and scopes every downstream call is the most important piece of infrastructure in the codebase. |
+
+Multi-tenancy decision you make today and never undo:
+- **Schema-per-tenant** — each tenant gets their own PostgreSQL schema (`tenant_abc.employees`). Strong isolation. Expensive at 10K+ tenants.
+- **Row-level security (RLS)** — single schema, `tenant_id` on every row, PostgreSQL RLS policies auto-filter. Scales to 100K tenants. Rippling uses this pattern.
+
+**The WorkOS rule**: every table created from this day forward has `tenant_id UUID NOT NULL`. Every query has `WHERE tenant_id = $1`. Middleware attaches `req.tenantId` from the `X-Tenant-ID` header. A DB query without tenant scope is a CI lint failure.
+
+**Tuesday — HTML + Semantic Markup + WorkOS Employee List Page**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | HTML5, WAVE accessibility checker, `curl` |
+| 📖 **Concepts** | Semantic HTML, ARIA attributes, accessibility tree, `<form>` with native validation, `<head>` structure for SaaS apps |
+| 🎯 **You Build** | WorkOS employee directory HTML — semantic structure, accessible table, ARIA roles. Passes WAVE audit before any CSS is written. |
+| 🔗 **Why It Matters** | Rippling's product must meet WCAG 2.1 AA for enterprise contracts with large companies that have accessibility requirements. |
+
+**Wednesday — CSS + Tailwind + WorkOS Dashboard Layout**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | CSS, Tailwind CSS, `cn()`, `cva()` |
+| 📖 **Concepts** | Box model, flexbox, grid, `box-sizing: border-box`, CSS custom properties, Tailwind utility-first model, `cva` for component variants |
+| 🎯 **You Build** | WorkOS sidebar + main content layout. Employee table with status badges (active/offboarded/on-leave). Fully responsive. All custom CSS deleted. |
+| 🔗 **Why It Matters** | Rippling's frontend design system is utility-first. Every component has 3–4 visual states. `cva` is the pattern that makes variant management maintainable at scale. |
+
+**Thursday — Shadcn UI + Radix UI + WorkOS Component System**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Shadcn UI, Radix UI, Tailwind |
+| 📖 **Concepts** | Headless component architecture, keyboard accessibility built-in, compound component pattern, owning component source |
+| 🎯 **You Build** | WorkOS uses Shadcn: `DataTable` for employee list (sortable, filterable, paginated), `Dialog` for employee detail, `Command` palette for global search. |
+| 🔗 **Why It Matters** | Enterprise SaaS requires keyboard-accessible, screen-reader-compatible components. Shadcn + Radix provides this without a black box. |
+
+**Friday — Browser DevTools + Performance + CLI Mastery**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Chrome DevTools, Lighthouse, Bash, `grep`, `sed`, `awk`, `cron` |
+| 📖 **Concepts** | Rendering pipeline, Lighthouse 100, CLI file/process management, shell scripting, deploy scripts |
+| 🎯 **You Build** | WorkOS Lighthouse 100 on landing page. Deploy script: health check → pull → test → restart → verify. |
+
+**Weekend — WorkOS Shell Deployed**
+
+WorkOS has: semantic HTML, Tailwind + Shadcn UI, Node.js raw HTTP server with tenant middleware, `X-Tenant-ID` required on all endpoints. Deployed. Lighthouse 90+.
+
+---
+
+### Month 1, Week 2: JavaScript Engine Deep
+
+**Monday — JS Types + Coercion + VS Code Setup**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, ESLint, Prettier, Error Lens |
+| 📖 **Concepts** | Primitive vs reference types, `===` vs `==`, truthy/falsy, `typeof` gotchas, TDZ |
+| 🎯 **You Build** | `packages/utils/validate.ts` — tenant ID validator, employee data sanitizer. 20 Vitest edge-case tests. |
+
+**Tuesday — Scope + Closures + The Loop Variable Bug**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, Vitest |
+| 📖 **Concepts** | Lexical scope, closure over config, `var`/`let`/`const`, hoisting, TDZ |
+| 🎯 **You Build** | `packages/utils/retry.ts` — exponential backoff with jitter used by WorkOS webhook delivery. Closure seals configuration. 8 tests. |
+
+**Wednesday — Prototypes + `class` + EventEmitter**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, Vitest |
+| 📖 **Concepts** | Prototype chain, `class` as syntax sugar, 4 rules of `this`, arrow functions and lexical `this` |
+| 🎯 **You Build** | `packages/utils/emitter.ts` — WorkOS internal event bus. Employee state changes emit `employee.updated`, `employee.offboarded`. |
+
+**Thursday — Event Loop Deep**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, `process.nextTick`, `setImmediate` |
+| 📖 **Concepts** | Call stack, microtask queue, macrotask queue, 6 Node.js event loop phases, `process.nextTick` before microtasks |
+| 🎯 **You Build** | Predict 20 execution-order puzzles correctly. `packages/utils/scheduler.ts` — priority task scheduler using min-heap. |
+
+**Friday — Promises + async/await + Generators**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, Vitest |
+| 📖 **Concepts** | Promise states, `async/await` as sugar, `Promise.all`/`allSettled`/`race`/`any`, generators for lazy pagination |
+| 🎯 **You Build** | `packages/utils/concurrent.ts` — `ConcurrencyLimiter` (WorkOS uses this when provisioning tenants: max 5 concurrent Kafka topic creations). `Promise.all` reimplemented. 10 tests. |
+
+---
+
+### Month 1, Week 3: Node.js Internals + TypeScript + WorkOS API
+
+**Monday — V8 Architecture + Hidden Classes**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | `node --inspect`, Chrome DevTools Memory tab |
+| 📖 **Concepts** | JIT pipeline (Ignition → TurboFan), hidden classes, GC generational model, GC pause impact |
+| 🎯 **You Build** | Profile WorkOS employee serialization. Find hidden class deoptimization. Fix. Document speedup. |
+
+**Tuesday — Streams + Backpressure + pipeline()**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js `stream/promises`, `Transform`, `Writable` |
+| 📖 **Concepts** | Push vs pull, `highWaterMark`, `drain` event, backpressure, `pipeline()` error propagation |
+| 🎯 **You Build** | WorkOS employee bulk import pipeline: CSV → validate → enrich → PostgreSQL batch insert. 100MB file in 20MB constant RAM. |
+| 🔗 **Why It Matters** | Rippling's customer onboarding involves bulk importing employee data from HRIS files. Streaming is the only correct approach — loading 100K employee rows into memory crashes. |
+
+**Wednesday — TypeScript Deep: Generics + Branded Types**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | TypeScript compiler, `tsconfig.json` strict mode |
+| 📖 **Concepts** | Generic type parameters, conditional types, `infer`, mapped types, branded types |
+| 🎯 **You Build** | `packages/types` — `TenantId`, `EmployeeId`, `DepartmentId` are all branded types. You cannot pass a `DepartmentId` where a `TenantId` is expected. Zero `any`. |
+| 🔗 **Why It Matters** | At Rippling's scale, mixing up tenant IDs and employee IDs causes cross-tenant data leaks — a catastrophic security failure. Branded types prevent this at compile time. |
+
+**Thursday — Zod + `packages/schemas`**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Zod, TypeScript |
+| 📖 **Concepts** | One schema = runtime validation + TypeScript type, `z.infer`, `safeParse`, discriminated unions, transforms |
+| 🎯 **You Build** | `packages/schemas` — `EmployeeSchema`, `TenantSchema`, `WorkflowStepSchema`. All WorkOS API requests validated through Zod before touching the DB. |
+
+**Friday — JWT RS256 Auth + RBAC + PostgreSQL First Contact**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | JWT RS256, Redis, Express, PostgreSQL, `node-postgres` |
+| 📖 **Concepts** | Asymmetric JWT (RS256), access/refresh token rotation, RBAC middleware (admin/manager/employee), PostgreSQL RLS policies, `EXPLAIN ANALYZE` |
+| 🎯 **You Build** | WorkOS auth: JWT RS256 (`packages/auth` shared). 3-role RBAC. PostgreSQL schema with RLS — every `SELECT` automatically filtered by tenant. |
+| 🔗 **Why It Matters** | Rippling's RBAC is their most critical security layer. An admin from company A must never see data from company B. RLS enforces this at the database level — even a buggy query cannot leak. |
+
+---
+
+### Month 1, Week 4: WorkOS Full-Stack — React + PostgreSQL + Redis + APIs
+
+**Monday–Tuesday — React + Tanstack Query + Zustand**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | React 18, Tanstack Query, Zustand, Immer, Motion |
+| 📖 **Concepts** | `UI = f(state)`, reconciliation, all hooks, optimistic updates, selective subscription, `AnimatePresence` |
+| 🎯 **You Build** | WorkOS employee dashboard in React: live employee list (Tanstack Query), global filter state (Zustand), optimistic status toggle, animated onboarding progress. |
+
+**Wednesday — Next.js App Router + Server Components**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Next.js 14, React Server Components, `'use client'` |
+| 📖 **Concepts** | Server Components (zero JS for static content), ISR for public pages, streaming Suspense, Server Actions |
+| 🎯 **You Build** | WorkOS public marketing page (Server Component, 0 KB JS). WorkOS admin dashboard (`'use client'`, interactive). |
+
+**Thursday — PostgreSQL Deep: MVCC + Indexes + Isolation Levels**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PostgreSQL, `sqlc`, `pgx/v5`, `pgxpool` |
+| 📖 **Concepts** | MVCC, B-tree/partial/GIN indexes, all 4 isolation levels, `SELECT FOR UPDATE`, `EXPLAIN ANALYZE`, N+1 elimination |
+| 🎯 **You Build** | WorkOS PostgreSQL schema: `tenants`, `employees`, `departments`, `roles`. RLS policies on all tables. Every query `EXPLAIN ANALYZE`'d. No seq scans. |
+
+**Friday — Redis: All Data Structures for WorkOS**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Redis, `go-redis`, Lua scripts |
+| 📖 **Concepts** | String/Hash/List/Set/Sorted Set/Stream with real use cases, TTL jitter, Lua atomicity, tenant-scoped cache keys |
+| 🎯 **You Build** | WorkOS Redis: employee profile cache (`Hash`, key: `tenant:{id}:emp:{id}`), online sessions (`Set`), audit event stream (`Stream`), per-tenant rate limit (`Sorted Set`). |
+
+**Weekend — WorkOS v1.0 Complete**
+
+Full-stack WorkOS: Next.js frontend, Express API, PostgreSQL with RLS, Redis tenant-scoped caching, JWT RS256 auth, 3-role RBAC. Deployed. CI green. Lighthouse 90+.
+
+---
+
+### Month 2, Week 5: Node.js Stdlib Deep + WorkOS Advanced Features
+
+**Monday — Raw TCP + HTTP Internals + `net` Module**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js `net`, `http`, `AsyncLocalStorage` |
+| 📖 **Concepts** | TCP connection lifecycle, HTTP/1.1 parsing, `http.Agent` connection pooling, request-scoped context without prop-drilling |
+| 🎯 **You Build** | WorkOS request-scoped logger: every log line automatically includes `tenantId`, `requestId`, `userId` with zero prop-drilling. Uses `AsyncLocalStorage`. |
+| 🔗 **Why It Matters** | Rippling's observability must show which tenant generated which log line. `AsyncLocalStorage` propagates tenant context through the entire async call chain. |
+
+**Tuesday — `worker_threads` + `crypto` + HMAC Webhook Signing**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js `worker_threads`, `crypto`, `SharedArrayBuffer` |
+| 📖 **Concepts** | True CPU parallelism with `worker_threads`, HMAC-SHA256 signing, `timingSafeEqual`, shell injection prevention |
+| 🎯 **You Build** | WorkOS webhook delivery: signs every outgoing webhook payload with HMAC-SHA256 (`X-WorkOS-Signature` header). Customers verify signatures the same way Stripe customers do. |
+| 🔗 **Why It Matters** | Rippling sends webhooks to third-party integrations (Slack, Okta, GSuite). Without HMAC signing, any attacker can forge a webhook and trigger automated provisioning actions. |
+
+**Wednesday–Thursday — WorkOS Workflow Engine: Employee Onboarding Saga**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, PostgreSQL, Redis, Kafka |
+| 📖 **Concepts** | Saga pattern (sequence of local transactions with compensating rollbacks), state machine (pending → in_progress → completed/failed), idempotent step execution |
+| 🎯 **You Build** | WorkOS employee onboarding workflow: hire employee → trigger 8 sequential steps: HRIS record → IT provisioning task → Slack invite → payroll setup → benefits enrollment → device assignment → access review → compliance training. Each step is idempotent, retryable, compensatable. |
+| 🔗 **Why It Matters** | This is Rippling's core product feature. When a company hires someone on Rippling, this exact workflow runs. The saga pattern ensures partial failures don't leave the employee in an inconsistent state (e.g., added to Slack but not given laptop access). |
+
+**Friday — TypeScript Compiler API + Module Augmentation**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | TypeScript, `tsc --noEmit`, strict options |
+| 📖 **Concepts** | `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, declaration merging, Express `Request` augmentation |
+| 🎯 **You Build** | Typed Express `Request` with `tenant: Tenant`, `user: AuthUser` via declaration merging. `tsc --noEmit` in CI — zero `any`. |
+
+---
+
+### Month 2, Week 6: Go + gRPC + WorkOS Internal Services
+
+**Monday–Tuesday — Go Language Core**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go 1.22, `go mod`, `golangci-lint`, `goleak` |
+| 📖 **Concepts** | Zero values, implicit interface satisfaction, `%w` error wrapping, `defer` + cleanup, `go test -race` |
+| 🎯 **You Build** | WorkOS tenant provisioner in Go: creates PostgreSQL schema + Redis ACL + S3 bucket + Kafka topics for a new tenant. Takes 30 seconds. `go test -race` passes. |
+| 🔗 **Why It Matters** | Rippling onboards enterprise customers daily. Tenant provisioning must be automated, fast, and idempotent — running it twice for the same tenant must be safe. |
+
+**Wednesday — Go Concurrency: Goroutines + Channels + `sync`**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go goroutines, channels, `sync.WaitGroup`, `errgroup`, `singleflight` |
+| 📖 **Concepts** | M:N scheduler, work stealing, `errgroup` for parallel provisioning steps, `singleflight` deduplication |
+| 🎯 **You Build** | WorkOS tenant provisioner refactored: all 4 provisioning steps (PostgreSQL + Redis + S3 + Kafka) run in parallel via `errgroup`. Total time: 8s → 2s. `goleak.VerifyNone(t)` confirms zero goroutine leaks. |
+
+**Thursday — gRPC + Protobuf**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | gRPC, Protocol Buffers, `buf` CLI |
+| 📖 **Concepts** | Proto3 syntax, service definitions, code generation, streaming RPCs, gRPC vs REST tradeoffs |
+| 🎯 **You Build** | WorkOS internal gRPC service: `EmployeeService.GetEmployee`, `EmployeeService.UpdateStatus`, `EmployeeService.ListByTenant`. Used internally. REST stays external-facing. |
+| 🔗 **Why It Matters** | Rippling's internal services communicate over gRPC. The binary encoding is 10x smaller than JSON and the schema contract prevents accidental breaking changes between services. |
+
+**Friday — WorkOS Kubernetes Operator + Deployment**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, `controller-runtime`, Kubernetes |
+| 📖 **Concepts** | Kubernetes Operator pattern, CRD (Custom Resource Definition), reconcile loop, watch + react |
+| 🎯 **You Build** | WorkOS `TenantProvisioner` Kubernetes Operator: new `Tenant` CRD created → operator automatically runs all provisioning steps. `kubectl apply -f tenant.yaml` → tenant live in 30s. |
+| 🔗 **Why It Matters** | This is the portfolio piece for Rippling. Automated tenant provisioning via K8s Operator shows platform engineering depth. |
+
+**Weekend — WorkOS COMPLETE**
+
+WorkOS is finished, deployed, benchmarked, documented. ADRs written. README with architecture diagram, k6 benchmarks (10K tenants, p99 < 100ms, zero cross-tenant data). LinkedIn post. Now start PayCore.
+
+---
+
+## Project 2: PayCore — Payment Processing + Usage Metering
+### Month 3 · Mirrors Stripe's Internal Billing + Webhook Infrastructure
+
+**What Stripe actually uses:** Stripe's internal billing engine meters API calls, card transactions, and webhook events per customer. The webhook delivery system guarantees at-least-once delivery with exponential backoff. The idempotency layer ensures a payment request retried 100 times creates exactly 1 charge. PayCore mirrors these exact systems — not a generic payments tutorial.
+
+---
+
+### Month 3, Week 7: PayCore Foundation — Double-Entry Ledger + API-First Design
+
+**Monday — Double-Entry Ledger + ACID Transactions**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PostgreSQL, `DECIMAL(19,4)`, Go |
+| 📖 **Concepts** | Double-entry bookkeeping (debit + credit always sum to zero), ACID transactions, isolation level `SERIALIZABLE` for ledger ops, `CONSTRAINT SUM(debits) = SUM(credits)` |
+| 🎯 **You Build** | PayCore ledger: `journal_entries` table. Every financial movement creates two rows in a single transaction. DB-level constraint ensures no single-entry writes ever succeed. |
+| 🔗 **Why It Matters** | Stripe's ledger uses double-entry. A bug that creates a debit without a matching credit is not a bug — it's a compliance failure. The constraint is the enforcement mechanism. |
+
+**Tuesday — Idempotency Keys**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL (`ON CONFLICT DO NOTHING`), Redis |
+| 📖 **Concepts** | Idempotency key pattern, `INSERT ... ON CONFLICT (idempotency_key) DO NOTHING`, exactly-once semantics for payments |
+| 🎯 **You Build** | PayCore payment endpoint: send same `X-Idempotency-Key` 10 times → 1 charge, 9 cached responses. Verified by test. |
+| 🔗 **Why It Matters** | Network timeouts cause clients to retry. Without idempotency, a retry causes a double charge. Stripe's entire API is built around this guarantee. |
+
+**Wednesday — Outbox Pattern + Kafka**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Kafka |
+| 📖 **Concepts** | Outbox pattern (write event in same DB transaction as business op), exactly-once Kafka publishing, transactional outbox worker |
+| 🎯 **You Build** | PayCore: `payment.success` event written to `outbox` table in same transaction as ledger update. Outbox worker reads and publishes to Kafka. Crash between DB write and Kafka publish → event still delivered. |
+| 🔗 **Why It Matters** | Without the outbox, Stripe could commit a charge to the DB but fail before publishing the `charge.succeeded` event — customer never notified. This is a production incident waiting to happen. |
+
+**Thursday — Webhook Delivery System**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Redis, Kafka |
+| 📖 **Concepts** | Webhook delivery guarantees (at-least-once), exponential backoff retry, DLQ (dead letter queue), HMAC signature verification, delivery log |
+| 🎯 **You Build** | PayCore webhook delivery: retry up to 3 days with exponential backoff. HMAC-SHA256 signature on every payload. Delivery log per webhook event. Failed deliveries → DLQ with manual retry UI. |
+| 🔗 **Why It Matters** | This is Stripe's webhook infrastructure. Every webhook retry policy, signature header, and delivery log you see in Stripe's dashboard is backed by exactly this architecture. |
+
+**Friday — Usage-Based Metering**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Redis `ZINCRBY`, Go, PostgreSQL |
+| 📖 **Concepts** | Metering (Redis counters per event type), aggregation (drain to PostgreSQL hourly), proration (mid-month plan change), invoice generation |
+| 🎯 **You Build** | PayCore metering: every API call increments `ZINCRBY metrics:{customerId}:{month} 1 api_calls`. Hourly drain job: sum Redis → PostgreSQL. Monthly invoice: sum × unit price per tier. Mid-month plan change: prorate. |
+| 🔗 **Why It Matters** | Databricks charges by DBU (Databricks Unit) per job run. Stripe charges per transaction. Both use this exact metering → aggregation → invoice architecture. |
+
+---
+
+### Month 3, Week 8: PayCore Advanced — Saga + Event Sourcing + SDK
+
+**Monday–Tuesday — Saga Pattern: Fund Transfer**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Kafka, PostgreSQL |
+| 📖 **Concepts** | Saga (distributed transaction via local transactions + compensating rollbacks), choreography vs orchestration, at-least-once delivery, saga state tracking |
+| 🎯 **You Build** | PayCore fund transfer Saga: debit source → credit destination → confirm. Each step compensatable. Crash at step 2 → step 1 reversed by compensating transaction. |
+
+**Wednesday — Event Sourcing + CQRS**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Kafka, PostgreSQL read models |
+| 📖 **Concepts** | Event Sourcing (current state = replay of events), CQRS (separate read/write models), projection rebuilding, event replay for debugging |
+| 🎯 **You Build** | PayCore v2: payment state is derived by replaying `PaymentInitiated → PaymentAuthorized → PaymentCaptured` events. Balance = sum of all `Debit`/`Credit` events. |
+| 🔗 **Why It Matters** | Stripe's ledger is event-sourced. Every account balance is computable from the event log — essential for regulatory audit trails. |
+
+**Thursday — PayCore Go Service + `sqlc` + `chi`**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, `chi`, `sqlc`, `pgx`, `go-redis`, `cobra` |
+| 📖 **Concepts** | Clean architecture (handler → service → repository), `sqlc` compile-time query validation, graceful shutdown, `CopyFrom` bulk insert |
+| 🎯 **You Build** | PayCore rewritten in Go: `chi` router, `sqlc`-generated DB layer, `cobra` CLI for ops (`payrail reconcile`, `payrail invoices generate`). |
+
+**Friday — Testing + k6 Benchmarks**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go `testing`, `testcontainers`, Vitest, Playwright, k6 |
+| 📖 **Concepts** | `testcontainers` for real PostgreSQL/Kafka in tests, table-driven tests, E2E payment flow test, k6 load test |
+| 🎯 **You Build** | PayCore: 10K TPS sustained on k6. Zero double charges verified (dedup check post-load). `go test -race` passes. |
+
+**Weekend — PayCore COMPLETE**
+
+PayCore finished, deployed, benchmarked. k6 results: 10K TPS, p99 < 50ms, zero double charges. ADRs written. README with architecture diagram. LinkedIn post. Now start SparkFlow.
+
+---
+
+## Project 3: SparkFlow — Distributed Data Pipeline Platform
+### Months 4–5 · Mirrors Databricks' Internal Job Management + Delta Lake UI
+
+**What Databricks actually uses:** Databricks engineers work with Spark jobs, Delta Lake tables, and dbt transformations through internal tooling. The job management UI shows run history, retry status, data quality gates. The Delta Lake layer handles ACID transactions on S3 data. SparkFlow is that internal tooling — built by you.
+
+---
+
+### Month 4, Week 9: Go Deep + SparkFlow Foundation
+
+**Monday — Go Stdlib Deep: `net/http` + Middleware**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go `net/http`, `chi`, `slog`, `sqlc` |
+| 📖 **Concepts** | `http.Handler` interface, middleware chain, server timeouts (all 4), `slog` structured logging, `pgxpool` connection pool |
+| 🎯 **You Build** | SparkFlow Go API: pipeline definition CRUD, job submission, run history. All 4 server timeouts set. Structured logs with `pipelineId`, `tenantId`, `runId`. |
+
+**Tuesday — SparkFlow Pipeline Definition + Spark Job Runner**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Python (PySpark via subprocess), Kafka |
+| 📖 **Concepts** | Spark job lifecycle, driver vs executor, DAG execution, job submission via `spark-submit`, job status polling |
+| 🎯 **You Build** | SparkFlow: define a pipeline (YAML: input source, PySpark transform, output sink). Submit via Go API → spawns `spark-submit`. Status polling every 5s. Run history stored in PostgreSQL. |
+| 🔗 **Why It Matters** | Databricks' workflow UI submits Spark jobs to clusters. This is that system — minus the cluster management (Databricks handles that at infra level, your focus is the orchestration layer). |
+
+**Wednesday–Thursday — Delta Lake + ACID on S3**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Delta Lake (`delta-rs` Python), Apache Parquet, S3, dbt |
+| 📖 **Concepts** | Delta Lake transaction log (JSON files alongside Parquet), ACID on object storage, time-travel queries (`VERSION AS OF`), schema evolution, `OPTIMIZE` + `ZORDER` |
+| 🎯 **You Build** | SparkFlow pipeline output writes to Delta Lake table on S3. `SELECT * FROM pipeline_output VERSION AS OF 3` works. Schema evolution: add a column without breaking downstream consumers. |
+| 🔗 **Why It Matters** | Delta Lake is Databricks' most important product contribution to open source. Understanding its transaction log mechanism (optimistic concurrency on S3) is a key differentiator for Databricks interviews. |
+
+**Friday — dbt + Data Quality: Great Expectations**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | dbt, Great Expectations, Kafka |
+| 📖 **Concepts** | dbt model DAG (SQL → materialized view/table), `ref()` for dependency tracking, Great Expectations validation suites, blocking pipeline on failed quality gate |
+| 🎯 **You Build** | SparkFlow: after each pipeline run, Great Expectations validates the output (no nulls in required columns, value ranges, row count thresholds). Failed gate → pipeline fails, PagerDuty alert, Delta time-travel rollback. |
+
+---
+
+### Month 4, Week 10: SparkFlow Real-Time + Airflow + Kafka CDC
+
+**Monday–Tuesday — Kafka Essentials + CDC**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Apache Kafka, Kafka Connect, Debezium (CDC) |
+| 📖 **Concepts** | Topic → partition → offset, consumer groups, idempotent producer, exactly-once semantics, Kafka Connect CDC: every PostgreSQL row change → Kafka topic |
+| 🎯 **You Build** | SparkFlow: every change to the PayCore `payments` table (from Project 2) is CDC'd into Kafka. SparkFlow pipeline subscribes and processes payment events in near real-time. |
+| 🔗 **Why It Matters** | Databricks' Unity Catalog integrates with operational databases via CDC. You don't batch-copy data — you stream changes as they happen. |
+
+**Wednesday — Apache Airflow Pipeline Scheduling**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Apache Airflow, Python DAGs, Kafka |
+| 📖 **Concepts** | DAG (Directed Acyclic Graph), task dependencies, retries, SLA monitoring, XCom for inter-task data |
+| 🎯 **You Build** | SparkFlow pipeline scheduling via Airflow: `daily_payment_aggregation` DAG runs at 2am, runs dbt models, validates with Great Expectations, sends Slack notification on success/failure. |
+
+**Thursday — ClickHouse: OLAP Analytics for SparkFlow Dashboard**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | ClickHouse, Go ClickHouse client |
+| 📖 **Concepts** | Columnar storage, MergeTree engine, partitioning, `EXPLAIN` on ClickHouse, sub-second aggregations on billions of rows |
+| 🎯 **You Build** | SparkFlow analytics dashboard: pipeline run counts, data volumes processed, error rates — queried from ClickHouse in < 100ms. |
+| 🔗 **Why It Matters** | Databricks' internal analytics use ClickHouse-style columnar storage. Understanding why `SELECT COUNT(*) FROM runs WHERE date > '2024-01-01'` is 1000x faster in ClickHouse than PostgreSQL is essential knowledge. |
+
+**Friday — Kubernetes + Terraform + CI/CD for SparkFlow**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Docker multi-stage, Kubernetes, Terraform, GitHub Actions |
+| 📖 **Concepts** | Multi-stage builds (900MB → 85MB), K8s HPA, Terraform state (S3 + DynamoDB lock), GitHub Actions matrix CI |
+| 🎯 **You Build** | SparkFlow deployed to EKS. Terraform provisions: EKS cluster, RDS, ElastiCache, S3 buckets, MSK Kafka. GitHub Actions: lint → test → build → trivy scan → deploy. |
+
+---
+
+### Month 5, Week 11: SparkFlow System Design + Testing + Polish
+
+**Monday — Database Design: Sharding + Isolation Levels**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PostgreSQL, TimescaleDB |
+| 📖 **Concepts** | All 4 isolation levels with live anomaly demos, range partitioning for pipeline runs, `EXPLAIN ANALYZE` on every query |
+| 🎯 **You Build** | SparkFlow `pipeline_runs` table partitioned by month. Queries for "last 24h" touch 1 partition. TimescaleDB hypertable for metrics. |
+
+**Tuesday — Caching Architecture**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Redis, Cloudflare CDN |
+| 📖 **Concepts** | Cache-aside, write-through, stampede prevention, TTL jitter, caching at browser/CDN/Redis/DB levels |
+| 🎯 **You Build** | SparkFlow: pipeline definition cache (Redis, cache-aside), dashboard metrics cache (Redis, 30s TTL with jitter), static assets (CloudFront, immutable). |
+
+**Wednesday — Resiliency: Circuit Breakers + Load Balancers**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go circuit breaker, AWS ALB |
+| 📖 **Concepts** | Circuit breaker states (closed/open/half-open), load balancer algorithms, PITR drill |
+| 🎯 **You Build** | SparkFlow circuit breaker: Spark cluster slow → breaker trips → jobs queue instead of overwhelming cluster. PITR drill: restore SparkFlow DB to 30s before a DROP TABLE. RTO < 10 minutes documented. |
+
+**Thursday–Friday — Bloom Filters + Consistent Hashing + System Design**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Redis |
+| 📖 **Concepts** | Bloom filter for pipeline dedup, consistent hashing for job worker routing, URL shortener design, rate limiter design |
+| 🎯 **You Build** | SparkFlow job router using consistent hashing — adding a 4th worker remaps only 25% of jobs. Bloom filter deduplicates CDC events (same event processed twice is a no-op). |
+
+**Weekend — SparkFlow COMPLETE**
+
+SparkFlow finished, deployed, benchmarked. k6 results. All system design concepts implemented. ADRs written. Now start LakeAI.
+
+---
+
+## Project 4: LakeAI — AI/ML Data Catalog + Model Registry
+### Month 6 · Mirrors Databricks Unity Catalog + MLflow
+
+**What Databricks actually uses:** Unity Catalog is Databricks' data governance layer — every table, column, and dataset registered with lineage, ownership, and access control. MLflow tracks ML experiments, model versions, and deployment status. LakeAI is the internal tooling that mirrors both — built for the engineers who use Databricks to manage their data and models.
+
+---
+
+### Month 6, Week 13: LakeAI Foundation — Data Catalog + Lineage
+
+**Monday — Data Catalog: Every Dataset Registered**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Elasticsearch, PGVector |
+| 📖 **Concepts** | Data catalog schema (dataset → table → column), metadata management, full-text search across datasets, semantic search via PGVector |
+| 🎯 **You Build** | LakeAI data catalog: every SparkFlow pipeline output auto-registers in LakeAI. Search "payment transactions last 30 days" returns the correct dataset via Elasticsearch + PGVector hybrid search. |
+| 🔗 **Why It Matters** | Unity Catalog is Databricks' most important enterprise feature. Data engineers spend hours finding the right dataset. LakeAI makes that instant. |
+
+**Tuesday — Data Lineage Graph**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, React (graph visualization) |
+| 📖 **Concepts** | Lineage graph (DAG of: raw source → pipeline → Delta table → dbt model → dashboard), lineage recording at pipeline run time, impact analysis |
+| 🎯 **You Build** | LakeAI lineage: every SparkFlow job records its inputs and outputs in LakeAI. Click any dataset → see all upstream sources and all downstream consumers. "What breaks if I change this column?" — lineage answers it. |
+
+**Wednesday — MLflow Integration: Experiment Tracking**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | MLflow, Python, Go proxy |
+| 📖 **Concepts** | MLflow experiment runs (parameters, metrics, artifacts), model registry (staging → production), A/B test framework, model versioning |
+| 🎯 **You Build** | LakeAI ML registry: train model → MLflow logs parameters + metrics. LakeAI UI shows all experiments. Promote model to production: `POST /models/{id}/promote`. A/B test: split traffic 80/20 between v1 and v2. |
+| 🔗 **Why It Matters** | MLflow is open-sourced by Databricks and is the de facto ML experiment tracking standard. Knowing how to build the UI and promotion workflow on top of it is directly relevant to Databricks interviews. |
+
+**Thursday — ONNX Model Inference in Go**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | ONNX, Go ONNX runtime, Python (model training) |
+| 📖 **Concepts** | ONNX model export (sklearn/PyTorch → ONNX), Go inference server (< 10ms), model hot-reload, A/B test via feature flag |
+| 🎯 **You Build** | LakeAI recommendation: train dataset recommendation model in Python (collaborative filtering), export to ONNX, serve from Go at < 10ms p99. Recommend "datasets similar engineers use" based on query history. |
+
+**Friday — RAG + AI Agents + Vercel AI SDK**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Vercel AI SDK, OpenAI, PGVector, Go |
+| 📖 **Concepts** | RAG pipeline (embed → store → retrieve → generate), tool use (LLM decides which tool to call), agent loop, `streamText` for streaming responses |
+| 🎯 **You Build** | LakeAI AI assistant: "What datasets contain payment data from Q4?" → RAG over catalog. "Run a data quality check on `payments_2024`" → tool use (calls SparkFlow API). Streams response token by token via AI SDK. |
+
+---
+
+### Month 6, Week 14: All System Design Cases Implemented
+
+**Monday–Tuesday — Multi-Tenant SaaS + Usage-Based Billing (System Design 1 + 2)**
+
+WorkOS already demonstrates multi-tenant design at k6 scale. PayCore already demonstrates usage-based metering. This week: write the architecture ADRs, create architecture diagrams, run k6 to document final numbers, write the case study write-up for the portfolio.
+
+**Wednesday — Distributed Data Pipeline + Real-Time Analytics (System Design 3 + 4)**
+
+SparkFlow already implements the Databricks-pattern pipeline. LakeAI already has the analytics dashboard. Document: architecture, throughput benchmarks, fault tolerance design, time-travel rollback procedure.
+
+**Thursday — ML Model Serving + Workflow Engine + Data Catalog (System Design 5 + 6 + 7)**
+
+LakeAI has model serving (ONNX + MLflow). WorkOS has the workflow engine (onboarding Saga). LakeAI has the data catalog with lineage. Document all three with benchmarks.
+
+**Friday — Rate Limiter + Fraud Detection + Recommendation (System Design 8 + 9 + 10 + 11)**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Redis Lua, Wasm (AssemblyScript), ONNX Go, PGVector |
+| 📖 **Concepts** | All 4 rate limit algorithms, Wasm pre-filter for fraud, 3-layer fraud detection, collaborative + content-based recommendation hybrid |
+| 🎯 **You Build** | PayCore rate limiter: all 4 algorithms, per-tenant limits. LakeAI fraud detection on API usage (Wasm + Go rules + ONNX). LakeAI recommendation: collaborative filtering + PGVector cosine ANN. |
+
+**Weekend — LakeAI COMPLETE. All 4 Projects COMPLETE.**
+
+---
+
+## Month 7: Observability + Polish + Hiring Sprint
+
+### Week 15: OpenTelemetry + Distributed Tracing
+
+**Monday–Tuesday — OTel SDK + Prometheus + Grafana**
+
+Add OpenTelemetry instrumentation to all 4 projects. Every service emits traces to Jaeger. Latency histograms in Prometheus. Grafana dashboard with p50/p95/p99 per endpoint per project.
+
+**Wednesday–Thursday — k6 Load Tests + pprof**
+
+Run k6 on all 4 projects. Profile every Go service with `pprof`. Document every benchmark number. Fix any regression found.
+
+**Friday — Lighthouse + TypeScript Strict + Security**
+
+All 4 project frontends: Lighthouse 100/100/100/100. `tsc --noEmit` with `strict: true`. `govulncheck` passes. `trivy image` passes.
+
+---
+
+### Week 16: Portfolio Polish + Cold Outreach
+
+**README for every project:**
+- Mermaid architecture diagram
+- k6 benchmark numbers (p50/p95/p99 at target RPS)
+- Key ADRs linked (why RLS over schema-per-tenant, why Delta Lake over raw Parquet)
+- Live demo link
+
+**Cold Email Templates:**
+
 ```
-/
-├── apps/
-│   ├── workos/          ← grows from HRIS shell → multi-tenant → RBAC → payroll engine → workflow automation
-│   ├── sparkflow/       ← grows from pipeline UI → Spark job runner → Delta Lake → streaming
-│   ├── paycore/         ← grows from billing form → Stripe-pattern API → webhooks → usage metering
-│   └── lakeai/          ← grows from model registry → RAG → AI agents → data lineage
-├── packages/
-│   ├── types/           ← shared TypeScript + Python types (Week 1)
-│   ├── schemas/         ← Zod + Pydantic schemas (Week 1)
-│   ├── ui/              ← Shadcn components (Week 3)
-│   └── sdk/             ← public-facing typed SDK (Week 5)
-├── infrastructure/
-│   ├── terraform/       ← AWS/GCP infra (Week 6)
-│   └── k8s/             ← Kubernetes manifests (Week 6)
-└── python/
-    ├── pipelines/       ← PySpark jobs (Month 3)
-    └── ml/              ← model training + serving (Month 5)
+Subject: [Rippling SDE] — built WorkOS: K8s Operator provisions tenant in 30s, 10K tenants p99 < 100ms
+
+WorkOS mirrors Rippling's HRIS + identity platform.
+
+Key highlights:
+• K8s Operator: new tenant → PostgreSQL RLS policies + Redis ACL + S3 bucket + Kafka topics in 30s
+• Employee onboarding Saga: 8-step workflow, each step idempotent + compensatable (Rippling's core product)
+• k6: 10K tenants × 500 sessions, p99 < 100ms, zero cross-tenant data leaks verified
+
+Also built PayCore (Stripe-pattern): double-entry ledger, idempotency, webhook delivery, usage metering.
+[GitHub] [Live demo] [Architecture ADRs]
 ```
 
----
-
-## Master Technology Checklist (All Implemented in the 4 Platforms)
-
-### Fundamentals
-- [ ] HTTP/HTTPS, DNS, Client/Server
-- [ ] Multi-tenancy patterns (schema-per-tenant, row-level security, tenant isolation)
-- [ ] RBAC (Role-Based Access Control) + ABAC
-- [ ] API-first design (SDK-first, versioning, breaking change policy)
-
-### Frontend
-- [ ] HTML, CSS, JavaScript, TypeScript
-- [ ] React, Next.js, Tanstack Start
-- [ ] Tailwind, Shadcn UI, Radix UI, Motion
-- [ ] Zustand, Immer, Tanstack Query, Zod, React Hook Form
-
-### Backend
-- [ ] Node.js (TypeScript), Python (FastAPI + Pydantic)
-- [ ] Go (high-throughput services)
-- [ ] gRPC (internal), REST (external), GraphQL, tRPC, Webhooks
-- [ ] Streams, worker threads, async processing
-
-### Databases
-- [ ] PostgreSQL (multi-tenant: row-level security + schema isolation)
-- [ ] Redis (cache, sessions, rate limiting, pub/sub)
-- [ ] ClickHouse (OLAP analytics — Databricks-adjacent)
-- [ ] Delta Lake / Apache Parquet (columnar storage)
-- [ ] PGVector (embeddings, semantic search)
-- [ ] Elasticsearch (full-text search across tenant data)
-- [ ] SQLite (edge/offline)
-
-### Data Engineering
-- [ ] Apache Spark (PySpark) — distributed transformations
-- [ ] Apache Kafka — event streaming, CDC
-- [ ] dbt — SQL-based transformation layer
-- [ ] Apache Airflow — workflow orchestration
-- [ ] Delta Lake — ACID transactions on data lake
-- [ ] Great Expectations — data quality validation
-- [ ] Kafka Connect — CDC + sink connectors
-
-### DevOps + Infra
-- [ ] Docker, Kubernetes, Helm charts
-- [ ] GitHub Actions (matrix CI/CD)
-- [ ] Terraform + Pulumi
-- [ ] AWS (EKS, RDS, ElastiCache, S3, Glue, Athena, EMR)
-- [ ] GCP (GKE, Dataproc, BigQuery, Cloud Run)
-- [ ] Cloudflare Workers + R2
-
-### Real-Time + AI
-- [ ] SSE, WebSockets, gRPC streaming
-- [ ] Vercel AI SDK + LangChain
-- [ ] RAG (embeddings + PGVector + hybrid search)
-- [ ] AI Agents with tool use
-- [ ] MLflow (experiment tracking, model registry)
-- [ ] ONNX (model inference in Go)
-- [ ] WebAssembly (AssemblyScript)
-
-### SaaS Patterns (Rippling-critical)
-- [ ] Multi-tenant data isolation
-- [ ] Usage-based billing (metering + aggregation)
-- [ ] Workflow engine (state machine, compensating transactions)
-- [ ] Audit logging (append-only, regulatory)
-- [ ] SSO / SAML / OIDC (WorkOS-style auth)
-- [ ] Idempotency + distributed transactions
-
-### System Design — 11 Case Studies (adapted for this track)
-- [ ] Multi-Tenant SaaS Platform Design
-- [ ] Usage-Based Billing at Scale
-- [ ] Distributed Data Pipeline (Databricks-pattern)
-- [ ] Real-Time Analytics Dashboard
-- [ ] ML Model Serving at Scale
-- [ ] Workflow Automation Engine
-- [ ] Data Catalog + Lineage
-- [ ] Rate Limiter (API-first SaaS)
-- [ ] Fraud Detection (payments)
-- [ ] Recommendation Engine (ML-based)
-- [ ] Real-Time Abuse / Anomaly Detection
-
----
-
-## How Every Day Works
-
-**Morning (3h):** Learn the concept using one platform's real problem as context.
-**Evening (2h):** Build a named feature of one of the 4 platforms using that concept.
-**Weekend (12h):** Wire the week's features together — each platform takes a version step forward.
-
-The evening build is never a tutorial. It is always: *"WorkOS needs X"* or *"SparkFlow needs X"*.
-
----
-
-## MONTH 1: Full-Stack From Day One — All 4 Platforms Introduced
-
-**Month 1 goal:** By end of Week 4, all four platforms exist front to back. The patterns introduced here — multi-tenancy, API-first design, typed SDKs — are the exact patterns Rippling and Stripe are built on. You don't learn them from a blog post. You design them by Day 1.
-
----
-
-### Week 1: HTTP + HTML + CSS + Multi-Tenant Foundation
-
-**The narrative this week:** You're building internal tooling for a workforce platform, a data pipeline tool, a billing engine, and an AI data catalog. Every platform must support multiple companies (tenants) from Day 1. That decision shapes every schema, every API, every cache key for all 10 months.
-
----
-
-**MONDAY — HTTP + CLI + Git + Multi-Tenancy Mental Model**
-
-**Morning (3h):**
-- HTTP model, DNS, TLS, Client/Server, browser rendering pipeline — same depth as reference roadmap
-- **Multi-tenancy decision:** schema-per-tenant (strong isolation, expensive) vs row-level-security (shared schema, `tenant_id` on every table, PostgreSQL RLS policies). Rippling uses RLS-style with extreme isolation guarantees
-- **`X-Tenant-ID` header pattern:** every API request carries tenant context. Middleware extracts → attaches to `req.tenant`. Every DB query automatically scoped. This is Day 1 and it never changes
-- CLI, VS Code, Git, ESLint, Prettier — same as reference
-
-**Evening (2h): WorkOS Tenant-Scoped HTTP Server**
-- Feature: **WorkOS needs a server that accepts employee event payloads and is tenant-scoped from Day 1**
-- Raw Node.js HTTP server: reads `X-Tenant-ID` header, logs `[tenant:acme] employee.created payload`
-- Tenant context stored in `AsyncLocalStorage` — no prop drilling through every function
-- Test: `curl -H "X-Tenant-ID: acme" -X POST http://localhost:3000/events -d '{"type":"employee.created","employeeId":"E001"}'`
-- This exact server becomes the WorkOS event ingestion API by Week 4
-
-```javascript
-// apps/workos/server/index.js — Day 1. Multi-tenant from the start.
-const http = require('http');
-const { AsyncLocalStorage } = require('async_hooks');
-
-const tenantContext = new AsyncLocalStorage();
-
-const server = http.createServer((req, res) => {
-  const tenantId = req.headers['x-tenant-id'];
-  if (!tenantId) { res.writeHead(400); res.end(JSON.stringify({ error: 'X-Tenant-ID required' })); return; }
-
-  tenantContext.run({ tenantId }, () => {
-    let body = '';
-    req.on('data', c => (body += c));
-    req.on('end', () => {
-      const event = JSON.parse(body || '{}');
-      console.log(`[tenant:${tenantId}] ${event.type}`, event);
-      res.writeHead(202, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ queued: true, tenantId, event }));
-    });
-  });
-});
-server.listen(3000, () => console.log('WorkOS event receiver :3000'));
-// AsyncLocalStorage: tenantId available anywhere in this request's call stack.
-// No prop drilling. No global state. Correct under high concurrency.
 ```
+Subject: [Databricks SDE] — built SparkFlow + LakeAI: Spark job orchestration + Unity Catalog mirror
 
----
+SparkFlow mirrors Databricks' job management infrastructure.
+LakeAI mirrors Unity Catalog + MLflow.
 
-**TUESDAY — HTML + Accessibility — WorkOS Employee Form + PayCore Billing Form**
+Key highlights:
+• SparkFlow: pipeline definition → Delta Lake output → dbt transform → Great Expectations gate → Airflow schedule
+• LakeAI: every pipeline output registered in catalog with full lineage graph (source → pipeline → model → dashboard)
+• ONNX Go inference: dataset recommendation model at < 10ms p99
 
-*Same depth as reference roadmap HTML day, applied to SaaS-specific forms:*
-- WorkOS employee onboarding form: `employeeId`, `department`, `startDate`, `role`, `manager` — semantic HTML, native validation, accessible
-- PayCore subscription form: plan selection (radio group), billing cycle, payment method — same accessibility standards
-
----
-
-**WEDNESDAY — CSS — All 4 Platforms Styled**
-
-- `packages/tokens.css`: same design token system as reference, extended with SaaS-specific tokens: `--color-tenant-primary` (customizable per tenant), `--color-tier-free/pro/enterprise`
-- WorkOS: employee table layout (CSS Grid), status badges, sidebar navigation
-- SparkFlow: pipeline DAG layout (flex + grid, job status colors)
-- PayCore: pricing table (CSS Grid, feature comparison columns)
-- LakeAI: model registry table + experiment comparison charts
-
----
-
-**THURSDAY — JavaScript — WorkOS Employee Directory + SparkFlow Job Monitor**
-
-- WorkOS: fetch employee list from tenant-scoped server, filter by department/status, event delegation on rows
-- SparkFlow: first HTML/CSS/JS shell — pipeline job monitor (job list + status badges, polling every 5s)
-- Both: `X-Tenant-ID` header sent on every fetch from Day 1
-
----
-
-**FRIDAY — TypeScript — packages/types + packages/schemas + Tenant-Scoped API Client**
-
-- `packages/types`: `Tenant`, `Employee`, `Pipeline`, `PipelineJob`, `Invoice`, `BillingPlan`, `Model` — all interfaces
-- `packages/schemas`: Zod schemas for all 4 platforms + Python Pydantic equivalents (same field names)
-- `packages/sdk`: typed API client that auto-attaches `X-Tenant-ID` from session — this is the public SDK shape
-- Tenant context type: `{ tenantId: string; plan: 'free' | 'pro' | 'enterprise'; featureFlags: Record<string, boolean> }`
-
----
-
-**WEEKEND — All 4 Platforms v0.1 Deployed**
-
-- WorkOS v0.1: employee form + directory + tenant-scoped server on Cloudflare Pages
-- SparkFlow v0.1: pipeline job monitor shell
-- PayCore v0.1: pricing page + subscription form
-- LakeAI v0.1: model registry shell
-- GitHub Actions: on push → `tsc --noEmit` → ESLint → deploy
-
----
-
-### Week 2: React + State Management — All 4 Platforms in React
-
-*Same React depth as reference roadmap (useState, useEffect, useRef, useCallback, useMemo, useContext, React.memo, RHF + Zod, Tanstack Query, Zustand + Immer) — applied to SaaS-specific features:*
-
-- **WorkOS**: multi-step employee onboarding wizard (RHF + Zod, step validation before proceeding). Tenant-scoped employee directory (Tanstack Query with `queryKey: ['employees', tenantId]`)
-- **SparkFlow**: pipeline DAG visualization (React + SVG, Zustand for selected node state)
-- **PayCore**: plan comparison + checkout flow (RHF + Zod, credit card validation)
-- **LakeAI**: experiment comparison table (Tanstack Query, sort/filter by metric)
-
-**Key addition vs reference:** `TenantProvider` wraps all 4 apps — `useCurrentTenant()` hook returns `{ tenantId, plan, featureFlags }`. Feature flag gates: `if (tenant.featureFlags.advancedAnalytics) { ... }`. This pattern runs for all 10 months.
-
----
-
-### Week 3: Tailwind + Shadcn + Next.js + Svelte + Vue + Testing
-
-*Same framework depth as reference roadmap — applied to SaaS contexts:*
-
-- **Next.js (WorkOS)**: `[tenantSlug]` dynamic segment. `app/[tenantSlug]/employees/page.tsx` — Server Component fetches tenant-specific data. Each tenant has their own Next.js layout with their brand colors (from Tailwind config seeded from tenant data)
-- **Svelte**: SparkFlow pipeline status embeddable widget (embed in partner BI tools)
-- **Vue**: PayCore billing portal (separate app, same REST API)
-- **Testing**: Vitest (WorkOS RBAC logic, billing calculations, pipeline state machines), Playwright, TestSprite
-
----
-
-### Week 4: Node.js + Express + All Databases — Multi-Tenant Backends
-
-**MONDAY — Node.js Streams + WorkOS Event Pipeline**
-- Feature: WorkOS emits employee lifecycle events (hire, promote, terminate) — streamed to downstream consumers
-- Transform stream: validate event with Zod schema → enrich with tenant context → batch publish to Kafka
-
-**TUESDAY — Express + Multi-Tenant REST API**
-- Feature: All 4 platforms need tenant-scoped APIs. Every endpoint automatically filters by `tenantId`
-- PostgreSQL Row-Level Security (RLS): `CREATE POLICY tenant_isolation ON employees USING (tenant_id = current_setting('app.tenant_id')::uuid)`. Set at connection time: `SET LOCAL app.tenant_id = $1`
-- Schema-per-tenant for payroll (sensitive data — separate schema, separate connection pool per tenant)
-
-**WEDNESDAY — PostgreSQL + Multi-Tenant Schema Design**
-- WorkOS: `employees`, `departments`, `roles`, `role_assignments` — RLS on all
-- SparkFlow: `pipelines`, `pipeline_jobs`, `pipeline_runs` — tenant-scoped
-- PayCore: `tenants`, `billing_plans`, `subscriptions`, `invoices`, `usage_events` — billing core schema
-- LakeAI: `models`, `experiments`, `datasets`, `lineage_edges` — data catalog schema
-
-**THURSDAY — Redis + JWT + RBAC**
-- Feature: WorkOS needs multi-role auth — HR Admin, Manager, Employee all see different data
-- JWT payload: `{ sub, tenantId, roles: ['hr_admin', 'manager'], permissions: ['employees:read', 'payroll:write'] }`
-- RBAC middleware: `requirePermission('payroll:write')` — checks JWT permissions, rejects with 403
-- Attribute-based conditions: Manager can only read employees in their own department (`WHERE manager_id = req.user.id`)
-
-**FRIDAY — ClickHouse + PGVector + Delta Lake Preview**
-- **ClickHouse**: SparkFlow pipeline metrics (job duration, rows processed, errors) — OLAP queries on billions of rows in < 100ms. `INSERT INTO pipeline_metrics ... SETTINGS async_insert=1`
-- **PGVector**: LakeAI semantic model search (`"find models trained on customer churn"` → embedding search)
-- **Delta Lake preview**: Parquet files on S3 with ACID transactions (full implementation Month 3)
-
----
-
-**WEEKEND — All 4 Platforms Full-Stack + Real Auth**
-
-- WorkOS v0.4: React ← Express (multi-tenant RLS) ← PostgreSQL + Redis + JWT/RBAC
-- SparkFlow v0.4: pipeline job monitor connected to real backend + ClickHouse metrics
-- PayCore v0.4: subscription CRUD + invoice list from real DB
-- LakeAI v0.4: model registry with PGVector semantic search
-
----
-
-## MONTH 2: APIs + Real-Time + DevOps — All 4 Platforms in Production
-
-### Week 5: gRPC + GraphQL + tRPC + Webhooks + SDK Design
-
-**MONDAY — REST + Idempotency + SDK-First API Design**
-- Feature: **PayCore needs to be API-first (like Stripe) — SDK generated from OpenAPI spec, versioning, idempotency**
-- `POST /v1/charges` with `Idempotency-Key` — no duplicate charges on retry
-- OpenAPI spec → generate TypeScript SDK (`packages/sdk`) + Python SDK (`python/sdk`)
-- Semantic versioning: `/v1/` frozen, breaking changes → `/v2/`. Non-breaking changes backward compatible
-- Webhook event catalog: `charge.succeeded`, `subscription.created`, `invoice.paid` — all signed HMAC-SHA256
-
-**TUESDAY — gRPC — Internal SparkFlow Service Mesh**
-- Feature: SparkFlow has multiple internal services (scheduler, executor, monitor) — gRPC for service-to-service
-- `.proto`: `ScheduleJob (Unary)`, `StreamJobLogs (Server Stream)`, `BatchSubmitJobs (Client Stream)`
-- SparkFlow UI streams job logs live via gRPC Server Stream → SSE to browser
-
-**WEDNESDAY — GraphQL — WorkOS People Graph**
-- Feature: WorkOS needs a flexible query API for reporting tools — org chart queries are naturally graph-shaped
-- `Employee → manager (Employee) → reports (Employee[]) → department (Department)`
-- DataLoader: batch all `managerId → manager` lookups
-- Subscriptions: `employeeStatusChanged` → HR dashboard live updates
-
-**THURSDAY — tRPC + Webhooks**
-- WorkOS internal admin: tRPC (full TypeScript types, no codegen)
-- PayCore webhooks: HMAC signed, retry + DLQ, merchant dashboard for failed deliveries
-
-**FRIDAY — SSE + WebSockets + Real-Time**
-- SparkFlow: SSE for live job log streaming (job runs → log lines appear as they execute)
-- WorkOS: WebSocket for real-time org chart updates (employee added → all HR tabs update)
-- Redis pub/sub bridges all SSE/WS connections across replicas
-
-**WEEKEND — All 4 Platforms v0.5: All API Styles + Real-Time**
-
----
-
-### Week 6: Docker + CI/CD + Kubernetes + Multi-Cloud
-
-*Same depth as reference roadmap — applied to SaaS infra:*
-
-- **WorkOS → AWS** (Terraform): EKS + RDS PostgreSQL (per-tenant schema isolation) + ElastiCache Redis + S3 (employee documents)
-- **SparkFlow → GCP** (Pulumi): GKE + Dataproc (managed Spark) + BigQuery + GCS
-- **PayCore → AWS**: ECS Fargate + RDS + ElastiCache + SQS (webhook queue)
-- **LakeAI → Railway** (fast iteration)
-- **OTel sidecar** (Go): distributed traces across all 4 platforms
-- **Kubernetes Operator preview**: `WorkOSTenantProvisioner` CRD — auto-provisions DB schema + Redis keyspace + S3 bucket per tenant (full implementation Week 9)
-
----
-
-## MONTH 3: Python + Spark + Kafka + Data Pipelines
-
-**Month 3 goal:** SparkFlow and LakeAI get real data engineering internals. This is the Databricks-targeting month. You write PySpark jobs, build Delta Lake tables, wire Kafka CDC, and deploy Airflow DAGs — all as real features of SparkFlow.
-
----
-
-### Week 7: Python + FastAPI + PySpark — SparkFlow Gets Its Engine
-
-**MONDAY — Python Fundamentals + FastAPI**
-- Python: types, dataclasses, Pydantic, async/await, context managers, decorators, generators
-- FastAPI: type-annotated routes, Pydantic request/response models, dependency injection, async handlers
-- Pydantic schemas = same field names as Zod schemas in `packages/schemas` — change field name → error in both
-
-**Evening: SparkFlow Python Job Submission API**
-- Feature: SparkFlow UI submits PySpark jobs via a Python FastAPI backend (Spark runs on Dataproc/EMR)
-- `POST /api/jobs` → validate with Pydantic → enqueue to Kafka → return `{ jobId, status: 'queued' }`
-- Same TypeScript `packages/types` shapes now have Python Pydantic equivalents
-
-**TUESDAY — PySpark Foundations — SparkFlow First Real Pipeline**
-- Feature: SparkFlow needs to process raw employee events (from WorkOS Kafka) into analytics-ready tables
-- `SparkSession`, RDDs vs DataFrames, transformations (lazy) vs actions (eager)
-- `df.filter().groupBy().agg()` — same query in SQL and PySpark
-- SparkFlow: WorkOS employee events → PySpark → clean + aggregate → write Delta Lake
-
-```python
-# python/pipelines/workos_employee_pipeline.py
-# Reads WorkOS employee events (from Kafka, Month 2)
-# Writes to Delta Lake table (LakeAI will serve queries from here)
-
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, to_timestamp, count, when
-from delta import DeltaTable
-
-spark = SparkSession.builder \
-    .appName("WorkOS Employee Pipeline") \
-    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
-    .getOrCreate()
-
-# Read from Kafka (same topic WorkOS publishes to — Month 2)
-raw = spark.readStream \
-    .format("kafka") \
-    .option("kafka.bootstrap.servers", "kafka:9092") \
-    .option("subscribe", "workos.employee.events") \
-    .load()
-
-# Parse + transform
-events = raw.selectExpr("CAST(value AS STRING) as json") \
-    .select(from_json(col("json"), employee_event_schema).alias("e")) \
-    .select("e.*") \
-    .withColumn("event_time", to_timestamp("e.timestamp"))
-
-# Write to Delta Lake with MERGE (upsert — same employee updated, not duplicated)
-query = events.writeStream \
-    .format("delta") \
-    .option("checkpointLocation", "s3://sparkflow/checkpoints/employees/") \
-    .outputMode("append") \
-    .start("s3://sparkflow/delta/employees/")
-# LakeAI reads from this same Delta table in Month 5
-```
-
-**WEDNESDAY — Delta Lake — ACID on Object Storage**
-- Feature: SparkFlow pipeline results need ACID transactions + time-travel + schema enforcement
-- Delta Lake: `CREATE TABLE ... USING DELTA`, `MERGE INTO` (upsert), time travel (`VERSION AS OF 10`), `OPTIMIZE` + `ZORDER`
-- Schema enforcement: reject writes that don't match schema. Schema evolution: `mergeSchema = true` for additive changes
-- SparkFlow: every pipeline output table is Delta. LakeAI queries these tables with time-travel
-
-**THURSDAY — Apache Airflow — SparkFlow Workflow Orchestration**
-- Feature: SparkFlow needs scheduled pipeline runs, dependency management, retry logic
-- Airflow DAG: `WorkOSEmployeePipeline` — runs every 6h, depends on `KafkaIngestJob`, retries 3× on failure
-- DAG as code: Python functions with `@task` decorator. Sensor operators for dependencies
-- SparkFlow UI shows: DAG graph, last run status, next scheduled run — reads from Airflow API
-
-**FRIDAY — Kafka Streams + dbt + Great Expectations**
-- Kafka Streams: real-time aggregations on SparkFlow job metrics (sliding window, per-tenant throughput)
-- dbt: SQL transformation layer — WorkOS employee data modeled into `dim_employees`, `fact_headcount_changes`
-- Great Expectations: data quality validation on every pipeline output — row count, null rate, referential integrity
-
-**WEEKEND — SparkFlow v0.6: Full Data Engineering Stack**
-- PySpark jobs scheduled via Airflow, writing to Delta Lake
-- dbt models for WorkOS data
-- Great Expectations validation on every run
-- SparkFlow dashboard: pipeline runs, data quality scores, Delta table metadata — all live
-
----
-
-### Week 8: Kafka + Saga + CDC + Database Scaling
-
-*Same depth as reference roadmap — applied to SaaS/data contexts:*
-
-- **WorkOS CDC** (WAL → Kafka): employee data changes → Kafka → SparkFlow consumes for analytics
-- **PayCore Saga**: subscription lifecycle — `payment.reserved` → `subscription.activated` → `access.granted`. Compensating: `payment.reversed` + `subscription.cancelled`
-- **Database scaling**: WorkOS tenant isolation: schema-per-tenant for payroll, RLS for HRIS. PgBouncer per-tenant connection pooling. Partitioned `audit_log` table (range partition by month)
-- **ClickHouse scaling**: SparkFlow pipeline metrics — materialized views, `ReplicatedMergeTree`, per-tenant aggregate queries in < 50ms on billions of rows
-
----
-
-## MONTH 4: Go Deep + Kubernetes Operator + AI Engineering
-
-### Week 9: Go + WorkOS Tenant Provisioner Operator
-
-**MONDAY-WEDNESDAY — Go Foundations + WorkOSTenantProvisioner CRD**
-- Feature: When a new customer signs up for WorkOS, a Kubernetes Operator automatically provisions: PostgreSQL schema, Redis keyspace, S3 bucket, Kafka topics, all tenant-specific config
-- `WorkOSTenantProvisioner` CRD: spec includes `tenantId`, `plan`, `region`
-- Operator reconciles: creates DB schema, Redis prefix, S3 bucket, Kafka topic `workos.{tenantId}.events`
-- This replaces all manual tenant provisioning — new customer → `kubectl apply -f tenant.yaml` → fully provisioned in 30s
-
-```go
-// apps/workos/operator/controllers/tenant_controller.go
-func (r *TenantProvisionerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-  var tenant workosv1.WorkOSTenantProvisioner
-  if err := r.Get(ctx, req.NamespacedName, &tenant); err != nil {
-    return ctrl.Result{}, client.IgnoreNotFound(err)
-  }
-
-  // 1. Provision PostgreSQL schema
-  if err := r.provisionPostgresSchema(ctx, tenant.Spec.TenantID); err != nil {
-    return ctrl.Result{}, err
-  }
-  // 2. Create Redis keyspace prefix + ACL
-  if err := r.configureRedisACL(ctx, tenant.Spec.TenantID); err != nil {
-    return ctrl.Result{}, err
-  }
-  // 3. Create S3 bucket with tenant isolation policy
-  if err := r.provisionS3Bucket(ctx, tenant.Spec.TenantID, tenant.Spec.Region); err != nil {
-    return ctrl.Result{}, err
-  }
-  // 4. Create Kafka topics
-  if err := r.createKafkaTopics(ctx, tenant.Spec.TenantID); err != nil {
-    return ctrl.Result{}, err
-  }
-
-  tenant.Status.Provisioned = true
-  tenant.Status.ProvisionedAt = metav1.Now()
-  return ctrl.Result{}, r.Status().Update(ctx, &tenant)
-  // New Rippling customer? 30 seconds to full isolation. No manual steps.
-}
-```
-
-**THURSDAY-FRIDAY — Go: SparkFlow Job Scheduler (high-throughput)**
-- Go replaces Node.js for SparkFlow job scheduling (same pattern as GPS aggregator in reference)
-- 1000 concurrent job submission goroutines, results channel, circuit breaker on Dataproc API calls
-- `fleetctl`-equivalent: `sparkctl jobs list --tenant=acme`, `sparkctl jobs submit --pipeline=employee-etl`
-
----
-
-### Week 10: Vercel AI SDK + RAG + AI Agents — LakeAI Full AI Layer
-
-**MONDAY — LakeAI AI Assistant (AI SDK + streaming)**
-- Feature: Data engineer asks "which pipelines failed last week and why?" → AI queries ClickHouse, reads Delta table metadata, finds root cause
-- Tools: `queryClickHouse` (pipeline metrics), `readDeltaTableMetadata` (SparkFlow Delta tables), `searchPastIncidents` (PGVector), `triggerRerun` (calls SparkFlow API)
-- Every tool call hits a real system built in Months 1-3
-
-**TUESDAY — RAG — LakeAI Data Catalog Semantic Search**
-- Feature: "find all datasets related to employee churn" → hybrid search over data catalog
-- Embed: table names + column names + descriptions + sample queries
-- PGVector: HNSW index, hybrid search (vector + keyword)
-- Citations: response includes table name, schema, last updated, pipeline that produced it
-
-**WEDNESDAY — AI Agents — LakeAI 3-Agent Pipeline Debugger**
-- Detector Agent: monitors Airflow DAG failures + Great Expectations failures → fires on quality drop
-- Analyst Agent: reads Delta table stats, compares current run vs historical baseline, identifies anomaly
-- Fixer Agent: if known issue → auto-trigger corrective pipeline. If unknown → draft runbook + page on-call
-
-**THURSDAY-FRIDAY — WebAssembly + MLflow + ONNX**
-- **MLflow** (LakeAI): experiment tracking — `mlflow.log_param()`, `mlflow.log_metric()`. Model registry: promote experiment → staging → production
-- **ONNX** (Go): embed ML model in Go binary for SparkFlow anomaly detection (< 10ms inference, no Python runtime)
-- **Wasm** (AssemblyScript): WorkOS client-side data masking (PII fields — SSN, bank account) — masked before leaving browser
-
----
-
-## MONTH 5: System Design Fundamentals — Built Into All 4 Platforms
-
-### Week 11: Multi-Tenant Scale + Rate Limiting + Consistent Hashing
-
-**MONDAY — Multi-Tenant Data Isolation at Scale**
-- Feature: WorkOS needs to prove one tenant can never read another's data, even under failure
-- Demo: RLS policy + connection pool segmentation + S3 bucket policy + Redis ACL — all layers together
-- Chaos test: inject malformed `tenant_id` → verify 0 data leaks across 4 isolation layers
-
-**TUESDAY — Fault Tolerance + Circuit Breaker + Bulkhead**
-- Feature: SparkFlow calls Dataproc, GCS, BigQuery, Kafka — each must be isolated
-- Go circuit breaker: same pattern as reference. Dataproc slow → open in 10s → half-open → auto-recover
-- Bulkhead: separate semaphore pools for each downstream service
-
-**WEDNESDAY — Rate Limiting (All 4 Algorithms) + Usage Metering**
-- Feature: PayCore needs to rate-limit API calls AND meter usage for billing
-- All 4 algorithms as Redis Lua scripts (same as reference) — Token Bucket for general API, Leaky Bucket for billing mutations
-- **Usage metering**: every API call increments `ZINCRBY usage:${tenantId}:${month} 1 api_calls`. Billing aggregation job reads these counters → generates invoices
-
-**THURSDAY — CAP Theorem + Leader Election + Distributed Coordination**
-- Feature: SparkFlow job scheduler must ensure exactly 1 scheduler runs per tenant (no double-scheduling)
-- Leader election: Redis SETNX per tenant — `SET leader:scheduler:{tenantId} {nodeId} NX EX 30`
-- CAP demo: same pattern as reference, applied to SparkFlow job state (CP vs AP for job status)
-
-**FRIDAY — Consistent Hashing + Bloom Filters + Big Data**
-- WorkOS: consistent hash shard router — employee data sharded by `tenantId` across 4 PostgreSQL primaries
-- Bloom Filters: SparkFlow pipeline dedup (same job never submitted twice) + LakeAI unknown model ID pre-screen
-- Big Data: SparkFlow Kafka → S3 Parquet → Athena (same pattern as reference, now for pipeline telemetry)
-
-**WEEKEND — All System Design Fundamentals Live + OpsAI-equivalent: LakeAI System Health Dashboard**
-- LakeAI System Health Dashboard: shows circuit breaker states, rate limit status, cache hit rates, leader election status, tenant isolation health — across all 4 platforms
-
----
-
-### Week 12: Usage-Based Billing + Notifications + Caching at Scale
-
-**MONDAY-TUESDAY — Usage-Based Billing at Scale (PayCore Case Study 1)**
-- Feature: PayCore charges per API call, per active employee, per pipeline run — like Stripe/Databricks
-- Metering: Redis `ZINCRBY` per event, drained to PostgreSQL every hour by a Go worker
-- Aggregation: monthly invoice calculation (sum usage × unit price per tier)
-- Proration: mid-month plan change — calculate days × old_rate + days × new_rate
-- Stripe Billing integration: PayCore wraps Stripe's billing API (same way Rippling wraps payment rails)
-
-**WEDNESDAY — Notification System at Scale**
-- WorkOS notifications: employee onboarding checklist, payroll run alerts, compliance deadlines
-- Architecture: Kafka fan-out, APNs/email/Slack, Redis dedup (`SET notif:{idempotencyKey} NX EX 86400`)
-- Per-tenant notification preferences: some tenants want email only, some want Slack only
-
-**THURSDAY-FRIDAY — Redis Cluster + Cache Warm-Up + Multi-Tenant Caching**
-- Multi-tenant caching: `cache:${tenantId}:employees` — cache keys always tenant-scoped
-- Redis Cluster: 3 primaries. `MOVED` redirect transparent. Per-tenant keyspace ACL
-- Cache warm-up on tenant provisioning: operator (Week 9) pre-warms top 100 employee records for new tenant
-
----
-
-## MONTH 6: All 11 Case Studies — Built Into 4 Platforms
-
-### Week 13: Multi-Tenant SaaS Design + Usage-Based Billing Deep Dive
-
-**Monday-Wednesday: WorkOS Multi-Tenant Platform Design (Case Study 1)**
-- Back-of-envelope: 10K tenants × 500 employees = 5M rows. 1000:1 read/write. What caches? What shards?
-- Full architecture: RLS + schema isolation + connection pooling + S3 per tenant + Redis ACL
-- k6: 10K tenants, 500 concurrent sessions each — p99 < 100ms with no cross-tenant data
-
-**Thursday-Friday: PayCore Usage-Based Billing (Case Study 2)**
-- Metering accuracy: Redis counters + PostgreSQL drain + reconciliation job (no lost events)
-- Invoice generation: batch job, idempotent, handles failures gracefully
-- Customer portal: current usage, projected invoice, plan comparison
-
----
-
-### Week 14: Distributed Data Pipeline + Real-Time Analytics Dashboard
-
-**Monday-Wednesday: SparkFlow Distributed Pipeline (Case Study 3 — Databricks pattern)**
-- Architecture: Kafka → Spark Structured Streaming → Delta Lake → dbt → ClickHouse
-- Fault tolerance: exactly-once semantics, checkpoint recovery, schema evolution
-- k6: 1M events/sec sustained, < 5min end-to-end latency
-
-**Thursday-Friday: LakeAI Real-Time Analytics Dashboard (Case Study 4)**
-- Sub-second ClickHouse queries on 10B+ rows
-- React + Tanstack Query: auto-refresh, streaming chart updates via SSE
-- Per-tenant materialized views: each tenant's analytics isolated + pre-aggregated
-
----
-
-### Week 15: ML Model Serving + Workflow Engine + Data Catalog
-
-**Monday-Tuesday: LakeAI ML Model Serving at Scale (Case Study 5)**
-- MLflow model registry → ONNX export → Go inference server (< 10ms, same ONNX pattern as reference)
-- A/B test framework: 2 model versions, split traffic, measure prediction quality
-- Model versioning: promote/rollback without downtime
-
-**Wednesday-Thursday: WorkOS Workflow Engine (Case Study 6 — Rippling-critical)**
-- Feature: employee onboarding triggers 20+ steps across systems: HRIS record → IT provisioning → Slack invite → payroll setup → benefits enrollment
-- State machine: `pending → in_progress → completed | failed`. Each step: idempotent, retryable, compensatable
-- Saga choreography (same pattern as reference Trip Booking Saga — applied to onboarding workflow)
-
-**Friday: LakeAI Data Catalog + Lineage (Case Study 7)**
-- Lineage graph: `raw_kafka_events → spark_pipeline → delta_table → dbt_model → dashboard`
-- Every SparkFlow job registers its lineage edges in LakeAI
-- React graph visualization: click any table → see upstream sources + downstream consumers
-
----
-
-### Week 16: Rate Limiter + Fraud + Anomaly Detection + Recommendations
-
-**Monday-Tuesday: PayCore API Rate Limiter (Case Study 8)**
-- All 4 algorithms, per-tenant limits, burst allowance for enterprise tier
-- Lua scripts (same as reference) + dashboard
-
-**Wednesday-Thursday: PayCore Fraud Detection (Case Study 9)**
-- Client-side Wasm pre-filter (AssemblyScript, same as reference)
-- Rule engine (Go): velocity checks, amount anomaly, new account + high value
-- ONNX inference: < 10ms, embedded in Go binary
-
-**Friday: LakeAI Recommendation Engine (Case Study 10 + 11)**
-- Collaborative filtering: which datasets/models do similar data engineers use together?
-- Content-based: model description → PGVector cosine ANN
-- Hybrid + A/B test (same architecture as reference)
-
-**WEEKEND — All 11 Case Studies Deployed + Portfolio Site Live**
-
----
-
-## MONTH 7: Hiring Sprint
-
-### Weeks 17-18: Portfolio Polish + Open Source
-- All 4 platform READMEs: architecture diagrams, benchmark numbers, ADRs
-- CNCF contributions: `opentelemetry-go`, `delta-rs` (Rust/Python Delta Lake), `airflow` (Python DAG improvements)
-- LFX application: `WorkOSTenantProvisioner` operator + CNCF PRs
-
-### Weeks 19-20: Mock Interviews + Applications
-
-**System design mocks (Rippling-specific):**
-- Design a multi-tenant HRIS platform with strong data isolation
-- Design a usage-based billing system that doesn't lose events
-- Design an employee onboarding workflow engine
-
-**System design mocks (Databricks-specific):**
-- Design a distributed data pipeline for 1M events/sec
-- Design a data catalog with lineage tracking
-- Design an ML model serving platform
-
-**Target applications:**
-1. Rippling — WorkOS is your portfolio piece. It's their problem domain
-2. Databricks — SparkFlow + LakeAI shows Spark + Delta Lake + MLflow in production
-3. Stripe — PayCore is API-first, idempotent, Saga-based. Their vocabulary
-4. NVIDIA / OpenAI / Anthropic — LakeAI AI agents + ONNX inference + RAG
-5. Confluent — Kafka Streams + CDC + Schema Registry work throughout
-
-**Cold email:**
-```
-Subject: [Role] — built WorkOS: multi-tenant HRIS platform, tenant provisioning in 30s via K8s Operator
-
-I built WorkOS over 7 months — it mirrors Rippling's architecture.
-
-Most relevant:
-• Kubernetes Operator: new tenant → PostgreSQL schema + Redis ACL + S3 bucket + Kafka topics in 30s
-• Multi-tenant isolation: RLS + schema separation + connection pooling (k6: 10K tenants, p99 < 100ms, zero cross-tenant leaks)
-• Workflow engine: employee onboarding Saga (20 steps, Kafka choreography, compensating transactions)
-
-[GitHub + Live demo + Architecture ADRs]
+[GitHub] [Live demo] [Delta Lake architecture ADR]
 ```
 
 ---
 
 ## Monthly Summary
 
-| Month | New Concepts | Platform Feature |
-|---|---|---|
-| 1 | HTTP + multi-tenancy + TypeScript + PostgreSQL RLS + ClickHouse | All 4 shells deployed, tenant-scoped from Day 1 |
-| 2 | gRPC + GraphQL + tRPC + SSE + WebSockets + Docker + K8s + Cloud | All 4 on real infra, SDK published |
-| 3 | Python + FastAPI + PySpark + Delta Lake + Airflow + dbt + Kafka CDC | SparkFlow full data stack live |
-| 4 | Go deep + K8s Operator + Vercel AI SDK + RAG + AI Agents + MLflow + ONNX | WorkOS tenant provisioner + LakeAI full AI |
-| 5 | All system design fundamentals in SaaS context | Every pattern live in 4 platforms |
-| 6 | All 11 case studies built as platform features | Full portfolio with ADRs + benchmarks |
-| 7 | Mock interviews + CNCF + applications | Rippling + Databricks applications submitted |
+| Month | Project | Phase | Key Milestones |
+|-------|---------|-------|----------------|
+| 1 | WorkOS | Foundation: multi-tenant shell, JS deep, TypeScript | RLS schema, HTML/CSS/Tailwind, all utility packages |
+| 2 | WorkOS | Advanced: Go, gRPC, K8s Operator, Saga | Tenant provisioner, onboarding workflow, K8s Operator deployed |
+| 3 | PayCore | Full build: double-entry, idempotency, webhooks, Saga | 10K TPS k6, zero double charges, metering live |
+| 4 | SparkFlow | Foundation: Go API, Spark jobs, Delta Lake, CDC | Pipeline runs, Delta time-travel, Airflow DAGs |
+| 5 | SparkFlow | Advanced: system design, caching, resiliency | Bloom filter, consistent hashing, circuit breaker, PITR drill |
+| 6 | LakeAI | Full build: catalog, lineage, MLflow, ONNX, RAG | All 11 system design cases documented and deployed |
+| 7 | All | Polish + hiring sprint | OTel, k6 all projects, Lighthouse 100, cold emails sent |
 
 ---
 
-## Interconnection Map
+## Non-Negotiable Rules
 
-```
-Week 1 WorkOS event server (raw Node.js, multi-tenant from Day 1)
-  ↓ becomes Week 4 Express API with PostgreSQL RLS
-  ↓ becomes Week 5 gRPC + Kafka publisher
-  ↓ becomes Week 7 PySpark consumer (SparkFlow reads WorkOS events)
-  ↓ becomes Week 9 K8s Operator target (operator provisions per-tenant resources)
-  ↓ becomes Month 4 LakeAI data source (AI tools query WorkOS data)
-  ↓ becomes Month 6 Workflow Engine (onboarding Saga)
-
-Week 1 packages/types (TypeScript + Python Pydantic equivalents)
-  ↓ used by all 4 TypeScript apps always
-  ↓ Python Pydantic equivalents used by all PySpark jobs
-  ↓ Change one field name → TypeScript + Python errors simultaneously
-
-Week 1 packages/sdk
-  ↓ PayCore public SDK (auto-attaches X-Tenant-ID)
-  ↓ becomes the SDK shipped to PayCore "customers" in Month 2
-  ↓ SDK clients used by SparkFlow to call PayCore billing in Month 3
-```
+| Rule | Why |
+|------|-----|
+| `go test -race ./...` before every commit | Data races are silent production bugs |
+| `tsc --noEmit` passes — no `any` | TypeScript `any` silently disables all type checking |
+| `EXPLAIN ANALYZE` on every SQL query | Blind queries are time bombs |
+| Idempotency key on every mutation that could be retried | Duplicate operations corrupt data |
+| Outbox pattern for every Kafka publish that must be guaranteed | Events lost at publish time = silent inconsistency |
+| ADR for every major technology decision | Future you needs to know why |
+| k6 load test before calling anything "production-ready" | Untested performance claims are fiction |
+| `goleak.VerifyNone(t)` in every Go test file | Goroutine leaks accumulate and eventually crash production |
+| Tenant-scoped cache keys everywhere in WorkOS | `cache:{tenantId}:...` — never just `cache:employees` |
+| Post benchmark numbers publicly every weekend | Building in public is proof of work |

@@ -40,9 +40,9 @@ export default function TasksPage() {
       <div className="tasks-header">
         <h1 className="tasks-title">
           <BookOpenCheck className="icon-main" />
-          Mastery Curriculum
+          Mastery Plan
         </h1>
-        <p className="tasks-subtitle">10-11 Month Full-Stack + Backend + Distributed Systems Plan</p>
+        <p className="tasks-subtitle">8–9 Month Backend Engineering Mastery Plan (Infraspec)</p>
       </div>
 
       <div className="curriculum-list">

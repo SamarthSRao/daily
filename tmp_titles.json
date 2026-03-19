@@ -1,0 +1,17 @@
+[
+  "Mirrors Datadog's Agent + Backend Infrastructure",
+  ", Week 1: HTTP + HTML + CSS + OpenTelemetry Mental Model",
+  ", Week 2–3: Node.js Internals + PostgreSQL + ClickHouse",
+  ", Week 5–6: Go Collector Agent + K8s DaemonSet Operator",
+  "Mirrors Okta/WorkOS's Internal Auth Platform",
+  ", Week 7: VaultAuth Foundation",
+  ", Week 8: VaultAuth Advanced + Testing",
+  "Mirrors Confluent's Internal Kafka Operations Platform",
+  ", Week 9: StreamBridge Foundation",
+  ", Week 10: Kafka Streams + ksqlDB UI + Go Deep",
+  ", Week 11–12: StreamBridge System Design + Polish",
+  "Mirrors Snowflake's Internal Query Infrastructure",
+  ", Week 13: CrystalDB Foundation",
+  ", Week 14: All System Design Cases Documented",
+  "OTel + Polish + Hiring Sprint"
+]

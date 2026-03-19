@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const content = fs.readFileSync('properrr.md', 'utf-8');
+const content = fs.readFileSync('mastery_plan.md', 'utf-8');
 const lines = content.split(/\r?\n/);
 
 const data = [];
@@ -12,7 +12,7 @@ let inCodeBlock = false;
 for (let line of lines) {
   const trimmed = line.trim();
 
-  // 1. Handle Code Blocks (Strictly content)
+  // 1. Handle Code Blocks
   if (trimmed.startsWith('```')) {
     inCodeBlock = !inCodeBlock;
     if (currentDay) {
@@ -28,32 +28,60 @@ for (let line of lines) {
     continue;
   }
 
-  // 2. Month headers (Strict: Starts with ## MONTH)
-  const monthMatch = line.match(/^##\s+MONTHS?\s+([\d\u2013\-]+)\s*[:\u2013\u2014]\s*(.+)/i);
+  // 2. Month headers: # MONTH ... or ## MONTH ...
+  // Loose separator: any non-word character sequence
+  const monthMatch = line.match(/^#+\s+(?:MONTHS?|Months?)\s+([\d\u2013\-\s]+)[^a-z0-9](.+)/i);
   if (monthMatch) {
-    currentMonth = { title: `MONTH ${monthMatch[1]}: ${monthMatch[2].trim()}`, weeks: [] };
+    currentMonth = { title: `MONTH ${monthMatch[1].trim()}: ${monthMatch[2].trim()}`, weeks: [] };
     data.push(currentMonth);
     currentWeek = null;
     currentDay = null;
     continue;
   }
 
-  // 3. Week headers (Strict: Starts with ### Week)
-  // Handles variant: ### Week 15 (detail): title
-  const weekMatch = line.match(/^###\s+Week\s+([\d\u2013\-]+)(?:\s*\([^)]+\))?\s*[:\u2013\u2014]\s*(.+)/i);
-  if (weekMatch) {
-    if (!currentMonth) continue;
-    currentWeek = { title: `Week ${weekMatch[1]}: ${weekMatch[2].trim()}`, days: [] };
+  // 3. Week headers: ## Week ... or ### Week ...
+  const weekMatch = line.match(/^#+\s+Weeks?\s+([\d\u2013\-\s]+)(?:\s*\([^)]+\))?[^a-z0-9\s](.+)/i) || 
+                   line.match(/^#+\s+Weeks?\s+([\d\u2013\-\s]+)/i);
+  if (weekMatch && !line.match(/^#+\s+(MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY|WEEKEND)/i)) {
+    if (!currentMonth) {
+      currentMonth = { title: "Introduction", weeks: [] };
+      data.push(currentMonth);
+    }
+    const weekNum = weekMatch[1].trim();
+    const weekTitle = weekMatch[2] ? weekMatch[2].trim() : "";
+    currentWeek = { title: `Week ${weekNum}${weekTitle ? ': ' + weekTitle : ''}`, days: [] };
     currentMonth.weeks.push(currentWeek);
     currentDay = null;
     continue;
   }
 
-  // 4. Day headers (Strict: Starts with ####)
-  if (line.startsWith('#### ')) {
-    if (!currentWeek) continue; // IGNORE days that aren't inside an explicit Week block
-    const title = line.replace(/^#### /, '').trim();
-    currentDay = { title, tasks: [] };
+  // 4. Day-like headers (Monday, Tuesday, etc.) or combined Day-Week headers
+  const dayMatch = line.match(/^#+\s+(MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY|WEEKEND)(?:\s+[^a-z0-9\s]\s*(.+))?/i);
+  if (dayMatch) {
+    if (!currentMonth) {
+      currentMonth = { title: "Introduction", weeks: [] };
+      data.push(currentMonth);
+    }
+    
+    const weekInDayMatch = line.match(/Week\s+([\d\u2013\-]+)/i);
+    if (weekInDayMatch) {
+       const weekNum = weekInDayMatch[1];
+       if (!currentWeek || !currentWeek.title.includes(`Week ${weekNum}`)) {
+          currentWeek = { title: `Week ${weekNum}`, days: [] };
+          currentMonth.weeks.push(currentWeek);
+       }
+    }
+
+    if (!currentWeek) {
+      currentWeek = { title: "Overview", days: [] };
+      currentMonth.weeks.push(currentWeek);
+    }
+
+    const dayName = dayMatch[1].charAt(0) + dayMatch[1].slice(1).toLowerCase();
+    let subTitle = dayMatch[2] ? dayMatch[2].trim() : "";
+    subTitle = subTitle.replace(/Week\s+[\d\u2013\-]+\s*[\u2013\u2014·]?\s*/i, '').trim();
+    
+    currentDay = { title: subTitle ? `${dayName}: ${subTitle}` : dayName, tasks: [] };
     currentWeek.days.push(currentDay);
     continue;
   }
@@ -106,6 +134,7 @@ for (let m of data) {
             lt.startsWith('* ') || 
             lt.startsWith('> ') || 
             lt.startsWith('**') || 
+            lt.startsWith('|') ||
             lt.match(/^\d+\.\s/)) {
           if (currentItem.length > 0) {
             mergedTasks.push(currentItem.join('\n').trim());
@@ -124,7 +153,6 @@ for (let m of data) {
   }
 }
 
-// Final Filter: Only keep months that actually have weeks
 const filtered = data.filter(m => m.weeks.length > 0);
 
 fs.writeFileSync('./src/tasks.json', JSON.stringify(filtered, null, 2));

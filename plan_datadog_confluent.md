@@ -1,682 +1,519 @@
-# 10-Month Full-Stack Engineering Mastery Plan
-## Targeting Datadog · Confluent · Snowflake · Kong · Okta / WorkOS / FusionAuth
-### Deep Infra + Observability + Data Platforms Track
+# Full-Stack Engineering Mastery Plan
+## Targeting Datadog · Confluent · Snowflake · Kong · Okta / WorkOS
+### Deep Infra + Observability + Data Platforms Track — Sequential Projects
 
 ---
 
-## Why This Track
+## The Core Principle: One Project at a Time
 
-**Datadog** — you learn observability: metrics, traces, logs, dashboards, alerts. The skills compound everywhere — every production engineer needs them. India bands are strong and the technical bar is genuinely high.
-
-**Confluent** — you learn Kafka from the inside. Confluent builds the managed Kafka platform, Schema Registry, Kafka Connect, ksqlDB. If you can contribute to Confluent's ecosystem, Kafka jobs open everywhere.
-
-**Snowflake / ThoughtSpot** — you learn OLAP, columnar storage, query optimization, data sharing. Deep data engineering work with excellent pay.
-
-**Kong** — API gateway engineering. Every company needs one. You learn: plugin systems, rate limiting at the gateway layer, service mesh, credential management. Skills that compound across every backend role.
-
-**Okta / WorkOS / FusionAuth** — identity and auth infrastructure. OIDC, SAML, MFA, device trust. Once you build auth infrastructure, you understand the piece every app depends on but no one owns well.
-
-**The engineer who gets this track** can build and operate the infrastructure that other engineers depend on. Observability, auth, API gateways, data pipelines — these are the "plumbing of the internet" and they age extremely well.
+You finish one project completely before starting the next. Each project is built deeply, deployed, benchmarked, and documented before you touch the next one. Every project is **specifically modelled on real internal tooling** at the target company — not a generic portfolio piece.
 
 ---
 
-## The 4 Platform Projects
+## The 4 Projects (Sequential — Complete One Before Starting the Next)
 
-- 🔭 **ObserveFlow** — Observability platform (mirrors Datadog: metrics ingest, trace pipeline, log aggregation, dashboards, alerting)
-- 🌊 **StreamBridge** — Kafka management + stream processing platform (mirrors Confluent: cluster management, Schema Registry, ksqlDB-style queries, connector UI)
-- ❄️ **CrystalDB** — Analytical data platform (mirrors Snowflake: columnar storage, query engine, data sharing, time-travel)
-- 🔑 **VaultAuth** — Identity + auth infrastructure (mirrors Okta/WorkOS: OIDC, SAML, MFA, API keys, audit log)
+| Order | Project | Mirrors | Duration | What the Company Actually Uses This For |
+|-------|---------|---------|----------|-----------------------------------------|
+| **1st** | **ObserveFlow** | Datadog's internal collector + ingestion pipeline | Months 1–2 | The Datadog agent (written in Go) runs on every host, collects metrics/traces/logs via OTLP, and ships to the Datadog backend. ObserveFlow is that collector + backend + dashboard — built by you. |
+| **2nd** | **VaultAuth** | Okta/WorkOS's internal identity infrastructure | Month 3 | Okta's engineers build the OIDC provider, SAML SP, MFA enrollment, API key management, and audit log that millions of companies depend on for auth. VaultAuth is that internal platform. |
+| **3rd** | **StreamBridge** | Confluent's internal Kafka management platform | Months 4–5 | Confluent's engineers operate hundreds of Kafka clusters, enforce Schema Registry compatibility, manage consumer group lag, and build ksqlDB-style stream processing. StreamBridge is that internal tooling. |
+| **4th** | **CrystalDB** | Snowflake's internal query engine + data sharing | Month 6 | Snowflake's engineers build the columnar query engine, partition pruning, result cache, and data sharing credential system. CrystalDB mirrors those internal systems. |
 
-**Monorepo structure:**
+---
+
+## Project 1: ObserveFlow — Observability Collector + Ingestion + Dashboard
+### Months 1–2 · Mirrors Datadog's Agent + Backend Infrastructure
+
+**What Datadog actually uses:** The Datadog agent is a Go binary that runs as a DaemonSet on every Kubernetes node. It collects metrics (system CPU, memory, disk), traces (from OTel SDKs), and logs (from container stdout). It speaks OTLP (OpenTelemetry Protocol) over gRPC. It ships to the Datadog backend which fans data into ClickHouse (for metrics/traces) and Elasticsearch (for logs). ObserveFlow is that entire system — agent to dashboard.
+
+---
+
+### Month 1, Week 1: HTTP + HTML + CSS + OpenTelemetry Mental Model
+
+**Monday — HTTP + OTLP Protocol + mTLS + CLI Setup**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js 22, VS Code, pnpm, `curl`, `openssl`, `@opentelemetry/sdk-node` |
+| 📖 **Concepts** | HTTP/HTTPS, DNS, TLS handshake, **mTLS** (both sides present certificates — used between ObserveFlow collector and backend), OTLP protocol (gRPC + HTTP/protobuf), OTel data model (trace/metric/log with shared `resource` + `attributes`) |
+| 🎯 **You Build** | ObserveFlow raw Node.js OTLP/HTTP receiver: `POST /v1/traces`, `POST /v1/metrics`, `POST /v1/logs`. Configure a real Node.js app with `@opentelemetry/sdk-node` to send to `localhost:4318` — see your own traces arrive. |
+| 🔗 **Why It Matters** | This is Datadog's exact ingestion endpoint design. The `POST /v1/traces` endpoint you build today becomes the full ClickHouse pipeline in Week 9. The mTLS pattern is how the Datadog agent authenticates to the backend — no API key, just a certificate. |
+
+**Tuesday — HTML + CSS + ObserveFlow Dashboard Layout**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | HTML5, CSS, Tailwind, Shadcn, Recharts |
+| 📖 **Concepts** | Semantic HTML, box model, flexbox, grid, Tailwind, `cva` for metric card variants, Recharts for time-series charts |
+| 🎯 **You Build** | ObserveFlow dashboard HTML + CSS: metrics overview cards (CPU/memory/request rate), time-series line chart (Recharts), trace waterfall skeleton (D3.js will fill it in Week 9). Lighthouse 90+. |
+
+**Wednesday — JavaScript Engine Deep**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, Vitest |
+| 📖 **Concepts** | Primitive vs reference types, closures, event loop (call stack, microtask, macrotask), `Promise.all`/`allSettled`, generators for lazy metric pagination |
+| 🎯 **You Build** | `packages/utils/retry.ts` — used by ObserveFlow collector for failed OTLP deliveries. `packages/utils/concurrent.ts` — `ConcurrencyLimiter` for batching metric writes to ClickHouse. `packages/utils/emitter.ts` — alert state machine. |
+
+**Thursday — TypeScript: Generics + Branded Types + Zod**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | TypeScript strict mode, Zod |
+| 📖 **Concepts** | Branded types (`TraceId`, `SpanId`, `MetricName`, `ServiceName`), generics, `z.infer`, discriminated unions for OTel signal types |
+| 🎯 **You Build** | `packages/types` — `TraceId`, `SpanId`, `MetricName` are branded. `packages/schemas` — `SpanSchema`, `MetricPointSchema`, `LogRecordSchema` validated through Zod before any storage write. |
+
+**Friday — React + Tanstack Query + Zustand + Recharts**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | React 18, Tanstack Query, Zustand, Recharts, Nivo |
+| 📖 **Concepts** | All hooks, optimistic updates, selective subscription, `useQuery` for metrics polling, Recharts `<LineChart>` with live data |
+| 🎯 **You Build** | ObserveFlow metrics dashboard: Recharts time-series chart updates every 10s (Tanstack Query poll). Service selector (Zustand). Sparklines on metric cards. Animated transitions on chart updates (Motion). |
+
+**Weekend — ObserveFlow Full-Stack Shell**
+
+OTLP receiver + React dashboard + PostgreSQL metadata + JWT auth. Deployed. Lighthouse 90+.
+
+---
+
+### Month 1, Week 2–3: Node.js Internals + PostgreSQL + ClickHouse
+
+**Week 2, Monday — V8 + Streams: High-Throughput OTLP Ingestion**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js `stream/promises`, `worker_threads`, `node --inspect` |
+| 📖 **Concepts** | V8 JIT, hidden classes, GC pressure, streams backpressure, `worker_threads` for CPU-bound protobuf parsing |
+| 🎯 **You Build** | ObserveFlow OTLP stream: incoming OTLP/HTTP protobuf → Transform stream (parse protobuf in `worker_threads`) → Writable (batch to ClickHouse 500 spans at a time). 200MB log file processed in constant memory. |
+| 🔗 **Why It Matters** | Datadog's backend ingests 10M+ spans/sec. Parsing protobuf synchronously would block the event loop. Moving it to `worker_threads` is the same pattern Datadog uses for CPU-intensive deserialization. |
+
+**Week 2, Tuesday — ClickHouse: Metrics + Traces Storage**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | ClickHouse, Go ClickHouse client |
+| 📖 **Concepts** | MergeTree engine, partitioning by date, `ORDER BY (service, timestamp)` for fast per-service queries, sub-second aggregations on billions of rows, `EXPLAIN` on ClickHouse |
+| 🎯 **You Build** | ObserveFlow ClickHouse schema: `spans` table (traceId, spanId, service, operation, duration, timestamp, attributes). `metrics` table (name, value, labels, timestamp). Query: `SELECT avg(duration) FROM spans WHERE service = 'payment' AND timestamp > now() - INTERVAL 1 HOUR` → < 100ms on 1B rows. |
+| 🔗 **Why It Matters** | Datadog's metrics backend is ClickHouse. The same `SELECT p99(duration) FROM spans GROUP BY service` that takes 30 seconds in PostgreSQL takes 200ms in ClickHouse because of columnar storage and vectorized execution. You experience this difference yourself. |
+
+**Week 2, Wednesday — Elasticsearch: Log Search**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Elasticsearch, `@elastic/elasticsearch` Node.js client |
+| 📖 **Concepts** | Inverted index for full-text log search, index lifecycle management (hot → warm → cold → delete), Grok patterns for log parsing, field extraction |
+| 🎯 **You Build** | ObserveFlow log search: `POST /v1/logs` → parse with Grok → Elasticsearch index. `GET /logs/search?query=error+payment+timeout` → full-text search results in < 50ms. Index lifecycle: logs > 30 days moved to cold storage. |
+
+**Week 2, Thursday — TimescaleDB: Rollup Metrics**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | TimescaleDB, PostgreSQL |
+| 📖 **Concepts** | Hypertables with automatic time partitioning, continuous aggregates (precompute hourly/daily rollups), partition pruning for time-range queries |
+| 🎯 **You Build** | ObserveFlow TimescaleDB: raw metrics stored in ClickHouse. Hourly rollups (p50/p95/p99/avg) materialized in TimescaleDB continuous aggregate. Dashboard queries hit TimescaleDB for fast historical views. |
+| 🔗 **Why It Matters** | Datadog's metrics architecture is two-tier: raw high-resolution data in a fast column store, pre-aggregated rollups for dashboard queries. You implement both. |
+
+**Week 2, Friday — All 4 Isolation Levels + Indexes + N+1**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PostgreSQL, `sqlc`, `pgxpool` |
+| 📖 **Concepts** | MVCC, all 4 isolation levels with live anomaly demos, B-tree/partial/GIN indexes, `EXPLAIN ANALYZE`, N+1 elimination |
+| 🎯 **You Build** | ObserveFlow metadata: `services`, `monitors`, `alerts`, `dashboards` in PostgreSQL. Every query `EXPLAIN ANALYZE`'d. No seq scans. `SELECT FOR UPDATE` for alert state transitions. |
+
+**Week 3: JWT Auth + RBAC + Redis + Webhook HMAC**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | JWT RS256, Redis, Node.js `crypto`, `AsyncLocalStorage` |
+| 📖 **Concepts** | RS256 asymmetric JWT, 3-role RBAC, HMAC webhook signing, request-scoped logger via `AsyncLocalStorage` |
+| 🎯 **You Build** | `packages/auth`: JWT RS256 auth for all projects. ObserveFlow alert webhooks signed with HMAC (`X-ObserveFlow-Signature`). Request-scoped logger: every log includes `serviceId`, `traceId`, `requestId`. |
+
+---
+
+### Month 2, Week 5–6: Go Collector Agent + K8s DaemonSet Operator
+
+**Week 5: Go Language + Concurrency**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go 1.22, `golangci-lint`, `goleak`, `go test -race` |
+| 📖 **Concepts** | Zero values, interfaces, error wrapping, goroutines + M:N scheduler, channels, `sync.RWMutex`, `errgroup`, `singleflight`, `atomic.Int64` |
+| 🎯 **You Build** | ObserveFlow Go collector agent: gathers host metrics (CPU, memory, disk, network) every 10s using `gopsutil`. Reads container logs from Docker socket. Sends to ObserveFlow backend via OTLP/gRPC. Single static binary, 8MB. `go test -race` passes. `goleak.VerifyNone(t)` clean. |
+| 🔗 **Why It Matters** | The Datadog agent is this exact system. It's a single Go binary that ships as a DaemonSet. It collects from the host's `cgroups`, reads Docker/containerd logs, and speaks OTLP. You build an equivalent. |
+
+**Week 5, Thursday–Friday — gRPC OTLP Receiver**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | gRPC, Protocol Buffers, `buf` CLI, OTel proto definitions |
+| 📖 **Concepts** | OTLP/gRPC receiver (implement the `TraceService`, `MetricsService`, `LogsService` protobuf services), mTLS between agent and backend, streaming RPCs for log tailing |
+| 🎯 **You Build** | ObserveFlow backend gRPC receiver: `TraceService.Export`, `MetricsService.Export`, `LogsService.Export` — the same protobuf services that every OTel SDK speaks to. mTLS: agent presents cert, backend verifies. |
+
+**Week 6: K8s DaemonSet Operator + Alert Engine**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, `controller-runtime`, Kubernetes DaemonSet |
+| 📖 **Concepts** | K8s Operator pattern, CRD (`ObserveFlowCollector`), DaemonSet management via Operator, Prometheus alert rules as CRDs |
+| 🎯 **You Build** | ObserveFlow `CollectorOperator`: `ObserveFlowCollector` CRD → Operator deploys DaemonSet. Every new node gets an agent automatically. `kubectl apply -f collector.yaml` → agents running on all nodes in 30s. |
+| 🔗 **Why It Matters** | Datadog's Kubernetes installation is a Helm chart that creates a DaemonSet. You build the Operator that manages that DaemonSet — the exact infrastructure Datadog's K8s engineering team maintains. |
+
+**Week 6, Thursday–Friday — Alert Engine**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Kafka, Redis, ClickHouse |
+| 📖 **Concepts** | Threshold alerts, anomaly detection (mean ± 3σ sliding window), composite alerts (AND/OR conditions), noise reduction (don't alert on 1-minute transient spike), alert grouping + dedup |
+| 🎯 **You Build** | ObserveFlow alert engine: `(error_rate > 1%) AND (p99_latency > 500ms) FOR 5 MINUTES` → alert fires. Kafka fan-out to PagerDuty + Slack + email + WebSocket (live alert feed in dashboard). Alert dedup: same alert firing 100 times → 1 notification with count. |
+
+**Weekend — ObserveFlow COMPLETE**
+
+ObserveFlow finished. k6: 10M spans/sec ingest, ClickHouse query p99 < 200ms on 30-day data. Agent binary 8MB. DaemonSet deploys in 30s. Alert engine with noise reduction live. ADRs written. LinkedIn post. Now start VaultAuth.
+
+---
+
+## Project 2: VaultAuth — Identity + Auth Infrastructure
+### Month 3 · Mirrors Okta/WorkOS's Internal Auth Platform
+
+**What Okta actually uses:** Okta's engineers build and operate the OIDC provider (issuing ID/access/refresh tokens), the SAML 2.0 SP (accepting SAML assertions from enterprise IdPs), the MFA enrollment system (TOTP + WebAuthn), API key management (hash on store, last-used tracking, rotation), and the append-only audit log. VaultAuth is that internal platform.
+
+**The key insight:** Every other project will authenticate via VaultAuth from Week 1 of each project. VaultAuth is the auth infrastructure that the other three platforms depend on — just like Okta is used by the companies that use Datadog, Confluent, and Snowflake.
+
+---
+
+### Month 3, Week 7: VaultAuth Foundation
+
+**Monday — OIDC Provider: Token Issuance**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Redis, `golang-jwt/jwt` |
+| 📖 **Concepts** | OIDC discovery (`/.well-known/openid-configuration`), authorization code flow (`/auth/authorize` → redirect → `/auth/token`), ID token vs access token vs refresh token, JWKS (`/.well-known/jwks.json`), RS256 token signing |
+| 🎯 **You Build** | VaultAuth OIDC provider: full authorization code flow. ID token contains `sub`, `email`, `name`, `iat`, `exp`. Access token is short-lived (15min). Refresh token stored in Redis (7 days). JWKS endpoint serves public keys for verification. |
+| 🔗 **Why It Matters** | Every company using Okta goes through this exact flow. When StreamBridge (Project 3) needs "Login with VaultAuth", it implements the authorization code flow against your OIDC endpoints — the same way Confluent Cloud authenticates with Okta. |
+
+**Tuesday — SAML 2.0 Service Provider**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, `crewjam/saml` library |
+| 📖 **Concepts** | SAML 2.0 assertions, SP-initiated SSO, SAML metadata exchange, attribute mapping (SAML attributes → VaultAuth user properties) |
+| 🎯 **You Build** | VaultAuth SAML SP: enterprise customers can configure their own IdP (Google Workspace, Azure AD, Ping). SP-initiated SSO: user visits VaultAuth → redirect to enterprise IdP → SAML assertion → VaultAuth creates/updates user → issues OIDC tokens. |
+| 🔗 **Why It Matters** | Every enterprise Okta customer has SAML-based SSO with their corporate IdP. Building the SAML SP teaches you the exact protocol that Okta's enterprise product is built on. |
+
+**Wednesday — MFA: TOTP + WebAuthn**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, `pquerna/otp` (TOTP), WebAuthn Go library |
+| 📖 **Concepts** | TOTP (RFC 6238): time-based OTP, `otpauth://` URI for QR codes, 30-second windows, drift tolerance. WebAuthn: passkeys, authenticator registration ceremony, assertion ceremony, CBOR-encoded credential |
+| 🎯 **You Build** | VaultAuth MFA: enroll TOTP (QR code → Google Authenticator). Enroll WebAuthn (passkey → Touch ID / Face ID). MFA required on login. Step-up auth: sensitive action (delete org) requires MFA re-prompt even if already logged in. |
+
+**Thursday — API Key Management**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Redis |
+| 📖 **Concepts** | API key hashing (store only `SHA256(key)`, never the key), `last_used_at` tracking, key rotation (issue new key, old key still valid for 24h grace period), key scopes, rate limiting per key |
+| 🎯 **You Build** | VaultAuth API keys: `POST /keys` returns the key once (never again). Stored as `SHA256(key)`. `last_used_at` updated on every authenticated request. Key rotation: new key issued, old key deactivated after 24h. Rate limit: 100 req/s per key (Sorted Set in Redis). |
+| 🔗 **Why It Matters** | Stripe, Datadog, Confluent all use this exact pattern. You never store the raw API key. The user sees it once. You can verify it by hashing the incoming key and comparing against stored hashes. |
+
+**Friday — Audit Log: Append-Only + Tamper-Evident**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Kafka, Elasticsearch |
+| 📖 **Concepts** | Append-only table (no UPDATE/DELETE), tamper-evident hash chain (each row hashes previous row), Kafka CDC for audit log, Elasticsearch full-text search over audit events |
+| 🎯 **You Build** | VaultAuth audit log: every auth event (login, logout, MFA enroll, key created, key used, permission changed) is an immutable row. Hash chain: `hash_of_row = SHA256(previous_row_hash + row_content)`. Verify chain integrity endpoint: `GET /audit/verify`. |
+
+---
+
+### Month 3, Week 8: VaultAuth Advanced + Testing
+
+**Monday–Tuesday — Rate Limiting + Session Management + Device Trust**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Redis Lua, Go |
+| 📖 **Concepts** | All 4 rate limit algorithms, concurrent session limits (max 5 active sessions per user), device trust scoring (known device → lower friction, unknown → step-up auth) |
+| 🎯 **You Build** | VaultAuth rate limiting: all 4 algorithms (token bucket on login, sliding window on MFA attempts, fixed window on key usage, leaky bucket on SAML assertions). Concurrent session enforcement: 6th session logs out oldest. Device fingerprinting: trust score based on browser fingerprint, IP reputation, user agent. |
+
+**Wednesday — Next.js Frontend + WebAuthn UI**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Next.js, React, Tanstack Query, Motion |
+| 📖 **Concepts** | Server Components for public auth pages, `'use client'` for MFA flows, WebAuthn browser API (`navigator.credentials.create`/`get`) |
+| 🎯 **You Build** | VaultAuth frontend: login page (Server Component, fast), MFA enrollment flow (TOTP QR code display, WebAuthn registration ceremony), admin portal (user management, key listing, audit log viewer). |
+
+**Thursday–Friday — Full Test Suite + k6**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | `testcontainers`, Playwright, k6, Go `testing` |
+| 📖 **Concepts** | Auth flow E2E testing (Playwright), `testcontainers` for real PostgreSQL + Redis in tests, k6 load test on token issuance |
+| 🎯 **You Build** | VaultAuth: k6 at 10K token issuances/sec, p99 < 20ms. Playwright: full OIDC login flow. Full SAML SSO flow. `go test -race` passes. |
+
+**Weekend — VaultAuth COMPLETE**
+
+OIDC provider + SAML SP + TOTP + WebAuthn + API keys + audit log. k6: 10K tokens/sec, p99 < 20ms. ADRs: "Why hash API keys not encrypt", "Why WebAuthn over SMS OTP". LinkedIn post. Now start StreamBridge.
+
+---
+
+## Project 3: StreamBridge — Kafka Management + Stream Processing Platform
+### Months 4–5 · Mirrors Confluent's Internal Kafka Operations Platform
+
+**What Confluent actually uses:** Confluent's engineers operate Kafka clusters (now with KRaft — no Zookeeper), enforce Schema Registry compatibility (Avro/Protobuf/JSON Schema), manage consumer group lag, build Kafka Streams stateful processors, and provide a UI for data engineers to interact with all of this. StreamBridge is that internal operations platform.
+
+---
+
+### Month 4, Week 9: StreamBridge Foundation
+
+**Monday — Kafka Broker Architecture + KRaft**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Apache Kafka (KRaft mode), `kcat`, Go Confluent Kafka client |
+| 📖 **Concepts** | KRaft (Kafka Raft — no Zookeeper), broker roles (controller vs broker vs combined), leader election within Raft quorum, ISR (In-Sync Replicas), partition assignment across brokers |
+| 🎯 **You Build** | StreamBridge: local KRaft Kafka cluster (3 nodes). Create topics, inspect partition leaders, trigger leader election (kill broker, watch leader change). StreamBridge API: `GET /clusters/{clusterId}/brokers`, `GET /clusters/{clusterId}/topics`. |
+| 🔗 **Why It Matters** | Confluent switched Kafka from Zookeeper to KRaft in Kafka 3.3. Understanding why (Zookeeper was the operational bottleneck for large clusters) and how it works is an explicit Confluent interview topic. |
+
+**Tuesday — Schema Registry: Compatibility Enforcement**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Confluent Schema Registry, Avro, Protobuf, JSON Schema |
+| 📖 **Concepts** | Schema Registry REST API, compatibility modes (BACKWARD/FORWARD/FULL/NONE), schema evolution rules (BACKWARD: new reader can read old data), Avro schema fingerprint for deduplication |
+| 🎯 **You Build** | StreamBridge Schema Registry UI: register schema, check compatibility before registering (`POST /compatibility`), view schema evolution history. Demonstrate: add nullable field (BACKWARD compatible ✓), remove required field (BACKWARD incompatible — blocked). |
+| 🔗 **Why It Matters** | A single schema-incompatible deployment can cause all consumers on a topic to crash. Confluent's Schema Registry is the enforcement mechanism. You build the UI for it. |
+
+**Wednesday — Consumer Group Lag Monitoring**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Kafka AdminClient, ClickHouse |
+| 📖 **Concepts** | Consumer lag (log end offset − committed offset), lag alerting, partition rebalancing, assignment strategies (Range, RoundRobin, Sticky) |
+| 🎯 **You Build** | StreamBridge consumer lag dashboard: poll all consumer groups every 30s via `AdminClient.ListConsumerGroupOffsets`. Store in ClickHouse (time-series). Recharts chart: consumer group lag over 24h. Alert: lag > 1000 for 5 minutes → PagerDuty via ObserveFlow (Project 1). |
+| 🔗 **Why It Matters** | Consumer lag is the primary SLA metric for Kafka-based systems. When lag grows, events are being produced faster than consumed — the system is falling behind. Confluent's Cloud UI is exactly this dashboard. |
+
+**Thursday — Exactly-Once Semantics**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go Confluent Kafka client, idempotent producer config |
+| 📖 **Concepts** | Idempotent producer (`enable.idempotence=true`), producer epochs, sequence numbers, transactional API (`begin_transaction`, `commit_transaction`, `abort_transaction`), exactly-once semantics across topic-partition pairs |
+| 🎯 **You Build** | StreamBridge exactly-once demo: producer sends 10K messages. Kill and restart mid-way. Verify: exactly 10K messages consumed, none duplicated, none lost. Compare with non-idempotent producer (duplicates visible). |
+| 🔗 **Why It Matters** | This is the hardest concept in Kafka and a guaranteed Confluent interview topic. "Explain how Kafka achieves exactly-once semantics" — you have working code that demonstrates it. |
+
+**Friday — Kafka Connect: CDC + Sink Connectors**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Kafka Connect, Debezium (CDC source), Elasticsearch sink |
+| 📖 **Concepts** | Kafka Connect distributed mode, source connector (Debezium: DB changes → Kafka), sink connector (Kafka → Elasticsearch), offset management, connector REST API |
+| 🎯 **You Build** | StreamBridge: Debezium connector captures every change from VaultAuth's `audit_log` PostgreSQL table → Kafka topic → Elasticsearch sink. StreamBridge UI: manage connectors (`GET /connectors`, `POST /connectors`, `DELETE /connectors/{name}`). |
+
+---
+
+### Month 4, Week 10: Kafka Streams + ksqlDB UI + Go Deep
+
+**Monday–Tuesday — Kafka Streams: Stateful Processing**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Kafka Streams (Java), Go proxy, React |
+| 📖 **Concepts** | Stateful stream processing, tumbling windows, sliding windows, session windows, `KTable` vs `KStream`, exactly-once in Kafka Streams, changelog topics |
+| 🎯 **You Build** | StreamBridge stream processor: `SELECT COUNT(*), service_name FROM auth_events WINDOW TUMBLING (SIZE 5 MINUTES) GROUP BY service_name` — authentication rate per service. Kafka Streams handles the windowed aggregation. StreamBridge wraps with REST API + live React chart. |
+
+**Wednesday — Go Language + Concurrency for StreamBridge**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, `golangci-lint`, `goleak`, `go test -race` |
+| 📖 **Concepts** | Go interfaces, error wrapping, goroutines, `errgroup` for parallel cluster health checks, `singleflight` for consumer group lag deduplication |
+| 🎯 **You Build** | StreamBridge cluster health checker in Go: `errgroup` queries all 3 brokers in parallel. `singleflight`: 100 concurrent lag requests for same consumer group → 1 AdminClient call. `goleak.VerifyNone(t)` clean. |
+
+**Thursday — `net/http` + `sqlc` + K8s Operator**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go `net/http`, `chi`, `sqlc`, `controller-runtime` |
+| 📖 **Concepts** | `http.Handler` interface, all 4 server timeouts, `sqlc` compile-time SQL, K8s Operator for Kafka topic lifecycle |
+| 🎯 **You Build** | StreamBridge `KafkaTopicOperator`: `KafkaTopic` CRD → Operator creates/updates/deletes Kafka topics. `kubectl apply -f topic.yaml` → topic created in 5s with correct partition count and replication factor. |
+
+**Friday — VaultAuth Integration + ObserveFlow Integration**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | OIDC authorization code flow, OTel SDK |
+| 📖 **Concepts** | OIDC login flow against VaultAuth, OTel instrumentation sending traces to ObserveFlow |
+| 🎯 **You Build** | StreamBridge authenticates users via VaultAuth OIDC. All StreamBridge HTTP spans appear in ObserveFlow's trace viewer. Consumer group lag alerts route through ObserveFlow's alert engine → PagerDuty. The 3 projects are now wired together. |
+
+---
+
+### Month 5, Week 11–12: StreamBridge System Design + Polish
+
+**System design implementations in StreamBridge:**
+- **Caching** — Kafka broker metadata cached in Redis (cache-aside, 30s TTL). Schema Registry schemas cached (write-through — always fresh). Consumer lag metrics in ClickHouse for historical.
+- **Database isolation levels** — all 4 levels demonstrated. StreamBridge uses `READ COMMITTED` for connector status reads, `SERIALIZABLE` for schema registration (prevent concurrent conflicting schema changes).
+- **Consistent hashing** — StreamBridge workers use consistent hash ring for partition assignment routing.
+- **Bloom filter** — CDC event deduplication (same Debezium event seen twice → Bloom filter catches it).
+- **Kafka at scale** — 1M messages/sec sustained, consumer lag < 1s. k6 load test documented.
+
+**Weekend — StreamBridge COMPLETE**
+
+k6: 1M messages/sec produced, consumer lag < 1s. Schema Registry UI with compatibility enforcement. KRaft cluster management. Exactly-once demo. ADRs: "Why KRaft over Zookeeper", "Why exactly-once over at-least-once for audit events". LinkedIn post. Now start CrystalDB.
+
+---
+
+## Project 4: CrystalDB — Columnar Query Engine + Data Sharing Platform
+### Month 6 · Mirrors Snowflake's Internal Query Infrastructure
+
+**What Snowflake actually uses:** Snowflake's engineers build the columnar query engine (partition pruning, vectorized execution), the result cache (same query within 24h → cached result), the data sharing system (read-only credentials for specific S3 prefixes), and the time-travel feature (query any table as it was at a previous point in time). CrystalDB mirrors these internal systems.
+
+---
+
+### Month 6, Week 13: CrystalDB Foundation
+
+**Monday — Columnar Storage: Parquet + S3 Architecture**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Apache Parquet, S3, Go AWS SDK, `parquet-go` |
+| 📖 **Concepts** | Columnar vs row storage (why `SELECT avg(salary) FROM employees` reads only 1 column in Parquet vs all columns in row storage), Parquet row groups, metadata footer, predicate pushdown, partition pruning |
+| 🎯 **You Build** | CrystalDB storage layer: datasets stored as Parquet files on S3, partitioned by `(year, month)` directory structure. Metadata in PostgreSQL: dataset name, schema, partition list, row counts, S3 paths. |
+| 🔗 **Why It Matters** | Snowflake stores data as Parquet (actually their own columnar format based on Parquet) on S3. The separation of compute from storage — S3 holds the data, the query engine reads it — is Snowflake's architectural breakthrough. |
+
+**Tuesday — ClickHouse as Query Engine**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | ClickHouse, `clickhouse-go` |
+| 📖 **Concepts** | External data (ClickHouse reads Parquet from S3 via S3 table engine), partition pruning (only read relevant Parquet files), result cache (same hash → return cached result), concurrent query isolation |
+| 🎯 **You Build** | CrystalDB query execution: SQL query → parse partition filter → identify relevant Parquet files on S3 → ClickHouse `SELECT` via S3 table engine → result. `SELECT COUNT(*) FROM trips WHERE month = '2024-01'` reads only January Parquet files. 100TB dataset, query returns in < 10s. |
+
+**Wednesday — Data Time-Travel**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | S3 versioning, Delta Lake (alternative approach), Go |
+| 📖 **Concepts** | Time-travel queries (`AS OF TIMESTAMP` / `AS OF VERSION`), immutable snapshot files on S3, transaction log for tracking versions, rolling back to previous state |
+| 🎯 **You Build** | CrystalDB time-travel: `SELECT * FROM trips AS OF TIMESTAMP '2024-01-15 10:00:00'` returns the table as it was at that timestamp. Implemented via: every write creates a new immutable Parquet file. Transaction log tracks which files were active at each timestamp. |
+| 🔗 **Why It Matters** | Snowflake's Time Travel is one of their most-used enterprise features. Data engineers query "what did this table look like yesterday before the broken pipeline ran?" You build the mechanism. |
+
+**Thursday — Data Sharing: Read-Only Credentials**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | AWS S3, IAM roles, Go |
+| 📖 **Concepts** | Snowflake Data Sharing pattern: generate a read-only IAM role with access to specific S3 prefix, share credentials with external party, revoke by deleting IAM role |
+| 🎯 **You Build** | CrystalDB data sharing: `POST /shares` → creates read-only AWS IAM role scoped to `s3://crystaldb/{datasetId}/`. Returns temporary credentials (24h TTL). External party uses credentials to query S3 directly. Revoke: `DELETE /shares/{shareId}` → IAM role deleted. |
+| 🔗 **Why It Matters** | Snowflake Data Sharing is how Snowflake customers share data across organizations without copying it. The underlying mechanism is exactly S3 + IAM role scoping. |
+
+**Friday — SQL Editor Frontend + Query History**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Next.js, React, Monaco Editor (VS Code editor in browser), Tanstack Query |
+| 📖 **Concepts** | Monaco Editor integration (SQL syntax highlighting, autocomplete), streaming query results (SSE from backend), query history, query execution timeline |
+| 🎯 **You Build** | CrystalDB SQL editor: Monaco Editor with SQL syntax highlighting + column autocomplete. Submit query → SSE streams result rows as they arrive. Query history in sidebar. Execution timeline shows: parse → partition pruning → ClickHouse execution → result. |
+
+---
+
+### Month 6, Week 14: All System Design Cases Documented
+
+**Monday — Observability Platform + Kafka at Scale (System Design 1 + 2)**
+
+ObserveFlow and StreamBridge implement these. Write final architecture ADRs, Mermaid diagrams, k6 numbers.
+
+**Tuesday — Columnar Query Engine + API Gateway (System Design 3 + 4)**
+
+CrystalDB implements the columnar query engine. For the API gateway (Kong-pattern), implement a lightweight plugin-based gateway in Go: all 4 project APIs behind one gateway. JWT verification via VaultAuth JWKS endpoint, rate limiting, request transformation.
+
+**Wednesday — Identity Provider + Alerting + Distributed Tracing (System Design 5 + 6 + 7)**
+
+VaultAuth implements the identity provider (OIDC + SAML + MFA). ObserveFlow implements alerting (threshold + anomaly + composite) and distributed tracing (Jaeger-compatible trace waterfall with D3.js).
+
+**Thursday–Friday — Log Aggregation + Data Catalog + Rate Limiter + Anomaly Detection (System Design 8–11)**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Elasticsearch, PGVector, Redis Lua, Wasm (AssemblyScript), ONNX |
+| 📖 **Concepts** | Elasticsearch index lifecycle management, semantic search over CrystalDB catalog, all 4 rate limit algorithms at gateway level, anomalous auth detection (Wasm + Go rules + ONNX) |
+| 🎯 **You Build** | Log aggregation: Elasticsearch with index lifecycle (hot → warm → cold → delete after 90 days). CrystalDB data catalog: every Parquet dataset registered + PGVector semantic search. API gateway rate limiter: all 4 algorithms. VaultAuth anomaly detection: Wasm pre-screen (known malicious IP list) + Go rules (impossible travel: login from Mumbai then Tokyo in 1 hour) + ONNX ML score. |
+
+**Weekend — CrystalDB COMPLETE. All 4 Projects COMPLETE.**
+
+---
+
+## Month 7: OTel + Polish + Hiring Sprint
+
+### Week 15: Final Instrumentation + Benchmarks
+
+Add OTel to all projects. All projects send traces to ObserveFlow (eating own cooking). k6 all endpoints. `pprof` all Go services. Fix regressions.
+
+**Final k6 targets:**
+- ObserveFlow: 10M spans/sec ingest, ClickHouse query p99 < 200ms
+- VaultAuth: 10K token issuances/sec, p99 < 20ms
+- StreamBridge: 1M messages/sec, consumer lag < 1s
+- CrystalDB: 100TB partition-pruned query < 10s
+
+### Week 16: Portfolio + Cold Outreach
+
+**Cold Email — Datadog:**
 ```
-/
-├── apps/
-│   ├── observeflow/     ← metrics dashboard shell → OTel ingest → trace viewer → alert engine
-│   ├── streambridge/    ← Kafka UI shell → cluster monitor → schema registry → stream processor
-│   ├── crystaldb/       ← SQL editor shell → ClickHouse query → columnar storage → data sharing
-│   └── vaultauth/       ← login form → OIDC provider → SAML → API keys → audit log
-├── packages/
-│   ├── types/           ← shared TypeScript types (metrics, traces, events, auth)
-│   ├── schemas/         ← Zod schemas (Week 1, used forever)
-│   ├── ui/              ← Shadcn components
-│   └── sdk/             ← ObserveFlow JS SDK + VaultAuth JS SDK (published Week 5)
-├── infrastructure/
-│   ├── terraform/       ← AWS infra
-│   └── k8s/             ← manifests + operators
-└── agents/
-    ← ObserveFlow collector agents (Go, Week 7)
+Subject: [Datadog SDE] — built ObserveFlow: OTel OTLP collector + ClickHouse pipeline, 10M spans/sec
+
+ObserveFlow mirrors Datadog's agent-to-dashboard architecture.
+
+• Go collector agent: OTLP/gRPC (mTLS), gathers host + container metrics, 8MB static binary, K8s DaemonSet via Operator
+• ClickHouse pipeline: 10M spans/sec ingest, p99 query < 200ms on 30-day window, TimescaleDB rollups
+• Alert engine: threshold + anomaly (mean ± 3σ) + composite alerts, noise reduction, Kafka fan-out
+
+Also built VaultAuth: OIDC provider, SAML SP, TOTP + WebAuthn, API keys (hashed), append-only audit log.
+[GitHub] [k6 benchmarks] [architecture ADR]
 ```
 
----
-
-## Master Technology Checklist
-
-### Fundamentals
-- [ ] HTTP/HTTPS, DNS, TLS (deep — cert rotation, mTLS between services)
-- [ ] OpenTelemetry: traces, metrics, logs, exemplars
-- [ ] OIDC / OAuth2 / SAML / JWT deep knowledge
-- [ ] API Gateway patterns (plugin architecture, rate limiting, auth at gateway)
-
-### Frontend
-- [ ] HTML, CSS, JavaScript, TypeScript, React, Next.js
-- [ ] Recharts / Nivo (metrics visualization), D3.js (trace waterfall)
-- [ ] Tailwind, Shadcn, Zustand, Tanstack Query, Zod, RHF
-- [ ] Real-time chart updates (SSE + canvas rendering)
-
-### Backend
-- [ ] Node.js + Go (agent/collector written in Go)
-- [ ] Python (ksqlDB-style query engine prototype)
-- [ ] gRPC (OTel OTLP protocol), REST, WebSockets, SSE
-
-### Databases + Storage
-- [ ] PostgreSQL (metadata, config, audit log)
-- [ ] ClickHouse (metrics + traces — billions of rows, fast aggregations)
-- [ ] Apache Parquet + Delta Lake (columnar storage for CrystalDB)
-- [ ] Redis (caching, rate limiting, pub/sub for live metrics)
-- [ ] Elasticsearch (log search + full-text)
-- [ ] TimescaleDB (time-series metrics — PostgreSQL extension)
-
-### Observability Stack (build it, not just use it)
-- [ ] OpenTelemetry SDK (traces, metrics, logs) — build integration for Node.js + Go
-- [ ] OTLP (OpenTelemetry Protocol) — gRPC + HTTP/protobuf receiver
-- [ ] Prometheus metrics exposition format
-- [ ] Jaeger trace format compatibility
-- [ ] PromQL (query language for Prometheus-compatible metrics)
-- [ ] Alerting: threshold, anomaly detection, composite alerts
-
-### Kafka Internals (Confluent-level)
-- [ ] Kafka broker architecture, KRaft (no Zookeeper)
-- [ ] Replication, ISR, leader election
-- [ ] Consumer group rebalancing, partition assignment strategies
-- [ ] Exactly-once semantics (idempotent producer + transactional API)
-- [ ] Schema Registry (Avro, Protobuf, JSON Schema + compatibility rules)
-- [ ] Kafka Connect (source + sink connectors)
-- [ ] Kafka Streams (stateful processing, windowing)
-- [ ] ksqlDB concepts
-
-### Auth Infrastructure (Okta/WorkOS-level)
-- [ ] OIDC provider (issue ID tokens, access tokens, refresh tokens)
-- [ ] SAML 2.0 SP + IdP
-- [ ] MFA: TOTP, WebAuthn, SMS fallback
-- [ ] API key management (hash on store, last-used tracking, rotation)
-- [ ] Audit log (append-only, tamper-evident)
-- [ ] Rate limiting per client credential
-- [ ] Session management (device sessions, concurrent session limits)
-
-### System Design — 11 Case Studies
-- [ ] Observability Platform Design (metrics + traces + logs at Datadog scale)
-- [ ] Kafka at Scale (Confluent pattern — replication, exactly-once, Schema Registry)
-- [ ] Columnar Query Engine (Snowflake pattern — partition pruning, result cache)
-- [ ] API Gateway Design (Kong pattern — plugin system, rate limiting, auth)
-- [ ] Identity Provider Design (Okta pattern — OIDC, SAML, MFA)
-- [ ] Real-Time Alerting Engine (threshold + anomaly detection)
-- [ ] Distributed Tracing System
-- [ ] Log Aggregation at Scale
-- [ ] Data Catalog + Lineage (Snowflake-pattern sharing)
-- [ ] Rate Limiter (all 4 algorithms — gateway level)
-- [ ] Fraud / Anomaly Detection (observability-driven)
-
----
-
-## MONTH 1: Full-Stack From Day One — All 4 Platforms Introduced
-
-### Week 1: HTTP + HTML + CSS + OpenTelemetry Mental Model
-
-**The narrative this week:** You're building the observability platform other engineers will depend on, a Kafka management console, a SQL analytics platform, and an auth provider. Every platform you build has something critical in common: they all produce or consume structured events — metrics, traces, logs, or auth events. The data model you design this week for how those events flow through ObserveFlow is the architecture you're hiring for.
-
----
-
-**MONDAY — HTTP + OpenTelemetry Protocol + CLI + Git**
-
-**Morning (3h):**
-- Full HTTP/HTTPS/DNS/TLS depth. Plus: **mTLS** — mutual TLS where both sides present certificates. Used between ObserveFlow collector and ObserveFlow backend (same pattern Datadog agent → Datadog backend uses)
-- **OpenTelemetry (OTel):** trace (request journey across services), metric (numerical measurement over time), log (structured event). All share `resource` (what produced it) + `attributes` (key-value metadata)
-- **OTLP:** OpenTelemetry Protocol. gRPC + HTTP/protobuf. What every OTel SDK speaks to send data
-- **ObserveFlow mental model:** application → OTel SDK → OTLP → ObserveFlow Collector (Go) → storage (ClickHouse + Elasticsearch) → query API → dashboard (React)
-- CLI, VS Code, Git, ESLint, Prettier — same as reference
-
-**Evening (2h): ObserveFlow Raw OTLP Receiver**
-- Feature: **ObserveFlow needs a server that receives OTLP/HTTP telemetry from applications**
-- Raw Node.js HTTP server: `POST /v1/traces` + `POST /v1/metrics` + `POST /v1/logs` (OTLP/HTTP endpoints)
-- Parse protobuf body → extract span count, metric count → log structured summary
-- Test: configure a simple Node.js app with `@opentelemetry/sdk-node` to send to `localhost:4318` — see your own traces arrive
-- This exact server becomes the full ObserveFlow ingestion pipeline in Week 9
-
-```javascript
-// apps/observeflow/server/index.js — Day 1. OTLP receiver.
-const http = require('http');
-
-const server = http.createServer((req, res) => {
-  const signal = req.url.split('/').pop(); // 'traces' | 'metrics' | 'logs'
-  const chunks = [];
-  req.on('data', c => chunks.push(c));
-  req.on('end', () => {
-    const body = Buffer.concat(chunks);
-    // OTLP/HTTP sends protobuf. For now, log the raw size.
-    console.log(`[ObserveFlow] received ${signal}: ${body.length} bytes`);
-    // Week 4: this becomes full protobuf parsing + ClickHouse insert
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ partialSuccess: {} }));
-  });
-});
-
-server.listen(4318, () => console.log('ObserveFlow OTLP/HTTP receiver :4318'));
-// Configure any Node.js app with OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
-// Your traces arrive here.
+**Cold Email — Confluent:**
 ```
+Subject: [Confluent SDE] — built StreamBridge: Kafka cluster management + Schema Registry + exactly-once demo
 
-**X Post:**
-```
-Day 1: ObserveFlow OTLP receiver live.
+StreamBridge mirrors Confluent's internal Kafka operations platform.
 
-Set OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 on any Node.js app.
-Traces, metrics, logs arrive at my server.
+• KRaft cluster management: topic/partition/ISR monitoring, leader election visualization
+• Schema Registry UI: BACKWARD/FORWARD/FULL compatibility enforcement before registration
+• Exactly-once demo: idempotent producer + transactional API, 10K messages, verified zero duplicates
 
-This is exactly how Datadog Agent works:
-SDK → OTLP → Collector → Storage → Dashboard
-
-Building ObserveFlow from Day 1.
-Same server becomes full trace + metric ingestion pipeline by Week 9.
-
-[screenshot: OTel spans arriving + size logged]
-```
-
----
-
-**TUESDAY — HTML — ObserveFlow Dashboard Shell + VaultAuth Login Form**
-
-- ObserveFlow dashboard: semantic HTML — navigation (`<nav>` with `<ul>`), main metrics area (`<main>`), sidebar with chart list (`<aside>`). Chart placeholders as `<figure>` elements
-- VaultAuth login form: email + password + TOTP field (`inputmode="numeric"`, `maxlength="6"`, `autocomplete="one-time-code"`). `<fieldset>` for MFA step. Native validation on every field
-- Both: skip nav links, `aria-live` regions for auth errors and metric updates
-
----
-
-**WEDNESDAY — CSS — All 4 Platforms Styled**
-
-- `packages/tokens.css`: infra/observability design tokens — `--color-metric-good: #22c55e`, `--color-metric-warn: #f59e0b`, `--color-metric-critical: #ef4444`, `--color-trace-http: #3b82f6`, `--color-trace-db: #a855f7`
-- ObserveFlow: dark-by-default (observability tools are dark — Datadog, Grafana). Chart grid layout. Metric value + delta display
-- StreamBridge: Kafka partition heat map (CSS Grid), consumer lag bars
-- CrystalDB: SQL editor layout (sidebar table list + main editor + results pane)
-- VaultAuth: clean, minimal auth form. Trust indicators (lock icon, HTTPS badge)
-
----
-
-**THURSDAY — JavaScript — ObserveFlow Live Metric Chart + CrystalDB SQL Editor**
-
-- ObserveFlow: fetch metric time-series from server, render as `<canvas>` chart (raw Canvas 2D API — understand what Recharts wraps), auto-refresh every 10s
-- CrystalDB: SQL editor with `<textarea>` (syntax-highlight preview, CodeMirror would come later in React week), query history in `localStorage`
-- Both: `X-Correlation-ID` header sent on every fetch (from Day 1 — same request ID in frontend and backend logs)
-
----
-
-**FRIDAY — TypeScript — packages/types + packages/schemas + packages/sdk**
-
-- `packages/types`: `Span`, `Metric`, `LogRecord`, `KafkaCluster`, `KafkaTopic`, `Column`, `QueryResult`, `AuthUser`, `ApiKey`, `AuditEvent`
-- `packages/schemas`: Zod schemas for all 4 platforms
-- `packages/sdk`: ObserveFlow JS SDK (tiny wrapper over OTel SDK — `ObserveFlow.init({ apiKey, endpoint })`). VaultAuth JS SDK (`VaultAuth.authorize()`, `VaultAuth.getUser()`). Both published as npm packages Week 5
-
----
-
-**WEEKEND — All 4 Platforms v0.1 Deployed**
-
----
-
-### Week 2: React — All 4 Platforms in React
-
-*Same React depth (useState, useEffect, hooks, RHF+Zod, TQ, Zustand+Immer) — applied to:*
-
-- **ObserveFlow**: `<MetricChart>` (Recharts LineChart, real-time updates via useQuery). `<TraceList>` (latency waterfall, D3.js). Zustand: `selectedTimeRange`, `selectedService`, `filterQuery`
-- **StreamBridge**: Kafka cluster topology (SVG + React, broker nodes, partition replicas). Consumer lag chart
-- **CrystalDB**: SQL editor with CodeMirror (React), query result table (virtual scroll for large results), schema browser (Tanstack Query for table list)
-- **VaultAuth**: multi-step auth flow (RHF + Zod: email → password → MFA), user management table
-
-**Key addition:** `useMetrics(queryString, timeRange)` hook — all ObserveFlow dashboards use it. `useAuth()` — all 4 apps authenticate via VaultAuth from Week 2. Auth infrastructure feeds itself.
-
----
-
-### Week 3: Tailwind + Next.js + Svelte + Vue + Testing
-
-- **Next.js (ObserveFlow)**: `app/dashboards/[id]/page.tsx` Server Component (dashboard config from DB, metric data from ClickHouse). SSR for dashboards ensures no layout shift on load
-- **Svelte**: ObserveFlow status badge embed (customers embed `<script src="status.observeflow.io/widget.js">` — public status page widget, 6KB)
-- **Vue**: CrystalDB notebook interface (data scientists prefer Vue for this)
-- **Testing**: Vitest (alert threshold logic, SQL parser, OIDC token validation), Playwright (full auth flow E2E), TestSprite
-
----
-
-### Week 4: Node.js + Express + ClickHouse + All Databases
-
-**MONDAY — Node.js Streams + ObserveFlow Trace Ingestion**
-- Feature: OTLP trace spans arrive in batches — stream them through: parse protobuf → validate → enrich → batch insert to ClickHouse
-- Same stream pipeline pattern as reference, applied to telemetry ingest (not GPS pings)
-
-**TUESDAY — Express + REST APIs + OTLP gRPC**
-- ObserveFlow: `POST /v1/traces` + `POST /v1/metrics` + `POST /v1/logs` (OTLP/HTTP). Also `GET /api/metrics/query?q=...&from=...&to=...`
-- VaultAuth: `POST /auth/token`, `GET /auth/userinfo`, `POST /auth/introspect`, `POST /auth/revoke` — OIDC-compliant endpoints
-- All: Zod validation middleware, structured logging
-
-**WEDNESDAY — ClickHouse + PostgreSQL Schema**
-- **ClickHouse (ObserveFlow)**: `traces` table — `(service_name, trace_id, span_id, duration_ns, status_code, attributes)`. `ReplicatedMergeTree`. Sub-100ms aggregations on 10B+ spans: `SELECT service_name, quantile(0.99)(duration_ns) FROM traces WHERE timestamp > now() - INTERVAL 1 HOUR GROUP BY service_name`
-- **ClickHouse (CrystalDB)**: query execution telemetry — query time, rows scanned, bytes processed per query per user
-- **PostgreSQL**: ObserveFlow dashboard configs, alert rules, user settings. VaultAuth users, sessions, API keys, SAML configs
-- **TimescaleDB**: ObserveFlow metrics (PostgreSQL extension for time-series — hypertables, continuous aggregates)
-
-**THURSDAY — Redis + VaultAuth JWT + API Key Management**
-- VaultAuth: issue OIDC `id_token` (user identity) + `access_token` (authorization). Refresh token in Redis (7 days)
-- API key management: generate `sk_live_...` key → hash (SHA-256, never store plaintext) → PostgreSQL. On request: hash header value → compare. `last_used_at` updated in Redis, drained to PostgreSQL hourly
-- All 4 apps authenticate via VaultAuth from this week forward
-
-**FRIDAY — Elasticsearch + TimescaleDB + Parquet**
-- **Elasticsearch (ObserveFlow)**: log full-text search. `GET /api/logs/search?q=error+timeout&service=payrail&from=...`
-- **TimescaleDB**: continuous aggregates for metrics (pre-compute 1-min, 5-min, 1-hour rollups — dashboard queries hit rollups, not raw data)
-- **Delta Lake / Parquet (CrystalDB)**: CrystalDB stores analytical datasets as Parquet on S3. Query engine reads them with partition pruning
-
----
-
-**WEEKEND — All 4 Platforms Full-Stack + Real Observability**
-
-CrystalDB SQL queries hitting real ClickHouse. ObserveFlow receiving real OTel spans from other 3 platforms. VaultAuth issuing real JWTs that all 3 platforms verify.
-
----
-
-## MONTH 2: APIs + Real-Time + DevOps
-
-### Week 5: gRPC + OTLP gRPC + SDK Publishing + WebSockets
-
-**MONDAY — OTLP/gRPC Receiver — ObserveFlow**
-- Feature: ObserveFlow must accept both OTLP/HTTP and OTLP/gRPC (Datadog agent uses gRPC)
-- `opentelemetry/proto` — implement gRPC receiver in Node.js
-- `packages/sdk`: ObserveFlow JS SDK published to local npm registry. Any app can `npm install @observeflow/sdk` → `ObserveFlow.init({ apiKey })` → auto-instruments everything
-
-**TUESDAY-WEDNESDAY — StreamBridge: Kafka Management API + Schema Registry**
-- Feature: StreamBridge needs to manage Kafka clusters via API (create topics, list consumer groups, get consumer lag)
-- Kafka Admin API (kafkajs): `admin.listTopics()`, `admin.describeGroups()`, `admin.fetchTopicOffsets()`
-- **Schema Registry**: POST/GET Avro + Protobuf schemas. Compatibility check: BACKWARD (can new schema read old data?), FORWARD (can old schema read new data?), FULL (both)
-- StreamBridge UI: schema editor (React + Monaco), compatibility check on save
-
-**THURSDAY — VaultAuth OIDC Provider + SAML SP**
-- Feature: VaultAuth needs to work as an OIDC provider (like Okta) — issue ID tokens that third-party apps can verify
-- OIDC: `/.well-known/openid-configuration` endpoint, `/auth/authorize`, `/auth/token`, JWKS endpoint (`/.well-known/jwks.json`)
-- SAML 2.0 SP: receive SAML assertion from enterprise IdP → create VaultAuth session. XML signature validation
-- All 4 platforms now support SSO via VaultAuth SAML
-
-**FRIDAY — SSE + WebSockets — Live Metrics + Live Kafka**
-- ObserveFlow: SSE live metric stream → chart auto-updates without polling. `GET /api/metrics/stream?q=...` → `data: {timestamp, value}\n\n`
-- StreamBridge: WebSocket → live consumer group lag (updates every second during Kafka rebalance)
-- Redis pub/sub bridges all SSE connections across replicas
-
----
-
-### Week 6: Docker + GitHub Actions + K8s + Terraform
-
-*Same infra depth as reference — applied to observability stack:*
-
-- **ObserveFlow → AWS**: EKS + ClickHouse (self-hosted on EKS) + TimescaleDB RDS + Elasticsearch Service + ElastiCache + S3 (archived traces)
-- **StreamBridge → GCP**: GKE + managed Kafka (Confluent Cloud or MSK) + Bigtable for stream state
-- **CrystalDB → AWS**: S3 (Parquet files) + Athena (serverless query fallback) + EKS (query engine pods)
-- **VaultAuth → Railway** (fast iteration for auth infra)
-- **OTel sidecar** (Go): zero-code instrumentation — deployed as K8s sidecar, auto-instruments every pod
-
----
-
-## MONTH 3: Go + ClickHouse Deep + Kafka Internals
-
-### Week 7: Go — ObserveFlow Collector Agent
-
-**The narrative this week:** Datadog's agent is written in Go. You build ObserveFlow's collector agent — the piece that runs on every server and ships data to ObserveFlow. This is the deepest Go work of the roadmap.
-
-**MONDAY — Go Foundations (same depth as reference) + Why Go for Agents**
-- Go compilation to single static binary: easy distribution, no runtime dependency
-- Low memory footprint: agent must not consume the resources it's measuring
-- `sync.Pool` for span object reuse — agent allocates millions of span objects, GC must be minimal
-
-**TUESDAY-WEDNESDAY — ObserveFlow Go Collector Agent**
-- Feature: ObserveFlow needs a lightweight agent that runs on servers and ships metrics + logs to ObserveFlow backend
-- Metric collection: `gopsutil` — CPU, memory, disk, network. Configurable collection interval
-- Log tail: `fsnotify` — watch `/var/log/**` → tail new lines → ship as OTLP/gRPC
-- OTLP/gRPC client: generates protobuf, sends to ObserveFlow backend
-- Process metrics: `ps aux`-equivalent in Go — PID, CPU%, MEM%, process name
-- Binary: `GOOS=linux GOARCH=amd64 go build -ldflags="-s -w"` → 8MB static binary
-- Install: `curl -fsSL https://install.observeflow.io | bash` (Shell script that downloads the binary)
-
-```go
-// agents/collector/main.go — Go OTel collector agent
-// Deployed on any server. Ships metrics + logs to ObserveFlow.
-
-func main() {
-  ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
-  defer cancel()
-
-  conn, _ := grpc.NewClient(cfg.OTLPEndpoint,
-    grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{})),
-  )
-  client := otlpmetricgrpc.NewClient(otlpmetricgrpc.WithGRPCConn(conn))
-  exporter, _ := otlpmetricgrpc.New(ctx, client)
-
-  mp := metric.NewMeterProvider(
-    metric.WithReader(metric.NewPeriodicReader(exporter, metric.WithInterval(10*time.Second))),
-    metric.WithResource(resource.NewWithAttributes(semconv.SchemaURL,
-      semconv.ServiceNameKey.String(cfg.ServiceName),
-    )),
-  )
-  meter := mp.Meter("observeflow.agent")
-
-  cpuGauge, _ := meter.Float64ObservableGauge("system.cpu.utilization")
-  meter.RegisterCallback(func(ctx context.Context, o metric.Observer) error {
-    cpu, _ := gopsutil.Percent(0, false)
-    o.ObserveFloat64(cpuGauge, cpu[0]/100)
-    return nil
-  }, cpuGauge)
-
-  <-ctx.Done()  // Graceful shutdown on SIGTERM
-}
-// Install on any server: metrics arrive in ObserveFlow in 10 seconds.
-```
-
-**THURSDAY — Go: VaultAuth Token Validation Middleware**
-- Feature: VaultAuth ships a Go middleware library — any Go service can protect routes with `vaultauth.Require("read:metrics")`
-- `packages/vaultauth-go`: fetch JWKS from VaultAuth, validate JWT locally (no round-trip), cache JWKS with TTL
-- ObserveFlow's Go collector agent uses this to authenticate with ObserveFlow backend
-
-**FRIDAY — Go: CrystalDB Query Optimizer**
-- Feature: CrystalDB needs a Go service that optimizes SQL before sending to ClickHouse
-- Partition pruning: detect `WHERE date BETWEEN '2025-01-01' AND '2025-01-31'` → only scan Jan partitions
-- Query plan cache: same query + same params → return cached result (Redis, 5min TTL)
-
----
-
-### Week 8: Kafka Internals + CDC + ObserveFlow Trace Pipeline
-
-**MONDAY — Kafka Deep: Replication + ISR + Exactly-Once**
-- Replication factor, ISR (In-Sync Replicas), leader election on broker failure
-- `min.insync.replicas`: ensures acks=all means durable
-- Exactly-once: idempotent producer (`enable.idempotence=true`) + transactional API
-- Schema Registry compatibility rules: BACKWARD vs FORWARD vs FULL — when to use each
-
-**TUESDAY — StreamBridge: Full Kafka Cluster Management**
-- Feature: StreamBridge can create/delete topics, change partition count, view consumer group lag, trigger rebalance
-- Kafka Admin API + Schema Registry HTTP API + ksqlDB HTTP API
-- StreamBridge UI: topology map (broker → partition → replica heat map), consumer lag chart
-
-**WEDNESDAY — CDC: ObserveFlow Audit Log Pipeline**
-- Feature: VaultAuth needs an append-only audit log for every auth event (login, logout, token issue, permission change)
-- PostgreSQL WAL → Kafka `vaultauth.audit.events` → ObserveFlow (audit events are telemetry)
-- Audit log: append-only, `PARTITION BY HASH (user_id)` + `CLUSTER INDEX (user_id, created_at)`, never deletes
-
-**THURSDAY-FRIDAY — Database Scaling: ClickHouse at Datadog Scale**
-- ObserveFlow ClickHouse: `ReplicatedMergeTree`, materialized views for pre-aggregation, `TTL created_at + INTERVAL 30 DAY DELETE` (auto-delete old traces)
-- Tiered storage: hot (local SSD, 7 days) → cold (S3, 90 days) → archive (Glacier, 1 year)
-- Query optimization: `ORDER BY (service_name, timestamp)` — almost all queries filter by service + time range
-
----
-
-## MONTH 4: Go Deep + K8s Operator + AI Engineering
-
-### Week 9: Go Deep + ObserveFlowCollector Kubernetes Operator
-
-**MONDAY-WEDNESDAY — Go + ObserveFlowCollector CRD**
-- Feature: Deploy the Go collector agent as a Kubernetes DaemonSet (1 pod per node) automatically
-- CRD: `ObserveFlowCollector` — spec: `otlpEndpoint`, `collectionInterval`, `logPaths`, `apiKey` (ref to Secret)
-- Operator: watches CRD → creates DaemonSet with collector agent + correct env vars
-- Auto-upgrade: when `ObserveFlowCollector.spec.version` changes → rolling DaemonSet update
-- This is the exact pattern Datadog Operator uses
-
-```go
-// apps/observeflow/operator/controllers/collector_controller.go
-func (r *CollectorReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-  var collector observev1.ObserveFlowCollector
-  if err := r.Get(ctx, req.NamespacedName, &collector); err != nil {
-    return ctrl.Result{}, client.IgnoreNotFound(err)
-  }
-
-  // Build DaemonSet spec: collector agent + env from CRD spec
-  ds := r.buildDaemonSet(&collector)
-  if err := r.ensureDaemonSet(ctx, ds); err != nil {
-    return ctrl.Result{}, err
-  }
-
-  // Count healthy pods
-  var pods corev1.PodList
-  r.List(ctx, &pods, client.MatchingLabels{"app": "observeflow-collector"})
-  healthy := countHealthyPods(pods.Items)
-
-  collector.Status.HealthyCollectors = int32(healthy)
-  collector.Status.TotalNodes = int32(len(pods.Items))
-  return ctrl.Result{RequeueAfter: 60 * time.Second}, r.Status().Update(ctx, &collector)
-  // kubectl apply -f observeflow-collector.yaml
-  // → DaemonSet created → collector agent on every node → metrics flowing in 30s
-}
-```
-
-**THURSDAY — CNCF Contribution: opentelemetry-go**
-- Contribute to `opentelemetry-go` — this is directly relevant to ObserveFlow's collector agent
-- Target: instrumentation library improvement, test coverage, documentation
-
-**FRIDAY — CrystalDB: Go Columnar Query Engine**
-- Feature: CrystalDB's query engine prototype (reads Parquet files from S3, executes simple SELECT + WHERE + GROUP BY)
-- Go: read Parquet with `github.com/xitongsys/parquet-go`, partition pruning, parallel reads with goroutines
-- Benchmark: full scan vs partition-pruned scan — show 10× speedup with pruning
-
----
-
-### Week 10: AI Engineering — ObserveFlow + VaultAuth
-
-**MONDAY — ObserveFlow AI Alert Assistant**
-- Feature: "Why did p99 latency spike at 14:32?" → AI queries ClickHouse for spans around that time, checks deployment events, finds root cause
-- Tools: `queryMetrics` (ClickHouse), `searchTraces` (Elasticsearch), `listDeployments` (K8s events), `checkAlertHistory` (PostgreSQL)
-- Every tool calls a real system built in Months 1-3
-
-**TUESDAY — RAG — ObserveFlow Runbook Assistant**
-- Feature: When an alert fires, AI finds the relevant runbook and summarizes the fix steps
-- Ingest: team runbooks (Markdown files in Git) → chunk → PGVector
-- On alert: embed alert name + affected service → PGVector search → top 3 runbooks → generate summary
-- Citations: response includes runbook file name + section
-
-**WEDNESDAY — AI Agents — 3-Agent Alert Response**
-- Detector Agent: monitors ObserveFlow alert stream (Kafka `observeflow.alerts`)
-- Analyst Agent: given alert → queries metrics, traces, logs → diagnoses root cause
-- Action Agent: known issue → auto-create GitHub issue + link runbook. Unknown → page on-call + draft incident
-
-**THURSDAY — VaultAuth: AI-Powered Anomalous Auth Detection**
-- Feature: VaultAuth detects anomalous login patterns (new country, new device, abnormal hour) and requires step-up auth
-- ONNX model: `[hour_of_day, country_code, device_fingerprint_hash, past_30d_login_count]` → risk score
-- Low risk: allow. Medium: require TOTP. High: block + alert security team
-
-**FRIDAY — WebAssembly: ObserveFlow Client-Side Metric Computation**
-- Feature: CrystalDB lets users run SQL transformations client-side on small datasets (no server round-trip for exploratory analysis)
-- AssemblyScript: `computePercentile(values: Float64Array, p: f64): f64` → `.wasm`
-- ObserveFlow: Wasm for client-side chart data downsampling (LTTB algorithm)
-
----
-
-## MONTH 5: System Design Fundamentals
-
-### Week 11: Observability at Scale + Rate Limiting + CAP
-
-**MONDAY — Observability Platform Design (Case Study 1 preview)**
-- Problem: ObserveFlow ingests 10M spans/sec, 100M metrics/sec, 1B logs/day
-- Architecture decisions: ClickHouse (metrics + traces) vs Elasticsearch (logs). Separate pipelines
-- Ingest: Kafka buffer between collectors and storage. Never drop data under load
-
-**TUESDAY — Fault Tolerance: Collector Agent Resilience**
-- ObserveFlow collector: if ObserveFlow backend is down → buffer to local disk (`/var/lib/observeflow/buffer/`) → replay when reconnected
-- Max buffer: 1GB. Oldest data dropped if buffer full. Always ship or buffer, never drop silently
-
-**WEDNESDAY — Rate Limiting: VaultAuth API Keys**
-- All 4 algorithms (same as reference) — applied to auth infrastructure:
-- Token Bucket: general API key requests (100/min per key, burst to 200)
-- Leaky Bucket: `/auth/token` endpoint (10/sec strict — prevent credential stuffing)
-- Sliding Window Log: audit log queries (exact count, compliance requirement)
-
-**THURSDAY — CAP: VaultAuth Auth Decisions**
-- VaultAuth is CP for auth decisions: "is this token valid?" must always return consistent answer
-- AP acceptable for: audit log writes (slightly delayed writes OK), metric reporting
-- Demo: primary DB down → VaultAuth switches to read replica with `REPEATABLE READ` (stale by < 1s for non-critical reads, refuses writes)
-
-**FRIDAY — Leader Election + Consistent Hashing**
-- ObserveFlow alert engine: exactly 1 alert evaluator per alert rule (Redis SETNX). No duplicate alerts
-- CrystalDB: consistent hash ring distributes queries across query engine pods by `query_hash`
-
----
-
-### Week 12: Kafka Streams + Big Data + Notifications
-
-**MONDAY-TUESDAY — StreamBridge: Kafka Streams Real-Time Processing**
-- Feature: StreamBridge can run ksqlDB-style streaming SQL directly on Kafka topics
-- `SELECT COUNT(*) FROM auth_events GROUP BY user_id, window_start WINDOW TUMBLING (SIZE 5 MINUTES)`
-- Kafka Streams Java → StreamBridge wraps with a REST API → React UI shows stream output live
-
-**WEDNESDAY — Big Data: CrystalDB S3 Parquet Architecture**
-- CrystalDB stores results in Parquet. External access: presigned S3 URLs + Athena for ad-hoc queries
-- Data sharing: CrystalDB share → generates read-only credential for specific S3 prefix (Snowflake Data Sharing pattern)
-
-**THURSDAY-FRIDAY — ObserveFlow Alert Engine**
-- Threshold alerts: `metric > value for 5 minutes`
-- Anomaly detection: `value > mean + 3*stddev over last 1 hour` (simple statistical)
-- Composite: `(error_rate > 1%) AND (p99_latency > 500ms)` — AND/OR conditions
-- Notification: alert → Kafka → fan-out to PagerDuty, Slack, email, WebSocket (live alert feed in dashboard)
-
----
-
-## MONTH 6: All 11 Case Studies
-
-### Week 13: Observability Platform + Kafka at Scale
-
-**Monday-Wednesday: ObserveFlow Observability Platform (Case Study 1 — Datadog pattern)**
-- Problem: 10M spans/sec, 100M metrics/sec, p99 query < 500ms on 30-day window
-- Full architecture: OTLP → Kafka buffer → ClickHouse (metrics + traces) + Elasticsearch (logs). Read: TimescaleDB rollups for fast dashboards
-- k6: 10M span/sec ingest, ClickHouse query p99 < 200ms on 30-day data
-
-**Thursday-Friday: StreamBridge Kafka at Scale (Case Study 2 — Confluent pattern)**
-- Problem: 100 brokers, 10K topics, 1M partitions, exactly-once across 50 consumer groups
-- Full architecture: KRaft (no Zookeeper), Schema Registry (compatibility enforcement), Kafka Connect (CDC source + Elasticsearch sink)
-- Load test: produce 1M messages/sec, consumer lag < 1s
-
----
-
-### Week 14: Columnar Query Engine + API Gateway Design
-
-**Monday-Wednesday: CrystalDB Columnar Query Engine (Case Study 3 — Snowflake pattern)**
-- Problem: SQL queries on 100TB of Parquet data in S3, < 10s for most queries
-- Partition pruning, result caching (same query → Redis cache 5min), concurrent query execution
-- Data sharing: read-only credential grants → Snowflake-style sharing
-
-**Thursday-Friday: Kong-Pattern API Gateway (Case Study 4)**
-- Feature: ObserveFlow API gateway (Kong-style) — all 4 platform APIs behind one gateway
-- Plugin system: rate limiting, auth (JWT verify via VaultAuth JWKS), request transformation, circuit breaker
-- Admin API: `POST /plugins`, `GET /routes`, `GET /consumers` — same structure as Kong Admin API
-
----
-
-### Week 15: Identity Provider + Alerting + Distributed Tracing
-
-**Monday-Tuesday: VaultAuth Identity Provider (Case Study 5 — Okta pattern)**
-- Full OIDC provider: `/.well-known/openid-configuration`, `/auth/authorize`, `/auth/token`, JWKS
-- SAML 2.0 SP + optional IdP
-- MFA: TOTP + WebAuthn (passkeys). Device trust scoring
-
-**Wednesday-Thursday: ObserveFlow Alerting Engine (Case Study 6)**
-- Threshold + anomaly + composite alerts. Noise reduction: don't alert on transient 1-minute spike
-- Alert fatigue prevention: alert grouping, acknowledgment, auto-resolve
-
-**Friday: Distributed Tracing System (Case Study 7)**
-- Trace storage in ClickHouse. Waterfall visualization (D3.js)
-- Trace sampling: tail-based sampling (only keep traces with errors or high latency)
-
----
-
-### Week 16: Log Aggregation + Data Catalog + Rate Limiter + Fraud
-
-**Monday: Log Aggregation at Scale (Case Study 8)**: Elasticsearch at scale, index lifecycle management, log parsing (Grok patterns), field extraction
-
-**Tuesday: Data Catalog + Lineage (Case Study 9)**: CrystalDB — every Parquet file registered, lineage tracked (producer → dataset → consumer), semantic search via PGVector
-
-**Wednesday: Rate Limiter at API Gateway Level (Case Study 10)**: all 4 algorithms at Kong-pattern gateway. Per-consumer, per-route, global cluster-level limits
-
-**Thursday-Friday: VaultAuth Anomalous Auth + Fraud (Case Study 11)**: Wasm pre-screen + Go rules + ONNX ML. Full anomalous login detection deployed.
-
-**WEEKEND — All 11 Case Studies Deployed + Portfolio Site Live**
-
----
-
-## MONTH 7: Hiring Sprint
-
-### Week 17-18: Portfolio Polish + Open Source
-
-- All 4 platform READMEs with architecture diagrams, benchmark numbers, ADRs
-- CNCF contributions: `opentelemetry-go` (collector improvements), `opentelemetry-collector-contrib` (new receiver), `cert-manager` (Go)
-- LFX application: ObserveFlowCollector operator + CNCF PRs
-
-### Week 19-20: Mock Interviews + Applications
-
-**System design mocks (Datadog-specific):**
-- Design a distributed metrics pipeline ingesting 100M metrics/sec
-- Design an alerting engine with noise reduction
-- Design a distributed tracing system with tail-based sampling
-
-**System design mocks (Confluent-specific):**
-- Design a Kafka cluster management platform
-- Design Schema Registry with compatibility enforcement
-- Design exactly-once Kafka consumer
-
-**System design mocks (Okta-specific):**
-- Design an OIDC provider at scale
-- Design an API key management system with rotation
-- Design anomalous auth detection
-
-**Target applications:**
-1. Datadog — ObserveFlow mirrors their product. Go collector agent + ClickHouse + K8s Operator
-2. Confluent — StreamBridge shows Kafka internals + Schema Registry + exactly-once
-3. Snowflake / ThoughtSpot — CrystalDB shows columnar query, partition pruning, data sharing
-4. Kong — API gateway plugin system, rate limiting, auth at gateway layer
-5. Okta / WorkOS / FusionAuth — VaultAuth: OIDC provider + SAML + MFA + audit log
-6. Replit — ObserveFlow collector (Go) + K8s operator shows infra depth
-
-**Cold email:**
-```
-Subject: [Role] — built ObserveFlow: OTel collector + ClickHouse pipeline, 10M spans/sec
-
-I built ObserveFlow — it mirrors Datadog's architecture from agent to dashboard.
-
-Most relevant:
-• Go collector agent: OTLP/gRPC, ships metrics + logs, 8MB static binary, K8s DaemonSet via Operator
-• ClickHouse pipeline: 10M spans/sec ingest, p99 query < 200ms on 30-day window
-• Alert engine: threshold + anomaly + composite, Kafka fan-out, noise reduction
-
-Also built VaultAuth: OIDC provider, SAML SP, TOTP MFA, API keys (hashed), audit log.
-
-[GitHub + Live demo + k6 benchmarks + CNCF PRs]
+[GitHub] [exactly-once architecture ADR] [live demo]
 ```
 
 ---
 
-## Interconnection Map
+## Monthly Summary
 
-```
-Week 1 ObserveFlow OTLP receiver
-  ↓ becomes Week 4 Express API + ClickHouse insert
-  ↓ becomes Week 5 OTLP/gRPC receiver
-  ↓ becomes Week 7 Go collector agent (ships data here)
-  ↓ becomes Week 9 K8s Operator deploys the agent
-  ↓ becomes Month 4 AI tools query it for alert root cause
+| Month | Project | Phase | Key Milestones |
+|-------|---------|-------|----------------|
+| 1 | ObserveFlow | Full-stack: OTLP receiver, ClickHouse, alerts | OTLP/HTTP receiver, ClickHouse storage, Elasticsearch logs |
+| 2 | ObserveFlow | Go agent + K8s DaemonSet Operator | Go collector binary 8MB, mTLS, 10M spans/sec k6 |
+| 3 | VaultAuth | Full build: OIDC, SAML, MFA, API keys, audit | OIDC provider, SAML SP, WebAuthn, hash chain audit log |
+| 4 | StreamBridge | Foundation: KRaft, Schema Registry, Kafka Streams | Consumer lag UI, exactly-once demo, ksqlDB-style queries |
+| 5 | StreamBridge | Advanced: CDC, Kafka Connect, system design | Debezium CDC, K8s Operator, all system design in platform |
+| 6 | CrystalDB | Full build: columnar, time-travel, data sharing | Parquet + ClickHouse query engine, time-travel, sharing creds |
+| 7 | All | OTel, k6, polish, hiring | All benchmarks, cold emails, portfolio live |
 
-Week 1 VaultAuth login form
-  ↓ gets React + RHF Week 2
-  ↓ gets OIDC token issuance Week 4
-  ↓ gets SAML Week 5
-  ↓ gets MFA + API keys Week 4-5
-  ↓ ALL 4 PLATFORMS authenticate via VaultAuth from Week 2
-  ↓ VaultAuth's own auth events appear in ObserveFlow (eats own cooking)
-  ↓ becomes Identity Provider case study Month 6
+---
 
-Week 4 VaultAuth audit log
-  ↓ PostgreSQL WAL → Kafka (Week 8 CDC)
-  ↓ ObserveFlow ingests audit events as log records
-  ↓ AI anomalous auth detection reads from ObserveFlow (Month 4)
-  Three platforms: VaultAuth produces events, ObserveFlow stores them, AI reads them.
+## Non-Negotiable Rules
 
-Week 4 ClickHouse (ObserveFlow)
-  ↓ all 3 other platforms instrumented with OTel SDK (ship spans to ObserveFlow)
-  ↓ Month 4 AI tools query it for root cause
-  ↓ Month 6 case studies benchmark against it
-  ObserveFlow is the nervous system of the entire monorepo.
-```
+| Rule | Why |
+|------|-----|
+| `go test -race ./...` before every commit | Race conditions in the collector agent cause metric loss |
+| `EXPLAIN ANALYZE` on every PostgreSQL query | ObserveFlow metadata queries run millions of times/day |
+| Kafka exactly-once semantics in StreamBridge | Duplicate audit events violate compliance requirements |
+| VaultAuth API keys: hash on store, never the key | Raw key storage is a catastrophic security failure |
+| VaultAuth audit log: append-only, no UPDATE/DELETE | Tamper-evident log is a compliance requirement |
+| Schema Registry compatibility check before register | Schema incompatibility crashes all downstream consumers |
+| `goleak.VerifyNone(t)` in every Go test file | Goroutine leaks in the collector accumulate to OOM |
+| k6 before calling anything "production-ready" | ObserveFlow at 10M spans/sec behaves very differently from dev |

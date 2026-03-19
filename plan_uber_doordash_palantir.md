@@ -1,959 +1,513 @@
-# 10-Month Full-Stack Engineering Mastery Plan
+# Full-Stack Engineering Mastery Plan
 ## Targeting Uber · DoorDash · Palantir
-### Real-Time Marketplace + Last-Mile Logistics + Data/AI Platform Track
+### Real-Time Marketplace + Last-Mile Logistics + Data/AI Platform Track — Sequential Projects
 
 ---
 
-## Why This Track
+## The Core Principle: One Project at a Time
 
-**Uber** pays extremely well for engineers who understand their actual problems: sub-second driver-rider matching at city scale, surge pricing that doesn't anger everyone, geospatial computation (H3 hexagons, PostGIS), fraud detection that doesn't false-positive on legitimate drivers, and a dispatch engine that holds state across millions of concurrent trips. They don't want engineers who "have experience with distributed systems" — they want engineers who have solved the specific class of problems they solve every day.
-
-**DoorDash** is a logistics company wearing an app. Their hard problems: optimal dasher assignment (the knapsack problem, live), restaurant marketplace with real inventory constraints, merchant onboarding at scale, delivery time prediction under uncertainty, and consumer experience during a supply crunch (Saturday 8 PM). The engineer they want understands marketplace dynamics, not just CRUD.
-
-**Palantir** is unlike either. They build **Foundry** — a data integration platform where heterogeneous data sources (CSV, APIs, databases, streams) are unified into a typed ontology of business objects, pipelines are built on top, and every transformation has full lineage. They build **AIP** — AI workflows where LLMs are decision support tools inside human analyst workflows, with hard constraints on what the AI can act on autonomously vs what requires human approval. The Palantir engineer must understand: graph data models, pipeline reliability, access control at the object level, Python for data, and human-in-the-loop AI system design. Palantir interviews are among the hardest in the industry.
-
-**The engineer who gets all three** understands: real-time systems, marketplace dynamics, geospatial computation, data pipeline reliability, ontology-based data modeling, and the architecture of AI systems that augment humans rather than replace them. That combination opens every door.
+You finish one project completely before starting the next. No juggling four codebases. Each project is built deeply, deployed, benchmarked, and documented before you touch the next one. Every project is **specifically modelled on real internal engineering work** at the target company — not a generic portfolio piece.
 
 ---
 
-## Philosophy: One Codebase. Everything Connected.
+## The 4 Projects (Sequential — Complete One Before Starting the Next)
 
-Every concept you learn exists because one of your four platforms needs it. Nothing is a tutorial project. Nothing is thrown away. Every mini-project is a named feature of a named platform.
-
-**The thread that runs through everything:**
-- The raw Node.js server you write on Day 1 receives driver location events. That same event pipeline, extended week by week, becomes the geospatial matching engine in Month 3, the Kafka backbone in Month 3, the Go aggregator in Month 3, and the FoundryOS ingestion source in Month 4.
-- The CourierNet order form from Week 1 gets React in Week 2, PostgreSQL in Week 4, a Kafka Saga in Month 3, real-time dasher assignment in Month 5, and becomes the E-Commerce Listing case study in Month 6.
-- AIPilot reads from all three other platforms from Week 1 — every AI decision it makes is grounded in live data from DispatchOS and CourierNet. FoundryOS is the data foundation AIPilot queries.
-- Nothing is thrown away. Everything compounds.
+| Order | Project | Mirrors | Duration | What Uber / DoorDash / Palantir Actually Uses This For |
+|-------|---------|---------|----------|-------------------------------------------------------|
+| **1st** | **DispatchOS** | Uber's internal dispatch + matching infrastructure | Months 1–2 | Uber's matching engine assigns a driver to a rider in < 200ms at city scale. The Go service uses H3 hexagons to spatially index drivers, scores candidates in goroutines, and commits via Redis. This is that system. |
+| **2nd** | **CourierNet** | DoorDash's internal logistics + merchant platform | Month 3 | DoorDash's dasher assignment, order lifecycle management, ETA prediction, and merchant portal. The Go optimizer matches dashers to orders using a scoring pipeline. The ML model predicts ETA from live traffic. |
+| **3rd** | **FoundryOS** | Palantir Foundry's internal data integration platform | Months 4–5 | Palantir Foundry unifies heterogeneous data sources into a typed ontology. Every pipeline records lineage. Great Expectations gates data quality. This is the internal tooling Palantir's data engineers build and operate. |
+| **4th** | **AIPilot** | Palantir AIP's internal human-in-the-loop AI system | Month 6 | Palantir AIP gives analysts LLM-powered decision support — but the AI can only **propose** actions, never execute them without human approval. Every proposal, every decision, every action is audit-logged. This is that system. |
 
 ---
 
-## The 4 Platform Projects
+## Project 1: DispatchOS — Real-Time Driver-Rider Matching Engine
+### Months 1–2 · Mirrors Uber's Core Dispatch Infrastructure
 
-These share a monorepo, shared TypeScript + Python types, shared infrastructure, and grow together across all 10 months.
+**What Uber actually uses:** Uber's matching engine is a Go service. Every 5 seconds, it runs a matching cycle: find all drivers within N H3 hexagons of each waiting rider, score each driver by ETA + rating + acceptance rate, assign the best match via Redis atomic operation. The matching must complete in < 200ms end-to-end. DispatchOS is that system.
 
-- 🚗 **DispatchOS** — Real-time marketplace matching engine (Uber's core: driver-rider matching, surge pricing, geospatial dispatch, fraud detection)
-- 🍔 **CourierNet** — Last-mile logistics + merchant platform (DoorDash's core: order assignment, dasher routing, restaurant ops, delivery prediction)
-- 🔭 **FoundryOS** — Data integration + ontology platform (Palantir Foundry: pipeline orchestration, typed object graph, lineage tracking, heterogeneous source unification)
-- 🤖 **AIPilot** — Human-in-the-loop AI decision platform (Palantir AIP: LLM-powered analyst workflows, approval queues, audit trail, constrained autonomy)
+---
 
-**Monorepo structure (Week 1, used for all 10 months):**
+### Month 1, Week 1: HTTP + HTML + CSS + Geospatial Mental Model
+
+**Monday — HTTP + H3 Hexagonal Grid + CLI + Dev Setup**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js 22, VS Code, pnpm, `curl`, `dig`, H3 library |
+| 📖 **Concepts** | HTTP/HTTPS model, DNS, TLS, `curl -v` anatomy, H3 hexagonal grid (why hexagons over squares for geospatial), CLI essentials |
+| 🎯 **You Build** | DispatchOS raw Node.js server — `POST /location` receives driver GPS ping with H3 cell ID. `GET /nearby/:riderH3` returns drivers in surrounding hexagons. |
+| 🔗 **Why It Matters** | Uber uses H3 (Uber's open-source hexagonal grid library) for spatial indexing. H3 hexagons tessellate uniformly — every cell has 6 equidistant neighbors. This makes "find all drivers within 2km" a `SET` lookup in Redis (`SMEMBERS h3:cell:{h3Index}`) instead of a slow `ST_DWithin` PostGIS query on every matching cycle. |
+
+**H3 core concepts you implement today:**
+- `latLngToCell(lat, lng, resolution)` — converts GPS coordinate to H3 cell ID at resolution 9 (~1km² cells)
+- `gridDisk(h3Index, k)` — returns all H3 cells within k rings (for k=2: up to 2 hexagons away = ~2km radius)
+- Driver location stored as `SADD h3:drivers:{cellId} {driverId}` in Redis. Find nearby: `gridDisk(riderCell, 2)` → union of all cell SMEMBERS
+
+**Tuesday — HTML + CSS + DispatchOS Dispatcher Dashboard**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | HTML5, CSS, Tailwind, Shadcn, Mapbox GL JS |
+| 📖 **Concepts** | Semantic HTML, box model, flexbox, grid, Tailwind utility-first, Shadcn DataTable, Mapbox GL JS for live driver map |
+| 🎯 **You Build** | DispatchOS dispatcher UI: live map (Mapbox GL) showing driver dots, H3 hex heatmap showing demand density, DataTable with pending trips. Lighthouse 90+. |
+| 🔗 **Why It Matters** | Uber's internal dispatch tools show exactly this: a city map with colored H3 hexagons indicating demand, driver dots updating in real time. You're building their internal operations tooling. |
+
+**Wednesday — JavaScript Engine: Types + Closures + Event Loop**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, Vitest |
+| 📖 **Concepts** | Primitive vs reference types, `===` vs `==`, lexical scope, closures, `var`/`let`/`const`, event loop (call stack, microtask queue, macrotask queue) |
+| 🎯 **You Build** | `packages/utils/retry.ts` — exponential backoff for DispatchOS webhook delivery. `packages/utils/emitter.ts` — typed EventEmitter for driver state changes. `packages/utils/concurrent.ts` — `ConcurrencyLimiter` for bulk location updates. |
+
+**Thursday — TypeScript: Generics + Branded Types + Zod**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | TypeScript strict mode, Zod |
+| 📖 **Concepts** | Branded types (`DriverId`, `RiderId`, `TripId`, `H3Index` — all distinct string types), generics, conditional types, `z.infer` |
+| 🎯 **You Build** | `packages/types` — `H3Index`, `DriverId`, `RiderId`, `TripId` are branded. `packages/schemas` — `GpsLocationSchema`, `TripSchema`, `MatchRequestSchema` validated with Zod. |
+| 🔗 **Why It Matters** | At Uber's scale, passing a `RiderId` where a `DriverId` is expected causes silent mismatches. Branded types prevent this at compile time. |
+
+**Friday — Promises + async/await + Node.js Streams**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Node.js, TypeScript, Vitest |
+| 📖 **Concepts** | Promise states, async/await sugar, `Promise.all`/`allSettled`/`race`, generators for lazy pagination of trip history |
+| 🎯 **You Build** | DispatchOS location stream processor: reads GPS events from a stream, validates with Zod, updates H3 Redis sets. `pipeline()` for backpressure. 1M events processed in constant memory. |
+
+---
+
+### Month 1, Week 2: React + PostgreSQL + PostGIS + Redis
+
+**Monday–Tuesday — React + Tanstack Query + Zustand + Mapbox**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | React 18, Tanstack Query, Zustand, Motion, Mapbox GL JS |
+| 📖 **Concepts** | `UI = f(state)`, all hooks, optimistic updates, selective subscription, `AnimatePresence`, Mapbox source updates |
+| 🎯 **You Build** | DispatchOS live dispatcher map: driver dots update every 5s (Tanstack Query poll), H3 heatmap updates in background, trip assignment shows animated route line. |
+
+**Wednesday — Next.js + Server Components**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Next.js 14, React Server Components |
+| 📖 **Concepts** | Server Components, `'use client'`, ISR for public pages, streaming Suspense |
+| 🎯 **You Build** | DispatchOS public status page (Server Component), admin dashboard (`'use client'` with real-time map). |
+
+**Thursday — PostgreSQL + PostGIS + EXPLAIN ANALYZE**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PostgreSQL + PostGIS, `node-postgres`, `sqlc`, `pgxpool` |
+| 📖 **Concepts** | PostGIS `ST_DWithin`, spatial indexes (GiST), `EXPLAIN ANALYZE`, N+1 elimination, MVCC, all 4 isolation levels |
+| 🎯 **You Build** | DispatchOS schema: `drivers` with `location GEOMETRY(Point, 4326)`, GiST spatial index. `trips` table. All queries `EXPLAIN ANALYZE`'d. Driver lookup within 2km: `ST_DWithin` < 5ms with GiST index. |
+| 🔗 **Why It Matters** | Uber uses PostGIS for precision geospatial queries (exact matching). They use H3+Redis for the hot matching path (< 1ms). You implement both — same as Uber's actual two-layer geospatial architecture. |
+
+**Friday — Redis All Data Structures for DispatchOS**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Redis, `ioredis`, Lua scripts |
+| 📖 **Concepts** | H3 cell → driver set (`SADD`/`SMEMBERS`), surge multiplier by H3 zone (Hash), trip status (String + TTL), rate limiting (Sorted Set), TTL jitter |
+| 🎯 **You Build** | DispatchOS Redis layer: `h3:drivers:{cell}` sets updated on every GPS ping. `surge:{h3Cell}` hash stores current multiplier. Trip status cached with 30s TTL. Rate limiting on `/location` endpoint (100 pings/sec per driver). |
+
+**Weekend — DispatchOS Full-Stack v1.0**
+
+DispatchOS full-stack: Next.js + PostGIS + Redis H3 sets + JWT auth. Deployed. Lighthouse 90+.
+
+---
+
+### Month 1, Week 3: Node.js Internals + DispatchOS Advanced
+
+**Monday — V8 + `worker_threads` + Streams**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | `node --inspect`, `worker_threads`, `stream/promises` |
+| 📖 **Concepts** | V8 JIT, hidden classes, GC, `worker_threads` for CPU-bound matching scoring, backpressure |
+| 🎯 **You Build** | DispatchOS matching: candidate scoring (distance × rating × acceptance_rate) moved to `worker_threads`. 4x throughput on multi-core. GPS event stream with backpressure. |
+
+**Tuesday — JWT Auth + RBAC + Webhook HMAC**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | JWT RS256, Node.js `crypto`, Express middleware |
+| 📖 **Concepts** | RS256 asymmetric JWT, 3-role RBAC (driver/dispatcher/admin), HMAC-SHA256 webhook signing, `timingSafeEqual` |
+| 🎯 **You Build** | DispatchOS auth: `packages/auth` with JWT RS256 (shared across projects). Trip events webhooks signed with HMAC. |
+
+**Wednesday–Thursday — Kafka + Outbox Pattern**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Apache Kafka, MSK |
+| 📖 **Concepts** | Topic → partition → offset, partition key (use `driverId` for ordering), idempotent producer, outbox pattern, consumer group rebalancing |
+| 🎯 **You Build** | DispatchOS: GPS ping → Kafka `location-events` topic (key: `driverId` → ordering guaranteed per driver). Trip lifecycle events → outbox → Kafka. FoundryOS (Project 3) will consume from this same topic. |
+
+**Friday — SSE + WebSockets: Live Driver Map**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | SSE (`text/event-stream`), WebSockets (`ws`) |
+| 📖 **Concepts** | SSE vs WebSocket, fan-out across replicas via Redis pub/sub, connection registry, ping/pong keepalive |
+| 🎯 **You Build** | DispatchOS: driver GPS updates push to dispatcher browser via WebSocket. Redis pub/sub fans out across 3 server replicas. Kill one replica — all dispatchers continue receiving updates. |
+
+---
+
+### Month 2, Week 5–6: Go Matching Engine + Kubernetes Operator
+
+**Week 5: Go Language + Concurrency**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go 1.22, `golangci-lint`, `goleak`, `go test -race` |
+| 📖 **Concepts** | Zero values, implicit interfaces, error wrapping, goroutines + M:N scheduler, channels (pipeline/fan-out/fan-in), `sync.RWMutex`, `errgroup`, `singleflight`, `atomic` |
+| 🎯 **You Build** | DispatchOS matching engine in Go: for each waiting rider, `gridDisk(riderH3, 2)` → Redis SMEMBERS (all nearby drivers) → `errgroup` scores N drivers in parallel → select best → `SET NX` atomic assignment. Tested with `go test -race`. `goleak.VerifyNone(t)` confirms zero goroutine leaks. |
+| 🔗 **Why It Matters** | Uber's matching engine is written in Go. The concurrency model — score N drivers in parallel goroutines, select winner atomically via Redis — is exactly what you implement here. |
+
+**Week 5, Thursday — Go `net/http` + `sqlc` + `chi` + `cobra`**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go `net/http`, `chi`, `sqlc`, `pgx/v5`, `cobra` |
+| 📖 **Concepts** | `http.Handler` interface, middleware chain, all 4 server timeouts, `sqlc` compile-time SQL validation, `CopyFrom` bulk insert, `cobra` CLI |
+| 🎯 **You Build** | DispatchOS Go API: `chi` router, `sqlc`-generated DB layer, all timeouts set. `dispatchctl` CLI: `dispatchctl trips list`, `dispatchctl drivers status`. |
+
+**Week 6: gRPC + Kubernetes Operator**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | gRPC, Protocol Buffers, `controller-runtime`, Kubernetes |
+| 📖 **Concepts** | Proto3 service definitions, gRPC streaming, K8s Operator pattern, CRD, reconcile loop, Prometheus metrics from Operator |
+| 🎯 **You Build** | DispatchOS internal gRPC: `MatchingService.RequestMatch`, `MatchingService.GetMatchStatus`. K8s Operator: Prometheus alert `matching_queue_depth > 1000` → Operator scales matching engine pod count. New pods join in 30s. |
+| 🔗 **Why It Matters** | This is Uber's on-call engineer's dream: the dispatch infrastructure auto-scales in response to demand spikes without human intervention. |
+
+**Week 6: Load Testing + PITR + All System Design**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | k6, `go tool pprof`, PostgreSQL WAL |
+| 📖 **Concepts** | k6 virtual users, p50/p95/p99 measurement, CPU flame graphs, PITR drill, consistent hashing, Bloom filters |
+| 🎯 **You Build** | DispatchOS: k6 at 100K TPS (GPS pings/sec), matching engine p99 < 200ms. pprof: find and fix top allocator. PITR drill documented. Bloom filter for deduplicating GPS events. Consistent hashing for matching worker routing. |
+
+**Weekend — DispatchOS COMPLETE**
+
+k6 benchmark: 100K GPS pings/sec, matching p99 < 200ms. Architecture diagram. ADRs: "Why H3+Redis over PostGIS for hot matching path", "Why Go goroutines over Node.js for concurrent driver scoring". LinkedIn post. Now start CourierNet.
+
+---
+
+## Project 2: CourierNet — Last-Mile Logistics + Merchant Platform
+### Month 3 · Mirrors DoorDash's Internal Dasher Assignment + Merchant Tools
+
+**What DoorDash actually uses:** DoorDash's dasher assignment engine solves a combinatorial optimization problem every few seconds: assign available dashers to pending orders to minimize delivery time while satisfying restaurant prep time, dasher proximity, and order urgency constraints. The ETA model predicts delivery time from live traffic. The merchant portal shows real-time order status. CourierNet is that internal system.
+
+---
+
+### Month 3, Week 7: CourierNet Foundation
+
+**Monday — Dasher Assignment Optimizer**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL + PostGIS, Redis |
+| 📖 **Concepts** | Combinatorial assignment (greedy approximation of minimum-cost bipartite matching), scoring function (proximity + restaurant readiness + order urgency), `errgroup` parallel scoring |
+| 🎯 **You Build** | CourierNet dasher assignment: every 10s, score all available dasher × pending order pairs. Assign using greedy minimum cost. Commit via Redis atomic operation (same `SET NX` pattern as DispatchOS). |
+| 🔗 **Why It Matters** | DoorDash's dispatch team describes their assignment engine exactly this way. The scoring function is the key IP — distance is only one factor. Restaurant ETA (is the food ready?) often matters more than dasher proximity. |
+
+**Tuesday — Order Lifecycle: Kafka Saga**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Kafka, PostgreSQL |
+| 📖 **Concepts** | Order state machine (placed → accepted → preparing → ready → picked_up → delivered), Kafka Saga with compensating transactions, `SELECT FOR UPDATE SKIP LOCKED` for order claiming |
+| 🎯 **You Build** | CourierNet order Saga: `place_order` → PayRail payment → restaurant accept → dasher assignment → pickup → delivery. Each step compensatable. Failed payment → order cancelled, restaurant notified. |
+| 🔗 **Why It Matters** | DoorDash's order lifecycle is this exact Saga. The hard case: restaurant accepts but dasher never picks up. The compensating action is reassignment, not cancellation — and only cancellation after 3 failed reassignments. |
+
+**Wednesday — ETA Prediction: ONNX in Go**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Python (model training), ONNX, Go ONNX runtime |
+| 📖 **Concepts** | Feature engineering (distance, traffic conditions, time of day, restaurant type), ONNX export, Go inference at < 10ms, model versioning, A/B test |
+| 🎯 **You Build** | CourierNet ETA: train gradient boosting model in Python (features: dasher proximity, restaurant prep time estimate, live traffic score). Export to ONNX. Go inference server: `POST /eta` → prediction in < 10ms. A/B test v1 vs v2. |
+
+**Thursday — Merchant Portal**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Next.js, React, Tanstack Query, WebSockets |
+| 📖 **Concepts** | Real-time order feed (WebSocket), SSE for kitchen display, merchant analytics (ClickHouse) |
+| 🎯 **You Build** | CourierNet merchant portal: live order queue (WebSocket push), kitchen display (`text/event-stream`), daily analytics (ClickHouse: orders/hour, avg prep time, top items). |
+| 🔗 **Why It Matters** | DoorDash's merchant portal is a core product. Restaurants see live orders, prep time averages, and top-performing menu items. The kitchen display needs sub-second updates when an order is placed. |
+
+**Friday — Testing + k6 Benchmarks + Caching**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | `testcontainers`, k6, Redis, Cloudflare CDN |
+| 📖 **Concepts** | Cache-aside for restaurant menus, Redis `DECRBY` atomic inventory, CDN for product images, circuit breaker for ETA service |
+| 🎯 **You Build** | CourierNet caching: menu cache (Redis, 5min TTL with jitter), inventory atomic decrement (`DECRBY inventory:{productId} 1`), product images (CloudFront, immutable). Circuit breaker: ETA service slow → fallback to distance-based estimate. |
+
+**Week 8: Remaining System Design Cases + Polish**
+
+Implement: Product search (Elasticsearch + PGVector hybrid), real-time delivery tracking (GPS → Kafka → SSE → customer order page), recommendation system (collaborative filtering + PGVector), flash sale inventory (Redis `DECRBY` + sorted set queue for burst traffic). k6 all endpoints. `go test -race` passes. `EXPLAIN ANALYZE` every query.
+
+**Weekend — CourierNet COMPLETE**
+
+k6: dasher assignment < 500ms p99, order placement 10K TPS. ETA model: ONNX inference < 10ms. All system design cases documented. ADRs: "Why Go optimizer over Python for assignment engine", "Why ONNX Go over Python microservice for ETA". LinkedIn post. Now start FoundryOS.
+
+---
+
+## Project 3: FoundryOS — Data Integration + Ontology Platform
+### Months 4–5 · Mirrors Palantir Foundry's Internal Data Platform
+
+**What Palantir actually uses:** Palantir Foundry ingests heterogeneous data sources (CSVs, databases, APIs, Kafka streams) and unifies them into a typed ontology of business objects (Person, Organization, Event, Location). Every transformation is a versioned pipeline with full lineage. Data quality is enforced by Great Expectations gates. FoundryOS mirrors this internal platform exactly.
+
+**The thing that makes Foundry different from Databricks:** Foundry isn't just a data pipeline tool. It models data as a **graph of typed objects with relationships** — a Person `worksAt` an Organization, a Trip `involvesDriver` a Driver. Queries traverse this graph. You build that.
+
+---
+
+### Month 4, Week 9: FoundryOS Foundation
+
+**Monday — Ontology: Typed Object Graph**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, pgvector |
+| 📖 **Concepts** | Ontology model (object types, relationship types, property types), graph schema in PostgreSQL, object-level access control (different from table-level) |
+| 🎯 **You Build** | FoundryOS ontology schema: `object_types` (Driver, Trip, Location, Restaurant), `object_instances`, `relationship_types` (worksAt, locatedIn, assignedTo), `relationship_instances`. Object-level access control: analyst A can see Driver objects but not Trip objects for the same dataset. |
+| 🔗 **Why It Matters** | This is Palantir's core IP. The ontology is what makes Foundry different from a data warehouse. A Trip object has properties (duration, distance, fare) AND relationships (assignedDriver → Driver, pickupLocation → Location). Querying the graph is fundamentally different from JOIN queries on normalized tables. |
+
+**Tuesday — Pipeline Ingestion: Kafka + CDC + CSV**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, Kafka, Debezium (CDC), Python (CSV parser) |
+| 📖 **Concepts** | Heterogeneous source unification, CDC (every DispatchOS DB change → FoundryOS Kafka topic), CSV ingestion with schema inference, source → ontology mapping |
+| 🎯 **You Build** | FoundryOS ingests from 3 sources simultaneously: (1) Kafka CDC from DispatchOS's `trips` table → `Trip` object type, (2) CSV upload → `Location` object type, (3) REST API call → `Driver` object type. All mapped to the same ontology. |
+
+**Wednesday–Thursday — PySpark Transformations + Delta Lake**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PySpark, Delta Lake (`delta-rs`), dbt, S3 |
+| 📖 **Concepts** | Spark job lifecycle, Delta Lake transaction log, ACID on S3, time-travel (`VERSION AS OF`), schema evolution |
+| 🎯 **You Build** | FoundryOS pipeline: raw Kafka events → PySpark transform → Delta Lake table on S3 → dbt SQL model → FoundryOS ontology. Each step versioned. Delta time-travel: roll back to any previous version of any table. |
+
+**Friday — Data Lineage Recording**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, React (graph visualization) |
+| 📖 **Concepts** | Lineage DAG (source → pipeline → dataset → model → dashboard), lineage recording at run time, impact analysis ("what breaks if I change this column?") |
+| 🎯 **You Build** | FoundryOS lineage: every pipeline run records `(input_dataset_id, output_dataset_id, pipeline_id, run_id)` in PostgreSQL. React graph: click any dataset → see all upstreams and downstreams. |
+| 🔗 **Why It Matters** | Palantir's engineers say lineage is the feature customers pay for most. "Why did this dashboard number change?" → lineage trace back to the upstream data source change in 3 clicks. |
+
+---
+
+### Month 4, Week 10: FoundryOS Advanced
+
+**Monday–Tuesday — Airflow Scheduling + Great Expectations Quality Gates**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Apache Airflow, Great Expectations, Kafka |
+| 📖 **Concepts** | Airflow DAG (task dependencies, SLA monitoring, XCom), Great Expectations validation suites, blocking pipeline on failed quality gate, Delta time-travel rollback on failure |
+| 🎯 **You Build** | FoundryOS pipeline scheduling: `daily_trip_aggregation` Airflow DAG. After each run: Great Expectations validates (no nulls, value ranges, row count). Failure → pipeline fails, Delta rollback, PagerDuty alert. |
+
+**Wednesday — ClickHouse Analytics**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | ClickHouse, Go ClickHouse client |
+| 📖 **Concepts** | Columnar storage, MergeTree engine, partitioning by date, sub-second aggregations on billions of rows |
+| 🎯 **You Build** | FoundryOS dashboard: pipeline metrics (runs/day, data volumes, error rates) in ClickHouse. Analyst query on 10B trip rows: `SELECT count(*) FROM trips WHERE date > '2024-01-01'` returns in < 200ms. |
+
+**Thursday — Kubernetes + Terraform + GitHub Actions**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Docker multi-stage, EKS, Terraform, GitHub Actions, `trivy` |
+| 📖 **Concepts** | Multi-stage builds, K8s HPA, Terraform state, GitHub Actions matrix CI, `trivy` CVE scanning |
+| 🎯 **You Build** | FoundryOS deployed to EKS. Terraform: EKS + RDS + ElastiCache + S3 + MSK. GitHub Actions: lint → test → build → trivy scan → deploy. Branch protection: no merge without green CI. |
+
+**Friday — Semantic Search over Ontology**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PGVector, OpenAI embeddings, Elasticsearch |
+| 📖 **Concepts** | Hybrid BM25 + vector search, HNSW index, object embedding (embed description → vector), semantic vs keyword search |
+| 🎯 **You Build** | FoundryOS catalog search: "Find datasets with driver location history from last quarter" → hybrid search: Elasticsearch (keyword) + PGVector (semantic) → re-rank by recency. |
+
+---
+
+### Month 5, Week 11–12: FoundryOS System Design + Polish
+
+**System design implementations in FoundryOS:**
+
+- **Database Isolation Levels** — all 4 levels with live anomaly demos. FoundryOS uses `SERIALIZABLE` for ontology schema changes, `READ COMMITTED` for pipeline reads.
+- **Caching architecture** — pipeline results cached in Redis (cache-aside, 5min TTL with jitter). Object type definitions cached (write-through — always fresh).
+- **Consistent Hashing** — pipeline workers use consistent hash ring for job routing. Adding a worker remaps only 1/N jobs.
+- **Bloom Filters** — CDC event deduplication: same change event received twice is a no-op.
+- **Message queues** — pipeline job queue: `SELECT FOR UPDATE SKIP LOCKED` for claiming, DLQ for failed pipelines.
+- **Load balancers + circuit breakers** — Spark cluster slow → circuit breaker trips → jobs queue. PITR drill documented.
+
+**Weekend — FoundryOS COMPLETE**
+
+k6: pipeline submission → Delta Lake write < 5s p99. Ontology query p99 < 50ms. Lineage graph correct for 1000 pipeline runs. ADRs written. Now start AIPilot.
+
+---
+
+## Project 4: AIPilot — Human-in-the-Loop AI Decision Platform
+### Month 6 · Mirrors Palantir AIP's Internal AI Workflow System
+
+**What Palantir actually uses:** AIP gives analysts an LLM assistant that can query FoundryOS, propose actions (suspend an account, escalate an alert, create a task), and explain its reasoning — but it **cannot execute actions autonomously**. Every proposed action generates a row in the `decisions` table with `status: 'pending_approval'`. The analyst sees the AI's proposal, the evidence, and decides yes/no. Every decision is audit-logged forever. AIPilot is that system.
+
+**The hard constraint:** `proposeAction` is the only action the AI can take. There is no `executeAction` without a human in the loop. This constraint is implemented as a hard rule in the tool definitions — the LLM literally cannot call any tool that executes state changes.
+
+---
+
+### Month 6, Week 13: AIPilot Foundation
+
+**Monday — Human-in-the-Loop Architecture**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Go, PostgreSQL, Redis |
+| 📖 **Concepts** | Human-in-the-loop AI design, approval queue pattern, action proposal vs execution, audit log (append-only, tamper-evident) |
+| 🎯 **You Build** | AIPilot `decisions` table: `id`, `proposed_by` (AI agent ID), `action_type`, `action_payload`, `evidence` (JSON — what data the AI used to make this proposal), `status` (pending_approval/approved/rejected), `decided_by` (analyst ID), `decided_at`. **No update to `status` is possible by the AI** — only analysts can approve/reject. |
+| 🔗 **Why It Matters** | Palantir's sales pitch for AIP is exactly this: AI that augments human analysts, not replaces them. The human remains accountable for every action. The audit log proves it to regulators. |
+
+**Tuesday — AI Tool Definitions: Read-Only Tools Only**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | OpenAI function calling, Go, FoundryOS API, DispatchOS API |
+| 📖 **Concepts** | Tool definitions with read-only constraints, the LLM decision loop (decide → tool call → observe → decide), bounded tool use |
+| 🎯 **You Build** | AIPilot tools — all read-only: `query_foundryos_dataset(datasetId, filter)`, `get_driver_stats(driverId, timeRange)`, `search_trip_history(query)`, `get_anomaly_score(entityId)`. One write tool: `propose_action(actionType, payload, evidence)` which inserts into `decisions` with `status: 'pending_approval'`. |
+| 🔗 **Why It Matters** | The tool definitions are the security boundary. If `execute_suspension(driverId)` existed as a tool, the AI could suspend drivers autonomously. It doesn't exist. `propose_suspension(driverId, evidence)` exists — creates a pending decision for an analyst. |
+
+**Wednesday — RAG over FoundryOS Ontology**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PGVector, OpenAI embeddings, FoundryOS API, Go |
+| 📖 **Concepts** | RAG pipeline (embed query → retrieve top-K similar ontology objects → inject into prompt → generate grounded answer), chunking strategy, citation in response |
+| 🎯 **You Build** | AIPilot: "Show me all trips where the driver's GPS trace suggests possible fare manipulation" → RAG over FoundryOS trip ontology objects (semantic search) → retrieved evidence injected into prompt → AI analyzes and proposes action if warranted. |
+
+**Thursday — Vercel AI SDK + Streaming + Multi-Agent**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Vercel AI SDK, `useChat`, `streamText`, Next.js |
+| 📖 **Concepts** | `useChat` hook, streaming token-by-token, multi-agent orchestration (coordinator → specialist agents), DungBeetle-style job queue for agent tasks |
+| 🎯 **You Build** | AIPilot multi-agent: analyst asks "Investigate this surge of cancellations on driver_id:123". Coordinator agent → spawns 3 sub-agents: (1) trip history analysis, (2) GPS trace anomaly detection, (3) payment pattern analysis. All 3 run in parallel. Coordinator synthesizes. Proposes action if warranted. |
+
+**Friday — Audit Log + Compliance Reporting**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | PostgreSQL, Go, Elasticsearch |
+| 📖 **Concepts** | Append-only audit log (no UPDATE/DELETE ever), tamper-evident (hash chain: each row includes hash of previous row), compliance export (CSV + JSON), Elasticsearch for full-text search over audit log |
+| 🎯 **You Build** | AIPilot audit log: every AI proposal, every human decision, every tool call is an immutable row. Hash chain: `hash(row) = SHA256(previous_hash + row_content)`. Compliance export: "Show me all AI proposals that were rejected by analyst team in Q4 2024". |
+| 🔗 **Why It Matters** | Palantir's enterprise contracts require full audit trails for AI-assisted decisions. Regulators (banks, government agencies) need to verify that humans reviewed every AI proposal. The hash chain makes the log tamper-evident. |
+
+---
+
+### Month 6, Week 14: All System Design Cases
+
+**Monday–Tuesday — Real-Time Marketplace Matching + Surge Pricing (System Design 1 + 2)**
+
+DispatchOS already implements these. This week: write the architecture ADR, create Mermaid diagrams, document k6 numbers. "H3 matching engine: 100K TPS, p99 < 200ms. Surge pricing: ONNX model in Go, < 5ms inference."
+
+**Wednesday — Dasher Assignment + Last-Mile Routing + ETA Prediction (System Design 5 + 6)**
+
+CourierNet already implements these. Document: dasher assignment algorithm, ETA ONNX model accuracy, delivery tracking architecture.
+
+**Thursday — Human-in-the-Loop AI + Data Pipeline Reliability (System Design 7 + 8)**
+
+AIPilot and FoundryOS implement these. Document: approval queue pattern, bounded tool use, audit log hash chain, pipeline quality gating, Delta time-travel rollback.
+
+**Friday — Fraud Detection + Recommendation + Rate Limiter + Abuse Masker (System Design 9–11)**
+
+| | |
+|---|---|
+| 🛠 **Technologies** | Wasm (AssemblyScript), Go rules engine, ONNX, PGVector, Redis Lua |
+| 📖 **Concepts** | GPS spoofing detection (impossible speed, teleport detection, known spoof coordinates), restaurant recommendation (collaborative + content-based), all 4 rate limit algorithms |
+| 🎯 **You Build** | DispatchOS GPS fraud: Wasm pre-filter (known spoof GPS coords in AssemblyScript) + Go rules (impossible speed: > 200km/h between pings) + ONNX ML score → `propose_action: suspend` in AIPilot (never auto-suspend). CourierNet recommendation: PGVector collaborative filtering. DispatchOS rate limiter: all 4 algorithms. |
+
+**Weekend — AIPilot COMPLETE. All 4 Projects COMPLETE.**
+
+---
+
+## Month 7: Observability + Polish + Hiring Sprint
+
+### Week 15: OpenTelemetry + Final Benchmarks
+
+Add OTel instrumentation to all 4 projects. Jaeger traces. Prometheus + Grafana dashboards. k6 all endpoints. `pprof` all Go services. Fix every regression.
+
+**Final k6 numbers to achieve:**
+- DispatchOS: 100K GPS pings/sec, matching p99 < 200ms
+- CourierNet: 10K TPS order placement, dasher assignment p99 < 500ms
+- FoundryOS: pipeline submission → Delta write < 5s p99
+- AIPilot: RAG query p99 < 1s
+
+### Week 16: Portfolio + Cold Outreach
+
+**Cold Email — Uber:**
 ```
-/
-├── apps/
-│   ├── dispatchos/      ← location event receiver → geospatial matcher → surge engine → fraud detection
-│   ├── couriernet/      ← order form → React → Kafka Saga → dasher routing → ETA prediction
-│   ├── foundryos/       ← pipeline shell → ontology graph → lineage tracker → dataset catalog
-│   └── aipilot/         ← analyst shell → AI chat → approval queue → audit trail → constrained agents
-├── packages/
-│   ├── types/           ← Driver, Trip, Order, Dasher, OntologyObject, PipelineRun (Week 1, forever)
-│   ├── schemas/         ← Zod + Pydantic schemas (Week 1, forever)
-│   ├── ui/              ← Shadcn components (Week 3)
-│   ├── api/             ← Typed fetch client with retry + idempotency (Week 1, forever)
-│   └── geo/             ← Shared geospatial utilities: H3, PostGIS helpers (Week 4, forever)
-├── infrastructure/
-│   ├── terraform/       ← AWS infra (Week 6)
-│   └── k8s/             ← Kubernetes manifests + Operators (Week 6, Week 9)
-└── python/
-    ├── pipelines/       ← PySpark + dbt transforms (Month 3)
-    ├── ontology/        ← FoundryOS object type definitions (Month 3)
-    └── ml/              ← ETA prediction + surge forecasting models (Month 4-5)
-```
+Subject: [Uber SDE] — built DispatchOS: H3 matching engine, 100K GPS/sec, p99 < 200ms
 
----
+DispatchOS mirrors Uber's dispatch infrastructure.
 
-## Master Technology Checklist
+• Go matching engine: H3 gridDisk → Redis driver sets → goroutine scoring → Redis SET NX assignment, p99 < 200ms at 100K TPS
+• K8s Operator: Prometheus alert matching_queue_depth > 1000 → auto-scale matching pods in 30s
+• GPS fraud: Wasm (AssemblyScript) pre-filter + Go rules + ONNX ML, 3 layers, < 15ms decision
 
-### Fundamentals
-- [ ] HTTP/HTTPS, DNS, Client/Server, WebSockets
-- [ ] Geospatial: H3 hexagonal grid, PostGIS, haversine, spatial indexes
-- [ ] Marketplace dynamics: supply-demand matching, dynamic pricing
-- [ ] Ontology / knowledge graph: typed objects, relationships, lineage
-
-### Frontend
-- [ ] HTML, CSS, JavaScript, TypeScript
-- [ ] React, Next.js, Tanstack Start, Svelte, Vue
-- [ ] Tailwind, Shadcn UI, Radix UI, Motion
-- [ ] Zustand, Immer, Tanstack Query, Zod, React Hook Form
-- [ ] Mapbox GL JS (live driver map, H3 heatmap, dasher routing)
-
-### Backend
-- [ ] Node.js (TypeScript) — primary API layer
-- [ ] Go — high-throughput location aggregator, matching engine
-- [ ] Python — data pipelines (PySpark), ML models (ETA prediction, surge forecasting)
-- [ ] gRPC (internal matching service), REST (external), GraphQL, tRPC, Webhooks
-
-### Databases + Storage
-- [ ] PostgreSQL + PostGIS (geospatial queries — driver locations, H3 zones)
-- [ ] Redis (driver location cache, surge multipliers, rate limiting, pub/sub)
-- [ ] Cassandra (write-heavy location telemetry — 1M events/sec)
-- [ ] ClickHouse (analytics — trip data, funnel metrics, dasher performance)
-- [ ] PGVector (embeddings — ontology object search, semantic similarity)
-- [ ] Elasticsearch (merchant search, full-text across ontology objects)
-- [ ] Delta Lake / Parquet (FoundryOS dataset storage)
-- [ ] SQLite (offline order drafts, edge)
-
-### Data Engineering (Palantir-critical)
-- [ ] Apache Spark (PySpark) — large-scale transformations on FoundryOS datasets
-- [ ] Apache Kafka — event backbone across all 4 platforms
-- [ ] dbt — SQL transformation layer on FoundryOS
-- [ ] Apache Airflow — FoundryOS pipeline scheduling
-- [ ] Delta Lake — ACID transactions, time-travel on datasets
-- [ ] Great Expectations — data quality validation
-- [ ] Data lineage: every transformation records its inputs and outputs
-
-### DevOps
-- [ ] Docker, Kubernetes, Helm, GitHub Actions
-- [ ] Terraform + Pulumi
-- [ ] AWS (EKS, RDS + PostGIS, ElastiCache, S3, Athena, SQS, SNS)
-- [ ] GCP (GKE, Dataproc, BigQuery)
-- [ ] Cloudflare (Workers, Pages, R2)
-
-### Real-Time + AI (Palantir AIP-critical)
-- [ ] SSE, WebSockets, gRPC streaming
-- [ ] Vercel AI SDK + LangChain
-- [ ] Human-in-the-loop AI: approval queues, constrained autonomy, audit trail
-- [ ] RAG over ontology objects (semantic search across FoundryOS graph)
-- [ ] AI Agents with bounded tool use (can query, cannot act without approval)
-- [ ] ONNX (Go) — ETA prediction + fraud inference
-- [ ] WebAssembly (AssemblyScript)
-
-### System Design — 11 Case Studies (adapted for this track)
-- [ ] Real-Time Marketplace Matching (Uber dispatch)
-- [ ] Surge Pricing Engine (dynamic pricing + demand forecasting)
-- [ ] Geospatial Driver Feed (Tinder Feed pattern applied to dispatch)
-- [ ] Notifications at Scale (trip events, ETA updates)
-- [ ] Last-Mile Routing + ETA Prediction
-- [ ] Dasher Assignment Optimization (combinatorial matching)
-- [ ] Data Pipeline Reliability (FoundryOS — Palantir Foundry pattern)
-- [ ] Human-in-the-Loop AI Workflow (AIPilot — Palantir AIP pattern)
-- [ ] Fraud Detection (GPS spoofing + account fraud)
-- [ ] Recommendation System (restaurant ranking, personalization)
-- [ ] API Rate Limiter + Realtime Abuse Masker
-
----
-
-## How Every Day Works
-
-**Morning (3h):** Learn the concept using one platform's real problem as context.
-**Evening (2h):** Build a named feature of one of the 4 platforms using that concept.
-**Weekend (12h):** Wire the week's features together — each platform takes a version step forward.
-
-The evening build is never a tutorial. It is always: *"DispatchOS needs X"* or *"FoundryOS needs X"*.
-
----
-
-## MONTH 1: Full-Stack From Day One — All 4 Platforms Introduced
-
-**Month 1 goal:** By end of Week 4, all four platforms exist front to back — and they are already feeding each other. DispatchOS location events flow into FoundryOS as a dataset from Week 1. AIPilot reads from FoundryOS from Week 2. The data platform architecture that makes Palantir Foundry compelling is designed on Day 1, not bolted on in Month 5.
-
----
-
-### Week 1: HTTP + HTML + CSS + Geospatial Mental Model — All 4 Platforms Get a Shell
-
-**The narrative this week:** You're building the dispatch engine for a city's worth of drivers, the logistics platform routing thousands of dashers, the data integration layer that makes sense of all of it, and the AI analyst interface that turns data into decisions. The architectural choice that shapes everything: DispatchOS location events are also FoundryOS dataset records from the moment they arrive. The data platform is not a downstream consumer — it is a peer.
-
----
-
-**MONDAY — HTTP + Geospatial Fundamentals + CLI + Git**
-
-**Morning (3h):**
-- Full HTTP/HTTPS/DNS/TLS depth (same as reference roadmap)
-- **H3 Hexagonal Grid (Uber's geospatial system):** divide the Earth into hexagons at multiple resolutions. Resolution 7: ~5km² (city zones for surge pricing). Resolution 9: ~0.1km² (pickup areas). `h3.latLngToCell(lat, lng, resolution)` — driver location → H3 cell instantly. `h3.gridDisk(cell, k)` — find all cells within k rings (nearby drivers)
-- **Why hexagons beat squares:** 6 equidistant neighbors (not 4 + 4 diagonal), consistent cell areas, hierarchical (resolution 7 cell contains exactly 7 resolution 8 cells). Uber, Airbnb, Lyft all use H3
-- **PostGIS:** PostgreSQL extension for geospatial data. `geography` type handles Earth's curvature. `ST_DWithin(a, b, meters)` — fast radius search. `ST_Distance(a, b)` — great-circle distance. Spatial index: `GIST` — essential for `ST_DWithin` to be fast
-- CLI, VS Code, Git, ESLint, Prettier — same depth as reference
-
-**Evening (2h): DispatchOS Driver Location Event Receiver**
-- Feature: **DispatchOS needs a server that receives driver location pings and immediately publishes them to FoundryOS as dataset records**
-- Raw Node.js HTTP server: `POST /events/location` receives `{ driverId, lat, lng, speedKph, heading, timestamp }`
-- H3: convert `lat, lng` → H3 cell (resolution 9) immediately on receipt — every location event is spatially indexed from arrival
-- Log: `[dispatch] driver D001 in cell 8928308280fffff → zone Downtown`
-- Also `POST /events/location` to FoundryOS (same server, second route) — DispatchOS feeds FoundryOS from Day 1
-- Test: `curl -X POST http://localhost:3000/events/location -d '{"driverId":"D001","lat":37.775,"lng":-122.418,"speedKph":32}'`
-
-```javascript
-// apps/dispatchos/server/index.js — Day 1. H3 from the start.
-const http = require('http');
-// h3-js: pure JS H3 implementation (no native deps)
-const { latLngToCell, gridDisk, cellToLatLng } = require('h3-js');
-
-const server = http.createServer((req, res) => {
-  if (req.method !== 'POST') { res.writeHead(405); res.end(); return; }
-
-  let body = '';
-  req.on('data', c => (body += c));
-  req.on('end', () => {
-    const event = JSON.parse(body);
-    // Every location event → H3 cell at resolution 9 (~0.1km²)
-    const cell = latLngToCell(event.lat, event.lng, 9);
-    // Nearby cells (drivers within ~1km): ring of radius 2
-    const nearbyCells = gridDisk(cell, 2);
-
-    const enriched = { ...event, h3Cell: cell, nearbyCells, receivedAt: Date.now() };
-    console.log(`[dispatch] ${event.driverId} → cell ${cell} (${nearbyCells.length} nearby cells)`);
-
-    // This same event also ingested into FoundryOS dataset pipeline (Month 3)
-    res.writeHead(202, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ queued: true, h3Cell: cell }));
-  });
-});
-server.listen(3000, () => console.log('DispatchOS location receiver :3000'));
-// H3 cell from lat/lng: 0.02ms. Spatial index query: 2ms.
-// This is why Uber chose H3 over PostGIS for the hot path.
-```
-
-**X Post:**
-```
-Day 1: DispatchOS location receiver. H3 hexagonal indexing from the first line.
-
-curl -X POST localhost:3000/events/location \
-  -d '{"driverId":"D001","lat":37.775,"lng":-122.418}'
-
-Driver D001 → H3 cell 8928308280fffff
-Nearby cells (within ~1km): 7 hexagons, instant lookup.
-
-H3 is why Uber can answer "drivers near this rider" in 2ms for a whole city.
-Squares have 8 neighbors at unequal distances. Hexagons have 6 equidistant ones.
-
-This same event pipeline feeds FoundryOS (the data platform) from Day 1.
-One event. Two consumers. Same server.
-
-Building DispatchOS + FoundryOS — dispatch engine + data platform.
-
-[H3 hexagon visualization screenshot]
-```
-
----
-
-**TUESDAY — HTML — CourierNet Order Form + FoundryOS Pipeline Config Form**
-
-- **CourierNet order form**: restaurant selection, delivery address, special instructions, scheduled time — semantic HTML, `inputmode="decimal"` for amounts, `autocomplete="shipping"` address fields, `type="time"` for scheduling
-- **FoundryOS pipeline config**: dataset source URL, schema definition (key-value fieldset rows), schedule cron expression, output dataset name — this form is how you define a FoundryOS pipeline. Same form gets React in Week 2, CRUD persistence in Week 4, and a live pipeline editor in Month 3
-- Both: accessible, validatable without JavaScript, tab-navigable
-
----
-
-**WEDNESDAY — CSS — All 4 Platforms Styled**
-
-- `packages/tokens.css`: platform design tokens. DispatchOS uses dark-default (ops dashboards are dark). CourierNet is light (consumer-facing). FoundryOS uses dense-data tokens (`--font-size-mono`, `--color-pipeline-running`, `--color-pipeline-failed`). AIPilot uses trust-focused design (`--color-ai-suggestion`, `--color-human-decision`, `--color-approved`)
-- **DispatchOS**: CSS Grid map layout — full-width map area, floating driver list sidebar, H3 zone heat overlay placeholder
-- **CourierNet**: order flow stepper (horizontal progress bar, CSS transitions between steps), restaurant card grid (`repeat(auto-fill, minmax(240px, 1fr))`)
-- **FoundryOS**: pipeline DAG layout — nodes + edges using CSS Grid + absolute positioning. Dataset table with monospace values
-- **AIPilot**: split-panel layout — AI suggestion left, human context right, approval buttons at bottom
-
----
-
-**THURSDAY — JavaScript — DispatchOS Live Map + CourierNet Order Feed**
-
-- **DispatchOS**: fetch driver locations from Monday's server, initialize Mapbox GL JS map (`map.addSource`, `map.addLayer`), plot driver markers, update every 5s — live city map from Day 1
-- **CourierNet**: order feed page — fetch orders, render with status badges, filter by status, event delegation on rows
-- **FoundryOS shell**: pipeline list page — fetch pipelines, render with last-run status, simple without React yet
-- All: `X-Request-ID` header on every fetch, event loop patterns from reference, cleanup on unmount
-
----
-
-**FRIDAY — TypeScript — packages/types + packages/schemas + packages/geo**
-
-- `packages/types`: `Driver`, `Trip`, `RiderRequest`, `Dasher`, `Order`, `Restaurant`, `OntologyObjectType`, `OntologyObject`, `PipelineRun`, `AnalystDecision`, `AIPilotAction`
-- `packages/schemas`: Zod for all 4 platforms. `LocationEventSchema`, `OrderSchema`, `PipelineConfigSchema`, `AnalystDecisionSchema`
-- `packages/geo`: shared geospatial utilities — `latLngToH3(lat, lng, resolution)`, `h3Distance(cell1, cell2)`, `cellsInRadius(centerCell, radiusKm)`, `h3ToLatLng(cell)`. Used by all 4 platforms throughout 10 months
-- `packages/api`: typed fetch with retry + idempotency built in. Used everywhere
-
----
-
-**WEEKEND — All 4 Platforms v0.1 Deployed + Already Interconnected**
-
-**Saturday (6h):**
-- DispatchOS v0.1: H3 location receiver + live Mapbox GL driver map on Cloudflare Pages
-- CourierNet v0.1: order form + order feed, pulling from Node server
-- FoundryOS v0.1: pipeline list + dataset table shell
-- AIPilot v0.1: analyst interface shell — incident feed reading from DispatchOS event stream (Day 1 connection)
-
-**Sunday (6h):**
-- Monorepo: `npm workspaces`, all 4 apps share `packages/types`, `packages/schemas`, `packages/geo`, `packages/api`
-- GitHub Actions: on push → `tsc --noEmit` → ESLint → deploy
-- Cloudflare Pages: all 4 frontends deployed on custom subdomains
-- Verify: DispatchOS location events appear in FoundryOS dataset table live
-
----
-
-### Week 2: React — All 4 Platforms Rebuilt in React
-
-*Same React depth as reference (useState, useEffect, useRef, useCallback, useMemo, useContext, React.memo, RHF + Zod, Tanstack Query, Zustand + Immer) — applied to:*
-
-**MONDAY-TUESDAY — Core React Concepts**
-- Why React: rebuild DispatchOS driver map in React — vanilla JS required 40 DOM mutations on status change. React: 1 targeted re-render
-- `useState`, `useEffect` with cleanup (cancel SSE on unmount), re-render mechanics
-
-**WEDNESDAY — Advanced Hooks**
-- `useRef` for Mapbox GL map instance (don't re-create map on every render — put it in a ref)
-- `useCallback` + `React.memo` on `<DriverMarker>` — only re-renders when that specific driver's location changes, not all 200 markers
-- `useContext` for `MapContext` (current H3 resolution, selected zone) — shared across sidebar and map
-
-**THURSDAY — Forms + State**
-- CourierNet order form: RHF + Zod (`OrderSchema` from `packages/schemas` — same schema validates on server). Multi-step wizard: address → items → schedule → confirm. `trigger(['deliveryAddress'])` validates step before proceeding
-- Zustand `dispatchStore`: `selectedDriverId`, `selectedH3Zone`, `surgeMultipliers: Map<h3Cell, number>` — Immer for map updates
-
-**FRIDAY — Tanstack Query**
-- Replace all `useEffect` fetches with `useQuery`. `useQuery({ queryKey: ['drivers', h3Zone], queryFn: () => fetchDriversInZone(h3Zone) })` — automatically refetches when `h3Zone` changes
-- `useMutation` with optimistic update: assign trip to driver — instantly updates in UI, rolls back on failure
-
-**WEEKEND — All 4 Platforms v0.2: Full React Apps**
-- DispatchOS v0.2: React + Mapbox GL (map in `useRef`) + `React.memo` on markers + Zustand dispatch store + Tanstack Query
-- CourierNet v0.2: RHF + Zod multi-step order wizard + Tanstack Query order feed
-- FoundryOS v0.2: pipeline list + dataset browser (Tanstack Query)
-- AIPilot v0.2: analyst decision feed — reads DispatchOS + CourierNet events, renders with AI suggestion annotations
-
----
-
-### Week 3: Tailwind + Shadcn + Next.js + Svelte + Vue + Testing
-
-**MONDAY — Tailwind + Shadcn + Motion**
-- Migrate all 4 platforms to Tailwind. `packages/tokens.css` → `tailwind.config.ts` (tokens preserved as Tailwind theme extensions)
-- Shadcn `Command` (Cmd+K in DispatchOS: search drivers, zones, trips). Shadcn `Dialog` (trip assignment modal). Motion `AnimatePresence` for slide transitions
-- AIPilot: Motion `layout` animation — approval decision slides from AI suggestion panel to human decision panel
-
-**TUESDAY — Next.js: CourierNet Consumer App + FoundryOS Dataset Viewer**
-- CourierNet: `app/orders/[id]/page.tsx` — Server Component, fetches order from CourierNet Node server. ISR for restaurant pages (`revalidate: 60`). Server Action for order status rating
-- FoundryOS: `app/datasets/[id]/page.tsx` — Server Component renders dataset schema + sample rows. `app/pipelines/[id]/page.tsx` — pipeline run history with streaming Suspense
-
-**WEDNESDAY — Svelte + Vue + Tanstack Start**
-- Svelte: DispatchOS embeddable driver status widget (third-party partners embed `<script src="dispatchos.io/widget.js?driverId=D001">`) — 9KB bundle, edge deployed
-- Vue: CourierNet restaurant merchant dashboard (different internal team) — Pinia for store, same REST API
-- Tanstack Start: FoundryOS type-safe admin (route name typos are TypeScript errors)
-
-**THURSDAY-FRIDAY — Testing**
-- Vitest: `H3 cell computation`, `order state machine transitions`, `pipeline DAG validation`, `surge price calculation`
-- Playwright: full trip assignment flow (DispatchOS), complete order checkout (CourierNet)
-- TestSprite: generate E2E for AIPilot approval flow
-
-**WEEKEND — All 4 Platforms v0.3: All Frameworks + Tests Running in CI**
-
----
-
-### Week 4: Node.js + Express + All Databases — Real Backends
-
-**MONDAY — Node.js Streams — DispatchOS Location Pipeline**
-- Feature: DispatchOS location events are high-volume (1M/day per city). Stream them: receive → validate with Zod → enrich with H3 → batch-insert to Cassandra (high-write telemetry) + publish to Redis (current position cache)
-- Transform stream pipeline: socket stream → `GpsPingSchema.safeParse()` → H3 enrichment → batch write. Memory stays flat at ~25MB regardless of volume
-
-**TUESDAY — Express + All APIs — Multi-Platform REST Layer**
-- DispatchOS: `GET /drivers/nearby?lat=&lng=&radiusKm=` (PostGIS `ST_DWithin`), `POST /trips`, `PATCH /trips/:id/assign`
-- CourierNet: `GET /restaurants`, `POST /orders`, `GET /orders/:id`, `POST /orders/:id/rate-dasher`
-- FoundryOS: `GET /datasets`, `POST /datasets`, `POST /pipelines`, `GET /pipelines/:id/runs`
-- AIPilot: `GET /decisions/pending`, `POST /decisions/:id/approve`, `POST /decisions/:id/reject`
-- All: Zod validation middleware (same schemas from Week 1), pino structured logging, `X-Request-ID` correlation
-
-**WEDNESDAY — PostgreSQL + PostGIS — Geospatial Schema**
-- DispatchOS: `drivers (id, location geography(POINT,4326), h3_cell_r9 text, status, zone_id)`. `trips (id, status, pickup geography, dropoff geography, driver_id)`. Spatial index: `CREATE INDEX ON drivers USING GIST(location)`. Query: `SELECT id FROM drivers WHERE ST_DWithin(location::geography, ST_MakePoint($1,$2)::geography, 2000)` — all drivers within 2km
-- CourierNet: `restaurants (id, location geography, h3_cell text)`, `orders`, `dashers (id, location geography, current_order_id)`
-- FoundryOS: `datasets (id, name, schema jsonb, source_config jsonb, row_count)`, `pipeline_runs (id, pipeline_id, status, lineage_graph jsonb, started_at, completed_at)`
-- AIPilot: `decisions (id, decision_type, ai_suggestion jsonb, human_decision text, approved_by, audit_trail jsonb)`
-
-**THURSDAY — Redis + JWT + H3 Zone Cache**
-- DispatchOS: Redis sorted set `drivers:active:{h3Cell}` — `ZADD drivers:active:8928308280fffff {timestamp} {driverId}`. Expire inactive drivers: `ZREMRANGEBYSCORE ... 0 {now-60s}`. Count active: `ZCARD drivers:active:{h3Cell}`
-- Surge multipliers in Redis: `SET surge:{h3Cell} 1.8 EX 120` — all active cells' multipliers cached, read on every pricing request
-- JWT: DispatchOS 3 roles (driver/dispatcher/admin), CourierNet 3 roles (customer/dasher/merchant)
-
-**FRIDAY — Cassandra + ClickHouse + PGVector + Delta Lake Preview**
-- **Cassandra (DispatchOS)**: driver location history — `PRIMARY KEY (driver_id, event_time)`. Write-heavy (1M events/day per driver in a busy city). Query: last 1hr of a driver's route
-- **ClickHouse (FoundryOS)**: pipeline run analytics — query duration, row throughput, failure rates across all pipelines. Sub-100ms aggregations on millions of runs
-- **PGVector (AIPilot)**: embed every past analyst decision (`decision_type + context`). When new decision arrives, find similar past decisions → AI uses them as few-shot examples
-- **Delta Lake preview**: FoundryOS stores output datasets as Parquet on S3 with Delta ACID guarantees (full implementation Month 3)
-
-**WEEKEND — All 4 Platforms v0.4: Full-Stack + Real Databases**
-- DispatchOS v0.4: React ← Express ← PostgreSQL/PostGIS + Cassandra + Redis. Live driver map now has real driver positions from PostGIS
-- CourierNet v0.4: React ← Express ← PostgreSQL. Order creation persists. Restaurant list from real DB
-- FoundryOS v0.4: pipeline CRUD + ClickHouse run analytics + Delta Lake dataset storage
-- AIPilot v0.4: decision queue reading from DispatchOS + CourierNet events, PGVector few-shot lookup
-
----
-
-## MONTH 2: APIs + Real-Time + DevOps — All 4 Platforms in Production
-
-### Week 5: gRPC + GraphQL + tRPC + Webhooks + Real-Time
-
-**MONDAY — REST + Idempotency — DispatchOS Trip Assignment**
-- Feature: Trip assignment must be idempotent — network retry must not double-assign a driver
-- Idempotency key: Redis `SET trip:assign:{key} NX EX 300` → cache response. Same `Idempotency-Key` header → same response
-- Token Bucket rate limiting: 1000 GPS pings/min per driver, 200 API calls/min per dispatcher
-
-**TUESDAY — gRPC — DispatchOS Internal Matching Service**
-- Feature: DispatchOS matching engine (driver ↔ rider) is a separate internal service — gRPC for sub-5ms communication
-- `dispatch.proto`: `MatchTrip (Unary)` — send trip request, get assigned driver. `StreamNearbyTrips (Server Stream)` — driver subscribes, gets pushed new nearby trips as they arrive
-- Benchmark: same matching request over REST vs gRPC — 40% smaller payload, 3× throughput
-
-**WEDNESDAY — GraphQL — CourierNet Merchant Partner API**
-- Feature: CourierNet restaurant partners need a flexible query API for their analytics
-- `Restaurant → orders (Order[]) → items (OrderItem[]) → dasher (Dasher)` — nested queries
-- DataLoader: batch all `dasherId → dasher` lookups (N+1 eliminated)
-- Subscription: `orderStatusChanged` — merchant dashboard live updates
-
-**THURSDAY — tRPC + Webhooks**
-- FoundryOS admin: tRPC (full TypeScript types — dataset schema changes caught at compile time)
-- CourierNet webhooks: HMAC-SHA256 signed to merchant systems. Retry + DLQ. `order.placed`, `order.picked_up`, `order.delivered`
-
-**FRIDAY — WebSockets + SSE — Live Map + Live Order Tracking**
-- **DispatchOS SSE**: `GET /drivers/stream` → Redis pub/sub → 50K dispatcher connections each receive driver location updates within 500ms
-- **DispatchOS WebSocket**: driver ↔ dispatcher in-trip communication
-- **CourierNet SSE**: `GET /orders/:id/track` → dasher location + ETA pushed live to customer
-- **AIPilot SSE**: new pending decision → pushed to analyst dashboard immediately
-
-**WEEKEND — All 4 Platforms v0.5: All APIs + Real-Time**
-- DispatchOS: live map updating via SSE (Redis pub/sub bridged across 3 replicas). Trip assignment idempotent. gRPC internal matching
-- CourierNet: live order tracking via SSE. GraphQL partner API. Webhooks with HMAC signing
-- AIPilot: new decisions pushed instantly to analysts via SSE — no polling
-
----
-
-### Week 6: Docker + CI/CD + Kubernetes + Multi-Cloud
-
-*Same infra depth as reference — applied to this track:*
-
-**MONDAY — Docker + Firecracker**
-- All 4 platforms containerized with multi-stage builds (900MB → ~85MB)
-- AIPilot: Firecracker sandbox — analysts can run Python diagnostic scripts safely. 256MB RAM, 5s timeout, no network. Human-approved scripts only
-
-**TUESDAY — GitHub Actions CI/CD**
-- Matrix: `platform: [dispatchos, couriernet, foundryos, aipilot]` × `node: [18, 20, 22]` × `browser: [chromium, firefox]`
-- `paths` filter: only DispatchOS pipeline runs when `apps/dispatchos/**` changes
-- Trivy CVE scan on every Docker image. Fail on HIGH/CRITICAL
-
-**WEDNESDAY — Kubernetes + PostGIS on K8s**
-- DispatchOS: Deployment + HPA (scale on custom metric `active_trips_per_pod > 500`). `Ingress` with NGINX + TLS
-- PostGIS: running in K8s with persistent volume. Spatial index warmup job on startup
-
-**THURSDAY — Terraform + Pulumi + AWS/GCP**
-- DispatchOS → **AWS**: EKS + RDS PostgreSQL+PostGIS + ElastiCache + S3 (trip receipts) + CloudFront
-- CourierNet → **GCP**: GKE + Dataproc (for FoundryOS Spark jobs) + Cloud SQL + GCS
-- FoundryOS → **AWS**: S3 (Delta Lake datasets) + Athena (ad-hoc SQL on datasets) + Glue (schema registry)
-- AIPilot → **Railway** (fast iteration)
-
-**FRIDAY — Cloudflare + OTel Sidecar**
-- Go OTel sidecar: zero-code distributed tracing across all 4 platforms. Deployed as K8s sidecar
-- Cloudflare Workers: DispatchOS driver widget at edge. AIPilot edge auth (verify JWT before request hits origin)
-
-**WEEKEND — All 4 Platforms in Production on Real Cloud + Full Observability**
-- Prometheus + Grafana: dashboards for all 4 platforms (RPS, p50/p95/p99, DB query time, H3 lookup time)
-- Jaeger: distributed traces. Find the slow query. Fix it. Verify fix.
-
----
-
-## MONTH 3: Go + Geospatial Engine + Kafka + Data Pipelines
-
-**Month 3 goal:** DispatchOS's matching engine moves to Go and becomes genuinely fast — 500K location events/sec. FoundryOS gets a real data pipeline engine with PySpark + Delta Lake + Airflow. Kafka becomes the backbone connecting all four platforms. By the end, FoundryOS is ingesting real-time data from DispatchOS and CourierNet continuously.
-
----
-
-### Week 7: Go — DispatchOS Matching Engine
-
-**MONDAY — Go Foundations — Why Go for Dispatch**
-- Go vs Node.js for geospatial matching: 100 goroutines computing H3 ring lookups simultaneously vs Node.js single thread. For 500K location events/sec, Go wins
-- `cgo` + H3 bindings: use Go's H3 bindings (`uber-go/h3`) for native-speed cell computations
-
-**TUESDAY-WEDNESDAY — Go DispatchOS Location Aggregator + Matching Engine**
-- Feature: Replace Node.js location event receiver with Go — same PostGIS DB, 13× throughput
-- 500 goroutines: each processes a batch of location events → H3 enrichment → PostGIS update → Redis cache update
-- Matching engine goroutine: every 500ms, for each open trip request → `h3.GridDisk(riderCell, 3)` → Redis lookup for active drivers in those cells → score by (distance × driver_rating × ETA) → assign top candidate
-- Benchmark: Node.js: 40K location events/sec. Go: 520K events/sec. Same PostGIS, same Redis.
-
-```go
-// apps/dispatchos/matcher/main.go
-// Matching engine: every 500ms, match open trip requests to nearby drivers
-
-func runMatchingEngine(ctx context.Context, pool *pgxpool.Pool, rdb *redis.Client) {
-  ticker := time.NewTicker(500 * time.Millisecond)
-  for {
-    select {
-    case <-ticker.C:
-      openRequests, _ := fetchOpenRequests(ctx, pool)
-      var wg sync.WaitGroup
-      for _, req := range openRequests {
-        wg.Add(1)
-        go func(r TripRequest) {
-          defer wg.Done()
-          // H3 ring search: rider cell + rings of radius 3 (~2km)
-          candidateCells := h3.GridDisk(r.H3Cell, 3)
-          // Redis: active drivers in each cell (ZUNION across all candidate cells)
-          candidates := fetchDriversFromRedis(ctx, rdb, candidateCells)
-          if len(candidates) == 0 { return }
-          // Score: composite of distance + rating + estimated pickup time
-          best := scoreCandidates(r, candidates, pool)
-          assignTrip(ctx, pool, rdb, r.ID, best.DriverID)
-        }(req)
-      }
-      wg.Wait()
-    case <-ctx.Done():
-      return
-    }
-  }
-}
-// Matching latency: < 50ms for 10K open requests simultaneously.
-// This is the architecture that makes sub-minute pickups possible at city scale.
+[GitHub] [k6 benchmarks] [H3 architecture ADR] [Live demo]
 ```
 
-**THURSDAY — Go: CourierNet ETA Prediction Service**
-- Feature: CourierNet needs delivery ETA — ML model predicts based on distance, time of day, restaurant prep time, dasher speed history
-- ONNX model (trained in Python, served in Go): `[distanceKm, hourOfDay, restaurantAvgPrepMins, dasherSpeedKmph]` → `predictedMinsToDelivery`
-- < 5ms inference, embedded in Go binary, no Python runtime on the server
-- ETA updated live: dasher location changes → re-inference → new ETA via SSE to customer
-
-**FRIDAY — Go Circuit Breaker + Load Balancer + fleetctl-equivalent CLI**
-- Go circuit breaker: wraps every external call (payment provider, restaurant POS, mapping API)
-- Consistent hash ring: DispatchOS matching engine shards across 4 instances by H3 zone
-- `dispatchctl`: `dispatchctl drivers active --zone=downtown`, `dispatchctl trips pending --count`, `dispatchctl surge --set 1.8 --zone=8928308280fffff`
-- `courierctl`: `courierctl orders pending --restaurant=chipotle`, `courierctl eta --order=O001`
-
----
-
-### Week 8: Python + PySpark + FoundryOS Data Pipelines
-
-**MONDAY — Python + FastAPI — FoundryOS Pipeline Execution API**
-- Python: types, Pydantic, async/await, decorators, generators — same depth as Rippling plan
-- FastAPI: `POST /api/pipelines/:id/run` → validate with Pydantic → submit Spark job to Dataproc → return `{ runId, status: 'queued' }`
-- Pydantic `PipelineConfig` has same field names as Zod `PipelineConfigSchema` — change a field → both TypeScript and Python errors
-
-**TUESDAY — PySpark — FoundryOS First Real Pipeline**
-- Feature: FoundryOS ingests raw DispatchOS location events (from Kafka, next week) → PySpark transformation → clean driver activity dataset → Delta Lake
-- `SparkSession`, DataFrames, lazy evaluation, `filter().groupBy().agg()`, window functions
-- FoundryOS pipeline: DispatchOS events → deduplicate → compute `trips_per_driver_per_hour` → write Delta table
-
-```python
-# python/pipelines/dispatchos_driver_activity.py
-# Ingests DispatchOS location events. Outputs driver activity dataset.
-# FoundryOS UI shows this pipeline's lineage: raw_events → driver_activity
-
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, count, window, first
-from delta import DeltaTable
-
-spark = SparkSession.builder \
-    .appName("FoundryOS: DispatchOS Driver Activity") \
-    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
-    .getOrCreate()
-
-# Source: DispatchOS location events (from Kafka — wired in Week 9)
-events = spark.readStream \
-    .format("kafka") \
-    .option("kafka.bootstrap.servers", "kafka:9092") \
-    .option("subscribe", "dispatchos.location.events") \
-    .load() \
-    .selectExpr("CAST(value AS STRING) as json") \
-    .select(from_json(col("json"), location_event_schema).alias("e")).select("e.*")
-
-# Transform: aggregate to 1-hour windows per driver
-activity = events \
-    .withWatermark("event_time", "10 minutes") \
-    .groupBy(window("event_time", "1 hour"), "driver_id") \
-    .agg(
-        count("*").alias("event_count"),
-        first("h3_cell_r9").alias("most_recent_cell"),
-    )
-
-# Output: Delta Lake (FoundryOS dataset — AIPilot will query this)
-activity.writeStream \
-    .format("delta") \
-    .outputMode("append") \
-    .option("checkpointLocation", "s3://foundryos/checkpoints/driver-activity/") \
-    .start("s3://foundryos/delta/driver-activity/")
-# FoundryOS lineage: dispatchos.location.events → driver_activity → aipilot.surge_decisions
+**Cold Email — Palantir:**
 ```
+Subject: [Palantir SDE] — built FoundryOS + AIPilot: data integration ontology + human-in-the-loop AI
 
-**WEDNESDAY — Delta Lake + dbt + Great Expectations**
-- Delta Lake: every FoundryOS output dataset is Delta. `MERGE INTO` for upserts (dasher performance scores — not append-only). Time-travel: `VERSION AS OF 5` to audit what data looked like before a pipeline change
-- dbt: SQL-based transformation on top of Delta tables. `dim_drivers`, `dim_restaurants`, `fact_trips`, `fact_orders` — Palantir Foundry's semantic layer is essentially dbt at scale
-- Great Expectations: validate every pipeline output — row count within bounds, no null `driver_id`, `duration_ms > 0`
+FoundryOS mirrors Palantir Foundry. AIPilot mirrors Palantir AIP.
 
-**THURSDAY — Airflow + FoundryOS Lineage Tracking**
-- Airflow DAG: `DispatchOS_to_FoundryOS` — runs every 30 min. Depends on Kafka consumer lag < 5K messages. Retries 3× with backoff
-- **Lineage tracking (Palantir-critical)**: every FoundryOS pipeline run records `{ inputs: ['dispatchos.location.events'], outputs: ['driver_activity'], transformations: [...], run_id, started_at, completed_at }` in PostgreSQL
-- FoundryOS UI: click any dataset → see full upstream lineage graph (D3.js DAG visualization)
-
-**FRIDAY — Kafka — Event Backbone Across All 4 Platforms**
-- Topics: `dispatchos.location.events`, `dispatchos.trip.events`, `couriernet.order.events`, `foundryos.pipeline.runs`, `aipilot.decisions`
-- FoundryOS subscribes to all 4 platform topics — every event is a potential dataset record
-- Exactly-once: idempotent producers + transactional API on DispatchOS trip assignment (no duplicate trip events)
-- Schema Registry: Avro schemas for all topics — FoundryOS schema compatibility enforced at publish time
-
----
-
-### Week 9 (continues Month 3): Kafka Saga + CDC + DB Scaling
-
-**MONDAY — Trip Booking Saga — DispatchOS**
-- Feature: Trip assignment spans: payment hold → driver assignment → trip start. Any step can fail. All compensatable
-- Kafka choreography: `payment.held` → `driver.assigned` → `trip.started`. Failure: `driver.unavailable` → `payment.released`
-- Idempotency key on every compensation: `release-{tripId}` — no double-release
-
-**TUESDAY — Order Delivery Saga — CourierNet**
-- `order.confirmed` → `restaurant.accepted` → `dasher.assigned` → `picked_up` → `delivered`
-- Failure: `dasher.unavailable` → reassign (not compensate — find next dasher, not cancel order)
-- State machine: tracked in PostgreSQL `saga_state` table, survives service restarts
-
-**WEDNESDAY — CDC — FoundryOS Auto-Ingestion**
-- Feature: When DispatchOS writes a new trip to PostgreSQL, FoundryOS ingests it automatically — no manual pipeline trigger
-- PostgreSQL WAL → Debezium → Kafka `dispatchos.cdc.trips` → FoundryOS consumer → Delta Lake
-- Every DB row change in DispatchOS automatically appears as a new record in FoundryOS
-
-**THURSDAY-FRIDAY — Database Scaling**
-- DispatchOS: read replica for `GET /drivers/nearby` queries (heavy read, can tolerate 1s lag). Primary for writes only. PgBouncer connection pooling
-- PostGIS spatial index benchmark: `ST_DWithin` without GIST index: 800ms on 500K drivers. With GIST: 2ms. Document this
-- Monthly partitioning on `trips` table: `trips_2025_01`, `trips_2025_02`. Partition pruning on date-range queries
-- CourierNet: Cassandra for dasher location history (same write-heavy pattern as DispatchOS)
-
----
-
-## MONTH 4: Go Deep + Kubernetes Operator + AI Engineering
-
-### Week 10: Go Deep + DispatchOS Autoscaler Operator
-
-**MONDAY-WEDNESDAY — Go + DispatchOSMatcher Kubernetes Operator**
-- Feature: During surge events (concerts, rain, New Year's Eve), matching engine must scale in 30 seconds — not 5 minutes
-- CRD: `DispatchOSMatcherPool` — spec: `minReplicas`, `maxReplicas`, `targetActiveTripsPerReplica`
-- Operator: reads live Prometheus metric `active_trips_total` → computes desired replicas → updates HPA target
-- Pre-event scaling: CRD can specify `preScaleAt: "2025-01-01T23:30:00Z"` — operator scales before demand hits
-
-```go
-// apps/dispatchos/operator/controllers/matcherpool_controller.go
-func (r *MatcherPoolReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-  var pool dispatchv1.DispatchOSMatcherPool
-  if err := r.Get(ctx, req.NamespacedName, &pool); err != nil {
-    return ctrl.Result{}, client.IgnoreNotFound(err)
-  }
-
-  // Live trip load from Prometheus
-  activeTrips, _ := r.queryPrometheus(ctx, `sum(active_trips_total)`)
-  desired := max(pool.Spec.MinReplicas, int32(activeTrips/float64(pool.Spec.TargetActiveTripsPerReplica))+1)
-
-  // Pre-scale for scheduled events (concerts, NYE)
-  for _, event := range pool.Spec.ScheduledEvents {
-    if time.Until(event.StartTime.Time) < 30*time.Minute {
-      desired = max(desired, event.MinReplicas)
-    }
-  }
-
-  if err := r.ensureHPA(ctx, &pool, desired); err != nil {
-    return ctrl.Result{}, err
-  }
-
-  pool.Status.CurrentActiveTrips = int64(activeTrips)
-  pool.Status.CurrentReplicas = desired
-  return ctrl.Result{RequeueAfter: 15 * time.Second}, r.Status().Update(ctx, &pool)
-}
-```
-
-**THURSDAY — CNCF Contribution**
-- Contribute to `opentelemetry-go` or `controller-runtime` — Go + K8s work from Week 9 is the portfolio
-- Target a `good first issue`, write test, open PR, document the process
-
-**FRIDAY — Go: FoundryOS Pipeline Scheduler**
-- Go replaces Node.js for FoundryOS pipeline scheduling — same pattern as GPS aggregator in reference
-- 200 goroutines: each monitors a pipeline's Airflow DAG status, updates FoundryOS run records
-
----
-
-### Week 11: Vercel AI SDK + RAG + AI Agents — AIPilot Full AI Layer
-
-**MONDAY — AIPilot Analyst Assistant (AI SDK + streaming)**
-- Feature: Analyst asks "why did surge pricing activate in zone 8928308280fffff at 14:32?" → AI queries DispatchOS metrics, searches FoundryOS driver activity dataset, explains causal chain
-- Tools: `queryDispatchOSMetrics` (ClickHouse), `searchFoundryDataset` (PGVector over Delta table metadata), `getDriverActivityInZone` (FoundryOS Delta Lake), `getSurgeHistory` (Redis), `listPendingDecisions` (AIPilot PostgreSQL)
-- Every tool call hits a real system built in Months 1-3
-- **Constrained autonomy (Palantir AIP-critical):** AI can query and suggest, it cannot act. `executeAction` tool requires human approval — every suggested action goes to the approval queue first
-
-```typescript
-// apps/aipilot/src/app/api/analyst/route.ts
-// Palantir AIP pattern: AI can SUGGEST, not ACT. Every action requires human approval.
-
-const result = await streamText({
-  model: anthropic('claude-sonnet-4-20250514'),
-  system: `You are an operations analyst assistant. You can query data and suggest actions.
-You CANNOT execute actions directly. When you identify an action to take,
-use the proposeAction tool — a human analyst will review and approve it.`,
-  messages,
-  tools: {
-    queryDispatchMetrics: {
-      description: 'Query DispatchOS metrics from ClickHouse',
-      parameters: z.object({ sql: z.string().startsWith('SELECT') }),
-      execute: async ({ sql }) => clickhouse.query(sql),
-    },
-    searchFoundryDataset: {
-      description: 'Semantic search across FoundryOS datasets and pipelines',
-      parameters: z.object({ query: z.string() }),
-      execute: async ({ query }) => pgVectorSearch('foundry_objects', query),
-    },
-    proposeAction: {
-      // AI CANNOT execute this — it creates a pending human decision
-      description: 'Propose an action for human analyst approval',
-      parameters: z.object({
-        actionType: z.enum(['adjust_surge', 'suspend_driver', 'pause_restaurant', 'escalate']),
-        parameters: z.record(z.unknown()),
-        justification: z.string(),
-      }),
-      execute: async ({ actionType, parameters, justification }) => {
-        // Creates a record in AIPilot decisions table — human must approve
-        return db.insert('decisions', {
-          status: 'pending_approval',
-          ai_suggestion: { actionType, parameters, justification },
-          created_at: new Date(),
-        });
-        // Returns: { decisionId, status: 'awaiting_human_approval' }
-        // The AI cannot approve its own suggestions. Ever.
-      },
-    },
-  },
-});
-```
-
-**TUESDAY — RAG — AIPilot Over FoundryOS Ontology**
-- Feature: AIPilot can semantically search across all FoundryOS datasets, pipelines, and past analyst decisions
-- Embed: dataset names + schemas + descriptions + sample queries + past decisions
-- PGVector HNSW index. Hybrid search (vector + keyword)
-- "Find all datasets related to surge pricing" → hits `driver_activity`, `trip_requests_by_zone`, `surge_history` — all from FoundryOS Delta Lake
-
-**WEDNESDAY — AI Agents — 3-Agent Operations Response**
-- Detector Agent: monitors DispatchOS Kafka `trip.events` + surge thresholds (from Redis)
-- Analyst Agent: given anomaly → queries FoundryOS datasets, identifies causal chain, computes severity
-- Proposal Agent: drafts action proposals (adjust surge, alert dispatchers, pre-scale matching engine) → all go to human approval queue — no autonomous execution
-- AIPilot dashboard: live agent activity + pending approval queue + decision audit trail
-
-**THURSDAY — Surge Pricing Engine (ML + real-time)**
-- Feature: DispatchOS surge price = ML model prediction, not rule-based threshold
-- Python: train `XGBoost` on historical `(h3_cell, hour, day_of_week, weather, active_drivers, open_requests)` → `surge_multiplier`. Export to ONNX
-- Go: ONNX inference service, < 3ms per cell prediction. Redis: cache computed surge per H3 cell (TTL 30s)
-- FoundryOS: surge model retraining pipeline (Airflow DAG, weekly, reads Delta Lake trip history)
-
-**FRIDAY — WebAssembly + MLflow**
-- AssemblyScript Wasm: CourierNet client-side delivery fee calculation (`baseFare + distanceFare + surgeFare + serviceFee`) — same formula as server, no round-trip for every address change
-- MLflow: ETA prediction model + surge model both tracked in MLflow. Promote staging → production without downtime
-
----
-
-## MONTH 5: System Design Fundamentals — All Built Into 4 Platforms
-
-### Week 12: Geospatial Scale + CAP + Fault Tolerance + Rate Limiting
-
-**MONDAY — Geospatial at Scale + H3 Sharding**
-- Problem: 500K active drivers globally. `ST_DWithin` on 500K drivers = slow. Solution: H3 cell prefix sharding
-- Consistent hash on H3 cell prefix → dispatch region → matching engine pod. Each pod only knows its region
-- `gridDisk(riderCell, 3)` → 19 cells → Redis multi-key lookup across those cells only → never scan all 500K drivers
-
-**TUESDAY — Fault Tolerance: Matching Engine Under Load**
-- Circuit breaker: PostGIS slow → use Redis-only matching (less accurate but available). Fallback scoring uses cached positions
-- Bulkhead: payment service pool separate from matching pool — payment slow ≠ matching slow
-- Graceful degradation: ETA prediction ONNX model fails → return rule-based estimate (distance / avg_speed)
-
-**WEDNESDAY — Rate Limiting: All 4 Algorithms**
-- DispatchOS: GPS ping endpoint (Fixed Window), trip request (Token Bucket), admin bulk operations (Leaky Bucket)
-- AIPilot: analyst queries (Sliding Window Log — audit requires exact counts)
-- All 4 Lua scripts as per reference. `Retry-After` + rate limit headers on every 429
-
-**THURSDAY — CAP + Leader Election**
-- DispatchOS trip assignment: CP (Consistency required — no double driver assignment)
-- FoundryOS pipeline runs: AP acceptable (slightly stale run status OK, availability matters more)
-- Leader election: exactly 1 surge pricing calculator per H3 zone cluster (Redis SETNX + heartbeat)
-
-**FRIDAY — Big Data + Bloom Filters + Consistent Hashing**
-- FoundryOS → S3 Parquet → Athena: analyst can write SQL on 1TB+ of historical trip data
-- Bloom Filters: DispatchOS GPS spam (known spoofed locations blocked before Redis hit), CourierNet unknown restaurant IDs
-- Consistent hashing deep dive: DispatchOS matching pods shard by H3 zone cluster. Add pod → 25% zones reassign
-
-**WEEKEND — All System Design Fundamentals + System Health Dashboard**
-- AIPilot System Health: shows CAP mode, circuit breaker states, matching engine load, surge map, rate limit status — across all 4 platforms from one dashboard
-
----
-
-### Week 13: Notifications + Caching + Real-Time PubSub
-
-**MONDAY-TUESDAY — Notifications at Scale**
-- DispatchOS: driver gets trip request notification within 500ms — 1M notifications/day
-- APNs batch (1000 tokens/call). Redis dedup. Kafka fan-out. DLQ with Slack alert
-- CourierNet: "your order is 5 mins away" — real-time ETA push (re-computed every dasher location update)
-
-**WEDNESDAY — Caching Architecture**
-- DispatchOS multi-level cache: driver positions (Redis, 30s TTL + jitter) → PostgreSQL/PostGIS (fallback)
-- Surge multipliers: Redis (30s TTL), warmed by Go inference service every 20s
-- CourierNet restaurant data: Redis (5min TTL), ISR Next.js pages (60s revalidate), CDN for images (1yr immutable)
-- PER algorithm: surge multiplier cache probabilistically recomputed before expiry — no stampede under load
-
-**THURSDAY-FRIDAY — Real-Time PubSub at Scale**
-- DispatchOS: surge zone activated → Redis `PUBLISH surge:NYC` → 200K connected driver apps receive within 1s
-- Benchmark: fan-out latency curve at 10K / 50K / 200K subscribers
-- CourierNet: dasher location update → SSE to customer order tracking page. 3-replica Node.js bridged by Redis pub/sub
-
----
-
-## MONTH 6: All 11 Case Studies — Built Into 4 Platforms
-
-### Week 14: Marketplace Matching + Geospatial Driver Feed + Surge Pricing
-
-**Monday-Wednesday: DispatchOS Marketplace Matching (Case Study 1 — Uber core)**
-- Problem: 1M riders/drivers in NYC, match in < 200ms, minimize total pickup time citywide
-- Architecture: H3 ring search → Redis active driver sets → Go scoring goroutines → assignment Saga
-- k6: 100K simultaneous trip requests, p99 assignment < 200ms, zero double-assignments
-
-**Wednesday: Surge Pricing Engine (Case Study 2 — Uber pricing)**
-- Problem: balance supply and demand in real time. Surge too high → riders leave. Too low → no drivers
-- Architecture: ONNX Go inference (demand forecast × supply count × elasticity model) → Redis per-cell cache → UI heatmap
-- A/B test: ML surge vs rule-based surge — measure earnings + cancellations
-
-**Thursday-Friday: Geospatial Driver Feed (Case Study 3 — Tinder Feed applied to dispatch)**
-- Same pattern as reference Tinder Feed case study, applied to DispatchOS
-- PostGIS `ST_DWithin` → score by `fare / distance × surge_multiplier` → Redis Sorted Set per driver → SSE push
-- Cold start: H3 ring search → rank → cache in < 50ms
-
----
-
-### Week 15: Notifications + ETA Prediction + Dasher Assignment
-
-**Monday-Wednesday: Notifications at Scale (Case Study 4)**
-- Expand Week 13 to full case study. 1M notifications/day. APNs batch. DLQ. k6 benchmarked.
-
-**Thursday-Friday: CourierNet ETA Prediction + Dasher Assignment (Cases 5 + 6)**
-- ETA Prediction: ONNX Go model, history-trained, < 5ms. Compare to rule-based. A/B test on live traffic
-- Dasher Assignment: greedy matching (nearest dasher) vs optimization (minimize total delivery time across 100 open orders). Go: branch-and-bound with 100ms time limit
-
----
-
-### Week 16: FoundryOS Data Pipeline + AIPilot Human-in-the-Loop + Fraud + Recommendation
-
-**Monday-Tuesday: FoundryOS Pipeline Reliability (Case Study 7 — Palantir Foundry)**
-- Problem: 200 pipelines, each with dependencies. One failure cascades. How to detect, recover, re-run correctly?
-- Architecture: Airflow DAG with Great Expectations gating (bad data → halt pipeline, alert), Delta Lake time-travel for rollback, lineage graph for impact analysis
-- Demo: inject bad data → pipeline halts → lineage shows all downstream datasets affected → rollback to last good version
-
-**Wednesday-Thursday: AIPilot Human-in-the-Loop Workflow (Case Study 8 — Palantir AIP)**
-- Problem: AI identifies that a driver cluster is likely GPS-spoofing. Should it suspend them automatically?
-- Architecture: Detector Agent (Kafka) → Analyst Agent (queries FoundryOS driver activity) → Proposal Agent (`proposeAction: suspend_driver`) → Human approval queue → Audit trail
-- Key constraint: AI cannot approve its own proposals. Every `proposeAction` generates a row in `decisions` table with `status: 'pending_approval'`. Analyst sees AI's justification + evidence, decides
-- Full audit trail: every AI suggestion, every human decision, every action taken — queryable via AIPilot
-
-**Friday: Fraud Detection + Recommendation**
-- GPS Spoofing (Case Study 9): Wasm pre-filter (known spoof coordinates) + Go rules (impossible speed, teleportation) + ONNX ML. < 15ms. But suspicious accounts → `proposeAction: suspend` → human review
-- Restaurant Recommendation (Case Study 10): collaborative filtering (PGVector user embeddings) + content-based (dish embeddings) + hybrid. A/B test cohorts
-- API Rate Limiter (Case Study 11): all 4 algorithms, DispatchOS GPS endpoints
-
-**WEEKEND — All 11 Case Studies Deployed + Portfolio Site + Hiring Materials**
-
----
-
-## MONTH 7: Hiring Sprint
-
-### Weeks 17-18: Portfolio Polish + Open Source
-
-- All 4 platform READMEs: architecture diagrams (Mermaid.js), k6 benchmarks, ADRs for every major decision
-- CNCF contributions: `opentelemetry-go`, `controller-runtime` — operator work from Month 4 is the portfolio piece
-- LFX application: `DispatchOSMatcherPool` operator + CNCF PRs
-- ADR examples: "Why H3 hexagons over PostGIS for matching hot path", "Why Kafka choreography over orchestration for trip Saga", "Why ONNX Go for ETA prediction over Python microservice"
-
-### Weeks 19-20: Mock Interviews + Applications
-
-**System design mocks (Uber-specific):**
-- Design the real-time driver-rider matching system (you built this — answer from code)
-- Design the surge pricing engine (you built this — explain the ONNX model, Redis cache, A/B test)
-- Design GPS fraud detection (you built this — Wasm + rules + ONNX layers)
-
-**System design mocks (DoorDash-specific):**
-- Design the dasher assignment system for optimal delivery time
-- Design the real-time delivery tracking for customers
-- Design a restaurant recommendation system
-
-**System design mocks (Palantir-specific — hardest interviews):**
-- Design a data integration platform that unifies heterogeneous sources with full lineage
-- Design a human-in-the-loop AI workflow where the AI cannot act without approval
-- Design a pipeline reliability system that handles cascading failures
-
-**Target applications:**
-
-Tier 1 (your portfolio is their problem domain):
-- Uber — DispatchOS: H3 matching, surge pricing ONNX, GPS fraud, Kubernetes Operator for scale
-- DoorDash — CourierNet: dasher assignment optimization, ETA prediction, restaurant marketplace
-- Palantir — FoundryOS + AIPilot: pipeline reliability, ontology-based data model, constrained AI autonomy
-
-Tier 2 (adjacent, same skills):
-- Lyft, Instacart, Rappi — same marketplace + logistics vocabulary
-- Airbnb — H3 geospatial + pricing + fraud detection + data platform work
-- Stripe — payment Saga, idempotency, fraud detection (ONNX Go inference)
-- Scale AI / Weights & Biases — data platform + human-in-the-loop AI workflow work
-- Any company running Palantir internally — FoundryOS shows you understand what they're running
-
-**Cold email — Uber:**
-```
-Subject: [Role] — built DispatchOS: H3 matching engine, sub-200ms assignment at 100K TPS
-
-I built DispatchOS over 7 months — it mirrors Uber's dispatch architecture.
-
-Most relevant:
-• Go matching engine: H3 ring search → Redis driver sets → goroutine scoring → < 200ms p99 at 100K TPS
-• Kubernetes Operator: surge event → auto-scales matching engine in 30s (reads live Prometheus)
-• GPS fraud: Wasm pre-filter + Go rules + ONNX inference, 3 layers, < 15ms decision
-
-[GitHub + live demo + k6 benchmarks + H3 architecture ADR]
-```
-
-**Cold email — Palantir:**
-```
-Subject: [Role] — built FoundryOS + AIPilot: data integration platform + human-in-the-loop AI
-
-I built FoundryOS and AIPilot — they mirror Palantir's Foundry + AIP architecture.
-
-Most relevant:
-• FoundryOS: heterogeneous source ingestion (Kafka + CDC + CSV) → PySpark transforms → Delta Lake → typed ontology. Full lineage on every pipeline run
-• AIPilot: LLM analyst assistant where AI can query but cannot act autonomously. All actions go to human approval queue. Full audit trail
+• FoundryOS: heterogeneous ingestion (Kafka CDC + CSV + API) → PySpark → Delta Lake → typed ontology. Full lineage on every run.
+• AIPilot: LLM analyst assistant. AI can query. AI can propose actions. AI cannot execute without human approval. Full audit log with hash chain.
 • Pipeline reliability: Great Expectations gating + Delta time-travel rollback + lineage impact analysis
 
-[GitHub + live demo + pipeline lineage visualization + ADRs]
+[GitHub] [lineage visualization] [AIP architecture ADR]
 ```
 
 ---
 
 ## Monthly Summary
 
-| Month | New Concepts | Platform Milestones | Key Interconnections |
-|---|---|---|---|
-| 1 | HTTP + H3 geospatial + TypeScript + PostgreSQL/PostGIS + Cassandra + PGVector + Delta Lake preview | All 4 platforms deployed, DispatchOS events already flowing into FoundryOS | DispatchOS → FoundryOS from Day 1 |
-| 2 | gRPC (matching) + GraphQL (merchants) + SSE (live map + tracking) + Docker + K8s + AWS/GCP | All 4 on real cloud, CI/CD gating merges, OTel tracing | AIPilot SSE feed reads DispatchOS + CourierNet live |
-| 3 | Go (matching engine + ETA) + PySpark + Delta Lake + Airflow + dbt + Kafka + Saga + CDC + DB scaling | FoundryOS full data stack, all 4 platforms on Kafka backbone | CDC: every DispatchOS DB write auto-ingested into FoundryOS |
-| 4 | Go deep + K8s Operator + AI SDK + RAG + constrained agents + ONNX surge pricing | AIPilot full AI layer, DispatchOS auto-scales via Operator | AIPilot queries FoundryOS datasets to ground AI decisions |
-| 5 | All system design fundamentals + geospatial scale + human-in-the-loop patterns | All concepts live in platforms, System Health dashboard in AIPilot | Every platform feeds AIPilot's decision support |
-| 6 | All 11 case studies as platform features | Full portfolio, all live, all benchmarked, all documented | Every case study uses 5+ technologies from earlier months |
-| 7 | Mock interviews + CNCF + Uber/DoorDash/Palantir applications | CNCF PRs merged, applications submitted, portfolio live | Your GitHub is the interview |
+| Month | Project | Phase | Key Milestones |
+|-------|---------|-------|----------------|
+| 1 | DispatchOS | Full-stack: H3, PostGIS, Redis, React, Kafka | H3 matching, dispatcher map, Kafka event backbone |
+| 2 | DispatchOS | Go engine + K8s Operator | Go matching engine 100K TPS, K8s auto-scaling, GPS fraud |
+| 3 | CourierNet | Full build: Saga, ONNX ETA, merchant portal | Dasher assignment, ETA < 10ms, flash sale inventory |
+| 4 | FoundryOS | Foundation: ontology, pipelines, lineage | Typed object graph, Delta Lake, lineage DAG |
+| 5 | FoundryOS | Advanced: Airflow, ClickHouse, system design | All system design cases in platform |
+| 6 | AIPilot | Full build: human-in-the-loop AI | Approval queue, bounded tools, audit hash chain, RAG |
+| 7 | All | OTel, k6, polish, hiring | All benchmarks, cold emails, portfolio live |
 
 ---
 
-## Interconnection Map
+## Non-Negotiable Rules
 
-```
-Week 1 DispatchOS location event receiver (raw Node.js, H3 from Day 1)
-  ↓ becomes Week 4 Express API + PostGIS + Cassandra writer
-  ↓ becomes Week 5 SSE broadcaster (dispatchers see live driver map)
-  ↓ becomes Week 7 Go aggregator (520K events/sec, same PostGIS)
-  ↓ becomes Week 8 Kafka source (FoundryOS ingests via subscription)
-  ↓ becomes Week 9 K8s Operator target (auto-scales matching engine)
-  ↓ becomes Month 4 AIPilot data source (AI tools query its metrics)
-  ↓ becomes Month 6 Matching Engine case study (you built the answer)
-
-Week 1 FoundryOS pipeline config form
-  ↓ gets React + React Hook Form Week 2
-  ↓ gets PostgreSQL persistence Week 4
-  ↓ gets PySpark pipeline execution Month 3
-  ↓ gets Delta Lake + lineage tracking Month 3
-  ↓ gets Airflow scheduling Month 3
-  ↓ gets AIPilot RAG search across it Month 4
-  ↓ becomes Pipeline Reliability case study Month 6
-
-Week 1 AIPilot analyst shell
-  ↓ reads DispatchOS events from Day 1 (already connected)
-  ↓ gets AI SDK + streaming Month 4
-  ↓ gets constrained tool use (proposeAction → human queue) Month 4
-  ↓ gets FoundryOS RAG search Month 4
-  ↓ gets 3-agent ops response Month 4
-  ↓ becomes Human-in-the-Loop case study Month 6
-  ↓ is the interview answer for every Palantir AIP question
-
-Week 8 Kafka backbone
-  ↓ DispatchOS publishes location + trip events
-  ↓ CourierNet publishes order events
-  ↓ FoundryOS subscribes to both (CDC + streaming ingest)
-  ↓ AIPilot subscribes for anomaly detection
-  Four platforms connected. From Week 8 forward, nothing is siloed.
-```
+| Rule | Why |
+|------|-----|
+| `go test -race ./...` before every commit | Data races in the matching engine cause double-assignment bugs |
+| `EXPLAIN ANALYZE` on every PostGIS query | Spatial queries without GiST indexes are catastrophically slow |
+| `goleak.VerifyNone(t)` in every Go test file | Goroutine leaks in the matching engine accumulate under load |
+| Idempotency key on every trip assignment | Double-assignment is worse than no assignment |
+| Outbox pattern for every Kafka publish | Trip lifecycle events cannot be lost |
+| AIPilot AI tools are read-only except `propose_action` | This is the hard security boundary — never relax it |
+| Audit log is append-only — no UPDATE/DELETE | Tamper-evident log is a compliance requirement |
+| k6 before calling anything "production-ready" | DispatchOS at 100K TPS behaves very differently from development load |

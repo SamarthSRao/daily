@@ -43,97 +43,67 @@ function parseMarkdown(content) {
   let currentWeek = null;
   let currentDay = null;
 
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    const trimmed = raw.trim();
+  for (let line of lines) {
+    const raw = line.trimEnd();
+    const t = raw.trim();
 
-    // 1. Month Header: ## MONTH N: Title
-    const monthMatch = raw.match(/^##\s+MONTHS?\s+([\d\u2013\-]+)\s*[:\u2013\u2014]\s*(.+)/i);
-    if (monthMatch) {
-      currentMonth = { title: monthMatch[2].trim(), weeks: [] };
+    // Month / Project / Section
+    if (t.startsWith('## ')) {
+      const title = t.replace(/^##\s+(?:MONTHS?|Months?|Project)\s*[\d\u2013\-]*\s*[:\u2013\u2014–]?\s*/i, '').trim() || t.replace(/^##\s*/, '');
+      currentMonth = { title, weeks: [] };
       months.push(currentMonth);
       currentWeek = null;
       currentDay = null;
       continue;
     }
 
-    // IGNORE everything before the first month
     if (!currentMonth) continue;
 
-    // 2. Week Header: ### Week N: Title
-    const weekMatch = raw.match(/^###\s+Weeks?\s+([\d\u2013\-\s]+)(?:\s*\([^)]+\))?\s*[:\u2013\u2014]\s*(.+)/i);
-    if (weekMatch) {
-      currentWeek = { title: `Week ${weekMatch[1].trim()}: ${weekMatch[2].trim()}`, days: [] };
+    // Week
+    if (t.startsWith('### ')) {
+      const title = t.replace(/^###\s*(?:Months?\s+\d+,\s+)?(?:Weeks?\s+[\d\u2013\-]+\s*[:\u2013\u2014–]?\s*)?/i, '').trim() || t.replace(/^###\s*/, '');
+      currentWeek = { title, days: [] };
       currentMonth.weeks.push(currentWeek);
       currentDay = null;
       continue;
     }
 
-    // 3. Day Header: **MONDAY — ...** or **MONDAY (3h):**
-    const dayBoldMatch = trimmed.match(/^\*\*(MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY|WEEKEND)[^*]*\*\*/i);
-    if (dayBoldMatch) {
-      const boldContentMatch = trimmed.match(/^\*\*([^*]+)\*\*/);
-      const dayTitle = boldContentMatch ? boldContentMatch[1].trim() : "Focus";
-      
-      currentDay = { title: dayTitle, tasks: [] };
-      if (!currentWeek) {
-        currentWeek = { title: "General Overview", days: [] };
-        currentMonth.weeks.push(currentWeek);
-      }
+    if (!currentWeek) continue;
+
+    // Day
+    const dayMatch = t.match(/^\*\*(MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY|WEEKEND)[^*]*\*\*/i);
+    if (dayMatch) {
+      const dayName = dayMatch[1].charAt(0) + dayMatch[1].slice(1).toLowerCase();
+      let title = t.replace(/^\*\*[^*]+\*\*/, '').replace(/^[\s:–—-]+/, '').trim() || dayName;
+      currentDay = { title, tasks: [] };
       currentWeek.days.push(currentDay);
-
-      const rest = raw.replace(/^\*\*[^*]+\*\*/, '').trim();
-      if (rest && rest.length > 2 && !rest.startsWith('---')) {
-        const cleanedRest = rest.replace(/^[:–—-\s]+/, '').trim();
-        if (cleanedRest) currentDay.tasks.push(cleanedRest);
-      }
       continue;
     }
 
-    // 4. Task detection
-    if ((trimmed.startsWith('- ') || trimmed.startsWith('* ')) && !trimmed.startsWith('- [ ]') && !trimmed.startsWith('* [ ]')) {
-      const taskText = trimmed.replace(/^[-*]\s+/, '').trim();
-      if (taskText) {
-        if (!currentDay) {
-          if (!currentWeek) {
-            currentWeek = { title: "General Overview", days: [] };
-            currentMonth.weeks.push(currentWeek);
-          }
-          currentDay = { title: "Key Objectives", tasks: [] };
-          currentWeek.days.push(currentDay);
+    // Tasks (bullet points or bold subheaders)
+    if (currentDay) {
+      if (t.startsWith('- ') || t.startsWith('* ')) {
+        const task = t.replace(/^[-*]\s+/, '').trim();
+        if (task && !task.startsWith('[ ]')) {
+          currentDay.tasks.push(task);
         }
-        currentDay.tasks.push(taskText);
+      } else if (t.startsWith('**') && t.endsWith('**') && t.length < 100) {
+        currentDay.tasks.push(t.replace(/\*\*/g, '').trim());
       }
-      continue;
-    }
-
-    // 5. Continuation / Subheaders
-    const subheaderMatch = trimmed.match(/^\*\*([^*]+)\*\*$/);
-    if (subheaderMatch && currentDay) {
-      currentDay.tasks.push(`**${subheaderMatch[1].trim()}**`);
-      continue;
     }
   }
 
-  return months
-    .map(m => ({
-      ...m,
-      weeks: m.weeks.filter(w => w.days.some(d => d.tasks.length > 0))
-    }))
-    .filter(m => m.weeks.length > 0);
+  return months.filter(m => m.weeks.length > 0);
 }
 
-const planDir = path.join(__dirname);
-const result = [];
-
-for (const meta of FILES) {
-  const filePath = path.join(planDir, meta.file);
-  if (!fs.existsSync(filePath)) continue;
+const result = FILES.map(meta => {
+  const filePath = path.join(__dirname, meta.file);
+  if (!fs.existsSync(filePath)) return null;
   const content = fs.readFileSync(filePath, 'utf8');
   const months = parseMarkdown(content);
-  console.log(`${meta.id}: ${months.length} months, ${months.reduce((a, m) => a + m.weeks.length, 0)} weeks`);
-  result.push({ ...meta, months });
-}
+  console.log(`${meta.id}: ${months.length} sections found`);
+  return { ...meta, months };
+}).filter(Boolean);
 
-fs.writeFileSync(path.join(planDir, 'src', 'alternatePlans.json'), JSON.stringify(result, null, 2));
-console.log('Successfully updated alternatePlans.json');
+fs.writeFileSync(path.join(__dirname, 'src', 'alternatePlans.json'), JSON.stringify(result, null, 2));
+console.log('Done.');

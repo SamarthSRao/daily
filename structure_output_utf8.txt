@@ -1,0 +1,143 @@
+﻿
+--- properrr.md ---
+373: ## MONTH 1: JavaScript Engine Deep ΓÇö Types, Closures, Event Loop, Async
+  377: ### Week 1: The JavaScript Engine ΓÇö Types, Scope, Closures, Prototypes, `this`
+  634: ### Week 2: JavaScript Applied ΓÇö Modules, Functional Patterns, DOM, Immutability
+  682: ### Week 3: Node.js Internals ΓÇö V8, libuv, Streams, `worker_threads`, `crypto`
+  764: ### Week 4: TypeScript Advanced + Auth + PostgreSQL + Redis + All Databases
+813: ## MONTH 2: JavaScript Applied ΓÇö Node.js Mastery + Streams + Performance
+  817: ### Week 5: Node.js Stdlib Deep ΓÇö `net`, `crypto`, `child_process`, `perf_hooks`
+  843: ### Week 6: TypeScript Mastery + Shared Packages Complete + DungBeetle Scaffold
+869: ## MONTH 3: Go Mastery ΓÇö Language, Concurrency, Stdlib, Benchmarking
+  873: ### Week 7: Go Language Core ΓÇö Types, Interfaces, Error Handling, Closures
+  911: ### Week 8: Go Concurrency ΓÇö Goroutines, Channels, `sync`, `errgroup`
+  1009: ### Week 9: Go Stdlib Deep + Tooling + DungBeetle Rewritten in Go
+  1087: ### Week 10: Go Advanced ΓÇö gRPC + Generics + K8s Operator Preview
+1114: ## MONTH 4: React + Frontend Frameworks + Testing + All Platforms Full-Stack
+  1118: ### Week 11: React From First Principles + All Hooks + Profiler
+  1148: ### Week 12: Alternative Frameworks + Full Testing Suite + WebRTC + CDN
+1192: ## MONTH 5: Infrastructure + Real-Time + SideCar + DungBeetle v1.0
+  1194: ### Week 13: Docker + CI/CD + Kubernetes + Cloud Deploy
+  1216: ### Week 14: Real-Time Patterns + gRPC Advanced + SideCar v1.0
+1257: ## MONTH 6: Kafka + Redis Deep + PayCore v1.0
+  1259: ### Week 15 (detail): gRPC + WebSockets + SSE + WebRTC + Real-Time Patterns
+  1324: ### Week 16 (detail): Kafka Fundamentals + Outbox + DungBeetle v1.0
+  1426: ### Week 18 (detail): PayCore v1.0 ΓÇö Double-Entry Ledger + Idempotent Payments + Reconciliation
+1483: ## MONTH 7: Distributed Patterns ΓÇö CQRS + Event Sourcing + Saga
+  1548: ### Week 20 (detail): Resiliency Patterns + Load Balancers + Big Data
+1600: ## MONTH 8: Stream Processing + StreamDB + Case Studies 1ΓÇô6
+  1685: ### Week 22 (detail): Case Studies 1ΓÇô6 (All Deployed as Platform Features)
+1738: ## MONTH 9: Database Internals + KVault + Case Studies 7ΓÇô11
+  1804: ### Week 24 (detail): Database Internals Deep + Sharding + Case Studies 7ΓÇô9
+1873: ## MONTH 10: AI Engineering + DungBeetle v3.0 + OpsAI Platform
+  1875: ### Week 26 (detail): Go Deep + K8s Operator + AI Engineering
+  1971: ### Week 27 (detail): Performance Engineering + Security + Portfolio Polish
+  2004: ### Week 28 (detail): System Design Interviews + DSA Sprint + Applications
+2079: ## MONTHS 10ΓÇô11: Performance + Polish + Hiring Sprint
+
+--- plan_datadog_confluent.md ---
+121: ## MONTH 1: Full-Stack From Day One ΓÇö All 4 Platforms Introduced
+  123: ### Week 1: HTTP + HTML + CSS + OpenTelemetry Mental Model
+  224: ### Week 2: React ΓÇö All 4 Platforms in React
+  237: ### Week 3: Tailwind + Next.js + Svelte + Vue + Testing
+  246: ### Week 4: Node.js + Express + ClickHouse + All Databases
+281: ## MONTH 2: APIs + Real-Time + DevOps
+  283: ### Week 5: gRPC + OTLP gRPC + SDK Publishing + WebSockets
+  309: ### Week 6: Docker + GitHub Actions + K8s + Terraform
+321: ## MONTH 3: Go + ClickHouse Deep + Kafka Internals
+  323: ### Week 7: Go ΓÇö ObserveFlow Collector Agent
+  387: ### Week 8: Kafka Internals + CDC + ObserveFlow Trace Pipeline
+412: ## MONTH 4: Go Deep + K8s Operator + AI Engineering
+  414: ### Week 9: Go Deep + ObserveFlowCollector Kubernetes Operator
+  461: ### Week 10: AI Engineering ΓÇö ObserveFlow + VaultAuth
+491: ## MONTH 5: System Design Fundamentals
+  493: ### Week 11: Observability at Scale + Rate Limiting + CAP
+  521: ### Week 12: Kafka Streams + Big Data + Notifications
+540: ## MONTH 6: All 11 Case Studies
+  542: ### Week 13: Observability Platform + Kafka at Scale
+  556: ### Week 14: Columnar Query Engine + API Gateway Design
+  570: ### Week 15: Identity Provider + Alerting + Distributed Tracing
+  587: ### Week 16: Log Aggregation + Data Catalog + Rate Limiter + Fraud
+601: ## MONTH 7: Hiring Sprint
+  603: ### Week 17-18: Portfolio Polish + Open Source
+  609: ### Week 19-20: Mock Interviews + Applications
+
+--- plan_jiohotstar_razorpay.md ---
+111: ## MONTH 1: Full-Stack From Day One ΓÇö All 4 Platforms Introduced
+  113: ### Week 1: HTTP + HTML + CSS + HLS Basics ΓÇö India-Scale Mental Model
+  225: ### Week 2: React ΓÇö All 4 Platforms Rebuilt in React
+  238: ### Week 3: Tailwind + Next.js + Svelte + Vue + Testing
+  247: ### Week 4: Node.js + Express + All Databases
+278: ## MONTH 2: APIs + Real-Time + DevOps
+  280: ### Week 5: gRPC + GraphQL + WebSockets + SSE + WebRTC + UPI Webhooks
+  308: ### Week 6: Docker + CI/CD + AWS CloudFront + CDN Architecture
+331: ## MONTH 3: Go + Caching + Kafka + High-Throughput Systems
+  333: ### Week 7: Go ΓÇö Rewrite StreamEdge HLS Pipeline + BazaarFast Inventory Service
+  355: ### Week 8: Kafka + Payment Saga + Database Scaling
+382: ## MONTH 4: Go Deep + K8s Operator + AI Engineering
+  384: ### Week 9: Go Deep + StreamEdge Autoscaler Operator
+  432: ### Week 10: Vercel AI SDK + RAG + AI Agents ΓÇö InsightHub Full AI Layer
+458: ## MONTH 5: System Design Fundamentals
+  460: ### Week 11: High-Availability at India Scale
+  486: ### Week 12: Notifications + Caching + Real-Time at India Scale
+504: ## MONTH 6: All 11 Case Studies
+  506: ### Week 13: Live Video Streaming at Scale + Payment Gateway Design
+  520: ### Week 14: Flash Sale Inventory + Product Search + Score Overlay Push
+  533: ### Weeks 15-16: Fraud Detection + Recommendation + Reconciliation + Remaining Case Studies
+546: ## MONTH 7: Hiring Sprint
+  548: ### Week 17-18: Portfolio Polish + Open Source
+  553: ### Week 19-20: Mock Interviews + Applications
+
+--- plan_rippling_databricks.md ---
+148: ## MONTH 1: Full-Stack From Day One ΓÇö All 4 Platforms Introduced
+  154: ### Week 1: HTTP + HTML + CSS + Multi-Tenant Foundation
+  249: ### Week 2: React + State Management ΓÇö All 4 Platforms in React
+  262: ### Week 3: Tailwind + Shadcn + Next.js + Svelte + Vue + Testing
+  273: ### Week 4: Node.js + Express + All Databases ΓÇö Multi-Tenant Backends
+312: ## MONTH 2: APIs + Real-Time + DevOps ΓÇö All 4 Platforms in Production
+  314: ### Week 5: gRPC + GraphQL + tRPC + Webhooks + SDK Design
+  347: ### Week 6: Docker + CI/CD + Kubernetes + Multi-Cloud
+360: ## MONTH 3: Python + Spark + Kafka + Data Pipelines
+  366: ### Week 7: Python + FastAPI + PySpark ΓÇö SparkFlow Gets Its Engine
+  445: ### Week 8: Kafka + Saga + CDC + Database Scaling
+456: ## MONTH 4: Go Deep + Kubernetes Operator + AI Engineering
+  458: ### Week 9: Go + WorkOS Tenant Provisioner Operator
+  505: ### Week 10: Vercel AI SDK + RAG + AI Agents ΓÇö LakeAI Full AI Layer
+530: ## MONTH 5: System Design Fundamentals ΓÇö Built Into All 4 Platforms
+  532: ### Week 11: Multi-Tenant Scale + Rate Limiting + Consistent Hashing
+  564: ### Week 12: Usage-Based Billing + Notifications + Caching at Scale
+585: ## MONTH 6: All 11 Case Studies ΓÇö Built Into 4 Platforms
+  587: ### Week 13: Multi-Tenant SaaS Design + Usage-Based Billing Deep Dive
+  601: ### Week 14: Distributed Data Pipeline + Real-Time Analytics Dashboard
+  615: ### Week 15: ML Model Serving + Workflow Engine + Data Catalog
+  634: ### Week 16: Rate Limiter + Fraud + Anomaly Detection + Recommendations
+654: ## MONTH 7: Hiring Sprint
+  656: ### Weeks 17-18: Portfolio Polish + Open Source
+  661: ### Weeks 19-20: Mock Interviews + Applications
+
+--- plan_uber_doordash_palantir.md ---
+146: ## MONTH 1: Full-Stack From Day One ΓÇö All 4 Platforms Introduced
+  152: ### Week 1: HTTP + HTML + CSS + Geospatial Mental Model ΓÇö All 4 Platforms Get a Shell
+  281: ### Week 2: React ΓÇö All 4 Platforms Rebuilt in React
+  310: ### Week 3: Tailwind + Shadcn + Next.js + Svelte + Vue + Testing
+  335: ### Week 4: Node.js + Express + All Databases ΓÇö Real Backends
+373: ## MONTH 2: APIs + Real-Time + DevOps ΓÇö All 4 Platforms in Production
+  375: ### Week 5: gRPC + GraphQL + tRPC + Webhooks + Real-Time
+  410: ### Week 6: Docker + CI/CD + Kubernetes + Multi-Cloud
+443: ## MONTH 3: Go + Geospatial Engine + Kafka + Data Pipelines
+  449: ### Week 7: Go ΓÇö DispatchOS Matching Engine
+  510: ### Week 8: Python + PySpark + FoundryOS Data Pipelines
+  581: ### Week 9 (continues Month 3): Kafka Saga + CDC + DB Scaling
+606: ## MONTH 4: Go Deep + Kubernetes Operator + AI Engineering
+  608: ### Week 10: Go Deep + DispatchOS Autoscaler Operator
+  655: ### Week 11: Vercel AI SDK + RAG + AI Agents ΓÇö AIPilot Full AI Layer
+731: ## MONTH 5: System Design Fundamentals ΓÇö All Built Into 4 Platforms
+  733: ### Week 12: Geospatial Scale + CAP + Fault Tolerance + Rate Limiting
+  765: ### Week 13: Notifications + Caching + Real-Time PubSub
+785: ## MONTH 6: All 11 Case Studies ΓÇö Built Into 4 Platforms
+  787: ### Week 14: Marketplace Matching + Geospatial Driver Feed + Surge Pricing
+  806: ### Week 15: Notifications + ETA Prediction + Dasher Assignment
+  817: ### Week 16: FoundryOS Data Pipeline + AIPilot Human-in-the-Loop + Fraud + Recommendation
+839: ## MONTH 7: Hiring Sprint
+  841: ### Weeks 17-18: Portfolio Polish + Open Source
+  848: ### Weeks 19-20: Mock Interviews + Applications

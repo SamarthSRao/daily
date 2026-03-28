@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import projects from "./biweekly.json";
-import { Play, Pause, RotateCcw, Notebook, Timer, ChevronDown, ChevronRight, Save } from "lucide-react";
+import { Play, Pause, RotateCcw, Notebook, Timer, ChevronDown, ChevronRight } from "lucide-react";
 import { saveState, loadState } from "./lib/redis";
 
 type ProjectState = {
@@ -22,24 +22,36 @@ const INITIAL_PROJECT_STATE: ProjectState = {
 export default function BiweeklyPage() {
   const [projectStates, setProjectStates] = useState<BiweeklyState>({});
   const [expandedProjects, setExpandedProjects] = useState<Record<string, boolean>>({});
-  const [tick, setTick] = useState(0); // Dummy state to trigger re-renders for active timers
+  const [startDate, setStartDate] = useState<number>(new Date(2026, 0, 1).getTime()); // Default to Jan 1
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await loadState("properrr-biweekly", {});
-      // Merge with initial states to ensure all projects exist
+      const data = await loadState("properrr-biweekly-meta", { startDate: new Date(2026, 0, 1).getTime() });
+      if (data.startDate) setStartDate(data.startDate);
+
+      const states = await loadState("properrr-biweekly", {});
       const merged: BiweeklyState = {};
       projects.forEach(p => {
-        merged[p.id] = data[p.id] || { ...INITIAL_PROJECT_STATE };
+        merged[p.id] = states[p.id] || { ...INITIAL_PROJECT_STATE };
       });
       setProjectStates(merged);
     };
     fetchData();
   }, []);
 
+  const resetPlanStartDate = () => {
+    if (!confirm("Start the entire biweekly plan from today? This will shift all project deadlines.")) return;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const newStart = today.getTime();
+    setStartDate(newStart);
+    saveState("properrr-biweekly-meta", { startDate: newStart });
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setTick(t => t + 1);
+      // Trigger re-render every second for active timers
+      setProjectStates(prev => ({ ...prev }));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -122,20 +134,46 @@ export default function BiweeklyPage() {
     return `${h}h ${m}m ${s}s`;
   };
 
+  // Logic to calculate remaining days in the biweekly cycle
+  const getCycleStats = (projectIdx: number) => {
+    const now = new Date();
+    const startOfPlan = new Date(startDate);
+    const msDiff = now.getTime() - startOfPlan.getTime();
+    const daysSinceStart = Math.floor(msDiff / (1000 * 60 * 60 * 24));
+    
+    // Each project is 2 weeks = 14 days
+    const projectCycleStartDay = projectIdx * 14;
+    const projectCycleEndDay = (projectIdx + 1) * 14;
+    
+    const isCurrentCycle = daysSinceStart >= projectCycleStartDay && daysSinceStart < projectCycleEndDay;
+    const isPastCycle = daysSinceStart >= projectCycleEndDay;
+    const daysRemaining = projectCycleEndDay - daysSinceStart;
+
+    return { isCurrentCycle, isPastCycle, daysRemaining };
+  };
+
   return (
     <div className="tasks-container">
       <div className="tasks-header">
-        <h1 className="tasks-title">
-          <Timer className="icon-main" />
-          Biweekly Internals
-        </h1>
-        <p className="tasks-subtitle">Implement the core of Distributed Systems & DBMS</p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <h1 className="tasks-title">
+              <Timer className="icon-main" />
+              Biweekly Internals
+            </h1>
+            <p className="tasks-subtitle">Implement the core of Distributed Systems & DBMS</p>
+          </div>
+          <button className="reset-plan-btn" onClick={resetPlanStartDate}>
+            Start Plan from Today
+          </button>
+        </div>
       </div>
 
       <div className="curriculum-list">
-        {projects.map((project) => {
+        {projects.map((project, idx) => {
           const state = projectStates[project.id] || INITIAL_PROJECT_STATE;
           const isExpanded = expandedProjects[project.id];
+          const { isCurrentCycle, isPastCycle, daysRemaining } = getCycleStats(idx);
           
           let displayTime = state.totalTime;
           if (state.isRunning && state.lastStartTime) {
@@ -143,20 +181,32 @@ export default function BiweeklyPage() {
           }
 
           return (
-            <div key={project.id} className="month-card">
+            <div key={project.id} className={`month-card ${isCurrentCycle ? 'current-project' : ''}`}>
               <div 
                 className="month-header" 
                 onClick={() => toggleExpand(project.id)}
-                style={{ borderLeft: state.isRunning ? '4px solid #10b981' : '4px solid transparent' }}
+                style={{ 
+                  borderLeft: state.isRunning ? '4px solid #10b981' : isCurrentCycle ? '4px solid #3b82f6' : '4px solid transparent'
+                }}
               >
                 <div className="month-title">
                   <div className={`timer-status-dot ${state.isRunning ? 'active' : ''}`} />
                   <div>
-                    <h2 style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>{project.title}</h2>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <h2 style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>{project.title}</h2>
+                      {isCurrentCycle && <span className="current-badge">ACTIVE CYCLE</span>}
+                      {isPastCycle && <span className="past-badge">PAST</span>}
+                    </div>
                     <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{project.subtitle}</span>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                  {isCurrentCycle && (
+                    <div className="days-remaining-badge">
+                      <span className="dr-val">{daysRemaining}</span>
+                      <span className="dr-lab">d left</span>
+                    </div>
+                  )}
                   <span className="biweekly-timer-display">{formatTime(displayTime)}</span>
                   {isExpanded ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
                 </div>
@@ -233,6 +283,66 @@ export default function BiweeklyPage() {
           border-radius: 6px;
           min-width: 100px;
           text-align: center;
+        }
+        .reset-plan-btn {
+          background-color: var(--bg-hover);
+          color: var(--text-secondary);
+          border: 1px solid var(--border-color);
+          padding: 6px 14px;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .reset-plan-btn:hover {
+          background-color: var(--bg-card);
+          color: var(--text-primary);
+          border-color: #3f3f46;
+        }
+        .current-badge {
+          font-size: 0.65rem;
+          font-weight: 800;
+          padding: 2px 6px;
+          border-radius: 4px;
+          background: rgba(59, 130, 246, 0.2);
+          color: #3b82f6;
+          border: 1px solid rgba(59, 130, 246, 0.3);
+          letter-spacing: 0.5px;
+        }
+        .past-badge {
+          font-size: 0.65rem;
+          font-weight: 800;
+          padding: 2px 6px;
+          border-radius: 4px;
+          background: rgba(161, 161, 170, 0.1);
+          color: var(--text-muted);
+          border: 1px solid rgba(161, 161, 170, 0.2);
+        }
+        .days-remaining-badge {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          line-height: 1;
+          background: rgba(245, 158, 11, 0.1);
+          border: 1px solid rgba(245, 158, 11, 0.2);
+          padding: 4px 8px;
+          border-radius: 6px;
+          color: #f59e0b;
+        }
+        .dr-val {
+          font-size: 0.9rem;
+          font-weight: 800;
+        }
+        .dr-lab {
+          font-size: 0.6rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          opacity: 0.8;
+        }
+        .current-project {
+          border-color: rgba(59, 130, 246, 0.3) !important;
+          background: linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent) !important;
         }
         .biweekly-controls {
           display: flex;

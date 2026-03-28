@@ -1,0 +1,202 @@
+[
+  {
+    "id": "PayCore_Spec",
+    "title": "PayCore — Project Specification",
+    "subtitle": "Financial Transactions & Ledger System",
+    "stack": "Go · PostgreSQL · Redis · Kafka · gRPC · Next.js",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "PayCore is a production-grade financial transaction and ledger system built in Go. It demonstrates the hardest correctness problems in backend engineering: double-entry bookkeeping, idempotency across retries, event sourcing, and distributed Saga-based payment flows. Every mutation is guaranteed to be safe to retry; every ledger entry is balanced; every payment failure triggers a compensating transaction.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Double-entry bookkeeping — every debit has a matching credit, ledger always balances\n- Idempotency keys — every mutation safe to retry with no duplicate charges\n- Saga pattern — distributed payment flow with compensating transactions on failure\n- Event sourcing — account state reconstructed from event replay\n- JWT RS256 auth + refresh token rotation\n- HMAC-signed webhooks for payment callbacks\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Technology | Responsibility |\n|---|---|---|\n| Auth Service | Go + JWT RS256 | Login, token issuance, refresh rotation, Redis revocation |\n| Ledger Service | Go + PostgreSQL | Double-entry bookkeeping, account balances, audit trail |\n| Payment Orchestrator | Go + Kafka + Saga | Multi-step payment flow, compensating transactions |\n| Event Store | PostgreSQL + Kafka | Immutable event log, state reconstruction by replay |\n| Webhook Delivery | Go + HMAC | Signed outbound notifications to merchant callbacks |\n| Frontend | Next.js + Tanstack Query | Transaction dashboard, ledger viewer, payment flow UI |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Double-Entry Bookkeeping\n\nEvery financial movement creates two ledger entries: a debit on the source account and an equal credit on the destination. The ledger INSERT is wrapped in a transaction with a CHECK constraint: `SUM(debits) = SUM(credits)`. Any imbalance causes a constraint violation and rolls back. This eliminates an entire class of accounting bugs that affect most fintech systems.\n\n### Idempotency Key Pattern\n\nEvery payment mutation accepts an `idempotency_key` header. The key is stored with the result in a Redis hash (TTL: 24 hours). On retry, if the key exists, the stored result is returned immediately — no second charge, no duplicate ledger entry. The key covers the full response, not just the status code.\n\n### Saga Pattern — Choreography\n\nA payment flow spans three services: reserve funds, charge payment gateway, confirm ledger. Each step publishes a Kafka event. If the gateway charge fails, a compensating event releases the reserved funds. The Kafka outbox pattern guarantees events are published even if the producer crashes between database write and Kafka publish.\n\n### Event Sourcing\n\nAccount state is never stored directly. The events table is the source of truth: `AccountOpened`, `FundsDeposited`, `PaymentInitiated`, `PaymentCompleted`, `PaymentFailed`. Current balance is computed by replaying events. Snapshots are taken every 1000 events to avoid full replay on startup.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "- `accounts (id, owner_id, currency, created_at)`\n- `ledger_entries (id, account_id, amount, direction, transaction_id, created_at)`\n- `payment_events (id, aggregate_id, type, payload JSONB, sequence, created_at)`\n- `idempotency_keys (key, result JSONB, created_at)` — Redis, TTL 24h\n- `outbox (id, topic, payload, published_at)` — transactional Kafka guarantee\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Result |\n|---|---|\n| Payment throughput | 5,000 TPS (k6, 50 concurrent users) |\n| Ledger INSERT p99 | < 8ms |\n| Saga compensation time | < 200ms end-to-end |\n| Event replay (10K events) | < 50ms |\n| Idempotency lookup (Redis) | < 1ms |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes — concurrent ledger access must be safe\n- `EXPLAIN ANALYZE` on every query — zero seq scans on tables > 10K rows\n- Idempotency key on every mutation that can be retried\n- Outbox pattern for every Kafka publish that must be guaranteed\n- Saga compensating transactions triggered and verified on payment failure\n- `goleak.VerifyNone(t)` passes — goroutine leaks in payment workers accumulate\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Infraspec Requirement | How This Project Delivers It |\n|---|---|\n| 3–5 years or equivalent | Production-deployed with k6 benchmarks and ADRs |\n| Double-entry accounting | Full ledger with constraint-enforced balance |\n| Distributed transactions | Saga choreography with compensating events |\n| Event-driven architecture | Kafka outbox, event sourcing, CQRS read model |\n| Security best practices | JWT RS256, HMAC webhooks, input sanitization |"
+      }
+    ]
+  },
+  {
+    "id": "RouteMaster_Spec",
+    "title": "RouteMaster — Project Specification",
+    "subtitle": "Logistics & Notifications Platform",
+    "stack": "Next.js · Go · Elasticsearch · Kafka · Redis · PostgreSQL",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "RouteMaster is a logistics and real-time notifications platform built with Go and Next.js, demonstrating fan-out notifications at scale, Elasticsearch full-text search, a Bloom-filter-backed web crawler, and real-time order tracking via WebSocket. It integrates directly with the Notification Delivery Service (a standalone biweekly project) for multi-channel delivery and serves as the primary consumer of DungBeetle's job queue for async work.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Fan-out notifications at scale — 10,000 simultaneous delivery confirmations\n- Elasticsearch full-text search with BM25 relevance scoring and faceted filters\n- Bloom-filter-backed web crawler — avoids re-crawling seen URLs in O(1) space\n- Real-time order tracking via WebSocket with Redis pub/sub fan-out\n- Kafka-backed notification pipeline with at-least-once delivery guarantees\n- Next.js Server Components with SSE for live shipment status updates\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Technology | Responsibility |\n|---|---|---|\n| Order Service | Go + PostgreSQL | Order lifecycle, status transitions, driver assignment |\n| Tracking Service | Go + WebSocket + Redis | Real-time location updates, fan-out to connected clients |\n| Search Service | Go + Elasticsearch | Full-text shipment search, faceted filters, relevance |\n| Crawler | Go + Bloom filter | Address/logistics data crawling, deduplication |\n| Notification Pipeline | Kafka + Delivery Service | Fan-out dispatch, multi-channel delivery, receipts |\n| Frontend | Next.js + SSE | Order tracker, live map, search UI, notification feed |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Fan-Out Notifications at Scale\n\nWhen a shipment status changes, a Kafka event triggers the Notification Pipeline. The fan-out worker reads all subscribers for the shipment (sender, receiver, account manager) and dispatches to the Notification Delivery Service via its REST API. The Delivery Service handles multi-channel routing (email, SMS, push, webhook). The fan-out is parallelised with a Go `errgroup` — all 10,000 notifications are dispatched concurrently with a semaphore to prevent connection pool exhaustion.\n\n### Elasticsearch Full-Text Search\n\nShipment search uses Elasticsearch with a BM25 relevance scorer. The index maps: `origin_address` (text, analyzed), `destination_address` (text, analyzed), `carrier_name` (keyword), `status` (keyword), `created_at` (date). Queries combine full-text match on addresses with term filters on status and date range. Faceted search returns aggregation buckets: by carrier, by status, by date. The ADR documents the decision to use Elasticsearch over PostgreSQL full-text search at this data volume.\n\n### Bloom Filter Web Crawler\n\nThe logistics data crawler collects address and carrier information from public sources. A Bloom filter (false positive rate: 0.1%) tracks seen URLs in O(1) space — far more memory-efficient than a visited set. Before fetching a URL, the filter is checked; only URLs that pass (not seen) are fetched. The filter is persisted to Redis on shutdown and reloaded on startup. False positive rate is measured and documented in `BENCHMARKS.md`.\n\n### Real-Time Order Tracking\n\nDriver location updates flow: Driver app → Go WebSocket server → Redis pub/sub → all connected tracking clients. Redis pub/sub enables horizontal scaling: any WebSocket server node can fan-out updates to its connected clients regardless of which node the driver is connected to. The WebSocket server uses `gorilla/websocket` with a ping/pong keepalive (30s interval). The presence registry uses Redis HSET with a 60s TTL.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "- `orders (id, sender_id, recipient_id, status, driver_id, created_at, updated_at)`\n- `shipment_events (id, order_id, event_type, location POINT, metadata JSONB, created_at)`\n- `notification_subscriptions (id, order_id, user_id, channels TEXT[], created_at)`\n- `crawler_seeds (id, url, domain, crawled_at, status)`\n- Elasticsearch index: `shipments (origin, destination, carrier, status, created_at)`\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Result |\n|---|---|\n| Fan-out throughput | 10,000 notifications dispatched in < 2s (errgroup + semaphore) |\n| WebSocket connections | 5,000 concurrent tracking sessions, < 50ms delivery p99 |\n| Elasticsearch search p99 | < 80ms (full-text + facet, 1M documents) |\n| Crawler throughput | 500 URLs/sec, Bloom filter false positive rate: 0.08% |\n| Order status update latency | < 100ms from driver app to tracking client |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes — concurrent WebSocket fan-out has race conditions\n- `goleak.VerifyNone(t)` — goroutine leaks in tracking server accumulate over hours\n- Fan-out semaphore tuned: connection pool exhaustion tested and prevented\n- Bloom filter false positive rate measured and documented\n- `EXPLAIN ANALYZE` on every PostgreSQL query, Elasticsearch `explain` on every search\n- WebSocket ping/pong tested: dead connections purged within 2 TTL windows\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Infraspec Requirement | How This Project Delivers It |\n|---|---|\n| NoSQL and Elasticsearch | Full-text search, BM25, faceted aggregations, hybrid search |\n| Real-time systems | WebSocket, SSE, Redis pub/sub, distributed presence |\n| Event-driven architecture | Kafka fan-out, outbox pattern, notification pipeline |\n| 0-to-1 product experience | Full logistics product, ground-up, with live tracking UI |\n| Performance engineering | Fan-out concurrency, semaphore tuning, p99 benchmarks |"
+      }
+    ]
+  },
+  {
+    "id": "OpenTrace_Spec",
+    "title": "OpenTrace — Project Specification",
+    "subtitle": "Distributed Tracing System (Jaeger-Equivalent)",
+    "stack": "Go · TypeScript · gRPC · ClickHouse · Kafka · Next.js · Kubernetes",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "OpenTrace is a complete open-source distributed tracing system built in Go and TypeScript — the portfolio centrepiece and final year project. It is architecturally equivalent to Jaeger: it receives OTLP spans over gRPC and HTTP, processes them through a Kafka pipeline with tail-based sampling, stores them in ClickHouse (10M spans/sec, p99 query < 200ms on 30-day window), and serves them via a gRPC query service to a Next.js UI with trace waterfalls, service maps, and live tail. OpenTrace instruments itself — the self-referential demo is live.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- OTLP-compatible — any OpenTelemetry SDK sends spans with zero config changes\n- 10M spans/sec ingestion throughput (ClickHouse bulk insert, verified with k6)\n- Tail-based sampling — keeps 100% errors + slow spans, samples 5% of normal traces\n- ClickHouse columnar storage with monthly partitioning, partition pruning verified\n- Self-instrumentation — OpenTrace traces its own 7 components live\n- K8s Operator — all 7 components managed by a single Kubernetes Operator\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Technology | Responsibility |\n|---|---|---|\n| Collector | Go + gRPC + Protobuf | OTLP/gRPC + OTLP/HTTP receiver, validation, Kafka publish |\n| Pipeline Processor | Go + Kafka | Kafka consumer, tail-based sampling, ClickHouse bulk writer |\n| Query Service | Go + gRPC | Trace retrieval, service map, aggregations from ClickHouse |\n| API Gateway | Go + chi + REST | REST wrapper over gRPC Query Service, auth middleware |\n| Live Tail Service | Go + WebSocket + Redis | Real-time span streaming, 100 concurrent tail sessions |\n| Auto-Instrumentation SDK | Go + OTel | Zero-code span generation for demo microservice |\n| Frontend (UI) | Next.js + D3.js + TypeScript | Trace waterfall, service map, live tail, search |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### OTLP Collector — gRPC + HTTP Receiver\n\nThe Collector implements the OpenTelemetry Protocol (OTLP) `TraceService` gRPC service. It receives `ExportTraceServiceRequest`, validates spans (required fields, valid timestamps, trace ID format), and publishes to the `spans.raw` Kafka topic. Partition key = `trace_id` ensures all spans of a trace go to the same partition — ordering is guaranteed without sorting. Backpressure: if Kafka is slow, the Collector returns `RESOURCE_EXHAUSTED`, documented in the ADR.\n\n### Tail-Based Sampling\n\nTail-based sampling makes a sampling decision after the full trace arrives, not on the first span. The Pipeline Processor buffers spans per `trace_id` for 10 seconds. At decision time:\n- Keep **100%** of traces with any error span\n- Keep **100%** of traces with any span > 500ms\n- Sample **5%** of remaining normal traces\n\nThis ensures all errors and slow traces are captured regardless of volume, while reducing storage cost for healthy traffic.\n\n### ClickHouse Storage — Columnar at Scale\n\nThe spans table uses the MergeTree engine with `PARTITION BY toYYYYMM(start_time)`. Partition pruning is verified with `EXPLAIN`: a 24-hour query reads 1–2 partitions out of 7 total. Bulk insert batches 10,000 spans before writing — single-row vs batch benchmark shows 100x throughput difference, documented in `BENCHMARKS.md`. TTL policy: spans older than 30 days are automatically deleted. Storage cost vs Elasticsearch: **8x cheaper per GB**.\n\n```sql\nCREATE TABLE spans (\n    trace_id        FixedString(32),\n    span_id         FixedString(16),\n    parent_span_id  FixedString(16),\n    operation_name  LowCardinality(String),\n    service_name    LowCardinality(String),\n    start_time      DateTime64(6),\n    duration_us     UInt64,\n    status_code     UInt8,\n    attributes      Map(String, String),\n    resource        Map(String, String)\n) ENGINE = MergeTree()\nPARTITION BY toYYYYMM(start_time)\nORDER BY (service_name, start_time, trace_id)\nTTL start_time + INTERVAL 30 DAY;\n```\n\n### Self-Instrumentation Demo\n\nOpenTrace instruments its own 7 components using the Auto-Instrumentation SDK. A live trace of a query request flows through: UI → API Gateway → Query Service → ClickHouse — visible inside OpenTrace itself. The service map shows the internal dependency graph. The live tail streams spans in real time as they are generated by a demo microservice. This is the most compelling demo artifact: the system traces itself.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "- **ClickHouse spans table:** `trace_id, span_id, parent_span_id, service_name, operation_name, start_time, duration_us, status_code, tags Map(String,String), logs Array(String)`\n- `PARTITION BY toYYYYMM(start_time)` — monthly partitions, TTL 30 days\n- **PostgreSQL span_metadata:** `trace_id, service_name, ingested_at` — range partitioned by month\n- **Redis trace cache:** `trace:{traceId}` → serialised spans, TTL 5 min, TTL jitter ±30s\n- **Kafka topics:** `spans.raw` (partition key: trace_id), `spans.sampled`, `spans.errors`\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Result |\n|---|---|\n| Ingestion throughput | 10M spans/sec |\n| ClickHouse query p99 (30-day window) | < 200ms |\n| Collector gRPC p99 latency | < 5ms |\n| UI waterfall render (10K spans) | < 100ms (virtualised rendering) |\n| Storage cost vs Elasticsearch | 8x cheaper per GB |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` — data races in the Collector lose spans silently under load\n- `goleak.VerifyNone(t)` — goroutine leaks in the span pipeline accumulate and crash production\n- Outbox pattern for every Kafka publish — crash between receive and publish loses spans forever\n- `EXPLAIN` on every ClickHouse query — partition pruning verified (Selected 1–2/7 parts)\n- 10M spans/sec load test documented in `BENCHMARKS.md` — untested claims are fiction\n- OTel compatibility verified — official OTel Go SDK sends to OpenTrace with zero config changes\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Infraspec Requirement | How This Project Delivers It |\n|---|---|\n| 0-to-1 product experience | 7-component system built ground-up, Week 1 to production |\n| gRPC, webhooks, protocols | OTLP/gRPC, OTLP/HTTP, OTel SDK, Protobuf |\n| Databases: SQL + NoSQL + Redis | ClickHouse + PostgreSQL + Redis — all production-tuned |\n| Observability as first-class | Self-instrumented — traces its own request pipeline live |\n| CI/CD, K8s, containerisation | K8s Operator manages all 7 components, GitHub Actions CI |"
+      }
+    ]
+  },
+  {
+    "id": "DungBeetle_Spec",
+    "title": "DungBeetle — Project Specification",
+    "subtitle": "Background Job Processing Platform",
+    "stack": "Go · Kafka · PostgreSQL · Redis · gRPC · Next.js",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "DungBeetle is a production-grade background job processing platform built in Go, demonstrating leader election, exactly-once distributed cron, monolith-to-event-driven migration, and Kafka-backed job queues at scale. It begins as a Node.js monolith and is rewritten in Go — the RFC documenting the migration decision is a key deliverable. DungBeetle independently consumes job payloads from PayCore, RouteMaster, and BookWise.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Leader election via Redis SET NX — only one node runs cron at a time\n- Exactly-once cron — distributed lock prevents duplicate job scheduling\n- Monolith → event-driven migration with written ADR and benchmark comparison\n- Kafka-backed job queues with DLQ and exponential backoff\n- Retry-with-DLQ pattern — failed jobs surfaced in UI dashboard\n- AI job orchestration — LLM-powered job classification and routing\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Technology | Responsibility |\n|---|---|---|\n| Job API | Go + chi + gRPC | Job submission, status queries, webhook callbacks |\n| Worker Pool | Go goroutines + Kafka | Job execution, concurrency control, panic recovery |\n| Scheduler | Go + Redis SETNX | Exactly-once cron, distributed leader election |\n| DLQ Manager | Go + PostgreSQL | Dead-letter queue, retry policies, failure dashboard |\n| Event Bus | Kafka + Outbox | Job lifecycle events, inter-service job dispatch |\n| Frontend | Next.js + Shadcn UI | Job dashboard, DLQ viewer, live status feed |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Leader Election — Redis SETNX\n\nOnly one DungBeetle node should schedule cron jobs at any moment. Leader election uses `Redis SET NX EX`: the node that wins the SET becomes leader and holds the lock for 30 seconds. All nodes attempt renewal every 10 seconds. If the leader dies, the lock expires and a new leader is elected within one TTL window. Split-brain scenario tested: both nodes simultaneously try to become leader — only one wins.\n\n### Exactly-Once Cron\n\nA distributed lock on the cron job ID prevents duplicate scheduling across cluster nodes. When the cron fires, the scheduler atomically checks-and-sets a Redis key with the scheduled run ID. If the key already exists (another node fired first), the schedule is skipped. The result: exactly one execution per scheduled interval, even with N running nodes.\n\n### Monolith to Event-Driven Migration\n\nDungBeetle v0.1 is a Node.js monolith. The v1.0 Go rewrite extracts the job worker into a separate Kafka consumer. The migration RFC documents: why Go over Node.js for CPU-bound workers, goroutine-per-job model vs thread pool, `go test -race` coverage, benchmark comparison before/after. The migration demonstrates understanding of when and why to move from a monolith to event-driven.\n\n### Retry Policy with Dead-Letter Queue\n\nFailed jobs retry with exponential backoff: 1s, 2s, 4s, 8s, up to `max_retries` (configurable per job type). After max retries, the job moves to the DLQ table with the last error payload and full retry history. The UI dashboard surfaces all DLQ entries with one-click re-queue.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "- `jobs (id, type, payload JSONB, status, priority, run_at, attempts, max_attempts, created_at)`\n- `job_events (id, job_id, event_type, metadata JSONB, created_at)`\n- `dlq (id, job_id, error, retry_history JSONB, moved_at)`\n- `cron_schedules (id, name, cron_expr, last_run, next_run, lock_key)`\n- `outbox (id, topic, payload, published_at)`\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Result |\n|---|---|\n| Job throughput | 50,000 jobs/min (k6, 100 concurrent submitters) |\n| Worker pick-up latency p99 | < 50ms from enqueue to execution start |\n| Leader election time | < 30s (one TTL window after leader failure) |\n| DLQ move latency | < 5ms after max retries exceeded |\n| Cron scheduling precision | ± 1s of scheduled time |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes — concurrent job dispatch must be safe\n- `goleak.VerifyNone(t)` — goroutine leaks in the worker pool accumulate over days\n- Leader election split-brain scenario tested and verified\n- Cron exactly-once semantics verified: N nodes, single execution per interval\n- DLQ: crash between enqueue and Kafka publish tested, recovery verified\n- Migration RFC written: Node.js monolith → Go event-driven, with benchmark numbers\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Infraspec Requirement | How This Project Delivers It |\n|---|---|\n| Event-driven architecture | Kafka-backed queues, outbox pattern, Saga choreography |\n| Distributed systems depth | Leader election, distributed cron, fencing tokens |\n| Monolith vs microservices | Written ADR with benchmark comparison |\n| AI tools for development | AI job classification and routing built in |\n| RFCs and decision documents | Migration RFC + every architecture decision documented |"
+      }
+    ]
+  },
+  {
+    "id": "BookWise_Spec",
+    "title": "BookWise — Project Specification",
+    "subtitle": "Distributed Seat Reservation System",
+    "stack": "Go · PostgreSQL · Redis · Kafka · gRPC · Next.js",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "BookWise is a distributed seat reservation system built in Go, demonstrating the classical concurrency and correctness problems of booking systems at scale: distributed locking with fencing tokens, double-booking prevention under 10,000 concurrent users, payment Saga choreography, and a waitlist state machine. Every reservation is guaranteed to be mutually exclusive. Every payment failure releases the held seat.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Distributed locks with fencing tokens — prevents double-booking under high concurrency\n- Double-booking prevention verified at 10,000 concurrent users (k6)\n- Payment Saga — reserve seat → charge payment → confirm booking with compensation\n- Waitlist state machine — automatic promotion when a cancellation occurs\n- `SELECT FOR UPDATE SKIP LOCKED` — correct row-level locking for seat holds\n- Isolation level demos — dirty read, non-repeatable read, phantom read triggered live in psql\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Technology | Responsibility |\n|---|---|---|\n| Booking Service | Go + PostgreSQL | Seat availability, reservation creation, hold management |\n| Lock Service | Go + Redis | Distributed locks, fencing tokens, TTL-based expiry |\n| Payment Gateway | Go + Kafka + Saga | Payment processing, Saga orchestration, compensation |\n| Waitlist Engine | Go + PostgreSQL | Queue management, automatic promotion, notifications |\n| Query Service | Go + gRPC | Read-optimised availability queries, Redis cache |\n| Frontend | Next.js + Tanstack Query | Seat map, booking flow, waitlist position tracker |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Distributed Locking with Fencing Tokens\n\nA seat hold acquires a Redis distributed lock with a monotonically increasing fencing token. The token is included in every subsequent database write. If an expired lock holder attempts a late write, the database rejects it (`token < current_token`). This eliminates the race condition where a slow process holds an expired lock and overwrites a newer reservation. Correctness test: 10,000 goroutines simultaneously attempt to book the same seat — exactly one succeeds.\n\n### SELECT FOR UPDATE SKIP LOCKED\n\nSeat availability queries use `SELECT ... FOR UPDATE SKIP LOCKED` to atomically claim a seat row without blocking other workers on already-locked rows. This is the correct pattern for a reservation system: a worker picks only rows it can immediately lock, processes them, and releases. Workers never block each other. The pattern is documented in an ADR comparing it to optimistic locking.\n\n### Payment Saga — Seat Reservation Flow\n\nThe booking flow is a three-step Saga:\n1. **Hold seat** — acquire distributed lock, mark seat as `HELD`\n2. **Charge payment** — call payment gateway via Kafka event\n3. **Confirm booking** — update seat to `CONFIRMED`, release lock\n\nOn payment failure, a compensating event releases the hold and returns the seat to `AVAILABLE`. If the process crashes between steps, the hold TTL (120s) expires and the seat is automatically released.\n\n### Waitlist State Machine\n\nWhen a booking is cancelled, the Waitlist Engine is notified via a Kafka event. The engine promotes the first eligible waitlist entry: notifies the user, initiates a payment Saga, and starts a 15-minute confirmation window. If the promoted user fails to confirm, the next waitlist entry is promoted.\n\nState transitions: `WAITING → OFFERED → CONFIRMED | EXPIRED → WAITING (next user)`\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "- `seats (id, event_id, section, row, number, status, held_until, fencing_token)`\n- `reservations (id, seat_id, user_id, status, payment_id, idempotency_key, created_at)`\n- `waitlist (id, event_id, user_id, position, status, offered_at, expires_at)`\n- `payment_events (id, reservation_id, event_type, payload JSONB, created_at)`\n- `outbox (id, topic, payload, published_at)`\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Result |\n|---|---|\n| Concurrent booking test | 10,000 goroutines, 1 seat — exactly 1 succeeds (k6) |\n| Seat hold acquisition p99 | < 10ms (Redis SETNX + fencing token) |\n| Booking throughput | 3,000 reservations/min under load |\n| Waitlist promotion latency | < 500ms from cancellation to notification |\n| Payment Saga p99 | < 2s end-to-end (hold → charge → confirm) |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes — concurrent seat access is the core correctness problem\n- Fencing token correctness test: 10K concurrent attempts, exactly 1 succeeds\n- Saga compensation: payment failure triggers seat release, verified\n- Waitlist promotion: cancellation triggers automatic promotion, verified\n- `EXPLAIN ANALYZE` on every query — zero seq scans on seats/reservations tables\n- Isolation level anomaly demos — phantom read triggered live in psql\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Infraspec Requirement | How This Project Delivers It |\n|---|---|\n| Distributed systems depth | Fencing-token distributed locks, exactly-once reservation |\n| 0-to-1 product experience | Full booking product built ground-up, Week 1 to production |\n| SQL and PostgreSQL depth | SELECT FOR UPDATE SKIP LOCKED, isolation levels, partitioning |\n| Event-driven architecture | Saga choreography, Kafka outbox, waitlist state machine |\n| Debugging + production issues | Concurrent lock contention, phantom read demo, PITR drill |"
+      }
+    ]
+  }
+]

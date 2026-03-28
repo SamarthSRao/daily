@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Dashboard from "./Dashboard";
 import TasksPage from "./TasksPage";
 import DsaPage from "./DsaPage";
+import BiweeklyPage from "./BiweeklyPage";
 import AlternatePlanPage from "./AlternatePlanPage";
 import alternatePlans from "./alternatePlans.json";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -9,6 +10,7 @@ import "./index.css";
 
 const PLANS = [
   { id: "main", name: "Mastery Plan", emoji: "🚀", color: "#3b82f6" },
+  { id: "biweekly", name: "Biweekly Internals", emoji: "🕰️", color: "#10b981" },
   ...alternatePlans.map(p => ({ id: p.id, name: p.name, emoji: p.emoji, color: p.color })),
 ];
 
@@ -90,6 +92,10 @@ export default function App() {
                 <DsaPage />
               </div>
             </>
+          ) : activePlan === "biweekly" ? (
+            <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+              <BiweeklyPage />
+            </div>
           ) : selectedAlt ? (
             <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
               <AlternatePlanPage plan={selectedAlt as any} />

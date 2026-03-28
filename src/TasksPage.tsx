@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import data from "./tasks.json";
 import { CheckCircle2, Circle, ChevronDown, ChevronRight, CalendarDays, BookOpenCheck } from "lucide-react";
+import { saveState, loadState } from "./lib/redis";
 
 export default function TasksPage() {
   const [expandedMonths, setExpandedMonths] = useState<Record<number, boolean>>({ 0: true });
@@ -8,20 +9,17 @@ export default function TasksPage() {
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const saved = localStorage.getItem("properrr-tasks");
-    if (saved) {
-      try {
-        setCompletedTasks(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse saved tasks", e);
-      }
-    }
+    const fetchData = async () => {
+      const data = await loadState("properrr-tasks", {});
+      setCompletedTasks(data);
+    };
+    fetchData();
   }, []);
 
   const toggleTask = useCallback((taskId: string) => {
     setCompletedTasks(prev => {
       const next = { ...prev, [taskId]: !prev[taskId] };
-      localStorage.setItem("properrr-tasks", JSON.stringify(next));
+      saveState("properrr-tasks", next);
       return next;
     });
   }, []);

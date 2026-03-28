@@ -26,6 +26,8 @@ interface Props {
   plan: AlternatePlan;
 }
 
+import { saveState, loadState } from "./lib/redis";
+
 export default function AlternatePlanPage({ plan }: Props) {
   const storageKey = `properrr-alt-${plan.id}`;
   const [expandedMonths, setExpandedMonths] = useState<Record<number, boolean>>({ 0: true });
@@ -33,16 +35,17 @@ export default function AlternatePlanPage({ plan }: Props) {
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) {
-      try { setCompletedTasks(JSON.parse(saved)); } catch {}
-    }
+    const fetchData = async () => {
+      const data = await loadState(storageKey, {});
+      setCompletedTasks(data);
+    };
+    fetchData();
   }, [storageKey]);
 
   const toggleTask = useCallback((taskId: string) => {
     setCompletedTasks(prev => {
       const next = { ...prev, [taskId]: !prev[taskId] };
-      localStorage.setItem(storageKey, JSON.stringify(next));
+      saveState(storageKey, next);
       return next;
     });
   }, [storageKey]);

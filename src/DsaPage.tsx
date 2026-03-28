@@ -2,25 +2,24 @@ import { useState, useEffect, useCallback } from "react";
 import dsaData from "./dsa.json";
 import { ChevronDown, ChevronRight, Binary, Code2, CheckCircle2, Circle } from "lucide-react";
 
+import { saveState, loadState } from "./lib/redis";
+
 export default function DsaPage() {
   const [expandedLevels, setExpandedLevels] = useState<Record<number, boolean>>({ 0: true });
   const [completedDsa, setCompletedDsa] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const saved = localStorage.getItem("properrr-dsa");
-    if (saved) {
-      try {
-        setCompletedDsa(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse saved DSA tasks", e);
-      }
-    }
+    const fetchData = async () => {
+      const data = await loadState("properrr-dsa", {});
+      setCompletedDsa(data);
+    };
+    fetchData();
   }, []);
 
   const toggleDsaTask = useCallback((taskId: string) => {
     setCompletedDsa(prev => {
       const next = { ...prev, [taskId]: !prev[taskId] };
-      localStorage.setItem("properrr-dsa", JSON.stringify(next));
+      saveState("properrr-dsa", next);
       return next;
     });
   }, []);

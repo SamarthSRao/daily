@@ -1,0 +1,50 @@
+[
+  {
+    "id": "wal-kv",
+    "title": "WAL-Backed KV Store",
+    "subtitle": "Weeks 1–2: Write-Ahead Log from Scratch",
+    "description": "Implement an append-only log with checksums, recovery on startup, and log compaction via snapshotting."
+  },
+  {
+    "id": "tcp-pool",
+    "title": "TCP Connection Pool",
+    "subtitle": "Weeks 3–4: Like PgBouncer, But Yours",
+    "description": "Maintain a fixed pool of backend connections, parse pgwire protocol, and implement transaction vs session modes."
+  },
+  {
+    "id": "ws-chat",
+    "title": "WebSocket Chat Server v2",
+    "subtitle": "Weeks 5–6: Distributed and Clustered",
+    "description": "Extend WebSocket server with Redis pub/sub fan-out, distributed presence heartbeat, and message history via Redis Streams."
+  },
+  {
+    "id": "dns-resolver",
+    "title": "DNS Resolver",
+    "subtitle": "Weeks 7–8: Recursive, from Raw UDP",
+    "description": "Build a recursive DNS resolver from scratch studying binary DNS message format, UDP sockets, and TTL caching."
+  },
+  {
+    "id": "notif-service",
+    "title": "Notification Delivery Service",
+    "subtitle": "Weeks 9–10: Multi-Channel and Reliable",
+    "description": "Build a reliable fan-out architecture for Email, SMS, and Push notifications with idempotency and DLQs."
+  },
+  {
+    "id": "otp-gateway",
+    "title": "OTP Gateway",
+    "subtitle": "Weeks 11–12: Multi-Tenant Auth Primitive",
+    "description": "Implement a production-grade OTP verification service with multi-tenant namespaces and hashed ephemeral storage."
+  },
+  {
+    "id": "dist-lock",
+    "title": "Distributed Lock Service",
+    "subtitle": "Weeks 13–14: Fencing-Token Mutex",
+    "description": "Build a standalone service for distributed mutexes using Redis Lua scripts, fencing tokens, and watchdog renewals."
+  },
+  {
+    "id": "lsm-tree",
+    "title": "LSM-Tree Storage Engine",
+    "subtitle": "Weeks 15–16: The Write Path of RocksDB",
+    "description": "Implement MemTable, SSTables, Bloom filters, and compaction — the core of modern high-performance databases."
+  }
+]

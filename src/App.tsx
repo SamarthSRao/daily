@@ -1,22 +1,26 @@
 import { useState, useRef } from "react";
 import Dashboard from "./Dashboard";
+import DailyPage from "./DailyPage";
 import TasksPage from "./TasksPage";
 import DsaPage from "./DsaPage";
 import BiweeklyPage from "./BiweeklyPage";
+import SpecsPage from "./SpecsPage";
 import AlternatePlanPage from "./AlternatePlanPage";
 import alternatePlans from "./alternatePlans.json";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Calendar, LayoutGrid, Timer as TimerIcon } from "lucide-react";
 import "./index.css";
 
-const PLANS = [
-  { id: "main", name: "Mastery Plan", emoji: "🚀", color: "#3b82f6" },
-  { id: "biweekly", name: "Biweekly Internals", emoji: "🕰️", color: "#10b981" },
+const OTHER_PLANS = [
+  { id: "mastery", name: "Mastery Plan", emoji: "🚀", color: "#3b82f6" },
+  { id: "dsa", name: "DSA Tracker", emoji: "🧬", color: "#a855f7" },
+  { id: "specs", name: "Spec Sheets", emoji: "📑", color: "#f59e0b" },
   ...alternatePlans.map(p => ({ id: p.id, name: p.name, emoji: p.emoji, color: p.color })),
 ];
 
 export default function App() {
   const [showTasks, setShowTasks] = useState(false);
-  const [activePlan, setActivePlan] = useState("main");
+  const [activeTab, setActiveTab] = useState<"daily" | "others" | "timer">("daily");
+  const [activeOtherPlan, setActiveOtherPlan] = useState("mastery");
   const tasksRef = useRef<HTMLElement>(null);
 
   const toggleTasks = () => {
@@ -31,8 +35,8 @@ export default function App() {
     });
   };
 
-  const handlePlanSelect = (id: string) => {
-    setActivePlan(id);
+  const handleTabSelect = (tab: "daily" | "others" | "timer") => {
+    setActiveTab(tab);
     if (!showTasks) {
       setShowTasks(true);
       setTimeout(() => {
@@ -41,7 +45,7 @@ export default function App() {
     }
   };
 
-  const selectedAlt = alternatePlans.find(p => p.id === activePlan) ?? null;
+  const selectedAlt = alternatePlans.find(p => p.id === activeOtherPlan) ?? null;
 
   return (
     <div className="main-scroll-container">
@@ -49,57 +53,102 @@ export default function App() {
         <Dashboard />
 
         <div className="toggle-tasks-container">
-          {/* Main plan toggle button */}
           <button className="toggle-tasks-btn" onClick={toggleTasks}>
             {showTasks ? (
               <>
                 <ChevronUp size={20} />
-                <span>Hide Plans</span>
+                <span>Hide Content</span>
               </>
             ) : (
               <>
-                <span>View Plans</span>
+                <span>Explere Content</span>
                 <ChevronDown size={20} />
               </>
             )}
           </button>
         </div>
 
-        {/* Plan selector pills */}
-        <div className="plan-selector">
-          {PLANS.map(p => (
-            <button
-              key={p.id}
-              className={`plan-pill ${activePlan === p.id ? "plan-pill--active" : ""}`}
-              style={activePlan === p.id ? { borderColor: p.color, color: p.color, background: p.color + "18" } : {}}
-              onClick={() => handlePlanSelect(p.id)}
-            >
-              <span>{p.emoji}</span>
-              <span>{p.name}</span>
-            </button>
-          ))}
+        {/* Main 3 Sections Navigation */}
+        <div className="main-nav">
+          <button 
+            className={`nav-btn ${activeTab === 'daily' ? 'active' : ''}`}
+            onClick={() => handleTabSelect('daily')}
+            style={{ '--accent': '#10b981' } as any}
+          >
+            <Calendar size={24} />
+            <span>DAILY</span>
+          </button>
+          
+          <button 
+            className={`nav-btn ${activeTab === 'others' ? 'active' : ''}`}
+            onClick={() => handleTabSelect('others')}
+            style={{ '--accent': '#3b82f6' } as any}
+          >
+            <LayoutGrid size={24} />
+            <span>OTHERS</span>
+          </button>
+
+          <button 
+            className={`nav-btn ${activeTab === 'timer' ? 'active' : ''}`}
+            onClick={() => handleTabSelect('timer')}
+            style={{ '--accent': '#f59e0b' } as any}
+          >
+            <TimerIcon size={24} />
+            <span>TIMER</span>
+          </button>
         </div>
+
+        {/* Sub-selector for Others tab, shown only if 'others' is active AND content is shown */}
+        {activeTab === 'others' && (
+          <div className="plan-selector" style={{ marginTop: '24px' }}>
+            {OTHER_PLANS.map(p => (
+              <button
+                key={p.id}
+                className={`plan-pill ${activeOtherPlan === p.id ? "plan-pill--active" : ""}`}
+                style={activeOtherPlan === p.id ? { borderColor: p.color, color: p.color, background: p.color + "18" } : {}}
+                onClick={() => setActiveOtherPlan(p.id)}
+              >
+                <span>{p.emoji}</span>
+                <span>{p.name}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </section>
 
       {showTasks && (
         <section className="bottom-split-section" ref={tasksRef}>
-          {activePlan === "main" ? (
-            <>
-              <div className="split-column">
-                <TasksPage />
-              </div>
-              <div className="split-column">
-                <DsaPage />
-              </div>
-            </>
-          ) : activePlan === "biweekly" ? (
+          {activeTab === "daily" ? (
+            <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+              <DailyPage />
+            </div>
+          ) : activeTab === "timer" ? (
             <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
               <BiweeklyPage />
             </div>
-          ) : selectedAlt ? (
-            <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
-              <AlternatePlanPage plan={selectedAlt as any} />
-            </div>
+          ) : activeTab === "others" ? (
+            <>
+              {activeOtherPlan === "mastery" && (
+                <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+                  <TasksPage />
+                </div>
+              )}
+              {activeOtherPlan === "dsa" && (
+                <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+                  <DsaPage />
+                </div>
+              )}
+              {activeOtherPlan === "specs" && (
+                <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+                  <SpecsPage />
+                </div>
+              )}
+              {selectedAlt && (
+                <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+                  <AlternatePlanPage plan={selectedAlt as any} />
+                </div>
+              )}
+            </>
           ) : null}
         </section>
       )}

@@ -6,6 +6,7 @@ import DsaPage from "./DsaPage";
 import BiweeklyPage from "./BiweeklyPage";
 import SpecsPage from "./SpecsPage";
 import AlternatePlanPage from "./AlternatePlanPage";
+import CursorCat from "./CursorCat";
 import alternatePlans from "./alternatePlans.json";
 import { ChevronDown, ChevronUp, Calendar, LayoutGrid, Timer as TimerIcon } from "lucide-react";
 import "./index.css";
@@ -49,6 +50,7 @@ export default function App() {
 
   return (
     <div className="main-scroll-container">
+      <CursorCat />
       <section className="dashboard-section">
         <Dashboard />
 
@@ -61,7 +63,7 @@ export default function App() {
               </>
             ) : (
               <>
-                <span>Explere Content</span>
+                <span>Explore Content</span>
                 <ChevronDown size={20} />
               </>
             )}

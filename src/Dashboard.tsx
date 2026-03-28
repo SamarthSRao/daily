@@ -37,17 +37,25 @@ function isSameDay(d1: Date, d2: Date) {
          d1.getDate() === d2.getDate();
 }
 
+import { saveState, loadState } from "./lib/redis";
+
 export default function Dashboard() {
-  const [categories, setCategories] = useState(() => {
-    const saved = localStorage.getItem("properrr-categories");
-    return saved ? JSON.parse(saved) : DEFAULT_CATEGORIES;
-  });
+  const [categories, setCategories] = useState<any[]>(DEFAULT_CATEGORIES);
   const [isEditing, setIsEditing] = useState(false);
   const [now, setNow] = useState(new Date()); 
 
   useEffect(() => {
-    localStorage.setItem("properrr-categories", JSON.stringify(categories));
-  }, [categories]);
+    const fetchData = async () => {
+      const data = await loadState("properrr-categories", DEFAULT_CATEGORIES);
+      setCategories(data);
+    };
+    fetchData();
+  }, []);
+
+  const updateCategories = (newCats: any[]) => {
+    setCategories(newCats);
+    saveState("properrr-categories", newCats);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
@@ -303,7 +311,7 @@ export default function Dashboard() {
                       onChange={(e) => {
                         const newCats = [...categories];
                         newCats[i] = { ...newCats[i], name: e.target.value };
-                        setCategories(newCats);
+                        updateCategories(newCats);
                       }}
                     />
                   )}
@@ -315,7 +323,7 @@ export default function Dashboard() {
                     onChange={(e) => {
                       const newCats = [...categories];
                       newCats[i] = { ...newCats[i], w: Number(e.target.value) };
-                      setCategories(newCats);
+                      updateCategories(newCats);
                     }}
                   />
                   <input 
@@ -326,7 +334,7 @@ export default function Dashboard() {
                     onChange={(e) => {
                       const newCats = [...categories];
                       newCats[i] = { ...newCats[i], h: Number(e.target.value) };
-                      setCategories(newCats);
+                      updateCategories(newCats);
                     }}
                   />
                 </div>

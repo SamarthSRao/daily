@@ -1,81 +1,90 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function CursorCat() {
-  const [catPos, setCatPos] = useState({ x: 100, y: 100 });
-  const [targetPos, setTargetPos] = useState({ x: 100, y: 100 });
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [isMoving, setIsMoving] = useState(false);
-  const [frame, setFrame] = useState(0);
+  const catRef = useRef<HTMLDivElement>(null);
+  const targetPos = useRef({ x: 100, y: 100 });
+  const catPos = useRef({ x: 100, y: 100 });
+  const isMoving = useRef(false);
+  const isFlipped = useRef(false);
+  const frame = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setTargetPos({ x: e.clientX, y: e.clientY });
+      targetPos.current = { x: e.clientX, y: e.clientY };
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches[0]) {
-        setTargetPos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+        targetPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove);
+
+    let animationId: number;
+    let lastTick = 0;
+
+    const moveCat = (timestamp: number) => {
+      const dx = targetPos.current.x - catPos.current.x - 25;
+      const dy = targetPos.current.y - catPos.current.y - 25;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance > 5) {
+        isMoving.current = true;
+        isFlipped.current = dx < 0;
+        const speed = 0.08;
+        catPos.current.x += dx * speed;
+        catPos.current.y += dy * speed;
+      } else {
+        isMoving.current = false;
+      }
+
+      // Update frame every 100ms
+      if (timestamp - lastTick > 100) {
+        if (isMoving.current) {
+          frame.current = (frame.current + 1) % 4;
+        }
+        lastTick = timestamp;
+      }
+
+      if (catRef.current) {
+        const bounce = isMoving.current ? (frame.current % 2 === 0 ? -4 : 0) : 0;
+        const spriteX = isMoving.current ? (frame.current % 2) * 100 : 0;
+        
+        catRef.current.style.transform = `translate3d(${catPos.current.x}px, ${catPos.current.y}px, 0) scaleX(${isFlipped.current ? -1 : 1}) translateY(${bounce}px)`;
+        catRef.current.style.backgroundPosition = `${spriteX}% 0%`;
+      }
+
+      animationId = requestAnimationFrame(moveCat);
+    };
+
+    animationId = requestAnimationFrame(moveCat);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchmove", handleTouchMove);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 
-  useEffect(() => {
-    const moveCat = () => {
-      setCatPos(prev => {
-        const dx = targetPos.x - prev.x - 25; // center offset
-        const dy = targetPos.y - prev.y - 25;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 5) {
-          setIsMoving(false);
-          return prev;
-        }
-
-        setIsMoving(true);
-        setIsFlipped(dx < 0);
-
-        const speed = 0.08; // smooth chasing factor
-        return {
-          x: prev.x + dx * speed,
-          y: prev.y + dy * speed,
-        };
-      });
-      
-      if (isMoving) {
-        setFrame(f => (f + 1) % 4);
-      }
-      
-      requestAnimationFrame(moveCat);
-    };
-
-    const animationId = requestAnimationFrame(moveCat);
-    return () => cancelAnimationFrame(animationId);
-  }, [targetPos, isMoving]);
-
   return (
     <div 
+      ref={catRef}
       className="cursor-cat"
       style={{
         position: 'fixed',
-        left: catPos.x,
-        top: catPos.y,
+        left: 0,
+        top: 0,
         width: '50px',
         height: '50px',
         pointerEvents: 'none',
-        zIndex: 9999,
-        transform: `scaleX(${isFlipped ? -1 : 1}) translateY(${isMoving ? (frame % 2 === 0 ? '-4px' : '0px') : '0px'})`,
-        transition: 'transform 0.1s linear',
+        zIndex: 99999,
         imageRendering: 'pixelated',
         backgroundImage: 'url(/cat-sprite.png)',
-        backgroundSize: '200% 100%', // Assume simple 2-frame sprite sheet
-        backgroundPosition: isMoving ? `${(frame % 2) * 100}% 0%` : '0% 0%',
+        backgroundSize: '200% 100%',
+        backgroundRepeat: 'no-repeat',
+        willChange: 'transform',
       }}
     />
   );

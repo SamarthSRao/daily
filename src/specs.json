@@ -198,5 +198,325 @@
         "content": "| Infraspec Requirement | How This Project Delivers It |\n|---|---|\n| Distributed systems depth | Fencing-token distributed locks, exactly-once reservation |\n| 0-to-1 product experience | Full booking product built ground-up, Week 1 to production |\n| SQL and PostgreSQL depth | SELECT FOR UPDATE SKIP LOCKED, isolation levels, partitioning |\n| Event-driven architecture | Saga choreography, Kafka outbox, waitlist state machine |\n| Debugging + production issues | Concurrent lock contention, phantom read demo, PITR drill |"
       }
     ]
+  },
+  {
+    "id": "Biweekly_01_WAL",
+    "title": "WAL-Backed KV Store — Project Specification",
+    "subtitle": "Write-Ahead Log from Scratch",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "WAL design, crash recovery, and log compaction — the exact internals PostgreSQL, SQLite, and RocksDB use for durability. Most engineers use databases that depend on a WAL without ever understanding why. After this project, you can explain in an interview exactly what happens between a `COMMIT` statement and the data being safe on disk.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Durability before acknowledgement — `fsync()` called before returning success.\n- Idempotent recovery — replaying the same WAL twice produces the same result.\n- Checksum for partial write detection — catches interruptions mid-write.\n- Snapshot + WAL hybrid — combines durability with bounded log growth.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| WAL Writer | Append-only log with checksums. Every write durably recorded before in-memory update. |\n| Recovery Engine | Replay WAL from last good checkpoint on startup. Store returns to exact pre-crash state. |\n| Log Compaction | Snapshot current in-memory state to new file, delete all WAL entries before the snapshot. |\n| HTTP API | `GET /key`, `PUT /key`, `DELETE /key` — same interface as the original in-memory store. |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### WAL Entry Format\n```\n┌─────────────────────────────────────────────────────┐\n│  op (1 byte) │ key_len (4 bytes) │ val_len (4 bytes) │\n│  key (n bytes) │ value (m bytes)                     │\n│  timestamp (8 bytes) │ checksum (4 bytes CRC32)      │\n└─────────────────────────────────────────────────────┘\n```\n- **op:** `0x01` = SET, `0x02` = DEL\n- **checksum:** CRC32 over all preceding bytes in the entry. If checksum doesn't match on read → partial write → stop replay.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Recovery Algorithm\n1. Load latest snapshot file (if exists) → populate in-memory map\n2. Open WAL file at snapshot LSN (Log Sequence Number)\n3. For each entry: verify checksum → apply to map → advance LSN\n4. Stop at first checksum failure (partial write boundary)\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Write throughput (fsync on) | Baseline durability |\n| Write throughput (fsync off) | 10–100x faster tradeoff |\n| Recovery time (1M entries) | < 5 seconds |\n| Compaction time (1M entries) | < 2 seconds |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- `WALWriter` must call `fsync()` before success\n- `goleak.VerifyNone(t)` clean\n- Crash simulation: verify recovery correctness after SIGKILL\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Database Internals | Implementation of WAL/Checkpoints used in PG/SQLite |\n| Performance Engineering | Benchmarking fsync overhead vs durability |\n| Systems Design | Durability guarantees in distributed KV stores |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_02_TCP_Pool",
+    "title": "TCP Connection Pool — Project Specification",
+    "subtitle": "PgBouncer from Scratch (pgwire Protocol)",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "Why connection pools exist and how they work at the TCP level. Most engineers configure PgBouncer without understanding its multiplexing logic. After this project, you understand how 10,000 app connections can live on 9 database connections.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- pgwire protocol parsing — PostgreSQL's binary wire protocol internals.\n- Transaction mode vs session mode — 100x efficiency for HTTP APIs.\n- Backpressure — blocking client queries when backend connections are busy.\n- Connection lifecycle — healthy pings and removal of dead idle connections.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| TCP Listener | Accepts client connections on local port |\n| pgwire Parser | Reads PG wire protocol frames (Startup, Query, Response) |\n| Connection Pool | Maintains real connections to PG backend |\n| Session Router | In transaction mode: assigns connection for duration of one TX |\n| Health Checker | Periodically pings idle backend connections |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Transaction Mode Logic\nOn client `Query(\"BEGIN\")`:\n1. Acquire backend connection from pool (block if none)\n2. Assign connection to this client session\n3. Forward BEGIN to PostgreSQL\n\nOn `COMMIT`/`ROLLBACK`:\n1. Forward to PostgreSQL\n2. Release backend connection back to pool\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Pool Sizing Formula\n`pool_size = (num_CPUs × 2) + effective_spindle_count` \n\nFor 4-CPU DB:\n`(4 × 2) + 1 = 9` connections.\n\nResult: 10,000 app connections → 9 PostgreSQL connections.\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Acquisition p99 | < 1ms |\n| 1000 concurrent clients | Stable without errors |\n| Memory overhead | ~11x reduction in DB process count |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- Transaction boundary detection token scan correct\n- `goleak.VerifyNone(t)` clean\n- Health checker must purge dead connections within 2 TTL windows\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Networking | Raw TCP + pgwire protocol implementation |\n| Performance | Connection multiplexing at scale |\n| DB Internals | PgBouncer-equivalent transaction architecture |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_03_WebSocket",
+    "title": "Clustered WebSocket Server — Project Specification",
+    "subtitle": "Real-Time Chat with Redis Pub/Sub Fan-Out",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "Scaling WebSocket servers horizontally using Redis pub/sub as the message bus. A message sent to Node A is delivered to a client on Node B — a fundamental distributed systems problem appearing in Slack, Uber, and RouteMaster.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Redis pub/sub fan-out — O(1) calls reach all nodes.\n- Ping/pong keepalive — prevents dead connection registry accumulation.\n- sync.Map registry — thread-safe management without global locks.\n- Distributed presence — tracking user-node mapping in Redis.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| WS Server | Accepts upgrades and manages connection registry |\n| Registry | `sync.Map` of `userID → *websocket.Conn` |\n| Publisher | `PUBLISH channel:roomID message` to Redis |\n| Subscriber | Receive messages from other nodes, fan out locally |\n| Presence | HSET with TTL in Redis to track live nodes |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Distributed Presence Pattern\nOn connect: `HSet \"presence:\" + userID, \"nodeID\", os.Getenv(\"NODE_ID\")`. \nTTL: 60s. \nHeartbeat: renew every 30s. \nOn disconnect: delete key.\n\nPresence enables finding which node a user is on, while pub/sub handles the actual delivery regardless of node.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Message Flow\n1. Node 1 receives message for UserB.\n2. Not local? → `PUBLISH` to Redis.\n3. All nodes receive `PUBLISH`.\n4. Node 2 has UserB local? → deliver via WS.\n5. Node 3 doesn't? → discard.\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Cross-node p99 | < 10ms |\n| Per-node capacity | 5,000 connections |\n| Memory / connection | < 10KB |\n| Detection time | < 60s |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes everywhere\n- Ping/Pong handler MUST close on failure\n- `goleak.VerifyNone(t)` for subscriber goroutines\n- Redis channels must be unique per room/user\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Distributed Systems | Pub/sub fan-out + stateful server clustering |\n| Real-time | WebSocket protocol + low-latency delivery |\n| Systems Design | Slack/Uber-style messaging architecture |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_04_DNS",
+    "title": "Recursive DNS Resolver — Project Specification",
+    "subtitle": "Full DNS Resolution from Root Servers",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "How DNS actually works at the wire level — not just theory, but full recursive resolution path from root servers down to authoritative ones. Essential for understanding every backend request starting point.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- DNS over UDP — parsing binary wire format (< 512 bytes).\n- Recursive vs Iterative — implementing the loop from root hints.\n- TTL Caching — making DNS scalable by respecting response TTLs.\n- Label Compression — handling binary pointers in the wire format.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| UDP Client | Port 53 queries with 2s timeout/retries |\n| Parser/Builder | Binary DNS header/question/record logic |\n| Resolver | Iterative loop: Root → TLD → Authoritative |\n| Cache | `sync.RWMutex` backed TTL-aware map |\n| Root Hints | Hardcoded IPs of 13 root clusters |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### label compression example\nIn binary, `\\xc0\\x0c` means \"jump to offset 12\". This saves space when the same domain appears multiple times (Question vs Answer sections). Implementing this correctly is mandatory for parsing real-world responses from Google/Cloudflare.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Supported types\n- **A (1)**: IPv4 address\n- **NS (2)**: Nameserver hostname\n- **CNAME (5)**: Alias resolution\n- **MX (15)**: Mail server priorities\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Cold | Warm |\n|---|---|---|\n| Simple A | 100-500ms | < 1ms |\n| CNAME (3 hops) | 300-900ms | < 1ms |\n| Cache Hit Rate | — | > 90% |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- Compare output exactly with `dig +trace` results\n- UDP timeout/retries must handle packet loss\n- `sync.RWMutex` used for concurrent cache access\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Networking | Raw UDP + Binary protocol parsing |\n| Systems Knowledge | Root server hierarchy + TLD resolution |\n| Performance | TTL caching + CNAME chain optimization |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_05_Notify",
+    "title": "Notification Delivery Service — Project Specification",
+    "subtitle": "Multi-Channel Reliable Delivery with Idempotency",
+    "stack": "Go · TypeScript",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "Reliable multi-channel notification system (Email, SMS, Push, Webhook). Guarantees at-least-once delivery with idempotent consumers. Standalone service consumed by RouteMaster and PayCore.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Outbox Pattern — Atomic persistence before dispatch.\n- Idempotency — No duplicate emails/SMS on retry.\n- Exponential Backoff — Jittered retries for provider outages.\n- HMAC Webhooks — Signed delivery for security.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| REST API | Accepts requests with idempotency key |\n| Outbox | Persists to PG before delivery attempt |\n| Dispatcher | Routes to Email/SMS/Push/Webhook handlers |\n| Retry Worker | Exponential backoff logic + DLQ management |\n| Idempotency | Redis key-result store (24h TTL) |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### Exponential Backoff with Jitter\nFormula: `min(base × 2^attempt + jitter, max)`. \nJitter prevents \"thundering herd\" where 10,000 retries fire at the exact same millisecond after a 3rd party service (like Twilio) recovers. This is a critical production resiliency pattern.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Delivery State Machine\n`PENDING → DISPATCHED → DELIVERED` \nor \n`FAILED → RETRYING → DELIVERED | DLQ` \n\nTransaction integrity: writing notification + business event in same PG transaction via Outbox.\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Ingestion throughput | 10,000/min |\n| Webhook Latency | < 500ms |\n| Redis Lookup | < 1ms |\n| Success Rate | > 99% after recovery |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- `hmac.Equal` used for timing-safe signature check\n- Outbox must be cleaned up periodically\n- `goleak.VerifyNone(t)` for retry workers\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Reliability | Outbox pattern + Idempotency guarantees |\n| Architecture | Channel abstraction + Event-driven retry loop |\n| Resiliency | Exponential backoff + Jitter implementation |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_06_SMTP",
+    "title": "SMTP Server — Project Specification",
+    "subtitle": "Email Protocol from Scratch",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "Email protocol internals: SMTP command sequence, MX routing, STARTTLS security, and MIME parsing. Understand what happens at the TCP level when you send/receive an email.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- SMTP State Machine — EHLO/MAIL/RCPT/DATA/QUIT loop.\n- STARTTLS — In-place plaintext-to-TLS upgrade.\n- MIME Parser — Extracting headers, body, and attachments.\n- MX Routing — DNS-based server discovery for outbound mail.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| SMTP Machine | Command sequence (250/354/221 codes) |\n| TLS Upgrade | STARTTLS handler for transport security |\n| MX Resolver | `net.LookupMX` for routing outbound mail |\n| Parser | MIME multi-part / boundary handling |\n| Storage | Persistent storage in PostgreSQL |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### STARTTLS In-Place Upgrade\nUnlike HTTPS which uses port 443, SMTP starts on port 25 as plaintext. The `STARTTLS` command initiates a handshake on the *same connection*. The Go server must wrap the existing `net.Conn` with `tls.Server` without closing the socket. This is a unique protocol pattern compared to most modern systems.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### MX Priority Routing\nTo send to `user@gmail.com`:\n1. Lookup MX records.\n2. Sort by priority (lowest first).\n3. Try connect to highest priority.\n4. Failover to next on error.\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Ingestion | 1,000/min |\n| SMTP Handshake | < 100ms |\n| TLS Overhead | < 10ms |\n| Message Parse | < 5ms |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- SMTP status codes (2xx, 4xx, 5xx) used correctly\n- Self-signed TLS certs for development\n- `net.LookupMX` used for all outbound routing\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Protocols | Implementing RFC 5321 (SMTP) from scratch |\n| Networking | MX routing + TCP stream state machines |\n| Security | STARTTLS + SPF/DKIM concept depth |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_07_Lock",
+    "title": "Distributed Lock Service — Project Specification",
+    "subtitle": "Leader Election + Fencing Tokens",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "Implementing correct distributed locks with fencing-tokens to avoid corruption during GC pauses/network partitions. Essential for leader election in DungBeetle and seat locks in BookWise.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- Fencing Tokens — Monotonic counters to reject stale writes.\n- SET NX EX — Atomic set-if-not-exists foundations.\n- Lua Atomicity — Conditional GET/SET/DEL in Redis.\n- Split-brain Testing — Simulating network partitions.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| gRPC API | Acquire/Release/Renew contract |\n| Token Gen | `INCR` in Redis for monotonic values |\n| Lock Store | Redis `SET NX EX` with token values |\n| Verifier | DB update logic checking `token >= current` |\n| Heartbeat | TTL/3 renewal loop to maintain ownership |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### The Fencing Token Problem\nTTL alone is unsafe. If Process A pauses (GC/Disk), its lock expires. Process B acquires it. Process A resumes and writes. CORRUPTION. \nSolution: Every lock has a token (e.g. 101). Process B gets 102. DB rejects Process A's write because `101 < 102`. This is the only way to build safe distributed locks.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Lua Atomic Release\n```lua\nlocal current = redis.call('GET', KEYS[1])\nif current == ARGV[1] then\n    redis.call('DEL', KEYS[1])\n    return 1\nelse\n    return 0\nend\n```\nPrevents a process from accidentally releasing a lock it no longer owns (someone else took it after expiry).\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Acquire p99 | < 5ms |\n| Throughput | 10,000/sec |\n| Resign on fail | < 30s (TTL) |\n| Split-brain resolution | < 1 TTL window |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- Monitonic token increment always used\n- Lua script used for all Acquire/Release ops\n- `goleak.VerifyNone(t)` clean\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Distributed Systems | Fencing tokens + mutual exclusion logic |\n| Consistency | Correctness proof against GC pauses/partitions |\n| Systems Design | Robust leader election pattern implementation |"
+      }
+    ]
+  },
+  {
+    "id": "Biweekly_08_LSM",
+    "title": "LSM-Tree Storage Engine — Project Specification",
+    "subtitle": "RocksDB / LevelDB Write Path from Scratch",
+    "stack": "Go",
+    "sections": [
+      {
+        "title": "1. Project Overview",
+        "content": "Log-Structured Merge-Tree (LSM-tree) architecture used by RocksDB/Cassandra/ClickHouse. Optimized for write-heavy workloads by converting random disk I/O into sequential writes. Understand the tradeoff: fast writes vs read/write amplification.\n\n---"
+      },
+      {
+        "title": "2. Key Demonstrations",
+        "content": "- MemTable flushes — Sequential disk flushes of sorted maps.\n- Bloom Filters — Probabilistic skipping of irrelevent SSTables.\n- Size-Tiered Compaction — Background merging to reduce amplification.\n- Tombstones — Mark-for-delete semantics for immutable storage.\n\n---"
+      },
+      {
+        "title": "3. Architecture",
+        "content": "| Component | Responsibility |\n|---|---|\n| MemTable | B-tree/Red-black tree in-memory sorted map |\n| SSTable | Immutable sorted file format on disk |\n| Bloom Filter | Bitset for O(1) membership check |\n| Compaction | K-way merge of L0 SSTables into L1 |\n| WAL | Durability guarantee for MemTable writes |\n\n---"
+      },
+      {
+        "title": "4. Technical Depth",
+        "content": "### SSTable File Format\n- **Data Block**: Sorted KV pairs.\n- **Index Block**: Sparse index (every 16th key) for binary search.\n- **Bloom Filter**: Bit array to avoid disk RTT on misses.\n- **Footer**: Offsets for index and filter blocks.\nBinary search on Index Block → Locate Data Block → Scan block. Bloom filter skips this entire process 99% of time on misses.\n\n---"
+      },
+      {
+        "title": "5. Data Model",
+        "content": "### Bloom Filter Math\nFor 1% false positive rate: ~10 bits per element and 7 hash functions.\nFormula: `m = -n * ln(p) / (ln(2))²` \nLSM-trees depend on this math to maintain read performance as file counts grow.\n\n---"
+      },
+      {
+        "title": "6. Benchmarks",
+        "content": "| Metric | Target |\n|---|---|\n| Write throughput | > 500K/sec |\n| Read latency (Bloom) | < 2ms |\n| Recovery (1M keys) | < 5s |\n| Compaction | > 100MB/sec |\n\n---"
+      },
+      {
+        "title": "7. Non-Negotiable Rules",
+        "content": "- `go test -race ./...` passes\n- Tombstones must be purged during L1+ compaction\n- Bloom filter false positive rate < 1% verified\n- `goleak.VerifyNone(t)` for background workers\n\n---"
+      },
+      {
+        "title": "8. Infraspec Requirement Mapping",
+        "content": "| Requirement | How This Project Delivers It |\n|---|---|\n| Storage Engines | Raw implementation of LSM-tree write path |\n| Performance | Sequential vs Random disk I/O optimization |\n| Algorithms | K-way merge + Bloom filters + Sparse indexes |"
+      }
+    ]
   }
 ]

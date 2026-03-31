@@ -7,19 +7,18 @@ import BiweeklyPage from "./BiweeklyPage";
 import SpecsPage from "./SpecsPage";
 import AlternatePlanPage from "./AlternatePlanPage";
 import alternatePlans from "./alternatePlans.json";
-import { ChevronDown, ChevronUp, Calendar, LayoutGrid, Timer as TimerIcon } from "lucide-react";
+import { ChevronDown, ChevronUp, Calendar, LayoutGrid, Timer as TimerIcon, Dna } from "lucide-react";
 import "./index.css";
 
 const OTHER_PLANS = [
   { id: "mastery", name: "Mastery Plan", emoji: "🚀", color: "#3b82f6" },
-  { id: "dsa", name: "DSA Tracker", emoji: "🧬", color: "#a855f7" },
   { id: "specs", name: "Spec Sheets", emoji: "📑", color: "#f59e0b" },
   ...alternatePlans.map(p => ({ id: p.id, name: p.name, emoji: p.emoji, color: p.color })),
 ];
 
 export default function App() {
   const [showTasks, setShowTasks] = useState(false);
-  const [activeTab, setActiveTab] = useState<"daily" | "others" | "timer">("daily");
+  const [activeTab, setActiveTab] = useState<"daily" | "others" | "timer" | "dsa">("daily");
   const [activeOtherPlan, setActiveOtherPlan] = useState("mastery");
   const tasksRef = useRef<HTMLElement>(null);
 
@@ -35,7 +34,7 @@ export default function App() {
     });
   };
 
-  const handleTabSelect = (tab: "daily" | "others" | "timer") => {
+  const handleTabSelect = (tab: "daily" | "others" | "timer" | "dsa") => {
     setActiveTab(tab);
     if (!showTasks) {
       setShowTasks(true);
@@ -68,7 +67,7 @@ export default function App() {
           </button>
         </div>
 
-        {/* Main 3 Sections Navigation */}
+        {/* Main 4 Sections Navigation */}
         <div className="main-nav">
           <button 
             className={`nav-btn ${activeTab === 'daily' ? 'active' : ''}`}
@@ -79,6 +78,15 @@ export default function App() {
             <span>DAILY</span>
           </button>
           
+          <button 
+            className={`nav-btn ${activeTab === 'dsa' ? 'active' : ''}`}
+            onClick={() => handleTabSelect('dsa')}
+            style={{ '--accent': '#a855f7' } as any}
+          >
+            <Dna size={24} />
+            <span>DSA PLAN</span>
+          </button>
+
           <button 
             className={`nav-btn ${activeTab === 'others' ? 'active' : ''}`}
             onClick={() => handleTabSelect('others')}
@@ -122,6 +130,10 @@ export default function App() {
             <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
               <DailyPage />
             </div>
+          ) : activeTab === "dsa" ? (
+            <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
+              <DsaPage />
+            </div>
           ) : activeTab === "timer" ? (
             <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
               <BiweeklyPage />
@@ -131,11 +143,6 @@ export default function App() {
               {activeOtherPlan === "mastery" && (
                 <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
                   <TasksPage />
-                </div>
-              )}
-              {activeOtherPlan === "dsa" && (
-                <div className="split-column" style={{ maxWidth: 960, width: "100%" }}>
-                  <DsaPage />
                 </div>
               )}
               {activeOtherPlan === "specs" && (

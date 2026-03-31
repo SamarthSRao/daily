@@ -764,6 +764,212 @@ body {
   }
 }
 
+/* Daily Misc Tasks (Top Right) */
+.misc-tasks-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 250px;
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1001;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.misc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+}
+
+.misc-icon {
+  color: var(--color-research);
+}
+
+.misc-header h2 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.misc-count {
+  margin-left: auto;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--text-muted);
+}
+
+.misc-input-form {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 2px 2px 2px 10px;
+}
+
+.misc-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  outline: none;
+  min-width: 0;
+}
+
+.misc-add-btn {
+  width: 32px;
+  height: 32px;
+  background: var(--bg-hover);
+  border: none;
+  border-radius: 8px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.misc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.misc-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.misc-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.misc-item.is-done {
+  opacity: 0.5;
+}
+
+.misc-item.is-overflow {
+  border-left: 2px solid var(--color-commission);
+}
+
+.misc-item-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.misc-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--text-muted);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.misc-checkbox.checked {
+  background: var(--color-research);
+  border-color: var(--color-research);
+}
+
+.misc-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.misc-item.is-done .misc-text {
+  text-decoration: line-through;
+}
+
+.misc-date-tag {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--color-commission);
+  font-weight: 700;
+}
+
+.misc-del-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.misc-item:hover .misc-del-btn {
+  opacity: 1;
+}
+
+.misc-empty {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px 0;
+  font-style: italic;
+}
+
+.misc-clear-btn {
+  border: none;
+  background: transparent;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 1024px) {
+  .misc-tasks-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+  }
+}
+
 /* Daily Checks Styles (Always Visible at Top Left) */
 .daily-checks-container {
   position: fixed;

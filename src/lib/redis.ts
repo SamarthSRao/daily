@@ -4,13 +4,16 @@ export const saveState = async (key: string, data: any) => {
   localStorage.setItem(key, serialized);
 
   try {
-    await fetch(`/api/redis?key=${key}`, {
+    const res = await fetch(`/api/redis?key=${key}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: serialized,
     });
+    if (!res.ok) {
+      console.error(`Failed to sync to Redis proxy: ${res.status} ${res.statusText}`);
+    }
   } catch (e) {
-    console.error("Failed to sync to Redis proxy", e);
+    console.error("Failed to sync to Redis proxy (network error)", e);
   }
 };
 

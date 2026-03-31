@@ -1,9 +1,13 @@
 import { Redis } from "@upstash/redis";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
+if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+    console.error("Missing Redis environment variables");
+}
+
 const redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL!,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+    url: process.env.UPSTASH_REDIS_REST_URL || "",
+    token: process.env.UPSTASH_REDIS_REST_TOKEN || "",
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -42,8 +46,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         if (method === "POST") {
             // body is already parsed by Vercel as an object (Content-Type: application/json)
-            // Store as a native object so Upstash returns it as-is on GET
-            await redis.set(key, JSON.stringify(body));
+            // Store as a native object if possible, otherwise stringify
+            const dataToStore = typeof body === "string" ? body : JSON.stringify(body);
+            await redis.set(key, dataToStore);
             return res.status(200).json({ ok: true });
         }
     } catch (err: any) {

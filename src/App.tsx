@@ -7,6 +7,7 @@ import BiweeklyPage from "./BiweeklyPage";
 import SpecsPage from "./SpecsPage";
 import AlternatePlanPage from "./AlternatePlanPage";
 import DailyChecks from "./DailyChecks";
+import MiscTasks from "./MiscTasks";
 import alternatePlans from "./alternatePlans.json";
 import { ChevronDown, ChevronUp, Calendar, LayoutGrid, Timer as TimerIcon, Dna } from "lucide-react";
 import "./index.css";
@@ -50,6 +51,7 @@ export default function App() {
   return (
     <div className="main-scroll-container">
       <DailyChecks />
+      <MiscTasks />
       <section className="dashboard-section">
         <Dashboard />
 

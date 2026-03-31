@@ -1,14 +1,28 @@
 import { Redis } from "@upstash/redis";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    console.error("Missing Redis environment variables");
-}
+let redis: Redis | null = null;
 
-const redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL || "",
-    token: process.env.UPSTASH_REDIS_REST_TOKEN || "",
-});
+function getRedis() {
+    if (!redis) {
+        let url = process.env.UPSTASH_REDIS_REST_URL || "";
+        let token = process.env.UPSTASH_REDIS_REST_TOKEN || "";
+
+        // Strip literal quotes if they were pasted into Vercel UI
+        url = url.replace(/['"]+/g, '');
+        token = token.replace(/['"]+/g, '');
+
+        if (!url || !token) {
+            throw new Error("Missing Redis environment variables (UPSTASH_REDIS_REST_URL/TOKEN)");
+        }
+
+        redis = new Redis({
+            url: url,
+            token: token,
+        });
+    }
+    return redis;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Allow CORS for local dev
@@ -28,8 +42,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
+        const client = getRedis();
+
         if (method === "GET") {
-            const data = await redis.get<any>(key);
+            const data = await client.get<any>(key);
             if (data === null || data === undefined) {
                 return res.status(200).json(null);
             }
@@ -48,7 +64,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             // body is already parsed by Vercel as an object (Content-Type: application/json)
             // Store as a native object if possible, otherwise stringify
             const dataToStore = typeof body === "string" ? body : JSON.stringify(body);
-            await redis.set(key, dataToStore);
+            await client.set(key, dataToStore);
             return res.status(200).json({ ok: true });
         }
     } catch (err: any) {

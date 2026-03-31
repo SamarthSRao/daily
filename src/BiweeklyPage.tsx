@@ -163,11 +163,57 @@ export default function BiweeklyPage() {
             </h1>
             <p className="tasks-subtitle">Implement the core of Distributed Systems & DBMS</p>
           </div>
-          <button className="reset-plan-btn" onClick={resetPlanStartDate}>
-            Start Plan from Today
-          </button>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <button className="reset-plan-btn" onClick={resetPlanStartDate}>
+              Start Plan from Today
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Floating Status Bar */}
+      {(() => {
+        const runningProjectId = Object.keys(projectStates).find(id => projectStates[id].isRunning);
+        const runningProject = projects.find(p => p.id === runningProjectId);
+        const runningState = runningProjectId ? projectStates[runningProjectId] : null;
+        
+        let displayTime = runningState?.totalTime || 0;
+        if (runningState?.isRunning && runningState?.lastStartTime) {
+          displayTime += Math.floor((Date.now() - runningState.lastStartTime) / 1000);
+        }
+
+        const activeIdx = projects.findIndex((_, i) => getCycleStats(i).isCurrentCycle);
+        const activeProject = projects[activeIdx];
+        const { daysRemaining } = activeProject ? getCycleStats(activeIdx) : { daysRemaining: 0 };
+
+        return (
+          <div className="status-floating-banner">
+            {runningProject ? (
+              <div className="status-item running">
+                <div className="status-label">
+                  <div className="pulse-dot" />
+                  RUNNING: {runningProject.title}
+                </div>
+                <div className="status-value">{formatTime(displayTime)}</div>
+              </div>
+            ) : (
+              <div className="status-item idle">
+                <div className="status-label">TIMER IDLE</div>
+                <div className="status-value">0h 0m 0s</div>
+              </div>
+            )}
+            
+            <div className="status-divider" />
+            
+            {activeProject && (
+              <div className="status-item pending">
+                <div className="status-label">ACTIVE CYCLE: {activeProject.title}</div>
+                <div className="status-value">{daysRemaining} days left</div>
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       <div className="curriculum-list">
         {projects.map((project, idx) => {
@@ -415,6 +461,87 @@ export default function BiweeklyPage() {
           font-size: 0.7rem;
           opacity: 0.5;
           font-weight: 400;
+        }
+
+        .status-floating-banner {
+          position: fixed;
+          top: 80px;
+          right: 24px;
+          background: rgba(15, 15, 15, 0.8);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          z-index: 1000;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+          font-family: 'Geist Sans', sans-serif;
+        }
+
+        .status-item {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .status-label {
+          font-size: 0.65rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          letter-spacing: 0.5px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .status-value {
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          font-family: 'Geist Mono', monospace;
+        }
+
+        .status-item.running .status-label {
+          color: #10b981;
+        }
+
+        .status-item.running .status-value {
+          color: #10b981;
+        }
+
+        .pulse-dot {
+          width: 6px;
+          height: 6px;
+          background-color: #10b981;
+          border-radius: 50%;
+          box-shadow: 0 0 6px #10b981;
+          animation: status-pulse 2s infinite;
+        }
+
+        @keyframes status-pulse {
+          0% { opacity: 1; }
+          50% { opacity: 0.3; }
+          100% { opacity: 1; }
+        }
+
+        .status-divider {
+          width: 1px;
+          height: 24px;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+          .status-floating-banner {
+            position: relative;
+            top: auto;
+            right: auto;
+            margin-bottom: 24px;
+            width: 100%;
+            justify-content: space-around;
+          }
         }
       `}} />
     </div>

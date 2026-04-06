@@ -1,14 +1,14 @@
 import { useState, useRef } from "react";
-import Dashboard from "./Dashboard";
-import DailyPage from "./DailyPage";
-import TasksPage from "./TasksPage";
-import DsaPage from "./DsaPage";
-import BiweeklyPage from "./BiweeklyPage";
-import SpecsPage from "./SpecsPage";
-import AlternatePlanPage from "./AlternatePlanPage";
-import DailyChecks from "./DailyChecks";
-import MiscTasks from "./MiscTasks";
-import alternatePlans from "./alternatePlans.json";
+import Dashboard from "./pages/Dashboard";
+import DailyPage from "./pages/DailyPage";
+import TasksPage from "./pages/TasksPage";
+import DsaPage from "./pages/DsaPage";
+import BiweeklyPage from "./pages/BiweeklyPage";
+import SpecsPage from "./pages/SpecsPage";
+import AlternatePlanPage from "./pages/AlternatePlanPage";
+import DailyChecks from "./components/DailyChecks";
+import MiscTasks from "./components/MiscTasks";
+import alternatePlans from "./data/alternatePlans.json";
 import { ChevronDown, ChevronUp, Calendar, LayoutGrid, Timer as TimerIcon, Dna } from "lucide-react";
 import "./index.css";
 

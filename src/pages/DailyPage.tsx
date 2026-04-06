@@ -1,16 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
-import data from "./tasks.json";
-import { CheckCircle2, Circle, ChevronDown, ChevronRight, CalendarDays, BookOpenCheck } from "lucide-react";
-import { saveState, loadState } from "./lib/redis";
+import data from "../data/dailyPlan.json";
+import { CheckCircle2, Circle, ChevronDown, ChevronRight, CalendarDays, ClipboardList } from "lucide-react";
+import { saveState, loadState } from "../lib/redis";
 
-export default function TasksPage() {
+export default function DailyPage() {
   const [expandedMonths, setExpandedMonths] = useState<Record<number, boolean>>({ 0: true });
   const [expandedWeeks, setExpandedWeeks] = useState<Record<string, boolean>>({ "0-0": true });
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await loadState("properrr-tasks", {});
+      const data = await loadState("properrr-daily-tasks", {});
       setCompletedTasks(data);
     };
     fetchData();
@@ -19,7 +19,7 @@ export default function TasksPage() {
   const toggleTask = useCallback((taskId: string) => {
     setCompletedTasks(prev => {
       const next = { ...prev, [taskId]: !prev[taskId] };
-      saveState("properrr-tasks", next);
+      saveState("properrr-daily-tasks", next);
       return next;
     });
   }, []);
@@ -37,10 +37,10 @@ export default function TasksPage() {
     <div className="tasks-container">
       <div className="tasks-header">
         <h1 className="tasks-title">
-          <BookOpenCheck className="icon-main" />
-          Mastery Plan
+          <ClipboardList className="icon-main" style={{ color: '#10b981' }} />
+          Daily Routine
         </h1>
-        <p className="tasks-subtitle">8–9 Month Backend Engineering Mastery Plan (Infraspec)</p>
+        <p className="tasks-subtitle">Systematic execution of the Backend Mastery Plan</p>
       </div>
 
       <div className="curriculum-list">
@@ -51,8 +51,8 @@ export default function TasksPage() {
               onClick={() => toggleMonth(mIdx)}
             >
               <div className="month-title">
-                <CalendarDays className="icon-month" />
-                <h2>MONTH {mIdx + 1}: {month.title}</h2>
+                <CalendarDays className="icon-month" style={{ color: '#10b981' }} />
+                <h2 style={{ color: '#10b981' }}>{month.title}</h2>
               </div>
               {expandedMonths[mIdx] ? <ChevronDown /> : <ChevronRight />}
             </div>
@@ -78,7 +78,7 @@ export default function TasksPage() {
                               <h4 className="day-title">{day.title}</h4>
                               <ul className="task-list">
                                 {day.tasks.map((task, tIdx) => {
-                                  const taskId = `${mIdx}-${wIdx}-${dIdx}-${tIdx}`;
+                                  const taskId = `daily-${mIdx}-${wIdx}-${dIdx}-${tIdx}`;
                                   const isDone = completedTasks[taskId];
 
                                   return (
@@ -92,7 +92,7 @@ export default function TasksPage() {
                                       ) : (
                                         <Circle className="icon-uncheck" />
                                       )}
-                                      <div className="task-text">{task}</div>
+                                      <div className="task-text" style={{ whiteSpace: 'pre-wrap' }}>{task}</div>
                                     </li>
                                   );
                                 })}

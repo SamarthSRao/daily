@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { saveState, loadState } from "./lib/redis";
+import { saveState, loadState } from "../lib/redis";
 import { CheckCircle2, Circle, Code2, Layout, Milestone, PenTool } from "lucide-react";
 
 const CHECKS = [

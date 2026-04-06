@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import projects from "./biweekly.json";
+import projects from "../data/biweekly.json";
 import { Play, Pause, RotateCcw, Notebook, Timer, ChevronDown, ChevronRight } from "lucide-react";
-import { saveState, loadState } from "./lib/redis";
+import { saveState, loadState } from "../lib/redis";
 
 type ProjectState = {
   totalTime: number; // in seconds
@@ -60,10 +60,10 @@ export default function BiweeklyPage() {
     setProjectStates(prev => {
       const now = Date.now();
       const newState = { ...prev };
-      
+
       // If we are starting a timer, stop ALL others first
       const isStarting = !prev[id]?.isRunning;
-      
+
       if (isStarting) {
         Object.keys(newState).forEach(projId => {
           if (newState[projId].isRunning) {
@@ -76,7 +76,7 @@ export default function BiweeklyPage() {
             };
           }
         });
-        
+
         // Start the new one
         newState[id] = {
           ...newState[id],
@@ -140,11 +140,11 @@ export default function BiweeklyPage() {
     const startOfPlan = new Date(startDate);
     const msDiff = now.getTime() - startOfPlan.getTime();
     const daysSinceStart = Math.floor(msDiff / (1000 * 60 * 60 * 24));
-    
+
     // Each project is 2 weeks = 14 days
     const projectCycleStartDay = projectIdx * 14;
     const projectCycleEndDay = (projectIdx + 1) * 14;
-    
+
     const isCurrentCycle = daysSinceStart >= projectCycleStartDay && daysSinceStart < projectCycleEndDay;
     const isPastCycle = daysSinceStart >= projectCycleEndDay;
     const daysRemaining = projectCycleEndDay - daysSinceStart;
@@ -176,7 +176,7 @@ export default function BiweeklyPage() {
         const runningProjectId = Object.keys(projectStates).find(id => projectStates[id].isRunning);
         const runningProject = projects.find(p => p.id === runningProjectId);
         const runningState = runningProjectId ? projectStates[runningProjectId] : null;
-        
+
         let displayTime = runningState?.totalTime || 0;
         if (runningState?.isRunning && runningState?.lastStartTime) {
           displayTime += Math.floor((Date.now() - runningState.lastStartTime) / 1000);
@@ -202,9 +202,9 @@ export default function BiweeklyPage() {
                 <div className="status-value">0h 0m 0s</div>
               </div>
             )}
-            
+
             <div className="status-divider" />
-            
+
             {activeProject && (
               <div className="status-item pending">
                 <div className="status-label">ACTIVE CYCLE: {activeProject.title}</div>
@@ -220,7 +220,7 @@ export default function BiweeklyPage() {
           const state = projectStates[project.id] || INITIAL_PROJECT_STATE;
           const isExpanded = expandedProjects[project.id];
           const { isCurrentCycle, isPastCycle, daysRemaining } = getCycleStats(idx);
-          
+
           let displayTime = state.totalTime;
           if (state.isRunning && state.lastStartTime) {
             displayTime += Math.floor((Date.now() - state.lastStartTime) / 1000);
@@ -228,10 +228,10 @@ export default function BiweeklyPage() {
 
           return (
             <div key={project.id} className={`month-card ${isCurrentCycle ? 'current-project' : ''}`}>
-              <div 
-                className="month-header" 
+              <div
+                className="month-header"
                 onClick={() => toggleExpand(project.id)}
-                style={{ 
+                style={{
                   borderLeft: state.isRunning ? '4px solid #10b981' : isCurrentCycle ? '4px solid #3b82f6' : '4px solid transparent'
                 }}
               >
@@ -263,17 +263,17 @@ export default function BiweeklyPage() {
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '20px', lineHeight: '1.5' }}>
                     {project.description}
                   </p>
-                  
+
                   <div className="biweekly-controls">
-                    <button 
+                    <button
                       className={`timer-control-btn ${state.isRunning ? 'stop' : 'start'}`}
                       onClick={(e) => { e.stopPropagation(); toggleTimer(project.id); }}
                     >
                       {state.isRunning ? <Pause size={18} /> : <Play size={18} />}
                       {state.isRunning ? 'Stop Timer' : 'Start Timer'}
                     </button>
-                    
-                    <button 
+
+                    <button
                       className="timer-control-btn reset"
                       onClick={(e) => { e.stopPropagation(); resetTimer(project.id); }}
                     >
@@ -288,7 +288,7 @@ export default function BiweeklyPage() {
                       <span>Project Notes</span>
                       <div className="auto-save-tag">Auto-saving</div>
                     </div>
-                    <textarea 
+                    <textarea
                       className="notes-textarea"
                       placeholder="Add implementation notes, architecture decisions, or blockers..."
                       value={state.notes}
@@ -302,7 +302,8 @@ export default function BiweeklyPage() {
         })}
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .timer-status-dot {
           width: 8px;
           height: 8px;

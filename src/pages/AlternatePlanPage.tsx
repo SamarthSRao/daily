@@ -26,7 +26,7 @@ interface Props {
   plan: AlternatePlan;
 }
 
-import { saveState, loadState } from "./lib/redis";
+import { saveState, loadState } from "../lib/redis";
 
 export default function AlternatePlanPage({ plan }: Props) {
   const storageKey = `properrr-alt-${plan.id}`;

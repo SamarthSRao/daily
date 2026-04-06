@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import dsaData from "./dsa.json";
+import dsaData from "../data/dsa.json";
 import { ChevronDown, ChevronRight, Binary, Code2, CheckCircle2, Circle } from "lucide-react";
 
-import { saveState, loadState } from "./lib/redis";
+import { saveState, loadState } from "../lib/redis";
 
 export default function DsaPage() {
   const [expandedLevels, setExpandedLevels] = useState<Record<number, boolean>>({ 0: true });

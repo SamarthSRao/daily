@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./index.css";
+import "../index.css";
 
 const DEFAULT_CATEGORIES = [
   { id: "commission", name: "Commission", color: "#3b82f6", w: 8, h: 1, locked: false },
@@ -37,7 +37,7 @@ function isSameDay(d1: Date, d2: Date) {
          d1.getDate() === d2.getDate();
 }
 
-import { saveState, loadState } from "./lib/redis";
+import { saveState, loadState } from "../lib/redis";
 
 export default function Dashboard() {
   const [categories, setCategories] = useState<any[]>(DEFAULT_CATEGORIES);

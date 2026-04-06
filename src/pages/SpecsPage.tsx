@@ -1,6 +1,6 @@
 import { useState } from "react";
-import specs from "./specs.json";
-import guidelines from "./guidelines.json";
+import specs from "../data/specs.json";
+import guidelines from "../data/guidelines.json";
 import { ChevronDown, ChevronRight, FileText, Layout, Book, Info } from "lucide-react";
 
 export default function SpecsPage() {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { saveState, loadState } from "./lib/redis";
+import { saveState, loadState } from "../lib/redis";
 import { Plus, X, Check, Trash2, StickyNote } from "lucide-react";
 
 type MiscTask = {

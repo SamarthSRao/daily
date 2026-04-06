@@ -101,7 +101,7 @@
       {
         "id": "168",
         "title": "Maximum Subarray",
-        "pattern": "Kadane’s Principle",
+        "pattern": "Kadane\u2019s Principle",
         "prerequisite": "Prefix Sum"
       },
       {
@@ -109,6 +109,142 @@
         "title": "Climb Stairs",
         "pattern": "Fibonacci Count",
         "prerequisite": "Basic Recursion"
+      },
+      {
+        "id": "234",
+        "title": "Reverse Nodes in k-Group",
+        "pattern": "Batch Processing / Pointer Mutation",
+        "prerequisite": "Reverse Linked List",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "235",
+        "title": "Reorder List",
+        "pattern": "In-place State Mutation",
+        "prerequisite": "Fast/Slow Pointer, Reverse List",
+        "company": "Databricks",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "236",
+        "title": "Sort List",
+        "pattern": "Merge Sort with Constant Space",
+        "prerequisite": "Merge Two Sorted Lists, Find Middle",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "237",
+        "title": "Double a Number Represented as a Linked List",
+        "pattern": "Single-Pass Carry Propagation",
+        "prerequisite": "Linked List Traversal",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "238",
+        "title": "Odd Even Linked List",
+        "pattern": "Partitioning and Stability",
+        "prerequisite": "Pointer Manipulation",
+        "company": "Uber",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "239",
+        "title": "Plus One Linked List",
+        "pattern": "Sentinel Node Application",
+        "prerequisite": "Linked List Traversal",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "240",
+        "title": "Convert Sorted List to BST",
+        "pattern": "Recursive Structural Balancing",
+        "prerequisite": "Find Middle of Linked List",
+        "company": "Databricks",
+        "cluster": "Linked List Pointer Hygiene"
+      },
+      {
+        "id": "267",
+        "title": "Reverse Linked List",
+        "pattern": "Iterative Pointer Reversal",
+        "prerequisite": "Basic Pointer Manipulation",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Foundation for Reorder List (235), Sort List (236), Reverse Nodes in k-Group (234). Must be mastered before any other LL problem."
+      },
+      {
+        "id": "268",
+        "title": "Merge Two Sorted Lists",
+        "pattern": "Two-Pointer Merge",
+        "prerequisite": "Reverse Linked List (267)",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Direct prerequisite for Sort List (236) and Merge K Sorted Lists (111). Teaches pointer rewiring without losing references."
+      },
+      {
+        "id": "269",
+        "title": "Find Middle of Linked List",
+        "pattern": "Fast / Slow Pointer",
+        "prerequisite": "Reverse Linked List (267)",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Fast/slow pointer technique. Prerequisite for Sort List (236), Reorder List (235), Convert Sorted List to BST (240), and Palindrome Linked List (272)."
+      },
+      {
+        "id": "270",
+        "title": "Linked List Cycle Detection",
+        "pattern": "Floyd's Cycle Detection",
+        "prerequisite": "Find Middle of Linked List (269)",
+        "company": "Uber",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Floyd's two-pointer cycle detection. Also covers finding the cycle entry node. Asked in every on-site across all target companies."
+      },
+      {
+        "id": "271",
+        "title": "Remove Nth Node From End of List",
+        "pattern": "One-Pass Gap Pointer",
+        "prerequisite": "Find Middle of Linked List (269)",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "One-pass solution using two pointers separated by n steps. Tests off-by-one discipline and dummy node usage."
+      },
+      {
+        "id": "272",
+        "title": "Palindrome Linked List",
+        "pattern": "Find Middle + Reverse + Compare",
+        "prerequisite": "Find Middle (269), Reverse Linked List (267)",
+        "company": "General",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Combines three fundamentals in sequence. Capstone problem for Level 1 LL: find mid, reverse second half, compare, restore (optional)."
+      },
+      {
+        "id": "273",
+        "title": "Add Two Numbers",
+        "pattern": "Carry Propagation with Dummy Head",
+        "prerequisite": "Basic Pointer Manipulation",
+        "company": "Razorpay",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Digit-by-digit carry propagation. Directly prerequisite for Double a Number Represented as a Linked List (237). Asked at Razorpay financial rounds."
+      },
+      {
+        "id": "274",
+        "title": "Copy List with Random Pointer",
+        "pattern": "Deep Copy with Hash Map or Interleaving",
+        "prerequisite": "Merge Two Sorted Lists (268)",
+        "company": "Palantir",
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Two approaches: O(n) space with hashmap, or O(1) space with node interleaving. The O(1) approach is the Palantir bar signal."
       }
     ]
   },
@@ -119,7 +255,9 @@
         "id": "3",
         "title": "Number of Islands",
         "pattern": "Geospatial DFS",
-        "prerequisite": "Linear Traversal"
+        "prerequisite": "Linear Traversal",
+        "representation_note": "IMPLICIT GRAPH \u2014 do NOT build an explicit adjacency list. The grid IS the graph. Each cell is a node; edges are implicit 4-directional neighbors. Building explicit edges adds O(V+E) space and O(E) construction time with zero benefit. BFS/DFS directly on the grid with a visited array or in-place marking is the correct approach.",
+        "representation_decision": "Grid \u2192 Direct traversal (no adjacency structure)"
       },
       {
         "id": "11",
@@ -137,13 +275,17 @@
         "id": "14",
         "title": "Is Graph Bipartite?",
         "pattern": "Bipartite Matching",
-        "prerequisite": "BFS/DFS Coloring"
+        "prerequisite": "BFS/DFS Coloring",
+        "representation_note": "ADJACENCY LIST is correct here. Graph density is unknown but typically sparse (E << V\u00b2). The density breakpoint is |E|/|V\u00b2| > 1/64 (~1.56%) \u2014 only above this does a bit-packed adjacency matrix save space. For bipartite checking you only need to iterate neighbors, making O(degree(v)) adjacency list traversal optimal. An adjacency matrix would waste V\u00b2/8 bytes for O(1) edge lookup you never use.",
+        "representation_decision": "Sparse unknown-density graph \u2192 Adjacency list default"
       },
       {
         "id": "16",
         "title": "Clone Graph",
         "pattern": "Relational Replication",
-        "prerequisite": "BFS/DFS Foundations"
+        "prerequisite": "BFS/DFS Foundations",
+        "representation_note": "ADJACENCY LIST is the natural choice \u2014 the input is already given as an adjacency list. The key decision here is not representation but traversal strategy for deep copy: BFS with a hashmap (node \u2192 clone) ensures each node is visited and cloned exactly once. This is the default representation choice for graphs of unknown density.",
+        "representation_decision": "Unknown density \u2192 Adjacency list (input format drives choice)"
       },
       {
         "id": "21",
@@ -434,7 +576,7 @@
         "id": "2",
         "title": "Alien Dictionary",
         "pattern": "Topological Sort",
-        "prerequisite": "Kahn’s Algorithm"
+        "prerequisite": "Kahn\u2019s Algorithm"
       },
       {
         "id": "4",
@@ -452,7 +594,9 @@
         "id": "7",
         "title": "Word Ladder",
         "pattern": "State-space BFS",
-        "prerequisite": "BFS + Graph Construction"
+        "prerequisite": "BFS + Graph Construction",
+        "representation_note": "IMPLICIT GRAPH \u2014 the graph is never constructed. Each word is a node; two words share an edge if they differ by one letter. Building the full adjacency list upfront is O(N\u00b2\u00b7L) time and space. Instead, generate neighbors on-the-fly during BFS by mutating each character position. This is the canonical example of implicit graph recognition: the problem never says 'graph' but the solution is BFS on a state space.",
+        "representation_decision": "Implicit string graph \u2192 On-the-fly neighbor generation (never build adjacency structure)"
       },
       {
         "id": "8",
@@ -464,13 +608,15 @@
         "id": "10",
         "title": "Critical Connections",
         "pattern": "Single Point Failure",
-        "prerequisite": "Tarjan’s/Bridge Logic"
+        "prerequisite": "Tarjan\u2019s/Bridge Logic"
       },
       {
         "id": "12",
         "title": "Shortest Path in a Grid",
         "pattern": "Obstacle BFS",
-        "prerequisite": "Level 2 BFS"
+        "prerequisite": "Level 2 BFS",
+        "representation_note": "IMPLICIT GRAPH \u2014 same principle as Number of Islands (id=3). The grid is the adjacency structure. A common failure pattern is constructing an explicit adjacency list for grid problems, adding unnecessary O(V+E) space and O(E) build time. Run BFS/Dijkstra directly on grid coordinates. The 'node' is a (row, col) tuple; 'neighbors' are the 4 or 8 directional cells within bounds.",
+        "representation_decision": "Grid \u2192 Direct coordinate BFS/Dijkstra (no adjacency structure)"
       },
       {
         "id": "15",
@@ -494,7 +640,9 @@
         "id": "19",
         "title": "Min Cost to Connect Points",
         "pattern": "MST Roads",
-        "prerequisite": "Prim’s or Kruskal’s"
+        "prerequisite": "Prim\u2019s or Kruskal\u2019s",
+        "representation_note": "EDGE LIST required here, not adjacency list. Kruskal's MST algorithm needs all edges sorted by weight \u2014 the access pattern is 'iterate edges in weight order', not 'iterate neighbors of a node'. An adjacency list forces O(V\u00b2) edge extraction before sorting. Use an edge list of (weight, u, v) tuples directly.",
+        "representation_decision": "Dense complete graph \u2192 Edge list for Kruskal's; Adjacency list + min-heap for Prim's"
       },
       {
         "id": "20",
@@ -755,12 +903,6 @@
         "prerequisite": "DFS Traversal"
       },
       {
-        "id": "86",
-        "title": "All Nodes Distance K",
-        "pattern": "Hierarchical BFS",
-        "prerequisite": "Tree BFS Foundations"
-      },
-      {
         "id": "87",
         "title": "Maximum Width of Tree",
         "pattern": "Concurrency Max",
@@ -944,7 +1086,7 @@
         "id": "131",
         "title": "Find Duplicate Number",
         "pattern": "Cycle in Array",
-        "prerequisite": "Floyd’s Cycle Logic"
+        "prerequisite": "Floyd\u2019s Cycle Logic"
       },
       {
         "id": "132",
@@ -1100,7 +1242,7 @@
         "id": "177",
         "title": "Max Product Subarray",
         "pattern": "Positive/Neg Trend",
-        "prerequisite": "Kadane’s Variation"
+        "prerequisite": "Kadane\u2019s Variation"
       },
       {
         "id": "178",
@@ -1191,6 +1333,438 @@
         "title": "Minimum Vertex Cover",
         "pattern": "Minimal Removal",
         "prerequisite": "Tree DP or Network Flow"
+      },
+      {
+        "id": "206",
+        "title": "Critical Connections in a Network",
+        "pattern": "Bridge Finding / Tarjan",
+        "prerequisite": "DFS, Discovery Timestamps",
+        "company": "Palantir",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "207",
+        "title": "Bus Routes (Multi-Source BFS)",
+        "pattern": "Multi-Source BFS",
+        "prerequisite": "BFS Foundations",
+        "company": "Uber",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "208",
+        "title": "Shortest Path with Restricted Access",
+        "pattern": "Dijkstra with State Variables",
+        "prerequisite": "Dijkstra, State-Space Search",
+        "company": "Palantir",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "209",
+        "title": "All Ancestors in a DAG",
+        "pattern": "Reachability Tracking",
+        "prerequisite": "Topological Sort, DFS",
+        "company": "General",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "210",
+        "title": "Valid Order Path",
+        "pattern": "Topological Sort / DFS",
+        "prerequisite": "Graph Traversal",
+        "company": "DoorDash",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "211",
+        "title": "Shortest Distance from All Buildings",
+        "pattern": "Multi-Source Grid BFS",
+        "prerequisite": "BFS on Grids",
+        "company": "DoorDash",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "212",
+        "title": "Number of Provinces / Dynamic Components",
+        "pattern": "Union-Find",
+        "prerequisite": "Union-Find Basics",
+        "company": "Uber",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "213",
+        "title": "Smallest String with Swaps",
+        "pattern": "Union-Find / Connectivity",
+        "prerequisite": "Union-Find, Sorting",
+        "company": "Palantir",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "214",
+        "title": "Redundant Connection II",
+        "pattern": "Critical Edge / Union-Find",
+        "prerequisite": "Union-Find, Tree Properties",
+        "company": "Databricks",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "215",
+        "title": "Cheapest Flights Within K Stops",
+        "pattern": "BFS with Depth Constraint",
+        "prerequisite": "Dijkstra / BFS",
+        "company": "Razorpay",
+        "cluster": "Structural Connectivity"
+      },
+      {
+        "id": "216",
+        "title": "Design Search Autocomplete System",
+        "pattern": "Trie + Frequency Heap",
+        "prerequisite": "Trie (106), Heap",
+        "company": "Uber",
+        "cluster": "Range-Based Data"
+      },
+      {
+        "id": "217",
+        "title": "Range Sum Query 2D - Mutable",
+        "pattern": "2D Segment Tree / BIT",
+        "prerequisite": "Segment Tree / BIT",
+        "company": "Uber",
+        "cluster": "Range-Based Data"
+      },
+      {
+        "id": "218",
+        "title": "Longest Common Prefix in Distributed File Path",
+        "pattern": "Trie with Edge Compression",
+        "prerequisite": "Trie (106)",
+        "company": "Databricks",
+        "cluster": "Range-Based Data"
+      },
+      {
+        "id": "219",
+        "title": "BST Iterator",
+        "pattern": "Stack-Based Traversal",
+        "prerequisite": "Tree Traversal, Inorder",
+        "company": "General",
+        "cluster": "Range-Based Data"
+      },
+      {
+        "id": "220",
+        "title": "Quad Tree Implementation",
+        "pattern": "Recursive Grid Partitioning",
+        "prerequisite": "Recursion, Tree Structures",
+        "company": "Uber",
+        "cluster": "Range-Based Data"
+      },
+      {
+        "id": "221",
+        "title": "Maximum Area Rectangle with Point Constraints",
+        "pattern": "Segment Tree / Geometric Optimization",
+        "prerequisite": "Segment Tree, Coordinate Compression",
+        "company": "General",
+        "cluster": "Range-Based Data"
+      },
+      {
+        "id": "222",
+        "title": "Maximum Possible Courier Pay",
+        "pattern": "DP over Event Sequence",
+        "prerequisite": "Interval DP, Sorting",
+        "company": "DoorDash",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "223",
+        "title": "Surge Pricing Multiplier Equilibrium",
+        "pattern": "Binary Search on Answer + Simulation",
+        "prerequisite": "Binary Search, Greedy",
+        "company": "Uber",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "224",
+        "title": "Count All Valid Pickup and Delivery Options",
+        "pattern": "Combinatorial DP / State Masking",
+        "prerequisite": "Combinatorics, DP",
+        "company": "DoorDash",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "225",
+        "title": "Best Meeting Point in a Grid",
+        "pattern": "Median Proximity Optimization",
+        "prerequisite": "Prefix Sum, Median Property",
+        "company": "Uber",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "226",
+        "title": "Regular Expression Matching",
+        "pattern": "DP with Wildcard States",
+        "prerequisite": "2D DP, String DP",
+        "company": "General",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "227",
+        "title": "Maximize Amount After Currency Conversions",
+        "pattern": "DP on Exchange Paths",
+        "prerequisite": "Graph DP, Bellman-Ford",
+        "company": "Databricks",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "228",
+        "title": "Two Best Non-Overlapping Events",
+        "pattern": "Sorting + Binary Search + DP",
+        "prerequisite": "Interval Scheduling, DP",
+        "company": "Razorpay",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "229",
+        "title": "Minimum Total Cost to Make Arrays Unequal",
+        "pattern": "Greedy vs DP",
+        "prerequisite": "Greedy, Sorting",
+        "company": "Razorpay",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "230",
+        "title": "Number of Ways of Cutting a Pizza",
+        "pattern": "Multidimensional DP + Prefix Sum",
+        "prerequisite": "3D DP, 2D Prefix Sum",
+        "company": "General",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "231",
+        "title": "Minimum Difficulty of a Job Schedule",
+        "pattern": "Partitioning DP",
+        "prerequisite": "2D DP, Subarray Max",
+        "company": "General",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "232",
+        "title": "Smallest Sufficient Team / Bitmask DP",
+        "pattern": "Bitmask DP / Set Cover",
+        "prerequisite": "Bitmask DP",
+        "company": "General",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "233",
+        "title": "Frog Jump",
+        "pattern": "DP with Position + Jump State",
+        "prerequisite": "DP, Hashmaps",
+        "company": "General",
+        "cluster": "Resource Optimization"
+      },
+      {
+        "id": "241",
+        "title": "Number of Provinces",
+        "pattern": "DSU vs DFS",
+        "prerequisite": "Union-Find Basics",
+        "company": "Uber",
+        "cluster": "Graph Connectivity"
+      },
+      {
+        "id": "242",
+        "title": "Shortest Path Visiting All Nodes",
+        "pattern": "Bitmask DP / BFS",
+        "prerequisite": "BFS, Bitmask DP",
+        "company": "DoorDash",
+        "cluster": "Graph Connectivity"
+      },
+      {
+        "id": "243",
+        "title": "Similar String Groups",
+        "pattern": "DSU with Heuristics",
+        "prerequisite": "Union-Find",
+        "company": "Palantir",
+        "cluster": "Graph Connectivity"
+      },
+      {
+        "id": "244",
+        "title": "All Nodes Distance K in Binary Tree",
+        "pattern": "Tree-to-Graph Conversion BFS",
+        "prerequisite": "BFS, Parent Pointer Map",
+        "company": "Databricks",
+        "cluster": "Graph Connectivity"
+      },
+      {
+        "id": "245",
+        "title": "Detonate the Maximum Bombs",
+        "pattern": "Directed Reachability / BFS",
+        "prerequisite": "Directed Graph BFS/DFS",
+        "company": "General",
+        "cluster": "Graph Connectivity"
+      },
+      {
+        "id": "246",
+        "title": "My Calendar I",
+        "pattern": "Balanced BST / Binary Search",
+        "prerequisite": "Binary Search, Sorted Map",
+        "company": "General",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "247",
+        "title": "Data Stream as Disjoint Intervals",
+        "pattern": "Treap / TreeSet Interval Merging",
+        "prerequisite": "Sorted Set, Interval Merging",
+        "company": "Databricks",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "248",
+        "title": "Binary Tree Vertical Order Traversal",
+        "pattern": "BFS with Column Index",
+        "prerequisite": "Level-order Traversal",
+        "company": "Databricks",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "249",
+        "title": "Vertical Order Traversal of a Binary Tree",
+        "pattern": "Sorting-Enhanced BFS",
+        "prerequisite": "Binary Tree Vertical Order Traversal",
+        "company": "Databricks",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "250",
+        "title": "Lowest Common Ancestor of a Binary Tree",
+        "pattern": "Recursive DFS Lineage",
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "251",
+        "title": "Lowest Common Ancestor of a BST",
+        "pattern": "Iterative Value Search",
+        "prerequisite": "BST Properties",
+        "company": "General",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "252",
+        "title": "Binary Tree Maximum Path Sum",
+        "pattern": "Post-order Tree DP",
+        "prerequisite": "Post-order DFS",
+        "company": "DoorDash",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "253",
+        "title": "Serialize and Deserialize Binary Tree",
+        "pattern": "Pre-order / Level-order Persistence",
+        "prerequisite": "BFS/DFS Traversal",
+        "company": "Databricks",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "254",
+        "title": "Count of Smaller Numbers After Self",
+        "pattern": "BIT / Merge Sort Inversion",
+        "prerequisite": "BIT Foundations",
+        "company": "Databricks",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "255",
+        "title": "The Skyline Problem",
+        "pattern": "Segment Tree / Max-Heap Events",
+        "prerequisite": "Segment Tree, Sorted Map",
+        "company": "General",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "256",
+        "title": "Range Sum Query 2D - Immutable",
+        "pattern": "2D Prefix Sums",
+        "prerequisite": "2D Prefix Sum",
+        "company": "General",
+        "cluster": "Range-Based Tree"
+      },
+      {
+        "id": "257",
+        "title": "Partition Equal Subset Sum",
+        "pattern": "0/1 Knapsack Space Optimization",
+        "prerequisite": "0/1 Knapsack Variation",
+        "company": "General",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "258",
+        "title": "Best Time to Buy and Sell Stock with Cooldown",
+        "pattern": "State-Machine DP",
+        "prerequisite": "DP State Transitions",
+        "company": "General",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "259",
+        "title": "Minimum Cost For Tickets",
+        "pattern": "Interval Min-Cost DP",
+        "prerequisite": "1D DP",
+        "company": "Razorpay",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "260",
+        "title": "Maximum Profit in Job Scheduling",
+        "pattern": "Weighted Non-overlap DP + Binary Search",
+        "prerequisite": "DP + Binary Search",
+        "company": "DoorDash",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "261",
+        "title": "Cherry Pickup II",
+        "pattern": "Simultaneous Dual Path DP",
+        "prerequisite": "3D DP",
+        "company": "DoorDash",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "262",
+        "title": "Best Meeting Point",
+        "pattern": "Manhattan Median Optimization",
+        "prerequisite": "Prefix Sum, Median Property",
+        "company": "Uber",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "263",
+        "title": "Minimum Number of Refueling Stops",
+        "pattern": "Reachability Greedy / DP",
+        "prerequisite": "Greedy, Max-Heap",
+        "company": "General",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "264",
+        "title": "Maximum Points You Can Obtain from Cards",
+        "pattern": "Sliding Window Complement Profit",
+        "prerequisite": "Sliding Window",
+        "company": "General",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "265",
+        "title": "Paint House III",
+        "pattern": "Neighborhood Constraint 3D DP",
+        "prerequisite": "3D DP",
+        "company": "Palantir",
+        "cluster": "Resource Optimization DP"
+      },
+      {
+        "id": "266",
+        "title": "Fair Distribution of Cookies",
+        "pattern": "Minimax Bitmask DP / Backtracking",
+        "prerequisite": "Bitmask DP, Backtracking",
+        "company": "DoorDash",
+        "cluster": "Resource Optimization DP"
       }
     ]
   },

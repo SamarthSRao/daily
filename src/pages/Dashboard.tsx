@@ -1,4 +1,14 @@
 import { useEffect, useState } from "react";
+import { 
+  History, 
+  Hourglass, 
+  Calendar, 
+  Settings2, 
+  Lock, 
+  Unlock,
+  AlertCircle 
+} from "lucide-react";
+import { saveState, loadState } from "../lib/redis";
 import "../index.css";
 
 const DEFAULT_CATEGORIES = [
@@ -12,32 +22,14 @@ const DEFAULT_CATEGORIES = [
 type StatRow = { totH: number; remH: number; totD: number; remD: number };
 type CatStats = { Y: StatRow; M: StatRow; D: StatRow; W: StatRow; H: StatRow };
 
-function createEmptyRow(): StatRow {
-  return { totH: 0, remH: 0, totD: 0, remD: 0 };
-}
-
+function createEmptyRow(): StatRow { return { totH: 0, remH: 0, totD: 0, remD: 0 }; }
 function createEmptyCat(): CatStats {
-  return {
-    Y: createEmptyRow(),
-    M: createEmptyRow(),
-    D: createEmptyRow(),
-    W: createEmptyRow(),
-    H: createEmptyRow(),
-  };
+  return { Y: createEmptyRow(), M: createEmptyRow(), D: createEmptyRow(), W: createEmptyRow(), H: createEmptyRow() };
 }
-
-function isHoliday(date: Date) {
-  const day = date.getDay();
-  return day === 0 || day === 6;
-}
-
+function isHoliday(date: Date) { const day = date.getDay(); return day === 0 || day === 6; }
 function isSameDay(d1: Date, d2: Date) {
-  return d1.getFullYear() === d2.getFullYear() &&
-         d1.getMonth() === d2.getMonth() &&
-         d1.getDate() === d2.getDate();
+  return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
 }
-
-import { saveState, loadState } from "../lib/redis";
 
 export default function Dashboard() {
   const [categories, setCategories] = useState<any[]>(DEFAULT_CATEGORIES);
@@ -62,18 +54,15 @@ export default function Dashboard() {
     return () => clearInterval(timer);
   }, []);
 
+  // Time Calculation Engine
   const year = now.getFullYear();
   const month = now.getMonth();
-
   const totalStats = createEmptyCat();
   const catStats: Record<string, CatStats> = {};
-  categories.forEach((c: any) => {
-    catStats[c.id] = createEmptyCat();
-  });
+  categories.forEach((c: any) => { catStats[c.id] = createEmptyCat(); });
 
   const startYear = new Date(year, 0, 1);
   const endYear = new Date(year + 1, 0, 1);
-
   let passedYearHours = 0;
 
   for (let d = new Date(startYear); d < endYear; d.setDate(d.getDate() + 1)) {
@@ -90,278 +79,228 @@ export default function Dashboard() {
     const dailyTotalAlloc = categories.reduce((sum: number, c: any) => sum + (isH ? c.h : c.w), 0);
     const dailyPassedAlloc = dailyTotalAlloc * (1 - fractionRemaining);
 
-    totalStats.Y.totD += dailyTotalAlloc / 24;
     totalStats.Y.totH += dailyTotalAlloc;
     totalStats.Y.remH += dailyTotalAlloc * fractionRemaining;
+    totalStats.Y.totD = totalStats.Y.totH / 24;
     totalStats.Y.remD = totalStats.Y.remH / 24;
 
     if (isPast) passedYearHours += dailyTotalAlloc;
     if (isToday) passedYearHours += dailyPassedAlloc;
 
     if (d.getMonth() === month) {
-      totalStats.M.totD += dailyTotalAlloc / 24;
       totalStats.M.totH += dailyTotalAlloc;
       totalStats.M.remH += dailyTotalAlloc * fractionRemaining;
+      totalStats.M.totD = totalStats.M.totH / 24;
       totalStats.M.remD = totalStats.M.remH / 24;
     }
 
     if (isH) {
-      totalStats.H.totD += dailyTotalAlloc / 24;
       totalStats.H.totH += dailyTotalAlloc;
       totalStats.H.remH += dailyTotalAlloc * fractionRemaining;
-      totalStats.H.remD = totalStats.H.remH / 24;
     } else {
-      totalStats.W.totD += dailyTotalAlloc / 24;
       totalStats.W.totH += dailyTotalAlloc;
       totalStats.W.remH += dailyTotalAlloc * fractionRemaining;
-      totalStats.W.remD = totalStats.W.remH / 24;
     }
 
     if (isToday) {
       totalStats.D.totH = dailyTotalAlloc;
       totalStats.D.remH = dailyTotalAlloc * fractionRemaining;
-      totalStats.D.totD = dailyTotalAlloc / 24;
-      totalStats.D.remD = totalStats.D.remH / 24;
     }
 
     categories.forEach((c: any) => {
       const alloc = isH ? c.h : c.w;
       const stats = catStats[c.id];
-
       stats.Y.totH += alloc;
       stats.Y.remH += alloc * fractionRemaining;
-      stats.Y.totD = stats.Y.totH / 24;
-      stats.Y.remD = stats.Y.remH / 24;
-
       if (d.getMonth() === month) {
         stats.M.totH += alloc;
         stats.M.remH += alloc * fractionRemaining;
-        stats.M.totD = stats.M.totH / 24;
-        stats.M.remD = stats.M.remH / 24;
       }
-
-      if (isH) {
-        stats.H.totH += alloc;
-        stats.H.remH += alloc * fractionRemaining;
-        stats.H.totD = stats.H.totH / 24;
-        stats.H.remD = stats.H.remH / 24;
-      } else {
-        stats.W.totH += alloc;
-        stats.W.remH += alloc * fractionRemaining;
-        stats.W.totD = stats.W.totH / 24;
-        stats.W.remD = stats.W.remH / 24;
-      }
-
       if (isToday) {
         stats.D.totH = alloc;
         stats.D.remH = alloc * fractionRemaining;
-        stats.D.totD = alloc / 24;
-        stats.D.remD = (alloc * fractionRemaining) / 24;
       }
     });
   }
 
-  const fmt = (n: number) => (n < 10 ? "0" + n : n);
-  const timeStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()} ${fmt(
-    now.getHours()
-  )}h ${fmt(now.getMinutes())}m ${fmt(now.getSeconds())}s`;
-
+  const calendarProgress = ((now.getTime() - startYear.getTime()) / (endYear.getTime() - startYear.getTime())) * 100;
+  
   const totalRemainingS = totalStats.Y.remH * 3600;
   const remH = Math.floor(totalRemainingS / 3600);
   const remM = Math.floor((totalRemainingS % 3600) / 60);
-  const remS = Math.floor(totalRemainingS % 60);
-
-  const startOfYear = new Date(year, 0, 1);
-  const endOfYear = new Date(year + 1, 0, 1);
-  const calendarProgress = ((now.getTime() - startOfYear.getTime()) / (endOfYear.getTime() - startOfYear.getTime())) * 100;
-
-  const displayRemStr = `${remH}h ${remM}m ${remS}s`;
 
   const dailyRemainingS = totalStats.D.remH * 3600;
   const dayRemH = Math.floor(dailyRemainingS / 3600);
   const dayRemM = Math.floor((dailyRemainingS % 3600) / 60);
   const dayRemS = Math.floor(dailyRemainingS % 60);
 
-  const dayRemStr = `${dayRemH}h ${dayRemM}m ${dayRemS}s`;
-  const yearProgressStr = `${calendarProgress.toFixed(2)}%`;
-  
-  const renderStatRow = (label: string, row: StatRow, hideDays = false) => {
-    const passedH = row.totH - row.remH;
-    const pct = row.totH > 0 ? (passedH / row.totH) * 100 : 0;
-    
-    return (
-      <div className="stat-row">
-        <span className="label">{label}</span> : <span className="value">{Math.floor(row.remH)}h</span>
-        {!hideDays && (
-          <>
-            <span className="sub-value">({Math.floor(row.remD)}d)</span>
-          </>
-        )}
-        <span className="separator">/</span>
-        <span className="value">{Math.floor(row.totH)}h</span>
-        {!hideDays && (
-          <>
-            <span className="sub-value">({Math.floor(row.totD)}d)</span>
-          </>
-        )}
-        <span className="pct-value" style={{ marginLeft: '8px', opacity: 0.7, fontSize: '0.85em' }}>
-          {pct.toFixed(1)}%
-        </span>
-      </div>
-    );
-  };
-
-  const renderCategoryCard = (c: any, stats: CatStats, titleDotColor?: string) => (
-    <div className="category-card" key={c.id}>
-      <div className="category-title">
-        <span
-          className="color-dot"
-          style={{ backgroundColor: titleDotColor || c.color }}
-        ></span>
-        {c.name}
-      </div>
-      {renderStatRow("Y", stats.Y)}
-      {renderStatRow("M", stats.M)}
-      {renderStatRow("D", stats.D, true)}
-      {renderStatRow("W", stats.W)}
-      {renderStatRow("H", stats.H)}
-    </div>
-  );
-
   return (
-    <div className="dashboard-container">
-      <div className="header">
-        <div className="datetime">{timeStr}</div>
-        <div className="remaining-huge-container">
-          <div className="timer-box">
-            <span className="timer-label">Year Progress</span>
-            <span className="remaining-huge">{yearProgressStr}</span>
-          </div>
-          <div className="timer-box">
-            <span className="timer-label">Yearly Remaining</span>
-            <span className="remaining-huge">{displayRemStr}</span>
-          </div>
-          <div className="timer-box">
-            <span className="timer-label">Today Remaining</span>
-            <span className="remaining-huge">{dayRemStr}</span>
-          </div>
+    <div className="dashboard-container pro-timers">
+      <header className="timers-header">
+        <div className="header-meta">
+          <History size={16} />
+          <span>Universal Time Logic / System Active</span>
         </div>
-
-        <div className="calendar-progress-wrapper" title="Calendar Year Progress">
-           <div className="calendar-progress-bar">
-             <div className="calendar-progress-fill" style={{ width: `${calendarProgress}%` }} />
+        <div className="main-stats-hero">
+           <div className="hero-card primary">
+              <span className="hero-tag"><Hourglass size={14} /> Today Left</span>
+              <h2 className="hero-value mono">{dayRemH}h {dayRemM}m {dayRemS}s</h2>
+              <div className="hero-progress-track">
+                 <div className="track-fill" style={{ width: `${(totalStats.D.remH / totalStats.D.totH) * 100}%` }} />
+              </div>
            </div>
-           <span className="calendar-progress-text">CALENDAR YEAR PASSING — {calendarProgress.toFixed(2)}%</span>
+           
+           <div className="hero-card secondary">
+              <span className="hero-tag"><Calendar size={14} /> Year Left</span>
+              <h2 className="hero-value">{remH}h <span className="text-muted">{remM}m</span></h2>
+              <div className="calendar-status">
+                 <div className="status-label">Calendar Decay</div>
+                 <div className="status-val">{calendarProgress.toFixed(4)}% Pass</div>
+              </div>
+           </div>
         </div>
+      </header>
 
-        <div className="progress-bar-container">
-          <div
-            className="progress-segment"
-            style={{
-              width: `${(passedYearHours / totalStats.Y.totH) * 100}%`,
-              backgroundColor: "#18181b",
-            }}
-          />
-          {categories.map((c: any) => (
-            <div
-              key={c.id}
-              className="progress-segment"
-              style={{
-                width: `${(catStats[c.id].Y.remH / totalStats.Y.totH) * 100}%`,
-                backgroundColor: c.color,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      <section className="allocation-overview">
+         <div className="section-header-compact">
+            <h3>Resource Allocation Ratio</h3>
+            <button className="pro-edit-btn" onClick={() => setIsEditing(true)}>
+              <Settings2 size={16} />
+              Customize Vector
+            </button>
+         </div>
 
-      <div className="grid-container">
-        {renderCategoryCard(
-          { id: "total", name: "Total", color: "#3f3f46" },
-          totalStats,
-          "#18181b"
-        )}
-        {categories.map((c: any) => renderCategoryCard(c, catStats[c.id]))}
-      </div>
+         <div className="allocation-grid">
+           {/* Total Control Card */}
+           <div className="alloc-card total-alloc">
+              <div className="alloc-info">
+                 <div className="alloc-name">System Wide</div>
+                 <div className="alloc-desc">Aggregate time pressure</div>
+              </div>
+              <div className="alloc-metrics">
+                 <div className="metric">
+                    <span className="m-label">Today</span>
+                    <span className="m-val">{totalStats.D.totH}h</span>
+                 </div>
+                 <div className="metric">
+                    <span className="m-label">Yearly Rem.</span>
+                    <span className="m-val">{Math.floor(totalStats.Y.remH)}h</span>
+                 </div>
+              </div>
+              <div className="alloc-progress-visual">
+                 <div className="visual-bar">
+                    <div className="fill" style={{ width: `${calendarProgress}%` }} />
+                 </div>
+              </div>
+           </div>
 
-      <div className="footer">
-        <button className="edit-btn" onClick={() => setIsEditing(true)}>Edit Ratio</button>
-      </div>
+           {/* Individual Categories */}
+           {categories.map((c) => {
+             const stats = catStats[c.id];
+             const dayPct = (stats.D.remH / stats.D.totH) * 100;
+             return (
+               <div key={c.id} className="alloc-card">
+                 <div className="alloc-top">
+                    <div className="alloc-title">
+                       <span className="dot" style={{ backgroundColor: c.color }} />
+                       <h4>{c.name}</h4>
+                    </div>
+                    {c.locked ? <Lock size={12} className="lock-icon" /> : <Unlock size={12} className="lock-icon unlock" />}
+                 </div>
+                 <div className="alloc-rows">
+                    <div className="alloc-row">
+                       <span className="r-label">Today</span>
+                       <span className="r-val">{stats.D.totH}h <span className="r-rem">/{stats.D.remH.toFixed(1)}h</span></span>
+                    </div>
+                    <div className="alloc-row">
+                       <span className="r-label">Monthly</span>
+                       <span className="r-val">{Math.floor(stats.M.remH)}h</span>
+                    </div>
+                 </div>
+                 <div className="alloc-progress-mini">
+                    <div className="p-bar" style={{ '--color': c.color } as any}>
+                       <div className="p-fill" style={{ width: `${dayPct}%` }} />
+                    </div>
+                 </div>
+               </div>
+             );
+           })}
+         </div>
+      </section>
 
+      {/* Ratios Edit Modal */}
       {isEditing && (
         <div className="modal-overlay" onClick={() => setIsEditing(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <h2>Edit Time Allocation Ratio</h2>
-            <div className="edit-form">
-              <div className="edit-header">
-                <span>Category</span>
-                <span>Weekday (h)</span>
-                <span>Weekend (h)</span>
+          <div className="modal-content pro-modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Ratio Engineering</h2>
+              <p>Calibrate daily time allocation for maximized objective completion.</p>
+            </div>
+            <div className="ratio-form">
+              <div className="form-head">
+                <span>Objective</span>
+                <span>Work-Cycle (h)</span>
+                <span>Rest-Cycle (h)</span>
               </div>
-              {categories.map((c: any, i: number) => (
-                <div key={c.id} className="edit-row">
-                  {c.locked ? (
-                    <span className="edit-name" style={{ color: c.color }}>{c.name}</span>
-                  ) : (
-                    <input
-                      type="text"
-                      className="edit-name-input"
-                      value={c.name}
-                      style={{ color: c.color }}
-                      onChange={(e) => {
-                        const newCats = [...categories];
-                        newCats[i] = { ...newCats[i], name: e.target.value };
-                        updateCategories(newCats);
-                      }}
-                    />
-                  )}
+              {categories.map((c, i) => (
+                <div key={c.id} className="form-row">
+                  <div className="name-box">
+                    {c.locked ? (
+                      <span className="fixed-name" style={{ color: c.color }}>{c.name}</span>
+                    ) : (
+                      <input
+                        type="text"
+                        className="name-input"
+                        value={c.name}
+                        onChange={(e) => {
+                          const next = [...categories];
+                          next[i].name = e.target.value;
+                          updateCategories(next);
+                        }}
+                      />
+                    )}
+                  </div>
                   <input 
                     type="number" 
                     value={c.w} 
-                    min="0"
-                    max="24"
                     onChange={(e) => {
-                      const newCats = [...categories];
-                      newCats[i] = { ...newCats[i], w: Number(e.target.value) };
-                      updateCategories(newCats);
+                      const next = [...categories];
+                      next[i].w = Number(e.target.value);
+                      updateCategories(next);
                     }}
                   />
                   <input 
                     type="number" 
                     value={c.h} 
-                    min="0"
-                    max="24"
                     onChange={(e) => {
-                      const newCats = [...categories];
-                      newCats[i] = { ...newCats[i], h: Number(e.target.value) };
-                      updateCategories(newCats);
+                      const next = [...categories];
+                      next[i].h = Number(e.target.value);
+                      updateCategories(next);
                     }}
                   />
                 </div>
               ))}
               
-              {/* Total Calculation Row */}
               {(() => {
-                const totalW = categories.reduce((sum: number, c: any) => sum + (c.w || 0), 0);
-                const totalH = categories.reduce((sum: number, c: any) => sum + (c.h || 0), 0);
-                const isWValid = Math.abs(totalW - 24) < 0.001;
-                const isHValid = Math.abs(totalH - 24) < 0.001;
-
+                const totW = categories.reduce((s, c) => s + (c.w || 0), 0);
+                const totH = categories.reduce((s, c) => s + (c.h || 0), 0);
+                const wOk = Math.abs(totW - 24) < 0.01;
+                const hOk = Math.abs(totH - 24) < 0.01;
                 return (
-                  <div className="edit-row total-row" style={{ borderTop: '1px solid #3f3f46', marginTop: '8px', paddingTop: '8px', fontWeight: 'bold' }}>
-                    <span className="edit-name">TOTAL</span>
-                    <span style={{ color: isWValid ? '#10b981' : '#ef4444', textAlign: 'center' }}>
-                      {parseFloat(totalW.toFixed(2))}h {!isWValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
-                    </span>
-                    <span style={{ color: isHValid ? '#10b981' : '#ef4444', textAlign: 'center' }}>
-                      {parseFloat(totalH.toFixed(2))}h {!isHValid && <span style={{ fontSize: '10px', display: 'block' }}>(!= 24)</span>}
-                    </span>
+                  <div className="form-total-row">
+                    <div className="total-label">CHECKSUM</div>
+                    <div className={`total-value ${wOk ? 'valid' : 'invalid'}`}>
+                       {totW}h {!wOk && <AlertCircle size={10} />}
+                    </div>
+                    <div className={`total-value ${hOk ? 'valid' : 'invalid'}`}>
+                       {totH}h {!hOk && <AlertCircle size={10} />}
+                    </div>
                   </div>
                 );
               })()}
             </div>
-            <div className="modal-actions">
-              <button className="edit-btn" onClick={() => setIsEditing(false)}>Close & Save</button>
+            <div className="modal-footer">
+               <button className="save-btn" onClick={() => setIsEditing(false)}>Lock Configuration</button>
             </div>
           </div>
         </div>

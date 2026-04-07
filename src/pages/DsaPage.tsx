@@ -79,10 +79,22 @@ export default function DsaPage() {
                             <Circle className="icon-uncheck" />
                           )}
                         </div>
-                        <span className="dsa-id">{prob.id}</span>
-                        <span className="dsa-title">{prob.title}</span>
+                        <div className="dsa-id-title">
+                          <span className="dsa-id">{prob.id}</span>
+                          <div className="dsa-name-wrap">
+                            <span className="dsa-title">{prob.title}</span>
+                            {prob.company && (
+                              <span className="dsa-company-badge">{prob.company}</span>
+                            )}
+                          </div>
+                        </div>
                         <span className="dsa-pattern">{prob.pattern}</span>
                         <span className="dsa-prereq">{prob.prerequisite}</span>
+                        {prob.note && (
+                          <div className="dsa-note" title={prob.note}>
+                            {prob.note}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -91,7 +103,7 @@ export default function DsaPage() {
             )}
             {expandedLevels[lIdx] && level.problems.length === 0 && (
               <div className="month-content dsa-content">
-                <p style={{ color: "var(--text-muted)" }}>No problems listed in this section.</p>
+                <p style={{ color: "var(--text-muted)", padding: "24px" }}>No problems listed in this section.</p>
               </div>
             )}
           </div>

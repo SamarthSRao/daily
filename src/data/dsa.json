@@ -1222,6 +1222,106 @@
         "cluster": "Monotonic Stack/Queue",
         "striver_covered": true,
         "note": "For each element, find the first greater element to its right. Monotonic decreasing stack: pop when a greater element is found. O(n). Builds directly on Daily Temperatures. Prerequisite for Largest Rectangle Histogram (129) and Trapping Rain Water (128). Master the stack-pop-on-resolve loop."
+      },
+      {
+        "id": "17",
+        "title": "Letter Combinations of a Phone Number",
+        "pattern": "String Backtracking",
+        "prerequisite": "Recursion Basics",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "Map digits to letters. DFS through digits, appending letters. O(4^n * n) where n is length of digits. Classical state-space search. Prerequisite for Combination Sum (39) and Word Search (79)."
+      },
+      {
+        "id": "39",
+        "title": "Combination Sum",
+        "pattern": "Infinite Supply Backtracking",
+        "prerequisite": "Basic Backtracking",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "DFS with 'pick' and 'not pick' branch. 'Pick' stays at current index to allow reuse. Backtrack by removing added element. O(2^t * k) where t is target. Prerequisite for Combination Sum II (40) — teaches the 'reuse' vs 'single-use' distinction."
+      },
+      {
+        "id": "40",
+        "title": "Combination Sum II",
+        "pattern": "Unique Subsets Backtracking",
+        "prerequisite": "Combination Sum (39)",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "Sort array first. Skip adjacent duplicates (`if i > start and arr[i] == arr[i-1]: continue`). Each element can only be used once per path. O(2^n * k). The duplicate-skipping logic is the key architectural difference from (39)."
+      },
+      {
+        "id": "46",
+        "title": "Permutations",
+        "pattern": "All-Ordering Search",
+        "prerequisite": "Backtracking Foundations",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "DFS with 'used' array or in-place swapping. O(n! * n). Foundation for all ordering problems. Prerequisite for Permutations II (47) and N-Queens (51). Understanding the choice-at-each-level pattern is critical."
+      },
+      {
+        "id": "47",
+        "title": "Permutations II",
+        "pattern": "Unique Ordering Search",
+        "prerequisite": "Permutations (46)",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "Sort array. Use 'used' array. Skip if `arr[i] == arr[i-1]` and `arr[i-1]` was NOT used (ensures only one instance of duplicate starts at this position). O(n! * n). The used-flag tiebreaker is the standard way to handle duplicates in permutations."
+      },
+      {
+        "id": "77",
+        "title": "Combinations",
+        "pattern": "Subset Selection",
+        "prerequisite": "Backtracking Foundations",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "DFS from 1 to n picking exactly k numbers. Prune: `if (n - i + 1) < (k - path.size()): return`. O(C(n,k) * k). The pruning optimization is what interviewers look for — don't explore paths that can't reach size k."
+      },
+      {
+        "id": "78",
+        "title": "Subsets",
+        "pattern": "Power Set Generation",
+        "prerequisite": "Backtracking Foundations",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "Backtracking or Bitmasking. At each step, include current element or not. O(2^n * n). Binary choice per level. Prerequisite for Subsets II (90). Teaches the simplest state-space branching structure."
+      },
+      {
+        "id": "90",
+        "title": "Subsets II",
+        "pattern": "Unique Power Set",
+        "prerequisite": "Subsets (78)",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "Sort array. Standard skip-duplicate loop. O(2^n * n). Same 'skip adjacent' logic as Combination Sum II. Essential for any 'unique combinations' requirements."
+      },
+      {
+        "id": "131",
+        "title": "Palindrome Partitioning",
+        "pattern": "Segmentation Backtracking",
+        "prerequisite": "String Basics + Backtracking",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": true,
+        "note": "Try every possible prefix: if it's a palindrome, recurse on the suffix. O(2^n * n). Prerequisite for Word Break (164). Teaches 'cut and recurse' pattern for string partitioning."
+      },
+      {
+        "id": "216",
+        "title": "Combination Sum III",
+        "pattern": "Constraint-based Subsets",
+        "prerequisite": "Combination Sum (39)",
+        "company": "General",
+        "cluster": "Backtracking & Recursion",
+        "striver_covered": false,
+        "note": "Numbers 1-9 used at most once, sum up to n, k numbers total. DFS with index and remaining target. O(C(9,k) * k). Specific variant of the subset-selection pattern with multiple pruning conditions (sum and count)."
       }
     ]
   },
@@ -2413,6 +2513,621 @@
         "cluster": "Sorted Set Design",
         "striver_covered": false,
         "note": "Two HashMaps: food → category and food → rating. One category → TreeSet of (rating, name). TreeSet keeps elements sorted for O(log n) update and O(1) query. Prerequisite for Movie Rental System (137). The multi-map + sorted set pattern is standard for leaderboard designs."
+      },
+      {
+        "id": "137",
+        "title": "Movie Rental System",
+        "pattern": "Inventory Sort",
+        "prerequisite": "Multi-Map + Sorted Set",
+        "company": "General",
+        "cluster": "Sorted Set Design",
+        "striver_covered": false,
+        "note": "Maintain sorted sets for available movies of a type, and another for rented movies. Update in O(log n), report top 5 in O(1). Prerequisite for Design Food Rating (136). The double-indexing (by movie and by rental status) is the key design core."
+      },
+      {
+        "id": "153",
+        "title": "Text Editor Logic",
+        "pattern": "State Recovery",
+        "prerequisite": "Undo/Redo Stacks",
+        "company": "General",
+        "cluster": "System Design",
+        "striver_covered": false,
+        "note": "Use two stacks or a doubly linked list with a cursor. Support add, delete, cursor move, and undo/redo. O(L) for cursor moves, O(1) for edits. Prerequisite for Design Spreadsheet (126). Teaches transactional state management for UI-driven systems."
+      },
+      {
+        "id": "156",
+        "title": "Disjoint Int. Stream",
+        "pattern": "Continuous Range",
+        "prerequisite": "Map/Sorted Set",
+        "company": "General",
+        "cluster": "Time-Based Design",
+        "striver_covered": false,
+        "note": "Given a stream of integers, group into continuous intervals. Use TreeMap or DSU. Prerequisite for Range Module (193). The interval-merging logic on a live stream is the standard 'online' version of the Merge Intervals problem."
+      },
+      {
+        "id": "161",
+        "title": "0/1 Knapsack",
+        "pattern": "Resource Capacity",
+        "prerequisite": "DP Foundations",
+        "company": "General",
+        "cluster": "DP Mastery: Knapsack",
+        "striver_covered": true,
+        "note": "Classic: pick or skip each item. dp[i][w] = max value using i items and capacity w. O(n·W). Prerequisite for Partition Equal Subset (162) and Coin Change (163). The space optimization to O(W) is the mandatory follow-up."
+      },
+      {
+        "id": "162",
+        "title": "Partition Equal Subset Sum",
+        "pattern": "Data Load Balance",
+        "prerequisite": "0/1 Knapsack (161)",
+        "company": "General",
+        "cluster": "DP Mastery: Knapsack",
+        "striver_covered": true,
+        "note": "Find if subset sum = total_sum / 2. Reduction to Knapsack. O(n·sum). Teaches how to recognize 'partition' problems as constraint-satisfaction knapsack variants."
+      },
+      {
+        "id": "416",
+        "title": "Combination Sum IV",
+        "pattern": "Permutation Counting",
+        "prerequisite": "Knapsack Logic",
+        "company": "General",
+        "cluster": "DP Mastery: Knapsack",
+        "striver_covered": false,
+        "note": "Count ways to reach target using numbers (repeats allowed). dp[i] = sum of dp[i - num]. O(target · n). Unlike 0/1 Knapsack, target is the outer loop because order matters (permutations)."
+      },
+      {
+        "id": "494",
+        "title": "Target Sum",
+        "pattern": "Subset Partitioning",
+        "prerequisite": "0/1 Knapsack (161)",
+        "company": "General",
+        "cluster": "DP Mastery: Knapsack",
+        "striver_covered": true,
+        "note": "Assign +/- to each number to reach target. Mathematically simplifies to finding a subset with sum (target + total_sum)/2. Reduction to Knapsack. Teaches mathematical reformulating before DP."
+      },
+      {
+        "id": "163",
+        "title": "Coin Change",
+        "pattern": "Optimal Denomination",
+        "prerequisite": "Unbounded Knapsack",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Min coins to reach amount. dp[i] = 1 + min(dp[i - coin]). O(n·amount). Foundation for all 'minimum steps' DP. Prerequisite for Word Break (164). The unbounded nature (unlimited coins) is the key distinction from 161."
+      },
+      {
+        "id": "164",
+        "title": "Word Break",
+        "pattern": "Log Segmentation",
+        "prerequisite": "Coin Change (163)",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Check if string s can be segmented using dictionary. dp[i] = True if s[j:i] in dict and dp[j] is True. O(n²). Prerequisite for Palindrome Partitioning II. Teaches DP on string intervals."
+      },
+      {
+        "id": "165",
+        "title": "Decode Ways",
+        "pattern": "Stream Interp.",
+        "prerequisite": "DP Foundations",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Number of ways to decode numeric string based on 1-26 mappings. O(n). Handle '0' as invalid prefix. Teaches 'look-back' DP (current depends on i-1 and i-2). Prerequisite for Frog Jump (250)."
+      },
+      {
+        "id": "166",
+        "title": "Longest Increasing Subsequence",
+        "pattern": "Logistics Trends",
+        "prerequisite": "DP + Binary Search",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Find length of longest increasing subseq. O(n²) with DP, O(n log n) with binary search (patience sorting). Prerequisite for Russian Doll Envelopes (251). The binary search optimization is the industry-standard follow-up."
+      },
+      {
+        "id": "176",
+        "title": "Unique Paths",
+        "pattern": "Grid Routing",
+        "prerequisite": "DP Foundations",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Number of paths from top-left to bottom-right in m x n grid. dp[i][j] = dp[i-1][j] + dp[i][j-1]. O(n·m) or O(min(m,n)) space. Foundation for all grid DP. Prerequisite for Minimum Path Sum (64) and Dungeon Game."
+      },
+      {
+        "id": "63",
+        "title": "Unique Paths II",
+        "pattern": "Obstacle Routing",
+        "prerequisite": "Unique Paths (176)",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Same as 176 but with obstacles. If cell is 0, dp[i][j] = 0. O(n·m). Teaches boundary conditions and state zeroing in DP."
+      },
+      {
+        "id": "221",
+        "title": "Maximal Square",
+        "pattern": "Binary Grid Area",
+        "prerequisite": "Grid DP Foundations",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Find largest square of 1s. dp[i][j] = 1 + min(top, left, top-left) if cell is 1. O(n·m). Teaches multi-neighbor dependency in grid DP. Prerequisite for Maximal Rectangle (130)."
+      },
+      {
+        "id": "1143",
+        "title": "Longest Common Subsequence",
+        "pattern": "Sequence Alignment",
+        "prerequisite": "2D DP Foundations",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Find length of longest subseq common to two strings. dp[i][j] depends on 3 neighbors. O(n·m). Foundation for Edit Distance (174) and DNA sequencing algorithms. Teaches string-to-string comparative DP."
+      },
+      {
+        "id": "174",
+        "title": "Edit Distance",
+        "pattern": "Measuring Divergence",
+        "prerequisite": "LCS (1143)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Min operations (insert, delete, replace) to convert string A to B. dp[i][j] = 1 + min(3 neighbors) if chars differ. O(n·m). The core of auto-correct and diff tools. Teaches multi-choice transition logic."
+      },
+      {
+        "id": "184",
+        "title": "Matrix Chain Multiplication",
+        "pattern": "Pipeline Ordering",
+        "prerequisite": "Interval DP",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Find most efficient way to multiply matrices. dp[i][j] = min over k of (dp[i][k] + dp[k+1][j] + cost). O(n³). Teaches 'break-point' iteration in interval DP. Prerequisite for Burst Balloons (185)."
+      },
+      {
+        "id": "185",
+        "title": "Burst Balloons",
+        "pattern": "Interval Gain",
+        "prerequisite": "Matrix Chain (184)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Max coins by bursting balloons. dp[i][j] = max gain by bursting last balloon k in range (i,j). O(n³). Hard interval DP — the 'last-to-burst' insight is the key architectual breakthrough."
+      },
+      {
+        "id": "1125",
+        "title": "Smallest Sufficient Team",
+        "pattern": "Bitmask DP",
+        "prerequisite": "Bitmasking + DP",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "Find smallest team covering all required skills. dp[mask] = min people for skill bits in mask. O(n·2^skills). Standard set-cover-on-small-domain problem. Teaches bitwise state transitions."
+      },
+      {
+        "id": "199",
+        "title": "Shortest Visiting Path",
+        "pattern": "Target Node Path",
+        "prerequisite": "TSP / DP + Bitmask",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "Shortest path visiting all nodes (TSP variant). BFS with state (curr_node, visited_mask). O(n² · 2^n). Teaches mixing graph traversal with bitmask state to solve NP-hard problems on small N."
+      },
+      {
+        "id": "518",
+        "title": "Coin Change II",
+        "pattern": "Unbounded Combination",
+        "prerequisite": "Coin Change (163)",
+        "company": "General",
+        "cluster": "DP Mastery: Knapsack",
+        "striver_covered": true,
+        "note": "Count number of ways to make change. dp[i][j] = dp[i-1][j] + dp[i][j-coins[i]]. O(n·amount). Order doesn't matter (combinations), so coins is the outer loop."
+      },
+      {
+        "id": "32",
+        "title": "Longest Valid Parentheses",
+        "pattern": "String Matching",
+        "prerequisite": "Stack / DP",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Find length of longest valid parentheses substring. O(n) with DP or Stack. Teaches state-checking based on pairing logic."
+      },
+      {
+        "id": "583",
+        "title": "Delete Operation for Two Strings",
+        "pattern": "String Delta",
+        "prerequisite": "LCS (1143)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Min steps to make strings same using deletion. Result = n + m - 2*LCS. O(n·m). Direct application of LCS."
+      },
+      {
+        "id": "712",
+        "title": "Minimum ASCII Delete Sum",
+        "pattern": "Weighted String Delta",
+        "prerequisite": "LCS (1143)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": false,
+        "note": "Same as 583 but with ASCII weights instead of counts. O(n·m). Variant of LCS with weight-based transitions."
+      },
+      {
+        "id": "10",
+        "title": "Regular Expression Matching",
+        "pattern": "Pattern Recursive",
+        "prerequisite": "LCS / String DP",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Implement '.' and '*'. dp[i][j] handling of '*' branch is the trick. O(n·m). One of the hardest string DP problems."
+      },
+      {
+        "id": "44",
+        "title": "Wildcard Matching",
+        "pattern": "Pattern Recursive",
+        "prerequisite": "Regex (10)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Implement '?' and '*'. Pattern '*' can match empty sequence unlike Regex (10). O(n·m). Simpler transition but broader '*' match."
+      },
+      {
+        "id": "115",
+        "title": "Distinct Subsequences",
+        "pattern": "Occurrence Counting",
+        "prerequisite": "LCS Foundations",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Number of ways s can form t as a subsequence. dp[i][j] = dp[i-1][j-1] + dp[i-1][j] if chars match. O(n·m). Teaches selection-based counting DP."
+      },
+      {
+        "id": "1312",
+        "title": "Minimum Insertion Steps",
+        "pattern": "Palindrome Construction",
+        "prerequisite": "LCS (1143)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": true,
+        "note": "Min insertions to make string palindrome. Result = n - LCS(s, reverse(s)). O(n²). Teaches reduction to LCS for palindrome problems."
+      },
+      {
+        "id": "1039",
+        "title": "Minimum Score Triangulation",
+        "pattern": "Convex Polygon",
+        "prerequisite": "Matrix Chain (184)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": false,
+        "note": "Min cost to triangulate convex polygon. dp[i][j] = min over k of (dp[i][k] + dp[k][j] + cost(i,j,k)). O(n³). Geometric variant of MCM."
+      },
+      {
+        "id": "1547",
+        "title": "Minimum Cost to Cut a Stick",
+        "pattern": "Dynamic Segmentation",
+        "prerequisite": "Matrix Chain (184)",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": false,
+        "note": "Min cost to cut stick at given positions. Add endpoints 0 and L, sort. O(n³). Classic interval-splitting DP."
+      },
+      {
+        "id": "664",
+        "title": "Strange Printer",
+        "pattern": "Overlap Minimization",
+        "prerequisite": "Interval DP",
+        "company": "General",
+        "cluster": "DP Mastery: String & Interval",
+        "striver_covered": false,
+        "note": "Min turns to print string with printer that can print any range of same char. dp[i][j] = dp[i][j-1] if s[i]==s[j] else min with break. O(n³). Hard interval DP."
+      },
+      {
+        "id": "62",
+        "title": "Unique Paths",
+        "pattern": "Grid Routing",
+        "prerequisite": "Recursive Counting",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Number of paths top-left to bottom-right. O(n·m). Foundation for all grid DP."
+      },
+      {
+        "id": "64",
+        "title": "Minimum Path Sum",
+        "pattern": "Cost Matrix",
+        "prerequisite": "Unique Paths (62)",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Min sum of path in grid. dp[i][j] = grid[i][j] + min(up, left). O(n·m). First grid DP problem for most learners."
+      },
+      {
+        "id": "120",
+        "title": "Triangle",
+        "pattern": "Pyramid Path",
+        "prerequisite": "Grid DP",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Min path sum in triangle. Bottom-up DP: dp[i][j] += min(dp[i+1][j], dp[i+1][j+1]). O(n²). Teaches reverse direction DP."
+      },
+      {
+        "id": "931",
+        "title": "Minimum Falling Path Sum",
+        "pattern": "Multi-neighbor Grid",
+        "prerequisite": "Triangle (120)",
+        "company": "General",
+        "cluster": "DP Mastery: Linear & Grid",
+        "striver_covered": true,
+        "note": "Falling path sum through grid. dp[i][j] = cell + min(3 neighbors above). O(n·m). Teaches handling multiple grid entry points."
+      },
+      {
+        "id": "337",
+        "title": "House Robber III",
+        "pattern": "Subtree-based Profit",
+        "prerequisite": "Post-order DFS",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": true,
+        "note": "Max profit robbing nodes where parent-child cannot be robbed. Return [rob, not_rob] per node. O(n). Combines post-order recursion with selection DP."
+      },
+      {
+        "id": "543",
+        "title": "Diameter of Binary Tree",
+        "pattern": "Span Maximizer",
+        "prerequisite": "Post-order DFS",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": true,
+        "note": "Longest path between any two nodes. Update global max with (left+right) during height calculation. O(n). Teaches tracking global state during recursion."
+      },
+      {
+        "id": "968",
+        "title": "Binary Tree Cameras",
+        "pattern": "Surveillance Greedy",
+        "prerequisite": "Tree Greedy",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "Min cameras to cover all nodes. Return state (covered, camera, uncovered). O(n). Hard tree DP/Greedy hybrid."
+      },
+      {
+        "id": "1372",
+        "title": "Longest ZigZag Path",
+        "pattern": "Directional State",
+        "prerequisite": "Tree Traversal",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "Max zigzag path. DFS passing (left_len, right_len). O(n). Teaches carrying direction-specific state in tree traversal."
+      },
+      {
+        "id": "1434",
+        "title": "Number of Ways to Wear Hats",
+        "pattern": "Set Reversal Bitmask",
+        "prerequisite": "Bitmask DP",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "N people, 40 hats. Find ways to wear unique hats. Iterate over hats (40) rather than people (2^n). O(hats · 2^people). Teaches domain reversal for bitmasking."
+      },
+      {
+        "id": "691",
+        "title": "Stickers to Spell Word",
+        "pattern": "Word-Set Coverage",
+        "prerequisite": "Bitmask DP",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "Min stickers to form word. State = remaining char bits in target. O(n · 2^L). Hard state-space optimization."
+      },
+      {
+        "id": "1879",
+        "title": "Min XOR Sum of Two Arrays",
+        "pattern": "Assignment Optimization",
+        "prerequisite": "Bitmask DP",
+        "company": "General",
+        "cluster": "DP Mastery: Tree & Bitmask",
+        "striver_covered": false,
+        "note": "Find assignment of two arrays for min XOR sum. dp[mask] = min sum using first i elements and mask of second array. O(n · 2^n). Standard bitmask matching problem."
+      },
+      {
+        "id": "29",
+        "title": "Divide Two Integers",
+        "pattern": "Exponential Search",
+        "prerequisite": "Bit Manipulation",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Divide without * / %. Use bit shifts to subtract in powers of 2 (binary search logic). O(log n). Teaches how division is implemented at bit level."
+      },
+      {
+        "id": "190",
+        "title": "Reverse Bits",
+        "pattern": "Binary Transpose",
+        "prerequisite": "Bit Manipulation",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Reverse 32 bits. O(1) or O(log 32) using mask swapping. Essential for low-level data protocol parsing."
+      },
+      {
+        "id": "260",
+        "title": "Single Number III",
+        "pattern": "Group Correlation",
+        "prerequisite": "XOR Basics",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Two numbers appear once, others twice. XOR all = x ^ y. Get lowest set bit of (x^y) to partition array into two groups. XOR each group. O(n). The set-bit partition is the key insight."
+      },
+      {
+        "id": "137",
+        "title": "Single Number II",
+        "pattern": "Base-3 Logic",
+        "prerequisite": "Bit manipulation",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Every number appears thrice, one once. Count bits at each position % 3. Or state-machine: `ones = (ones ^ n) & ~twos`, `twos = (twos ^ n) & ~ones`. O(n). Teaches custom-base bit manipulation."
+      },
+      {
+        "id": "37",
+        "title": "Sudoku Solver",
+        "pattern": "Constraint Satisfaction",
+        "prerequisite": "Valid Sudoku (119)",
+        "company": "General",
+        "cluster": "Advanced Backtracking",
+        "striver_covered": true,
+        "note": "Backtracking with pruning: find empty cell, try 1-9, verify with rows/cols/boxes bitmasks. O(9^k) where k is empty cells. The state-restoration (backtrack) is the key. Prerequisite for all grid-filling logic."
+      },
+      {
+        "id": "51",
+        "title": "N-Queens",
+        "pattern": "Non-Conflict Search",
+        "prerequisite": "Backtracking Foundations",
+        "company": "General",
+        "cluster": "Advanced Backtracking",
+        "striver_covered": true,
+        "note": "Place N queens such that no two attack. Tracking columns, positive diagonals (r+c), and negative diagonals (r-c). O(n!). Teaches diagonal-conflict bitmasking. Prerequisite for N-Queens II."
+      },
+      {
+        "id": "212",
+        "title": "Word Search II",
+        "pattern": "Trie-Accelerated Search",
+        "prerequisite": "Word Search (79) + Trie",
+        "company": "General",
+        "cluster": "Advanced Backtracking",
+        "striver_covered": true,
+        "note": "Search multiple words in grid. Insert all words into Trie. DFS from each cell in grid while traversing Trie simultaneously. O(m·n·4^L). Pruning with Trie makes this efficient. Teaches data-structure-augmented backtracking."
+      },
+      {
+        "id": "204",
+        "title": "Count Primes",
+        "pattern": "Constraint Elimination",
+        "prerequisite": "Number Theory Basics",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Sieve of Eratosthenes: mark multiples of primes as non-prime. O(n log log n). Foundation for all primality problems. Prerequisite for any 'prime factor' requirements."
+      },
+      {
+        "id": "50",
+        "title": "Pow(x, n)",
+        "pattern": "Divide and Conquer",
+        "prerequisite": "Binary Exponentiation",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Compute x^n in O(log n). recursive: pow(x, n/2)² · (x if n odd). Teaches binary exponentiation — the standard way to handle large powers in cryptography."
+      },
+      {
+        "id": "371",
+        "title": "Sum of Two Integers",
+        "pattern": "Binary Arithmetic",
+        "prerequisite": "Bitwise XOR and AND",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Add two integers without +/-. XOR gives sum without carry, AND << 1 gives carry. Loop until carry is 0. O(32). Teaches how ALU-level addition works."
+      },
+      {
+        "id": "191",
+        "title": "Number of 1 Bits",
+        "pattern": "Hamming Weight",
+        "prerequisite": "Bit Manipulation",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "Count set bits. Brian Kernighan's: n = n & (n - 1) removes the lowest set bit. O(k) where k = number of set bits. Teaches significant bit isolation."
+      },
+      {
+        "id": "338",
+        "title": "Counting Bits",
+        "pattern": "Bitwise DP",
+        "prerequisite": "Bit Manipulation Foundations",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": true,
+        "note": "For 0..n, return count of set bits. dp[i] = dp[i >> 1] + (i & 1). O(n). Combines bit manipulation with simple DP. The power-of-2 pattern allows O(1) state transition."
+      },
+      {
+        "id": "151",
+        "title": "Maximize Amount (Currency)",
+        "pattern": "Arbitrage Detection",
+        "prerequisite": "DFS/BFS + Conversion",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": false,
+        "note": "Find max amount after currency conversions. Build graph where edges are exchange rates. Use log-transform to turn product into sum: log(a·b) = log a + log b. Apply Bellman-Ford or DFS for max path. O(V·E). Teaches log-transformation for multiplication paths."
+      },
+      {
+        "id": "152",
+        "title": "Settle Debt",
+        "pattern": "P2P Balancing",
+        "prerequisite": "Backtracking/Greedy",
+        "company": "General",
+        "cluster": "Advanced Math & Bit Manipulation",
+        "striver_covered": false,
+        "note": "Splitwise settlement: min transactions to settle all debts. Precompute net balance per person. Backtracking to find subsets that sum to zero (cancelling debt clusters). O(2^n). Teaches set-partitioning optimization."
+      }
+    ]
+  },
+  {
+    "title": "Level 4: Expert (Architecture)",
+    "problems": [
+      {
+        "id": "201",
+        "title": "Paxos vs Raft Comparison",
+        "pattern": "Theoretical Consensus",
+        "prerequisite": "Majority Quorum Logic",
+        "company": "General",
+        "cluster": "Architecture & Distributed Systems",
+        "striver_covered": false,
+        "note": "Analyze Paxos (Complex, multi-stage) vs Raft (Understandable, leader-based). Key concepts: Proposal numbers, Acceptors, Term IDs, Log Replication. Prerequisite for all distributed database studies. Raft is the engine of Etcd and CockroachDB."
+      },
+      {
+        "id": "202",
+        "title": "Vector Clocks Logic",
+        "pattern": "Conflict Resolution",
+        "prerequisite": "Lamport Timestamps",
+        "company": "General",
+        "cluster": "Architecture & Distributed Systems",
+        "striver_covered": false,
+        "note": "Logical clock where each node maintains a vector of counters. Detect causality and concurrent updates. O(N) space. Prerequisite for Dynamo-style eventual consistency and CRDTs. Essential for resolving multi-write conflicts without a central leader."
+      },
+      {
+        "id": "203",
+        "title": "Gossip Protocol",
+        "pattern": "Node Discovery",
+        "prerequisite": "Distributed Connectivity",
+        "company": "General",
+        "cluster": "Architecture & Distributed Systems",
+        "striver_covered": false,
+        "note": "Nodes periodically share state with random neighbors. Eventually all nodes learn global state. O(log N) convergence. Powering cluster membership in Cassandra and Serf. Teaches probabilistic health and states sharing."
+      },
+      {
+        "id": "204",
+        "title": "Hinted Handoff",
+        "pattern": "Failure Handling",
+        "prerequisite": "Fault Tolerance Primitives",
+        "company": "General",
+        "cluster": "Architecture & Distributed Systems",
+        "striver_covered": false,
+        "note": "When a node is down, neighbor stores the write locally ('hint'). Once node returns, hand off the data. Ensures high availability during temporary partitions. Teaches asynchronous recovery patterns in AP systems."
+      },
+      {
+        "id": "205",
+        "title": "Distributed Locking",
+        "pattern": "Cluster Mutexes",
+        "prerequisite": "Consensus Algorithms",
+        "company": "General",
+        "cluster": "Architecture & Distributed Systems",
+        "striver_covered": false,
+        "note": "Acquire global lock across N nodes. Redis Redlock logic vs ZooKeeper sequential nodes. Fencing tokens (monotonically increasing) prevent stale writes from late owners. O(N) acquisition. Prerequisite for distributed scheduler design (DungBeetle)."
       }
     ]
   }

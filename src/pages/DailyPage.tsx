@@ -46,8 +46,8 @@ export default function DailyPage() {
       <div className="curriculum-list">
         {data.map((month, mIdx) => (
           <div key={mIdx} className="month-card">
-            <div 
-              className="month-header" 
+            <div
+              className="month-header"
               onClick={() => toggleMonth(mIdx)}
             >
               <div className="month-title">
@@ -63,7 +63,7 @@ export default function DailyPage() {
                   const weekKey = `${mIdx}-${wIdx}`;
                   return (
                     <div key={weekKey} className="week-card">
-                      <div 
+                      <div
                         className="week-header"
                         onClick={() => toggleWeek(mIdx, wIdx)}
                       >
@@ -82,8 +82,8 @@ export default function DailyPage() {
                                   const isDone = completedTasks[taskId];
 
                                   return (
-                                    <li 
-                                      key={taskId} 
+                                    <li
+                                      key={taskId}
                                       className={`task-item ${isDone ? "completed" : ""}`}
                                       onClick={() => toggleTask(taskId)}
                                     >

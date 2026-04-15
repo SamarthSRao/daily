@@ -272,6 +272,7 @@
 .level-0 { --level-accent: #6366f1; --level-glow: rgba(99, 102, 241, 0.3); }
 .level-1 { --level-accent: #10b981; --level-glow: rgba(16, 185, 129, 0.3); }
 .level-2 { --level-accent: #f59e0b; --level-glow: rgba(245, 158, 11, 0.3); }
+.level-3 { --level-accent: #ec4899; --level-glow: rgba(236, 72, 153, 0.3); }
 
 /* Utility classes for layout without Tailwind */
 .flex { display: flex; }

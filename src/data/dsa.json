@@ -3,112 +3,404 @@
     "title": "Level 1: Foundation (Beginner)",
     "problems": [
       {
+        "id": "G01",
+        "title": "Build Adjacency List from Edge List",
+        "pattern": "Graph Representation",
+        "prerequisite": "Array Basics",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "Convert edge list [(u,v)] into dict/array of neighbor lists. Directed vs undirected variants. O(V+E) space. Must be automatic — all graph problems start here. Prerequisite for Find if Path Exists (34), Clone Graph (16), and every BFS/DFS problem."
+      },
+      {
+        "id": "G02",
+        "title": "BFS on a Graph (Iterative)",
+        "pattern": "Level-order Graph Traversal",
+        "prerequisite": "Build Adjacency List (G01), Queue Basics",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "Enqueue source, mark visited, process level-by-level. O(V+E). Prerequisite for Rotting Oranges (11), Snake & Ladder (21), Open the Lock (26), and every shortest-path-in-unweighted-graph problem. BFS = shortest path when all edges have equal weight."
+      },
+      {
+        "id": "G03",
+        "title": "DFS on a Graph (Recursive + Iterative)",
+        "pattern": "Depth-first Graph Traversal",
+        "prerequisite": "Build Adjacency List (G01)",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "Recursive: mark visited, recurse on unvisited neighbors. Iterative: explicit stack. O(V+E). Prerequisite for All Paths From Source (45), Clone Graph (16), Cycle Detection, and all DFS-based problems. Must know both forms."
+      },
+      {
+        "id": "G04",
+        "title": "Detect Cycle in Undirected Graph (DFS + BFS)",
+        "pattern": "Undirected Cycle Detection",
+        "prerequisite": "DFS on Graph (G03)",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "DFS: if a visited neighbor is not the direct parent, cycle exists. BFS: same via parent tracking. O(V+E). Prerequisite for Graph Valid Tree (23) and Redundant Connection (18). Critical distinction: parent node is not a back-edge in undirected graphs."
+      },
+      {
+        "id": "G05",
+        "title": "Detect Cycle in Directed Graph (DFS Color / Kahn's)",
+        "pattern": "Directed Cycle Detection",
+        "prerequisite": "DFS on Graph (G03)",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "DFS with 3-color states (white/gray/black): gray neighbor = back-edge = cycle. Or Kahn's BFS: if not all nodes dequeued, cycle exists. O(V+E). Prerequisite for Course Schedule II (6), Alien Dictionary (2), Find Eventual Safe States (22)."
+      },
+      {
         "id": "5",
         "title": "Cheapest Flights (K Stops)",
         "pattern": "State-based Search",
-        "prerequisite": "Basic Array Indexing"
+        "prerequisite": "Basic Array Indexing",
+        "company": "Uber",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "Entry point for constrained shortest path. Bellman-Ford with K-step limit. Prerequisite for Cheapest Flights Within K Stops (215) and all Dijkstra variants. Must understand state = (node, stops_remaining)."
       },
       {
         "id": "9",
         "title": "Reconstruct Itinerary",
         "pattern": "Eulerian Path",
-        "prerequisite": "DFS Foundations"
+        "prerequisite": "DFS Foundations",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "Hierholzer's algorithm for Eulerian path. Key insight: use a min-heap adjacency list and post-order DFS. Prerequisite for all Eulerian circuit / path problems. Tricky edge case: must use all edges exactly once."
       },
       {
         "id": "34",
         "title": "Find if Path Exists",
         "pattern": "Basic Reachability",
-        "prerequisite": "Array Traversal"
+        "prerequisite": "Array Traversal",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": true,
+        "note": "Simplest graph reachability problem. Solvable via BFS, DFS, or Union-Find. Prerequisite for Number of Islands (3) and Clone Graph (16). Teaches visited-set discipline and graph input parsing."
       },
       {
         "id": "47",
         "title": "Find Center of Star Graph",
         "pattern": "Star Topology Hub",
-        "prerequisite": "Hashing"
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "Graph Traversal Foundations",
+        "striver_covered": false,
+        "note": "O(1) solution: the center appears in every edge. Just check edges[0] and edges[1] for the common node. Teaches graph topology recognition — no traversal needed when structure is known."
+      },
+      {
+        "id": "T01",
+        "title": "Binary Tree Preorder Traversal",
+        "pattern": "Root → Left → Right",
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Visit root first, then left subtree, then right. Both recursive (trivial) and iterative (stack: push right then left). O(n). Prerequisite for Construct from Preorder/Inorder (67), Serialize Tree (52). The iterative form is required — always know it."
+      },
+      {
+        "id": "T02",
+        "title": "Binary Tree Inorder Traversal",
+        "pattern": "Left → Root → Right",
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Inorder of BST = sorted sequence. Iterative (explicit stack): push left chain, pop, visit, go right. O(n). Prerequisite for Validate BST (57), Kth Smallest in BST (54), Recover BST (70), Delete Node in BST (88). Iterative form must be automatic."
+      },
+      {
+        "id": "T03",
+        "title": "Binary Tree Postorder Traversal",
+        "pattern": "Left → Right → Root",
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Children before parent. Iterative: reverse of modified preorder (root, right, left) → reverse result. O(n). Prerequisite for Binary Tree Max Path Sum (53), Diameter (63), Binary Tree Cameras (75), House Robber III (79). Post-order = bottom-up computation."
+      },
+      {
+        "id": "T04",
+        "title": "Binary Tree Level Order Traversal (BFS)",
+        "pattern": "Layer-by-layer BFS",
+        "prerequisite": "Queue Basics",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Queue-based BFS. Snapshot queue.size() before inner loop to separate levels. O(n). Foundation for Right View (59), Zigzag (69), Vertical Order (58), Populating Next Pointers (68), Maximum Width (87). Must be completely automatic."
       },
       {
         "id": "61",
         "title": "Maximum Depth of Tree",
         "pattern": "Recursive Depth",
-        "prerequisite": "Basic Recursion"
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "The canonical recursion problem. return 1 + max(left, right). Foundation for Balanced Binary Tree (71), Diameter (63), and all post-order DP problems. Must be solved both recursively and iteratively."
       },
       {
         "id": "62",
         "title": "Invert Binary Tree",
         "pattern": "Recursive Swap",
-        "prerequisite": "Basic Recursion"
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Swap left and right children at every node. Builds intuition for structural tree mutation. Prerequisite for Symmetric Tree (92) and tree comparison problems. Can also be solved iteratively with BFS."
       },
       {
         "id": "71",
         "title": "Balanced Binary Tree",
         "pattern": "Depth Audit",
-        "prerequisite": "Maximum Depth (61)"
+        "prerequisite": "Maximum Depth (61)",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Naive O(n²) solution checks depth at every node. Optimal O(n) solution returns -1 as a sentinel on imbalance. Prerequisite for Convert Sorted List to BST (240). The sentinel trick is reused in many tree audit problems."
       },
       {
         "id": "91",
         "title": "Same Tree",
         "pattern": "Consistency Check",
-        "prerequisite": "Basic Recursion"
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": true,
+        "note": "Check null equality first, then value, then recurse. Direct prerequisite for Subtree of Another Tree (93). Teaches the canonical 3-case recursive tree comparison pattern used in all structural equality problems."
+      },
+      {
+        "id": "H01",
+        "title": "Two Sum (HashMap)",
+        "pattern": "Complement Lookup",
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "Hash Map Design",
+        "striver_covered": true,
+        "note": "Store each number and its index. For each element, check if complement exists in map. O(n) single pass. The canonical HashMap problem — teaches the 'store what you've seen, query complement' pattern. Prerequisite for Subarray Sum Equals K (133) and all hash-complement problems."
+      },
+      {
+        "id": "H02",
+        "title": "Frequency Counter Pattern",
+        "pattern": "Character/Element Count Map",
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "Hash Map Design",
+        "striver_covered": true,
+        "note": "Count frequency of elements using HashMap or array[26]. Compare two frequency maps in O(1) by tracking a 'matches' counter. O(n). Direct prerequisite for Find All Anagrams (141), Group Anagrams (142), Top K Frequent Elements (104), and all sliding window frequency problems."
       },
       {
         "id": "109",
         "title": "Logger Rate Limiter",
         "pattern": "De-duplication",
-        "prerequisite": "Hashing"
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "Hash Map Design",
+        "striver_covered": false,
+        "note": "HashMap of message → last_logged_time. O(1) lookup. Prerequisite for Design Hit Counter (103) and Distributed Rate Limiter (157). Key insight: don't need a queue — just track last timestamp per message."
       },
       {
         "id": "121",
         "title": "Insert Delete GetRandom",
         "pattern": "Constant Time Set",
-        "prerequisite": "Hashing"
+        "prerequisite": "Hashing",
+        "company": "Razorpay",
+        "cluster": "Hash Map Design",
+        "striver_covered": true,
+        "note": "Combine a HashMap (element → index) with an ArrayList for O(1) random access. Delete by swapping with the last element. Prerequisite for Random Pick Index (155). The swap-with-last trick is the key insight."
       },
       {
         "id": "141",
         "title": "Find All Anagrams",
         "pattern": "Pattern Matching",
-        "prerequisite": "Hashing"
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "Hash Map Design",
+        "striver_covered": true,
+        "note": "Sliding window with frequency count comparison. Use a counter diff variable instead of comparing entire maps each step — O(n) total. Prerequisite for Minimum Window Substring (187) and all sliding window hashing problems."
       },
       {
         "id": "142",
         "title": "Group Anagrams",
         "pattern": "Categorization",
-        "prerequisite": "Hashing"
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "Hash Map Design",
+        "striver_covered": true,
+        "note": "Sort each word to get canonical key. O(n·k·log k) time. Alternative: use character frequency tuple as key for O(n·k). Prerequisite for Top K Frequent Words (149). Core pattern: canonical-form hashing."
+      },
+      {
+        "id": "S01",
+        "title": "Implement Stack (Array-backed)",
+        "pattern": "LIFO with Array",
+        "prerequisite": "Array Basics",
+        "company": "General",
+        "cluster": "Stack & Queue Fundamentals",
+        "striver_covered": true,
+        "note": "push/pop/peek/isEmpty with a list. O(1) amortized. Foundation for Min Stack (145), Stack using Queues (143), Tree Inorder Iterative (84), Monotonic Stack problems. The call stack is also a stack — understanding this bridges recursion and iteration."
+      },
+      {
+        "id": "S02",
+        "title": "Implement Queue (Array-backed)",
+        "pattern": "FIFO with Array",
+        "prerequisite": "Array Basics",
+        "company": "General",
+        "cluster": "Stack & Queue Fundamentals",
+        "striver_covered": true,
+        "note": "enqueue/dequeue/peek/isEmpty. Fixed-array: head/tail pointers mod capacity. Dynamic: use collections.deque. O(1). Foundation for Queue using Stacks (144), Circular Queue (140), BFS. Understanding deque enables O(1) both-end operations."
+      },
+      {
+        "id": "S03",
+        "title": "Valid Parentheses",
+        "pattern": "Stack Bracket Matching",
+        "prerequisite": "Implement Stack (S01)",
+        "company": "General",
+        "cluster": "Stack & Queue Fundamentals",
+        "striver_covered": true,
+        "note": "Push on open bracket, match+pop on close. O(n). The canonical stack application problem. Prerequisite for Daily Temperatures, Asteroid Collision, and all monotonic stack problems. Teaches the 'stack stores unresolved state' mental model."
+      },
+      {
+        "id": "S04",
+        "title": "Daily Temperatures (Monotonic Stack)",
+        "pattern": "Next Greater Element",
+        "prerequisite": "Valid Parentheses (S03)",
+        "company": "General",
+        "cluster": "Stack & Queue Fundamentals",
+        "striver_covered": true,
+        "note": "Monotonic decreasing stack of indices. When a higher temperature is found, pop all indices with lower temperatures. O(n). Prerequisite for Largest Rectangle in Histogram (129), Trapping Rain Water (128), Sliding Window Max (110). The 'pending unresolved' stack pattern."
       },
       {
         "id": "143",
         "title": "Stack using Queues",
         "pattern": "FIFO Simulation",
-        "prerequisite": "Basic Queues"
+        "prerequisite": "Basic Queues",
+        "company": "General",
+        "cluster": "Stack & Queue Fundamentals",
+        "striver_covered": true,
+        "note": "Push is O(n): enqueue then rotate all elements. Or use single queue with rotation on push. Prerequisite for understanding amortized complexity. Pair with Queue using Stacks (144) — both appear together in interviews."
       },
       {
         "id": "144",
         "title": "Queue using Stacks",
         "pattern": "LIFO Simulation",
-        "prerequisite": "Basic Stacks"
+        "prerequisite": "Basic Stacks",
+        "company": "General",
+        "cluster": "Stack & Queue Fundamentals",
+        "striver_covered": true,
+        "note": "Two-stack approach: push stack and pop stack. Amortized O(1) pop via lazy transfer. Directly teaches amortized analysis. Prerequisite for Design Browser History (112). The lazy transfer is the key optimization to explain in interviews."
+      },
+      {
+        "id": "P01",
+        "title": "Two Sum (Sorted Array)",
+        "pattern": "Inward Two Pointers",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Two Pointer Foundations",
+        "striver_covered": true,
+        "note": "Left and right pointers moving inward. Sum too large → move right left; too small → move left right. O(n). Foundation for 3Sum, Container With Most Water, and Sort Colors (146). The sorted array is the key prerequisite enabling two-pointer movement decisions."
+      },
+      {
+        "id": "P02",
+        "title": "Container With Most Water",
+        "pattern": "Maximize Area Two Pointers",
+        "prerequisite": "Two Sum Sorted (P01)",
+        "company": "General",
+        "cluster": "Two Pointer Foundations",
+        "striver_covered": true,
+        "note": "Move the shorter side inward — a taller bar can only help if the width doesn't shrink too much. O(n). Teaches the greedy two-pointer invariant: always move the constraining side. Prerequisite for Trapping Rain Water (128)."
+      },
+      {
+        "id": "P03",
+        "title": "Sliding Window — Fixed Size (Max Average Subarray)",
+        "pattern": "Fixed Window Slide",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Two Pointer Foundations",
+        "striver_covered": true,
+        "note": "Maintain a running sum. Add incoming element, remove outgoing. O(n). Foundation for all fixed-window problems. Prerequisite for Max Points from Cards (264) and all variable-window problems. The add-incoming / subtract-outgoing template is universal."
+      },
+      {
+        "id": "P04",
+        "title": "Sliding Window — Variable Size (Longest Substring No Repeat)",
+        "pattern": "Expand-Shrink Window",
+        "prerequisite": "Fixed Window (P03), Hashing",
+        "company": "General",
+        "cluster": "Two Pointer Foundations",
+        "striver_covered": true,
+        "note": "Expand right pointer; shrink left when constraint violated. O(n). Foundation for Find All Anagrams (141), Longest Substring K (159), Min Window Substring (187), Repeating Char Replace (186). The expand-shrink loop structure is the template for all variable-window problems."
       },
       {
         "id": "146",
         "title": "Sort Colors",
         "pattern": "In-place Partition",
-        "prerequisite": "Two Pointers"
+        "prerequisite": "Two Pointers",
+        "company": "General",
+        "cluster": "Two Pointer Foundations",
+        "striver_covered": true,
+        "note": "Dutch National Flag algorithm. Three pointers: low, mid, high. Single pass O(n). Foundation for 3-way partition in QuickSort. Prerequisite for K Closest Points (147) sorting intuition and Kth Largest (116) partitioning."
+      },
+      {
+        "id": "D01",
+        "title": "Fibonacci (Memoization → Tabulation)",
+        "pattern": "Top-down → Bottom-up DP",
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Greedy & DP Foundations",
+        "striver_covered": true,
+        "note": "Naive recursion → memoization with dict → bottom-up tabulation → O(1) space with two vars. Walk through all 4 forms. Prerequisite for Climb Stairs (179), House Robber (178), Coin Change (163), and every 1D DP problem. The 4-step DP formulation must be internalized."
+      },
+      {
+        "id": "D02",
+        "title": "Prefix Sum Array",
+        "pattern": "Range Query Preprocessing",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Greedy & DP Foundations",
+        "striver_covered": true,
+        "note": "prefix[i] = sum of arr[0..i]. Range sum(l,r) = prefix[r] - prefix[l-1]. O(n) build, O(1) query. Prerequisite for Subarray Sum Equals K (133), Maximum Subarray (168), Range Sum 2D (135), and all prefix-based problems. The complement trick (prefix[r] - k → look up count) is critical."
+      },
+      {
+        "id": "D03",
+        "title": "Binary Search (Standard + On Answer)",
+        "pattern": "Halving Search Space",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Greedy & DP Foundations",
+        "striver_covered": true,
+        "note": "Standard: lo=0, hi=n-1, mid=(lo+hi)//2. Decide which half to discard. O(log n). Binary search on answer: define feasibility function, search over answer space. Prerequisite for Search Rotated (188), Koko Bananas (195), Ship Packages (194), Median 2 Arrays (189). The lo≤hi vs lo<hi boundary choice matters."
       },
       {
         "id": "167",
         "title": "Buy/Sell Stock",
         "pattern": "One-pass Trend",
-        "prerequisite": "Basic Iteration"
+        "prerequisite": "Basic Iteration",
+        "company": "General",
+        "cluster": "Greedy & DP Foundations",
+        "striver_covered": true,
+        "note": "Track running minimum and update max profit. O(n) single pass. Foundation for all stock problems: with cooldown (258), with K transactions. The insight — profit = current − min_so_far — is the base case for all variants."
       },
       {
         "id": "168",
         "title": "Maximum Subarray",
-        "pattern": "Kadane\u2019s Principle",
-        "prerequisite": "Prefix Sum"
+        "pattern": "Kadane's Principle",
+        "prerequisite": "Prefix Sum",
+        "company": "General",
+        "cluster": "Greedy & DP Foundations",
+        "striver_covered": true,
+        "note": "Kadane's: reset to 0 when running sum goes negative. O(n). Prerequisite for Max Product Subarray (177) and Continuous Subarray Sum (134). The reset decision is the greedy insight that underpins all subarray optimization problems."
       },
       {
         "id": "179",
         "title": "Climb Stairs",
         "pattern": "Fibonacci Count",
-        "prerequisite": "Basic Recursion"
+        "prerequisite": "Basic Recursion",
+        "company": "General",
+        "cluster": "Greedy & DP Foundations",
+        "striver_covered": true,
+        "note": "dp[i] = dp[i-1] + dp[i-2]. Can be solved in O(1) space with two variables. The entry point for all 1D DP. Prerequisite for House Robber (178), Decode Ways (165), Coin Change (163). Teaches bottom-up DP construction."
       },
       {
         "id": "234",
@@ -116,7 +408,9 @@
         "pattern": "Batch Processing / Pointer Mutation",
         "prerequisite": "Reverse Linked List",
         "company": "General",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Reverse exactly k nodes at a time, reconnect to next group. Check group size before reversing. Capstone for linked list pointer manipulation — requires mastery of Reverse Linked List (267), Find Middle (269)."
       },
       {
         "id": "235",
@@ -124,7 +418,9 @@
         "pattern": "In-place State Mutation",
         "prerequisite": "Fast/Slow Pointer, Reverse List",
         "company": "Databricks",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Three phases: find middle, reverse second half, merge. Combines (269) and (267) in sequence. Databricks on-site problem. Must not use extra space — the O(n) space solution with an array is rejected."
       },
       {
         "id": "236",
@@ -132,7 +428,9 @@
         "pattern": "Merge Sort with Constant Space",
         "prerequisite": "Merge Two Sorted Lists, Find Middle",
         "company": "General",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Bottom-up merge sort on linked lists avoids recursion stack. Top-down is O(log n) space; bottom-up is O(1). Requires (268) and (269) as building blocks. The bottom-up approach is what separates strong candidates."
       },
       {
         "id": "237",
@@ -140,7 +438,9 @@
         "pattern": "Single-Pass Carry Propagation",
         "prerequisite": "Linked List Traversal",
         "company": "General",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": false,
+        "note": "Reverse, double with carry propagation, reverse back. Alternatively use recursion to propagate carry from tail. Direct extension of Add Two Numbers (273). Tests carry handling at the head of the list."
       },
       {
         "id": "238",
@@ -148,7 +448,9 @@
         "pattern": "Partitioning and Stability",
         "prerequisite": "Pointer Manipulation",
         "company": "Uber",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Maintain two dummy heads for odd/even chains. Connect even tail to odd head at end. O(n) time, O(1) space. Uber screening problem. Tests pointer hygiene — must not lose the even head before connecting."
       },
       {
         "id": "239",
@@ -156,7 +458,9 @@
         "pattern": "Sentinel Node Application",
         "prerequisite": "Linked List Traversal",
         "company": "General",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": false,
+        "note": "Find rightmost non-9 node, increment it, set all subsequent nodes to 0. Sentinel dummy node handles the all-9s edge case. Simpler than reversing — teaches right-scan pattern for carry problems."
       },
       {
         "id": "240",
@@ -164,7 +468,9 @@
         "pattern": "Recursive Structural Balancing",
         "prerequisite": "Find Middle of Linked List",
         "company": "Databricks",
-        "cluster": "Linked List Pointer Hygiene"
+        "cluster": "Linked List Pointer Hygiene",
+        "striver_covered": true,
+        "note": "Use slow/fast pointer to find mid, recurse on left and right halves. O(n log n) naive; O(n) via in-order simulation with a pointer. Databricks values the O(n) approach. Requires (269) as prerequisite."
       },
       {
         "id": "267",
@@ -245,6 +551,36 @@
         "cluster": "Linked List Pointer Hygiene",
         "striver_covered": true,
         "note": "Two approaches: O(n) space with hashmap, or O(1) space with node interleaving. The O(1) approach is the Palantir bar signal."
+      },
+      {
+        "id": "B01",
+        "title": "Find First True in Boolean Array (Binary Search Template)",
+        "pattern": "Predicate Binary Search",
+        "prerequisite": "Binary Search (D03)",
+        "company": "General",
+        "cluster": "Binary Search on Answer",
+        "striver_covered": true,
+        "note": "Binary search where answers form FFFFTTTT pattern. lo=left boundary, hi=right boundary, find first T. O(log n). The universal template for all 'binary search on answer' problems. Prerequisite for Ship Packages (194), Koko (195), Split Array (196). Separate: find first True vs find last False."
+      },
+      {
+        "id": "X01",
+        "title": "Bit Manipulation Basics (AND, OR, XOR, Shifts)",
+        "pattern": "Bitwise Operations",
+        "prerequisite": "None",
+        "company": "General",
+        "cluster": "Bit Manipulation",
+        "striver_covered": true,
+        "note": "Know: a&b (common bits), a|b (union), a^b (difference), a<<k (*2^k), a>>k (//2^k), ~a, a&1 (check odd), a&(a-1) (clear lowest set bit), a&(-a) (isolate lowest set bit). Prerequisite for Single Number (253), Missing Number (254), Number of 1 Bits (255), Maximum XOR (280)."
+      },
+      {
+        "id": "U01",
+        "title": "Union-Find Basics (without optimization)",
+        "pattern": "Naive DSU",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Union-Find Foundation",
+        "striver_covered": true,
+        "note": "parent[] array. find(): walk up until parent[x]==x. union(a,b): set parent[find(a)] = find(b). O(n) worst case find without optimization. Must understand this naively before adding rank + path compression (249). The slow version teaches the concept; the fast version teaches optimization."
       }
     ]
   },
@@ -256,330 +592,636 @@
         "title": "Number of Islands",
         "pattern": "Geospatial DFS",
         "prerequisite": "Linear Traversal",
-        "representation_note": "IMPLICIT GRAPH \u2014 do NOT build an explicit adjacency list. The grid IS the graph. Each cell is a node; edges are implicit 4-directional neighbors. Building explicit edges adds O(V+E) space and O(E) construction time with zero benefit. BFS/DFS directly on the grid with a visited array or in-place marking is the correct approach.",
-        "representation_decision": "Grid \u2192 Direct traversal (no adjacency structure)"
+        "company": "General",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": true,
+        "representation_note": "IMPLICIT GRAPH — do NOT build an explicit adjacency list. The grid IS the graph. Each cell is a node; edges are implicit 4-directional neighbors.",
+        "representation_decision": "Grid → Direct traversal (no adjacency structure)",
+        "note": "The foundational grid DFS/BFS problem. In-place marking (set '1' to '0') avoids a visited array. Prerequisite for Rotting Oranges (11), Pacific Atlantic (17), and all multi-source BFS grid problems. Master both DFS and Union-Find approaches."
       },
       {
         "id": "11",
         "title": "Rotting Oranges",
         "pattern": "Multi-source BFS",
-        "prerequisite": "Basic BFS"
+        "prerequisite": "Basic BFS",
+        "company": "DoorDash",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": true,
+        "note": "Seed BFS queue with all initially rotten cells. Count fresh oranges; decrement on each spread. If fresh > 0 at end, return -1. Prerequisite for Shortest Bridge (29) and Shortest Path in Grid (12). DoorDash delivery spread simulation."
+      },
+      {
+        "id": "46",
+        "title": "Shortest Path in 2D Grid",
+        "pattern": "4-dir BFS",
+        "prerequisite": "Basic BFS",
+        "company": "General",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": true,
+        "note": "BFS guarantees shortest path in unweighted grids. Mark visited at enqueue time, not dequeue. Prerequisite for Shortest Path with Obstacles (12) and Path With Minimum Effort (20). Foundation of all grid BFS problems."
       },
       {
         "id": "13",
         "title": "All Nodes Distance K",
         "pattern": "Tree BFS",
-        "prerequisite": "BFS Foundations"
+        "prerequisite": "BFS Foundations",
+        "company": "Databricks",
+        "cluster": "Tree-to-Graph Conversion",
+        "striver_covered": true,
+        "note": "Convert tree to undirected graph by building parent pointers, then BFS from target. Key insight: trees are graphs — add reverse edges. Prerequisite for All Nodes Distance K in Binary Tree (244) and Infection Time (80)."
       },
       {
         "id": "14",
         "title": "Is Graph Bipartite?",
         "pattern": "Bipartite Matching",
         "prerequisite": "BFS/DFS Coloring",
-        "representation_note": "ADJACENCY LIST is correct here. Graph density is unknown but typically sparse (E << V\u00b2). The density breakpoint is |E|/|V\u00b2| > 1/64 (~1.56%) \u2014 only above this does a bit-packed adjacency matrix save space. For bipartite checking you only need to iterate neighbors, making O(degree(v)) adjacency list traversal optimal. An adjacency matrix would waste V\u00b2/8 bytes for O(1) edge lookup you never use.",
-        "representation_decision": "Sparse unknown-density graph \u2192 Adjacency list default"
+        "company": "General",
+        "cluster": "Graph Coloring",
+        "striver_covered": true,
+        "representation_note": "ADJACENCY LIST is correct here. Bipartite check only needs neighbor iteration.",
+        "representation_decision": "Sparse unknown-density graph → Adjacency list default",
+        "note": "2-color BFS/DFS. If any edge connects same-colored nodes, not bipartite. Prerequisite for Possible Bipartition (25). Must handle disconnected graphs — run BFS/DFS from every unvisited node."
       },
       {
         "id": "16",
         "title": "Clone Graph",
         "pattern": "Relational Replication",
         "prerequisite": "BFS/DFS Foundations",
-        "representation_note": "ADJACENCY LIST is the natural choice \u2014 the input is already given as an adjacency list. The key decision here is not representation but traversal strategy for deep copy: BFS with a hashmap (node \u2192 clone) ensures each node is visited and cloned exactly once. This is the default representation choice for graphs of unknown density.",
-        "representation_decision": "Unknown density \u2192 Adjacency list (input format drives choice)"
+        "company": "Palantir",
+        "cluster": "Graph Deep Copy",
+        "striver_covered": true,
+        "representation_note": "ADJACENCY LIST is the natural choice — input is already given as adjacency list.",
+        "representation_decision": "Unknown density → Adjacency list (input format drives choice)",
+        "note": "HashMap from original node to its clone prevents revisiting. BFS layer by layer. Prerequisite for Copy List with Random Pointer (274) conceptually. Palantir tests the O(1)-space interleaving approach as a follow-up."
       },
       {
         "id": "21",
         "title": "Snake and Ladder",
         "pattern": "State Transition",
-        "prerequisite": "Basic BFS"
-      },
-      {
-        "id": "23",
-        "title": "Graph Valid Tree",
-        "pattern": "Structure Verification",
-        "prerequisite": "Cycle Detection"
+        "prerequisite": "Basic BFS",
+        "company": "General",
+        "cluster": "State Space BFS",
+        "striver_covered": true,
+        "note": "Flatten 2D board to 1D array with Boustrophedon numbering. BFS for minimum moves — don't revisit squares. Prerequisite for Open the Lock (26) and Minimum Genetic Mutation (39). The board-flattening is the hardest implementation step."
       },
       {
         "id": "26",
         "title": "Open the Lock",
         "pattern": "State Change BFS",
-        "prerequisite": "BFS Foundations"
+        "prerequisite": "BFS Foundations",
+        "company": "General",
+        "cluster": "State Space BFS",
+        "striver_covered": true,
+        "note": "Each lock state is a BFS node; each dial turn is an edge. Use a HashSet for deadends and visited states. Bidirectional BFS reduces search space from O(8^4) to O(2·8^2). Prerequisite for Word Ladder (7)."
+      },
+      {
+        "id": "23",
+        "title": "Graph Valid Tree",
+        "pattern": "Structure Verification",
+        "prerequisite": "Cycle Detection",
+        "company": "Palantir",
+        "cluster": "Graph Structural Verification",
+        "striver_covered": true,
+        "note": "A valid tree has exactly n-1 edges and is connected. Use Union-Find: if union of any edge finds they're already connected, there's a cycle. Prerequisite for Redundant Connection (18) and Redundant Connection II (214)."
       },
       {
         "id": "45",
         "title": "All Paths From Source",
         "pattern": "DAG Enumeration",
-        "prerequisite": "DFS Foundations"
-      },
-      {
-        "id": "46",
-        "title": "Shortest Path in 2D Grid",
-        "pattern": "4-dir BFS",
-        "prerequisite": "Basic BFS"
+        "prerequisite": "DFS Foundations",
+        "company": "General",
+        "cluster": "DAG Traversal",
+        "striver_covered": true,
+        "note": "Backtracking DFS on a DAG. Add path to result when target is reached. Prerequisite for Word Ladder II (43) and all path enumeration problems. Key: DAG guarantees no cycles so no visited set needed."
       },
       {
         "id": "51",
         "title": "Construct Quad Tree",
         "pattern": "Spatial Partitioning",
-        "prerequisite": "Recursion"
+        "prerequisite": "Recursion",
+        "company": "Uber",
+        "cluster": "Tree Construction",
+        "striver_covered": false,
+        "note": "Check if all cells in region are uniform. If yes, leaf node. Else, recurse into 4 quadrants. Prerequisite for Quad Tree Implementation (220). Uber uses this for spatial indexing problems. 2D prefix sums make uniformity check O(1)."
       },
       {
         "id": "52",
         "title": "Serialize/Deserialize Tree",
         "pattern": "Tree Persistence",
-        "prerequisite": "BFS/DFS Traversal"
+        "prerequisite": "BFS/DFS Traversal",
+        "company": "Databricks",
+        "cluster": "Tree Construction",
+        "striver_covered": true,
+        "note": "Pre-order DFS with null markers, or BFS level-order. Deserialize by rebuilding from the same traversal order. Prerequisite for Serialize and Deserialize Binary Tree (253). Databricks cares about the BFS variant for wide trees."
       },
       {
         "id": "55",
         "title": "Lowest Common Ancestor",
         "pattern": "Origin Identification",
-        "prerequisite": "DFS Traversal"
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "LCA & Tree Ancestry",
+        "striver_covered": true,
+        "note": "If root is p or q, root is LCA. If p found in left and q in right subtree, root is LCA. Foundation for LCA of N-ary Tree (76), LCA IV (94), and BST LCA (251). Prerequisite for all ancestry path problems."
+      },
+      {
+        "id": "V01",
+        "title": "BST Insert and Search",
+        "pattern": "BST Core Operations",
+        "prerequisite": "Binary Tree Inorder (T02)",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "Search: go left if target < node, right if greater. Insert: same logic, create node when null. O(h) = O(log n) balanced, O(n) worst case. Prerequisite for Validate BST (57), Delete Node (88), Kth Smallest (54), Convert List to BST (82). BST invariant: left < node < right for ALL ancestors."
+      },
+      {
+        "id": "V02",
+        "title": "BST Inorder = Sorted Array",
+        "pattern": "BST Sorted Property",
+        "prerequisite": "BST Insert/Search (V01), Inorder Traversal (T02)",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "Inorder traversal of any valid BST yields elements in sorted ascending order. This property is the foundation of Validate BST (57), Kth Smallest (54), Recover BST (70), Minimum Distance (95), Range Sum of BST (100), BST Iterator (219). Internalize it as an axiom."
       },
       {
         "id": "57",
         "title": "Validate BST",
         "pattern": "Index Integrity",
-        "prerequisite": "In-order Traversal"
-      },
-      {
-        "id": "58",
-        "title": "Binary Tree Vertical Order",
-        "pattern": "Columnar Logic",
-        "prerequisite": "Level-order Traversal"
-      },
-      {
-        "id": "59",
-        "title": "Binary Tree Right View",
-        "pattern": "Snapshot Logic",
-        "prerequisite": "BFS/DFS Traversal"
-      },
-      {
-        "id": "64",
-        "title": "Tree Level Order Traversal",
-        "pattern": "Layered Broadcast",
-        "prerequisite": "BFS Foundations"
-      },
-      {
-        "id": "65",
-        "title": "Flatten Tree to List",
-        "pattern": "Hierarchical Shift",
-        "prerequisite": "DFS Traversal"
-      },
-      {
-        "id": "66",
-        "title": "Path Sum II",
-        "pattern": "Valid Sequences",
-        "prerequisite": "DFS Traversal"
-      },
-      {
-        "id": "68",
-        "title": "Populating Next Pointers",
-        "pattern": "Horizontal Scaling",
-        "prerequisite": "Level-order BFS"
-      },
-      {
-        "id": "72",
-        "title": "Sum Root to Leaf",
-        "pattern": "Weight Totaling",
-        "prerequisite": "DFS Traversal"
-      },
-      {
-        "id": "82",
-        "title": "Convert List to BST",
-        "pattern": "Stream Balancing",
-        "prerequisite": "Binary Search Logic"
-      },
-      {
-        "id": "84",
-        "title": "Tree Inorder Iterative",
-        "pattern": "Safe Traversal",
-        "prerequisite": "Stack Foundations"
-      },
-      {
-        "id": "88",
-        "title": "Delete Node in BST",
-        "pattern": "In-place Removal",
-        "prerequisite": "BST Properties"
-      },
-      {
-        "id": "93",
-        "title": "Subtree of Another Tree",
-        "pattern": "Partial Matching",
-        "prerequisite": "Same Tree (91)"
-      },
-      {
-        "id": "97",
-        "title": "Binary Tree Paths",
-        "pattern": "Route Mapping",
-        "prerequisite": "DFS Traversal"
-      },
-      {
-        "id": "101",
-        "title": "LRU Cache",
-        "pattern": "Local Cache Policy",
-        "prerequisite": "Doubly Linked List"
-      },
-      {
-        "id": "103",
-        "title": "Design Hit Counter",
-        "pattern": "Sliding Window",
-        "prerequisite": "Time Windowing"
-      },
-      {
-        "id": "104",
-        "title": "Top K Frequent Elements",
-        "pattern": "Popularity Tracking",
-        "prerequisite": "Min-Heap"
-      },
-      {
-        "id": "112",
-        "title": "Design Browser History",
-        "pattern": "Transactional Stack",
-        "prerequisite": "Two Stacks"
-      },
-      {
-        "id": "115",
-        "title": "Task Scheduler",
-        "pattern": "Priority Resource",
-        "prerequisite": "Max-Heap"
-      },
-      {
-        "id": "116",
-        "title": "Kth Largest in Array",
-        "pattern": "Rank Selection",
-        "prerequisite": "QuickSelect or Heap"
-      },
-      {
-        "id": "120",
-        "title": "Random Pick (Weight)",
-        "pattern": "A/B Sampling",
-        "prerequisite": "Prefix Sum + Binary Search"
-      },
-      {
-        "id": "122",
-        "title": "Underground System",
-        "pattern": "ETA Tracking",
-        "prerequisite": "Hashing"
-      },
-      {
-        "id": "133",
-        "title": "Subarray Sum Equals K",
-        "pattern": "Interval Retrieval",
-        "prerequisite": "Prefix Sum + Hashing"
-      },
-      {
-        "id": "139",
-        "title": "Circular Deque",
-        "pattern": "Fixed Buffer",
-        "prerequisite": "Array Indexing"
-      },
-      {
-        "id": "140",
-        "title": "Circular Queue",
-        "pattern": "Buffer Indexing",
-        "prerequisite": "Array Indexing"
-      },
-      {
-        "id": "145",
-        "title": "Min Stack",
-        "pattern": "Monitor Retrieval",
-        "prerequisite": "Stack Foundations"
-      },
-      {
-        "id": "147",
-        "title": "K Closest Points",
-        "pattern": "Geospatial Heap",
-        "prerequisite": "Min-Heap"
+        "prerequisite": "In-order Traversal",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "Pass min/max bounds through recursion — not just parent comparison. Common bug: checking only against parent allows invalid BSTs to pass. Prerequisite for Recover BST (70) and all BST validation problems."
       },
       {
         "id": "148",
         "title": "Smallest K Elements BST",
         "pattern": "Proximity Retrieval",
-        "prerequisite": "In-order Traversal"
+        "prerequisite": "In-order Traversal",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": false,
+        "note": "In-order traversal yields sorted order; stop at K-th element. With augmented BST storing subtree sizes: O(log n + k). Prerequisite for Kth Smallest Element in BST (54) and BST Iterator (219)."
+      },
+      {
+        "id": "58",
+        "title": "Binary Tree Vertical Order",
+        "pattern": "Columnar Logic",
+        "prerequisite": "Level-order Traversal",
+        "company": "Databricks",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": true,
+        "note": "BFS with column index (root=0, left=-1, right=+1). Store in TreeMap for sorted column order. Prerequisite for Vertical Order Traversal (249). Databricks asks both variants — know the difference (sorting within column)."
+      },
+      {
+        "id": "59",
+        "title": "Binary Tree Right View",
+        "pattern": "Snapshot Logic",
+        "prerequisite": "BFS/DFS Traversal",
+        "company": "General",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": true,
+        "note": "BFS: take the last element at each level. DFS: visit right child first, record first node at each depth. Prerequisite for Binary Tree Zigzag (69). Both approaches must be known — BFS for clarity, DFS for follow-up."
+      },
+      {
+        "id": "64",
+        "title": "Tree Level Order Traversal",
+        "pattern": "Layered Broadcast",
+        "prerequisite": "BFS Foundations",
+        "company": "General",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": true,
+        "note": "BFS with level size tracking (snapshot queue.size() before inner loop). Foundation for Right View (59), Zigzag (69), Maximum Width (87), Populating Next Pointers (68). Must be automatic."
+      },
+      {
+        "id": "84",
+        "title": "Tree Inorder Iterative",
+        "pattern": "Safe Traversal",
+        "prerequisite": "Stack Foundations",
+        "company": "General",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": true,
+        "note": "Push nodes onto stack while going left; pop and visit, then go right. Foundation for Smallest K in BST (148), BST Iterator (219), Recover BST (70). Must be solved without recursion — this is the explicit stack simulation of the call stack."
+      },
+      {
+        "id": "65",
+        "title": "Flatten Tree to List",
+        "pattern": "Hierarchical Shift",
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "Tree Pointer Mutation",
+        "striver_covered": true,
+        "note": "Morris traversal (O(1) space): find pre-order predecessor, thread right pointer. Or post-order: flatten right, flatten left, attach right to left's tail. Prerequisite for all tree-to-list conversion problems."
+      },
+      {
+        "id": "68",
+        "title": "Populating Next Pointers",
+        "pattern": "Horizontal Scaling",
+        "prerequisite": "Level-order BFS",
+        "company": "General",
+        "cluster": "Tree Pointer Mutation",
+        "striver_covered": true,
+        "note": "O(1) space: use already-populated next pointers of parent level to traverse without a queue. Key insight: process node's children using parent's next chain. Prerequisite for all level-linking tree problems."
+      },
+      {
+        "id": "66",
+        "title": "Path Sum II",
+        "pattern": "Valid Sequences",
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "Backtracking DFS: add node to path, recurse, remove on return. Check at leaf nodes. Prerequisite for Path Sum III (99) and K-Sum Paths (73). The backtrack-on-return pattern is reused in all path enumeration problems."
+      },
+      {
+        "id": "72",
+        "title": "Sum Root to Leaf",
+        "pattern": "Weight Totaling",
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "Accumulate number as you descend (current = prev*10 + node.val). Add to total at leaf. Prerequisite for Pseudo-Palindromic Paths (89) and all path-value accumulation problems."
+      },
+      {
+        "id": "97",
+        "title": "Binary Tree Paths",
+        "pattern": "Route Mapping",
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "DFS with string path accumulation. Add '->' separator at each step, record at leaf. Prerequisite for Smallest String From Leaf (85) and Binary Tree Max Path Sum (53). Teaches path-string construction pattern."
+      },
+      {
+        "id": "82",
+        "title": "Convert List to BST",
+        "pattern": "Stream Balancing",
+        "prerequisite": "Binary Search Logic",
+        "company": "General",
+        "cluster": "BST Construction",
+        "striver_covered": true,
+        "note": "O(n log n) approach: find middle, recurse. O(n) approach: in-order simulate with a pointer advancing through the sorted list. The O(n) approach requires understanding in-order traversal order matches sorted list order."
+      },
+      {
+        "id": "88",
+        "title": "Delete Node in BST",
+        "pattern": "In-place Removal",
+        "prerequisite": "BST Properties",
+        "company": "General",
+        "cluster": "BST Mutation",
+        "striver_covered": true,
+        "note": "Three cases: leaf (remove), one child (replace), two children (replace with in-order successor/predecessor). Prerequisite for Range Sum of BST (100) pruning logic. The two-children case is the tricky one interviewers focus on."
+      },
+      {
+        "id": "93",
+        "title": "Subtree of Another Tree",
+        "pattern": "Partial Matching",
+        "prerequisite": "Same Tree (91)",
+        "company": "General",
+        "cluster": "Tree Structural Matching",
+        "striver_covered": true,
+        "note": "For each node in the main tree, check if it matches the subtree root with Same Tree logic. O(m·n). Optimal: serialize both trees and use string matching. Prerequisite for Leaf-Similar Trees (98)."
+      },
+      {
+        "id": "C01",
+        "title": "Doubly Linked List (insert, delete, move-to-front)",
+        "pattern": "O(1) Node Removal",
+        "prerequisite": "Reverse Linked List (267)",
+        "company": "General",
+        "cluster": "Cache Design",
+        "striver_covered": true,
+        "note": "Each node has prev and next pointers. Remove: prev.next=node.next, next.prev=node.prev. O(1). Foundation for LRU Cache (101) and LFU Cache (102). The key insight: doubly linked list enables O(1) removal of any node when you already have a pointer to it — unlike singly linked list."
+      },
+      {
+        "id": "101",
+        "title": "LRU Cache",
+        "pattern": "Local Cache Policy",
+        "prerequisite": "Doubly Linked List",
+        "company": "General",
+        "cluster": "Cache Design",
+        "striver_covered": true,
+        "note": "Doubly linked list (for O(1) removal) + HashMap (key → node). On get/put, move node to head. On capacity exceeded, remove tail node. Prerequisite for LFU Cache (102). The dummy head/tail sentinels prevent null checks."
+      },
+      {
+        "id": "103",
+        "title": "Design Hit Counter",
+        "pattern": "Sliding Window",
+        "prerequisite": "Time Windowing",
+        "company": "Databricks",
+        "cluster": "Time-Based Design",
+        "striver_covered": false,
+        "note": "Queue of timestamps, remove those older than 300 seconds. Or circular buffer of 300 slots (timestamp % 300). Prerequisite for Distributed Rate Limiter (157). The circular buffer approach is O(1) time and O(300) space — preferred."
+      },
+      {
+        "id": "122",
+        "title": "Underground System",
+        "pattern": "ETA Tracking",
+        "prerequisite": "Hashing",
+        "company": "Uber",
+        "cluster": "Time-Based Design",
+        "striver_covered": false,
+        "note": "Two hashmaps: (id → (station, checkInTime)) and (route → (totalTime, count)). Average time = totalTime/count. Uber on-site problem for transit systems. Tests multi-key hashmap design and running average computation."
+      },
+      {
+        "id": "E01",
+        "title": "Min-Heap / Max-Heap Operations",
+        "pattern": "Priority Queue Fundamentals",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Heap property: parent ≤ children (min-heap). insert: append + sift-up. extractMin: swap root with last, sift-down. O(log n) both. In Python: heapq (min-heap); negate for max-heap. Prerequisite for Top K Frequent (104), Task Scheduler (115), Kth Largest (116), K Closest (147), Merge K Lists (111)."
+      },
+      {
+        "id": "E02",
+        "title": "Kth Largest Element (Heap Template)",
+        "pattern": "Size-K Min-Heap",
+        "prerequisite": "Min-Heap (E01)",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Maintain a min-heap of size K. If incoming > heap top, pop and push. Final heap top = Kth largest. O(n log k). The template for all 'top-K' problems. Prerequisite for Top K Frequent Elements (104), K Closest Points (147), and Smallest Range (197). Know both heap and QuickSelect approaches."
+      },
+      {
+        "id": "104",
+        "title": "Top K Frequent Elements",
+        "pattern": "Popularity Tracking",
+        "prerequisite": "Min-Heap",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Frequency HashMap + min-heap of size K. Or bucket sort: frequency → list of elements, O(n). Prerequisite for Top K Frequent Words (149) and Merge K Sorted Lists (111). Bucket sort variant is O(n) and often expected as follow-up."
+      },
+      {
+        "id": "115",
+        "title": "Task Scheduler",
+        "pattern": "Priority Resource",
+        "prerequisite": "Max-Heap",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Max-heap of frequencies. Each cycle: pop up to n+1 tasks, decrement, re-push if > 0. Add idle slots if fewer than n+1 tasks in heap. Prerequisite for Task Scheduler II (190) and Single-Threaded CPU (138). The cooldown simulation is the core pattern."
+      },
+      {
+        "id": "116",
+        "title": "Kth Largest in Array",
+        "pattern": "Rank Selection",
+        "prerequisite": "QuickSelect or Heap",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Min-heap of size K in O(n log k). QuickSelect in O(n) average. Prerequisite for K Closest Points (147) and Smallest Range (197). Know both — heap for online streams, QuickSelect for one-shot queries. QuickSelect pivot choice matters."
+      },
+      {
+        "id": "147",
+        "title": "K Closest Points",
+        "pattern": "Geospatial Heap",
+        "prerequisite": "Min-Heap",
+        "company": "Uber",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Max-heap of size K by distance. Eject when size > K. Or QuickSelect for O(n) average. Uber geospatial screening question. Prerequisite for Smallest Range Covering K Lists (197). Compare by squared distance to avoid sqrt overhead."
+      },
+      {
+        "id": "112",
+        "title": "Design Browser History",
+        "pattern": "Transactional Stack",
+        "prerequisite": "Two Stacks",
+        "company": "General",
+        "cluster": "Stack-Based Design",
+        "striver_covered": false,
+        "note": "Two stacks (back, forward) or a list with a current index. On visit, clear forward stack. Prerequisite for Text Editor Logic (153) and all undo/redo design problems. The list+index approach is cleaner for follow-ups with limits."
+      },
+      {
+        "id": "145",
+        "title": "Min Stack",
+        "pattern": "Monitor Retrieval",
+        "prerequisite": "Stack Foundations",
+        "company": "General",
+        "cluster": "Stack-Based Design",
+        "striver_covered": true,
+        "note": "Two stacks: main and min-tracker. Push to min stack only when new value ≤ current min. Or single stack of (value, current_min) pairs. Prerequisite for Sliding Window Max (110) conceptually. The paired-stack approach is O(n) space in worst case."
+      },
+      {
+        "id": "120",
+        "title": "Random Pick (Weight)",
+        "pattern": "A/B Sampling",
+        "prerequisite": "Prefix Sum + Binary Search",
+        "company": "Razorpay",
+        "cluster": "Probability & Sampling",
+        "striver_covered": false,
+        "note": "Build prefix sum array; binary search for the target bucket using random float in [0, total). Prerequisite for Random Pick Index (155). The key insight: weight ranges in prefix sum array correspond directly to probability ranges."
       },
       {
         "id": "155",
         "title": "Random Pick Index",
         "pattern": "Reservoir Sampling",
-        "prerequisite": "Basic Hashing"
+        "prerequisite": "Basic Hashing",
+        "company": "General",
+        "cluster": "Probability & Sampling",
+        "striver_covered": false,
+        "note": "Reservoir sampling: when nth occurrence found, pick it with probability 1/n. O(1) space, O(n) time per pick. Prerequisite for Random Pick with Weight (120) conceptually. The reservoir trick is used when the input stream is unknown length."
+      },
+      {
+        "id": "R01",
+        "title": "Running Sum / Prefix Sum Basics",
+        "pattern": "Cumulative Sum",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Prefix Sum",
+        "striver_covered": true,
+        "note": "prefix[i] = prefix[i-1] + arr[i]. Range query in O(1). HashMap storing prefix_sum → first_index enables O(n) subarray sum problems. Prerequisite for Subarray Sum Equals K (133), Continuous Subarray Sum (134), Range Sum 2D (135), Product Except Self (132). The HashMap variant is the most powerful form."
+      },
+      {
+        "id": "133",
+        "title": "Subarray Sum Equals K",
+        "pattern": "Interval Retrieval",
+        "prerequisite": "Prefix Sum + Hashing",
+        "company": "General",
+        "cluster": "Prefix Sum",
+        "striver_covered": true,
+        "note": "HashMap of prefix sum → count. For each index, check if (prefix_sum - k) exists in map. O(n). Prerequisite for Continuous Subarray Sum (134) and Range Sum Query 2D (135). The complement lookup is the canonical prefix sum pattern."
+      },
+      {
+        "id": "139",
+        "title": "Circular Deque",
+        "pattern": "Fixed Buffer",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Queue Design",
+        "striver_covered": false,
+        "note": "Array with head/tail pointers. Size check on insert. head = (head - 1 + capacity) % capacity for insertFront. Prerequisite for Sliding Window Maximum (110) which uses a deque internally. Teaches modular arithmetic for circular buffers."
+      },
+      {
+        "id": "140",
+        "title": "Circular Queue",
+        "pattern": "Buffer Indexing",
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Queue Design",
+        "striver_covered": false,
+        "note": "Fixed-size array with head, tail, and size/count. Enqueue at tail % capacity, dequeue at head. Prerequisite for Circular Deque (139). Foundation for understanding ring buffers used in OS scheduling."
       },
       {
         "id": "158",
         "title": "Majority Element II",
         "pattern": "Voting Consensus",
-        "prerequisite": "Boyer-Moore Logic"
+        "prerequisite": "Boyer-Moore Logic",
+        "company": "General",
+        "cluster": "Array Algorithms",
+        "striver_covered": true,
+        "note": "Extended Boyer-Moore: maintain two candidates and two counts. After pass, verify both candidates actually appear > n/3 times. At most 2 elements can appear > n/3 times. Prerequisite for any generalized majority voting problem."
       },
       {
         "id": "169",
         "title": "Jump Game",
         "pattern": "Reachability",
-        "prerequisite": "Greedy Foundations"
+        "prerequisite": "Greedy Foundations",
+        "company": "General",
+        "cluster": "Greedy Array",
+        "striver_covered": true,
+        "note": "Track max reachable index. If current index > max reachable, return false. O(n). Prerequisite for Jump Game II (min jumps). Teaches greedy reachability — the invariant is always: can we reach or surpass the current index?"
+      },
+      {
+        "id": "I01",
+        "title": "Sort Intervals by Start Time",
+        "pattern": "Interval Sort Preprocessing",
+        "prerequisite": "Sorting",
+        "company": "General",
+        "cluster": "Interval Scheduling",
+        "striver_covered": true,
+        "note": "Sort intervals by start time. Enables linear scan to find overlaps. O(n log n). Foundation for Merge Intervals (171), Insert Interval (172), Meeting Rooms II (170), Job Scheduling (192). Without this sort, detecting overlaps requires O(n²). Always sort first."
       },
       {
         "id": "170",
         "title": "Meeting Rooms II",
         "pattern": "Resource Concurrency",
-        "prerequisite": "Sorting + Heap"
+        "prerequisite": "Sorting + Heap",
+        "company": "General",
+        "cluster": "Interval Scheduling",
+        "striver_covered": true,
+        "note": "Sort by start time. Min-heap of end times. At each meeting, if earliest-ending room ends before current start, reuse it. Heap size = rooms needed. Prerequisite for Task Scheduler (115) resource analogy. Also solvable with event-timeline sweep."
       },
       {
         "id": "171",
         "title": "Merge Intervals",
         "pattern": "Data De-duplication",
-        "prerequisite": "Sorting"
+        "prerequisite": "Sorting",
+        "company": "General",
+        "cluster": "Interval Scheduling",
+        "striver_covered": true,
+        "note": "Sort by start. Merge if current start ≤ last end. Update last end to max. O(n log n). Prerequisite for Insert Interval (172), Meeting Rooms II (170), and Range Module (193). The sort-then-sweep pattern is universal for interval problems."
       },
       {
         "id": "172",
         "title": "Insert Interval",
         "pattern": "Dynamic Update",
-        "prerequisite": "Merge Intervals (171)"
+        "prerequisite": "Merge Intervals (171)",
+        "company": "General",
+        "cluster": "Interval Scheduling",
+        "striver_covered": true,
+        "note": "Three phases: add all intervals that end before new start, merge all that overlap, add rest. O(n). Requires (171) conceptually. Tests boundary conditions: off-by-one errors in overlap detection are common failure mode."
+      },
+      {
+        "id": "ST1",
+        "title": "Anagram Check (Two Strings)",
+        "pattern": "Character Frequency Compare",
+        "prerequisite": "Frequency Counter (H02)",
+        "company": "General",
+        "cluster": "String Algorithms",
+        "striver_covered": true,
+        "note": "Count frequency of each character in both strings. Compare maps. O(n). Or sort both and compare. Prerequisite for Find All Anagrams (141) and Group Anagrams (142). The frequency comparison is O(26) = O(1) — faster than sorting. The sorted-canonical-key variant generalizes to groups."
       },
       {
         "id": "173",
         "title": "Longest Palindrome",
         "pattern": "Large Symmetries",
-        "prerequisite": "Hashing"
+        "prerequisite": "Hashing",
+        "company": "General",
+        "cluster": "String Algorithms",
+        "striver_covered": true,
+        "note": "Count characters with odd frequency. Length = total - (odd_count - 1). O(n). Prerequisite for Longest Palindromic Substring (Manacher's). Teaches parity-based character counting — all even-count chars can be used, plus one odd-count center."
       },
       {
         "id": "188",
         "title": "Search Rotated Array",
         "pattern": "Logarithmic Search",
-        "prerequisite": "Binary Search"
+        "prerequisite": "Binary Search",
+        "company": "General",
+        "cluster": "Binary Search Variants",
+        "striver_covered": true,
+        "note": "Determine which half is sorted, then check if target is in that half. O(log n). Prerequisite for Find Minimum in Rotated Array. Key insight: one half is always sorted — use that to make the binary decision."
       },
       {
         "id": "194",
         "title": "Ship Package Capacity",
         "pattern": "Load Balancing",
-        "prerequisite": "Binary Search on Answer"
+        "prerequisite": "Binary Search on Answer",
+        "company": "General",
+        "cluster": "Binary Search on Answer",
+        "striver_covered": true,
+        "note": "Binary search on capacity in [max(weights), sum(weights)]. Greedy feasibility check: simulate shipping with given capacity. Prerequisite for Split Array Max Sum (196) and Koko Eating Bananas (195). The feasibility function is the key insight."
       },
       {
         "id": "195",
         "title": "Koko Eating Bananas",
         "pattern": "Speed-Time Trade-off",
-        "prerequisite": "Binary Search on Answer"
+        "prerequisite": "Binary Search on Answer",
+        "company": "General",
+        "cluster": "Binary Search on Answer",
+        "striver_covered": true,
+        "note": "Binary search on speed k in [1, max(piles)]. Feasibility: sum(ceil(pile/k)) ≤ h. O(n log m). Pair with Ship Packages (194) — same binary search on answer pattern with different feasibility check."
       },
       {
         "id": "249",
         "title": "Implement Union-Find (Rank + Path Compression)",
         "pattern": "DSU Construction",
-        "prerequisite": "Array Indexing"
+        "prerequisite": "Array Indexing",
+        "company": "General",
+        "cluster": "Union-Find Foundation",
+        "striver_covered": true,
+        "note": "Path compression (find) + union by rank. Near O(1) amortized per operation. Foundation for Number of Islands II (4), Accounts Merge (24), Redundant Connection (18), and all DSU problems. Must implement from scratch — not using a library."
       },
       {
         "id": "253",
         "title": "Single Number",
         "pattern": "XOR Identity",
-        "prerequisite": "Bit Basics"
+        "prerequisite": "Bit Basics",
+        "company": "General",
+        "cluster": "Bit Manipulation",
+        "striver_covered": true,
+        "note": "XOR all elements. Pairs cancel (a^a=0), single remains. O(n) time, O(1) space. Prerequisite for Missing Number (254) and all XOR-based tricks. The identity a^0=a and a^a=0 are the only two facts needed."
       },
       {
         "id": "254",
         "title": "Missing Number",
         "pattern": "XOR with Index",
-        "prerequisite": "Bit Basics"
+        "prerequisite": "Bit Basics",
+        "company": "General",
+        "cluster": "Bit Manipulation",
+        "striver_covered": true,
+        "note": "XOR all indices 0..n with all values. The missing number remains. Or use Gauss formula: n*(n+1)/2 - sum. Both O(n) time, O(1) space. Prerequisite for Find Duplicate Number (131). XOR approach generalizes better."
       },
       {
         "id": "255",
         "title": "Number of 1 Bits",
         "pattern": "n & (n-1) Trick",
-        "prerequisite": "Bit Basics"
+        "prerequisite": "Bit Basics",
+        "company": "General",
+        "cluster": "Bit Manipulation",
+        "striver_covered": true,
+        "note": "n & (n-1) clears the lowest set bit. Count how many times until n becomes 0. O(number of set bits). Prerequisite for Maximum XOR (280). The n&(n-1) trick also checks if n is a power of 2 (result = 0)."
+      },
+      {
+        "id": "M01",
+        "title": "Next Greater Element I",
+        "pattern": "Monotonic Stack Pattern",
+        "prerequisite": "Daily Temperatures (S04)",
+        "company": "General",
+        "cluster": "Monotonic Stack/Queue",
+        "striver_covered": true,
+        "note": "For each element, find the first greater element to its right. Monotonic decreasing stack: pop when a greater element is found. O(n). Builds directly on Daily Temperatures. Prerequisite for Largest Rectangle Histogram (129) and Trapping Rain Water (128). Master the stack-pop-on-resolve loop."
       }
     ]
   },
@@ -587,1352 +1229,1190 @@
     "title": "Level 3: Optimization (Advanced)",
     "problems": [
       {
-        "id": "274",
-        "title": "Build Heap from Array \u2014 O(n) Heapify",
-        "pattern": "Bottom-up Heapify",
-        "prerequisite": "Heap Properties"
-      },
-      {
-        "id": "280",
-        "title": "Maximum XOR of Two Numbers \u2014 XOR Trie",
-        "pattern": "Bitwise Trie Greedy",
-        "prerequisite": "Trie Foundations + Bit Manipulation"
-      },
-      {
-        "id": "281",
-        "title": "Design Add and Search Words \u2014 Wildcard Trie",
-        "pattern": "DFS + Wildcard Match",
-        "prerequisite": "Implement Trie"
-      },
-      {
-        "id": "293",
-        "title": "Longest Duplicate Substring \u2014 Suffix Array",
-        "pattern": "SA + LCP Array",
-        "prerequisite": "Binary Search + Hashing"
-      },
-      {
-        "id": "294",
-        "title": "Longest Common Substring \u2014 Suffix Array",
-        "pattern": "SA + LCP",
-        "prerequisite": "Suffix Array"
-      },
-      {
-        "id": "301",
-        "title": "Print in Order \u2014 Semaphore Sequencing",
-        "pattern": "Semaphore Chain",
-        "prerequisite": "Threading Basics"
-      },
-      {
-        "id": "302",
-        "title": "Print FooBar Alternately",
-        "pattern": "Two-thread Alternation",
-        "prerequisite": "Mutex / Semaphore"
-      },
-      {
-        "id": "306",
-        "title": "Design Skiplist",
-        "pattern": "Probabilistic Balancing",
-        "prerequisite": "Linked List + Randomisation"
-      }
-    ]
-  },
-  {
-    "title": "Level 3 requires the integration of multiple paradigms, such as combining graphs with priority queues or trees with dynamic programming.",
-    "problems": [
-      {
         "id": "1",
         "title": "Bus Routes",
         "pattern": "Shortest Transfers",
-        "prerequisite": "BFS + Graph Modeling"
+        "prerequisite": "BFS + Graph Modeling",
+        "company": "Uber",
+        "cluster": "Advanced Graph Modeling",
+        "striver_covered": false,
+        "note": "Model routes as nodes, not stops. BFS on route graph: if two routes share a stop, they're adjacent. O(sum of route lengths). Prerequisite for Multi-Source BFS (207). The key insight: changing levels of abstraction (stop → route) reduces edge count."
+      },
+      {
+        "id": "33",
+        "title": "Evaluate Division",
+        "pattern": "Unit Conversion",
+        "prerequisite": "Weighted Graph Path",
+        "company": "Databricks",
+        "cluster": "Advanced Graph Modeling",
+        "striver_covered": false,
+        "note": "Build weighted undirected graph: a/b = k → edge a→b with weight k, edge b→a with weight 1/k. BFS/DFS to find path product. O(V+E) per query. Databricks conversion chains. Prerequisite for Maximize Amount After Conversions (227) with Bellman-Ford."
+      },
+      {
+        "id": "TS1",
+        "title": "Topological Sort — Kahn's BFS",
+        "pattern": "In-degree BFS",
+        "prerequisite": "BFS on Graph (G02), Detect Cycle in Directed Graph (G05)",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": true,
+        "note": "Build in-degree array. Enqueue all 0-in-degree nodes. Process: dequeue, add to result, decrement neighbors' in-degrees, enqueue new 0-in-degree. If result size < V, cycle exists. O(V+E). Prerequisite for Course Schedule II (6), Alien Dictionary (2), Parallel Courses III (36). Must be automatic."
+      },
+      {
+        "id": "TS2",
+        "title": "Topological Sort — DFS Post-order",
+        "pattern": "DFS Reverse Finish Order",
+        "prerequisite": "DFS on Graph (G03)",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": true,
+        "note": "DFS with 3-color states. Push to result stack on finish (post-order). Reverse gives topological order. O(V+E). Equivalent to Kahn's but DFS-based — preferred for cycle detection with explicit back-edge identification. Prerequisite for Alien Dictionary (2) and Find Eventual Safe States (22)."
       },
       {
         "id": "2",
         "title": "Alien Dictionary",
         "pattern": "Topological Sort",
-        "prerequisite": "Kahn\u2019s Algorithm"
-      },
-      {
-        "id": "4",
-        "title": "Number of Islands II",
-        "pattern": "Dynamic Clustering",
-        "prerequisite": "Union-Find (DSU)"
+        "prerequisite": "Kahn's Algorithm",
+        "company": "Palantir",
+        "cluster": "Topological Sort",
+        "striver_covered": true,
+        "note": "Build directed graph from adjacent word pairs. Compare char by char — first difference gives an edge. Detect cycles (invalid input). Kahn's BFS topo sort. Prerequisite for Course Schedule II (6) and Sequence Reconstruction (37). Edge case: prefix word before shorter word is invalid."
       },
       {
         "id": "6",
         "title": "Course Schedule II",
         "pattern": "Dependency Pipeline",
-        "prerequisite": "Topological Sort"
+        "prerequisite": "Topological Sort",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": true,
+        "note": "Kahn's BFS: in-degree array, enqueue all 0-in-degree nodes. Output order = topological order. If not all nodes processed, cycle exists. Prerequisite for Parallel Courses III (36), Largest Color Value (35), and Build Rooms (191)."
+      },
+      {
+        "id": "35",
+        "title": "Largest Color Value",
+        "pattern": "DAG State tracking",
+        "prerequisite": "Topological Sort",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": false,
+        "note": "Topological order + DP. dp[node][color] = max count of that color on any path to this node. Propagate through topo order. O(V·26 + E). If cycle, return -1. Combines Kahn's topo sort with color-frequency DP."
+      },
+      {
+        "id": "36",
+        "title": "Parallel Courses III",
+        "pattern": "Project Duration",
+        "prerequisite": "Topological Sort + DP",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": false,
+        "note": "Topo sort + DP: dp[node] = time[node] + max(dp[prerequisites]). Answer = max(dp[all nodes]). O(V+E). Prerequisite for Build Rooms Ways (191). The critical path in a DAG — project management interview framing."
+      },
+      {
+        "id": "37",
+        "title": "Sequence Reconstruction",
+        "pattern": "Unique Orderings",
+        "prerequisite": "Topological Sort",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": false,
+        "note": "Check if the target sequence is the UNIQUE topological sort. At each step in Kahn's BFS, if ever more than 1 node has in-degree 0, the sort is not unique. O(V+E). The uniqueness check (queue size ≤ 1) is the key modification."
+      },
+      {
+        "id": "191",
+        "title": "Build Rooms Ways",
+        "pattern": "Combinatorial Opt.",
+        "prerequisite": "Topological Sort + Math",
+        "company": "General",
+        "cluster": "Topological Sort",
+        "striver_covered": false,
+        "note": "For each node, count orderings = (subtree_size - 1)! / product(child_subtree_sizes). Multinomial coefficient + topo sort. O(n). Uses modular inverse for division. The combinatorics insight: relative order within subtrees is independent."
+      },
+      {
+        "id": "4",
+        "title": "Number of Islands II",
+        "pattern": "Dynamic Clustering",
+        "prerequisite": "Union-Find (DSU)",
+        "company": "General",
+        "cluster": "Union-Find Applications",
+        "striver_covered": false,
+        "note": "Online version: add land cells one by one, union with 4-directional neighbors. Track island count: +1 on add, -1 per successful union. O(α(n)) per operation. Prerequisite for Accounts Merge (24) and Smallest String with Swaps (213)."
+      },
+      {
+        "id": "18",
+        "title": "Redundant Connection",
+        "pattern": "Cycle Detection",
+        "prerequisite": "DSU Foundations",
+        "company": "General",
+        "cluster": "Union-Find Applications",
+        "striver_covered": true,
+        "note": "Process edges in order. First edge whose endpoints are already connected forms the cycle — that's the redundant connection. Union-Find with path compression. Prerequisite for Redundant Connection II (214) which handles directed graphs."
+      },
+      {
+        "id": "24",
+        "title": "Accounts Merge",
+        "pattern": "DSU Deduplication",
+        "prerequisite": "Union-Find Optimization",
+        "company": "Databricks",
+        "cluster": "Union-Find Applications",
+        "striver_covered": true,
+        "note": "Union all emails in an account under the first email. HashMap: email → canonical root. Group emails by root. Sort each group. O(n·α(n) + n log n). Databricks data deduplication problem. Prerequisite for Similar String Groups (243)."
+      },
+      {
+        "id": "41",
+        "title": "Count Unreachable Pairs",
+        "pattern": "Fragmented Count",
+        "prerequisite": "BFS/DFS Connectivity",
+        "company": "General",
+        "cluster": "Union-Find Applications",
+        "striver_covered": false,
+        "note": "Find all connected components and their sizes. For each component of size s, pairs with other components = s * (total - s). Sum and divide by 2. O(V+E). Or Union-Find. Teaches component-size counting for pair-counting problems."
       },
       {
         "id": "7",
         "title": "Word Ladder",
         "pattern": "State-space BFS",
         "prerequisite": "BFS + Graph Construction",
-        "representation_note": "IMPLICIT GRAPH \u2014 the graph is never constructed. Each word is a node; two words share an edge if they differ by one letter. Building the full adjacency list upfront is O(N\u00b2\u00b7L) time and space. Instead, generate neighbors on-the-fly during BFS by mutating each character position. This is the canonical example of implicit graph recognition: the problem never says 'graph' but the solution is BFS on a state space.",
-        "representation_decision": "Implicit string graph \u2192 On-the-fly neighbor generation (never build adjacency structure)"
+        "company": "General",
+        "cluster": "Implicit Graph BFS",
+        "striver_covered": true,
+        "representation_note": "IMPLICIT GRAPH — generate neighbors on-the-fly during BFS by mutating each character position.",
+        "representation_decision": "Implicit string graph → On-the-fly neighbor generation (never build adjacency structure)",
+        "note": "BFS on word states. For each word, try replacing each character with 'a'-'z'. O(n·L²) where L = word length. Prerequisite for Word Ladder II (43) and Minimum Genetic Mutation (39). Bidirectional BFS halves the branching factor."
+      },
+      {
+        "id": "39",
+        "title": "Minimum Genetic Mutation",
+        "pattern": "Constrained Transition",
+        "prerequisite": "State-space BFS",
+        "company": "General",
+        "cluster": "Implicit Graph BFS",
+        "striver_covered": false,
+        "note": "Same pattern as Word Ladder (7) but with 4-character genes and only 4 possible mutations (A/C/G/T). BFS from start to end, only through valid bank genes. O(bank_size × gene_length × 4). Directly analogous to Word Ladder."
+      },
+      {
+        "id": "43",
+        "title": "Word Ladder II",
+        "pattern": "All Shortest Paths",
+        "prerequisite": "BFS + Backtracking",
+        "company": "General",
+        "cluster": "Implicit Graph BFS",
+        "striver_covered": false,
+        "note": "BFS to build layer graph (parent map), then backtrack from end to start to collect all shortest paths. O(n × L² + paths). Key: only traverse edges that stay within BFS levels — prevents non-shortest paths. Harder than Word Ladder (7)."
+      },
+      {
+        "id": "SP1",
+        "title": "Dijkstra's Algorithm",
+        "pattern": "Greedy Min-Heap SSSP",
+        "prerequisite": "BFS on Graph (G02), Min-Heap (E01)",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": true,
+        "note": "Min-heap of (distance, node). Relax neighbors: if dist[u]+w < dist[v], update and enqueue. Skip stale entries (dist > known). O((V+E) log V). Prerequisite for Network Delay Time (8), Path With Minimum Effort (20), Path With Max Probability (38), Cheapest Flights (215). Only works with non-negative weights."
+      },
+      {
+        "id": "SP2",
+        "title": "Bellman-Ford Algorithm",
+        "pattern": "V-1 Edge Relaxations SSSP",
+        "prerequisite": "Build Adjacency List (G01)",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": true,
+        "note": "Relax all edges V-1 times. Handles negative weights. V-th relaxation detects negative cycle. O(V·E). Prerequisite for Cheapest Flights K Stops (215) (K+1 iterations), Maximize Amount After Conversions (227). Slower than Dijkstra but more general — know when each applies."
+      },
+      {
+        "id": "SP3",
+        "title": "Floyd-Warshall Algorithm",
+        "pattern": "All-Pairs Shortest Path",
+        "prerequisite": "2D Array / Matrix",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": true,
+        "note": "dp[i][j] = min cost from i to j. Try every intermediate node k: dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]). O(V³). Prerequisite for Smallest Neighbors Threshold (30). Use when V ≤ 400 and you need all-pairs shortest paths. The k-loop must be outermost."
       },
       {
         "id": "8",
         "title": "Network Delay Time",
         "pattern": "Dijkstra Path",
-        "prerequisite": "BFS + Min-Heap"
+        "prerequisite": "BFS + Min-Heap",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": true,
+        "note": "Dijkstra with min-heap. Single source, all destinations. Answer = max of all shortest paths. If any node unreachable, return -1. Prerequisite for Path With Max Probability (38) and Min Cost to Destination (42). Foundation for all weighted shortest path problems."
+      },
+      {
+        "id": "20",
+        "title": "Path With Minimum Effort",
+        "pattern": "Stress Path",
+        "prerequisite": "Dijkstra or Binary Search + BFS",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": true,
+        "note": "Modified Dijkstra: relax by max(current_effort, edge_weight) instead of sum. Or binary search on effort + BFS feasibility. O(m·n·log(m·n)). Prerequisite for Path With Max Probability (38). The objective function change in Dijkstra is the key insight."
+      },
+      {
+        "id": "30",
+        "title": "Smallest Neighbors (Threshold)",
+        "pattern": "Accessible Hub",
+        "prerequisite": "Floyd-Warshall or Dijkstra",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": false,
+        "note": "Floyd-Warshall for all-pairs shortest paths, then count neighbors within threshold per city. City with fewest neighbors = answer. O(n³). Or Dijkstra from each node. Floyd-Warshall preferred when n ≤ 100 and edge weights are sparse."
+      },
+      {
+        "id": "38",
+        "title": "Path With Max Probability",
+        "pattern": "Stochastic Routing",
+        "prerequisite": "Dijkstra with Multiplication",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": false,
+        "note": "Modified Dijkstra with max-heap: relax by multiplication (prob[u] * edge_weight) instead of addition. O((V+E) log V). Prerequisite for Maximize Amount After Conversions (227). The objective change (sum→product) in Dijkstra is the key insight."
+      },
+      {
+        "id": "40",
+        "title": "Number of Restrictive Paths",
+        "pattern": "Weighted Path Counting",
+        "prerequisite": "Dijkstra + DP",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": false,
+        "note": "Dijkstra from destination to get dist[]. Then DFS/DP: count paths where each step goes to a node with strictly smaller dist[]. Memoize. O((V+E) log V + V + E). Combines Dijkstra preprocessing with DAG path counting."
+      },
+      {
+        "id": "42",
+        "title": "Min Cost to Destination",
+        "pattern": "Time-Cost Trade-off",
+        "prerequisite": "Dijkstra Variation",
+        "company": "General",
+        "cluster": "Shortest Path Algorithms",
+        "striver_covered": false,
+        "note": "Dijkstra with state (node, zones_crossed). Different cost tiers based on zones. Or SPFA for dynamic cost graphs. Prerequisite for Cheapest Flights Within K Stops (215). The state augmentation pattern for cost-tier problems."
       },
       {
         "id": "10",
         "title": "Critical Connections",
         "pattern": "Single Point Failure",
-        "prerequisite": "Tarjan\u2019s/Bridge Logic"
+        "prerequisite": "Tarjan's/Bridge Logic",
+        "company": "Palantir",
+        "cluster": "Graph Structural Verification",
+        "striver_covered": false,
+        "note": "Tarjan's bridge-finding: track discovery time and low value. Edge (u,v) is a bridge if low[v] > disc[u]. O(V+E). Prerequisite for Critical Connections in a Network (206). Palantir infrastructure reliability question. Must know DFS timestamps."
+      },
+      {
+        "id": "31",
+        "title": "Detonate Maximum Bombs",
+        "pattern": "Chain Reaction",
+        "prerequisite": "Directed Graph BFS",
+        "company": "General",
+        "cluster": "Graph Structural Verification",
+        "striver_covered": false,
+        "note": "Build directed graph: edge i→j if bomb i's radius reaches bomb j's center. BFS/DFS from each bomb, count reachable bombs. Return max count. O(n³) precompute + O(n²) BFS. Prerequisite for Detonate Maximum Bombs directed reachability (245)."
+      },
+      {
+        "id": "48",
+        "title": "Minimum Degree of Connect",
+        "pattern": "Core Identification",
+        "prerequisite": "Graph Connectivity",
+        "company": "General",
+        "cluster": "Graph Structural Verification",
+        "striver_covered": false,
+        "note": "Check connectivity after removing each single node, then each pair of nodes. O(V × (V+E)) for single-node removal. If graph remains connected with no removals, answer is 3. Prerequisite for Critical Connections (10) pattern."
       },
       {
         "id": "12",
         "title": "Shortest Path in a Grid",
         "pattern": "Obstacle BFS",
         "prerequisite": "Level 2 BFS",
-        "representation_note": "IMPLICIT GRAPH \u2014 same principle as Number of Islands (id=3). The grid is the adjacency structure. A common failure pattern is constructing an explicit adjacency list for grid problems, adding unnecessary O(V+E) space and O(E) build time. Run BFS/Dijkstra directly on grid coordinates. The 'node' is a (row, col) tuple; 'neighbors' are the 4 or 8 directional cells within bounds.",
-        "representation_decision": "Grid \u2192 Direct coordinate BFS/Dijkstra (no adjacency structure)"
-      },
-      {
-        "id": "15",
-        "title": "Minimum Height Trees",
-        "pattern": "Network Root",
-        "prerequisite": "Trim Leaves BFS"
+        "company": "General",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": true,
+        "representation_note": "IMPLICIT GRAPH — BFS/Dijkstra directly on grid coordinates.",
+        "representation_decision": "Grid → Direct coordinate BFS/Dijkstra (no adjacency structure)",
+        "note": "BFS with state (row, col, obstacles_remaining). State space = O(m·n·k). Prerequisite for Shortest Path with Restricted Access (208). The state augmentation pattern (add constraint to BFS state) generalizes to all constrained grid paths."
       },
       {
         "id": "17",
         "title": "Pacific Atlantic Water Flow",
         "pattern": "Reachability Grid",
-        "prerequisite": "Multi-source DFS/BFS"
-      },
-      {
-        "id": "18",
-        "title": "Redundant Connection",
-        "pattern": "Cycle Detection",
-        "prerequisite": "DSU Foundations"
-      },
-      {
-        "id": "19",
-        "title": "Min Cost to Connect Points",
-        "pattern": "MST Roads",
-        "prerequisite": "Prim\u2019s or Kruskal\u2019s",
-        "representation_note": "EDGE LIST required here, not adjacency list. Kruskal's MST algorithm needs all edges sorted by weight \u2014 the access pattern is 'iterate edges in weight order', not 'iterate neighbors of a node'. An adjacency list forces O(V\u00b2) edge extraction before sorting. Use an edge list of (weight, u, v) tuples directly.",
-        "representation_decision": "Dense complete graph \u2192 Edge list for Kruskal's; Adjacency list + min-heap for Prim's"
-      },
-      {
-        "id": "20",
-        "title": "Path With Minimum Effort",
-        "pattern": "Stress Path",
-        "prerequisite": "Dijkstra or Binary Search + BFS"
-      },
-      {
-        "id": "22",
-        "title": "Find Eventual Safe States",
-        "pattern": "Infinite Loop Avoid",
-        "prerequisite": "Cycle Detection"
-      },
-      {
-        "id": "24",
-        "title": "Accounts Merge",
-        "pattern": "DSU Deduplication",
-        "prerequisite": "Union-Find Optimization"
-      },
-      {
-        "id": "25",
-        "title": "Possible Bipartition",
-        "pattern": "Conflict Detection",
-        "prerequisite": "Bipartite Coloring"
+        "prerequisite": "Multi-source DFS/BFS",
+        "company": "General",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": true,
+        "note": "Reverse: flow UP from ocean borders. BFS/DFS from all Pacific edges, then all Atlantic edges. Intersection = answer. O(m·n). Prerequisite for Shortest Bridge (29). The reversal insight (instead of checking every cell) is the key optimization."
       },
       {
         "id": "27",
         "title": "Minimum Knight Moves",
         "pattern": "Pattern Search",
-        "prerequisite": "BFS Symmetry"
-      },
-      {
-        "id": "28",
-        "title": "Reorder Routes",
-        "pattern": "Central Data Center",
-        "prerequisite": "BFS/DFS Traversal"
+        "prerequisite": "BFS Symmetry",
+        "company": "General",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": false,
+        "note": "BFS from (0,0) to (x,y). Mirror to first quadrant by symmetry — reduces search space by 4x. Add buffer (-1,-1) to (-2,-2) to avoid boundary issues. O(x·y). Bidirectional BFS from both source and target halves depth."
       },
       {
         "id": "29",
         "title": "Shortest Bridge",
         "pattern": "Sparse Clustering",
-        "prerequisite": "Multi-source BFS"
+        "prerequisite": "Multi-source BFS",
+        "company": "General",
+        "cluster": "Grid Graph Traversal",
+        "striver_covered": false,
+        "note": "DFS to find first island, add all its cells to BFS queue. Then multi-source BFS to expand until second island hit. O(m·n). Combines DFS island finding + BFS shortest path. Prerequisite for shortest path between components problems."
       },
       {
-        "id": "30",
-        "title": "Smallest Neighbors (Threshold)",
-        "pattern": "Accessible Hub",
-        "prerequisite": "Floyd-Warshall or Dijkstra"
+        "id": "15",
+        "title": "Minimum Height Trees",
+        "pattern": "Network Root",
+        "prerequisite": "Trim Leaves BFS",
+        "company": "General",
+        "cluster": "Tree Centers",
+        "striver_covered": false,
+        "note": "Topological peeling from leaves inward. At most 2 roots remain (tree centroid). O(n). Similar to finding tree diameter — the root(s) of MHT are always the center(s) of the longest path. Prerequisite for all tree-center problems."
       },
       {
-        "id": "31",
-        "title": "Detonate Maximum Bombs",
-        "pattern": "Chain Reaction",
-        "prerequisite": "Directed Graph BFS"
+        "id": "MS1",
+        "title": "Kruskal's MST Algorithm",
+        "pattern": "Sort Edges + Union-Find",
+        "prerequisite": "Union-Find Basics (U01), Implement Union-Find (249)",
+        "company": "General",
+        "cluster": "Minimum Spanning Tree",
+        "striver_covered": true,
+        "note": "Sort all edges by weight. Add edge if endpoints in different components (union-find). Stop when V-1 edges added. O(E log E). Prerequisite for Min Cost to Connect Points (19) and Redundant Connection (18). The greedy correctness: adding cheapest safe edge always works (cut property)."
+      },
+      {
+        "id": "MS2",
+        "title": "Prim's MST Algorithm",
+        "pattern": "Greedy Heap MST Expansion",
+        "prerequisite": "Dijkstra's Algorithm (SP1)",
+        "company": "General",
+        "cluster": "Minimum Spanning Tree",
+        "striver_covered": true,
+        "note": "Min-heap of (weight, node). Start from any node. At each step, add cheapest edge to unvisited node. O((V+E) log V). Preferred over Kruskal's for dense graphs (avoids sorting E² edges). Prerequisite for Min Cost to Connect Points (19). Very similar structure to Dijkstra's."
+      },
+      {
+        "id": "19",
+        "title": "Min Cost to Connect Points",
+        "pattern": "MST Roads",
+        "prerequisite": "Prim's or Kruskal's",
+        "company": "General",
+        "cluster": "Minimum Spanning Tree",
+        "striver_covered": true,
+        "representation_note": "EDGE LIST required for Kruskal's. Use Prim's with adjacency matrix or lazy heap for dense graphs.",
+        "representation_decision": "Dense complete graph → Edge list for Kruskal's; Adjacency list + min-heap for Prim's",
+        "note": "Complete graph with Manhattan distances. Prim's with lazy heap: O(n² log n). Kruskal's: O(n² log n) due to sorting n² edges. Prerequisite for all MST problems. The dense graph variant — Prim's avoids materializing all edges."
+      },
+      {
+        "id": "22",
+        "title": "Find Eventual Safe States",
+        "pattern": "Infinite Loop Avoid",
+        "prerequisite": "Cycle Detection",
+        "company": "General",
+        "cluster": "DAG Traversal",
+        "striver_covered": true,
+        "note": "A node is safe if it's not in a cycle. Reverse graph + topological sort via Kahn's (nodes with no out-edges in reverse = safe). Or DFS with 3 colors (white/gray/black). Prerequisite for Alien Dictionary (2) cycle detection."
+      },
+      {
+        "id": "28",
+        "title": "Reorder Routes",
+        "pattern": "Central Data Center",
+        "prerequisite": "BFS/DFS Traversal",
+        "company": "General",
+        "cluster": "DAG Traversal",
+        "striver_covered": false,
+        "note": "Build undirected graph, mark original direction. BFS from node 0. If traversing an edge in its original direction, count it (needs reversal). O(n). Teaches directed-vs-undirected dual representation pattern."
       },
       {
         "id": "32",
         "title": "Longest Increasing Path",
         "pattern": "Grid Optimization",
-        "prerequisite": "Memoized DFS"
-      },
-      {
-        "id": "33",
-        "title": "Evaluate Division",
-        "pattern": "Unit Conversion",
-        "prerequisite": "Weighted Graph Path"
-      },
-      {
-        "id": "35",
-        "title": "Largest Color Value",
-        "pattern": "DAG State tracking",
-        "prerequisite": "Topological Sort"
-      },
-      {
-        "id": "36",
-        "title": "Parallel Courses III",
-        "pattern": "project Duration",
-        "prerequisite": "Topological Sort + DP"
-      },
-      {
-        "id": "37",
-        "title": "Sequence Reconstruction",
-        "pattern": "Unique Orderings",
-        "prerequisite": "Topological Sort"
-      },
-      {
-        "id": "38",
-        "title": "Path With Max Probability",
-        "pattern": "Stochastic Routing",
-        "prerequisite": "Dijkstra with Multiplication"
-      },
-      {
-        "id": "39",
-        "title": "Minimum Genetic Mutation",
-        "pattern": "Constrained Transition",
-        "prerequisite": "State-space BFS"
-      },
-      {
-        "id": "40",
-        "title": "Number of Restrictive Paths",
-        "pattern": "Weighted Path Counting",
-        "prerequisite": "Dijkstra + DP"
-      },
-      {
-        "id": "41",
-        "title": "Count Unreachable Pairs",
-        "pattern": "Fragmented Count",
-        "prerequisite": "BFS/DFS Connectivity"
-      },
-      {
-        "id": "42",
-        "title": "Min Cost to Destination",
-        "pattern": "Time-Cost Trade-off",
-        "prerequisite": "Dijkstra Variation"
-      },
-      {
-        "id": "43",
-        "title": "Word Ladder II",
-        "pattern": "All Shortest Paths",
-        "prerequisite": "BFS + Backtracking"
-      },
-      {
-        "id": "44",
-        "title": "Flower Planting No Adjacent",
-        "pattern": "Graph Coloring",
-        "prerequisite": "Greedy Coloring"
-      },
-      {
-        "id": "48",
-        "title": "Minimum Degree of Connect",
-        "pattern": "Core Identification",
-        "prerequisite": "Graph Connectivity"
-      },
-      {
-        "id": "49",
-        "title": "Map Sum Pairs",
-        "pattern": "Prefix Tree Aggregation",
-        "prerequisite": "Trie Foundations"
+        "prerequisite": "Memoized DFS",
+        "company": "General",
+        "cluster": "DAG Traversal",
+        "striver_covered": true,
+        "note": "DFS with memoization on each cell. No visited set needed — strictly increasing values prevent cycles. O(m·n). Prerequisite for Largest Color Value (35) and Longest Path in Matrix (50). The DAG property (strict increase) is what makes memoization safe."
       },
       {
         "id": "50",
         "title": "Longest Path in Matrix",
         "pattern": "Monotonic Route",
-        "prerequisite": "Level 2 DFS"
+        "prerequisite": "Level 2 DFS",
+        "company": "General",
+        "cluster": "DAG Traversal",
+        "striver_covered": false,
+        "note": "Sort cells by value. Process in increasing order. For each cell, extend from neighbors with smaller value. DP with topological ordering by value. O(m·n·log(m·n)). Related to Longest Increasing Path (32) — both exploit DAG structure from ordering."
       },
       {
-        "id": "53",
-        "title": "Binary Tree Max Path Sum",
-        "pattern": "Global Hierarchy Opt",
-        "prerequisite": "Post-order DFS"
+        "id": "25",
+        "title": "Possible Bipartition",
+        "pattern": "Conflict Detection",
+        "prerequisite": "Bipartite Coloring",
+        "company": "General",
+        "cluster": "Graph Coloring",
+        "striver_covered": true,
+        "note": "Model dislikes as undirected edges. BFS/DFS 2-coloring. If same color on both ends of an edge, impossible. Or DSU: union all people disliked by a person, check no person is in same component as disliked. Builds on Is Graph Bipartite? (14)."
       },
       {
-        "id": "54",
-        "title": "Kth Smallest Element in BST",
-        "pattern": "Rank Retrieval",
-        "prerequisite": "BST In-order Traversal"
+        "id": "44",
+        "title": "Flower Planting No Adjacent",
+        "pattern": "Graph Coloring",
+        "prerequisite": "Greedy Coloring",
+        "company": "General",
+        "cluster": "Graph Coloring",
+        "striver_covered": false,
+        "note": "Each node has degree ≤ 3 and 4 colors available. Greedy: for each garden, pick any color not used by neighbors. Always possible (pigeonhole: max 3 neighbors, 4 colors). O(V+E). The degree constraint guarantees greedy works."
       },
       {
-        "id": "56",
-        "title": "Range Sum Query (Mutable)",
-        "pattern": "Dynamic Range",
-        "prerequisite": "Fenwick/Segment Trees"
+        "id": "TR1",
+        "title": "Trie Node Structure and Insert/Search",
+        "pattern": "Prefix Tree Core",
+        "prerequisite": "None",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": true,
+        "note": "TrieNode: children=dict or array[26], is_end=False. Insert: traverse/create nodes char by char. Search: traverse, return is_end. startsWith: traverse, return True if path exists. O(L) per operation. Prerequisite for Implement Trie (106), Map Sum Pairs (49), Autocomplete (108), Maximum XOR (280). Must be implemented from scratch."
       },
       {
-        "id": "60",
-        "title": "Count of Smaller Numbers",
-        "pattern": "Advanced Rank",
-        "prerequisite": "BIT Foundations"
-      },
-      {
-        "id": "63",
-        "title": "Diameter of Binary Tree",
-        "pattern": "Span Calculation",
-        "prerequisite": "Post-order DFS"
-      },
-      {
-        "id": "67",
-        "title": "Construct Pre/Inorder",
-        "pattern": "Index Recovery",
-        "prerequisite": "Recursive Construction"
-      },
-      {
-        "id": "69",
-        "title": "Binary Tree Zigzag",
-        "pattern": "Balancing Traversal",
-        "prerequisite": "Level-order BFS"
-      },
-      {
-        "id": "70",
-        "title": "Recover BST",
-        "pattern": "Self-healing Index",
-        "prerequisite": "In-order Traversal"
-      },
-      {
-        "id": "73",
-        "title": "K-Sum Paths",
-        "pattern": "Segment Value Path",
-        "prerequisite": "Prefix Sum + DFS"
-      },
-      {
-        "id": "74",
-        "title": "Boundary of Binary Tree",
-        "pattern": "Perimeter Data",
-        "prerequisite": "DFS Partitioning"
-      },
-      {
-        "id": "75",
-        "title": "Binary Tree Cameras",
-        "pattern": "Surveillance Min",
-        "prerequisite": "Greedy Tree DFS"
-      },
-      {
-        "id": "76",
-        "title": "LCA of N-ary Tree",
-        "pattern": "Parent Hub",
-        "prerequisite": "Binary Lifting or DFS"
-      },
-      {
-        "id": "77",
-        "title": "Range Frequency Queries",
-        "pattern": "High-speed Counting",
-        "prerequisite": "Segment Tree"
-      },
-      {
-        "id": "78",
-        "title": "Maximum Subtree BST",
-        "pattern": "Valid sub-index",
-        "prerequisite": "BST Properties + DFS"
-      },
-      {
-        "id": "79",
-        "title": "House Robber III",
-        "pattern": "Tree DP",
-        "prerequisite": "Subtree Memoization"
-      },
-      {
-        "id": "80",
-        "title": "Infection Time in Tree",
-        "pattern": "Failure Spread",
-        "prerequisite": "BFS from Target"
-      },
-      {
-        "id": "81",
-        "title": "Unique Binary Search Trees",
-        "pattern": "Index Configurations",
-        "prerequisite": "Catalan Numbers/DP"
-      },
-      {
-        "id": "83",
-        "title": "Subtree with Deepest Nodes",
-        "pattern": "Focal Update",
-        "prerequisite": "Post-order DFS"
-      },
-      {
-        "id": "85",
-        "title": "Smallest String From Leaf",
-        "pattern": "Lexicographical Path",
-        "prerequisite": "DFS Traversal"
-      },
-      {
-        "id": "87",
-        "title": "Maximum Width of Tree",
-        "pattern": "Concurrency Max",
-        "prerequisite": "Level-order BFS"
-      },
-      {
-        "id": "89",
-        "title": "Pseudo-Palindromic Paths",
-        "pattern": "Frequency Tracking",
-        "prerequisite": "DFS Path State"
-      },
-      {
-        "id": "90",
-        "title": "Count Nodes in Complete Tree",
-        "pattern": "O(\\log^2 N) Count",
-        "prerequisite": "Binary Search on Tree"
-      },
-      {
-        "id": "92",
-        "title": "Symmetric Tree",
-        "pattern": "Redundancy Verify",
-        "prerequisite": "Tree Partitioning"
-      },
-      {
-        "id": "94",
-        "title": "Lowest Common Ancestor IV",
-        "pattern": "k-Node LCA",
-        "prerequisite": "Multi-LCA Logic"
-      },
-      {
-        "id": "95",
-        "title": "Minimum Distance in BST",
-        "pattern": "Closest Value",
-        "prerequisite": "BST In-order Properties"
-      },
-      {
-        "id": "96",
-        "title": "Balanced Tree Audit",
-        "pattern": "Depth Monitoring",
-        "prerequisite": "Balanced Tree Logic"
-      },
-      {
-        "id": "98",
-        "title": "Leaf-Similar Trees",
-        "pattern": "Terminal Consistency",
-        "prerequisite": "Leaf-level DFS"
-      },
-      {
-        "id": "99",
-        "title": "Path Sum III",
-        "pattern": "Prefix-sum Path",
-        "prerequisite": "Prefix Sum + DFS"
-      },
-      {
-        "id": "100",
-        "title": "Range Sum of BST",
-        "pattern": "Efficient Interval",
-        "prerequisite": "BST Pruning"
-      },
-      {
-        "id": "102",
-        "title": "LFU Cache",
-        "pattern": "Hot Data Eviction",
-        "prerequisite": "Frequency + Map"
-      },
-      {
-        "id": "105",
-        "title": "Median from Data Stream",
-        "pattern": "Dynamic Pricing",
-        "prerequisite": "Dual Heaps"
+        "id": "49",
+        "title": "Map Sum Pairs",
+        "pattern": "Prefix Tree Aggregation",
+        "prerequisite": "Trie Foundations",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": false,
+        "note": "Trie where each node stores the sum of values of all keys with that prefix. On insert, update all nodes along the path. O(L) insert and query. Prerequisite for Search Autocomplete (108) and Design Search Autocomplete System (216)."
       },
       {
         "id": "106",
         "title": "Implement Trie",
         "pattern": "Prefix Autocomplete",
-        "prerequisite": "Trie Foundations"
-      },
-      {
-        "id": "107",
-        "title": "Design Twitter",
-        "pattern": "Feeds Fan-out",
-        "prerequisite": "System Design Foundations"
+        "prerequisite": "Trie Foundations",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": true,
+        "note": "TrieNode with children[26] and is_end flag. Insert, search, startsWith all O(L). Foundation for Design Add and Search Words (281), Search Autocomplete (108), Map Sum Pairs (49), Maximum XOR (280). Must implement from scratch."
       },
       {
         "id": "108",
         "title": "Search Autocomplete",
         "pattern": "Planet-scale Prefix",
-        "prerequisite": "Trie + Max-Heap"
-      },
-      {
-        "id": "110",
-        "title": "Sliding Window Max",
-        "pattern": "Peak Detection",
-        "prerequisite": "Monotonic Queue"
-      },
-      {
-        "id": "111",
-        "title": "Merge K Sorted Lists",
-        "pattern": "Distributed Shards",
-        "prerequisite": "Priority Queue"
+        "prerequisite": "Trie + Max-Heap",
+        "company": "Uber",
+        "cluster": "Trie",
+        "striver_covered": false,
+        "note": "Trie where each node stores top-3 sentences by frequency. On insert, update top-3 at every node along path. Query: return top-3 at prefix node. O(L) query after O(n·L) build. Prerequisite for Design Search Autocomplete System (216). The precomputed top-K per node is the key optimization."
       },
       {
         "id": "113",
         "title": "Design File System",
         "pattern": "Metadata MKDIR",
-        "prerequisite": "Trie or Hashing"
-      },
-      {
-        "id": "114",
-        "title": "Sparse Matrix Multiply",
-        "pattern": "Empty Data Opt",
-        "prerequisite": "Compressed Sparse Row"
-      },
-      {
-        "id": "117",
-        "title": "Smallest Subarray (K)",
-        "pattern": "Minimal Window",
-        "prerequisite": "Level 2 Sliding Window"
-      },
-      {
-        "id": "118",
-        "title": "Longest Consecutive Seq.",
-        "pattern": "Unordered Range",
-        "prerequisite": "Hashing/DSU"
-      },
-      {
-        "id": "119",
-        "title": "Valid Sudoku",
-        "pattern": "Constraint Validation",
-        "prerequisite": "Grid Indexing"
-      },
-      {
-        "id": "123",
-        "title": "Design Parking Lot",
-        "pattern": "Resource OO Model",
-        "prerequisite": "Class Design"
-      },
-      {
-        "id": "124",
-        "title": "Snapshot Array",
-        "pattern": "Point-in-time Recovery",
-        "prerequisite": "Binary Search on Versions"
-      },
-      {
-        "id": "125",
-        "title": "Time Based KV Store",
-        "pattern": "Timestamp Index",
-        "prerequisite": "Map + Binary Search"
-      },
-      {
-        "id": "126",
-        "title": "Design Spreadsheet",
-        "pattern": "Dependency Update",
-        "prerequisite": "Graph Dependency"
-      },
-      {
-        "id": "127",
-        "title": "First Missing Positive",
-        "pattern": "In-place Memory Opt",
-        "prerequisite": "Cyclic Sort"
-      },
-      {
-        "id": "128",
-        "title": "Trapping Rain Water",
-        "pattern": "Metric Calculation",
-        "prerequisite": "Monotonic Stack/Two Pointers"
-      },
-      {
-        "id": "129",
-        "title": "Largest Hist. Rectangle",
-        "pattern": "Area Optimization",
-        "prerequisite": "Monotonic Stack"
-      },
-      {
-        "id": "130",
-        "title": "Maximal Rectangle",
-        "pattern": "Binary Grid Area",
-        "prerequisite": "Hist. Logic (129)"
-      },
-      {
-        "id": "131",
-        "title": "Find Duplicate Number",
-        "pattern": "Cycle in Array",
-        "prerequisite": "Floyd\u2019s Cycle Logic"
-      },
-      {
-        "id": "132",
-        "title": "Product Except Self",
-        "pattern": "Parallel Aggregation",
-        "prerequisite": "Prefix/Suffix Products"
-      },
-      {
-        "id": "134",
-        "title": "Continuous Subarray Sum",
-        "pattern": "Modular Periodicity",
-        "prerequisite": "Hashing + Modulo"
-      },
-      {
-        "id": "135",
-        "title": "Range Sum Query 2D",
-        "pattern": "Spatial Pre-calc",
-        "prerequisite": "2D Prefix Sums"
-      },
-      {
-        "id": "136",
-        "title": "Design Food Rating",
-        "pattern": "Dynamic Category",
-        "prerequisite": "Map + Sorted Set"
-      },
-      {
-        "id": "137",
-        "title": "Movie Rental System",
-        "pattern": "Inventory Sort",
-        "prerequisite": "Multi-Map + Sorted Set"
-      },
-      {
-        "id": "138",
-        "title": "Single-Threaded CPU",
-        "pattern": "Priority Scheduling",
-        "prerequisite": "Min-Heap"
+        "prerequisite": "Trie or Hashing",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": false,
+        "note": "HashMap from path → value, or Trie of path components. On createPath, verify parent exists. O(L) per operation with hashmap. The parent-existence check is the key constraint — split path and verify prefix exists."
       },
       {
         "id": "149",
         "title": "Top K Frequent Words",
         "pattern": "Data Analytics",
-        "prerequisite": "Trie + Max-Heap"
+        "prerequisite": "Trie + Max-Heap",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": false,
+        "note": "Frequency HashMap + min-heap of size K with custom comparator (freq descending, then word ascending). O(n log k). Or bucket sort + trie for sorted order. Prerequisite for Search Autocomplete (108). The lexicographic tiebreaker in the comparator is the tricky part."
+      },
+      {
+        "id": "280",
+        "title": "Maximum XOR of Two Numbers — XOR Trie",
+        "pattern": "Bitwise Trie Greedy",
+        "prerequisite": "Trie Foundations + Bit Manipulation",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": false,
+        "note": "Build trie of binary representations. For each number, greedily try to take the opposite bit at each trie node. O(n·32). The greedy at each bit level works because higher bits dominate XOR value. Builds on Implement Trie (106) and bit manipulation (255)."
+      },
+      {
+        "id": "281",
+        "title": "Design Add and Search Words — Wildcard Trie",
+        "pattern": "DFS + Wildcard Match",
+        "prerequisite": "Implement Trie",
+        "company": "General",
+        "cluster": "Trie",
+        "striver_covered": false,
+        "note": "Trie with DFS for '.' wildcard — try all 26 children. O(26^L) worst case with many wildcards, O(L) for exact match. Builds on Implement Trie (106). The DFS branching on '.' is the key complexity driver — prune with early returns."
+      },
+      {
+        "id": "53",
+        "title": "Binary Tree Max Path Sum",
+        "pattern": "Global Hierarchy Opt",
+        "prerequisite": "Post-order DFS",
+        "company": "DoorDash",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "Post-order: for each node, compute max gain from left and right (clamp at 0). Update global max with node + left_gain + right_gain. Return node + max(left, right) gain upward. O(n). Key: the local optimum (upward path) differs from global (through node)."
+      },
+      {
+        "id": "63",
+        "title": "Diameter of Binary Tree",
+        "pattern": "Span Calculation",
+        "prerequisite": "Post-order DFS",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "Post-order: diameter through a node = left_height + right_height. Update global max. Return height = 1 + max(left, right). O(n). Key: diameter does NOT always pass through root — must track global max separately from the return value."
+      },
+      {
+        "id": "73",
+        "title": "K-Sum Paths",
+        "pattern": "Segment Value Path",
+        "prerequisite": "Prefix Sum + DFS",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "DFS with running prefix sum. HashMap: prefix_sum → count. At each node, check if (current_sum - k) exists in map. Add current_sum to map, recurse, remove on backtrack. O(n). Extends Subarray Sum Equals K (133) from arrays to trees."
+      },
+      {
+        "id": "83",
+        "title": "Subtree with Deepest Nodes",
+        "pattern": "Focal Update",
+        "prerequisite": "Post-order DFS",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": false,
+        "note": "Post-order: return (depth, LCA_of_deepest). If both subtrees have same max depth, current node is LCA. Else return the deeper side's LCA. O(n). Combines depth calculation with LCA finding in a single post-order pass."
+      },
+      {
+        "id": "85",
+        "title": "Smallest String From Leaf",
+        "pattern": "Lexicographical Path",
+        "prerequisite": "DFS Traversal",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": false,
+        "note": "DFS collecting path. At leaf, build string (reverse path = leaf-to-root). Compare with global minimum. O(n·h) where h = height. Key: the string is built leaf-to-root (reversed), so comparing must account for direction."
+      },
+      {
+        "id": "89",
+        "title": "Pseudo-Palindromic Paths",
+        "pattern": "Frequency Tracking",
+        "prerequisite": "DFS Path State",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": false,
+        "note": "Use a bitmask to track parity of digit frequencies. XOR each digit in/out. At leaf, path is pseudo-palindromic if bitmask has at most one set bit (bitmask & (bitmask-1) == 0). O(n). Bitmask replaces frequency array — 10 digits = 10 bits."
+      },
+      {
+        "id": "99",
+        "title": "Path Sum III",
+        "pattern": "Prefix-sum Path",
+        "prerequisite": "Prefix Sum + DFS",
+        "company": "General",
+        "cluster": "Tree Path Problems",
+        "striver_covered": true,
+        "note": "Same as K-Sum Paths (73). DFS with running prefix sum and HashMap. At each node check complement. Backtrack by removing prefix sum on return. O(n). The path need not start at root or end at leaf — the prefix sum approach handles this generalization."
+      },
+      {
+        "id": "54",
+        "title": "Kth Smallest Element in BST",
+        "pattern": "Rank Retrieval",
+        "prerequisite": "BST In-order Traversal",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "In-order traversal gives sorted order. Return Kth element. Iterative with explicit stack for O(1) extra space (aside from stack). With augmented BST (subtree size): O(log n). Prerequisite for BST Iterator (219) and Count of Smaller Numbers (60)."
+      },
+      {
+        "id": "78",
+        "title": "Maximum Subtree BST",
+        "pattern": "Valid sub-index",
+        "prerequisite": "BST Properties + DFS",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": false,
+        "note": "Post-order: for each node, return (is_bst, min_val, max_val, size). A node forms a valid BST if both subtrees are valid BSTs and node.val satisfies min/max constraints. O(n). The 4-tuple return is the standard BST audit pattern."
+      },
+      {
+        "id": "90",
+        "title": "Count Nodes in Complete Tree",
+        "pattern": "O(log² N) Count",
+        "prerequisite": "Binary Search on Tree",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "For complete binary tree: compare leftmost height vs rightmost height. If equal, subtree is perfect: count = 2^h - 1. Else recurse on both subtrees. O(log² n). The perfect-subtree shortcut is what separates the O(log² n) solution from naive O(n)."
+      },
+      {
+        "id": "95",
+        "title": "Minimum Distance in BST",
+        "pattern": "Closest Value",
+        "prerequisite": "BST In-order Properties",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "In-order traversal gives sorted sequence. Minimum distance = min gap between consecutive elements. Track previous node in traversal. O(n). Or for min distance to a target value: BST binary search narrowing. Both patterns must be known."
+      },
+      {
+        "id": "100",
+        "title": "Range Sum of BST",
+        "pattern": "Efficient Interval",
+        "prerequisite": "BST Pruning",
+        "company": "General",
+        "cluster": "BST Properties",
+        "striver_covered": true,
+        "note": "DFS with BST pruning: skip left subtree if node.val ≤ low, skip right if node.val ≥ high. O(n) worst case but much faster in practice. The BST-property-based pruning is what makes this O(k + log n) where k = nodes in range."
+      },
+      {
+        "id": "FW1",
+        "title": "Fenwick Tree (Binary Indexed Tree)",
+        "pattern": "Prefix Sum with Point Updates",
+        "prerequisite": "Prefix Sum (D02)",
+        "company": "General",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": true,
+        "note": "1-indexed array. update(i, delta): i += i&(-i). query(i): sum 0..i by i -= i&(-i). O(log n) both. Prerequisite for Range Sum Query Mutable (56), Count of Smaller Numbers (60), Count of Smaller Numbers After Self (254). The i&(-i) trick isolates the lowest set bit — the key insight."
+      },
+      {
+        "id": "FW2",
+        "title": "Segment Tree (Build, Point Update, Range Query)",
+        "pattern": "Divide-and-Conquer Range Structure",
+        "prerequisite": "Fenwick Tree (FW1)",
+        "company": "General",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": true,
+        "note": "Build in O(n). Point update O(log n). Range query O(log n). Handles general associative operations (min, max, gcd, sum). Prerequisite for Range Frequency Queries (77), Range Module (193), Sliding Window Median (160). More powerful than BIT but harder to implement — know when each is needed."
+      },
+      {
+        "id": "56",
+        "title": "Range Sum Query (Mutable)",
+        "pattern": "Dynamic Range",
+        "prerequisite": "Fenwick/Segment Trees",
+        "company": "General",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": true,
+        "note": "Fenwick Tree (BIT): update O(log n), range sum O(log n). Segment Tree: same complexity but handles general queries (min, max, gcd). Prerequisite for Range Sum Query 2D Mutable (217), Count of Smaller Numbers (60), Range Frequency (150)."
+      },
+      {
+        "id": "60",
+        "title": "Count of Smaller Numbers",
+        "pattern": "Advanced Rank",
+        "prerequisite": "BIT Foundations",
+        "company": "Databricks",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": false,
+        "note": "Process right to left. For each element, query BIT for count of elements smaller. Requires coordinate compression. O(n log n). Or merge sort inversion count approach. Databricks data ranking question. Prerequisite for The Skyline Problem (255)."
+      },
+      {
+        "id": "77",
+        "title": "Range Frequency Queries",
+        "pattern": "High-speed Counting",
+        "prerequisite": "Segment Tree",
+        "company": "General",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": false,
+        "note": "HashMap: value → sorted list of indices. Binary search for left and right bounds in the list. O(log n) per query, O(n) preprocessing. Or segment tree with frequency maps. The sorted-indices + binary search approach is typically sufficient."
       },
       {
         "id": "150",
         "title": "Range Frequency",
         "pattern": "Sub-range Count",
-        "prerequisite": "Segment Tree"
-      },
-      {
-        "id": "151",
-        "title": "Maximize Amount",
-        "pattern": "Dynamic Programming",
-        "prerequisite": "DFS/BFS + Conversion"
-      },
-      {
-        "id": "152",
-        "title": "Settle Debt",
-        "pattern": "P2P Balancing",
-        "prerequisite": "Backtracking/Greedy"
-      },
-      {
-        "id": "153",
-        "title": "Text Editor Logic",
-        "pattern": "State Recovery",
-        "prerequisite": "Undo/Redo Stacks"
-      },
-      {
-        "id": "154",
-        "title": "Distributed ID Generator",
-        "pattern": "Unique ID Logic",
-        "prerequisite": "System Primitives"
-      },
-      {
-        "id": "156",
-        "title": "Disjoint Int. Stream",
-        "pattern": "Continuous Range",
-        "prerequisite": "Map/Sorted Set"
-      },
-      {
-        "id": "157",
-        "title": "Distributed Rate Limiter",
-        "pattern": "Sharded Bucket",
-        "prerequisite": "Token Bucket Logic"
-      },
-      {
-        "id": "159",
-        "title": "Longest Substring (K)",
-        "pattern": "Memory Windowing",
-        "prerequisite": "Level 2 Sliding Window"
-      },
-      {
-        "id": "160",
-        "title": "Sliding Window Median",
-        "pattern": "Order Windowing",
-        "prerequisite": "Dual Heaps"
-      },
-      {
-        "id": "161",
-        "title": "0/1 Knapsack",
-        "pattern": "Resource Capacity",
-        "prerequisite": "DP Foundations"
-      },
-      {
-        "id": "162",
-        "title": "Partition Equal Subset",
-        "pattern": "Data Load Balance",
-        "prerequisite": "0/1 Knapsack Variation"
-      },
-      {
-        "id": "163",
-        "title": "Coin Change",
-        "pattern": "Optimal Denomination",
-        "prerequisite": "DP"
-      },
-      {
-        "id": "164",
-        "title": "Word Break",
-        "pattern": "Log Segmentation",
-        "prerequisite": "DP"
-      },
-      {
-        "id": "165",
-        "title": "Decode Ways",
-        "pattern": "Stream Interp.",
-        "prerequisite": "DP"
-      },
-      {
-        "id": "166",
-        "title": "Longest Increasing Subseq.",
-        "pattern": "Logistics Trends",
-        "prerequisite": "DP + Binary Search"
-      },
-      {
-        "id": "174",
-        "title": "Edit Distance",
-        "pattern": "Measuring Divergence",
-        "prerequisite": "String DP"
-      },
-      {
-        "id": "175",
-        "title": "Interleaving String",
-        "pattern": "Multi-stream Verification",
-        "prerequisite": "2D DP"
-      },
-      {
-        "id": "176",
-        "title": "Unique Paths",
-        "pattern": "Grid Routing",
-        "prerequisite": "DP Foundations"
-      },
-      {
-        "id": "177",
-        "title": "Max Product Subarray",
-        "pattern": "Positive/Neg Trend",
-        "prerequisite": "Kadane\u2019s Variation"
-      },
-      {
-        "id": "178",
-        "title": "House Robber",
-        "pattern": "Proximity Allocation",
-        "prerequisite": "1D DP"
-      },
-      {
-        "id": "184",
-        "title": "Matrix Chain Multiply",
-        "pattern": "Pipeline Ordering",
-        "prerequisite": "Interval DP"
-      },
-      {
-        "id": "185",
-        "title": "Burst Balloons",
-        "pattern": "Interval Gain",
-        "prerequisite": "Interval DP"
-      },
-      {
-        "id": "186",
-        "title": "Repeating Char Replace",
-        "pattern": "Local Dominance",
-        "prerequisite": "Sliding Window"
-      },
-      {
-        "id": "187",
-        "title": "Min Window Substring",
-        "pattern": "Smallest Target Int.",
-        "prerequisite": "Sliding Window"
-      },
-      {
-        "id": "189",
-        "title": "Median 2 Sorted Arrays",
-        "pattern": "Global Rank Shard",
-        "prerequisite": "Binary Search"
-      },
-      {
-        "id": "190",
-        "title": "Task Scheduler II",
-        "pattern": "Spacing Execution",
-        "prerequisite": "Hashing + Greedy"
-      },
-      {
-        "id": "191",
-        "title": "Build Rooms Ways",
-        "pattern": "Combinatorial Opt.",
-        "prerequisite": "Topological Sort + Math"
-      },
-      {
-        "id": "192",
-        "title": "Job Scheduling",
-        "pattern": "Weighted Selection",
-        "prerequisite": "DP + Binary Search"
+        "prerequisite": "Segment Tree",
+        "company": "General",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": false,
+        "note": "HashMap: value → sorted list of indices. Binary search for leftBound and rightBound indices. O(log n) per query. Same approach as Range Frequency Queries (77). The sorted-index list + binary search is the standard offline approach."
       },
       {
         "id": "193",
         "title": "Range Module",
         "pattern": "Complex Interval",
-        "prerequisite": "Segment Tree/Interval Tree"
+        "prerequisite": "Segment Tree/Interval Tree",
+        "company": "General",
+        "cluster": "Segment Tree / BIT",
+        "striver_covered": false,
+        "note": "TreeMap of disjoint intervals. addRange: merge all overlapping intervals. removeRange: split/trim overlapping. queryRange: check if fully covered. O(n log n) for each operation worst case. Prerequisite for Disjoint Interval Stream (156). The sorted-interval merging handles all three operations."
       },
       {
-        "id": "196",
-        "title": "Split Array Max Sum",
-        "pattern": "Minimax Partition",
-        "prerequisite": "Binary Search on Answer"
+        "id": "67",
+        "title": "Construct Pre/Inorder",
+        "pattern": "Index Recovery",
+        "prerequisite": "Recursive Construction",
+        "company": "General",
+        "cluster": "Tree Construction",
+        "striver_covered": true,
+        "note": "Pre-order first element = root. Find root in in-order to split left/right subtrees. HashMap for O(1) index lookup. O(n). Prerequisite for Construct from Post/Inorder. The inorder hashmap eliminates the O(n) linear search per node."
       },
       {
-        "id": "197",
-        "title": "Smallest Range Covering K",
-        "pattern": "Global Sorted Int.",
-        "prerequisite": "Min-Heap + Two Pointers"
+        "id": "69",
+        "title": "Binary Tree Zigzag",
+        "pattern": "Balancing Traversal",
+        "prerequisite": "Level-order BFS",
+        "company": "General",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": true,
+        "note": "BFS level-order + alternate reverse every other level. Or deque: add to front/back based on level parity. O(n). Builds on Level Order (64). The alternate-direction pattern appears in all level-based alternating problems."
       },
       {
-        "id": "198",
-        "title": "Stock Price Fluctuation",
-        "pattern": "High-frequency Update",
-        "prerequisite": "Dual Sorted Maps"
+        "id": "74",
+        "title": "Boundary of Binary Tree",
+        "pattern": "Perimeter Data",
+        "prerequisite": "DFS Partitioning",
+        "company": "General",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": false,
+        "note": "Three phases: left boundary (top-down, exclude leaves), leaves (all leaves left-to-right), right boundary (bottom-up, exclude leaves). O(n). Key: careful not to double-count root and leaf nodes."
       },
       {
-        "id": "199",
-        "title": "Shortest Visiting Path",
-        "pattern": "Target Node Path",
-        "prerequisite": "TSP / DP + Bitmask"
+        "id": "87",
+        "title": "Maximum Width of Tree",
+        "pattern": "Concurrency Max",
+        "prerequisite": "Level-order BFS",
+        "company": "General",
+        "cluster": "Tree Traversal Variants",
+        "striver_covered": true,
+        "note": "BFS with node indices: root=1, left child=2i, right child=2i+1. Width = last_index - first_index + 1. Normalize indices at each level to prevent overflow. O(n). The index normalization (subtract level's first index) is critical for large trees."
+      },
+      {
+        "id": "70",
+        "title": "Recover BST",
+        "pattern": "Self-healing Index",
+        "prerequisite": "In-order Traversal",
+        "company": "General",
+        "cluster": "BST Mutation",
+        "striver_covered": true,
+        "note": "In-order traversal of a BST is sorted. Find two nodes that are out of order. Swap their values. Morris traversal for O(1) space. Two cases: adjacent swap (one inversion) vs non-adjacent (two inversions). The second case is the tricky one."
+      },
+      {
+        "id": "88",
+        "title": "Delete Node in BST",
+        "pattern": "In-place Removal",
+        "prerequisite": "BST Properties",
+        "company": "General",
+        "cluster": "BST Mutation",
+        "striver_covered": true,
+        "note": "Three cases: leaf (remove), one child (replace with child), two children (replace with in-order successor). Find successor as leftmost node of right subtree. O(h). Prerequisite for Recover BST (70). The two-children case is the tricky one."
+      },
+      {
+        "id": "75",
+        "title": "Binary Tree Cameras",
+        "pattern": "Surveillance Min",
+        "prerequisite": "Greedy Tree DFS",
+        "company": "General",
+        "cluster": "Tree Greedy",
+        "striver_covered": false,
+        "note": "Greedy: place cameras at leaves' parents, not at leaves. Post-order DFS with 3 states per node: 0=not covered, 1=covered (no camera), 2=has camera. If child is 0, parent needs camera. O(n). The leaf-avoidance greedy minimizes cameras."
+      },
+      {
+        "id": "76",
+        "title": "LCA of N-ary Tree",
+        "pattern": "Parent Hub",
+        "prerequisite": "Binary Lifting or DFS",
+        "company": "General",
+        "cluster": "LCA & Tree Ancestry",
+        "striver_covered": false,
+        "note": "Same as binary tree LCA (55) but with N children. DFS returning node if found. Or binary lifting for O(log n) per query after O(n log n) preprocessing. Prerequisite for LCA IV (94) and all multi-node LCA problems."
+      },
+      {
+        "id": "94",
+        "title": "Lowest Common Ancestor IV",
+        "pattern": "k-Node LCA",
+        "prerequisite": "Multi-LCA Logic",
+        "company": "General",
+        "cluster": "LCA & Tree Ancestry",
+        "striver_covered": false,
+        "note": "Given a set of nodes, find their LCA. DFS: count how many target nodes found in subtree. When count matches a target count and node is in target set, return current node. Or iteratively find LCA of pairs. Builds on LCA (55)."
+      },
+      {
+        "id": "79",
+        "title": "House Robber III",
+        "pattern": "Tree DP",
+        "prerequisite": "Subtree Memoization",
+        "company": "General",
+        "cluster": "Tree DP",
+        "striver_covered": true,
+        "note": "Post-order DP: for each node return (rob_this, skip_this). rob_this = node.val + skip_left + skip_right. skip_this = max(rob_left, skip_left) + max(rob_right, skip_right). O(n). Extends House Robber (178) from array to tree. Teaches tree state-machine DP."
+      },
+      {
+        "id": "81",
+        "title": "Unique Binary Search Trees",
+        "pattern": "Index Configurations",
+        "prerequisite": "Catalan Numbers/DP",
+        "company": "General",
+        "cluster": "Tree DP",
+        "striver_covered": true,
+        "note": "Catalan number: C(n) = sum over i of C(i-1)*C(n-i). Bottom-up DP. O(n²). The count = nth Catalan number = C(2n,n)/(n+1). For structure generation (not just count): backtrack over all root choices. Prerequisite for all BST counting problems."
       },
       {
         "id": "200",
         "title": "Minimum Vertex Cover",
         "pattern": "Minimal Removal",
-        "prerequisite": "Tree DP or Network Flow"
-      },
-      {
-        "id": "206",
-        "title": "Critical Connections in a Network",
-        "pattern": "Bridge Finding / Tarjan",
-        "prerequisite": "DFS, Discovery Timestamps",
-        "company": "Palantir",
-        "cluster": "Structural Connectivity"
-      },
-      {
-        "id": "207",
-        "title": "Bus Routes (Multi-Source BFS)",
-        "pattern": "Multi-Source BFS",
-        "prerequisite": "BFS Foundations",
-        "company": "Uber",
-        "cluster": "Structural Connectivity"
-      },
-      {
-        "id": "208",
-        "title": "Shortest Path with Restricted Access",
-        "pattern": "Dijkstra with State Variables",
-        "prerequisite": "Dijkstra, State-Space Search",
-        "company": "Palantir",
-        "cluster": "Structural Connectivity"
-      },
-      {
-        "id": "209",
-        "title": "All Ancestors in a DAG",
-        "pattern": "Reachability Tracking",
-        "prerequisite": "Topological Sort, DFS",
+        "prerequisite": "Tree DP or Network Flow",
         "company": "General",
-        "cluster": "Structural Connectivity"
+        "cluster": "Tree DP",
+        "striver_covered": false,
+        "note": "On trees: DP with states (covered, not covered). Tree DP: dp[node][0] = cover without placing camera, dp[node][1] = cover with camera. Min vertex cover on bipartite graphs = max matching (König's theorem). O(n) for trees."
       },
       {
-        "id": "210",
-        "title": "Valid Order Path",
-        "pattern": "Topological Sort / DFS",
-        "prerequisite": "Graph Traversal",
-        "company": "DoorDash",
-        "cluster": "Structural Connectivity"
+        "id": "80",
+        "title": "Infection Time in Tree",
+        "pattern": "Failure Spread",
+        "prerequisite": "BFS from Target",
+        "company": "General",
+        "cluster": "Tree-to-Graph Conversion",
+        "striver_covered": false,
+        "note": "Convert tree to undirected graph (add parent pointers). BFS from the infected node. Time = BFS levels until all nodes visited. O(n). Builds on All Nodes Distance K (13). The tree-to-graph conversion + multi-directional BFS is the universal pattern for 'spread' problems."
       },
       {
-        "id": "211",
-        "title": "Shortest Distance from All Buildings",
-        "pattern": "Multi-Source Grid BFS",
-        "prerequisite": "BFS on Grids",
-        "company": "DoorDash",
-        "cluster": "Structural Connectivity"
+        "id": "92",
+        "title": "Symmetric Tree",
+        "pattern": "Redundancy Verify",
+        "prerequisite": "Tree Partitioning",
+        "company": "General",
+        "cluster": "Tree Structural Matching",
+        "striver_covered": true,
+        "note": "Recursive: check if left subtree is mirror of right. isMirror(left, right): values equal, isMirror(left.left, right.right), isMirror(left.right, right.left). Or BFS with mirrored queue pairs. Builds on Same Tree (91) mirror variant."
       },
       {
-        "id": "212",
-        "title": "Number of Provinces / Dynamic Components",
-        "pattern": "Union-Find",
-        "prerequisite": "Union-Find Basics",
-        "company": "Uber",
-        "cluster": "Structural Connectivity"
+        "id": "93",
+        "title": "Subtree of Another Tree",
+        "pattern": "Partial Matching",
+        "prerequisite": "Same Tree (91)",
+        "company": "General",
+        "cluster": "Tree Structural Matching",
+        "striver_covered": true,
+        "note": "For each node in main tree, check Same Tree. O(m·n) naive. Serialize to strings and use KMP or Rabin-Karp for O(m+n). The string matching optimization is the follow-up interviewers ask for."
       },
       {
-        "id": "213",
-        "title": "Smallest String with Swaps",
-        "pattern": "Union-Find / Connectivity",
-        "prerequisite": "Union-Find, Sorting",
-        "company": "Palantir",
-        "cluster": "Structural Connectivity"
+        "id": "98",
+        "title": "Leaf-Similar Trees",
+        "pattern": "Terminal Consistency",
+        "prerequisite": "Leaf-level DFS",
+        "company": "General",
+        "cluster": "Tree Structural Matching",
+        "striver_covered": false,
+        "note": "DFS to collect leaf sequences from both trees. Compare sequences. O(n+m). Or use generators to yield leaves lazily and compare in lockstep — O(1) extra space. The lazy generator approach is the follow-up interviewers ask for."
       },
       {
-        "id": "214",
-        "title": "Redundant Connection II",
-        "pattern": "Critical Edge / Union-Find",
-        "prerequisite": "Union-Find, Tree Properties",
+        "id": "96",
+        "title": "Balanced Tree Audit",
+        "pattern": "Depth Monitoring",
+        "prerequisite": "Balanced Tree Logic",
+        "company": "General",
+        "cluster": "Tree DFS Foundations",
+        "striver_covered": false,
+        "note": "Same as Balanced Binary Tree (71) with sentinel -1 optimization. Post-order: return -1 if any subtree is unbalanced. O(n). The key insight is collapsing the isBalanced check and height calculation into one DFS pass."
+      },
+      {
+        "id": "102",
+        "title": "LFU Cache",
+        "pattern": "Hot Data Eviction",
+        "prerequisite": "Frequency + Map",
+        "company": "General",
+        "cluster": "Cache Design",
+        "striver_covered": false,
+        "note": "Three structures: key→value map, key→frequency map, frequency→LinkedHashSet of keys. Track min_frequency. On access, move key from freq to freq+1 bucket. O(1) all operations. Harder than LRU (101) — requires the min_frequency tracker and double-keyed maps."
+      },
+      {
+        "id": "105",
+        "title": "Median from Data Stream",
+        "pattern": "Dynamic Pricing",
+        "prerequisite": "Dual Heaps",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Max-heap (lower half) + min-heap (upper half). Keep sizes balanced: |low| - |high| ≤ 1. Median = low.peek() or average of both tops. O(log n) insert, O(1) median. Prerequisite for Sliding Window Median (160). The balance-on-insert is the key invariant."
+      },
+      {
+        "id": "111",
+        "title": "Merge K Sorted Lists",
+        "pattern": "Distributed Shards",
+        "prerequisite": "Priority Queue",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": true,
+        "note": "Min-heap of (value, list_index, node_ptr). Extract min, advance that list's pointer, re-insert. O(n log k). Or divide-and-conquer merge pairs. O(n log k) either way. Prerequisite for Smallest Range Covering K Lists (197). Builds on Merge Two Sorted Lists (268)."
+      },
+      {
+        "id": "138",
+        "title": "Single-Threaded CPU",
+        "pattern": "Priority Scheduling",
+        "prerequisite": "Min-Heap",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": false,
+        "note": "Sort tasks by enqueueTime. Simulate time: when CPU free, fast-forward to next available task. Min-heap of (processing_time, index) for available tasks. O(n log n). Teaches event-driven simulation — advance time to next event when idle."
+      },
+      {
+        "id": "160",
+        "title": "Sliding Window Median",
+        "pattern": "Order Windowing",
+        "prerequisite": "Dual Heaps",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": false,
+        "note": "Max-heap (lower half) + min-heap (upper half). On window slide: remove outgoing element (lazy deletion with a count map), add incoming, rebalance. O(n log k). Extends Median from Data Stream (105) with element removal support."
+      },
+      {
+        "id": "197",
+        "title": "Smallest Range Covering K",
+        "pattern": "Global Sorted Int.",
+        "prerequisite": "Min-Heap + Two Pointers",
+        "company": "General",
+        "cluster": "Heap-Based Design",
+        "striver_covered": false,
+        "note": "Min-heap of (value, list_index, element_index). Track current max. Range = [heap_min, current_max]. Advance the list with the minimum element. O(n log k). The key invariant: always have exactly one element per list in the heap."
+      },
+      {
+        "id": "107",
+        "title": "Design Twitter",
+        "pattern": "Feeds Fan-out",
+        "prerequisite": "System Design Foundations",
+        "company": "General",
+        "cluster": "System Design",
+        "striver_covered": false,
+        "note": "HashMap: user→set of followees, user→list of (timestamp, tweetId). For getNewsFeed: collect all tweets from followees + self, use min-heap to get top 10. O(n log 10) per feed request. Classic fan-out-on-read system design implementation."
+      },
+      {
+        "id": "123",
+        "title": "Design Parking Lot",
+        "pattern": "Resource OO Model",
+        "prerequisite": "Class Design",
+        "company": "General",
+        "cluster": "System Design",
+        "striver_covered": false,
+        "note": "OO design: ParkingLot, Level, ParkingSpot classes. Use TreeSet/PriorityQueue for available spots. Support multiple vehicle sizes. O(log n) park/unpark. Tests OOP hierarchy and resource allocation. Prerequisite for Design File System (113) structurally."
+      },
+      {
+        "id": "126",
+        "title": "Design Spreadsheet",
+        "pattern": "Dependency Update",
+        "prerequisite": "Graph Dependency",
+        "company": "General",
+        "cluster": "System Design",
+        "striver_covered": false,
+        "note": "Topological sort for cell evaluation order. DFS cycle detection for circular references. Propagate updates via reverse dependency graph. O(V+E) per update. Combines DAG + topo sort + reactive computation. Classic spreadsheet engine design."
+      },
+      {
+        "id": "154",
+        "title": "Distributed ID Generator",
+        "pattern": "Unique ID Logic",
+        "prerequisite": "System Primitives",
         "company": "Databricks",
-        "cluster": "Structural Connectivity"
+        "cluster": "System Design",
+        "striver_covered": false,
+        "note": "Snowflake-style: 41-bit timestamp + 10-bit machine ID + 12-bit sequence. Clock skew handling: wait or use last timestamp. O(1) generation. Databricks distributed systems question. The bit-packing layout and clock-monotonicity guarantee are the key design decisions."
       },
       {
-        "id": "215",
-        "title": "Cheapest Flights Within K Stops",
-        "pattern": "BFS with Depth Constraint",
-        "prerequisite": "Dijkstra / BFS",
-        "company": "Razorpay",
-        "cluster": "Structural Connectivity"
-      },
-      {
-        "id": "216",
-        "title": "Design Search Autocomplete System",
-        "pattern": "Trie + Frequency Heap",
-        "prerequisite": "Trie (106), Heap",
+        "id": "157",
+        "title": "Distributed Rate Limiter",
+        "pattern": "Sharded Bucket",
+        "prerequisite": "Token Bucket Logic",
         "company": "Uber",
-        "cluster": "Range-Based Data"
+        "cluster": "System Design",
+        "striver_covered": false,
+        "note": "Token bucket: refill at rate r, burst up to capacity b. Redis-based distributed: Lua script for atomic check-and-decrement. Sliding window log: deque of timestamps. Uber API gateway design. Token bucket handles bursty traffic; sliding window is smoother."
       },
       {
-        "id": "217",
-        "title": "Range Sum Query 2D - Mutable",
-        "pattern": "2D Segment Tree / BIT",
-        "prerequisite": "Segment Tree / BIT",
-        "company": "Uber",
-        "cluster": "Range-Based Data"
+        "id": "110",
+        "title": "Sliding Window Max",
+        "pattern": "Peak Detection",
+        "prerequisite": "Monotonic Queue",
+        "company": "General",
+        "cluster": "Monotonic Stack/Queue",
+        "striver_covered": true,
+        "note": "Monotonic decreasing deque. Add to back (remove all smaller elements first). Front is always the max. Remove front when it leaves window. O(n). Prerequisite for Sliding Window Median (160) and Stock Price Fluctuation (198). The deque maintains a decreasing invariant."
       },
       {
-        "id": "218",
-        "title": "Longest Common Prefix in Distributed File Path",
-        "pattern": "Trie with Edge Compression",
-        "prerequisite": "Trie (106)",
+        "id": "128",
+        "title": "Trapping Rain Water",
+        "pattern": "Metric Calculation",
+        "prerequisite": "Monotonic Stack/Two Pointers",
+        "company": "General",
+        "cluster": "Monotonic Stack/Queue",
+        "striver_covered": true,
+        "note": "Two pointers from both ends. Track left_max and right_max. Water at position i = min(left_max, right_max) - height[i]. O(n) time, O(1) space. Or monotonic stack approach. Prerequisite for Largest Histogram Rectangle (129) conceptually."
+      },
+      {
+        "id": "129",
+        "title": "Largest Hist. Rectangle",
+        "pattern": "Area Optimization",
+        "prerequisite": "Monotonic Stack",
+        "company": "General",
+        "cluster": "Monotonic Stack/Queue",
+        "striver_covered": true,
+        "note": "Monotonic increasing stack. When height decreases, pop and compute area using current index as right boundary. O(n). Prerequisite for Maximal Rectangle (130). The sentinel 0 at the end forces all bars to be processed."
+      },
+      {
+        "id": "130",
+        "title": "Maximal Rectangle",
+        "pattern": "Binary Grid Area",
+        "prerequisite": "Hist. Logic (129)",
+        "company": "General",
+        "cluster": "Monotonic Stack/Queue",
+        "striver_covered": true,
+        "note": "Build histogram row by row. For each row apply Largest Rectangle in Histogram (129). O(m·n). The reduction to histogram is the key insight — each column height = consecutive 1s ending at current row."
+      },
+      {
+        "id": "114",
+        "title": "Sparse Matrix Multiply",
+        "pattern": "Empty Data Opt",
+        "prerequisite": "Compressed Sparse Row",
         "company": "Databricks",
-        "cluster": "Range-Based Data"
+        "cluster": "Matrix Algorithms",
+        "striver_covered": false,
+        "note": "Skip zero elements. For each non-zero in A[i][k], iterate non-zeros in B[k][j]. O(nnz_A × cols_B) vs O(m·k·n) dense. Or CSR format. Databricks sparse data processing interview problem. The skip-zero optimization is the core insight."
       },
       {
-        "id": "219",
-        "title": "BST Iterator",
-        "pattern": "Stack-Based Traversal",
-        "prerequisite": "Tree Traversal, Inorder",
+        "id": "119",
+        "title": "Valid Sudoku",
+        "pattern": "Constraint Validation",
+        "prerequisite": "Grid Indexing",
         "company": "General",
-        "cluster": "Range-Based Data"
+        "cluster": "Matrix Algorithms",
+        "striver_covered": true,
+        "note": "Three sets of HashSets: rows[9], cols[9], boxes[9]. Box index = (row/3)*3 + col/3. Single pass O(81). No solving, just validation. Prerequisite for Solve Sudoku (backtracking). The box indexing formula is the key trick."
       },
       {
-        "id": "220",
-        "title": "Quad Tree Implementation",
-        "pattern": "Recursive Grid Partitioning",
-        "prerequisite": "Recursion, Tree Structures",
-        "company": "Uber",
-        "cluster": "Range-Based Data"
-      },
-      {
-        "id": "221",
-        "title": "Maximum Area Rectangle with Point Constraints",
-        "pattern": "Segment Tree / Geometric Optimization",
-        "prerequisite": "Segment Tree, Coordinate Compression",
+        "id": "117",
+        "title": "Smallest Subarray (K)",
+        "pattern": "Minimal Window",
+        "prerequisite": "Level 2 Sliding Window",
         "company": "General",
-        "cluster": "Range-Based Data"
+        "cluster": "Sliding Window",
+        "striver_covered": false,
+        "note": "Sliding window with frequency map and distinct count tracker. Shrink from left when all K distinct chars are present. O(n). Builds on Find All Anagrams (141). The distinct-count variable avoids re-scanning the frequency map each step."
       },
       {
-        "id": "222",
-        "title": "Maximum Possible Courier Pay",
-        "pattern": "DP over Event Sequence",
-        "prerequisite": "Interval DP, Sorting",
-        "company": "DoorDash",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "223",
-        "title": "Surge Pricing Multiplier Equilibrium",
-        "pattern": "Binary Search on Answer + Simulation",
-        "prerequisite": "Binary Search, Greedy",
-        "company": "Uber",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "224",
-        "title": "Count All Valid Pickup and Delivery Options",
-        "pattern": "Combinatorial DP / State Masking",
-        "prerequisite": "Combinatorics, DP",
-        "company": "DoorDash",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "225",
-        "title": "Best Meeting Point in a Grid",
-        "pattern": "Median Proximity Optimization",
-        "prerequisite": "Prefix Sum, Median Property",
-        "company": "Uber",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "226",
-        "title": "Regular Expression Matching",
-        "pattern": "DP with Wildcard States",
-        "prerequisite": "2D DP, String DP",
+        "id": "159",
+        "title": "Longest Substring (K)",
+        "pattern": "Memory Windowing",
+        "prerequisite": "Level 2 Sliding Window",
         "company": "General",
-        "cluster": "Resource Optimization"
+        "cluster": "Sliding Window",
+        "striver_covered": true,
+        "note": "Sliding window with HashMap of char counts and distinct counter. When distinct > K, shrink left. O(n). Prerequisite for Minimum Window Substring (187). The distinct-count variable is the key shortcut over scanning the map each iteration."
       },
       {
-        "id": "227",
-        "title": "Maximize Amount After Currency Conversions",
-        "pattern": "DP on Exchange Paths",
-        "prerequisite": "Graph DP, Bellman-Ford",
-        "company": "Databricks",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "228",
-        "title": "Two Best Non-Overlapping Events",
-        "pattern": "Sorting + Binary Search + DP",
-        "prerequisite": "Interval Scheduling, DP",
-        "company": "Razorpay",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "229",
-        "title": "Minimum Total Cost to Make Arrays Unequal",
-        "pattern": "Greedy vs DP",
-        "prerequisite": "Greedy, Sorting",
-        "company": "Razorpay",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "230",
-        "title": "Number of Ways of Cutting a Pizza",
-        "pattern": "Multidimensional DP + Prefix Sum",
-        "prerequisite": "3D DP, 2D Prefix Sum",
-        "company": "General",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "231",
-        "title": "Minimum Difficulty of a Job Schedule",
-        "pattern": "Partitioning DP",
-        "prerequisite": "2D DP, Subarray Max",
-        "company": "General",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "232",
-        "title": "Smallest Sufficient Team / Bitmask DP",
-        "pattern": "Bitmask DP / Set Cover",
-        "prerequisite": "Bitmask DP",
-        "company": "General",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "233",
-        "title": "Frog Jump",
-        "pattern": "DP with Position + Jump State",
-        "prerequisite": "DP, Hashmaps",
-        "company": "General",
-        "cluster": "Resource Optimization"
-      },
-      {
-        "id": "241",
-        "title": "Number of Provinces",
-        "pattern": "DSU vs DFS",
-        "prerequisite": "Union-Find Basics",
-        "company": "Uber",
-        "cluster": "Graph Connectivity"
-      },
-      {
-        "id": "242",
-        "title": "Shortest Path Visiting All Nodes",
-        "pattern": "Bitmask DP / BFS",
-        "prerequisite": "BFS, Bitmask DP",
-        "company": "DoorDash",
-        "cluster": "Graph Connectivity"
-      },
-      {
-        "id": "243",
-        "title": "Similar String Groups",
-        "pattern": "DSU with Heuristics",
-        "prerequisite": "Union-Find",
-        "company": "Palantir",
-        "cluster": "Graph Connectivity"
-      },
-      {
-        "id": "244",
-        "title": "All Nodes Distance K in Binary Tree",
-        "pattern": "Tree-to-Graph Conversion BFS",
-        "prerequisite": "BFS, Parent Pointer Map",
-        "company": "Databricks",
-        "cluster": "Graph Connectivity"
-      },
-      {
-        "id": "245",
-        "title": "Detonate the Maximum Bombs",
-        "pattern": "Directed Reachability / BFS",
-        "prerequisite": "Directed Graph BFS/DFS",
-        "company": "General",
-        "cluster": "Graph Connectivity"
-      },
-      {
-        "id": "246",
-        "title": "My Calendar I",
-        "pattern": "Balanced BST / Binary Search",
-        "prerequisite": "Binary Search, Sorted Map",
-        "company": "General",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "247",
-        "title": "Data Stream as Disjoint Intervals",
-        "pattern": "Treap / TreeSet Interval Merging",
-        "prerequisite": "Sorted Set, Interval Merging",
-        "company": "Databricks",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "248",
-        "title": "Binary Tree Vertical Order Traversal",
-        "pattern": "BFS with Column Index",
-        "prerequisite": "Level-order Traversal",
-        "company": "Databricks",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "249",
-        "title": "Vertical Order Traversal of a Binary Tree",
-        "pattern": "Sorting-Enhanced BFS",
-        "prerequisite": "Binary Tree Vertical Order Traversal",
-        "company": "Databricks",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "250",
-        "title": "Lowest Common Ancestor of a Binary Tree",
-        "pattern": "Recursive DFS Lineage",
-        "prerequisite": "DFS Traversal",
-        "company": "General",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "251",
-        "title": "Lowest Common Ancestor of a BST",
-        "pattern": "Iterative Value Search",
-        "prerequisite": "BST Properties",
-        "company": "General",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "252",
-        "title": "Binary Tree Maximum Path Sum",
-        "pattern": "Post-order Tree DP",
-        "prerequisite": "Post-order DFS",
-        "company": "DoorDash",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "253",
-        "title": "Serialize and Deserialize Binary Tree",
-        "pattern": "Pre-order / Level-order Persistence",
-        "prerequisite": "BFS/DFS Traversal",
-        "company": "Databricks",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "254",
-        "title": "Count of Smaller Numbers After Self",
-        "pattern": "BIT / Merge Sort Inversion",
-        "prerequisite": "BIT Foundations",
-        "company": "Databricks",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "255",
-        "title": "The Skyline Problem",
-        "pattern": "Segment Tree / Max-Heap Events",
-        "prerequisite": "Segment Tree, Sorted Map",
-        "company": "General",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "256",
-        "title": "Range Sum Query 2D - Immutable",
-        "pattern": "2D Prefix Sums",
-        "prerequisite": "2D Prefix Sum",
-        "company": "General",
-        "cluster": "Range-Based Tree"
-      },
-      {
-        "id": "257",
-        "title": "Partition Equal Subset Sum",
-        "pattern": "0/1 Knapsack Space Optimization",
-        "prerequisite": "0/1 Knapsack Variation",
-        "company": "General",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "258",
-        "title": "Best Time to Buy and Sell Stock with Cooldown",
-        "pattern": "State-Machine DP",
-        "prerequisite": "DP State Transitions",
-        "company": "General",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "259",
-        "title": "Minimum Cost For Tickets",
-        "pattern": "Interval Min-Cost DP",
-        "prerequisite": "1D DP",
-        "company": "Razorpay",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "260",
-        "title": "Maximum Profit in Job Scheduling",
-        "pattern": "Weighted Non-overlap DP + Binary Search",
-        "prerequisite": "DP + Binary Search",
-        "company": "DoorDash",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "261",
-        "title": "Cherry Pickup II",
-        "pattern": "Simultaneous Dual Path DP",
-        "prerequisite": "3D DP",
-        "company": "DoorDash",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "262",
-        "title": "Best Meeting Point",
-        "pattern": "Manhattan Median Optimization",
-        "prerequisite": "Prefix Sum, Median Property",
-        "company": "Uber",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "263",
-        "title": "Minimum Number of Refueling Stops",
-        "pattern": "Reachability Greedy / DP",
-        "prerequisite": "Greedy, Max-Heap",
-        "company": "General",
-        "cluster": "Resource Optimization DP"
-      },
-      {
-        "id": "264",
-        "title": "Maximum Points You Can Obtain from Cards",
-        "pattern": "Sliding Window Complement Profit",
+        "id": "186",
+        "title": "Repeating Char Replace",
+        "pattern": "Local Dominance",
         "prerequisite": "Sliding Window",
         "company": "General",
-        "cluster": "Resource Optimization DP"
+        "cluster": "Sliding Window",
+        "striver_covered": true,
+        "note": "Sliding window tracking max frequency of any char. Valid window: length - max_freq ≤ k. Expand right; if invalid, slide left. O(n). Key insight: max_freq never decreases — window never shrinks below best seen size."
       },
       {
-        "id": "265",
-        "title": "Paint House III",
-        "pattern": "Neighborhood Constraint 3D DP",
-        "prerequisite": "3D DP",
-        "company": "Palantir",
-        "cluster": "Resource Optimization DP"
+        "id": "187",
+        "title": "Min Window Substring",
+        "pattern": "Smallest Target Int.",
+        "prerequisite": "Sliding Window",
+        "company": "General",
+        "cluster": "Sliding Window",
+        "striver_covered": true,
+        "note": "Sliding window with frequency map and 'formed' counter. Shrink when all required chars are covered. O(n). Prerequisite for all minimum-window problems. The 'formed' count avoids scanning the entire map on each shrink."
       },
       {
-        "id": "266",
-        "title": "Fair Distribution of Cookies",
-        "pattern": "Minimax Bitmask DP / Backtracking",
-        "prerequisite": "Bitmask DP, Backtracking",
-        "company": "DoorDash",
-        "cluster": "Resource Optimization DP"
+        "id": "118",
+        "title": "Longest Consecutive Seq.",
+        "pattern": "Unordered Range",
+        "prerequisite": "Hashing/DSU",
+        "company": "General",
+        "cluster": "Array Algorithms",
+        "striver_covered": true,
+        "note": "HashSet of all numbers. For each n where n-1 is NOT in set (start of sequence), count consecutive. O(n). Or DSU union consecutive pairs. The start-of-sequence check ensures each streak is counted once."
       },
       {
-        "id": "274",
-        "title": "Build Heap from Array \u2014 O(n) Heapify",
-        "pattern": "Bottom-up Heapify",
-        "prerequisite": "Heap Properties"
+        "id": "127",
+        "title": "First Missing Positive",
+        "pattern": "In-place Memory Opt",
+        "prerequisite": "Cyclic Sort",
+        "company": "General",
+        "cluster": "Array Algorithms",
+        "striver_covered": true,
+        "note": "Use array as hash: place each number i at index i-1 if in range [1,n]. Scan for first position where arr[i] ≠ i+1. O(n) time, O(1) space. The in-place swap (cyclic sort) turns the array into a presence map."
       },
       {
-        "id": "280",
-        "title": "Maximum XOR of Two Numbers \u2014 XOR Trie",
-        "pattern": "Bitwise Trie Greedy",
-        "prerequisite": "Trie Foundations + Bit Manipulation"
+        "id": "131",
+        "title": "Find Duplicate Number",
+        "pattern": "Cycle in Array",
+        "prerequisite": "Floyd's Cycle Logic",
+        "company": "General",
+        "cluster": "Array Algorithms",
+        "striver_covered": true,
+        "note": "Treat array as linked list: index i points to arr[i]. Duplicate creates a cycle — apply Floyd's cycle detection. O(n) time, O(1) space. No modification of array. Prerequisite requires Linked List Cycle Detection (270) pattern."
       },
       {
-        "id": "281",
-        "title": "Design Add and Search Words \u2014 Wildcard Trie",
-        "pattern": "DFS + Wildcard Match",
-        "prerequisite": "Implement Trie"
+        "id": "158",
+        "title": "Majority Element II",
+        "pattern": "Voting Consensus",
+        "prerequisite": "Boyer-Moore Logic",
+        "company": "General",
+        "cluster": "Array Algorithms",
+        "striver_covered": true,
+        "note": "Extended Boyer-Moore: maintain two candidates. After pass, verify both actually exceed n/3. At most 2 such elements can exist. Teaches the generalization from n/2 majority to n/k majority — requires k-1 candidates."
       },
       {
-        "id": "293",
-        "title": "Longest Duplicate Substring \u2014 Suffix Array",
-        "pattern": "SA + LCP Array",
-        "prerequisite": "Binary Search + Hashing"
+        "id": "124",
+        "title": "Snapshot Array",
+        "pattern": "Point-in-time Recovery",
+        "prerequisite": "Binary Search on Versions",
+        "company": "General",
+        "cluster": "Time-Based Design",
+        "striver_covered": false,
+        "note": "Each index stores list of (snap_id, value). On get(index, snap_id): binary search for largest snap_id ≤ given snap_id. O(log s) per get. Prerequisite for Time Based KV Store (125). The sparse version storage avoids O(n) snapshot cost."
       },
       {
-        "id": "294",
-        "title": "Longest Common Substring \u2014 Suffix Array",
-        "pattern": "SA + LCP",
-        "prerequisite": "Suffix Array"
+        "id": "125",
+        "title": "Time Based KV Store",
+        "pattern": "Timestamp Index",
+        "prerequisite": "Map + Binary Search",
+        "company": "General",
+        "cluster": "Time-Based Design",
+        "striver_covered": false,
+        "note": "HashMap: key → sorted list of (timestamp, value). Binary search for largest timestamp ≤ given time. O(log n) get. Prerequisite for Stock Price Fluctuation (198). The sorted-by-timestamp + binary-search pattern is universal for temporal queries."
       },
       {
-        "id": "301",
-        "title": "Print in Order \u2014 Semaphore Sequencing",
-        "pattern": "Semaphore Chain",
-        "prerequisite": "Threading Basics"
+        "id": "132",
+        "title": "Product Except Self",
+        "pattern": "Parallel Aggregation",
+        "prerequisite": "Prefix/Suffix Products",
+        "company": "General",
+        "cluster": "Prefix Sum",
+        "striver_covered": true,
+        "note": "Left pass: prefix products. Right pass: suffix products. Multiply in place. O(n) time, O(1) extra space (output array doesn't count). Prerequisite for Range Sum Query 2D (135). The two-pass prefix-suffix product pattern generalizes to many aggregation problems."
       },
       {
-        "id": "302",
-        "title": "Print FooBar Alternately",
-        "pattern": "Two-thread Alternation",
-        "prerequisite": "Mutex / Semaphore"
+        "id": "134",
+        "title": "Continuous Subarray Sum",
+        "pattern": "Modular Periodicity",
+        "prerequisite": "Hashing + Modulo",
+        "company": "General",
+        "cluster": "Prefix Sum",
+        "striver_covered": false,
+        "note": "Track prefix_sum % k in HashMap. If same remainder seen before at index j, subarray (j+1, i) has sum divisible by k. Need length ≥ 2: store earliest index for each remainder. O(n). Builds on Subarray Sum Equals K (133)."
       },
       {
-        "id": "306",
-        "title": "Design Skiplist",
-        "pattern": "Probabilistic Balancing",
-        "prerequisite": "Linked List + Randomisation"
-      }
-    ]
-  },
-  {
-    "title": "Level 4: Expert (Architecture)",
-    "problems": [
-      {
-        "id": "201",
-        "title": "Paxos vs Raft Comparison",
-        "pattern": "Theoretical Consensus",
-        "prerequisite": "Majority Quorum Logic"
+        "id": "135",
+        "title": "Range Sum Query 2D",
+        "pattern": "Spatial Pre-calc",
+        "prerequisite": "2D Prefix Sums",
+        "company": "General",
+        "cluster": "Prefix Sum",
+        "striver_covered": true,
+        "note": "Build 2D prefix sum. Query (r1,c1,r2,c2) = P[r2][c2] - P[r1-1][c2] - P[r2][c1-1] + P[r1-1][c1-1]. O(1) query after O(m·n) build. Prerequisite for Range Sum 2D Mutable (217) and Number of Ways to Cut Pizza (230). Inclusion-exclusion is the formula."
       },
       {
-        "id": "202",
-        "title": "Vector Clocks Logic",
-        "pattern": "Conflict Resolution",
-        "prerequisite": "Lamport Timestamps"
-      },
-      {
-        "id": "203",
-        "title": "Gossip Protocol",
-        "pattern": "Node Discovery",
-        "prerequisite": "Distributed Connectivity"
-      },
-      {
-        "id": "204",
-        "title": "Hinted Handoff",
-        "pattern": "Failure Handling",
-        "prerequisite": "Fault Tolerance Primitives"
-      },
-      {
-        "id": "205",
-        "title": "Distributed Locking",
-        "pattern": "Cluster Mutexes",
-        "prerequisite": "Consensus Algorithms"
-      },
-      {
-        "id": "310",
-        "title": "Building H2O \u2014 Barrier Synchronisation",
-        "pattern": "Quota Barrier",
-        "prerequisite": "Semaphore"
-      },
-      {
-        "id": "311",
-        "title": "Dining Philosophers \u2014 Deadlock-free Mutex",
-        "pattern": "Resource Ordering",
-        "prerequisite": "Mutex / Lock"
+        "id": "136",
+        "title": "Design Food Rating",
+        "pattern": "Dynamic Category",
+        "prerequisite": "Map + Sorted Set",
+        "company": "General",
+        "cluster": "Sorted Set Design",
+        "striver_covered": false,
+        "note": "Two HashMaps: food → category and food → rating. One category → TreeSet of (rating, name). TreeSet keeps elements sorted for O(log n) update and O(1) query. Prerequisite for Movie Rental System (137). The multi-map + sorted set pattern is standard for leaderboard designs."
       }
     ]
   }

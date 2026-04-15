@@ -49,18 +49,18 @@ export default function SystemPage() {
             </div>
           </div>
           <div className="card-body">
-             <div className="status-row">
-                <span>Kernel Integrity</span>
-                <span className="status-val good">SECURE</span>
-             </div>
-             <div className="status-row">
-                <span>Link Velocity</span>
-                <span className="status-val">STABLE</span>
-             </div>
-             <div className="status-row">
-                <span>Memory Allocation</span>
-                <span className="status-val">OPTIMAL</span>
-             </div>
+            <div className="status-row">
+              <span>Kernel Integrity</span>
+              <span className="status-val good">SECURE</span>
+            </div>
+            <div className="status-row">
+              <span>Link Velocity</span>
+              <span className="status-val">STABLE</span>
+            </div>
+            <div className="status-row">
+              <span>Memory Allocation</span>
+              <span className="status-val">OPTIMAL</span>
+            </div>
           </div>
         </div>
       </div>

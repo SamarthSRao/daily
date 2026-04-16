@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import dsaData from "../data/dsa.json";
+import dsaDataImport from "../data/dsa.json";
+const dsaData = dsaDataImport as any as Level[];
 import { 
   Binary, 
   Search, 

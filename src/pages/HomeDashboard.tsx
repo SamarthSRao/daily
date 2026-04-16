@@ -71,7 +71,7 @@ export default function HomeDashboard() {
       setMiscTasks(miscData.slice(0, 5)); // Show top 5 misc tasks
 
       // Core Progress Calcs
-      const allDsaProbs = dsaData.flatMap(level => level.problems);
+      const allDsaProbs = dsaData.flatMap((level: any) => level.problems);
       const dsaDoneCount = Object.keys(dsaState).filter(k => dsaState[k]).length;
       const totalDeliverables = nineMonthData.reduce((acc, month) => acc + (month.deliverables?.length || 0), 0);
       const nineMonthDoneCount = Object.keys(nineMonthState).filter(k => nineMonthState[k]).length;

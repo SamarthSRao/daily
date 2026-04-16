@@ -13,7 +13,8 @@ import {
   Zap,
   Globe,
   Building2,
-  Library
+  Library,
+  History as HistoryIcon
 } from "lucide-react";
 import { saveState, loadState } from "../lib/redis";
 import "../styles/DsaPremium.css";
@@ -202,7 +203,7 @@ export default function DsaPage() {
                   )}
                   {prob.is_duplicate && (
                     <span className="dsa-tag duplicate">
-                      <History size={10} className="mr-1 inline" />
+                      <HistoryIcon size={10} className="mr-1 inline" />
                       Repeated
                     </span>
                   )}

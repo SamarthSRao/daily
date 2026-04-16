@@ -13,7 +13,8 @@ import {
   Circle,
   CheckCircle2
 } from "lucide-react";
-import dsaData from "../data/dsa.json";
+import dsaDataImport from "../data/dsa.json";
+const dsaData = dsaDataImport as any;
 import nineMonthData from "../data/nine_month_plan.json";
 import biweeklyData from "../data/biweekly.json";
 

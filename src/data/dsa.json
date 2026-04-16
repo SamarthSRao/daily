@@ -3130,5 +3130,1333 @@
         "note": "Acquire global lock across N nodes. Redis Redlock logic vs ZooKeeper sequential nodes. Fencing tokens (monotonically increasing) prevent stale writes from late owners. O(N) acquisition. Prerequisite for distributed scheduler design (DungBeetle)."
       }
     ]
+  },
+  {
+    "title": "Level 5: Practice (Extended)",
+    "problems": [
+      {
+        "id": "1",
+        "title": "Bus Routes",
+        "pattern": "Shortest Transfers",
+        "prerequisite": "BFS + Graph Modeling",
+        "company": "General"
+      },
+      {
+        "id": "2",
+        "title": "Alien Dictionary",
+        "pattern": "Topological Sort",
+        "prerequisite": "Kahn’s Algorithm",
+        "company": "General"
+      },
+      {
+        "id": "4",
+        "title": "Number of Islands II",
+        "pattern": "Dynamic Clustering",
+        "prerequisite": "Union-Find (DSU)",
+        "company": "General"
+      },
+      {
+        "id": "6",
+        "title": "Course Schedule II",
+        "pattern": "Dependency Pipeline",
+        "prerequisite": "Topological Sort",
+        "company": "General"
+      },
+      {
+        "id": "7",
+        "title": "Word Ladder",
+        "pattern": "State-space BFS",
+        "prerequisite": "BFS + Graph Construction",
+        "company": "General"
+      },
+      {
+        "id": "8",
+        "title": "Network Delay Time",
+        "pattern": "Dijkstra Path",
+        "prerequisite": "BFS + Min-Heap",
+        "company": "General"
+      },
+      {
+        "id": "10",
+        "title": "Critical Connections",
+        "pattern": "Single Point Failure",
+        "prerequisite": "Tarjan’s/Bridge Logic",
+        "company": "General"
+      },
+      {
+        "id": "12",
+        "title": "Shortest Path in a Grid",
+        "pattern": "Obstacle BFS",
+        "prerequisite": "Level 2 BFS",
+        "company": "General"
+      },
+      {
+        "id": "15",
+        "title": "Minimum Height Trees",
+        "pattern": "Network Root",
+        "prerequisite": "Trim Leaves BFS",
+        "company": "General"
+      },
+      {
+        "id": "17",
+        "title": "Pacific Atlantic Water Flow",
+        "pattern": "Reachability Grid",
+        "prerequisite": "Multi-source DFS/BFS",
+        "company": "General"
+      },
+      {
+        "id": "18",
+        "title": "Redundant Connection",
+        "pattern": "Cycle Detection",
+        "prerequisite": "DSU Foundations",
+        "company": "General"
+      },
+      {
+        "id": "19",
+        "title": "Min Cost to Connect Points",
+        "pattern": "MST Roads",
+        "prerequisite": "Prim’s or Kruskal’s",
+        "company": "General"
+      },
+      {
+        "id": "20",
+        "title": "Path With Minimum Effort",
+        "pattern": "Stress Path",
+        "prerequisite": "Dijkstra or Binary Search + BFS",
+        "company": "General"
+      },
+      {
+        "id": "22",
+        "title": "Find Eventual Safe States",
+        "pattern": "Infinite Loop Avoid",
+        "prerequisite": "Cycle Detection",
+        "company": "General"
+      },
+      {
+        "id": "24",
+        "title": "Accounts Merge",
+        "pattern": "DSU Deduplication",
+        "prerequisite": "Union-Find Optimization",
+        "company": "General"
+      },
+      {
+        "id": "25",
+        "title": "Possible Bipartition",
+        "pattern": "Conflict Detection",
+        "prerequisite": "Bipartite Coloring",
+        "company": "General"
+      },
+      {
+        "id": "27",
+        "title": "Minimum Knight Moves",
+        "pattern": "Pattern Search",
+        "prerequisite": "BFS Symmetry",
+        "company": "General"
+      },
+      {
+        "id": "28",
+        "title": "Reorder Routes",
+        "pattern": "Central Data Center",
+        "prerequisite": "BFS/DFS Traversal",
+        "company": "General"
+      },
+      {
+        "id": "29",
+        "title": "Shortest Bridge",
+        "pattern": "Sparse Clustering",
+        "prerequisite": "Multi-source BFS",
+        "company": "General"
+      },
+      {
+        "id": "30",
+        "title": "Smallest Neighbors (Threshold)",
+        "pattern": "Accessible Hub",
+        "prerequisite": "Floyd-Warshall or Dijkstra",
+        "company": "General"
+      },
+      {
+        "id": "31",
+        "title": "Detonate Maximum Bombs",
+        "pattern": "Chain Reaction",
+        "prerequisite": "Directed Graph BFS",
+        "company": "General"
+      },
+      {
+        "id": "32",
+        "title": "Longest Increasing Path",
+        "pattern": "Grid Optimization",
+        "prerequisite": "Memoized DFS",
+        "company": "General"
+      },
+      {
+        "id": "33",
+        "title": "Evaluate Division",
+        "pattern": "Unit Conversion",
+        "prerequisite": "Weighted Graph Path",
+        "company": "General"
+      },
+      {
+        "id": "35",
+        "title": "Largest Color Value",
+        "pattern": "DAG State tracking",
+        "prerequisite": "Topological Sort",
+        "company": "General"
+      },
+      {
+        "id": "36",
+        "title": "Parallel Courses III",
+        "pattern": "project Duration",
+        "prerequisite": "Topological Sort + DP",
+        "company": "General"
+      },
+      {
+        "id": "37",
+        "title": "Sequence Reconstruction",
+        "pattern": "Unique Orderings",
+        "prerequisite": "Topological Sort",
+        "company": "General"
+      },
+      {
+        "id": "38",
+        "title": "Path With Max Probability",
+        "pattern": "Stochastic Routing",
+        "prerequisite": "Dijkstra with Multiplication",
+        "company": "General"
+      },
+      {
+        "id": "39",
+        "title": "Minimum Genetic Mutation",
+        "pattern": "Constrained Transition",
+        "prerequisite": "State-space BFS",
+        "company": "General"
+      },
+      {
+        "id": "40",
+        "title": "Number of Restrictive Paths",
+        "pattern": "Weighted Path Counting",
+        "prerequisite": "Dijkstra + DP",
+        "company": "General"
+      },
+      {
+        "id": "41",
+        "title": "Count Unreachable Pairs",
+        "pattern": "Fragmented Count",
+        "prerequisite": "BFS/DFS Connectivity",
+        "company": "General"
+      },
+      {
+        "id": "42",
+        "title": "Min Cost to Destination",
+        "pattern": "Time-Cost Trade-off",
+        "prerequisite": "Dijkstra Variation",
+        "company": "General"
+      },
+      {
+        "id": "43",
+        "title": "Word Ladder II",
+        "pattern": "All Shortest Paths",
+        "prerequisite": "BFS + Backtracking",
+        "company": "General"
+      },
+      {
+        "id": "44",
+        "title": "Flower Planting No Adjacent",
+        "pattern": "Graph Coloring",
+        "prerequisite": "Greedy Coloring",
+        "company": "General"
+      },
+      {
+        "id": "48",
+        "title": "Minimum Degree of Connect",
+        "pattern": "Core Identification",
+        "prerequisite": "Graph Connectivity",
+        "company": "General"
+      },
+      {
+        "id": "49",
+        "title": "Map Sum Pairs",
+        "pattern": "Prefix Tree Aggregation",
+        "prerequisite": "Trie Foundations",
+        "company": "General"
+      },
+      {
+        "id": "50",
+        "title": "Longest Path in Matrix",
+        "pattern": "Monotonic Route",
+        "prerequisite": "Level 2 DFS",
+        "company": "General"
+      },
+      {
+        "id": "53",
+        "title": "Binary Tree Max Path Sum",
+        "pattern": "Global Hierarchy Opt",
+        "prerequisite": "Post-order DFS",
+        "company": "General"
+      },
+      {
+        "id": "54",
+        "title": "Kth Smallest Element in BST",
+        "pattern": "Rank Retrieval",
+        "prerequisite": "BST In-order Traversal",
+        "company": "General"
+      },
+      {
+        "id": "56",
+        "title": "Range Sum Query (Mutable)",
+        "pattern": "Dynamic Range",
+        "prerequisite": "Fenwick/Segment Trees",
+        "company": "General"
+      },
+      {
+        "id": "60",
+        "title": "Count of Smaller Numbers",
+        "pattern": "Advanced Rank",
+        "prerequisite": "BIT Foundations",
+        "company": "General"
+      },
+      {
+        "id": "63",
+        "title": "Diameter of Binary Tree",
+        "pattern": "Span Calculation",
+        "prerequisite": "Post-order DFS",
+        "company": "General"
+      },
+      {
+        "id": "67",
+        "title": "Construct Pre/Inorder",
+        "pattern": "Index Recovery",
+        "prerequisite": "Recursive Construction",
+        "company": "General"
+      },
+      {
+        "id": "69",
+        "title": "Binary Tree Zigzag",
+        "pattern": "Balancing Traversal",
+        "prerequisite": "Level-order BFS",
+        "company": "General"
+      },
+      {
+        "id": "70",
+        "title": "Recover BST",
+        "pattern": "Self-healing Index",
+        "prerequisite": "In-order Traversal",
+        "company": "General"
+      },
+      {
+        "id": "73",
+        "title": "K-Sum Paths",
+        "pattern": "Segment Value Path",
+        "prerequisite": "Prefix Sum + DFS",
+        "company": "General"
+      },
+      {
+        "id": "74",
+        "title": "Boundary of Binary Tree",
+        "pattern": "Perimeter Data",
+        "prerequisite": "DFS Partitioning",
+        "company": "General"
+      },
+      {
+        "id": "75",
+        "title": "Binary Tree Cameras",
+        "pattern": "Surveillance Min",
+        "prerequisite": "Greedy Tree DFS",
+        "company": "General"
+      },
+      {
+        "id": "76",
+        "title": "LCA of N-ary Tree",
+        "pattern": "Parent Hub",
+        "prerequisite": "Binary Lifting or DFS",
+        "company": "General"
+      },
+      {
+        "id": "77",
+        "title": "Range Frequency Queries",
+        "pattern": "High-speed Counting",
+        "prerequisite": "Segment Tree",
+        "company": "General"
+      },
+      {
+        "id": "78",
+        "title": "Maximum Subtree BST",
+        "pattern": "Valid sub-index",
+        "prerequisite": "BST Properties + DFS",
+        "company": "General"
+      },
+      {
+        "id": "79",
+        "title": "House Robber III",
+        "pattern": "Tree DP",
+        "prerequisite": "Subtree Memoization",
+        "company": "General"
+      },
+      {
+        "id": "80",
+        "title": "Infection Time in Tree",
+        "pattern": "Failure Spread",
+        "prerequisite": "BFS from Target",
+        "company": "General"
+      },
+      {
+        "id": "81",
+        "title": "Unique Binary Search Trees",
+        "pattern": "Index Configurations",
+        "prerequisite": "Catalan Numbers/DP",
+        "company": "General"
+      },
+      {
+        "id": "83",
+        "title": "Subtree with Deepest Nodes",
+        "pattern": "Focal Update",
+        "prerequisite": "Post-order DFS",
+        "company": "General"
+      },
+      {
+        "id": "85",
+        "title": "Smallest String From Leaf",
+        "pattern": "Lexicographical Path",
+        "prerequisite": "DFS Traversal",
+        "company": "General"
+      },
+      {
+        "id": "87",
+        "title": "Maximum Width of Tree",
+        "pattern": "Concurrency Max",
+        "prerequisite": "Level-order BFS",
+        "company": "General"
+      },
+      {
+        "id": "89",
+        "title": "Pseudo-Palindromic Paths",
+        "pattern": "Frequency Tracking",
+        "prerequisite": "DFS Path State",
+        "company": "General"
+      },
+      {
+        "id": "90",
+        "title": "Count Nodes in Complete Tree",
+        "pattern": "O(\\log^2 N) Count",
+        "prerequisite": "Binary Search on Tree",
+        "company": "General"
+      },
+      {
+        "id": "92",
+        "title": "Symmetric Tree",
+        "pattern": "Redundancy Verify",
+        "prerequisite": "Tree Partitioning",
+        "company": "General"
+      },
+      {
+        "id": "94",
+        "title": "Lowest Common Ancestor IV",
+        "pattern": "k-Node LCA",
+        "prerequisite": "Multi-LCA Logic",
+        "company": "General"
+      },
+      {
+        "id": "95",
+        "title": "Minimum Distance in BST",
+        "pattern": "Closest Value",
+        "prerequisite": "BST In-order Properties",
+        "company": "General"
+      },
+      {
+        "id": "96",
+        "title": "Balanced Tree Audit",
+        "pattern": "Depth Monitoring",
+        "prerequisite": "Balanced Tree Logic",
+        "company": "General"
+      },
+      {
+        "id": "98",
+        "title": "Leaf-Similar Trees",
+        "pattern": "Terminal Consistency",
+        "prerequisite": "Leaf-level DFS",
+        "company": "General"
+      },
+      {
+        "id": "99",
+        "title": "Path Sum III",
+        "pattern": "Prefix-sum Path",
+        "prerequisite": "Prefix Sum + DFS",
+        "company": "General"
+      },
+      {
+        "id": "100",
+        "title": "Range Sum of BST",
+        "pattern": "Efficient Interval",
+        "prerequisite": "BST Pruning",
+        "company": "General"
+      },
+      {
+        "id": "102",
+        "title": "LFU Cache",
+        "pattern": "Hot Data Eviction",
+        "prerequisite": "Frequency + Map",
+        "company": "General"
+      },
+      {
+        "id": "105",
+        "title": "Median from Data Stream",
+        "pattern": "Dynamic Pricing",
+        "prerequisite": "Dual Heaps",
+        "company": "General"
+      },
+      {
+        "id": "106",
+        "title": "Implement Trie",
+        "pattern": "Prefix Autocomplete",
+        "prerequisite": "Trie Foundations",
+        "company": "General"
+      },
+      {
+        "id": "107",
+        "title": "Design Twitter",
+        "pattern": "Feeds Fan-out",
+        "prerequisite": "System Design Foundations",
+        "company": "General"
+      },
+      {
+        "id": "108",
+        "title": "Search Autocomplete",
+        "pattern": "Planet-scale Prefix",
+        "prerequisite": "Trie + Max-Heap",
+        "company": "General"
+      },
+      {
+        "id": "110",
+        "title": "Sliding Window Max",
+        "pattern": "Peak Detection",
+        "prerequisite": "Monotonic Queue",
+        "company": "General"
+      },
+      {
+        "id": "111",
+        "title": "Merge K Sorted Lists",
+        "pattern": "Distributed Shards",
+        "prerequisite": "Priority Queue",
+        "company": "General"
+      },
+      {
+        "id": "113",
+        "title": "Design File System",
+        "pattern": "Metadata MKDIR",
+        "prerequisite": "Trie or Hashing",
+        "company": "General"
+      },
+      {
+        "id": "114",
+        "title": "Sparse Matrix Multiply",
+        "pattern": "Empty Data Opt",
+        "prerequisite": "Compressed Sparse Row",
+        "company": "General"
+      },
+      {
+        "id": "117",
+        "title": "Smallest Subarray (K)",
+        "pattern": "Minimal Window",
+        "prerequisite": "Level 2 Sliding Window",
+        "company": "General"
+      },
+      {
+        "id": "118",
+        "title": "Longest Consecutive Seq.",
+        "pattern": "Unordered Range",
+        "prerequisite": "Hashing/DSU",
+        "company": "General"
+      },
+      {
+        "id": "119",
+        "title": "Valid Sudoku",
+        "pattern": "Constraint Validation",
+        "prerequisite": "Grid Indexing",
+        "company": "General"
+      },
+      {
+        "id": "123",
+        "title": "Design Parking Lot",
+        "pattern": "Resource OO Model",
+        "prerequisite": "Class Design",
+        "company": "General"
+      },
+      {
+        "id": "124",
+        "title": "Snapshot Array",
+        "pattern": "Point-in-time Recovery",
+        "prerequisite": "Binary Search on Versions",
+        "company": "General"
+      },
+      {
+        "id": "125",
+        "title": "Time Based KV Store",
+        "pattern": "Timestamp Index",
+        "prerequisite": "Map + Binary Search",
+        "company": "General"
+      },
+      {
+        "id": "126",
+        "title": "Design Spreadsheet",
+        "pattern": "Dependency Update",
+        "prerequisite": "Graph Dependency",
+        "company": "General"
+      },
+      {
+        "id": "127",
+        "title": "First Missing Positive",
+        "pattern": "In-place Memory Opt",
+        "prerequisite": "Cyclic Sort",
+        "company": "General"
+      },
+      {
+        "id": "128",
+        "title": "Trapping Rain Water",
+        "pattern": "Metric Calculation",
+        "prerequisite": "Monotonic Stack/Two Pointers",
+        "company": "General"
+      },
+      {
+        "id": "129",
+        "title": "Largest Hist. Rectangle",
+        "pattern": "Area Optimization",
+        "prerequisite": "Monotonic Stack",
+        "company": "General"
+      },
+      {
+        "id": "130",
+        "title": "Maximal Rectangle",
+        "pattern": "Binary Grid Area",
+        "prerequisite": "Hist. Logic (129)",
+        "company": "General"
+      },
+      {
+        "id": "131",
+        "title": "Find Duplicate Number",
+        "pattern": "Cycle in Array",
+        "prerequisite": "Floyd’s Cycle Logic",
+        "company": "General"
+      },
+      {
+        "id": "132",
+        "title": "Product Except Self",
+        "pattern": "Parallel Aggregation",
+        "prerequisite": "Prefix/Suffix Products",
+        "company": "General"
+      },
+      {
+        "id": "134",
+        "title": "Continuous Subarray Sum",
+        "pattern": "Modular Periodicity",
+        "prerequisite": "Hashing + Modulo",
+        "company": "General"
+      },
+      {
+        "id": "135",
+        "title": "Range Sum Query 2D",
+        "pattern": "Spatial Pre-calc",
+        "prerequisite": "2D Prefix Sums",
+        "company": "General"
+      },
+      {
+        "id": "136",
+        "title": "Design Food Rating",
+        "pattern": "Dynamic Category",
+        "prerequisite": "Map + Sorted Set",
+        "company": "General"
+      },
+      {
+        "id": "137",
+        "title": "Movie Rental System",
+        "pattern": "Inventory Sort",
+        "prerequisite": "Multi-Map + Sorted Set",
+        "company": "General"
+      },
+      {
+        "id": "138",
+        "title": "Single-Threaded CPU",
+        "pattern": "Priority Scheduling",
+        "prerequisite": "Min-Heap",
+        "company": "General"
+      },
+      {
+        "id": "149",
+        "title": "Top K Frequent Words",
+        "pattern": "Data Analytics",
+        "prerequisite": "Trie + Max-Heap",
+        "company": "General"
+      },
+      {
+        "id": "150",
+        "title": "Range Frequency",
+        "pattern": "Sub-range Count",
+        "prerequisite": "Segment Tree",
+        "company": "General"
+      },
+      {
+        "id": "151",
+        "title": "Maximize Amount",
+        "pattern": "Dynamic Programming",
+        "prerequisite": "DFS/BFS + Conversion",
+        "company": "General"
+      },
+      {
+        "id": "152",
+        "title": "Settle Debt",
+        "pattern": "P2P Balancing",
+        "prerequisite": "Backtracking/Greedy",
+        "company": "General"
+      },
+      {
+        "id": "153",
+        "title": "Text Editor Logic",
+        "pattern": "State Recovery",
+        "prerequisite": "Undo/Redo Stacks",
+        "company": "General"
+      },
+      {
+        "id": "154",
+        "title": "Distributed ID Generator",
+        "pattern": "Unique ID Logic",
+        "prerequisite": "System Primitives",
+        "company": "General"
+      },
+      {
+        "id": "156",
+        "title": "Disjoint Int. Stream",
+        "pattern": "Continuous Range",
+        "prerequisite": "Map/Sorted Set",
+        "company": "General"
+      },
+      {
+        "id": "157",
+        "title": "Distributed Rate Limiter",
+        "pattern": "Sharded Bucket",
+        "prerequisite": "Token Bucket Logic",
+        "company": "General"
+      },
+      {
+        "id": "159",
+        "title": "Longest Substring (K)",
+        "pattern": "Memory Windowing",
+        "prerequisite": "Level 2 Sliding Window",
+        "company": "General"
+      },
+      {
+        "id": "160",
+        "title": "Sliding Window Median",
+        "pattern": "Order Windowing",
+        "prerequisite": "Dual Heaps",
+        "company": "General"
+      },
+      {
+        "id": "161",
+        "title": "0/1 Knapsack",
+        "pattern": "Resource Capacity",
+        "prerequisite": "DP Foundations",
+        "company": "General"
+      },
+      {
+        "id": "162",
+        "title": "Partition Equal Subset",
+        "pattern": "Data Load Balance",
+        "prerequisite": "0/1 Knapsack Variation",
+        "company": "General"
+      },
+      {
+        "id": "163",
+        "title": "Coin Change",
+        "pattern": "Optimal Denomination",
+        "prerequisite": "DP",
+        "company": "General"
+      },
+      {
+        "id": "164",
+        "title": "Word Break",
+        "pattern": "Log Segmentation",
+        "prerequisite": "DP",
+        "company": "General"
+      },
+      {
+        "id": "165",
+        "title": "Decode Ways",
+        "pattern": "Stream Interp.",
+        "prerequisite": "DP",
+        "company": "General"
+      },
+      {
+        "id": "166",
+        "title": "Longest Increasing Subseq.",
+        "pattern": "Logistics Trends",
+        "prerequisite": "DP + Binary Search",
+        "company": "General"
+      },
+      {
+        "id": "174",
+        "title": "Edit Distance",
+        "pattern": "Measuring Divergence",
+        "prerequisite": "String DP",
+        "company": "General"
+      },
+      {
+        "id": "175",
+        "title": "Interleaving String",
+        "pattern": "Multi-stream Verification",
+        "prerequisite": "2D DP",
+        "company": "General"
+      },
+      {
+        "id": "176",
+        "title": "Unique Paths",
+        "pattern": "Grid Routing",
+        "prerequisite": "DP Foundations",
+        "company": "General"
+      },
+      {
+        "id": "177",
+        "title": "Max Product Subarray",
+        "pattern": "Positive/Neg Trend",
+        "prerequisite": "Kadane’s Variation",
+        "company": "General"
+      },
+      {
+        "id": "178",
+        "title": "House Robber",
+        "pattern": "Proximity Allocation",
+        "prerequisite": "1D DP",
+        "company": "General"
+      },
+      {
+        "id": "184",
+        "title": "Matrix Chain Multiply",
+        "pattern": "Pipeline Ordering",
+        "prerequisite": "Interval DP",
+        "company": "General"
+      },
+      {
+        "id": "185",
+        "title": "Burst Balloons",
+        "pattern": "Interval Gain",
+        "prerequisite": "Interval DP",
+        "company": "General"
+      },
+      {
+        "id": "186",
+        "title": "Repeating Char Replace",
+        "pattern": "Local Dominance",
+        "prerequisite": "Sliding Window",
+        "company": "General"
+      },
+      {
+        "id": "187",
+        "title": "Min Window Substring",
+        "pattern": "Smallest Target Int.",
+        "prerequisite": "Sliding Window",
+        "company": "General"
+      },
+      {
+        "id": "189",
+        "title": "Median 2 Sorted Arrays",
+        "pattern": "Global Rank Shard",
+        "prerequisite": "Binary Search",
+        "company": "General"
+      },
+      {
+        "id": "190",
+        "title": "Task Scheduler II",
+        "pattern": "Spacing Execution",
+        "prerequisite": "Hashing + Greedy",
+        "company": "General"
+      },
+      {
+        "id": "191",
+        "title": "Build Rooms Ways",
+        "pattern": "Combinatorial Opt.",
+        "prerequisite": "Topological Sort + Math",
+        "company": "General"
+      },
+      {
+        "id": "192",
+        "title": "Job Scheduling",
+        "pattern": "Weighted Selection",
+        "prerequisite": "DP + Binary Search",
+        "company": "General"
+      },
+      {
+        "id": "193",
+        "title": "Range Module",
+        "pattern": "Complex Interval",
+        "prerequisite": "Segment Tree/Interval Tree",
+        "company": "General"
+      },
+      {
+        "id": "196",
+        "title": "Split Array Max Sum",
+        "pattern": "Minimax Partition",
+        "prerequisite": "Binary Search on Answer",
+        "company": "General"
+      },
+      {
+        "id": "197",
+        "title": "Smallest Range Covering K",
+        "pattern": "Global Sorted Int.",
+        "prerequisite": "Min-Heap + Two Pointers",
+        "company": "General"
+      },
+      {
+        "id": "198",
+        "title": "Stock Price Fluctuation",
+        "pattern": "High-frequency Update",
+        "prerequisite": "Dual Sorted Maps",
+        "company": "General"
+      },
+      {
+        "id": "199",
+        "title": "Shortest Visiting Path",
+        "pattern": "Target Node Path",
+        "prerequisite": "TSP / DP + Bitmask",
+        "company": "General"
+      },
+      {
+        "id": "200",
+        "title": "Minimum Vertex Cover",
+        "pattern": "Minimal Removal",
+        "prerequisite": "Tree DP or Network Flow",
+        "company": "General"
+      },
+      {
+        "id": "206",
+        "title": "Critical Connections in a Network",
+        "pattern": "Bridge Finding / Tarjan",
+        "prerequisite": "DFS, Discovery Timestamps",
+        "company": "Palantir"
+      },
+      {
+        "id": "207",
+        "title": "Bus Routes (Multi-Source BFS)",
+        "pattern": "Multi-Source BFS",
+        "prerequisite": "BFS Foundations",
+        "company": "Uber"
+      },
+      {
+        "id": "208",
+        "title": "Shortest Path with Restricted Access",
+        "pattern": "Dijkstra with State Variables",
+        "prerequisite": "Dijkstra, State-Space Search",
+        "company": "Palantir"
+      },
+      {
+        "id": "209",
+        "title": "All Ancestors in a DAG",
+        "pattern": "Reachability Tracking",
+        "prerequisite": "Topological Sort, DFS",
+        "company": "General"
+      },
+      {
+        "id": "210",
+        "title": "Valid Order Path",
+        "pattern": "Topological Sort / DFS",
+        "prerequisite": "Graph Traversal",
+        "company": "DoorDash"
+      },
+      {
+        "id": "211",
+        "title": "Shortest Distance from All Buildings",
+        "pattern": "Multi-Source Grid BFS",
+        "prerequisite": "BFS on Grids",
+        "company": "DoorDash"
+      },
+      {
+        "id": "212",
+        "title": "Number of Provinces / Dynamic Components",
+        "pattern": "Union-Find",
+        "prerequisite": "Union-Find Basics",
+        "company": "Uber"
+      },
+      {
+        "id": "213",
+        "title": "Smallest String with Swaps",
+        "pattern": "Union-Find / Connectivity",
+        "prerequisite": "Union-Find, Sorting",
+        "company": "Palantir"
+      },
+      {
+        "id": "214",
+        "title": "Redundant Connection II",
+        "pattern": "Critical Edge / Union-Find",
+        "prerequisite": "Union-Find, Tree Properties",
+        "company": "Databricks"
+      },
+      {
+        "id": "215",
+        "title": "Cheapest Flights Within K Stops",
+        "pattern": "BFS with Depth Constraint",
+        "prerequisite": "Dijkstra / BFS",
+        "company": "Razorpay"
+      },
+      {
+        "id": "216",
+        "title": "Design Search Autocomplete System",
+        "pattern": "Trie + Frequency Heap",
+        "prerequisite": "Trie (106), Heap",
+        "company": "Uber"
+      },
+      {
+        "id": "217",
+        "title": "Range Sum Query 2D - Mutable",
+        "pattern": "2D Segment Tree / BIT",
+        "prerequisite": "Segment Tree / BIT",
+        "company": "Uber"
+      },
+      {
+        "id": "218",
+        "title": "Longest Common Prefix in Distributed File Path",
+        "pattern": "Trie with Edge Compression",
+        "prerequisite": "Trie (106)",
+        "company": "Databricks"
+      },
+      {
+        "id": "219",
+        "title": "BST Iterator",
+        "pattern": "Stack-Based Traversal",
+        "prerequisite": "Tree Traversal, Inorder",
+        "company": "General"
+      },
+      {
+        "id": "220",
+        "title": "Quad Tree Implementation",
+        "pattern": "Recursive Grid Partitioning",
+        "prerequisite": "Recursion, Tree Structures",
+        "company": "Uber"
+      },
+      {
+        "id": "221",
+        "title": "Maximum Area Rectangle with Point Constraints",
+        "pattern": "Segment Tree / Geometric Optimization",
+        "prerequisite": "Segment Tree, Coordinate Compression",
+        "company": "General"
+      },
+      {
+        "id": "222",
+        "title": "Maximum Possible Courier Pay",
+        "pattern": "DP over Event Sequence",
+        "prerequisite": "Interval DP, Sorting",
+        "company": "DoorDash"
+      },
+      {
+        "id": "223",
+        "title": "Surge Pricing Multiplier Equilibrium",
+        "pattern": "Binary Search on Answer + Simulation",
+        "prerequisite": "Binary Search, Greedy",
+        "company": "Uber"
+      },
+      {
+        "id": "224",
+        "title": "Count All Valid Pickup and Delivery Options",
+        "pattern": "Combinatorial DP / State Masking",
+        "prerequisite": "Combinatorics, DP",
+        "company": "DoorDash"
+      },
+      {
+        "id": "225",
+        "title": "Best Meeting Point in a Grid",
+        "pattern": "Median Proximity Optimization",
+        "prerequisite": "Prefix Sum, Median Property",
+        "company": "Uber"
+      },
+      {
+        "id": "226",
+        "title": "Regular Expression Matching",
+        "pattern": "DP with Wildcard States",
+        "prerequisite": "2D DP, String DP",
+        "company": "General"
+      },
+      {
+        "id": "227",
+        "title": "Maximize Amount After Currency Conversions",
+        "pattern": "DP on Exchange Paths",
+        "prerequisite": "Graph DP, Bellman-Ford",
+        "company": "Databricks"
+      },
+      {
+        "id": "228",
+        "title": "Two Best Non-Overlapping Events",
+        "pattern": "Sorting + Binary Search + DP",
+        "prerequisite": "Interval Scheduling, DP",
+        "company": "Razorpay"
+      },
+      {
+        "id": "229",
+        "title": "Minimum Total Cost to Make Arrays Unequal",
+        "pattern": "Greedy vs DP",
+        "prerequisite": "Greedy, Sorting",
+        "company": "Razorpay"
+      },
+      {
+        "id": "230",
+        "title": "Number of Ways of Cutting a Pizza",
+        "pattern": "Multidimensional DP + Prefix Sum",
+        "prerequisite": "3D DP, 2D Prefix Sum",
+        "company": "General"
+      },
+      {
+        "id": "231",
+        "title": "Minimum Difficulty of a Job Schedule",
+        "pattern": "Partitioning DP",
+        "prerequisite": "2D DP, Subarray Max",
+        "company": "General"
+      },
+      {
+        "id": "232",
+        "title": "Smallest Sufficient Team / Bitmask DP",
+        "pattern": "Bitmask DP / Set Cover",
+        "prerequisite": "Bitmask DP",
+        "company": "General"
+      },
+      {
+        "id": "233",
+        "title": "Frog Jump",
+        "pattern": "DP with Position + Jump State",
+        "prerequisite": "DP, Hashmaps",
+        "company": "General"
+      },
+      {
+        "id": "241",
+        "title": "Number of Provinces",
+        "pattern": "DSU vs DFS",
+        "prerequisite": "Union-Find Basics",
+        "company": "Uber"
+      },
+      {
+        "id": "242",
+        "title": "Shortest Path Visiting All Nodes",
+        "pattern": "Bitmask DP / BFS",
+        "prerequisite": "BFS, Bitmask DP",
+        "company": "DoorDash"
+      },
+      {
+        "id": "243",
+        "title": "Similar String Groups",
+        "pattern": "DSU with Heuristics",
+        "prerequisite": "Union-Find",
+        "company": "Palantir"
+      },
+      {
+        "id": "244",
+        "title": "All Nodes Distance K in Binary Tree",
+        "pattern": "Tree-to-Graph Conversion BFS",
+        "prerequisite": "BFS, Parent Pointer Map",
+        "company": "Databricks"
+      },
+      {
+        "id": "245",
+        "title": "Detonate the Maximum Bombs",
+        "pattern": "Directed Reachability / BFS",
+        "prerequisite": "Directed Graph BFS/DFS",
+        "company": "General"
+      },
+      {
+        "id": "246",
+        "title": "My Calendar I",
+        "pattern": "Balanced BST / Binary Search",
+        "prerequisite": "Binary Search, Sorted Map",
+        "company": "General"
+      },
+      {
+        "id": "247",
+        "title": "Data Stream as Disjoint Intervals",
+        "pattern": "Treap / TreeSet Interval Merging",
+        "prerequisite": "Sorted Set, Interval Merging",
+        "company": "Databricks"
+      },
+      {
+        "id": "248",
+        "title": "Binary Tree Vertical Order Traversal",
+        "pattern": "BFS with Column Index",
+        "prerequisite": "Level-order Traversal",
+        "company": "Databricks"
+      },
+      {
+        "id": "249",
+        "title": "Vertical Order Traversal of a Binary Tree",
+        "pattern": "Sorting-Enhanced BFS",
+        "prerequisite": "Binary Tree Vertical Order Traversal",
+        "company": "Databricks"
+      },
+      {
+        "id": "250",
+        "title": "Lowest Common Ancestor of a Binary Tree",
+        "pattern": "Recursive DFS Lineage",
+        "prerequisite": "DFS Traversal",
+        "company": "General"
+      },
+      {
+        "id": "251",
+        "title": "Lowest Common Ancestor of a BST",
+        "pattern": "Iterative Value Search",
+        "prerequisite": "BST Properties",
+        "company": "General"
+      },
+      {
+        "id": "252",
+        "title": "Binary Tree Maximum Path Sum",
+        "pattern": "Post-order Tree DP",
+        "prerequisite": "Post-order DFS",
+        "company": "DoorDash"
+      },
+      {
+        "id": "253",
+        "title": "Serialize and Deserialize Binary Tree",
+        "pattern": "Pre-order / Level-order Persistence",
+        "prerequisite": "BFS/DFS Traversal",
+        "company": "Databricks"
+      },
+      {
+        "id": "254",
+        "title": "Count of Smaller Numbers After Self",
+        "pattern": "BIT / Merge Sort Inversion",
+        "prerequisite": "BIT Foundations",
+        "company": "Databricks"
+      },
+      {
+        "id": "255",
+        "title": "The Skyline Problem",
+        "pattern": "Segment Tree / Max-Heap Events",
+        "prerequisite": "Segment Tree, Sorted Map",
+        "company": "General"
+      },
+      {
+        "id": "256",
+        "title": "Range Sum Query 2D - Immutable",
+        "pattern": "2D Prefix Sums",
+        "prerequisite": "2D Prefix Sum",
+        "company": "General"
+      },
+      {
+        "id": "257",
+        "title": "Partition Equal Subset Sum",
+        "pattern": "0/1 Knapsack Space Optimization",
+        "prerequisite": "0/1 Knapsack Variation",
+        "company": "General"
+      },
+      {
+        "id": "258",
+        "title": "Best Time to Buy and Sell Stock with Cooldown",
+        "pattern": "State-Machine DP",
+        "prerequisite": "DP State Transitions",
+        "company": "General"
+      },
+      {
+        "id": "259",
+        "title": "Minimum Cost For Tickets",
+        "pattern": "Interval Min-Cost DP",
+        "prerequisite": "1D DP",
+        "company": "Razorpay"
+      },
+      {
+        "id": "260",
+        "title": "Maximum Profit in Job Scheduling",
+        "pattern": "Weighted Non-overlap DP + Binary Search",
+        "prerequisite": "DP + Binary Search",
+        "company": "DoorDash"
+      },
+      {
+        "id": "261",
+        "title": "Cherry Pickup II",
+        "pattern": "Simultaneous Dual Path DP",
+        "prerequisite": "3D DP",
+        "company": "DoorDash"
+      },
+      {
+        "id": "262",
+        "title": "Best Meeting Point",
+        "pattern": "Manhattan Median Optimization",
+        "prerequisite": "Prefix Sum, Median Property",
+        "company": "Uber"
+      },
+      {
+        "id": "263",
+        "title": "Minimum Number of Refueling Stops",
+        "pattern": "Reachability Greedy / DP",
+        "prerequisite": "Greedy, Max-Heap",
+        "company": "General"
+      },
+      {
+        "id": "264",
+        "title": "Maximum Points You Can Obtain from Cards",
+        "pattern": "Sliding Window Complement Profit",
+        "prerequisite": "Sliding Window",
+        "company": "General"
+      },
+      {
+        "id": "265",
+        "title": "Paint House III",
+        "pattern": "Neighborhood Constraint 3D DP",
+        "prerequisite": "3D DP",
+        "company": "Palantir"
+      },
+      {
+        "id": "266",
+        "title": "Fair Distribution of Cookies",
+        "pattern": "Minimax Bitmask DP / Backtracking",
+        "prerequisite": "Bitmask DP, Backtracking",
+        "company": "DoorDash"
+      },
+      {
+        "id": "274",
+        "title": "Build Heap from Array — O(n) Heapify",
+        "pattern": "Bottom-up Heapify",
+        "prerequisite": "Heap Properties",
+        "company": "General"
+      },
+      {
+        "id": "280",
+        "title": "Maximum XOR of Two Numbers — XOR Trie",
+        "pattern": "Bitwise Trie Greedy",
+        "prerequisite": "Trie Foundations + Bit Manipulation",
+        "company": "General"
+      },
+      {
+        "id": "281",
+        "title": "Design Add and Search Words — Wildcard Trie",
+        "pattern": "DFS + Wildcard Match",
+        "prerequisite": "Implement Trie",
+        "company": "General"
+      },
+      {
+        "id": "293",
+        "title": "Longest Duplicate Substring — Suffix Array",
+        "pattern": "SA + LCP Array",
+        "prerequisite": "Binary Search + Hashing",
+        "company": "General"
+      },
+      {
+        "id": "294",
+        "title": "Longest Common Substring — Suffix Array",
+        "pattern": "SA + LCP",
+        "prerequisite": "Suffix Array",
+        "company": "General"
+      },
+      {
+        "id": "301",
+        "title": "Print in Order — Semaphore Sequencing",
+        "pattern": "Semaphore Chain",
+        "prerequisite": "Threading Basics",
+        "company": "General"
+      },
+      {
+        "id": "302",
+        "title": "Print FooBar Alternately",
+        "pattern": "Two-thread Alternation",
+        "prerequisite": "Mutex / Semaphore",
+        "company": "General"
+      },
+      {
+        "id": "306",
+        "title": "Design Skiplist",
+        "pattern": "Probabilistic Balancing",
+        "prerequisite": "Linked List + Randomisation",
+        "company": "General"
+      }
+    ]
   }
 ]

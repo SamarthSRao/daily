@@ -91,6 +91,7 @@ export default function DsaPage() {
       case 1: return <Brain className="w-5 h-5" />;
       case 2: return <Rocket className="w-5 h-5" />;
       case 3: return <Globe className="w-5 h-5" />;
+      case 4: return <Library className="w-5 h-5" />;
       default: return <Binary className="w-5 h-5" />;
     }
   };

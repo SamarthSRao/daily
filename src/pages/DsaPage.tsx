@@ -116,7 +116,7 @@ export default function DsaPage() {
         </div>
 
         <nav className="level-tabs">
-          {dsaData.map((level, idx) => (
+          {dsaData.map((_, idx) => (
             <button
               key={idx}
               className={`level-tab ${activeLevel === idx ? "active" : ""}`}

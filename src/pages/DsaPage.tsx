@@ -28,6 +28,8 @@ interface Problem {
   note?: string;
   representation_note?: string;
   representation_decision?: string;
+  is_duplicate?: boolean;
+  duplicate_ref?: string;
 }
 
 interface Level {
@@ -195,6 +197,12 @@ export default function DsaPage() {
                     <span className="dsa-tag striver">
                       <Library size={10} className="mr-1 inline" />
                       Striver
+                    </span>
+                  )}
+                  {prob.is_duplicate && (
+                    <span className="dsa-tag duplicate">
+                      <History size={10} className="mr-1 inline" />
+                      Repeated
                     </span>
                   )}
                 </div>

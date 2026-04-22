@@ -7,9 +7,10 @@ import BiweeklyPage from "./pages/BiweeklyPage";
 import NineMonthPlanPage from "./pages/NineMonthPlanPage";
 import SystemPage from "./pages/SystemPage";
 import Dashboard from "./pages/Dashboard";
+import QuestionsPage from "./pages/QuestionsPage";
 import "./index.css";
 
-type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly";
+type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("timer");
@@ -23,6 +24,7 @@ export default function App() {
       case "biweekly"  : return <BiweeklyPage />;
       case "system"    : return <SystemPage />;
       case "timer"     : return <Dashboard />;
+      case "questions" : return <QuestionsPage />;
       default          : return <HomeDashboard />;
     }
   };

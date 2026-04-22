@@ -1,4 +1,4 @@
-import { Home, Calendar, Rocket, Dna, Timer, Terminal, ChevronLeft, ChevronRight, Settings, Layers } from "lucide-react";
+import { Home, Calendar, Rocket, Dna, Timer, Terminal, ChevronLeft, ChevronRight, Settings, Layers, HelpCircle } from "lucide-react";
 import { useState } from "react";
 
 type NavItem = {
@@ -14,6 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: "nine-month", label: "9-Month Mastery", icon: Rocket, color: "#3b82f6" },
   { id: "dsa", label: "DSA Tracker", icon: Dna, color: "#a855f7" },
   { id: "biweekly", label: "Biweekly Internals", icon: Layers, color: "#3b82f6" },
+  { id: "questions", label: "Questions", icon: HelpCircle, color: "#ec4899" },
   { id: "timer", label: "Timers", icon: Timer, color: "#f59e0b" },
   { id: "system", label: "System Console", icon: Terminal, color: "#3b82f6" },
 ];

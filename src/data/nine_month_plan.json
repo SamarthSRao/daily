@@ -1,170 +1,204 @@
 [
   {
     "id": "m1",
-    "title": "Month 1: Foundations & Target Lock",
+    "title": "Month 1: Foundations & OpenTrace Scaffold",
     "phase": "Orient | Weeks 1–4",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "Arrays, strings, hashing, two pointers — 3–4 problems/day. Connect every problem to reality: LRU cache = Redis eviction. Consistent hashing = Uber matching pod routing. Bloom filter = Razorpay fraud pre-screen."
+        "content": "Arrays, strings, hashing, two pointers. Connect every problem to reality: LRU cache = Redis eviction. Bloom filter = lsm/crawler dedup."
       },
       {
         "name": "Systems Track",
-        "content": "HTTP/HTTPS/DNS/TLS/TCP deep: run curl -v and dig +trace on every endpoint. REST vs gRPC vs webhooks vs SSE vs WebSocket. PostgreSQL fundamentals: ACID, isolation levels, indexes, EXPLAIN ANALYZE. Small designs: URL shortener, leaderboard, rate limiter, notification service. ADR/RFC habit from Day 1: every major decision → 3-paragraph doc."
+        "content": "HTTP/HTTPS/DNS/TLS/TCP deep. PostgreSQL fundamentals: ACID, isolation levels, indexes, EXPLAIN ANALYZE. RFC/ADR habit starts."
       },
       {
         "name": "Project Track",
-        "content": "No project yet. All 5 repos created: Raw HTTP server shell (Go), README.md + BENCHMARKS.md placeholder, GitHub Actions, goleak.VerifyNone(t) in every test file."
+        "content": "OpenTrace: OTLP protocol study, proto definitions, raw gRPC echo server. All 5 repos created with CI/CD and go-test-race."
       }
     ],
     "deliverables": [
-      "Lock A-list to exactly 7 companies",
-      "Write the 4-sentence brief for each",
-      "Categorise each into its work bucket",
-      "Weekly time-block locked in: DSA 5h + Systems 3h + Project 10h"
+      "OpenTrace monorepo with proto-generated code",
+      "PayCore, DungBeetle, RouteMaster, BookWise initialised",
+      "Biweekly 01 (vault) completed and deployed"
     ]
   },
   {
     "id": "m2",
-    "title": "Month 2: PayRail v1 + DSA Patterns",
+    "title": "Month 2: Collector + PayCore v1",
     "phase": "Build | Weeks 5–8",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "Sliding window, two pointers, binary search, linked lists — 3 problems/day. Tag by pattern."
+        "content": "Sliding window, binary search, linked lists. Tag by pattern."
       },
       {
         "name": "Systems Track",
-        "content": "Kafka essentials: topic/partition/offset, consumer groups, exactly-once, Outbox pattern. All 4 PostgreSQL isolation levels with live anomaly demos. Design 'charge a card', 'retry a failed payment', 'webhook with retries + backoff'."
+        "content": "Node.js Deep: Event loop, streams, AsyncLocalStorage. JWT RS256, HMAC webhooks, rate limiting (switchboard concepts)."
       },
       {
         "name": "Project Track",
-        "content": "PayRail v1: A payment gateway + UPI engine. Double-entry ledger, Idempotency, UPI flow, Webhook delivery, Outbox pattern. Kafka topic design. Benchmarks (k6): 10K TPS, p99 < 500ms."
+        "content": "OpenTrace Collector: Receives OTLP, validates, publishes to Kafka. PayCore v1: Auth layer, webhook design, idempotency."
       }
+    ],
+    "deliverables": [
+      "Collector processing 1K spans/sec",
+      "PayCore auth middleware with RS256",
+      "Biweekly 02 (pgpool) + 03 (relay) completed"
     ]
   },
   {
     "id": "m3",
-    "title": "Month 3: PayRail v2 + Trees & Graphs",
+    "title": "Month 3: Pipeline + DungBeetle v1",
     "phase": "Build | Weeks 9–12",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "Trees, graphs, BFS/DFS, heaps — 2–3 medium/hard per day. Speed + explanation clarity."
+        "content": "Trees, graphs, BFS/DFS, heaps. Speed + explanation clarity."
       },
       {
         "name": "Systems Track",
-        "content": "Reconciliation engine, Risk engine (3-layer fraud detection: Wasm → Go → ONNX), Saga pattern, Observability (structured logs, trace_id, RED metrics), Kafka CDC."
+        "content": "Kafka deep: consumer groups, lag monitoring, transactional producer. Distributed systems fundamentals: CAP theorem, Sagas."
       },
       {
         "name": "Project Track",
-        "content": "PayRail v2: Reconciliation engine, Risk engine with < 200ms total latency, Payment Saga (compensating transactions). Behavioral story bank started."
+        "content": "OpenTrace Pipeline: Kafka consumer, tail-based sampling, ClickHouse bulk writer. DungBeetle v1: Job queue in Go."
       }
+    ],
+    "deliverables": [
+      "DungBeetle processing 100 concurrent jobs",
+      "OpenTrace sampling logic verified",
+      "Biweekly 04 (resolver) + 05 (lsm) completed"
     ]
   },
   {
     "id": "m4",
-    "title": "Month 4: DispatchOS v1 + DP & Greedy",
+    "title": "Month 4: OpenTrace UI + RouteMaster v1",
     "phase": "Build | Weeks 13–16",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "DP fundamentals, greedy, intervals — 2–3 problems/day."
+        "content": "DP fundamentals, greedy, intervals."
       },
       {
         "name": "Systems Track",
-        "content": "H3 hexagonal grid (resolution 7/9), PostGIS ST_DWithin + GIST index (800ms → 2ms), Consistent hashing, Cassandra write-heavy telemetry (1M events/day)."
+        "content": "Elasticsearch inverted index, full-text search relevance. SSE proxying, WebSocket fan-out (relay internals)."
       },
       {
         "name": "Project Track",
-        "content": "DispatchOS v1: Real-time marketplace matching engine. Go location aggregator (520K events/sec), Matching engine every 500ms (< 50ms for 10K requests), Trip assignment Saga."
+        "content": "OpenTrace UI v1: Trace list, waterfall rendering. RouteMaster v1: Logistics engine, fan-out notifications."
       }
+    ],
+    "deliverables": [
+      "RouteMaster notifications delivering via herald",
+      "OpenTrace UI showing live span waterfalls",
+      "Biweekly 06 (herald) + 07 (gatekeeper) completed"
     ]
   },
   {
     "id": "m5",
-    "title": "Month 5: DispatchOS v2 + WorkOS v1",
+    "title": "Month 5: Storage Layer + PayCore v2",
     "phase": "Build | Weeks 17–20",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "Bit manipulation, tries, union-find — 2 problems/day. Timed mock sets (45-min blocks)."
+        "content": "Bit manipulation, tries, union-find. Timed mocks."
       },
       {
         "name": "Systems Track",
-        "content": "Multi-tenant SaaS patterns (RLS, schema-per-tenant, X-Tenant-ID), RBAC + ABAC, K8s Operator (CRD pattern), Multi-tenant SaaS design."
+        "content": "ClickHouse MergeTree internals, monthly partitioning, TTL. Event sourcing, double-entry ledger math."
       },
       {
         "name": "Project Track",
-        "content": "DispatchOS v2: Surge pricing (ONNX Go inference), K8s Operator for matcher pool scaling, GPS fraud detection. WorkOS v1: Multi-tenant HRIS (PostgreSQL RLS), RBAC middleware, Employee onboarding Saga."
+        "content": "OpenTrace Storage: ClickHouse schema, indexing. PayCore v2: Ledger system, reconciliation engine."
       }
+    ],
+    "deliverables": [
+      "PayCore ledger audit balance = zero",
+      "OpenTrace storage with 30-day TTL",
+      "Biweekly 08 (switchboard) completed"
     ]
   },
   {
     "id": "m6",
-    "title": "Month 6: WorkOS v2 + FoundryOS v1",
+    "title": "Month 6: Query Service + BookWise v1",
     "phase": "Sharpen | Weeks 21–24",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "Graph algorithms (Dijkstra, Bellman-Ford), topological sort, advanced DP — 2 problems/day."
+        "content": "Graph algorithms (Dijkstra, Bellman-Ford), topological sort."
       },
       {
         "name": "Systems Track",
-        "content": "K8s Operator deep: WorkOSTenantProvisioner (Provisions PSQL, Redis, S3, Kafka in 30s), Delta Lake (ACID, time-travel), Data lineage Dag, Live sports score service design."
+        "content": "Distributed locks, fencing tokens, PostgreSQL advisory locks. gRPC streaming queries."
       },
       {
         "name": "Project Track",
-        "content": "WorkOS v2: Audit log (tamper-evident), Usage-based billing. FoundryOS v1: CDC auto-ingestion, PySpark pipeline (Kafka → Delta Lake), Lineage tracking. 3x/week mocks."
+        "content": "OpenTrace Query: gRPC API, service graph. BookWise v1: Seat reservation with distributed locks."
       }
+    ],
+    "deliverables": [
+      "BookWise zero double-booking at 1K RPS",
+      "OpenTrace service dependency graph rendered",
+      "K8s Operator for span ingestion scaling"
     ]
   },
   {
     "id": "m7",
-    "title": "Month 7: FoundryOS v2 + StreamEdge v1",
+    "title": "Month 7: OpenTrace v2 + DungBeetle v2",
     "phase": "Sharpen | Weeks 25–28",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "Hard problems only — 1–2/day. Tag weak areas, review systematically."
+        "content": "Hard problems only. Review weak areas."
       },
       {
         "name": "Systems Track",
-        "content": "HLS internals (manifests, segments, ABR), WebRTC (WHIP, < 500ms latency), Spark Structured Streaming, Human-in-the-loop AI (approval queues)."
+        "content": "Consistent hashing, virtual nodes. Go AST for auto-instrumentation SDK. WebSocket live tail."
       },
       {
         "name": "Project Track",
-        "content": "FoundryOS v2: Human-in-the-loop AI (Palantir AIP architecture), Great Expectations data gating. StreamEdge v1: HLS origin server (Go + Transcoding), Live score overlay (WS + Redis fan-out), CDN pre-warming."
+        "content": "OpenTrace UI v2 + SDK: Auto-instrumentation, Live Tail. DungBeetle v2: Exactly-once cron, leader election."
       }
+    ],
+    "deliverables": [
+      "OpenTrace SDK auto-tracing Go services",
+      "DungBeetle cron with high-availability leader",
+      "LFX Mentorship application draft"
     ]
   },
   {
     "id": "m8",
-    "title": "Month 8: StreamEdge v2 + Interview simulation Sprint",
+    "title": "Month 8: Performance + AI-Native Stack",
     "phase": "Peak | Weeks 29–32",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "1–2 hard problems/day. Weak pattern focus only."
+        "content": "1–2 hard problems/day. Mock interview sets."
       },
       {
         "name": "Systems Track",
-        "content": "Company-specific designs: Rippling (Onboarding Saga), Palantir (Pipeline reliability/Lineage), Uber (H3 matching), DoorDash (Assignment/ETA), JioHotstar (Live streaming), Razorpay (Payments/Fraud), Databricks (Columnar vs Row)."
+        "content": "RAG pipelines, vector databases (PGVector). pprof flame graphs, k6 load testing p99 optimization."
       },
       {
         "name": "Project Track",
-        "content": "StreamEdge v2: K8s Operator for viewer scaling, WebRTC WHIP ingest, TimescaleDB telemetry. Projects polish: BENCHMARKS.md, Architecture diagrams, ADRs, Deployed demos."
+        "content": "OpenTrace: 10M spans/sec load test. BookWise: AI seat recommendation. All projects polish: BENCHMARKS.md, ADRs."
       }
+    ],
+    "deliverables": [
+      "OpenTrace benchmarks documented",
+      "AI features integrated into BookWise/RouteMaster",
+      "Portfolio READMEs final"
     ]
   },
   {
     "id": "m9",
-    "title": "Month 9: Applications, Referrals & Serious Pitches",
+    "title": "Month 9: Launch & Applications",
     "phase": "Launch | Weeks 33–36",
     "tracks": [
       {
         "name": "DSA Track",
-        "content": "1 problem/day. Maintenance only."
+        "content": "1 problem/day. Maintenance."
       },
       {
         "name": "Systems Track",
@@ -172,7 +206,7 @@
       },
       {
         "name": "Deliverables",
-        "content": "Apply via referral > portal. 5–10 real conversations with engineers. Per-company prep card. Resume v2. Prepped for high-bar backend roles."
+        "content": "Apply via referral. 5–10 real conversations with engineers. LFX application final."
       }
     ]
   }

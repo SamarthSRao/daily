@@ -551,28 +551,65 @@
     "title": "DAILY SCHEDULE",
     "weeks": [
       {
-        "title": "Activities",
+        "title": "Daily Schedule \u2014 9-Month Plan",
+        "days": []
+      },
+      {
+        "title": "Daily Schedule \u2014 9-Month Plan - Updated for New Language Split: 3 TypeScript-Heavy \u00b7 2 Go-Heavy Projects + 8 Building Blocks",
         "days": [
           {
-            "title": "Daily Rhythm",
+            "title": "Overview",
             "tasks": [
-              "# Daily Schedule \u2014 9-Month Plan",
-              "## Updated for New Language Split: 3 TypeScript-Heavy \u00b7 2 Go-Heavy Projects + 8 Building Blocks",
-              "---",
-              "## Daily Rhythm (Every Weekday)",
-              "| Block | Duration | Activity |",
-              "|---|---|---|",
-              "| **Morning** | 2 hours | Learn the concept. Run code. Break it. Read source code \u2014 not docs. Concept introduced because a project needs it. GitHub Copilot open \u2014 use it, explain every accepted suggestion. |",
-              "| **Evening** | 2 hours | Build the named feature of the named project. Must use \u2265 3 technologies together. Always \"BookWise needs X\" or \"DungBeetle needs X\" or \"OpenTrace needs X\" \u2014 each project drives its own features. Never a tutorial. |",
-              "| **DSA** | 30 min | 1 problem. Always connects to what you built. LRU = Redis eviction. Bloom Filter = URL crawler dedup. Consistent Hash = job routing. |",
-              "| **RFC/ADR** | 30 min | Write a short RFC or ADR for a decision you made. Do this every day. Senior engineers write constantly. |",
-              "| **Saturday** | 5 hours | Weekend capstone: wire the week's features into the flagship project. Deploy. Benchmark with k6. Push biweekly project milestone. |",
-              "| **Sunday** | 3 hours | Document: README + ADR update, benchmark numbers, LinkedIn/X post, Loom walkthrough. CI must be green. |",
-              "**AI workflow (from Day 1):**",
-              "- GitHub Copilot always open \u2014 every suggestion you accept, you must explain",
-              "- Month 2+: Claude drafts your first RFC \u2014 you rewrite it entirely in your own reasoning",
-              "- Month 4+: TestSprite generates E2E tests \u2014 review and fix every single one",
-              "- Month 6+: You build AI features (Vercel AI SDK + tool use) \u2014 not just consume AI, build with it",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Daily Schedule \u2014 9-Month Plan - Daily Rhythm (Every Weekday)",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "| Block | Duration | Activity |\n|---|---|---|\n| **Morning** | 2 hours | Learn the concept. Run code. Break it. Read source code \u2014 not docs. Concept introduced because a project needs it. GitHub Copilot open \u2014 use it, explain every accepted suggestion. |\n| **Evening** | 2 hours | Build the named feature of the named project. Must use \u2265 3 technologies together. Always \"BookWise needs X\" or \"DungBeetle needs X\" or \"OpenTrace needs X\" \u2014 each project drives its own features. Never a tutorial. |\n| **DSA** | 30 min | 1 problem. Always connects to what you built. LRU = Redis eviction. Bloom Filter = URL crawler dedup. Consistent Hash = job routing. |\n| **RFC/ADR** | 30 min | Write a short RFC or ADR for a decision you made. Do this every day. Senior engineers write constantly. |\n| **Saturday** | 5 hours | Weekend capstone: wire the week's features into the flagship project. Deploy. Benchmark with k6. Push biweekly project milestone. |\n| **Sunday** | 3 hours | Document: README + ADR update, benchmark numbers, LinkedIn/X post, Loom walkthrough. CI must be green. |",
+              "**AI workflow (from Day 1):**\n- GitHub Copilot always open \u2014 every suggestion you accept, you must explain\n- Month 2+: Claude drafts your first RFC \u2014 you rewrite it entirely in your own reasoning\n- Month 4+: TestSprite generates E2E tests \u2014 review and fix every single one\n- Month 6+: You build AI features (Vercel AI SDK + tool use) \u2014 not just consume AI, build with it",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine",
+        "days": []
+      },
+      {
+        "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**Backend 2026 Roadmap: Blocks 1 + 2 \u00b7 OpenTrace: Scaffold + Protocol Study**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **What you build this month for OpenTrace:** The monorepo scaffold, proto definitions for OTLP, a raw gRPC echo server (Go) that receives spans and logs them \u2014 nothing stored yet. You study the actual Jaeger source code and OTLP spec this month. You understand the protocol before you implement it.\n>\n> **Language focus this month:** TypeScript/Node.js primary for learning (event loop, HTTP model). Go for raw echo servers and vault biweekly. The 3 TypeScript projects (BookWise, RouteMaster, DungBeetle) and 2 Go projects (PayCore, DungBeetle-Go-in-Month-3) all get their own repos with raw HTTP server shells.\n>\n> **Biweekly Project 1 \u2014 `vault` (Go):** WAL-Backed KV Store starts this month. Runs on weekends in parallel.\n>\n> **By end of Month 1:** OpenTrace monorepo with proto-generated code. A gRPC server receives a span and prints it. Jaeger collector source code read and notes written. All 4 other projects have their own GitHub repos with a raw HTTP server, `README.md` stub, and `BENCHMARKS.md` placeholder."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
               "---"
             ]
           }
@@ -582,7 +619,7 @@
         "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine - Week 1 \u2014 How the Web Works: HTTP, DNS, Client/Server, Browsers",
         "days": [
           {
-            "title": "General",
+            "title": "Overview",
             "tasks": [
               "---"
             ]
@@ -590,11 +627,7 @@
           {
             "title": "Monday \u2014 Week 1 \u00b7 HTTP/HTTPS Model + Dev Environment",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Node.js 22 LTS, VS Code, pnpm, `curl`, `dig`, `openssl` |",
-              "| \ud83d\udcd6 **Concepts** | HTTP methods, status codes, request/response headers, HTTP/2 multiplexing, TLS handshake |",
-              "| \ud83c\udfaf **You Build** | Dev environment configured. `curl -v` dissection of 5 real sites documented. Domains registered on Cloudflare for all 5 projects. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Node.js 22 LTS, VS Code, pnpm, `curl`, `dig`, `openssl` |\n| \ud83d\udcd6 **Concepts** | HTTP methods, status codes, request/response headers, HTTP/2 multiplexing, TLS handshake |\n| \ud83c\udfaf **You Build** | Dev environment configured. `curl -v` dissection of 5 real sites documented. Domains registered on Cloudflare for all 5 projects. |",
               "**Morning \u2014 HTTP from First Principles**",
               "Run `curl -v https://google.com` and observe: TCP handshake \u2192 TLS handshake \u2192 HTTP request \u2192 HTTP response. HTTP status code families: 2xx (success), 3xx (redirect), 4xx (client error), 5xx (server error). HTTP/2 multiplexes multiple requests over a single TCP connection, solving HTTP/1.1 head-of-line blocking.",
               "**VS Code Setup:** ESLint, Prettier, Error Lens, GitLens, Thunder Client. Format-on-save. pnpm workspaces for TypeScript projects with `packages/types`, `packages/schemas`, `packages/utils`. Go workspace (`go.work`) for Go projects.",
@@ -605,24 +638,9 @@
           {
             "title": "Tuesday \u2014 Week 1 \u00b7 Client/Server Concepts + REST Design",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Node.js `http` stdlib (TS projects), Go `net/http` (Go projects), `curl`, `httpie` |",
-              "| \ud83d\udcd6 **Concepts** | Stateless vs stateful, REST resource design, idempotency (GET/PUT/DELETE vs POST), request/response lifecycle |",
-              "| \ud83c\udfaf **You Build** | All 5 projects: raw HTTP server shells. RouteMaster: `POST /orders`. BookWise: `POST /bookings`. DungBeetle: `POST /jobs` (Node.js). PayCore: `POST /payments` (Go). OpenTrace: gRPC echo scaffold. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Node.js `http` stdlib (TS projects), Go `net/http` (Go projects), `curl`, `httpie` |\n| \ud83d\udcd6 **Concepts** | Stateless vs stateful, REST resource design, idempotency (GET/PUT/DELETE vs POST), request/response lifecycle |\n| \ud83c\udfaf **You Build** | All 5 projects: raw HTTP server shells. RouteMaster: `POST /orders`. BookWise: `POST /bookings`. DungBeetle: `POST /jobs` (Node.js). PayCore: `POST /payments` (Go). OpenTrace: gRPC echo scaffold. |",
               "**RouteMaster + BookWise + DungBeetle (TypeScript):** `http.createServer`, no framework yet. Parse `Content-Type`, return JSON. Handle malformed requests gracefully \u2014 `400 Bad Request` with a body, not a crash.",
-              "**PayCore (Go):**",
-              "```go",
-              "http.HandleFunc(\"/payments\", func(w http.ResponseWriter, r *http.Request) {",
-              "if r.Method != http.MethodPost {",
-              "http.Error(w, \"Method Not Allowed\", http.StatusMethodNotAllowed)",
-              "return",
-              "}",
-              "w.Header().Set(\"Content-Type\", \"application/json\")",
-              "w.WriteHeader(http.StatusCreated)",
-              "json.NewEncoder(w).Encode(map[string]string{\"status\": \"ok\"})",
-              "})",
-              "```",
+              "**PayCore (Go):**\n```go\nhttp.HandleFunc(\"/payments\", func(w http.ResponseWriter, r *http.Request) {\n    if r.Method != http.MethodPost {\n        http.Error(w, \"Method Not Allowed\", http.StatusMethodNotAllowed)\n        return\n    }\n    w.Header().Set(\"Content-Type\", \"application/json\")\n    w.WriteHeader(http.StatusCreated)\n    json.NewEncoder(w).Encode(map[string]string{\"status\": \"ok\"})\n})\n```",
               "**Idempotency rule:** GET, PUT, DELETE are idempotent. POST is not. Every BookWise `POST /bookings` and PayCore `POST /payments` accepts an `Idempotency-Key` header from Day 1 \u2014 even before the implementation stores it.",
               "---"
             ]
@@ -630,11 +648,7 @@
           {
             "title": "Wednesday \u2014 Week 1 \u00b7 DNS \u2014 From Browser to IP",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | `dig`, `nslookup`, Cloudflare DNS, Wireshark |",
-              "| \ud83d\udcd6 **Concepts** | DNS record types (A, CNAME, MX, TXT, NS, PTR), TTL, recursive vs iterative resolution, CDN DNS routing |",
-              "| \ud83c\udfaf **You Build** | Register domains for all 5 projects on Cloudflare. Configure A and CNAME records. Set TTLs correctly. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | `dig`, `nslookup`, Cloudflare DNS, Wireshark |\n| \ud83d\udcd6 **Concepts** | DNS record types (A, CNAME, MX, TXT, NS, PTR), TTL, recursive vs iterative resolution, CDN DNS routing |\n| \ud83c\udfaf **You Build** | Register domains for all 5 projects on Cloudflare. Configure A and CNAME records. Set TTLs correctly. |",
               "Run `dig +trace google.com`. Follow: browser cache \u2192 OS cache \u2192 recursive resolver \u2192 root servers \u2192 TLD servers \u2192 authoritative nameservers.",
               "**TTL rule:** lower TTL 48 hours before any planned migration, raise it back after. This is why the `resolver` building block (Biweekly 4) matters \u2014 you will build this resolution chain from UDP sockets.",
               "---"
@@ -643,11 +657,7 @@
           {
             "title": "Thursday \u2014 Week 1 \u00b7 How Websites Work \u2014 Browser Rendering Pipeline",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Chrome DevTools (Elements, Network, Performance, Lighthouse) |",
-              "| \ud83d\udcd6 **Concepts** | HTML \u2192 DOM \u2192 CSSOM \u2192 Render Tree \u2192 Layout \u2192 Paint \u2192 Composite, critical render path, reflow vs repaint |",
-              "| \ud83c\udfaf **You Build** | Profile OpenTrace UI landing page with Lighthouse. Profile BookWise landing page. Achieve 90+ on both before adding React. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Chrome DevTools (Elements, Network, Performance, Lighthouse) |\n| \ud83d\udcd6 **Concepts** | HTML \u2192 DOM \u2192 CSSOM \u2192 Render Tree \u2192 Layout \u2192 Paint \u2192 Composite, critical render path, reflow vs repaint |\n| \ud83c\udfaf **You Build** | Profile OpenTrace UI landing page with Lighthouse. Profile BookWise landing page. Achieve 90+ on both before adding React. |",
               "**Render pipeline:** CSS blocks rendering \u2014 browser must finish parsing all CSS before painting. Animating `transform` and `opacity` only triggers compositing \u2014 the cheapest GPU operation. This is why CSS animations using `transform` are smooth and `top/left` animations are janky.",
               "**Applied to BookWise:** The seat map SVG must never cause reflow. Use `transform` for seat state transitions, not `top/left`. This matters at 10K concurrent users with live SSE updates.",
               "---"
@@ -656,12 +666,7 @@
           {
             "title": "Friday \u2014 Week 1 \u00b7 CLI + Shell Scripting",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Bash, `grep`, `sed`, `awk`, `find`, `top`, `htop`, `ps`, `kill`, `cron` |",
-              "| \ud83d\udcd6 **Concepts** | File system hierarchy, pipes and redirection, process management, environment variables, cron jobs |",
-              "| \ud83c\udfaf **You Build** | Deploy script for each project: stops old server, pulls new code, runs tests (`go test ./...` or `pnpm test`), starts new server, health checks. |",
-              "---",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Bash, `grep`, `sed`, `awk`, `find`, `top`, `htop`, `ps`, `kill`, `cron` |\n| \ud83d\udcd6 **Concepts** | File system hierarchy, pipes and redirection, process management, environment variables, cron jobs |\n| \ud83c\udfaf **You Build** | Deploy script for each project: stops old server, pulls new code, runs tests (`go test ./...` or `pnpm test`), starts new server, health checks. |",
               "---"
             ]
           }
@@ -671,24 +676,22 @@
         "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine - Week 2 \u2014 HTML + CSS + TypeScript Foundation",
         "days": [
           {
+            "title": "Overview",
+            "tasks": [
+              "---"
+            ]
+          },
+          {
             "title": "Monday \u2014 Week 2 \u00b7 HTML + Accessibility",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | HTML5, WAVE accessibility checker, Lighthouse |",
-              "| \ud83d\udcd6 **Concepts** | Semantic HTML elements, ARIA attributes, forms, what the DOM actually is |",
-              "| \ud83c\udfaf **You Build** | OpenTrace UI dashboard markup. BookWise seat map HTML skeleton. Both pass WAVE accessibility check before any CSS. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | HTML5, WAVE accessibility checker, Lighthouse |\n| \ud83d\udcd6 **Concepts** | Semantic HTML elements, ARIA attributes, forms, what the DOM actually is |\n| \ud83c\udfaf **You Build** | OpenTrace UI dashboard markup. BookWise seat map HTML skeleton. Both pass WAVE accessibility check before any CSS. |",
               "---"
             ]
           },
           {
             "title": "Tuesday \u2014 Week 2 \u00b7 CSS Box Model + Cascade",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | CSS3, Chrome DevTools Computed tab |",
-              "| \ud83d\udcd6 **Concepts** | Box model, `box-sizing: border-box`, cascade algorithm, specificity, CSS custom properties |",
-              "| \ud83c\udfaf **You Build** | OpenTrace layout styled with pure CSS. BookWise seat grid laid out with pure CSS Grid \u2014 no JS. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | CSS3, Chrome DevTools Computed tab |\n| \ud83d\udcd6 **Concepts** | Box model, `box-sizing: border-box`, cascade algorithm, specificity, CSS custom properties |\n| \ud83c\udfaf **You Build** | OpenTrace layout styled with pure CSS. BookWise seat grid laid out with pure CSS Grid \u2014 no JS. |",
               "**Critical rule:** Always add `*, *::before, *::after { box-sizing: border-box }`. Specificity scoring: inline style (1000) > ID (100) > class/attribute/pseudo-class (10) > element (1).",
               "---"
             ]
@@ -696,45 +699,24 @@
           {
             "title": "Wednesday \u2014 Week 2 \u00b7 Flexbox + Grid + Tailwind CSS",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | CSS Flexbox, CSS Grid, Tailwind CSS, media queries |",
-              "| \ud83d\udcd6 **Concepts** | Main axis vs cross axis, Grid template areas, auto-fill vs auto-fit, Tailwind utility-first model, `cn()`, `cva()` |",
-              "| \ud83c\udfaf **You Build** | OpenTrace trace list: CSS Grid responsive layout. BookWise seat map grid: rows \u00d7 columns laid out with CSS Grid, Tailwind applied. RouteMaster order tracker layout. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | CSS Flexbox, CSS Grid, Tailwind CSS, media queries |\n| \ud83d\udcd6 **Concepts** | Main axis vs cross axis, Grid template areas, auto-fill vs auto-fit, Tailwind utility-first model, `cn()`, `cva()` |\n| \ud83c\udfaf **You Build** | OpenTrace trace list: CSS Grid responsive layout. BookWise seat map grid: rows \u00d7 columns laid out with CSS Grid, Tailwind applied. RouteMaster order tracker layout. |",
               "---"
             ]
           },
           {
             "title": "Thursday \u2014 Week 2 \u00b7 Shadcn UI + Radix UI",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Shadcn UI, Radix UI, Tailwind |",
-              "| \ud83d\udcd6 **Concepts** | Headless components, compound component pattern, accessibility built-in, owning your component source |",
-              "| \ud83c\udfaf **You Build** | OpenTrace UI: DataTable for trace list, Dialog for trace detail, Command palette for search. BookWise: Dialog for booking confirmation. RouteMaster: DataTable for order list. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Shadcn UI, Radix UI, Tailwind |\n| \ud83d\udcd6 **Concepts** | Headless components, compound component pattern, accessibility built-in, owning your component source |\n| \ud83c\udfaf **You Build** | OpenTrace UI: DataTable for trace list, Dialog for trace detail, Command palette for search. BookWise: Dialog for booking confirmation. RouteMaster: DataTable for order list. |",
               "---"
             ]
           },
           {
             "title": "Friday \u2014 Week 2 \u00b7 TypeScript Deep \u2014 Strict Mode + Branded Types",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | TypeScript strict mode, `tsc --noEmit`, Zod |",
-              "| \ud83d\udcd6 **Concepts** | Strict mode, generics, conditional types, branded types (`UserId \u2260 DriverId`), `tsc --noEmit` in CI |",
-              "| \ud83c\udfaf **You Build** | BookWise: `SeatId`, `BookingId`, `UserId`, `EventId` branded types \u2014 all domain IDs typed. RouteMaster: `OrderId`, `DriverId`, `ShipmentId`. PayCore: `AccountId`, `TransactionId` in TypeScript frontend. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | TypeScript strict mode, `tsc --noEmit`, Zod |\n| \ud83d\udcd6 **Concepts** | Strict mode, generics, conditional types, branded types (`UserId \u2260 DriverId`), `tsc --noEmit` in CI |\n| \ud83c\udfaf **You Build** | BookWise: `SeatId`, `BookingId`, `UserId`, `EventId` branded types \u2014 all domain IDs typed. RouteMaster: `OrderId`, `DriverId`, `ShipmentId`. PayCore: `AccountId`, `TransactionId` in TypeScript frontend. |",
               "**Why branded types matter for BookWise:** `reserveSeat(seatId: SeatId, userId: UserId)` cannot be accidentally called as `reserveSeat(userId, seatId)` \u2014 TypeScript rejects it at compile time. This prevents a category of booking bugs where IDs are transposed.",
-              "```typescript",
-              "// BookWise types.ts \u2014 established from Week 2, used for 9 months",
-              "type SeatId    = string & { readonly __brand: 'SeatId' };",
-              "type BookingId = string & { readonly __brand: 'BookingId' };",
-              "type UserId    = string & { readonly __brand: 'UserId' };",
-              "type EventId   = string & { readonly __brand: 'EventId' };",
-              "// RouteMaster types.ts",
-              "type OrderId    = string & { readonly __brand: 'OrderId' };",
-              "type DriverId   = string & { readonly __brand: 'DriverId' };",
-              "type ShipmentId = string & { readonly __brand: 'ShipmentId' };",
-              "```"
+              "```typescript\n// BookWise types.ts \u2014 established from Week 2, used for 9 months\ntype SeatId    = string & { readonly __brand: 'SeatId' };\ntype BookingId = string & { readonly __brand: 'BookingId' };\ntype UserId    = string & { readonly __brand: 'UserId' };\ntype EventId   = string & { readonly __brand: 'EventId' };",
+              "// RouteMaster types.ts\ntype OrderId    = string & { readonly __brand: 'OrderId' };\ntype DriverId   = string & { readonly __brand: 'DriverId' };\ntype ShipmentId = string & { readonly __brand: 'ShipmentId' };\n```"
             ]
           },
           {
@@ -742,268 +724,288 @@
             "tasks": [
               "All 5 project landing pages: semantic HTML, Tailwind, Shadcn, Lighthouse 90+, deployed to Cloudflare Pages.",
               "`vault` (Go) building block: WAL writer + `fsync` + CRC32 checksums + recovery on startup by end of weekend. Not complete yet \u2014 compaction + crash simulation test next weekend.",
-              "---",
-              "## Weeks 3\u20134 \u2014 JavaScript Engine: Types, Scope, Closures, Prototypes, Event Loop",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 1 \u2014 Fundamentals + OS + Computer Networks + JavaScript Engine - Weeks 3\u20134 \u2014 JavaScript Engine: Types, Scope, Closures, Prototypes, Event Loop",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
               "*(Full coverage: closures, prototypes, event loop all 6 phases, async/await, generators, TypeScript strict mode, Zod, branded types.)*",
-              "**Applied to TypeScript projects this month:**",
-              "- **RouteMaster:** `packages/utils` \u2014 retry helper, exponential backoff, `ConcurrencyLimiter`. `packages/schemas` \u2014 Zod schemas for Order, Driver, Shipment. `packages/types` \u2014 all branded entity IDs.",
-              "- **BookWise:** `packages/utils` \u2014 seat availability check, booking state machine transitions. `packages/schemas` \u2014 Zod schemas for BookingRequest, PaymentWebhook. `packages/types` \u2014 SeatId, BookingId, UserId.",
-              "- **DungBeetle (Node.js monolith):** `packages/utils` \u2014 job queue utilities. No framework yet.",
-              "**Applied to Go projects:**",
-              "- **PayCore:** `internal/types` package \u2014 `Money` type wrapping `decimal.Decimal`. `go test -race ./...` from Day 1.",
-              "- **OpenTrace:** `packages/types` (TypeScript side) \u2014 TraceId, SpanId, ServiceName branded types for the UI."
+              "**Applied to TypeScript projects this month:**\n- **RouteMaster:** `packages/utils` \u2014 retry helper, exponential backoff, `ConcurrencyLimiter`. `packages/schemas` \u2014 Zod schemas for Order, Driver, Shipment. `packages/types` \u2014 all branded entity IDs.\n- **BookWise:** `packages/utils` \u2014 seat availability check, booking state machine transitions. `packages/schemas` \u2014 Zod schemas for BookingRequest, PaymentWebhook. `packages/types` \u2014 SeatId, BookingId, UserId.\n- **DungBeetle (Node.js monolith):** `packages/utils` \u2014 job queue utilities. No framework yet.",
+              "**Applied to Go projects:**\n- **PayCore:** `internal/types` package \u2014 `Money` type wrapping `decimal.Decimal`. `go test -race ./...` from Day 1.\n- **OpenTrace:** `packages/types` (TypeScript side) \u2014 TraceId, SpanId, ServiceName branded types for the UI."
             ]
           },
           {
             "title": "Weekend Capstone \u2014 Weeks 3\u20134 \u00b7 All 5 Platform Shells + `vault` Complete",
             "tasks": [
               "All 5 platforms have working raw HTTP servers with typed request/response handling. `vault` Go building block: WAL writer, recovery, log compaction, crash simulation test passing, benchmark results in `BENCHMARKS.md`. `goleak.VerifyNone` passing.",
-              "---",
-              "### OpenTrace: Collector v0.1 (Go)",
-              "> **What you build this month for OpenTrace:** The Collector (Go) \u2014 receives OTLP/gRPC and OTLP/HTTP, validates spans, publishes to Kafka. The TypeScript projects build their auth and webhook layers this month, deepening Node.js internals knowledge.",
-              ">",
-              "> **RFC this month:** \"OpenTrace Collector Design \u2014 backpressure strategy, Kafka topic partitioning scheme, and validation failure handling.\" One page. Three options. Recommendation with tradeoffs.",
-              ">",
-              "> **Biweekly Project 2 \u2014 `pgpool` (Go):** TCP connection pool with pgwire protocol parsing. Runs on weekends.",
-              "---",
-              "## Weeks 5\u20136 \u2014 Node.js Internals + Streams",
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Node.js 22 internals \u2014 V8 JIT, libuv, `AsyncLocalStorage`, `worker_threads`, streams, `crypto`, `clinic.js` |",
-              "| \ud83d\udcd6 **Concepts** | V8 JIT pipeline (Ignition \u2192 TurboFan), hidden classes, generational GC, libuv event loop all 6 phases, streams with backpressure, `pipeline()`, `AsyncLocalStorage` |",
-              "| \ud83c\udfaf **You Build** | RouteMaster: `AsyncLocalStorage` for trace context propagation. BookWise: HMAC webhook handler for Stripe. DungBeetle: `AsyncLocalStorage` for job execution context. |",
-              "**`AsyncLocalStorage` \u2014 applied across all 3 TypeScript projects:**",
-              "```typescript",
-              "// RouteMaster, BookWise, DungBeetle \u2014 same pattern",
-              "import { AsyncLocalStorage } from 'node:async_hooks';",
-              "const reqCtx = new AsyncLocalStorage<{ traceId: string; requestId: string }>();",
-              "app.use((req, _res, next) =>",
-              "reqCtx.run({ traceId: req.headers['traceparent'] as string ?? randomUUID(), requestId: randomUUID() }, next)",
-              ");",
-              "// Now every log line, every DB query, every Kafka message in this request chain",
-              "// has the trace context \u2014 without passing it as a parameter to every function",
-              "```",
-              "**Node.js streams \u2014 applied to RouteMaster:**",
-              "```typescript",
-              "// Kafka consumer \u2192 status update \u2192 notification fan-out, all streamed",
-              "// 10K status events/sec without buffering all in memory",
-              "pipeline(",
-              "kafkaReadStream(consumer, 'shipment.events', { highWaterMark: 100 }),",
-              "new StatusUpdateTransform(),",
-              "new NotificationFanoutTransform(),",
-              "(err) => { if (err) logger.error({ err }, 'pipeline error') }",
-              ");",
-              "// pipeline() propagates errors \u2014 never use .pipe() which swallows them",
-              "```",
-              "**HMAC signing \u2014 applied across projects:**",
-              "- **BookWise:** verify Stripe `payment_intent.succeeded` webhook \u2014 `timingSafeEqual` comparison",
-              "- **DungBeetle:** sign outbound job completion webhooks to merchant callbacks",
-              "- **`herald` building block** (built in Month 6): uses same HMAC pattern for delivery receipts",
-              "---",
-              "## Weeks 7\u20138 \u2014 TypeScript Mastery + OpenTrace Collector v0.1",
-              "### OpenTrace Collector v0.1 (Go \u2014 Built This Month)",
-              "```go",
-              "// gRPC service definition from OTLP spec",
-              "service TraceService {",
-              "rpc Export(ExportTraceServiceRequest) returns (ExportTraceServiceResponse) {}",
-              "}",
-              "// Implementation: grpc-go + sarama (Kafka) + protobuf",
-              "// Partition key = trace_id: all spans of one trace \u2192 same partition \u2192 ordering guaranteed",
-              "// Backpressure: Kafka slow \u2192 RESOURCE_EXHAUSTED \u2192 instrumented app queues locally",
-              "```",
-              "**Components built this month:**",
-              "- **OTLP/gRPC receiver** \u2014 validates spans (required fields, valid timestamps, trace ID format)",
-              "- **OTLP/HTTP receiver** \u2014 accepts Protobuf and JSON-encoded OTLP",
-              "- **Kafka producer** \u2014 `spans.raw` topic, partition key = `trace_id`",
-              "- **Backpressure** \u2014 `RESOURCE_EXHAUSTED` when Kafka is slow, documented in ADR-003",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 2 \u2014 JavaScript Deep + Node.js + TypeScript Mastery",
+        "days": []
+      },
+      {
+        "title": "MONTH 2 \u2014 JavaScript Deep + Node.js + TypeScript Mastery - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: Collector v0.1 (Go)**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 2 \u2014 JavaScript Deep + Node.js + TypeScript Mastery - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **What you build this month for OpenTrace:** The Collector (Go) \u2014 receives OTLP/gRPC and OTLP/HTTP, validates spans, publishes to Kafka. The TypeScript projects build their auth and webhook layers this month, deepening Node.js internals knowledge.\n>\n> **RFC this month:** \"OpenTrace Collector Design \u2014 backpressure strategy, Kafka topic partitioning scheme, and validation failure handling.\" One page. Three options. Recommendation with tradeoffs.\n>\n> **Biweekly Project 2 \u2014 `pgpool` (Go):** TCP connection pool with pgwire protocol parsing. Runs on weekends."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 2 \u2014 JavaScript Deep + Node.js + TypeScript Mastery - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 2 \u2014 JavaScript Deep + Node.js + TypeScript Mastery - Weeks 5\u20136 \u2014 Node.js Internals + Streams",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Node.js 22 internals \u2014 V8 JIT, libuv, `AsyncLocalStorage`, `worker_threads`, streams, `crypto`, `clinic.js` |\n| \ud83d\udcd6 **Concepts** | V8 JIT pipeline (Ignition \u2192 TurboFan), hidden classes, generational GC, libuv event loop all 6 phases, streams with backpressure, `pipeline()`, `AsyncLocalStorage` |\n| \ud83c\udfaf **You Build** | RouteMaster: `AsyncLocalStorage` for trace context propagation. BookWise: HMAC webhook handler for Stripe. DungBeetle: `AsyncLocalStorage` for job execution context. |",
+              "**`AsyncLocalStorage` \u2014 applied across all 3 TypeScript projects:**\n```typescript\n// RouteMaster, BookWise, DungBeetle \u2014 same pattern\nimport { AsyncLocalStorage } from 'node:async_hooks';\nconst reqCtx = new AsyncLocalStorage<{ traceId: string; requestId: string }>();",
+              "app.use((req, _res, next) =>\n  reqCtx.run({ traceId: req.headers['traceparent'] as string ?? randomUUID(), requestId: randomUUID() }, next)\n);\n// Now every log line, every DB query, every Kafka message in this request chain\n// has the trace context \u2014 without passing it as a parameter to every function\n```",
+              "**Node.js streams \u2014 applied to RouteMaster:**\n```typescript\n// Kafka consumer \u2192 status update \u2192 notification fan-out, all streamed\n// 10K status events/sec without buffering all in memory\npipeline(\n  kafkaReadStream(consumer, 'shipment.events', { highWaterMark: 100 }),\n  new StatusUpdateTransform(),\n  new NotificationFanoutTransform(),\n  (err) => { if (err) logger.error({ err }, 'pipeline error') }\n);\n// pipeline() propagates errors \u2014 never use .pipe() which swallows them\n```",
+              "**HMAC signing \u2014 applied across projects:**\n- **BookWise:** verify Stripe `payment_intent.succeeded` webhook \u2014 `timingSafeEqual` comparison\n- **DungBeetle:** sign outbound job completion webhooks to merchant callbacks\n- **`herald` building block** (built in Month 6): uses same HMAC pattern for delivery receipts",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 2 \u2014 JavaScript Deep + Node.js + TypeScript Mastery - Weeks 7\u20138 \u2014 TypeScript Mastery + OpenTrace Collector v0.1",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "**OpenTrace Collector v0.1 (Go \u2014 Built This Month)**",
+              "```go\n// gRPC service definition from OTLP spec\nservice TraceService {\n  rpc Export(ExportTraceServiceRequest) returns (ExportTraceServiceResponse) {}\n}\n// Implementation: grpc-go + sarama (Kafka) + protobuf\n// Partition key = trace_id: all spans of one trace \u2192 same partition \u2192 ordering guaranteed\n// Backpressure: Kafka slow \u2192 RESOURCE_EXHAUSTED \u2192 instrumented app queues locally\n```",
+              "**Components built this month:**\n- **OTLP/gRPC receiver** \u2014 validates spans (required fields, valid timestamps, trace ID format)\n- **OTLP/HTTP receiver** \u2014 accepts Protobuf and JSON-encoded OTLP\n- **Kafka producer** \u2014 `spans.raw` topic, partition key = `trace_id`\n- **Backpressure** \u2014 `RESOURCE_EXHAUSTED` when Kafka is slow, documented in ADR-003",
               "**Benchmark this month:** Collector throughput at 1K, 10K, 100K spans/sec. Find the bottleneck (Kafka publish latency). Fix with batching. Document in `BENCHMARKS.md`.",
-              "### TypeScript Projects This Month",
-              "**RouteMaster:**",
-              "- Express 5 framework added",
-              "- JWT RS256 auth middleware (verifies public key from `switchboard` JWKS endpoint)",
-              "- `tsc --noEmit` added to CI \u2014 enforced from this month forward",
-              "- Zod validation middleware on all routes",
-              "**BookWise:**",
-              "- Express 5 + Zod validation",
-              "- Stripe Checkout Session creation (`POST /bookings` initiates payment flow)",
-              "- HMAC webhook handler for `payment_intent.succeeded`",
-              "- Discriminated union `BookingState` type defined \u2014 all state transitions at compile time",
-              "**DungBeetle (still Node.js monolith):**",
-              "- HMAC-signed webhook delivery for job completion callbacks",
-              "- PostgreSQL queue added: `SELECT FOR UPDATE SKIP LOCKED` replaces in-memory array",
-              "- This is the Node.js version the Month 3 Go migration RFC will benchmark against",
-              "**PayCore (Go):**",
-              "- JWT RS256 auth middleware in Go",
-              "- gRPC `LedgerService` proto defined, stub server started",
-              "- `sqlc` introduced \u2014 all DB queries generated, zero `interface{}` in DB layer"
+              "**TypeScript Projects This Month**",
+              "**RouteMaster:**\n- Express 5 framework added\n- JWT RS256 auth middleware (verifies public key from `switchboard` JWKS endpoint)\n- `tsc --noEmit` added to CI \u2014 enforced from this month forward\n- Zod validation middleware on all routes",
+              "**BookWise:**\n- Express 5 + Zod validation\n- Stripe Checkout Session creation (`POST /bookings` initiates payment flow)\n- HMAC webhook handler for `payment_intent.succeeded`\n- Discriminated union `BookingState` type defined \u2014 all state transitions at compile time",
+              "**DungBeetle (still Node.js monolith):**\n- HMAC-signed webhook delivery for job completion callbacks\n- PostgreSQL queue added: `SELECT FOR UPDATE SKIP LOCKED` replaces in-memory array\n- This is the Node.js version the Month 3 Go migration RFC will benchmark against",
+              "**PayCore (Go):**\n- JWT RS256 auth middleware in Go\n- gRPC `LedgerService` proto defined, stub server started\n- `sqlc` introduced \u2014 all DB queries generated, zero `interface{}` in DB layer"
             ]
           },
           {
             "title": "Weekend Capstone \u2014 Month 2 \u00b7 OpenTrace Collector + `pgpool` Complete",
             "tasks": [
               "OpenTrace Collector deployed, load tested, synthetic OTLP spans flowing into Kafka. `pgpool` Go building block: pgwire startup parsing, transaction mode, benchmark showing 10 backend connections serving 1000 clients. ADR written: \"Why PgBouncer transaction mode over session mode.\"",
-              "---",
-              "### OpenTrace: Pipeline Processor (Go)",
-              "> **Go is the primary language for PayCore and DungBeetle from this month onward.** DungBeetle migrates from Node.js monolith to Go. One full month on the Go language before any project uses it in production.",
-              ">",
-              "> **RFC this month:** \"DungBeetle v0.1 \u2192 Go Rewrite \u2014 Why Go over Node.js for the job worker.\" Covers: goroutine-per-job model, `go test -race`, `goleak`, benchmark numbers before/after. Node.js branch kept for comparison.",
-              ">",
-              "> **Biweekly Project 3 \u2014 `relay` (Go):** Clustered WebSocket server with Redis pub/sub fan-out. Runs on weekends.",
-              "---",
-              "## Weeks 7\u201310 \u2014 Go Language Core + Concurrency + Stdlib",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 3 \u2014 Go Mastery",
+        "days": []
+      },
+      {
+        "title": "MONTH 3 \u2014 Go Mastery - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: Pipeline Processor (Go)**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 3 \u2014 Go Mastery - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **Go is the primary language for PayCore and DungBeetle from this month onward.** DungBeetle migrates from Node.js monolith to Go. One full month on the Go language before any project uses it in production.\n>\n> **RFC this month:** \"DungBeetle v0.1 \u2192 Go Rewrite \u2014 Why Go over Node.js for the job worker.\" Covers: goroutine-per-job model, `go test -race`, `goleak`, benchmark numbers before/after. Node.js branch kept for comparison.\n>\n> **Biweekly Project 3 \u2014 `relay` (Go):** Clustered WebSocket server with Redis pub/sub fan-out. Runs on weekends."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 3 \u2014 Go Mastery - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 3 \u2014 Go Mastery - Weeks 7\u201310 \u2014 Go Language Core + Concurrency + Stdlib",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
               "*(Full Go coverage: zero values, implicit interfaces, error wrapping `%w`, `defer`, goroutines (M:N scheduler, work stealing, 2KB stacks), channels (all patterns: pipeline/fan-out/fan-in/semaphore), `sync.RWMutex/Pool/Once`, `errgroup`, `singleflight`, `atomic`, `context`, `sqlc`, `chi`, `cobra`, `slog`, `pprof`, `go test -race`, `goleak`, `golangci-lint`, generics.)*",
-              "### OpenTrace Pipeline Processor (Go \u2014 Built This Month)",
-              "```go",
-              "func (p *Processor) Run(ctx context.Context) error {",
-              "for msg := range p.consumer.Messages() {",
-              "spans := p.deserialize(msg)",
-              "spans = p.enrich(spans)",
-              "if p.sampler.ShouldKeep(spans) {",
-              "p.buffer.Add(spans)  // buffer for bulk insert",
-              "}",
-              "p.consumer.MarkOffset(msg)",
-              "}",
-              "return nil",
-              "}",
-              "// Tail-based sampling: 100% errors + slow spans (> 500ms), 5% normal traces",
-              "// ClickHouse bulk insert: batch 10K spans \u2014 100x throughput vs single-row insert",
-              "```",
-              "### DungBeetle (Go) \u2014 Migration This Month",
-              "```go",
-              "// v1.0 \u2014 goroutine-per-job worker pool",
-              "type WorkerPool struct {",
-              "sem chan struct{}  // semaphore: max 100 concurrent jobs",
-              "wg  sync.WaitGroup",
-              "}",
-              "func (p *WorkerPool) Dispatch(ctx context.Context, job Job) {",
-              "p.sem <- struct{}{}  // acquire (blocks if pool full)",
-              "p.wg.Add(1)",
-              "go func() {",
-              "defer func() { <-p.sem; p.wg.Done() }()",
-              "if err := executeJob(ctx, job); err != nil {",
-              "p.handleFailure(ctx, job, err)",
-              "}",
-              "}()",
-              "}",
-              "```",
-              "**Migration RFC benchmarks documented in `BENCHMARKS.md`:**",
-              "- Node.js v0.1 monolith: ~8,000 jobs/min (event loop blocks on CPU-bound tasks)",
-              "- Go v1.0 worker pool: ~50,000 jobs/min (goroutine-per-job, `GOMAXPROCS` = CPU count)",
-              "### TypeScript Projects This Month",
-              "**RouteMaster (TypeScript):**",
-              "- Kafka `kafkajs` consumer: `shipment.events` topic",
-              "- Node.js streams pipeline: `KafkaReadStream \u2192 StatusTransform \u2192 NotifierTransform`",
-              "- `pipeline()` enforced everywhere \u2014 lint rule added to ESLint config",
-              "**BookWise (TypeScript):**",
-              "- Kafka `kafkajs` consumer: `booking.events` topic",
-              "- Waitlist Kafka consumer stub (full implementation in Month 7)",
-              "- TypeScript discriminated union state machine tested with Vitest",
-              "**PayCore (Go):**",
-              "- `go test -race ./...` enforced in CI from this month",
-              "- `goleak.VerifyNone(t)` in every `*_test.go`",
-              "- gRPC `LedgerService`: double-entry bookkeeping over gRPC, `sqlc`-generated queries"
+              "**OpenTrace Pipeline Processor (Go \u2014 Built This Month)**",
+              "```go\nfunc (p *Processor) Run(ctx context.Context) error {\n    for msg := range p.consumer.Messages() {\n        spans := p.deserialize(msg)\n        spans = p.enrich(spans)\n        if p.sampler.ShouldKeep(spans) {\n            p.buffer.Add(spans)  // buffer for bulk insert\n        }\n        p.consumer.MarkOffset(msg)\n    }\n    return nil\n}\n// Tail-based sampling: 100% errors + slow spans (> 500ms), 5% normal traces\n// ClickHouse bulk insert: batch 10K spans \u2014 100x throughput vs single-row insert\n```",
+              "**DungBeetle (Go) \u2014 Migration This Month**",
+              "```go\n// v1.0 \u2014 goroutine-per-job worker pool\ntype WorkerPool struct {\n    sem chan struct{}  // semaphore: max 100 concurrent jobs\n    wg  sync.WaitGroup\n}",
+              "func (p *WorkerPool) Dispatch(ctx context.Context, job Job) {\n    p.sem <- struct{}{}  // acquire (blocks if pool full)\n    p.wg.Add(1)\n    go func() {\n        defer func() { <-p.sem; p.wg.Done() }()\n        if err := executeJob(ctx, job); err != nil {\n            p.handleFailure(ctx, job, err)\n        }\n    }()\n}\n```",
+              "**Migration RFC benchmarks documented in `BENCHMARKS.md`:**\n- Node.js v0.1 monolith: ~8,000 jobs/min (event loop blocks on CPU-bound tasks)\n- Go v1.0 worker pool: ~50,000 jobs/min (goroutine-per-job, `GOMAXPROCS` = CPU count)",
+              "**TypeScript Projects This Month**",
+              "**RouteMaster (TypeScript):**\n- Kafka `kafkajs` consumer: `shipment.events` topic\n- Node.js streams pipeline: `KafkaReadStream \u2192 StatusTransform \u2192 NotifierTransform`\n- `pipeline()` enforced everywhere \u2014 lint rule added to ESLint config",
+              "**BookWise (TypeScript):**\n- Kafka `kafkajs` consumer: `booking.events` topic\n- Waitlist Kafka consumer stub (full implementation in Month 7)\n- TypeScript discriminated union state machine tested with Vitest",
+              "**PayCore (Go):**\n- `go test -race ./...` enforced in CI from this month\n- `goleak.VerifyNone(t)` in every `*_test.go`\n- gRPC `LedgerService`: double-entry bookkeeping over gRPC, `sqlc`-generated queries"
             ]
           },
           {
             "title": "Weekend Capstone \u2014 Month 3 \u00b7 Pipeline Processor + `relay` Complete",
             "tasks": [
               "`go test -race ./...` passes everywhere. `goleak.VerifyNone` passes everywhere. Collector \u2192 Kafka \u2192 Processor \u2192 ClickHouse pipeline end-to-end verified. DungBeetle v1.0 Go job queue running in its own repo. `relay` building block: Redis pub/sub fan-out, 5000 concurrent WS connections, p99 < 10ms cross-node delivery.",
-              "---",
-              "### OpenTrace: UI v0.1 (TypeScript/Next.js)",
-              "> **What you build this month:** OpenTrace UI v0.1 \u2014 trace list, trace detail, D3.js waterfall. All 5 projects get Next.js frontends. All TypeScript projects get Vitest + Playwright. All Go projects get `testcontainers-go`.",
-              ">",
-              "> **Biweekly Projects 4\u20135:** `resolver` DNS (Weeks 7\u20138) and `herald` Notification Service (Weeks 9\u201310).",
-              "---",
-              "## Weeks 11\u201314 \u2014 React + Next.js + Testing",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 4 \u2014 React + Frameworks + Testing + Dev Tools",
+        "days": []
+      },
+      {
+        "title": "MONTH 4 \u2014 React + Frameworks + Testing + Dev Tools - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: UI v0.1 (TypeScript/Next.js)**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 4 \u2014 React + Frameworks + Testing + Dev Tools - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **What you build this month:** OpenTrace UI v0.1 \u2014 trace list, trace detail, D3.js waterfall. All 5 projects get Next.js frontends. All TypeScript projects get Vitest + Playwright. All Go projects get `testcontainers-go`.\n>\n> **Biweekly Projects 4\u20135:** `resolver` DNS (Weeks 7\u20138) and `herald` Notification Service (Weeks 9\u201310)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 4 \u2014 React + Frameworks + Testing + Dev Tools - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 4 \u2014 React + Frameworks + Testing + Dev Tools - Weeks 11\u201314 \u2014 React + Next.js + Testing",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
               "*(Full coverage: all React hooks, reconciliation, `React.memo`, Tanstack Query optimistic updates + rollback, `staleTime`/`gcTime`, Zustand selective subscription, Next.js 15 App Router + Server Components + ISR + streaming Suspense + Server Actions, Vitest, `@testing-library/react`, Playwright E2E, TestSprite, `testcontainers-go`.)*",
-              "### OpenTrace UI v0.1 (TypeScript \u2014 Built This Month)",
-              "**D3.js Trace Waterfall \u2014 virtualised for 10K+ spans:**",
-              "```typescript",
-              "// Virtualised rendering: only DOM nodes for spans visible in viewport",
-              "const WaterfallChart = ({ spans, traceStart, totalDuration }: Props) => {",
-              "const rowHeight = 24;",
-              "const [scrollY, setScrollY] = useState(0);",
-              "const visibleStart = Math.floor(scrollY / rowHeight);",
-              "const visibleEnd   = visibleStart + Math.ceil(containerHeight / rowHeight);",
-              "return (",
-              "<div style={{ overflowY: 'auto', height: containerHeight }}",
-              "onScroll={e => setScrollY(e.currentTarget.scrollTop)}>",
-              "<div style={{ height: spans.length * rowHeight, position: 'relative' }}>",
-              "{spans.slice(visibleStart, visibleEnd).map(span => (",
-              "<SpanBar key={span.spanId}",
-              "style={{",
-              "left:  `${((span.startTime - traceStart) / totalDuration) * 100}%`,",
-              "width: `${(span.durationUs / totalDuration / 10) * 100}%`,",
-              "top:   span.depth * rowHeight,",
-              "}} />",
-              "))}",
-              "</div>",
-              "</div>",
-              ");",
-              "};",
-              "```",
+              "**OpenTrace UI v0.1 (TypeScript \u2014 Built This Month)**",
+              "**D3.js Trace Waterfall \u2014 virtualised for 10K+ spans:**\n```typescript\n// Virtualised rendering: only DOM nodes for spans visible in viewport\nconst WaterfallChart = ({ spans, traceStart, totalDuration }: Props) => {\n  const rowHeight = 24;\n  const [scrollY, setScrollY] = useState(0);\n  const visibleStart = Math.floor(scrollY / rowHeight);\n  const visibleEnd   = visibleStart + Math.ceil(containerHeight / rowHeight);",
+              "return (\n    <div style={{ overflowY: 'auto', height: containerHeight }}\n         onScroll={e => setScrollY(e.currentTarget.scrollTop)}>\n      <div style={{ height: spans.length * rowHeight, position: 'relative' }}>\n        {spans.slice(visibleStart, visibleEnd).map(span => (\n          <SpanBar key={span.spanId}\n            style={{\n              left:  `${((span.startTime - traceStart) / totalDuration) * 100}%`,\n              width: `${(span.durationUs / totalDuration / 10) * 100}%`,\n              top:   span.depth * rowHeight,\n            }} />\n        ))}\n      </div>\n    </div>\n  );\n};\n```",
               "**Server Components for OpenTrace UI:** Trace list renders on server \u2014 zero JS bundle for initial list. Clicking a trace streams the waterfall via Next.js streaming Suspense as spans arrive from the Query Service.",
-              "### BookWise Frontend (TypeScript \u2014 Built This Month)",
-              "**Live seat map with optimistic booking + SSE updates:**",
-              "```typescript",
-              "// Optimistic: mark seat as HOLDING immediately, rollback if booking fails",
-              "const { mutate: bookSeat } = useMutation({",
-              "mutationFn: (seatId: SeatId) => api.post('/bookings', { seatId }),",
-              "onMutate: async (seatId) => {",
-              "await queryClient.cancelQueries(['seats', eventId]);",
-              "const prev = queryClient.getQueryData<Seat[]>(['seats', eventId]);",
-              "queryClient.setQueryData(['seats', eventId], (old: Seat[]) =>",
-              "old.map(s => s.id === seatId ? { ...s, status: 'HOLDING' } : s)",
-              ");",
-              "return { prev };",
-              "},",
-              "onError: (_err, _id, ctx) => queryClient.setQueryData(['seats', eventId], ctx?.prev),",
-              "});",
-              "// SSE for live seat availability \u2014 auto-reconnect with Last-Event-ID",
-              "useEffect(() => {",
-              "const es = new EventSource(`/events/${eventId}/seats/stream`);",
-              "es.addEventListener('seat_update', (e) => {",
-              "const update = JSON.parse(e.data) as SeatUpdate;",
-              "queryClient.setQueryData(['seats', eventId], (old: Seat[]) =>",
-              "old.map(s => s.id === update.seatId ? { ...s, status: update.status } : s)",
-              ");",
-              "});",
-              "return () => es.close();",
-              "}, [eventId]);",
-              "```",
-              "### RouteMaster Frontend (TypeScript \u2014 Built This Month)",
-              "- Next.js 15 order tracker with Tanstack Query",
-              "- SSE live order status with `Last-Event-ID` reconnect",
-              "- Elasticsearch search UI with faceted filters (carrier, status, date range)",
-              "- Playwright E2E: create order \u2192 assign driver \u2192 deliver flow",
-              "### Go Projects Frontends (TypeScript \u2014 Built This Month)",
+              "**BookWise Frontend (TypeScript \u2014 Built This Month)**",
+              "**Live seat map with optimistic booking + SSE updates:**\n```typescript\n// Optimistic: mark seat as HOLDING immediately, rollback if booking fails\nconst { mutate: bookSeat } = useMutation({\n  mutationFn: (seatId: SeatId) => api.post('/bookings', { seatId }),\n  onMutate: async (seatId) => {\n    await queryClient.cancelQueries(['seats', eventId]);\n    const prev = queryClient.getQueryData<Seat[]>(['seats', eventId]);\n    queryClient.setQueryData(['seats', eventId], (old: Seat[]) =>\n      old.map(s => s.id === seatId ? { ...s, status: 'HOLDING' } : s)\n    );\n    return { prev };\n  },\n  onError: (_err, _id, ctx) => queryClient.setQueryData(['seats', eventId], ctx?.prev),\n});",
+              "// SSE for live seat availability \u2014 auto-reconnect with Last-Event-ID\nuseEffect(() => {\n  const es = new EventSource(`/events/${eventId}/seats/stream`);\n  es.addEventListener('seat_update', (e) => {\n    const update = JSON.parse(e.data) as SeatUpdate;\n    queryClient.setQueryData(['seats', eventId], (old: Seat[]) =>\n      old.map(s => s.id === update.seatId ? { ...s, status: update.status } : s)\n    );\n  });\n  return () => es.close();\n}, [eventId]);\n```",
+              "**RouteMaster Frontend (TypeScript \u2014 Built This Month)**",
+              "- Next.js 15 order tracker with Tanstack Query\n- SSE live order status with `Last-Event-ID` reconnect\n- Elasticsearch search UI with faceted filters (carrier, status, date range)\n- Playwright E2E: create order \u2192 assign driver \u2192 deliver flow",
+              "**Go Projects Frontends (TypeScript \u2014 Built This Month)**",
               "**PayCore:** Next.js transaction dashboard \u2014 account balance, ledger entries, payment history. Reads from Go gRPC backend via REST API Gateway.",
               "**DungBeetle:** Next.js job dashboard \u2014 job list (Shadcn DataTable), DLQ viewer, live job status via `relay` WebSocket. AI copilot UI stub (`useChat` component \u2014 full implementation Month 8).",
-              "### Testing Strategy This Month",
-              "**TypeScript projects (BookWise, RouteMaster, herald):**",
-              "- Vitest: 80%+ coverage on all business logic",
-              "- Supertest: HTTP integration tests",
-              "- `@testing-library/react`: component tests for seat map, waterfall",
-              "- Playwright E2E: full user journey tests in CI",
-              "**Go projects (PayCore, DungBeetle):**",
-              "- `testcontainers-go`: real PostgreSQL + Redis + Kafka in every integration test",
-              "- Table-driven tests for all business logic",
-              "- `go test -race ./...` and `goleak.VerifyNone(t)` pass"
+              "**Testing Strategy This Month**",
+              "**TypeScript projects (BookWise, RouteMaster, herald):**\n- Vitest: 80%+ coverage on all business logic\n- Supertest: HTTP integration tests\n- `@testing-library/react`: component tests for seat map, waterfall\n- Playwright E2E: full user journey tests in CI",
+              "**Go projects (PayCore, DungBeetle):**\n- `testcontainers-go`: real PostgreSQL + Redis + Kafka in every integration test\n- Table-driven tests for all business logic\n- `go test -race ./...` and `goleak.VerifyNone(t)` pass"
             ]
           },
           {
             "title": "Weekend Capstone \u2014 Month 4 \u00b7 All 5 Platforms Full-Stack + `resolver` + `herald`",
             "tasks": [
               "All 5 projects: Next.js/React frontends, full backends, PostgreSQL + Redis, JWT auth, full test suites \u2014 each in its own repo with its own CI. OpenTrace UI v0.1: waterfall renders real spans. `resolver` building block: cold/warm cache DNS benchmark. `herald` building block: multi-channel delivery, outbox, idempotency, HMAC webhooks \u2014 consumed independently by RouteMaster and PayCore.",
-              "---",
-              "### Backend 2026 Roadmap: Block 4 \u2014 THE Most Important Month",
-              "### OpenTrace: Storage Layer (Go/ClickHouse)",
-              "> **This is the most important month.** The Backend 2026 roadmap is explicit: databases are a massive block. You don't learn PostgreSQL by reading the docs. You learn it by running `EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)` on 50 queries, watching seq scans appear and disappear as you add indexes, and intentionally triggering dirty reads and phantom reads in live transactions.",
-              ">",
-              "> **Biweekly Projects 6\u20137:** `gatekeeper` OTP Gateway \u2014 TypeScript (Weeks 11\u201312) and `lsm` Storage Engine \u2014 Go (Weeks 13\u201314). Both deepen database internals understanding from different angles.",
-              ">",
-              "> **The sequence matters:** Isolation levels before Kafka (understand distributed transactions before designing Sagas). MVCC before sharding. Query planner before read replicas.",
-              "---",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1",
+        "days": []
+      },
+      {
+        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**Backend 2026 Roadmap: Block 4 \u2014 THE Most Important Month**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: Storage Layer (Go/ClickHouse)**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **This is the most important month.** The Backend 2026 roadmap is explicit: databases are a massive block. You don't learn PostgreSQL by reading the docs. You learn it by running `EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)` on 50 queries, watching seq scans appear and disappear as you add indexes, and intentionally triggering dirty reads and phantom reads in live transactions.\n>\n> **Biweekly Projects 6\u20137:** `gatekeeper` OTP Gateway \u2014 TypeScript (Weeks 11\u201312) and `lsm` Storage Engine \u2014 Go (Weeks 13\u201314). Both deepen database internals understanding from different angles.\n>\n> **The sequence matters:** Isolation levels before Kafka (understand distributed transactions before designing Sagas). MVCC before sharding. Query planner before read replicas."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
               "---"
             ]
           }
@@ -1013,32 +1015,19 @@
         "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Week 13 \u2014 Relational Databases Deep + PostgreSQL Mastery",
         "days": [
           {
+            "title": "Overview",
+            "tasks": [
+              "---"
+            ]
+          },
+          {
             "title": "Monday \u2014 Week 13 \u00b7 ACID + Transactions + All 4 Isolation Levels with Live Anomaly Demos",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | PostgreSQL, `psql`, two terminal windows for concurrent transactions |",
-              "| \ud83d\udcd6 **Concepts** | ACID properties, all 4 isolation levels demonstrated live, `SELECT FOR UPDATE`, `ON CONFLICT DO UPDATE` (upsert) |",
-              "| \ud83c\udfaf **You Build** | PayCore (Go): double-entry ledger \u2014 every financial movement creates two journal entries in a single `pgx` transaction. BookWise (TypeScript): Prisma `$transaction()` for atomic seat claim. |",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | PostgreSQL, `psql`, two terminal windows for concurrent transactions |\n| \ud83d\udcd6 **Concepts** | ACID properties, all 4 isolation levels demonstrated live, `SELECT FOR UPDATE`, `ON CONFLICT DO UPDATE` (upsert) |\n| \ud83c\udfaf **You Build** | PayCore (Go): double-entry ledger \u2014 every financial movement creates two journal entries in a single `pgx` transaction. BookWise (TypeScript): Prisma `$transaction()` for atomic seat claim. |",
               "**The 4 Isolation Levels \u2014 live anomaly scripts in `scripts/isolation-level-demos/`:**",
-              "| Level | Dirty Read | Non-Repeatable Read | Phantom Read |",
-              "|---|---|---|---|",
-              "| Read Uncommitted | \u2713 possible | \u2713 possible | \u2713 possible |",
-              "| Read Committed (PG default) | \u2717 prevented | \u2713 possible | \u2713 possible |",
-              "| Repeatable Read | \u2717 prevented | \u2717 prevented | \u2713 possible |",
-              "| Serializable | \u2717 prevented | \u2717 prevented | \u2717 prevented |",
-              "```sql",
-              "-- NON-REPEATABLE READ demo (PayCore \u2014 Read Committed level)",
-              "-- TERMINAL 1: BEGIN; SELECT balance FROM accounts WHERE id = 1; (gets 1000)",
-              "-- TERMINAL 2: BEGIN; UPDATE accounts SET balance = 500 WHERE id = 1; COMMIT;",
-              "-- TERMINAL 1: SELECT balance FROM accounts WHERE id = 1; (gets 500 \u2014 changed mid-transaction!)",
-              "-- TERMINAL 1: COMMIT;",
-              "-- PHANTOM READ demo (BookWise \u2014 Repeatable Read level)",
-              "-- TERMINAL 1: BEGIN ISOLATION LEVEL REPEATABLE READ;",
-              "--             SELECT COUNT(*) FROM seats WHERE status = 'AVAILABLE'; (gets 100)",
-              "-- TERMINAL 2: INSERT INTO seats (status) VALUES ('AVAILABLE'); COMMIT;",
-              "-- TERMINAL 1: SELECT COUNT(*) FROM seats WHERE status = 'AVAILABLE'; (still 100 \u2014 phantom prevented in PG)",
-              "```",
+              "| Level | Dirty Read | Non-Repeatable Read | Phantom Read |\n|---|---|---|---|\n| Read Uncommitted | \u2713 possible | \u2713 possible | \u2713 possible |\n| Read Committed (PG default) | \u2717 prevented | \u2713 possible | \u2713 possible |\n| Repeatable Read | \u2717 prevented | \u2717 prevented | \u2713 possible |\n| Serializable | \u2717 prevented | \u2717 prevented | \u2717 prevented |",
+              "```sql\n-- NON-REPEATABLE READ demo (PayCore \u2014 Read Committed level)\n-- TERMINAL 1: BEGIN; SELECT balance FROM accounts WHERE id = 1; (gets 1000)\n-- TERMINAL 2: BEGIN; UPDATE accounts SET balance = 500 WHERE id = 1; COMMIT;\n-- TERMINAL 1: SELECT balance FROM accounts WHERE id = 1; (gets 500 \u2014 changed mid-transaction!)\n-- TERMINAL 1: COMMIT;",
+              "-- PHANTOM READ demo (BookWise \u2014 Repeatable Read level)\n-- TERMINAL 1: BEGIN ISOLATION LEVEL REPEATABLE READ;\n--             SELECT COUNT(*) FROM seats WHERE status = 'AVAILABLE'; (gets 100)\n-- TERMINAL 2: INSERT INTO seats (status) VALUES ('AVAILABLE'); COMMIT;\n-- TERMINAL 1: SELECT COUNT(*) FROM seats WHERE status = 'AVAILABLE'; (still 100 \u2014 phantom prevented in PG)\n```",
               "Write the anomaly demonstration scripts and push to `scripts/isolation-level-demos/` in PayCore and BookWise repos. This is the most valuable database education artifact you will produce.",
               "**Applied to Go projects (PayCore, DungBeetle):** Use `pgx.TxOptions{IsoLevel: pgx.Serializable}` for double-entry ledger writes. Use `pgx.ReadCommitted` for read-heavy analytics queries.",
               "**Applied to TypeScript projects (BookWise, RouteMaster):** Use Prisma's `prisma.$transaction()` with explicit isolation level options for critical paths.",
@@ -1048,77 +1037,26 @@
           {
             "title": "Tuesday \u2014 Week 13 \u00b7 PostgreSQL Internals: MVCC + WAL + All Index Types",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | PostgreSQL, `pg_stat_activity`, `pg_locks`, WAL settings, `pgstattuple` |",
-              "| \ud83d\udcd6 **Concepts** | MVCC \u2014 tuple versions, `xmin`/`xmax`, vacuum, table bloat; WAL segments, checkpoints, WAL archiving; all index types |",
-              "| \ud83c\udfaf **You Build** | All 5 platform schemas with proper indexes. `EXPLAIN ANALYZE` on every endpoint \u2014 zero seq scans on tables > 10K rows. `pg_stat_statements` enabled on all PostgreSQL instances. |",
-              "```sql",
-              "-- MVCC \u2014 see tuple headers directly",
-              "SELECT ctid, xmin, xmax, * FROM bookings LIMIT 5;",
-              "-- ctid: physical location (page, offset)",
-              "-- xmin: transaction that created this tuple",
-              "-- xmax: transaction that deleted/updated this tuple (0 = current)",
-              "-- After UPDATE: old tuple marked with xmax, new tuple gets new xmin",
-              "-- VACUUM reclaims dead tuples",
-              "-- Measure table bloat (important for BookWise under high booking churn)",
-              "SELECT tablename,",
-              "round(n_dead_tup::numeric / nullif(n_live_tup + n_dead_tup, 0) * 100, 2) AS bloat_pct",
-              "FROM pg_stat_user_tables ORDER BY n_dead_tup DESC;",
-              "```",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | PostgreSQL, `pg_stat_activity`, `pg_locks`, WAL settings, `pgstattuple` |\n| \ud83d\udcd6 **Concepts** | MVCC \u2014 tuple versions, `xmin`/`xmax`, vacuum, table bloat; WAL segments, checkpoints, WAL archiving; all index types |\n| \ud83c\udfaf **You Build** | All 5 platform schemas with proper indexes. `EXPLAIN ANALYZE` on every endpoint \u2014 zero seq scans on tables > 10K rows. `pg_stat_statements` enabled on all PostgreSQL instances. |",
+              "```sql\n-- MVCC \u2014 see tuple headers directly\nSELECT ctid, xmin, xmax, * FROM bookings LIMIT 5;\n-- ctid: physical location (page, offset)\n-- xmin: transaction that created this tuple\n-- xmax: transaction that deleted/updated this tuple (0 = current)\n-- After UPDATE: old tuple marked with xmax, new tuple gets new xmin\n-- VACUUM reclaims dead tuples",
+              "-- Measure table bloat (important for BookWise under high booking churn)\nSELECT tablename,\n       round(n_dead_tup::numeric / nullif(n_live_tup + n_dead_tup, 0) * 100, 2) AS bloat_pct\nFROM pg_stat_user_tables ORDER BY n_dead_tup DESC;\n```",
               "**Connection to `vault` building block:** The WAL you built in Biweekly Project 1 is exactly what PostgreSQL does internally. The fsync, the CRC32 checksum, the replay on startup \u2014 all the same mechanism.",
-              "**All PostgreSQL index types with correct use cases:**",
-              "```sql",
-              "-- B-tree: =, <, >, BETWEEN, ORDER BY \u2014 default for everything",
-              "CREATE INDEX ON payments (account_id);",
-              "-- Partial: only index rows matching condition \u2014 BookWise error spans index",
-              "CREATE INDEX ON bookings (seat_id) WHERE status = 'FAILED';",
-              "-- Covering: satisfy query from index alone, no heap fetch \u2014 PayCore hot path",
-              "CREATE INDEX ON payments (account_id, created_at) INCLUDE (amount, status);",
-              "-- Composite: column order matters \u2014 leftmost prefix rule",
-              "-- Good: WHERE account_id = X AND created_at > Y",
-              "-- Bad:  WHERE created_at > Y  (can't use this index efficiently without account_id)",
-              "-- GIN: JSONB, arrays \u2014 RouteMaster shipment metadata search",
-              "CREATE INDEX ON shipments USING GIN (metadata);",
-              "-- BRIN: append-only time-series, 1000x smaller than B-tree",
-              "CREATE INDEX ON gps_pings USING BRIN (recorded_at);",
-              "```",
+              "**All PostgreSQL index types with correct use cases:**\n```sql\n-- B-tree: =, <, >, BETWEEN, ORDER BY \u2014 default for everything\nCREATE INDEX ON payments (account_id);",
+              "-- Partial: only index rows matching condition \u2014 BookWise error spans index\nCREATE INDEX ON bookings (seat_id) WHERE status = 'FAILED';",
+              "-- Covering: satisfy query from index alone, no heap fetch \u2014 PayCore hot path\nCREATE INDEX ON payments (account_id, created_at) INCLUDE (amount, status);",
+              "-- Composite: column order matters \u2014 leftmost prefix rule\n-- Good: WHERE account_id = X AND created_at > Y\n-- Bad:  WHERE created_at > Y  (can't use this index efficiently without account_id)",
+              "-- GIN: JSONB, arrays \u2014 RouteMaster shipment metadata search\nCREATE INDEX ON shipments USING GIN (metadata);",
+              "-- BRIN: append-only time-series, 1000x smaller than B-tree\nCREATE INDEX ON gps_pings USING BRIN (recorded_at);\n```",
               "---"
             ]
           },
           {
             "title": "Wednesday \u2014 Week 13 \u00b7 Query Planner + `EXPLAIN ANALYZE` Mastery",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | `EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)`, `auto_explain`, `pg_stat_statements` |",
-              "| \ud83d\udcd6 **Concepts** | Seq scan vs index scan vs bitmap scan vs index-only scan, join strategies, planner statistics, `auto_explain` for production slow query logging |",
-              "| \ud83c\udfaf **You Build** | Fix 5 slow queries across all projects. Before/after `EXPLAIN ANALYZE` documented. Zero seq scans on tables > 10K rows. |",
-              "```sql",
-              "EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)",
-              "SELECT b.id, b.seat_id, u.email, e.name",
-              "FROM bookings b",
-              "JOIN users u ON b.user_id = u.id",
-              "JOIN events e ON b.event_id = e.id",
-              "WHERE b.status = 'CONFIRMED'",
-              "AND b.created_at > NOW() - INTERVAL '24 hours'",
-              "ORDER BY b.created_at DESC",
-              "LIMIT 50;",
-              "```",
-              "**Key fields to read:**",
-              "- `Seq Scan` on a large table \u2192 missing index. Add it.",
-              "- `Rows Removed by Filter` \u2192 many rows scanned, few returned. Index on filter column.",
-              "- `Shared Hit Blocks` \u2192 buffer pool (fast). `Shared Read Blocks` \u2192 disk (slow).",
-              "- `Actual Loops` in nested loop \u2192 high = inner side scanned repeatedly. Switch to hash join.",
-              "- `Actual Time` per node \u2192 where is the time spent?",
-              "**`auto_explain` \u2014 catch slow queries in production without connecting to the DB:**",
-              "```sql",
-              "-- postgresql.conf",
-              "shared_preload_libraries = 'auto_explain'",
-              "auto_explain.log_min_duration = '100ms'",
-              "auto_explain.log_analyze = true",
-              "auto_explain.log_buffers = true",
-              "```",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | `EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)`, `auto_explain`, `pg_stat_statements` |\n| \ud83d\udcd6 **Concepts** | Seq scan vs index scan vs bitmap scan vs index-only scan, join strategies, planner statistics, `auto_explain` for production slow query logging |\n| \ud83c\udfaf **You Build** | Fix 5 slow queries across all projects. Before/after `EXPLAIN ANALYZE` documented. Zero seq scans on tables > 10K rows. |",
+              "```sql\nEXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)\nSELECT b.id, b.seat_id, u.email, e.name\nFROM bookings b\nJOIN users u ON b.user_id = u.id\nJOIN events e ON b.event_id = e.id\nWHERE b.status = 'CONFIRMED'\n  AND b.created_at > NOW() - INTERVAL '24 hours'\nORDER BY b.created_at DESC\nLIMIT 50;\n```",
+              "**Key fields to read:**\n- `Seq Scan` on a large table \u2192 missing index. Add it.\n- `Rows Removed by Filter` \u2192 many rows scanned, few returned. Index on filter column.\n- `Shared Hit Blocks` \u2192 buffer pool (fast). `Shared Read Blocks` \u2192 disk (slow).\n- `Actual Loops` in nested loop \u2192 high = inner side scanned repeatedly. Switch to hash join.\n- `Actual Time` per node \u2192 where is the time spent?",
+              "**`auto_explain` \u2014 catch slow queries in production without connecting to the DB:**\n```sql\n-- postgresql.conf\nshared_preload_libraries = 'auto_explain'\nauto_explain.log_min_duration = '100ms'\nauto_explain.log_analyze = true\nauto_explain.log_buffers = true\n```",
               "**Applied to TypeScript projects (BookWise, RouteMaster):** Prisma doesn't expose `EXPLAIN ANALYZE` directly. Use `prisma.$queryRaw` for slow query analysis: `SELECT * FROM pg_stat_statements ORDER BY total_exec_time DESC LIMIT 10`.",
               "---"
             ]
@@ -1126,336 +1064,324 @@
           {
             "title": "Thursday \u2014 Week 13 \u00b7 Scaling PostgreSQL \u2014 Read Replicas + `pgpool`",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | PostgreSQL streaming replication, `pgpool` building block, `pg_stat_replication` |",
-              "| \ud83d\udcd6 **Concepts** | Streaming replication, replication lag monitoring, connection pool sizing formula, WAL archiving for PITR |",
-              "| \ud83c\udfaf **You Build** | All 5 projects: point `DATABASE_URL` at `pgpool:5433` instead of PostgreSQL directly. Read replica configured for PayCore analytics queries. |",
-              "**`pgpool` integration \u2014 same config for Go and TypeScript projects:**",
-              "```yaml",
-              "# docker-compose.yml \u2014 identical pattern for all 5 projects",
-              "pgpool:",
-              "image: yourname/pgpool:latest",
-              "environment:",
-              "PGPOOL_BACKEND: postgres:5432",
-              "PGPOOL_SIZE: 9        # (4 CPUs \u00d7 2) + 1 spindle",
-              "PGPOOL_MODE: transaction",
-              "ports: [\"5433:5433\"]",
-              "paycore-api:     # Go project",
-              "environment:",
-              "DATABASE_URL: postgres://user:pass@pgpool:5433/paycore",
-              "bookwise-api:    # TypeScript project",
-              "environment:",
-              "DATABASE_URL: postgres://user:pass@pgpool:5433/bookwise",
-              "```",
-              "**Connection to `pgpool` building block:** You built pgwire protocol parsing in Biweekly Project 2. Today you see why it exists \u2014 without pgpool, 10K concurrent BookWise booking goroutines/async handlers would spawn 10K PostgreSQL processes.",
-              "**Replication lag monitoring:**",
-              "```sql",
-              "SELECT client_addr, state, (sent_lsn - replay_lsn) AS lag_bytes",
-              "FROM pg_stat_replication;",
-              "-- Alert when lag > 10MB",
-              "```",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | PostgreSQL streaming replication, `pgpool` building block, `pg_stat_replication` |\n| \ud83d\udcd6 **Concepts** | Streaming replication, replication lag monitoring, connection pool sizing formula, WAL archiving for PITR |\n| \ud83c\udfaf **You Build** | All 5 projects: point `DATABASE_URL` at `pgpool:5433` instead of PostgreSQL directly. Read replica configured for PayCore analytics queries. |",
+              "**`pgpool` integration \u2014 same config for Go and TypeScript projects:**\n```yaml"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects",
+        "days": []
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "pgpool:\n  image: yourname/pgpool:latest\n  environment:\n    PGPOOL_BACKEND: postgres:5432\n    PGPOOL_SIZE: 9        # (4 CPUs \u00d7 2) + 1 spindle\n    PGPOOL_MODE: transaction\n  ports: [\"5433:5433\"]"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "paycore-api:     # Go project\n  environment:\n    DATABASE_URL: postgres://user:pass@pgpool:5433/paycore"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "bookwise-api:    # TypeScript project\n  environment:\n    DATABASE_URL: postgres://user:pass@pgpool:5433/bookwise\n```"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**Connection to `pgpool` building block:** You built pgwire protocol parsing in Biweekly Project 2. Today you see why it exists \u2014 without pgpool, 10K concurrent BookWise booking goroutines/async handlers would spawn 10K PostgreSQL processes."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**Replication lag monitoring:**\n```sql\nSELECT client_addr, state, (sent_lsn - replay_lsn) AS lag_bytes\nFROM pg_stat_replication;\n-- Alert when lag > 10MB\n```"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
               "---"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects",
+        "days": [
           {
             "title": "Friday \u2014 Week 13 \u00b7 Sharding + Partitioning",
             "tasks": [
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | PostgreSQL partitioning, ClickHouse partitioning, consistent hash router (Go) |",
-              "| \ud83d\udcd6 **Concepts** | Range vs hash vs list partitioning, partition pruning, consistent hashing for horizontal sharding |",
-              "| \ud83c\udfaf **You Build** | OpenTrace: ClickHouse partition pruning verified. PayCore: `payment_events` partitioned by month. RouteMaster: `shipments` partitioned by `created_at`. |",
-              "```sql",
-              "-- PayCore: range partitioning for payment_events",
-              "CREATE TABLE payment_events (",
-              "id UUID, aggregate_id UUID, type TEXT,",
-              "payload JSONB, sequence INT, created_at TIMESTAMPTZ",
-              ") PARTITION BY RANGE (created_at);",
-              "CREATE TABLE payment_events_2026_01 PARTITION OF payment_events",
-              "FOR VALUES FROM ('2026-01-01') TO ('2026-02-01');",
-              "-- New partitions created monthly by DungBeetle cron job",
-              "```",
-              "```sql",
-              "-- OpenTrace: verify partition pruning is working",
-              "EXPLAIN SELECT trace_id, duration_us FROM spans",
-              "WHERE service_name = 'bookwise' AND start_time > now() - INTERVAL 24 HOUR;",
-              "-- Look for: Selected 1/7 parts \u2014 partition pruning is working",
-              "```",
-              "---",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | PostgreSQL partitioning, ClickHouse partitioning, consistent hash router (Go) |\n| \ud83d\udcd6 **Concepts** | Range vs hash vs list partitioning, partition pruning, consistent hashing for horizontal sharding |\n| \ud83c\udfaf **You Build** | OpenTrace: ClickHouse partition pruning verified. PayCore: `payment_events` partitioned by month. RouteMaster: `shipments` partitioned by `created_at`. |",
+              "```sql\n-- PayCore: range partitioning for payment_events\nCREATE TABLE payment_events (\n    id UUID, aggregate_id UUID, type TEXT,\n    payload JSONB, sequence INT, created_at TIMESTAMPTZ\n) PARTITION BY RANGE (created_at);",
+              "CREATE TABLE payment_events_2026_01 PARTITION OF payment_events\n    FOR VALUES FROM ('2026-01-01') TO ('2026-02-01');\n-- New partitions created monthly by DungBeetle cron job\n```",
+              "```sql\n-- OpenTrace: verify partition pruning is working\nEXPLAIN SELECT trace_id, duration_us FROM spans\nWHERE service_name = 'bookwise' AND start_time > now() - INTERVAL 24 HOUR;\n-- Look for: Selected 1/7 parts \u2014 partition pruning is working\n```",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Week 14 \u2014 Caching Architecture",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
               "*(Full coverage: cache-aside, read-through, write-through, write-behind, cache stampede, thundering herd, TTL jitter, Redis all data structures with correct use cases, Lua scripts for atomicity, `Cache-Control` headers.)*",
-              "**Cache-aside applied to TypeScript projects:**",
-              "```typescript",
-              "// BookWise: cache event seat availability \u2014 Redis + TTL jitter",
-              "async function getSeats(eventId: EventId): Promise<Seat[]> {",
-              "const key = `seats:${eventId}`;",
-              "const cached = await redis.get(key);",
-              "if (cached) return JSON.parse(cached);",
-              "const seats = await prisma.seat.findMany({ where: { eventId } });",
-              "// TTL jitter: 300s \u00b1 30s \u2014 prevents thundering herd when multiple users",
-              "// open the same event simultaneously",
-              "const ttl = 300 + Math.floor(Math.random() * 60 - 30);",
-              "await redis.setex(key, ttl, JSON.stringify(seats));",
-              "return seats;",
-              "}",
-              "```",
-              "**`singleflight` in Go (prevents thundering herd):**",
-              "```go",
-              "// PayCore: deduplicate concurrent balance requests for the same account",
-              "result, err, _ := sf.Do(\"balance:\"+accountID, func() (interface{}, error) {",
-              "return db.GetBalance(ctx, accountID)",
-              "})",
-              "// Only one DB call made even if 100 goroutines request the same balance simultaneously",
-              "```",
+              "**Cache-aside applied to TypeScript projects:**\n```typescript\n// BookWise: cache event seat availability \u2014 Redis + TTL jitter\nasync function getSeats(eventId: EventId): Promise<Seat[]> {\n  const key = `seats:${eventId}`;\n  const cached = await redis.get(key);\n  if (cached) return JSON.parse(cached);",
+              "const seats = await prisma.seat.findMany({ where: { eventId } });\n  // TTL jitter: 300s \u00b1 30s \u2014 prevents thundering herd when multiple users\n  // open the same event simultaneously\n  const ttl = 300 + Math.floor(Math.random() * 60 - 30);\n  await redis.setex(key, ttl, JSON.stringify(seats));\n  return seats;\n}\n```",
+              "**`singleflight` in Go (prevents thundering herd):**\n```go\n// PayCore: deduplicate concurrent balance requests for the same account\nresult, err, _ := sf.Do(\"balance:\"+accountID, func() (interface{}, error) {\n    return db.GetBalance(ctx, accountID)\n})\n// Only one DB call made even if 100 goroutines request the same balance simultaneously\n```",
               "**Applied to OpenTrace:** Query Service caches frequently-requested traces in Redis. Cache key: `trace:{traceId}`. TTL jitter: 5min \u00b1 30s. Invalidation: when a new span arrives for a cached trace, DEL the key.",
-              "---",
-              "### Kafka \u2014 Applied Differently in TypeScript vs Go Projects",
-              "**TypeScript projects use `kafkajs`:**",
-              "```typescript",
-              "// RouteMaster: consume shipment events with kafkajs",
-              "const consumer = kafka.consumer({ groupId: 'routemaster-status-updater' });",
-              "await consumer.connect();",
-              "await consumer.subscribe({ topic: 'shipment.events', fromBeginning: false });",
-              "await consumer.run({",
-              "eachMessage: async ({ message }) => {",
-              "const event = JSON.parse(message.value!.toString()) as ShipmentEvent;",
-              "await updateShipmentStatus(event);  // TypeScript async/await, no goroutines",
-              "await herald.notify(event.recipientId, 'shipment_update', event);",
-              "}",
-              "});",
-              "```",
-              "**Go projects use `sarama`:**",
-              "```go",
-              "// PayCore: consume payment events with sarama",
-              "func (c *Consumer) Run(ctx context.Context) error {",
-              "handler := sarama.NewConsumerGroupHandler(func(msg *sarama.ConsumerMessage) error {",
-              "var event PaymentEvent",
-              "if err := proto.Unmarshal(msg.Value, &event); err != nil { return err }",
-              "return c.processPayment(ctx, event)",
-              "})",
-              "return c.group.Consume(ctx, []string{\"payments.events\"}, handler)",
-              "}",
-              "```",
-              "**Outbox pattern \u2014 TypeScript (BookWise) and Go (PayCore) use same concept, different syntax:**",
-              "```typescript",
-              "// BookWise: TypeScript Prisma transaction with outbox",
-              "await prisma.$transaction([",
-              "prisma.booking.update({ where: { id }, data: { status: 'CONFIRMED' } }),",
-              "prisma.outbox.create({ data: { topic: 'booking.confirmed', payload: { id, userId } } }),",
-              "]);",
-              "```",
-              "```go",
-              "// PayCore: Go pgx transaction with outbox",
-              "tx.Exec(ctx, \"UPDATE payments SET status=$1 WHERE id=$2\", \"confirmed\", id)",
-              "tx.Exec(ctx, \"INSERT INTO outbox (topic,payload) VALUES ($1,$2)\", \"payments.confirmed\", payload)",
-              "tx.Commit(ctx)",
-              "```",
-              "### System Design: URL Shortener + API Rate Limiter",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "docker-compose.yml \u2014 identical pattern for all 5 projects - Week 15 \u2014 Kafka Essentials + System Design",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "**Kafka \u2014 Applied Differently in TypeScript vs Go Projects**",
+              "**TypeScript projects use `kafkajs`:**\n```typescript\n// RouteMaster: consume shipment events with kafkajs\nconst consumer = kafka.consumer({ groupId: 'routemaster-status-updater' });\nawait consumer.connect();\nawait consumer.subscribe({ topic: 'shipment.events', fromBeginning: false });",
+              "await consumer.run({\n  eachMessage: async ({ message }) => {\n    const event = JSON.parse(message.value!.toString()) as ShipmentEvent;\n    await updateShipmentStatus(event);  // TypeScript async/await, no goroutines\n    await herald.notify(event.recipientId, 'shipment_update', event);\n  }\n});\n```",
+              "**Go projects use `sarama`:**\n```go\n// PayCore: consume payment events with sarama\nfunc (c *Consumer) Run(ctx context.Context) error {\n    handler := sarama.NewConsumerGroupHandler(func(msg *sarama.ConsumerMessage) error {\n        var event PaymentEvent\n        if err := proto.Unmarshal(msg.Value, &event); err != nil { return err }\n        return c.processPayment(ctx, event)\n    })\n    return c.group.Consume(ctx, []string{\"payments.events\"}, handler)\n}\n```",
+              "**Outbox pattern \u2014 TypeScript (BookWise) and Go (PayCore) use same concept, different syntax:**\n```typescript\n// BookWise: TypeScript Prisma transaction with outbox\nawait prisma.$transaction([\n  prisma.booking.update({ where: { id }, data: { status: 'CONFIRMED' } }),\n  prisma.outbox.create({ data: { topic: 'booking.confirmed', payload: { id, userId } } }),\n]);\n```\n```go\n// PayCore: Go pgx transaction with outbox\ntx.Exec(ctx, \"UPDATE payments SET status=$1 WHERE id=$2\", \"confirmed\", id)\ntx.Exec(ctx, \"INSERT INTO outbox (topic,payload) VALUES ($1,$2)\", \"payments.confirmed\", payload)\ntx.Commit(ctx)\n```",
+              "**System Design: URL Shortener + API Rate Limiter**",
               "*(Coverage: URL shortener with base62 encoding, redirect cache, analytics counters; rate limiter with token bucket, sliding window log, Redis Lua atomic implementation.)*",
               "**`switchboard` building block** (built in Month 8) will implement the production rate limiter. This week: implement rate limiting directly in RouteMaster and BookWise as the learning exercise.",
-              "```typescript",
-              "// BookWise: sliding window rate limiter via Redis Lua (TypeScript)",
-              "const slidingWindowLua = `",
-              "local key = KEYS[1]",
-              "local now = tonumber(ARGV[1])",
-              "redis.call('ZREMRANGEBYSCORE', key, 0, now - 60000)",
-              "if tonumber(redis.call('ZCARD', key)) < tonumber(ARGV[2]) then",
-              "redis.call('ZADD', key, now, now .. math.random())",
-              "redis.call('EXPIRE', key, 60)",
-              "return 1",
-              "end",
-              "return 0",
-              "`;",
-              "const allowed = await redis.eval(slidingWindowLua, 1, `rl:${userId}:bookings`, Date.now(), 10);",
+              "```typescript\n// BookWise: sliding window rate limiter via Redis Lua (TypeScript)\nconst slidingWindowLua = `\n  local key = KEYS[1]\n  local now = tonumber(ARGV[1])\n  redis.call('ZREMRANGEBYSCORE', key, 0, now - 60000)\n  if tonumber(redis.call('ZCARD', key)) < tonumber(ARGV[2]) then\n    redis.call('ZADD', key, now, now .. math.random())\n    redis.call('EXPIRE', key, 60)\n    return 1\n  end\n  return 0\n`;\nconst allowed = await redis.eval(slidingWindowLua, 1, `rl:${userId}:bookings`, Date.now(), 10);\n```"
+            ]
+          },
+          {
+            "title": "Weekend Capstone \u2014 Month 5 \u00b7 All Database Patterns + `gatekeeper` + `lsm`",
+            "tasks": [
+              "All 5 projects: correct index strategy, EXPLAIN ANALYZE zero seq scans, pgpool in transaction mode, outbox pattern verified. ClickHouse partition pruning verified in OpenTrace. `gatekeeper` TypeScript building block complete: `crypto.randomInt`, SHA256 hash, `timingSafeEqual`, Redis TTL OTP, multi-tenant namespacing. `lsm` Go building block: MemTable + SSTable + Bloom filter + compaction \u2014 1M write benchmark in BENCHMARKS.md.",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 6 \u2014 Infrastructure + Real-Time + Resiliency + System Design Part 2",
+        "days": []
+      },
+      {
+        "title": "MONTH 6 \u2014 Infrastructure + Real-Time + Resiliency + System Design Part 2 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: Query Service (Go) + API Gateway (TypeScript)**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 6 \u2014 Infrastructure + Real-Time + Resiliency + System Design Part 2 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **Full observability stack this month.** OpenTrace instruments itself. Every other project instruments itself independently using OTel SDKs pointing at their own Jaeger instances.\n>\n> **Biweekly Building Blocks this month:** `switchboard` TypeScript API Gateway (Weeks 15\u201316). All TypeScript projects (BookWise, RouteMaster, OpenTrace API Gateway) go behind `switchboard` this month."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 6 \u2014 Infrastructure + Real-Time + Resiliency + System Design Part 2 - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 6 \u2014 Infrastructure + Real-Time + Resiliency + System Design Part 2 - Weeks 16\u201317 \u2014 Docker + K8s + Terraform + GitHub Actions + gRPC + Observability",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "*(Full coverage: Docker multi-stage builds, non-root user, `trivy` CVE scan, Kubernetes Pod/Deployment/Service/Ingress/HPA, Terraform HCL + state + modules, GitHub Actions CI, S3 presigned URLs + multipart upload, Cloudflare Workers, gRPC + Protocol Buffers, circuit breaker pattern, OTel distributed tracing + Prometheus + structured logs.)*",
+              "**OpenTrace Query Service (Go) + API Gateway (TypeScript)**",
+              "**Query Service gRPC (Go):**\n```go\nservice QueryService {\n  rpc FindTraces(FindTracesRequest) returns (stream Trace) {}\n  rpc GetTrace(GetTraceRequest) returns (Trace) {}\n  rpc GetDependencies(GetDependenciesRequest) returns (DependencyGraph) {}\n}\n// GetDependencies: JOIN spans to spans on parent_span_id, GROUP BY service pairs\n// Result: directed graph of all service-to-service calls in the system\n```",
+              "**API Gateway (TypeScript) \u2014 translates REST to gRPC:**\n```typescript\napp.get('/api/traces', auth, validate(FindTracesSchema), async (req, res) => {\n  const params = req.query as z.infer<typeof FindTracesSchema>;\n  const traces: Trace[] = [];\n  const stream = queryClient.FindTraces({ ...params });\n  for await (const trace of stream) { traces.push(traceFromProto(trace)); }\n  res.json({ traces });\n});\n// OTel auto-instrumentation: this TypeScript gateway's requests appear in OpenTrace's own traces\n```",
+              "**`switchboard` Building Block Integrated This Month**",
+              "All external traffic to BookWise and RouteMaster now goes through `switchboard`:\n- JWT RS256 verification via JWKS endpoint (public key, no shared secret)\n- Sliding window rate limiting per client per route (Redis Lua)\n- Circuit breaker per upstream service\n- SSE passthrough for BookWise seat updates and RouteMaster tracking\n- `traceparent` header injection on every proxied request",
+              "**OTel Auto-Instrumentation \u2014 Different SDKs, Same Protocol**",
+              "**TypeScript projects (BookWise, RouteMaster, OpenTrace API Gateway):**\n```typescript\n// Auto-instrumentation: import before anything else\nimport './tracing';  // wraps Express, Prisma, ioredis, kafkajs automatically\n// tracing.ts:\nconst sdk = new NodeSDK({\n  traceExporter: new OTLPTraceExporter({ url: process.env.OTEL_ENDPOINT }),\n  instrumentations: [getNodeAutoInstrumentations()],\n});\nsdk.start();\n```",
+              "**Go projects (PayCore, DungBeetle, OpenTrace components):**\n```go\n// Auto-instrumentation: wrap HTTP handler and database client\nimport \"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp\"\nhandler := otelhttp.NewHandler(mux, \"paycore-api\")\n// Wraps every route with span creation, propagates W3C traceparent\n```",
+              "**All projects emit to their own separate Jaeger instance.** OpenTrace emits to itself \u2014 the self-referential demo.",
+              "**Full-Stack Observability (All 5 Projects)**",
+              "**Prometheus metrics \u2014 RED method for every service:**\n```go\n// PayCore (Go): histogram for payment latency\npaymentDuration := prometheus.NewHistogramVec(\n    prometheus.HistogramOpts{Name: \"payment_duration_seconds\", Buckets: prometheus.DefBuckets},\n    []string{\"status\"},\n)\n```\n```typescript\n// BookWise (TypeScript): counter for booking attempts\nconst bookingAttempts = new Counter({\n  name: 'booking_attempts_total',\n  help: 'Total booking attempts',\n  labelNames: ['status'],\n});\n```",
+              "**Structured logs with `trace_id`:**\n```go\n// Go: slog JSON with trace_id\nslog.InfoContext(ctx, \"payment processed\", \"trace_id\", span.SpanContext().TraceID().String())\n```\n```typescript\n// TypeScript: pino with trace_id from AsyncLocalStorage\nlogger.info({ trace_id: reqCtx.getStore()?.traceId }, 'booking confirmed');\n```",
+              "**PITR Drill \u2014 PayCore and RouteMaster**",
+              "```bash"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Executed this month on both projects",
+        "days": []
+      },
+      {
+        "title": "1. Drop the table (simulate data loss incident)",
+        "days": []
+      },
+      {
+        "title": "1. Drop the table (simulate data loss incident) - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "psql -c \"DROP TABLE payments;\""
+            ]
+          }
+        ]
+      },
+      {
+        "title": "2. Restore from PITR backup",
+        "days": []
+      },
+      {
+        "title": "2. Restore from PITR backup - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "aws rds restore-db-instance-to-point-in-time \\\n  --source-db-instance-identifier paycore-prod \\\n  --target-db-instance-identifier paycore-pitr \\\n  --restore-time 2026-06-01T12:00:00Z"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Measure RTO \u2014 target: < 10 minutes",
+        "days": []
+      },
+      {
+        "title": "4. Write the runbook \u2014 stored in /runbooks/pitr.md",
+        "days": []
+      },
+      {
+        "title": "4. Write the runbook \u2014 stored in /runbooks/pitr.md - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
               "```"
             ]
           }
         ]
       },
       {
-        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Week 14 \u2014 Caching Architecture",
-        "days": []
-      },
-      {
-        "title": "MONTH 5 \u2014 DBMS Deep Internals + Caching Architecture + System Design Part 1 - Week 15 \u2014 Kafka Essentials + System Design",
+        "title": "4. Write the runbook \u2014 stored in /runbooks/pitr.md",
         "days": [
-          {
-            "title": "Weekend Capstone \u2014 Month 5 \u00b7 All Database Patterns + `gatekeeper` + `lsm`",
-            "tasks": [
-              "All 5 projects: correct index strategy, EXPLAIN ANALYZE zero seq scans, pgpool in transaction mode, outbox pattern verified. ClickHouse partition pruning verified in OpenTrace. `gatekeeper` TypeScript building block complete: `crypto.randomInt`, SHA256 hash, `timingSafeEqual`, Redis TTL OTP, multi-tenant namespacing. `lsm` Go building block: MemTable + SSTable + Bloom filter + compaction \u2014 1M write benchmark in BENCHMARKS.md.",
-              "---",
-              "### OpenTrace: Query Service (Go) + API Gateway (TypeScript)",
-              "> **Full observability stack this month.** OpenTrace instruments itself. Every other project instruments itself independently using OTel SDKs pointing at their own Jaeger instances.",
-              ">",
-              "> **Biweekly Building Blocks this month:** `switchboard` TypeScript API Gateway (Weeks 15\u201316). All TypeScript projects (BookWise, RouteMaster, OpenTrace API Gateway) go behind `switchboard` this month.",
-              "---",
-              "## Weeks 16\u201317 \u2014 Docker + K8s + Terraform + GitHub Actions + gRPC + Observability",
-              "*(Full coverage: Docker multi-stage builds, non-root user, `trivy` CVE scan, Kubernetes Pod/Deployment/Service/Ingress/HPA, Terraform HCL + state + modules, GitHub Actions CI, S3 presigned URLs + multipart upload, Cloudflare Workers, gRPC + Protocol Buffers, circuit breaker pattern, OTel distributed tracing + Prometheus + structured logs.)*",
-              "### OpenTrace Query Service (Go) + API Gateway (TypeScript)",
-              "**Query Service gRPC (Go):**",
-              "```go",
-              "service QueryService {",
-              "rpc FindTraces(FindTracesRequest) returns (stream Trace) {}",
-              "rpc GetTrace(GetTraceRequest) returns (Trace) {}",
-              "rpc GetDependencies(GetDependenciesRequest) returns (DependencyGraph) {}",
-              "}",
-              "// GetDependencies: JOIN spans to spans on parent_span_id, GROUP BY service pairs",
-              "// Result: directed graph of all service-to-service calls in the system",
-              "```",
-              "**API Gateway (TypeScript) \u2014 translates REST to gRPC:**",
-              "```typescript",
-              "app.get('/api/traces', auth, validate(FindTracesSchema), async (req, res) => {",
-              "const params = req.query as z.infer<typeof FindTracesSchema>;",
-              "const traces: Trace[] = [];",
-              "const stream = queryClient.FindTraces({ ...params });",
-              "for await (const trace of stream) { traces.push(traceFromProto(trace)); }",
-              "res.json({ traces });",
-              "});",
-              "// OTel auto-instrumentation: this TypeScript gateway's requests appear in OpenTrace's own traces",
-              "```",
-              "### `switchboard` Building Block Integrated This Month",
-              "All external traffic to BookWise and RouteMaster now goes through `switchboard`:",
-              "- JWT RS256 verification via JWKS endpoint (public key, no shared secret)",
-              "- Sliding window rate limiting per client per route (Redis Lua)",
-              "- Circuit breaker per upstream service",
-              "- SSE passthrough for BookWise seat updates and RouteMaster tracking",
-              "- `traceparent` header injection on every proxied request",
-              "### OTel Auto-Instrumentation \u2014 Different SDKs, Same Protocol",
-              "**TypeScript projects (BookWise, RouteMaster, OpenTrace API Gateway):**",
-              "```typescript",
-              "// Auto-instrumentation: import before anything else",
-              "import './tracing';  // wraps Express, Prisma, ioredis, kafkajs automatically",
-              "// tracing.ts:",
-              "const sdk = new NodeSDK({",
-              "traceExporter: new OTLPTraceExporter({ url: process.env.OTEL_ENDPOINT }),",
-              "instrumentations: [getNodeAutoInstrumentations()],",
-              "});",
-              "sdk.start();",
-              "```",
-              "**Go projects (PayCore, DungBeetle, OpenTrace components):**",
-              "```go",
-              "// Auto-instrumentation: wrap HTTP handler and database client",
-              "import \"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp\"",
-              "handler := otelhttp.NewHandler(mux, \"paycore-api\")",
-              "// Wraps every route with span creation, propagates W3C traceparent",
-              "```",
-              "**All projects emit to their own separate Jaeger instance.** OpenTrace emits to itself \u2014 the self-referential demo.",
-              "### Full-Stack Observability (All 5 Projects)",
-              "**Prometheus metrics \u2014 RED method for every service:**",
-              "```go",
-              "// PayCore (Go): histogram for payment latency",
-              "paymentDuration := prometheus.NewHistogramVec(",
-              "prometheus.HistogramOpts{Name: \"payment_duration_seconds\", Buckets: prometheus.DefBuckets},",
-              "[]string{\"status\"},",
-              ")",
-              "```",
-              "```typescript",
-              "// BookWise (TypeScript): counter for booking attempts",
-              "const bookingAttempts = new Counter({",
-              "name: 'booking_attempts_total',",
-              "help: 'Total booking attempts',",
-              "labelNames: ['status'],",
-              "});",
-              "```",
-              "**Structured logs with `trace_id`:**",
-              "```go",
-              "// Go: slog JSON with trace_id",
-              "slog.InfoContext(ctx, \"payment processed\", \"trace_id\", span.SpanContext().TraceID().String())",
-              "```",
-              "```typescript",
-              "// TypeScript: pino with trace_id from AsyncLocalStorage",
-              "logger.info({ trace_id: reqCtx.getStore()?.traceId }, 'booking confirmed');",
-              "```",
-              "### PITR Drill \u2014 PayCore and RouteMaster",
-              "```bash",
-              "# Executed this month on both projects",
-              "# 1. Drop the table (simulate data loss incident)",
-              "psql -c \"DROP TABLE payments;\"",
-              "# 2. Restore from PITR backup",
-              "aws rds restore-db-instance-to-point-in-time \\",
-              "--source-db-instance-identifier paycore-prod \\",
-              "--target-db-instance-identifier paycore-pitr \\",
-              "--restore-time 2026-06-01T12:00:00Z",
-              "# 3. Measure RTO \u2014 target: < 10 minutes",
-              "# 4. Write the runbook \u2014 stored in /runbooks/pitr.md",
-              "```"
-            ]
-          },
           {
             "title": "Weekend Capstone \u2014 Month 6 \u00b7 All Infrastructure Live + `switchboard` Complete",
             "tasks": [
               "All 5 projects deployed to ECS Fargate \u2014 each from its own repo, own Terraform config, own CI pipeline. OpenTrace self-referential trace demo live. PITR drill complete on PayCore and RouteMaster. `switchboard` TypeScript building block integrated: BookWise and RouteMaster external traffic routed through it with JWT verification, rate limiting, circuit breaker.",
-              "---",
-              "### OpenTrace: UI v2 (TypeScript) + SDK (Go + TypeScript)",
-              "> **This is the distributed systems month.** Every building block converges here: vault (dedup), pgpool (connection management), relay (live tail), resolver (DNS debug), lsm (ClickHouse understanding), herald (notifications), gatekeeper (2FA), switchboard (gateway). DungBeetle v3.0 gets leader election + exactly-once cron. BookWise gets its waitlist state machine.",
-              ">",
-              "> **Biweekly Project 8 \u2014 `lsm` is the last building block.** By end of Month 7, all 8 building blocks are complete.",
-              "---",
-              "## Weeks 19\u201321 \u2014 Bloom Filters + Consistent Hashing + S3 + Edge + System Designs",
-              "### Bloom Filters",
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Go (implementation), Redis `BF.ADD`/`BF.EXISTS`, TypeScript (consumer) |",
-              "| \ud83d\udcd6 **Concepts** | Probabilistic membership, false positive rate formula, sizing, no false negatives guarantee |",
-              "| \ud83c\udfaf **You Build** | RouteMaster Go crawler: Bloom filter URL dedup (10M URLs, 0.1% FP). DungBeetle (Go): Bloom filter job dedup before DB lookup. lsm building block: Bloom filter per SSTable. |",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 7 \u2014 Distributed Systems Deep",
+        "days": []
+      },
+      {
+        "title": "MONTH 7 \u2014 Distributed Systems Deep - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: UI v2 (TypeScript) + SDK (Go + TypeScript)**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 7 \u2014 Distributed Systems Deep - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **This is the distributed systems month.** Every building block converges here: vault (dedup), pgpool (connection management), relay (live tail), resolver (DNS debug), lsm (ClickHouse understanding), herald (notifications), gatekeeper (2FA), switchboard (gateway). DungBeetle v3.0 gets leader election + exactly-once cron. BookWise gets its waitlist state machine.\n>\n> **Biweekly Project 8 \u2014 `lsm` is the last building block.** By end of Month 7, all 8 building blocks are complete."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 7 \u2014 Distributed Systems Deep - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 7 \u2014 Distributed Systems Deep - Weeks 19\u201321 \u2014 Bloom Filters + Consistent Hashing + S3 + Edge + System Designs",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "**Bloom Filters**",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Go (implementation), Redis `BF.ADD`/`BF.EXISTS`, TypeScript (consumer) |\n| \ud83d\udcd6 **Concepts** | Probabilistic membership, false positive rate formula, sizing, no false negatives guarantee |\n| \ud83c\udfaf **You Build** | RouteMaster Go crawler: Bloom filter URL dedup (10M URLs, 0.1% FP). DungBeetle (Go): Bloom filter job dedup before DB lookup. lsm building block: Bloom filter per SSTable. |",
               "**Sizing calculation:** For RouteMaster's crawler at 10M URLs, 0.1% FP rate: `m = -10M \u00d7 ln(0.001) / ln(2)\u00b2 \u2248 144MB`. Acceptable. Persisted to Redis on shutdown, reloaded on startup.",
-              "### Consistent Hashing",
-              "| | |",
-              "|---|---|",
-              "| \ud83d\udee0 **Technologies** | Go (standalone `pkg/consistenthash` package) |",
-              "| \ud83d\udcd6 **Concepts** | Hash ring, virtual nodes (vnodes), adding/removing nodes remaps only 1/N keys |",
-              "| \ud83c\udfaf **You Build** | `pkg/consistenthash` Go package used in: DungBeetle (job-to-worker routing), OpenTrace Processor (trace_id \u2192 processor instance for tail-based sampling). |",
-              "### DungBeetle v3.0 (Go) \u2014 Leader Election + Exactly-Once Cron",
-              "```go",
-              "// Leader election: Redis SETNX + Lua renewal",
-              "func (w *Worker) TryBecomeLeader(ctx context.Context) bool {",
-              "acquired, _ := w.redis.SetNX(ctx, \"cron:leader\", w.nodeID, 30*time.Second).Result()",
-              "if !acquired { return false }",
-              "go w.renewLease(ctx)  // Lua script: verify token + extend TTL every 10s",
-              "return true",
-              "}",
-              "// Exactly-once cron: distributed lock on job name + hour window",
-              "// Split-brain test must pass before v3.0 tag: pause renewal TTL+1s, verify new leader wins",
-              "```",
-              "### OpenTrace UI v2 (TypeScript/Next.js)",
-              "- **Service map** (D3.js force graph): nodes = services, edges = call relationships from `GetDependencies` gRPC",
-              "- **Live tail WebSocket**: connects to `relay` building block, streams new spans in real time as they arrive",
-              "- **SDK demo page**: shows real spans from the auto-instrumentation SDK flowing into OpenTrace",
-              "### OpenTrace SDK (Go + TypeScript)",
-              "```go",
-              "// Go SDK: zero-code-change instrumentation",
-              "import _ \"github.com/yourname/opentrace/sdk/go\"",
-              "otrace.Instrument(mux)",
-              "// Wraps http.Handler, database/sql, net/http.Transport, grpc",
-              "// Reads OPENTRACE_ENDPOINT from env",
-              "```",
-              "```typescript",
-              "// TypeScript SDK: Node.js auto-instrumentation",
-              "import { OpenTraceSDK } from '@yourname/opentrace-sdk';",
-              "OpenTraceSDK.start({ endpoint: process.env.OPENTRACE_ENDPOINT });",
-              "// Wraps Express, Prisma, ioredis, kafkajs",
-              "```",
-              "### BookWise Waitlist State Machine (TypeScript/Kafka)",
-              "```typescript",
-              "// Kafka consumer: booking.cancelled \u2192 promote waitlist",
-              "consumer.subscribe({ topic: 'booking.cancelled' });",
-              "consumer.run({",
-              "eachMessage: async ({ message }) => {",
-              "const { eventId, seatId } = JSON.parse(message.value!.toString());",
-              "const next = await prisma.waitlist.findFirst({",
-              "where: { eventId, seatId, status: 'WAITING' },",
-              "orderBy: { position: 'asc' }",
-              "});",
-              "if (!next) return;",
-              "// Set 15-minute offer window via Redis TTL",
-              "await redis.setex(`waitlist:offer:${next.id}`, 900, JSON.stringify(next));",
-              "// Notify via herald building block",
-              "await herald.notify(next.userId, 'seat_offered', { seatId, expiresIn: 900 });",
-              "await prisma.waitlist.update({ where: { id: next.id }, data: { status: 'OFFERED' } });",
-              "}",
-              "});",
-              "```",
-              "### S3 + Cloudflare Workers + WebAssembly",
+              "**Consistent Hashing**",
+              "| | |\n|---|---|\n| \ud83d\udee0 **Technologies** | Go (standalone `pkg/consistenthash` package) |\n| \ud83d\udcd6 **Concepts** | Hash ring, virtual nodes (vnodes), adding/removing nodes remaps only 1/N keys |\n| \ud83c\udfaf **You Build** | `pkg/consistenthash` Go package used in: DungBeetle (job-to-worker routing), OpenTrace Processor (trace_id \u2192 processor instance for tail-based sampling). |",
+              "**DungBeetle v3.0 (Go) \u2014 Leader Election + Exactly-Once Cron**",
+              "```go\n// Leader election: Redis SETNX + Lua renewal\nfunc (w *Worker) TryBecomeLeader(ctx context.Context) bool {\n    acquired, _ := w.redis.SetNX(ctx, \"cron:leader\", w.nodeID, 30*time.Second).Result()\n    if !acquired { return false }\n    go w.renewLease(ctx)  // Lua script: verify token + extend TTL every 10s\n    return true\n}\n// Exactly-once cron: distributed lock on job name + hour window\n// Split-brain test must pass before v3.0 tag: pause renewal TTL+1s, verify new leader wins\n```",
+              "**OpenTrace UI v2 (TypeScript/Next.js)**",
+              "- **Service map** (D3.js force graph): nodes = services, edges = call relationships from `GetDependencies` gRPC\n- **Live tail WebSocket**: connects to `relay` building block, streams new spans in real time as they arrive\n- **SDK demo page**: shows real spans from the auto-instrumentation SDK flowing into OpenTrace",
+              "**OpenTrace SDK (Go + TypeScript)**",
+              "```go\n// Go SDK: zero-code-change instrumentation\nimport _ \"github.com/yourname/opentrace/sdk/go\"\notrace.Instrument(mux)\n// Wraps http.Handler, database/sql, net/http.Transport, grpc\n// Reads OPENTRACE_ENDPOINT from env\n```",
+              "```typescript\n// TypeScript SDK: Node.js auto-instrumentation\nimport { OpenTraceSDK } from '@yourname/opentrace-sdk';\nOpenTraceSDK.start({ endpoint: process.env.OPENTRACE_ENDPOINT });\n// Wraps Express, Prisma, ioredis, kafkajs\n```",
+              "**BookWise Waitlist State Machine (TypeScript/Kafka)**",
+              "```typescript\n// Kafka consumer: booking.cancelled \u2192 promote waitlist\nconsumer.subscribe({ topic: 'booking.cancelled' });\nconsumer.run({\n  eachMessage: async ({ message }) => {\n    const { eventId, seatId } = JSON.parse(message.value!.toString());\n    const next = await prisma.waitlist.findFirst({\n      where: { eventId, seatId, status: 'WAITING' },\n      orderBy: { position: 'asc' }\n    });\n    if (!next) return;\n    // Set 15-minute offer window via Redis TTL\n    await redis.setex(`waitlist:offer:${next.id}`, 900, JSON.stringify(next));\n    // Notify via herald building block\n    await herald.notify(next.userId, 'seat_offered', { seatId, expiresIn: 900 });\n    await prisma.waitlist.update({ where: { id: next.id }, data: { status: 'OFFERED' } });\n  }\n});\n```",
+              "**S3 + Cloudflare Workers + WebAssembly**",
               "*(Coverage: S3 presigned URLs, multipart upload, lifecycle policies, Cloudflare Workers V8 isolates, Cloudflare KV, R2 zero-egress storage, Wasm Go compilation, in-browser fraud detection.)*",
               "**RouteMaster:** S3 multipart upload for proof-of-delivery photos. Cloudflare R2 for static assets (zero egress). ADR: \"R2 vs S3 for static assets \u2014 R2 saves ~$0.09/GB egress.\""
             ]
@@ -1464,168 +1390,270 @@
             "title": "Weekend Capstone \u2014 Month 7 \u00b7 OpenTrace UI v2 + SDK + All 8 Building Blocks Complete",
             "tasks": [
               "OpenTrace UI v2: service map + live tail live. SDK: standalone sample app demonstrates zero-code auto-instrumentation. All 8 building blocks complete. DungBeetle v3.0: leader election + exactly-once cron \u2014 split-brain test passing. BookWise waitlist: Kafka state machine running.",
-              "**Building block portfolio at end of Month 7:**",
-              "- `vault` (Go) \u2014 WAL KV store",
-              "- `pgpool` (Go) \u2014 pgwire TCP proxy",
-              "- `relay` (Go) \u2014 clustered WebSocket",
-              "- `resolver` (Go) \u2014 recursive DNS",
-              "- `lsm` (Go) \u2014 LSM-tree storage engine",
-              "- `herald` (TypeScript) \u2014 notification delivery",
-              "- `gatekeeper` (TypeScript) \u2014 OTP gateway",
-              "- `switchboard` (TypeScript) \u2014 API gateway",
-              "---",
-              "### OpenTrace: Production Hardening",
-              "> **K8s Operator for OpenTrace lifecycle management. OTel SDK compatibility verified. 10M spans/sec load test. Final `BENCHMARKS.md`.**",
-              "---",
-              "## Weeks 22\u201324 \u2014 AI Engineering + Performance Engineering + System Designs",
-              "### AI Engineering \u2014 Applied to TypeScript and Go Projects",
-              "**RouteMaster (TypeScript) \u2014 AI semantic search:**",
-              "```typescript",
-              "// Vercel AI SDK: translate natural language \u2192 Elasticsearch query",
-              "const result = await streamText({",
-              "model: openai('gpt-4o-mini'),",
-              "system: `You translate user queries to Elasticsearch DSL for shipment search.",
-              "Available fields: destination_address, carrier_name, status, created_at`,",
-              "prompt: `User query: \"${userQuery}\". Return JSON Elasticsearch query only.`,",
-              "tools: { executeSearch: { execute: async (esQuery) => esClient.search(esQuery) } }",
-              "});",
-              "```",
-              "**DungBeetle (Go + TypeScript) \u2014 AI job orchestration:**",
-              "```go",
-              "// Go: LLM classifies job type and routes to handler",
-              "resp, _ := openaiClient.CreateChatCompletion(ctx, openai.ChatCompletionRequest{",
-              "Model: \"gpt-4o-mini\",",
-              "Tools: jobClassificationTools,",
-              "Messages: []openai.ChatCompletionMessage{{",
-              "Role: \"user\",",
-              "Content: fmt.Sprintf(\"Classify and route this job payload: %s\", job.Payload),",
-              "}},",
-              "})",
-              "```",
-              "```typescript",
-              "// TypeScript Next.js: AI copilot UI using Vercel AI SDK",
-              "const { messages, handleSubmit } = useChat({ api: '/api/copilot' });",
-              "// \"Why is job X failing?\" \u2192 LLM reads job logs + DLQ \u2192 explains root cause",
-              "```",
-              "**BookWise (TypeScript) \u2014 PGVector seat recommendations:**",
-              "```typescript",
-              "// Embed seat metadata \u2192 store in PGVector \u2192 cosine ANN query",
-              "const embedding = await embed(userPreferences);",
-              "const seats = await prisma.$queryRaw`",
-              "SELECT id, section, row, description,",
-              "embedding <=> ${embedding}::vector AS distance",
-              "FROM seats",
-              "WHERE event_id = ${eventId} AND status = 'AVAILABLE'",
-              "ORDER BY distance",
-              "LIMIT 10",
-              "`;",
-              "```",
-              "### Performance Engineering \u2014 `pprof` (Go) + `clinic.js` (TypeScript)",
-              "**Go projects (PayCore, DungBeetle):**",
-              "```bash",
-              "# CPU flame graph",
-              "go tool pprof http://localhost:6060/debug/pprof/profile?seconds=30",
-              "# Heap profile",
-              "go tool pprof http://localhost:6060/debug/pprof/heap",
-              "# Goroutine dump",
-              "go tool pprof http://localhost:6060/debug/pprof/goroutine",
-              "```",
-              "**Three deliberately introduced bugs (Go \u2014 PayCore):**",
-              "1. Allocating inside hot loop \u2192 `sync.Pool` fix \u2192 document p99 improvement",
-              "2. N+1 query in event projector \u2192 JOIN fix \u2192 document query plan change",
-              "3. Goroutine leak in Kafka consumer \u2192 `goleak` catches \u2192 `defer ticker.Stop()` fix",
-              "**TypeScript projects (BookWise, RouteMaster):**",
-              "```bash",
-              "# clinic.js flame graph for Node.js",
-              "npx clinic flame -- node dist/server.js",
-              "# Heap profiler",
-              "npx clinic heapprofiler -- node dist/server.js",
-              "```",
-              "**Three deliberately introduced bugs (TypeScript \u2014 BookWise):**",
-              "1. Memory leak in SSE subscriber registry \u2192 `WeakMap` fix \u2192 document heap before/after",
-              "2. Missing `pipeline()` error handler \u2192 silent stream corruption \u2192 `pipeline()` fix",
-              "3. Synchronous JSON.parse in hot loop \u2192 `worker_threads` offload \u2192 document throughput",
-              "### k6 Load Tests \u2014 All 5 Projects",
-              "| Project | Target | p99 SLO | Language |",
-              "|---|---|---|---|",
-              "| OpenTrace span ingestion | 10M spans/sec | < 5ms | Go |",
-              "| PayCore payments | 5K TPS | < 20ms | Go |",
-              "| DungBeetle job dispatch | 50K jobs/min | < 50ms | Go |",
-              "| BookWise seat reservations | 10K concurrent | < 500ms | TypeScript |",
-              "| RouteMaster orders | 20K orders/min | < 100ms | TypeScript |"
+              "**Building block portfolio at end of Month 7:**\n- `vault` (Go) \u2014 WAL KV store\n- `pgpool` (Go) \u2014 pgwire TCP proxy\n- `relay` (Go) \u2014 clustered WebSocket\n- `resolver` (Go) \u2014 recursive DNS\n- `lsm` (Go) \u2014 LSM-tree storage engine\n- `herald` (TypeScript) \u2014 notification delivery\n- `gatekeeper` (TypeScript) \u2014 OTP gateway\n- `switchboard` (TypeScript) \u2014 API gateway",
+              "---"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "title": "MONTH 8 \u2014 AI-Native Stack + Performance Engineering + Final System Designs",
+        "days": []
+      },
+      {
+        "title": "MONTH 8 \u2014 AI-Native Stack + Performance Engineering + Final System Designs - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**OpenTrace: Production Hardening**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 8 \u2014 AI-Native Stack + Performance Engineering + Final System Designs - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **K8s Operator for OpenTrace lifecycle management. OTel SDK compatibility verified. 10M spans/sec load test. Final `BENCHMARKS.md`.**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 8 \u2014 AI-Native Stack + Performance Engineering + Final System Designs - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 8 \u2014 AI-Native Stack + Performance Engineering + Final System Designs - Weeks 22\u201324 \u2014 AI Engineering + Performance Engineering + System Designs",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "**AI Engineering \u2014 Applied to TypeScript and Go Projects**",
+              "**RouteMaster (TypeScript) \u2014 AI semantic search:**\n```typescript\n// Vercel AI SDK: translate natural language \u2192 Elasticsearch query\nconst result = await streamText({\n  model: openai('gpt-4o-mini'),\n  system: `You translate user queries to Elasticsearch DSL for shipment search.\n           Available fields: destination_address, carrier_name, status, created_at`,\n  prompt: `User query: \"${userQuery}\". Return JSON Elasticsearch query only.`,\n  tools: { executeSearch: { execute: async (esQuery) => esClient.search(esQuery) } }\n});\n```",
+              "**DungBeetle (Go + TypeScript) \u2014 AI job orchestration:**\n```go\n// Go: LLM classifies job type and routes to handler\nresp, _ := openaiClient.CreateChatCompletion(ctx, openai.ChatCompletionRequest{\n    Model: \"gpt-4o-mini\",\n    Tools: jobClassificationTools,\n    Messages: []openai.ChatCompletionMessage{{\n        Role: \"user\",\n        Content: fmt.Sprintf(\"Classify and route this job payload: %s\", job.Payload),\n    }},\n})\n```\n```typescript\n// TypeScript Next.js: AI copilot UI using Vercel AI SDK\nconst { messages, handleSubmit } = useChat({ api: '/api/copilot' });\n// \"Why is job X failing?\" \u2192 LLM reads job logs + DLQ \u2192 explains root cause\n```",
+              "**BookWise (TypeScript) \u2014 PGVector seat recommendations:**\n```typescript\n// Embed seat metadata \u2192 store in PGVector \u2192 cosine ANN query\nconst embedding = await embed(userPreferences);\nconst seats = await prisma.$queryRaw`\n  SELECT id, section, row, description,\n         embedding <=> ${embedding}::vector AS distance\n  FROM seats\n  WHERE event_id = ${eventId} AND status = 'AVAILABLE'\n  ORDER BY distance\n  LIMIT 10\n`;\n```",
+              "**Performance Engineering \u2014 `pprof` (Go) + `clinic.js` (TypeScript)**",
+              "**Go projects (PayCore, DungBeetle):**\n```bash"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "CPU flame graph",
+        "days": []
+      },
+      {
+        "title": "CPU flame graph - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "go tool pprof http://localhost:6060/debug/pprof/profile?seconds=30"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Heap profile",
+        "days": []
+      },
+      {
+        "title": "Heap profile - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "go tool pprof http://localhost:6060/debug/pprof/heap"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Goroutine dump",
+        "days": []
+      },
+      {
+        "title": "Goroutine dump - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "go tool pprof http://localhost:6060/debug/pprof/goroutine\n```"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Goroutine dump - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**Three deliberately introduced bugs (Go \u2014 PayCore):**\n1. Allocating inside hot loop \u2192 `sync.Pool` fix \u2192 document p99 improvement\n2. N+1 query in event projector \u2192 JOIN fix \u2192 document query plan change\n3. Goroutine leak in Kafka consumer \u2192 `goleak` catches \u2192 `defer ticker.Stop()` fix"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Goroutine dump - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**TypeScript projects (BookWise, RouteMaster):**\n```bash"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "clinic.js flame graph for Node.js",
+        "days": []
+      },
+      {
+        "title": "clinic.js flame graph for Node.js - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "npx clinic flame -- node dist/server.js"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Heap profiler",
+        "days": []
+      },
+      {
+        "title": "Heap profiler - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "npx clinic heapprofiler -- node dist/server.js\n```"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Heap profiler - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**Three deliberately introduced bugs (TypeScript \u2014 BookWise):**\n1. Memory leak in SSE subscriber registry \u2192 `WeakMap` fix \u2192 document heap before/after\n2. Missing `pipeline()` error handler \u2192 silent stream corruption \u2192 `pipeline()` fix\n3. Synchronous JSON.parse in hot loop \u2192 `worker_threads` offload \u2192 document throughput"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Heap profiler - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**k6 Load Tests \u2014 All 5 Projects**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Heap profiler - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "| Project | Target | p99 SLO | Language |\n|---|---|---|---|\n| OpenTrace span ingestion | 10M spans/sec | < 5ms | Go |\n| PayCore payments | 5K TPS | < 20ms | Go |\n| DungBeetle job dispatch | 50K jobs/min | < 50ms | Go |\n| BookWise seat reservations | 10K concurrent | < 500ms | TypeScript |\n| RouteMaster orders | 20K orders/min | < 100ms | TypeScript |"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Heap profiler",
+        "days": [
           {
             "title": "Weekend Capstone \u2014 Month 8 \u00b7 OpenTrace Production Hardened + All System Designs",
             "tasks": [
               "K8s Operator deployed. OTel compatibility verified \u2014 official `go.opentelemetry.io/otel` SDK \u2192 OpenTrace with only `OTEL_EXPORTER_OTLP_ENDPOINT`. 10M spans/sec load test documented. All system designs implemented. `BENCHMARKS.md` final for all projects.",
-              "---",
-              "### The Month That Opens CNCF Doors",
-              "> **Goal 1:** OpenTrace production-ready. 10M spans/sec verified. K8s Operator deployed. OTel compatibility confirmed. Architecture RFC complete. Final year project documentation done.",
-              ">",
-              "> **Goal 2:** LFX September cycle application submitted. Cover letter + \u2265 2 merged PRs + project proposal.",
-              "---",
-              "## Weeks 25\u201326 \u2014 Performance Engineering + LFX Application",
-              "### Three Performance Regressions Introduced and Fixed (Month 9 Polish)",
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 9 \u2014 Polish + LFX Mentorship Sprint",
+        "days": []
+      },
+      {
+        "title": "MONTH 9 \u2014 Polish + LFX Mentorship Sprint - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "**The Month That Opens CNCF Doors**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 9 \u2014 Polish + LFX Mentorship Sprint - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "> **Goal 1:** OpenTrace production-ready. 10M spans/sec verified. K8s Operator deployed. OTel compatibility confirmed. Architecture RFC complete. Final year project documentation done.\n>\n> **Goal 2:** LFX September cycle application submitted. Cover letter + \u2265 2 merged PRs + project proposal."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 9 \u2014 Polish + LFX Mentorship Sprint - Introduction",
+        "days": [
+          {
+            "title": "Context",
+            "tasks": [
+              "---"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MONTH 9 \u2014 Polish + LFX Mentorship Sprint - Weeks 25\u201326 \u2014 Performance Engineering + LFX Application",
+        "days": [
+          {
+            "title": "Overview",
+            "tasks": [
+              "**Three Performance Regressions Introduced and Fixed (Month 9 Polish)**",
               "*(Documentation pass: allocating inside hot loop \u2192 `sync.Pool`, N+1 query \u2192 batch query, goroutine leak \u2192 `defer ticker.Stop()`. All with before/after benchmark numbers in `BENCHMARKS.md`.)*",
               "**Final SLO targets \u2014 all verified with k6:**",
-              "| Project | Target | p99 Latency | Error Rate |",
-              "|---|---|---|---|",
-              "| OpenTrace span ingestion | 50K/sec | < 50ms | < 0.01% |",
-              "| PayCore payments | 10K TPS | < 200ms | < 0.001% |",
-              "| DungBeetle job claims | 5K/sec | < 100ms | < 0.01% |",
-              "| BookWise seat reservations | 10K concurrent | < 500ms | < 0.001% |",
-              "| RouteMaster orders | 20K/sec | < 100ms | < 0.01% |",
-              "### LFX Mentorship Application",
+              "| Project | Target | p99 Latency | Error Rate |\n|---|---|---|---|\n| OpenTrace span ingestion | 50K/sec | < 50ms | < 0.01% |\n| PayCore payments | 10K TPS | < 200ms | < 0.001% |\n| DungBeetle job claims | 5K/sec | < 100ms | < 0.01% |\n| BookWise seat reservations | 10K concurrent | < 500ms | < 0.001% |\n| RouteMaster orders | 20K/sec | < 100ms | < 0.01% |",
+              "**LFX Mentorship Application**",
               "**Target projects ranked by fit:**",
-              "| Project | Why It Fits | Entry Points |",
-              "|---|---|---|",
-              "| **Jaeger** | You rebuilt Jaeger. You know the architecture at implementation depth. | `jaeger-ui` TypeScript waterfall improvements, Go collector, ClickHouse storage plugin |",
-              "| **OpenTelemetry Go** | You implemented OTLP. You understand the SDK from building the Collector. | `sdk/trace`, `exporters/otlp`, receiver components |",
-              "| **OpenTelemetry Collector Contrib** | You built a collector. Contrib has 100+ receivers/exporters. | ClickHouse receiver, OTLP improvements |",
-              "| **Prometheus** | You've written Prometheus exporters across all projects in both Go and TypeScript. | Client library improvements, Node.js exporter |",
-              "| **Kubernetes** (`controller-runtime`) | You wrote a K8s Operator for OpenTrace. | Reconciler improvements, better error handling |",
-              "**How to read the Jaeger codebase fast:**",
-              "```",
-              "jaeger/",
-              "\u251c\u2500\u2500 cmd/collector/    \u2190 mirrors your OpenTrace Collector (Go)",
-              "\u251c\u2500\u2500 cmd/query/        \u2190 mirrors your OpenTrace Query Service (Go)",
-              "\u251c\u2500\u2500 plugin/storage/   \u2190 storage plugins",
-              "\u2502   \u2514\u2500\u2500 clickhouse/  \u2190 your contribution target",
-              "\u251c\u2500\u2500 jaeger-ui/        \u2190 mirrors your OpenTrace UI (TypeScript/React)",
-              "\u2514\u2500\u2500 proto/            \u2190 identical to what you generated in Month 1",
-              "```",
+              "| Project | Why It Fits | Entry Points |\n|---|---|---|\n| **Jaeger** | You rebuilt Jaeger. You know the architecture at implementation depth. | `jaeger-ui` TypeScript waterfall improvements, Go collector, ClickHouse storage plugin |\n| **OpenTelemetry Go** | You implemented OTLP. You understand the SDK from building the Collector. | `sdk/trace`, `exporters/otlp`, receiver components |\n| **OpenTelemetry Collector Contrib** | You built a collector. Contrib has 100+ receivers/exporters. | ClickHouse receiver, OTLP improvements |\n| **Prometheus** | You've written Prometheus exporters across all projects in both Go and TypeScript. | Client library improvements, Node.js exporter |\n| **Kubernetes** (`controller-runtime`) | You wrote a K8s Operator for OpenTrace. | Reconciler improvements, better error handling |",
+              "**How to read the Jaeger codebase fast:**\n```\njaeger/\n\u251c\u2500\u2500 cmd/collector/    \u2190 mirrors your OpenTrace Collector (Go)\n\u251c\u2500\u2500 cmd/query/        \u2190 mirrors your OpenTrace Query Service (Go)\n\u251c\u2500\u2500 plugin/storage/   \u2190 storage plugins\n\u2502   \u2514\u2500\u2500 clickhouse/  \u2190 your contribution target\n\u251c\u2500\u2500 jaeger-ui/        \u2190 mirrors your OpenTrace UI (TypeScript/React)\n\u2514\u2500\u2500 proto/            \u2190 identical to what you generated in Month 1\n```",
               "**Your natural Jaeger contribution:** Production-quality ClickHouse storage plugin. Jaeger has Cassandra, Elasticsearch, BadgerDB \u2014 but no ClickHouse. You built one for OpenTrace. This is the proposal.",
               "**Cover letter structure:**",
-              "```",
-              "Paragraph 1 \u2014 What you built:",
-              "\"I spent 9 months building 13 GitHub repos across two languages. The centrepiece",
-              "is OpenTrace \u2014 a complete distributed tracing system in Go and TypeScript,",
-              "equivalent to Jaeger. I also built 4 independent backend systems (PayCore in Go,",
-              "DungBeetle in Go, BookWise in TypeScript, RouteMaster in TypeScript) and 8",
-              "production-grade building blocks. Both Go and TypeScript at production depth.\"",
-              "Paragraph 2 \u2014 Why this project specifically:",
-              "\"I'm applying to contribute to Jaeger because OpenTrace gave me implementation-depth",
-              "familiarity with the OTLP protocol, ClickHouse storage patterns, the trace query",
-              "model, and the Jaeger UI's waterfall rendering. I've already contributed [N] PRs.",
-              "My natural contribution: the ClickHouse storage plugin.\"",
-              "Paragraph 3 \u2014 Technical proposal:",
-              "\"Implementation approach: implements `spanstore.Reader` and `spanstore.Writer`",
-              "interfaces using ClickHouse MergeTree with monthly partitioning and 30-day TTL.",
-              "Schema matches the Jaeger data model. Tested with testcontainers-go. Benchmarked",
-              "at 10M spans/sec. See BENCHMARKS.md.\"",
-              "Paragraph 4 \u2014 Why you complete what you start:",
-              "\"Here is my GitHub activity graph for the last 9 months. Here are the 8 standalone",
-              "building blocks. I ship every week. I complete what I start.\"",
-              "```",
-              "### Final Week \u2014 All 13 READMEs + Cold Emails",
-              "**Every README must have:**",
-              "- Mermaid architecture diagram",
-              "- Benchmark table with p50/p95/p99 at target RPS",
-              "- Live demo link",
-              "- ADR index (links to all ADRs)",
-              "- Building blocks consumed (with links)",
-              "- `BENCHMARKS.md` link",
+              "```\nParagraph 1 \u2014 What you built:\n\"I spent 9 months building 13 GitHub repos across two languages. The centrepiece\nis OpenTrace \u2014 a complete distributed tracing system in Go and TypeScript,\nequivalent to Jaeger. I also built 4 independent backend systems (PayCore in Go,\nDungBeetle in Go, BookWise in TypeScript, RouteMaster in TypeScript) and 8\nproduction-grade building blocks. Both Go and TypeScript at production depth.\"",
+              "Paragraph 2 \u2014 Why this project specifically:\n\"I'm applying to contribute to Jaeger because OpenTrace gave me implementation-depth\nfamiliarity with the OTLP protocol, ClickHouse storage patterns, the trace query\nmodel, and the Jaeger UI's waterfall rendering. I've already contributed [N] PRs.\nMy natural contribution: the ClickHouse storage plugin.\"",
+              "Paragraph 3 \u2014 Technical proposal:\n\"Implementation approach: implements `spanstore.Reader` and `spanstore.Writer`\ninterfaces using ClickHouse MergeTree with monthly partitioning and 30-day TTL.\nSchema matches the Jaeger data model. Tested with testcontainers-go. Benchmarked\nat 10M spans/sec. See BENCHMARKS.md.\"",
+              "Paragraph 4 \u2014 Why you complete what you start:\n\"Here is my GitHub activity graph for the last 9 months. Here are the 8 standalone\nbuilding blocks. I ship every week. I complete what I start.\"\n```"
+            ]
+          },
+          {
+            "title": "Final Week \u2014 All 13 READMEs + Cold Emails",
+            "tasks": [
+              "**Every README must have:**\n- Mermaid architecture diagram\n- Benchmark table with p50/p95/p99 at target RPS\n- Live demo link\n- ADR index (links to all ADRs)\n- Building blocks consumed (with links)\n- `BENCHMARKS.md` link",
               "**Cold emails sent this month:** Infraspec, Rippling, Uber, Zomato, Swiggy, DoorDash, Amazon, Google. Subject line formula: `Built [PROJECT]: [ONE NUMBER] \u2014 applying for [ROLE] at [COMPANY]`."
             ]
           }

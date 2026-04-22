@@ -17,6 +17,9 @@ import dsaDataImport from "../data/dsa.json";
 const dsaData = dsaDataImport as any;
 import nineMonthData from "../data/nine_month_plan.json";
 import biweeklyData from "../data/biweekly.json";
+import questionsDataImport from "../data/questions.json";
+const qData = questionsDataImport as any;
+import { HelpCircle } from "lucide-react";
 
 const DEFAULT_CATEGORIES = [
   { id: "commission", name: "Commission", color: "#3b82f6", w: 8, h: 1, locked: false },
@@ -43,6 +46,22 @@ export default function HomeDashboard() {
   const [activeProject, setActiveProject] = useState<any>(null);
   const [miscTasks, setMiscTasks] = useState<any[]>([]);
   const [nextMilestone, setNextMilestone] = useState<any>(null);
+  const [dailyQuestions, setDailyQuestions] = useState<any[]>([]);
+
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    const seed = today.split('-').reduce((acc, val) => acc + parseInt(val), 0);
+    
+    // Pick one from backend
+    const bMatch = qData.backend[seed % qData.backend.length];
+    // Pick one from clrs
+    const cMatch = qData.clrs[seed % qData.clrs.length];
+    
+    setDailyQuestions([
+      { ...bMatch, bank: "Backend" },
+      { ...cMatch, bank: "Algorithms" }
+    ]);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
@@ -217,6 +236,24 @@ export default function HomeDashboard() {
           ) : (
             <p className="empty-state">All current objectives achieved.</p>
           )}
+        </div>
+
+        <div className="dashboard-main-card daily-questions">
+          <div className="card-header">
+            <HelpCircle className="header-icon" />
+            <h2>Daily Mental Sparring</h2>
+          </div>
+          <div className="daily-questions-wrap">
+            {dailyQuestions.map((q, idx) => (
+              <div key={idx} className="daily-q-item">
+                <div className="q-meta">
+                  <span className="q-bank">{q.bank}</span>
+                  <span className="q-type-mini">{q.type}</span>
+                </div>
+                <p className="q-text-small">{q.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="dashboard-side-cards mobile-hide">

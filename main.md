@@ -271,10 +271,10 @@ Every day you operate with three goals simultaneously:
 ### 🏛️ Stage 14: Distributed Systems — Deep
 > **Your core interest. These concepts are built, not just understood. Every pattern below is implemented in running, tested, benchmarked code.**
 
-- [ ] **Leader election** — Redis SETNX + TTL + heartbeat lease renewal, split-brain prevention **(Biweekly Project 7)**
-- [ ] **Distributed locks with fencing tokens** — why TTL alone is not enough, monotonically increasing fencing tokens, Lua atomic verify-and-delete **(Biweekly Project 7)**
-- [ ] **Consistent hashing** — ring + virtual nodes (vnodes), adding/removing nodes remaps only 1/N keys, ketama algorithm — implemented in Go
-- [ ] **Bloom filters** — probabilistic membership, false positive rate formula, optimal hash count, Redis `BF.ADD`/`BF.EXISTS` — implemented in Go
+- [ ] **Leader election** — Redis SETNX + TTL + heartbeat lease renewal, split-brain prevention (DungBeetle leader)
+- [ ] **Distributed locks with fencing tokens** — why TTL alone is not enough, monotonically increasing fencing tokens, Lua atomic verify-and-delete (BookWise seat lock)
+- [ ] **Consistent hashing** — ring + virtual nodes (vnodes), adding/removing nodes remaps only 1/N keys, ketama algorithm — implemented in Go (RouteMaster drivers)
+- [ ] **Bloom filters** — probabilistic membership, false positive rate formula, optimal hash count, Redis `BF.ADD`/`BF.EXISTS` — implemented in Go (crawler)
 - [ ] **CAP theorem** — Consistency + Availability + Partition Tolerance, CP vs AP tradeoffs
 - [ ] **Saga pattern** — sequence of local transactions with compensating rollbacks, choreography (Kafka events) vs orchestration (DungBeetle job steps)
 - [ ] **Event sourcing** — state = replay of immutable events, PayCore double-entry ledger as event stream, CQRS read model projection
@@ -481,7 +481,7 @@ The shared technology (PostgreSQL, Redis, Kafka, Go, OpenTelemetry) across all f
 
 ## Biweekly Projects — Database + Distributed Systems Internals
 
-These 8 biweekly projects are where the DBMS and distributed systems depth gets built. Each one is a standalone system that implements a concept from the inside out. By the end, you have implemented: a WAL, a connection pool, a clustered WebSocket server, a DNS resolver, an SMTP server, an OTP gateway, a distributed lock service, and an LSM-tree storage engine.
+These 8 biweekly projects are where the DBMS and distributed systems depth gets built. Each one is a standalone system that implements a concept from the inside out. By the end, you have implemented: a WAL, a connection pool, a clustered WebSocket server, a DNS resolver, an LSM-tree storage engine, a notification delivery service, an OTP gateway, and an API Gateway.
 
 ---
 
@@ -566,99 +566,46 @@ Components:
 
 ---
 
-### Biweekly Project 5 — Weeks 9–10: Notification Delivery Service (Multi-Channel, Reliable)
+### Biweekly Project 5 — Weeks 9–10: `lsm` Storage Engine (RocksDB Write Path)
 
-**What this teaches:** Fan-out architecture, multi-channel delivery (email via SendGrid/AWS SES, SMS via Twilio, push via FCM/APNs), reliable queue-backed delivery with retries — the exact pattern used by every Indian product company at scale (Swiggy, Zomato, Zepto all have this system).
+**What this teaches:** Why LSM-trees have excellent write performance (sequential writes), what "write amplification" means, and why Bloom filters are essential. RocksDB, LevelDB, and ClickHouse's MergeTree use this architecture.
 
-**Why this over an SMTP server:** Building a raw SMTP server is intellectually interesting but has low hiring signal in Indian interviews. Building a *notification delivery service* — which companies like Razorpay, PhonePe, and RouteMaster actually run — shows product-oriented distributed systems thinking that interviewers recognise immediately.
-
-**What you build:** A standalone notification delivery service in Go with a clean REST API that all 5 projects consume.
-
-- **Multi-channel abstraction** — pluggable `Channel` interface. Implement: Email (AWS SES), SMS (Twilio mock), Push (FCM mock). Swap channels without changing the caller.
-
-```go
-type Channel interface {
-    ID() string
-    Send(ctx context.Context, to, subject, body string) error
-}
-```
-
-- **Reliable delivery queue** — every notification inserted into PostgreSQL (`SELECT FOR UPDATE SKIP LOCKED` worker). Status: `pending → sending → delivered | failed`. Exponential backoff with jitter on failures. After 3 attempts → DLQ.
-- **Idempotency** — `POST /notifications` accepts an `X-Idempotency-Key` header. Duplicate requests return the cached result — no double-sends.
-- **User preferences** — `GET /preferences/{userId}` returns which channels the user has enabled. The service respects opt-outs. PostgreSQL table: `user_preferences(user_id, channel, enabled)`.
-- **Rate limiting** — max 5 notifications per user per minute via Redis `INCR notif:{userId}:{minute}` with 60s TTL. Prevents notification spam.
-- **Webhook** — on delivery/failure, the service calls a configurable webhook URL (HMAC-signed). All 5 projects use this for delivery receipts.
-
-**Benchmark:** 10K notifications/hour throughput. DLQ depth monitoring in Grafana.
-
-**Connection to plan:** This is a standalone microservice in its own repo (`notification-service`). RouteMaster, PayCore, and DungBeetle each call it over HTTP when they need to notify a user — a clean REST API boundary with no shared code or shared deployment. Each project simply `POST /notifications` with a payload. This is exactly how notification systems work at Swiggy, Razorpay, and PhonePe.
+- **MemTable** — in-memory sorted map (B-Tree/SkipList).
+- **SSTable** — immutable sorted file on disk with sparse index and Bloom filter.
+- **Compaction** — k-way merge (min-heap) of multiple SSTables to reduce read amplification.
+- **Tombstones** — logical deletes that get physically removed during compaction.
 
 ---
 
-### Biweekly Project 6 — Weeks 11–12: OTP Gateway (Multi-Tenant Auth Primitive)
+### Biweekly Project 6 — Weeks 11–12: `herald` Notification Delivery Service
 
-**What this teaches:** Multi-tenancy at API level, crypto/rand vs math/rand for secrets, Redis as ephemeral state store, rate limiting at application layer.
+**What this teaches:** Fan-out architecture, multi-channel delivery (Email, SMS, Push), and reliable queue-backed delivery with exponential backoff. Used by Swiggy, Zomato, and Zepto.
 
-**What you build:** A production-grade, self-hosted OTP verification service.
-
-- **Multi-tenant** — each tenant gets a namespace + secret for BasicAuth. OTPs scoped per namespace.
-- **Provider abstraction** — pluggable `Provider` interface: Email (via Notification Delivery Service from Biweekly Project 5), webhook (POST to any URL)
-- **OTP lifecycle** — generate cryptographically random 6-digit OTP (`crypto/rand`). Store in Redis with TTL (`SETEX otp:{namespace}:{id} {ttl} {hashedOTP}`). Hash on storage (never raw OTP). Verify by hashing and comparing.
-- **Rate limiting** — max 5 verification attempts per OTP via Redis `INCR otp:attempts:{id}` + TTL. Block after 5.
-- **REST API** — `PUT /api/otp/:id` (generate + send), `POST /api/otp/:id` (verify), `POST /api/otp/:id/status` (check if verified)
-
-**Connection to plan:** All 5 flagship projects use this for 2FA. The multi-tenant namespace pattern mirrors DungBeetle's multi-tenant job queue.
+- **Multi-channel abstraction** — pluggable Email/SMS/Push providers.
+- **Reliable queue** — `SELECT FOR UPDATE SKIP LOCKED` worker in PostgreSQL.
+- **Idempotency** — prevent double-sending via `X-Idempotency-Key`.
+- **User preferences** — respect opt-out settings stored in PostgreSQL.
 
 ---
 
-### Biweekly Project 7 — Weeks 13–14: Distributed Lock Service (Like Redlock, But Simpler and Yours)
+### Biweekly Project 7 — Weeks 13–14: `gatekeeper` OTP Gateway
 
-**What this teaches:** The distributed lock problem, why TTL alone is not enough (fencing tokens), how DynamoDB, PostgreSQL advisory locks, and ZooKeeper solve the same problem differently.
+**What this teaches:** Multi-tenancy at API level, cryptographically secure secrets, and Redis as an ephemeral state store for OTP lifecycle.
 
-**What you build:** A standalone Go service that provides distributed mutex primitives over HTTP and gRPC.
-
-- **Lock acquisition** — `POST /locks/:resource` → try `SET lock:{resource} {ownerToken} NX PX {ttlMs}`. Returns lock token if acquired, 409 if held.
-- **Lock release** — `DELETE /locks/:resource`. Lua script: verify token matches stored token, then delete. Atomic — no race between verify and delete.
-
-```lua
-if redis.call("get", KEYS[1]) == ARGV[1] then
-  return redis.call("del", KEYS[1])
-else
-  return 0
-end
-```
-
-- **Lock renewal** — `PATCH /locks/:resource` extends TTL. Used by long-running jobs.
-- **Fencing tokens** — every lock acquisition returns a monotonically increasing fencing token (Redis `INCR lock:fence:{resource}`). The resource holder passes the token with every write. The resource rejects writes with stale tokens. This prevents the "process paused by GC, lock expired, other process takes lock, first process wakes and writes" race condition.
-- **Watchdog goroutine** — automatically renew locks held by live clients on heartbeat schedule. If heartbeat stops (client died), lock expires via TTL.
-
-**Connection to plan:** BookWise (Month 6) uses this lock service to prevent double-booking. DungBeetle uses it for leader election. PayCore uses it for idempotency key deduplication.
+- **OTP Lifecycle** — generate (`crypto/rand`), hash, store in Redis, verify, and expire.
+- **Multi-tenant** — namespaces per project (BookWise, PayCore) with independent limits.
+- **Provider integration** — calls `herald` to deliver the OTP to the user.
 
 ---
 
-### Biweekly Project 8 — Weeks 15–16: LSM-Tree Storage Engine (The Write Path of RocksDB, Yours)
+### Biweekly Project 8 — Weeks 15–16: `switchboard` API Gateway
 
-**What this teaches:** Why LSM-trees have excellent write performance (sequential writes), why reads are more expensive (multiple files to check), what "write amplification" means, why Bloom filters are essential for LSM performance. RocksDB, LevelDB, Cassandra, DynamoDB, and ScyllaDB all use this architecture.
+**What this teaches:** JWT RS256 verification (JWKS), rate limiting (Sliding Window via Redis Lua), circuit breaker pattern, and Node.js streaming request proxying.
 
-**What you build:** A key-value storage engine in Go using an LSM-tree (Log-Structured Merge-tree). Same architecture as LevelDB.
-
-- **MemTable** — in-memory sorted map. All writes go here first.
-- **WAL** — every write to MemTable is first written to the WAL (append-only file). Recovery: replay WAL on startup.
-- **Flush to SSTable** — when MemTable exceeds 4MB, flush to disk as an SSTable (Sorted String Table): a sorted, immutable file with a binary search index at the end.
-
-```
-SSTable layout:
-[data block 1][data block 2]...[index block][footer]
-index block: sorted list of (last_key_in_block → block_offset)
-```
-
-- **Compaction** — multiple SSTables accumulate. Compaction: read all, merge-sort, write new SSTable, delete old ones. Handle tombstones (deleted keys).
-- **Bloom filter per SSTable** — before reading an SSTable to check if a key exists, check its Bloom filter. If "no," skip the file. Reduces unnecessary disk reads from O(N files) to O(1) for missing keys.
-- **Get operation** — check MemTable → check SSTables newest-to-oldest (with Bloom filter shortcut) → return first match or "not found."
-
-**Benchmark:** 1M writes. Measure: write throughput, read latency (warm cache, cold cache), compaction impact on write latency (write stalls). Document in `BENCHMARKS.md`.
-
-**Connection to plan:** If someone asks "how does RocksDB work?" you answer from code, not Wikipedia. This is also the write path OpenTrace's ClickHouse Storage Layer uses conceptually — understanding LSM-trees makes ClickHouse's MergeTree engine immediately clear.
+- **L7 Routing** — path-prefix routing to upstreams (e.g., `/api/bookings` → `bookwise:8080`).
+- **Auth Guard** — verify JWTs using public keys from a remote JWKS endpoint.
+- **Resilience** — circuit breakers to fast-fail when upstreams are unhealthy.
+- **Real-time Proxy** — transparently pipe SSE and WebSocket streams without buffering.
 
 ---
 

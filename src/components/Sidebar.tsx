@@ -1,70 +1,37 @@
-import { Home, Calendar, Rocket, Dna, Timer, Terminal, ChevronLeft, ChevronRight, Settings, Layers, HelpCircle } from "lucide-react";
-import { useState } from "react";
+import { Grid, Activity, FileText, Layers, Users, MessageSquare, Settings, Sun, Database } from "lucide-react";
 
-type NavItem = {
-  id: string;
-  label: string;
-  icon: any;
-  color: string;
-};
-
-const NAV_ITEMS: NavItem[] = [
-  { id: "home", label: "Overview", icon: Home, color: "#3b82f6" },
-  { id: "daily", label: "Daily Plan", icon: Calendar, color: "#10b981" },
-  { id: "nine-month", label: "9-Month Mastery", icon: Rocket, color: "#3b82f6" },
-  { id: "dsa", label: "DSA Tracker", icon: Dna, color: "#a855f7" },
-  { id: "biweekly", label: "Biweekly Internals", icon: Layers, color: "#3b82f6" },
-  { id: "questions", label: "Questions", icon: HelpCircle, color: "#ec4899" },
-  { id: "timer", label: "Timers", icon: Timer, color: "#f59e0b" },
-  { id: "system", label: "System Console", icon: Terminal, color: "#3b82f6" },
-];
-
-export default function Sidebar({ 
-  activeTab, 
-  onTabSelect 
-}: { 
-  activeTab: string; 
-  onTabSelect: (tab: any) => void 
-}) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
+export default function Sidebar({ activeTab, onTabSelect }: any) {
   return (
-    <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-      <div className="sidebar-header">
-        {!isCollapsed && <span className="logo-text">PROPERRR</span>}
-        <button 
-          className="collapse-btn" 
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        >
-          {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-        </button>
+    <aside className="meridian-sidebar">
+      <div className="meridian-sidebar-section">
+        <h4 className="meridian-sidebar-header">OVERVIEW</h4>
+        <NavItem id="home" label="Dashboard" activeTab={activeTab} onTabSelect={onTabSelect} icon={Grid} />
+        <NavItem id="daily" label="Analytics" activeTab={activeTab} onTabSelect={onTabSelect} icon={Activity} badge="New" />
+        <NavItem id="nine-month" label="Reports" activeTab={activeTab} onTabSelect={onTabSelect} icon={FileText} />
+      </div>
+      
+      <div className="meridian-sidebar-section">
+        <h4 className="meridian-sidebar-header">MANAGE</h4>
+        <NavItem id="dsa" label="Projects" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} badge="4" />
+        <NavItem id="biweekly" label="Users" activeTab={activeTab} onTabSelect={onTabSelect} icon={Users} />
+        <NavItem id="questions" label="Messages" activeTab={activeTab} onTabSelect={onTabSelect} icon={MessageSquare} badge="12" />
       </div>
 
-      <nav className="sidebar-nav">
-        {NAV_ITEMS.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeTab === item.id;
-          return (
-            <button
-              key={item.id}
-              className={`sidebar-item ${isActive ? 'active' : ''}`}
-              onClick={() => onTabSelect(item.id)}
-              style={{ '--accent': item.color } as any}
-            >
-              <Icon size={20} className="sidebar-icon" />
-              {!isCollapsed && <span className="sidebar-label">{item.label}</span>}
-              {isActive && !isCollapsed && <div className="active-indicator" />}
-            </button>
-          );
-        })}
-      </nav>
-
-      <div className="sidebar-footer">
-        <button className="sidebar-item settings">
-          <Settings size={20} />
-          {!isCollapsed && <span>Settings</span>}
-        </button>
+      <div className="meridian-sidebar-section">
+        <h4 className="meridian-sidebar-header">SYSTEM</h4>
+        <NavItem id="timer" label="Timers" activeTab={activeTab} onTabSelect={onTabSelect} icon={Sun} />
+        <NavItem id="system" label="Settings" activeTab={activeTab} onTabSelect={onTabSelect} icon={Settings} />
       </div>
     </aside>
+  );
+}
+
+function NavItem({ id, label, icon: Icon, activeTab, onTabSelect, badge }: any) {
+  return (
+    <div className={`meridian-nav-item ${activeTab === id ? 'active' : ''}`} onClick={() => onTabSelect(id)}>
+      <Icon size={16} strokeWidth={1.5} />
+      <span>{label}</span>
+      {badge && <span className="meridian-badge">{badge}</span>}
+    </div>
   );
 }

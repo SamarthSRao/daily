@@ -80,6 +80,16 @@ export default function DsaPage() {
     );
   }, [activeLevel, searchQuery]);
 
+  const groupedProblems = useMemo(() => {
+    const groups: Record<string, Problem[]> = {};
+    filteredProblems.forEach(p => {
+      const cluster = p.cluster || "Ungrouped Concepts";
+      if (!groups[cluster]) groups[cluster] = [];
+      groups[cluster].push(p);
+    });
+    return groups;
+  }, [filteredProblems]);
+
   const stats = useMemo(() => {
     const level = dsaData[activeLevel] as Level;
     const total = level.problems.length;
@@ -154,105 +164,114 @@ export default function DsaPage() {
         </div>
       </header>
 
-      <div className="dsa-problems-grid">
-        {filteredProblems.map((prob) => {
-          const taskId = `dsa-${prob.id}`;
-          const isDone = !!completedDsa[taskId];
-          const isExpanded = expandedProblemId === prob.id;
+      <div className="dsa-clusters-wrap">
+        {Object.entries(groupedProblems).map(([clusterName, problems]) => (
+          <div key={clusterName} style={{ marginBottom: "48px" }}>
+            <h2 style={{ fontSize: "1.5rem", fontWeight: "800", marginBottom: "20px", paddingBottom: "12px", borderBottom: "1px solid var(--border-color)", color: "var(--text-primary)" }}>
+              {clusterName}
+            </h2>
+            <div className="dsa-problems-grid" style={{ paddingBottom: "0" }}>
+              {problems.map((prob) => {
+                const taskId = `dsa-${prob.id}`;
+                const isDone = !!completedDsa[taskId];
+                const isExpanded = expandedProblemId === prob.id;
 
-          return (
-            <div 
-              key={prob.id} 
-              className={`dsa-problem-card ${isDone ? "completed" : ""}`}
-              onClick={() => toggleExpand(prob.id)}
-            >
-              <div className="dsa-card-header">
-                <span className="dsa-id-badge">{prob.id}</span>
-                <button 
-                  className="bg-transparent border-none cursor-pointer"
-                  onClick={(e) => toggleDsaTask(taskId, e)}
-                >
-                  {isDone ? (
-                    <CheckCircle2 className="dsa-status-icon text-emerald-500" />
-                  ) : (
-                    <Circle className="dsa-status-icon text-slate-600" />
-                  )}
-                </button>
-              </div>
-
-              <div className="dsa-card-body">
-                <h3>{prob.title}</h3>
-                <div className="dsa-tags">
-                  {prob.pattern && (
-                    <span className="dsa-tag pattern">
-                      <Zap size={10} className="mr-1 inline" />
-                      {prob.pattern}
-                    </span>
-                  )}
-                  {prob.company && (
-                    <span className="dsa-tag company">
-                      <Building2 size={10} className="mr-1 inline" />
-                      {prob.company}
-                    </span>
-                  )}
-                  {prob.striver_covered && (
-                    <span className="dsa-tag striver">
-                      <Library size={10} className="mr-1 inline" />
-                      Striver
-                    </span>
-                  )}
-                  {prob.is_duplicate && (
-                    <span className="dsa-tag duplicate">
-                      <HistoryIcon size={10} className="mr-1 inline" />
-                      Repeated
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {isExpanded && (
-                <div className="dsa-expansion" onClick={(e) => e.stopPropagation()}>
-                  {prob.cluster && (
-                    <div>
-                      <span className="dsa-sub-title">Domain Cluster</span>
-                      <p className="dsa-info-text">{prob.cluster}</p>
+                return (
+                  <div 
+                    key={prob.id} 
+                    className={`dsa-problem-card ${isDone ? "completed" : ""}`}
+                    onClick={() => toggleExpand(prob.id)}
+                  >
+                    <div className="dsa-card-header">
+                      <span className="dsa-id-badge">{prob.id}</span>
+                      <button 
+                        className="bg-transparent border-none cursor-pointer"
+                        onClick={(e) => toggleDsaTask(taskId, e)}
+                      >
+                        {isDone ? (
+                          <CheckCircle2 className="dsa-status-icon text-emerald-500" />
+                        ) : (
+                          <Circle className="dsa-status-icon text-slate-600" />
+                        )}
+                      </button>
                     </div>
-                  )}
-                  
-                  {prob.note && (
-                    <div>
-                      <span className="dsa-sub-title">Key Insights</span>
-                      <p className="dsa-info-text">{prob.note}</p>
-                    </div>
-                  )}
 
-                  {prob.prerequisite && (
-                    <div>
-                      <span className="dsa-sub-title">Prerequisites</span>
-                      <div className="dsa-prereq-box">{prob.prerequisite}</div>
+                    <div className="dsa-card-body">
+                      <h3>{prob.title}</h3>
+                      <div className="dsa-tags">
+                        {prob.pattern && (
+                          <span className="dsa-tag pattern">
+                            <Zap size={10} className="mr-1 inline" />
+                            {prob.pattern}
+                          </span>
+                        )}
+                        {prob.company && (
+                          <span className="dsa-tag company">
+                            <Building2 size={10} className="mr-1 inline" />
+                            {prob.company}
+                          </span>
+                        )}
+                        {prob.striver_covered && (
+                          <span className="dsa-tag striver">
+                            <Library size={10} className="mr-1 inline" />
+                            Striver
+                          </span>
+                        )}
+                        {prob.is_duplicate && (
+                          <span className="dsa-tag duplicate">
+                            <HistoryIcon size={10} className="mr-1 inline" />
+                            Repeated
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  )}
 
-                  {(prob.representation_note || prob.representation_decision) && (
-                    <div className="mt-2 p-3 bg-blue-950/30 rounded-lg border border-blue-500/20">
-                      <span className="dsa-sub-title text-blue-400">Architectural Decision</span>
-                      {prob.representation_decision && (
-                        <p className="font-bold text-sm mb-1 text-blue-200">{prob.representation_decision}</p>
-                      )}
-                      {prob.representation_note && (
-                        <p className="text-xs text-blue-300/80 leading-relaxed italic">{prob.representation_note}</p>
-                      )}
+                    {isExpanded && (
+                      <div className="dsa-expansion" onClick={(e) => e.stopPropagation()}>
+                        {prob.cluster && (
+                          <div>
+                            <span className="dsa-sub-title">Domain Cluster</span>
+                            <p className="dsa-info-text">{prob.cluster}</p>
+                          </div>
+                        )}
+                        
+                        {prob.note && (
+                          <div>
+                            <span className="dsa-sub-title">Key Insights</span>
+                            <p className="dsa-info-text">{prob.note}</p>
+                          </div>
+                        )}
+
+                        {prob.prerequisite && (
+                          <div>
+                            <span className="dsa-sub-title">Prerequisites</span>
+                            <div className="dsa-prereq-box">{prob.prerequisite}</div>
+                          </div>
+                        )}
+
+                        {(prob.representation_note || prob.representation_decision) && (
+                          <div className="mt-2 p-3 bg-blue-950/30 rounded-lg border border-blue-500/20">
+                            <span className="dsa-sub-title text-blue-400">Architectural Decision</span>
+                            {prob.representation_decision && (
+                              <p className="font-bold text-sm mb-1 text-blue-200">{prob.representation_decision}</p>
+                            )}
+                            {prob.representation_note && (
+                              <p className="text-xs text-blue-300/80 leading-relaxed italic">{prob.representation_note}</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    
+                    <div className="mt-2 flex justify-center text-slate-600">
+                      {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </div>
-                  )}
-                </div>
-              )}
-              
-              <div className="mt-2 flex justify-center text-slate-600">
-                {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       {filteredProblems.length === 0 && (

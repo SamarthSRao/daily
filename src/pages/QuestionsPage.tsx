@@ -87,20 +87,41 @@ export default function QuestionsPage() {
       </div>
 
       <div className="questions-list">
-        {paginatedQuestions.map((q, idx) => (
-          <div key={`${activeBank}-${q.id}-${idx}`} className="question-card">
-            <div className="q-card-header">
-              <span className="q-id">#{q.id}</span>
-              <span className={`q-type ${(q.type || '').toLowerCase()}`}>{q.type}</span>
-              <span className="q-tag">{q.tag}</span>
-            </div>
-            <p className="q-text">{q.text}</p>
-            <div className="q-footer">
-               <span className="q-subsection">{q.subSection}</span>
-               <ChevronRight size={14} className="q-arrow" />
-            </div>
-          </div>
-        ))}
+        {(() => {
+          let currentSection = "";
+          let currentSubSection = "";
+
+          return paginatedQuestions.map((q, idx) => {
+            const showSection = q.section !== currentSection;
+            const showSubSection = q.subSection !== currentSubSection;
+            
+            if (showSection) currentSection = q.section || "";
+            if (showSubSection) currentSubSection = q.subSection || "";
+
+            return (
+              <div key={`${activeBank}-${q.id}-${idx}`}>
+                {showSection && q.section && (
+                  <h2 style={{ fontSize: "1.5rem", fontWeight: "800", marginTop: "40px", marginBottom: "16px", color: "var(--meridian-text, #fff)", borderBottom: "1px solid var(--meridian-border, #333)", paddingBottom: "8px" }}>
+                    {q.section}
+                  </h2>
+                )}
+                {showSubSection && q.subSection && (
+                  <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginTop: "24px", marginBottom: "16px", color: "var(--meridian-text-muted, #aaa)" }}>
+                    {q.subSection}
+                  </h3>
+                )}
+                <div className="question-card" style={{ marginBottom: "16px" }}>
+                  <div className="q-card-header">
+                    <span className="q-id">#{q.id}</span>
+                    <span className={`q-type ${(q.type || '').toLowerCase()}`}>{q.type}</span>
+                    <span className="q-tag">{q.tag}</span>
+                  </div>
+                  <p className="q-text">{q.text}</p>
+                </div>
+              </div>
+            );
+          });
+        })()}
       </div>
 
       {totalPages > 1 && (

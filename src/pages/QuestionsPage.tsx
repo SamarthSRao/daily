@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { HelpCircle, Terminal, Book, ChevronRight, Search, Hash } from "lucide-react";
+import { HelpCircle, Terminal, Book, Search, Hash } from "lucide-react";
 import questionsData from "../data/questions.json";
 import "../styles/Questions.css";
 import "../index.css";

@@ -1,4 +1,4 @@
-import { Grid, Activity, FileText, Layers, Users, MessageSquare, Settings, Sun, Database } from "lucide-react";
+import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database } from "lucide-react";
 
 export default function Sidebar({ activeTab, onTabSelect }: any) {
   return (

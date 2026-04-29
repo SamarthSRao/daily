@@ -325,3 +325,27 @@
 .cursor-pointer { cursor: pointer; }
 .whitespace-nowrap { white-space: nowrap; }
 
+/* Mobile Responsiveness for DSA */
+@media (max-width: 1024px) {
+  .dsa-problems-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dsa-problems-grid {
+    grid-template-columns: 1fr;
+  }
+  .level-tabs {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .dsa-header-premium {
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .dsa-title-premium {
+    font-size: 2rem;
+  }
+}
+

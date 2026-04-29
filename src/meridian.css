@@ -283,3 +283,100 @@ body {
   display: inline-block;
   animation: scrollMarquee 20s linear infinite;
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+  .meridian-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .meridian-stat-box {
+    border-bottom: 1px solid var(--meridian-border);
+  }
+  .meridian-stat-box:nth-child(2) {
+    border-right: none;
+  }
+  .meridian-stat-box:nth-child(3),
+  .meridian-stat-box:nth-child(4) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .meridian-body {
+    flex-direction: column;
+  }
+
+  /* Sidebar becomes horizontal scrollable nav on top or just row */
+  .meridian-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--meridian-border);
+    padding: 16px 24px;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 16px;
+  }
+
+  .meridian-sidebar-section {
+    margin-bottom: 0;
+    display: flex;
+    gap: 8px;
+  }
+
+  .meridian-sidebar-header {
+    display: none; /* Hide headers to save horizontal space */
+  }
+
+  .meridian-nav-item {
+    padding: 8px 16px;
+    border: 1px solid var(--meridian-border);
+    border-radius: 20px;
+  }
+
+  /* Main content padding reduction */
+  .meridian-main {
+    padding: 24px 16px;
+  }
+
+  /* Topbar reduction */
+  .meridian-topbar {
+    padding: 0 16px !important;
+  }
+  .meridian-topbar > div:nth-child(3) {
+    display: none !important; /* Hide date/time on very small screens to make room for SAM and Link */
+  }
+
+  /* Home Dashboard */
+  .meridian-home-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .meridian-title-area h1 {
+    font-size: 2.5rem;
+  }
+
+  .meridian-date-area {
+    text-align: left;
+  }
+
+  .meridian-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meridian-stat-box {
+    border-right: none !important;
+    border-bottom: 1px solid var(--meridian-border) !important;
+  }
+
+  .meridian-stat-box:last-child {
+    border-bottom: none !important;
+  }
+
+  .meridian-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}

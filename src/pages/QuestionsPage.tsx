@@ -101,7 +101,7 @@ export default function QuestionsPage() {
             return (
               <div key={`${activeBank}-${q.id}-${idx}`}>
                 {showSection && q.section && (
-                  <h2 style={{ fontSize: "1.5rem", fontWeight: "800", marginTop: "40px", marginBottom: "16px", color: "var(--meridian-text, #fff)", borderBottom: "1px solid var(--meridian-border, #333)", paddingBottom: "8px" }}>
+                  <h2 style={{ fontSize: "1.5rem", fontWeight: "800", marginTop: "40px", marginBottom: "16px", color: "var(--meridian-text, #111)", borderBottom: "1px solid var(--meridian-border, #111)", paddingBottom: "8px" }}>
                     {q.section}
                   </h2>
                 )}

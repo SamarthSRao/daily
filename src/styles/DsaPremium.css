@@ -41,7 +41,7 @@
   justify-content: center;
   gap: 8px;
   margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.03);
   padding: 6px;
   border-radius: 14px;
   width: fit-content;
@@ -65,11 +65,11 @@
 
 .level-tab:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .level-tab.active {
-  color: #fff;
+  color: #111;
   background: var(--level-accent);
   box-shadow: 0 4px 15px var(--level-glow);
 }
@@ -80,7 +80,7 @@
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(0, 0, 0, 0.02);
   padding: 16px;
   border-radius: 16px;
   border: 1px solid var(--border-color);
@@ -105,7 +105,7 @@
 .progress-bar-bg {
   width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -127,11 +127,11 @@
 
 .dsa-search-input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 12px 20px 12px 40px;
-  color: white;
+  color: #111;
   font-family: inherit;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -139,7 +139,7 @@
 
 .dsa-search-input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   border-color: #3b82f6;
 }
 
@@ -160,7 +160,7 @@
 }
 
 .dsa-problem-card {
-  background: rgba(22, 22, 24, 0.6);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 18px;
@@ -178,7 +178,7 @@
 .dsa-problem-card:hover {
   transform: translateY(-4px);
   border-color: var(--level-accent);
-  background: rgba(30, 30, 33, 0.8);
+  background: var(--bg-hover);
   box-shadow: 0 15px 30px -15px var(--level-glow);
 }
 
@@ -193,10 +193,10 @@
   font-size: 0.7rem;
   font-weight: 800;
   color: var(--level-accent);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.03);
   padding: 2px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dsa-status-icon {
@@ -226,9 +226,9 @@
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.03);
   text-transform: uppercase;
 }
 
@@ -261,7 +261,7 @@
 }
 
 .dsa-prereq-box {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
   padding: 8px;
   border-radius: 6px;
   font-size: 0.75rem;

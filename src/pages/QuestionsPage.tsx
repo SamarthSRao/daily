@@ -15,6 +15,7 @@ interface Question {
 
 export default function QuestionsPage() {
   const [activeBank, setActiveBank] = useState<"backend" | "clrs">("backend");
+  const [activeSection, setActiveSection] = useState<string>("S1: Web Request Lifecycle");
   const [search, setSearch] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [page, setPage] = useState(1);
@@ -23,17 +24,37 @@ export default function QuestionsPage() {
   useEffect(() => {
     setQuestions(questionsData[activeBank] as Question[]);
     setPage(1);
+    if (activeBank === "backend") {
+      setActiveSection("S1: Web Request Lifecycle");
+    } else {
+      setActiveSection("");
+    }
   }, [activeBank]);
 
   useEffect(() => {
     setPage(1);
   }, [search]);
 
-  const filteredQuestions = questions.filter(q => 
-    (q.text && q.text.toLowerCase().includes(search.toLowerCase())) ||
-    (q.tag && q.tag.toLowerCase().includes(search.toLowerCase())) ||
-    (q.subSection && q.subSection.toLowerCase().includes(search.toLowerCase()))
-  );
+  const filteredQuestions = questions.filter(q => {
+    // If we have an activeSection selected (and we're in backend), filter by it
+    if (activeBank === "backend" && activeSection && q.section !== activeSection) {
+      return false;
+    }
+    
+    // Then apply search
+    if (!search) return true;
+    
+    return (
+      (q.text && q.text.toLowerCase().includes(search.toLowerCase())) ||
+      (q.tag && q.tag.toLowerCase().includes(search.toLowerCase())) ||
+      (q.subSection && q.subSection.toLowerCase().includes(search.toLowerCase()))
+    );
+  });
+
+  // Extract unique sections for the sub-nav (only if backend)
+  const backendSections = activeBank === "backend" 
+    ? Array.from(new Set(questions.map(q => q.section))).filter(Boolean).sort()
+    : [];
 
   const paginatedQuestions = filteredQuestions.slice(
     (page - 1) * itemsPerPage,
@@ -70,6 +91,40 @@ export default function QuestionsPage() {
         </div>
       </header>
 
+      {activeBank === "backend" && backendSections.length > 0 && (
+        <div className="meridian-section-nav" style={{ 
+          display: "flex", 
+          gap: "8px", 
+          overflowX: "auto", 
+          padding: "0 0 24px 0",
+          marginBottom: "24px",
+          borderBottom: "1px solid var(--border-color, #e5e5e5)",
+          whiteSpace: "nowrap",
+          scrollbarWidth: "none" // hide scrollbar in Firefox
+        }}>
+          {backendSections.map(sec => (
+            <button
+              key={sec}
+              onClick={() => setActiveSection(sec)}
+              style={{
+                background: activeSection === sec ? "var(--color-primary, #111)" : "transparent",
+                color: activeSection === sec ? "#fff" : "var(--text-secondary, #666)",
+                border: activeSection === sec ? "1px solid var(--color-primary, #111)" : "1px solid #ccc",
+                borderRadius: "20px",
+                padding: "6px 14px",
+                fontSize: "0.8rem",
+                fontWeight: activeSection === sec ? "600" : "400",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+                fontFamily: "var(--meridian-font-mono, monospace)"
+              }}
+            >
+              {sec.split(':')[0]} {/* Show just S1, S2 etc. for compactness, or keep full name */}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="search-bar-container">
         <div className="search-input-wrap">
           <Search size={18} />
@@ -100,11 +155,7 @@ export default function QuestionsPage() {
 
             return (
               <div key={`${activeBank}-${q.id}-${idx}`}>
-                {showSection && q.section && (
-                  <h2 style={{ fontSize: "1.5rem", fontWeight: "800", marginTop: "40px", marginBottom: "16px", color: "var(--meridian-text, #111)", borderBottom: "1px solid var(--meridian-border, #111)", paddingBottom: "8px" }}>
-                    {q.section}
-                  </h2>
-                )}
+                {/* We no longer show the giant section header inside the list since it's filtered globally now */}
                 {showSubSection && q.subSection && (
                   <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginTop: "24px", marginBottom: "16px", color: "var(--meridian-text-muted, #aaa)" }}>
                     {q.subSection}

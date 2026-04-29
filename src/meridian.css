@@ -306,16 +306,23 @@ body {
     flex-direction: column;
   }
 
-  /* Sidebar becomes horizontal scrollable nav on top or just row */
+  /* Sidebar becomes fixed bottom nav */
   .meridian-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
+    z-index: 1000;
+    background: var(--meridian-bg);
     border-right: none;
-    border-bottom: 1px solid var(--meridian-border);
-    padding: 16px 24px;
+    border-top: 1px solid var(--meridian-border);
+    border-bottom: none;
+    padding: 12px 16px;
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
-    gap: 16px;
+    gap: 8px;
+    justify-content: flex-start;
   }
 
   .meridian-sidebar-section {
@@ -332,11 +339,17 @@ body {
     padding: 8px 16px;
     border: 1px solid var(--meridian-border);
     border-radius: 20px;
+    background: transparent;
   }
 
-  /* Main content padding reduction */
+  .meridian-nav-item.active {
+    background: var(--meridian-black);
+    color: #fff;
+  }
+
+  /* Main content padding reduction + bottom space for nav */
   .meridian-main {
-    padding: 24px 16px;
+    padding: 24px 16px 80px 16px; /* 80px bottom padding to clear the fixed nav */
   }
 
   /* Topbar reduction */

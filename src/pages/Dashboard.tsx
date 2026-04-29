@@ -35,6 +35,31 @@ export default function Dashboard() {
   const [categories, setCategories] = useState<any[]>(DEFAULT_CATEGORIES);
   const [isEditing, setIsEditing] = useState(false);
   const [now, setNow] = useState(new Date()); 
+  const [activityPrompt, setActivityPrompt] = useState(false);
+  const [activityLog, setActivityLog] = useState("");
+
+  useEffect(() => {
+    const checkPrompt = () => {
+      const lastPrompt = localStorage.getItem("last-activity-prompt");
+      const timeNow = Date.now();
+      // 3 hours = 3 * 60 * 60 * 1000 = 10800000 ms
+      if (!lastPrompt || timeNow - parseInt(lastPrompt) > 10800000) {
+        setActivityPrompt(true);
+      }
+    };
+    checkPrompt();
+    const interval = setInterval(checkPrompt, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, []);
+
+  const saveActivity = () => {
+    const logs = JSON.parse(localStorage.getItem("activity-logs") || "[]");
+    logs.push({ time: new Date().toISOString(), activity: activityLog });
+    localStorage.setItem("activity-logs", JSON.stringify(logs));
+    localStorage.setItem("last-activity-prompt", Date.now().toString());
+    setActivityPrompt(false);
+    setActivityLog("");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -228,6 +253,25 @@ export default function Dashboard() {
          </div>
       </section>
 
+      {/* Activity Log Section (Persistent Text Box) */}
+      <section className="allocation-overview" style={{ marginTop: "24px" }}>
+         <div className="section-header-compact">
+            <h3>Activity Log</h3>
+         </div>
+         <div className="alloc-card" style={{ width: "100%", padding: "20px", display: "flex", flexDirection: "column", gap: "12px", borderLeft: "4px solid #a855f7" }}>
+           <p style={{ color: "#9ca3af", fontSize: "14px", margin: 0 }}>Log your progress (System prompts every 3 hours)</p>
+           <textarea
+             style={{ width: "100%", minHeight: "80px", padding: "12px", background: "rgba(0,0,0,0.2)", color: "#fff", border: "1px solid #333", borderRadius: "8px", resize: "vertical", fontFamily: "inherit" }}
+             placeholder="What did you do?"
+             value={activityLog}
+             onChange={(e) => setActivityLog(e.target.value)}
+           />
+           <button className="save-btn" style={{ alignSelf: "flex-end", padding: "8px 16px" }} onClick={saveActivity}>
+             Commit Log
+           </button>
+         </div>
+      </section>
+
       {/* Ratios Edit Modal */}
       {isEditing && (
         <div className="modal-overlay" onClick={() => setIsEditing(false)}>
@@ -301,6 +345,29 @@ export default function Dashboard() {
             </div>
             <div className="modal-footer">
                <button className="save-btn" onClick={() => setIsEditing(false)}>Lock Configuration</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3-Hour Activity Prompt Modal */}
+      {activityPrompt && (
+        <div className="modal-overlay">
+          <div className="modal-content pro-modal" style={{ borderTop: "4px solid #f59e0b" }}>
+            <div className="modal-header">
+              <h2><Hourglass size={18} style={{ display: "inline", marginRight: "8px", verticalAlign: "middle" }}/> Activity Check</h2>
+              <p>It's been 3 hours. What did you do?</p>
+            </div>
+            <div className="ratio-form" style={{ padding: "0" }}>
+              <textarea 
+                style={{ width: "100%", minHeight: "120px", padding: "12px", background: "rgba(0,0,0,0.2)", color: "#fff", border: "1px solid #333", borderRadius: "8px", resize: "vertical", fontFamily: "inherit" }}
+                placeholder="Describe your work..."
+                value={activityLog}
+                onChange={(e) => setActivityLog(e.target.value)}
+              />
+            </div>
+            <div className="modal-footer" style={{ marginTop: "16px" }}>
+               <button className="save-btn" onClick={saveActivity}>Log Activity</button>
             </div>
           </div>
         </div>

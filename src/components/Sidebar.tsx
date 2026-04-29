@@ -6,21 +6,25 @@ export default function Sidebar({ activeTab, onTabSelect }: any) {
       <div className="meridian-sidebar-section">
         <h4 className="meridian-sidebar-header">OVERVIEW</h4>
         <NavItem id="home" label="Dashboard" activeTab={activeTab} onTabSelect={onTabSelect} icon={Grid} />
-        <NavItem id="daily" label="Analytics" activeTab={activeTab} onTabSelect={onTabSelect} icon={Activity} badge="New" />
-        <NavItem id="nine-month" label="Reports" activeTab={activeTab} onTabSelect={onTabSelect} icon={FileText} />
+        <NavItem id="timer" label="Timers" activeTab={activeTab} onTabSelect={onTabSelect} icon={Sun} badge="Active" />
       </div>
       
       <div className="meridian-sidebar-section">
-        <h4 className="meridian-sidebar-header">MANAGE</h4>
-        <NavItem id="dsa" label="Projects" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} badge="4" />
-        <NavItem id="biweekly" label="Users" activeTab={activeTab} onTabSelect={onTabSelect} icon={Users} />
-        <NavItem id="questions" label="Messages" activeTab={activeTab} onTabSelect={onTabSelect} icon={MessageSquare} badge="12" />
+        <h4 className="meridian-sidebar-header">CURRICULUM</h4>
+        <NavItem id="daily" label="Daily Plan" activeTab={activeTab} onTabSelect={onTabSelect} icon={Activity} />
+        <NavItem id="nine-month" label="9-Month Plan" activeTab={activeTab} onTabSelect={onTabSelect} icon={FileText} />
+        <NavItem id="biweekly" label="Biweekly Sprints" activeTab={activeTab} onTabSelect={onTabSelect} icon={Users} />
+      </div>
+
+      <div className="meridian-sidebar-section">
+        <h4 className="meridian-sidebar-header">PRACTICE</h4>
+        <NavItem id="dsa" label="DSA Tracker" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} />
+        <NavItem id="questions" label="Knowledge Bank" activeTab={activeTab} onTabSelect={onTabSelect} icon={MessageSquare} badge="4k+" />
       </div>
 
       <div className="meridian-sidebar-section">
         <h4 className="meridian-sidebar-header">SYSTEM</h4>
-        <NavItem id="timer" label="Timers" activeTab={activeTab} onTabSelect={onTabSelect} icon={Sun} />
-        <NavItem id="system" label="Settings" activeTab={activeTab} onTabSelect={onTabSelect} icon={Settings} />
+        <NavItem id="system" label="System Console" activeTab={activeTab} onTabSelect={onTabSelect} icon={Settings} />
       </div>
     </aside>
   );

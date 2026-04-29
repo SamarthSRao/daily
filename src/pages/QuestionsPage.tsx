@@ -17,16 +17,30 @@ export default function QuestionsPage() {
   const [activeBank, setActiveBank] = useState<"backend" | "clrs">("backend");
   const [search, setSearch] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 50;
 
   useEffect(() => {
     setQuestions(questionsData[activeBank] as Question[]);
+    setPage(1);
   }, [activeBank]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
+
   const filteredQuestions = questions.filter(q => 
-    q.text.toLowerCase().includes(search.toLowerCase()) ||
-    q.tag.toLowerCase().includes(search.toLowerCase()) ||
-    q.subSection.toLowerCase().includes(search.toLowerCase())
+    (q.text && q.text.toLowerCase().includes(search.toLowerCase())) ||
+    (q.tag && q.tag.toLowerCase().includes(search.toLowerCase())) ||
+    (q.subSection && q.subSection.toLowerCase().includes(search.toLowerCase()))
   );
+
+  const paginatedQuestions = filteredQuestions.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+  
+  const totalPages = Math.ceil(filteredQuestions.length / itemsPerPage);
 
   return (
     <div className="questions-page">
@@ -73,11 +87,11 @@ export default function QuestionsPage() {
       </div>
 
       <div className="questions-list">
-        {filteredQuestions.map((q, idx) => (
+        {paginatedQuestions.map((q, idx) => (
           <div key={`${activeBank}-${q.id}-${idx}`} className="question-card">
             <div className="q-card-header">
               <span className="q-id">#{q.id}</span>
-              <span className={`q-type ${q.type.toLowerCase()}`}>{q.type}</span>
+              <span className={`q-type ${(q.type || '').toLowerCase()}`}>{q.type}</span>
               <span className="q-tag">{q.tag}</span>
             </div>
             <p className="q-text">{q.text}</p>
@@ -88,6 +102,28 @@ export default function QuestionsPage() {
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="pagination" style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "24px", marginBottom: "40px" }}>
+          <button 
+            disabled={page === 1} 
+            onClick={() => setPage(p => p - 1)}
+            style={{ padding: "8px 16px", background: page === 1 ? "rgba(255,255,255,0.05)" : "var(--bg-secondary)", color: page === 1 ? "#666" : "var(--text-primary)", border: "1px solid var(--border)", borderRadius: "4px", cursor: page === 1 ? "not-allowed" : "pointer" }}
+          >
+            Previous
+          </button>
+          <span style={{ display: "flex", alignItems: "center", color: "var(--text-secondary)" }}>
+            Page {page} of {totalPages}
+          </span>
+          <button 
+            disabled={page === totalPages} 
+            onClick={() => setPage(p => p + 1)}
+            style={{ padding: "8px 16px", background: page === totalPages ? "rgba(255,255,255,0.05)" : "var(--bg-secondary)", color: page === totalPages ? "#666" : "var(--text-primary)", border: "1px solid var(--border)", borderRadius: "4px", cursor: page === totalPages ? "not-allowed" : "pointer" }}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }

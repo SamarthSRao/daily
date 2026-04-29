@@ -16,9 +16,21 @@ type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biwee
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
   const [now, setNow] = useState(new Date());
+  const [marqueeMsg, setMarqueeMsg] = useState("3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS");
 
   useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
+    const checkLogs = () => {
+      const l = JSON.parse(localStorage.getItem("activity-logs") || "[]");
+      if (l.length > 0) {
+        setMarqueeMsg(`LAST LOG: ${l[l.length - 1].activity.toUpperCase()}`);
+      }
+    };
+    
+    checkLogs();
+    const timer = setInterval(() => {
+      setNow(new Date());
+      checkLogs();
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -43,12 +55,12 @@ export default function App() {
         {/* Scrolling Marquee Background Layer */}
         <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "center", zIndex: 1, pointerEvents: "none" }}>
            <div className="meridian-marquee-text" style={{ whiteSpace: "nowrap", color: "rgba(170,170,170,0.4)", fontSize: "0.75rem", letterSpacing: "2px", fontWeight: "600" }}>
-              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
-              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
-              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
-              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
-              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
-              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+              <span>{marqueeMsg} • {marqueeMsg} • </span>
+              <span>{marqueeMsg} • {marqueeMsg} • </span>
+              <span>{marqueeMsg} • {marqueeMsg} • </span>
+              <span>{marqueeMsg} • {marqueeMsg} • </span>
+              <span>{marqueeMsg} • {marqueeMsg} • </span>
+              <span>{marqueeMsg} • {marqueeMsg} • </span>
            </div>
         </div>
 

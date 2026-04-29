@@ -40,7 +40,7 @@ export default function DailyChecks() {
             onClick={() => toggleCheck(check.id)}
             title={check.label}
           >
-            <div className="check-icon-wrapper" style={{ color: isDone ? '#fff' : check.color, backgroundColor: isDone ? check.color : 'transparent' }}>
+            <div className="check-icon-wrapper" style={{ color: isDone ? '#111' : check.color, backgroundColor: isDone ? check.color : 'transparent' }}>
               <Icon size={14} />
             </div>
             <span className="check-label">{check.label}</span>

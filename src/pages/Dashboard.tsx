@@ -262,7 +262,7 @@ export default function Dashboard() {
          <div className="alloc-card" style={{ width: "100%", padding: "20px", display: "flex", flexDirection: "column", gap: "12px", borderLeft: "4px solid #a855f7" }}>
            <p style={{ color: "#9ca3af", fontSize: "14px", margin: 0 }}>Log your progress (System prompts every 3 hours)</p>
            <textarea
-             style={{ width: "100%", minHeight: "80px", padding: "12px", background: "rgba(0,0,0,0.2)", color: "#fff", border: "1px solid #333", borderRadius: "8px", resize: "vertical", fontFamily: "inherit" }}
+             style={{ width: "100%", minHeight: "80px", padding: "12px", background: "rgba(0,0,0,0.05)", color: "var(--text-primary)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "8px", resize: "vertical", fontFamily: "inherit" }}
              placeholder="What did you do?"
              value={activityLog}
              onChange={(e) => setActivityLog(e.target.value)}
@@ -361,7 +361,7 @@ export default function Dashboard() {
             </div>
             <div className="ratio-form" style={{ padding: "0" }}>
               <textarea 
-                style={{ width: "100%", minHeight: "120px", padding: "12px", background: "rgba(0,0,0,0.2)", color: "#fff", border: "1px solid #333", borderRadius: "8px", resize: "vertical", fontFamily: "inherit" }}
+                style={{ width: "100%", minHeight: "120px", padding: "12px", background: "rgba(0,0,0,0.05)", color: "var(--text-primary)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "8px", resize: "vertical", fontFamily: "inherit" }}
                 placeholder="Describe your work..."
                 value={activityLog}
                 onChange={(e) => setActivityLog(e.target.value)}

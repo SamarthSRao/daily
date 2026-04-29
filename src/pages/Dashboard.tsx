@@ -53,6 +53,7 @@ export default function Dashboard() {
   }, []);
 
   const saveActivity = () => {
+    console.log("[System Console] Activity Logged: " + activityLog);
     const logs = JSON.parse(localStorage.getItem("activity-logs") || "[]");
     logs.push({ time: new Date().toISOString(), activity: activityLog });
     localStorage.setItem("activity-logs", JSON.stringify(logs));

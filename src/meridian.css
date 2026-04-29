@@ -273,3 +273,13 @@ body {
 .meridian-activity-time {
   color: #aaa;
 }
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.meridian-marquee-text {
+  display: inline-block;
+  animation: scrollMarquee 20s linear infinite;
+}

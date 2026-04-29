@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import HomeDashboard from "./pages/HomeDashboard";
 import DailyPage from "./pages/DailyPage";
@@ -15,6 +15,12 @@ type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biwee
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -32,14 +38,33 @@ export default function App() {
 
   return (
     <div className="meridian-app">
-      <header className="meridian-topbar">
-        <div className="meridian-brand">Meridian</div>
-        <div className="meridian-top-center">
-           <span className="dot" /> LIVE &middot; FRI 17 APR 2026
+      <header className="meridian-topbar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", overflow: "hidden", padding: "0" }}>
+        
+        {/* Scrolling Marquee Background Layer */}
+        <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "center", zIndex: 1, pointerEvents: "none" }}>
+           <div className="meridian-marquee-text" style={{ whiteSpace: "nowrap", color: "rgba(170,170,170,0.4)", fontSize: "0.75rem", letterSpacing: "2px", fontWeight: "600" }}>
+              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+              <span>3HR WAKE UP NOTIFICATION ACTIVE • LOG ACTIVITY PROMPT EVERY 3 HOURS • </span>
+           </div>
         </div>
-        <div className="meridian-top-right">
-           <span>v3.1.0</span>
-           <div className="meridian-avatar">AK</div>
+
+        {/* Foreground Content */}
+        <div style={{ zIndex: 2, background: "var(--meridian-black)", height: "100%", display: "flex", alignItems: "center", padding: "0 24px", fontWeight: 800, fontSize: "1.1rem" }}>
+          SAM
+        </div>
+
+        <div style={{ zIndex: 2, background: "var(--meridian-black)", height: "100%", display: "flex", alignItems: "center", padding: "0 24px" }}>
+           {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })} &middot; {now.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}
+        </div>
+
+        <div style={{ zIndex: 2, background: "var(--meridian-black)", height: "100%", display: "flex", alignItems: "center", padding: "0 24px" }}>
+           <a href="https://samarthsrao.xyz" target="_blank" rel="noreferrer" style={{ color: "var(--meridian-bg)", textDecoration: "none" }}>
+             samarthsrao.xyz ↗
+           </a>
         </div>
       </header>
       <div className="meridian-body">

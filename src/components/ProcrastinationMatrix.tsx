@@ -36,22 +36,44 @@ interface FocusTimerState {
   endTs: number | null;
   timeLeft: number; // seconds
   isRunning: boolean;
+  durationSec: number;
+  sessionStartTs: number | null;
+}
+
+interface FocusSession {
+  id: string;
+  startTs: number;
+  endTs: number;
+  durationSec: number;
 }
 
 const DEFAULT_FOCUS_SECONDS = 60 * 60;
 const FOCUS_TIMER_KEY = "properrr-focus-timer";
+const FOCUS_SESSIONS_KEY = "properrr-focus-sessions";
 const LEGACY_FOCUS_TIMER_END_KEY = "focus-timer-end";
 
 const getDefaultTimerState = (): FocusTimerState => ({
   endTs: null,
   timeLeft: DEFAULT_FOCUS_SECONDS,
   isRunning: false,
+  durationSec: DEFAULT_FOCUS_SECONDS,
+  sessionStartTs: null,
 });
 
-const buildTimerStateFromEndTs = (endTs: number): FocusTimerState => {
+const buildTimerStateFromEndTs = (
+  endTs: number,
+  durationSec: number,
+  sessionStartTs: number | null,
+): FocusTimerState => {
   const remaining = Math.floor((endTs - Date.now()) / 1000);
   if (remaining > 0) {
-    return { endTs, timeLeft: remaining, isRunning: true };
+    return {
+      endTs,
+      timeLeft: remaining,
+      isRunning: true,
+      durationSec,
+      sessionStartTs: sessionStartTs ?? endTs - durationSec * 1000,
+    };
   }
   return getDefaultTimerState();
 };
@@ -61,23 +83,41 @@ const normalizeTimerState = (
 ): FocusTimerState => {
   if (!state) return getDefaultTimerState();
 
+  const durationSec =
+    typeof state.durationSec === "number" && state.durationSec > 0
+      ? Math.floor(state.durationSec)
+      : DEFAULT_FOCUS_SECONDS;
   const endTs = typeof state.endTs === "number" ? state.endTs : null;
   const isRunning =
     typeof state.isRunning === "boolean" ? state.isRunning : false;
   const timeLeft =
     typeof state.timeLeft === "number" && state.timeLeft > 0
       ? Math.floor(state.timeLeft)
-      : DEFAULT_FOCUS_SECONDS;
+      : durationSec;
+  const sessionStartTs =
+    typeof state.sessionStartTs === "number" ? state.sessionStartTs : null;
 
   if (isRunning && endTs) {
-    return buildTimerStateFromEndTs(endTs);
+    return buildTimerStateFromEndTs(endTs, durationSec, sessionStartTs);
   }
 
   if (isRunning && !endTs) {
-    return { endTs: null, timeLeft, isRunning: false };
+    return {
+      endTs: null,
+      timeLeft,
+      isRunning: false,
+      durationSec,
+      sessionStartTs: null,
+    };
   }
 
-  return { endTs: null, timeLeft, isRunning: false };
+  return {
+    endTs: null,
+    timeLeft,
+    isRunning: false,
+    durationSec,
+    sessionStartTs: null,
+  };
 };
 
 const getInitialTimerState = (): FocusTimerState => {
@@ -96,7 +136,7 @@ const getInitialTimerState = (): FocusTimerState => {
   if (legacyEndTs) {
     const parsed = parseInt(legacyEndTs, 10);
     if (!Number.isNaN(parsed)) {
-      return buildTimerStateFromEndTs(parsed);
+      return buildTimerStateFromEndTs(parsed, DEFAULT_FOCUS_SECONDS, null);
     }
   }
 
@@ -213,6 +253,16 @@ export default function ProcrastinationMatrix() {
   const [timerEndTs, setTimerEndTs] = useState<number | null>(
     initialTimerStateRef.current.endTs,
   );
+  const [timerSessionStartTs, setTimerSessionStartTs] = useState<number | null>(
+    initialTimerStateRef.current.sessionStartTs,
+  );
+  const [focusDurationSeconds, setFocusDurationSeconds] = useState(
+    initialTimerStateRef.current.durationSec,
+  );
+  const [focusDurationInput, setFocusDurationInput] = useState(
+    Math.round(initialTimerStateRef.current.durationSec / 60),
+  );
+  const [focusSessions, setFocusSessions] = useState<FocusSession[]>([]);
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Driver states
@@ -302,7 +352,11 @@ export default function ProcrastinationMatrix() {
         }
       }
 
-      // 4. Load focus timer from Redis
+      // 4. Load focus sessions from Redis
+      const remoteFocusSessions = await loadState(FOCUS_SESSIONS_KEY, []);
+      setFocusSessions(remoteFocusSessions || []);
+
+      // 5. Load focus timer from Redis
       const remoteTimerState = await loadState(FOCUS_TIMER_KEY, null);
       let normalizedTimerState = normalizeTimerState(remoteTimerState);
 
@@ -311,15 +365,59 @@ export default function ProcrastinationMatrix() {
         if (legacyEndTs) {
           const parsed = parseInt(legacyEndTs, 10);
           if (!Number.isNaN(parsed)) {
-            normalizedTimerState = buildTimerStateFromEndTs(parsed);
+            normalizedTimerState = buildTimerStateFromEndTs(
+              parsed,
+              DEFAULT_FOCUS_SECONDS,
+              null,
+            );
             await saveState(FOCUS_TIMER_KEY, normalizedTimerState);
           }
         }
       }
 
+      if (
+        remoteTimerState &&
+        remoteTimerState.isRunning &&
+        typeof remoteTimerState.endTs === "number" &&
+        remoteTimerState.endTs <= Date.now()
+      ) {
+        const durationSec =
+          typeof remoteTimerState.durationSec === "number" &&
+          remoteTimerState.durationSec > 0
+            ? Math.floor(remoteTimerState.durationSec)
+            : DEFAULT_FOCUS_SECONDS;
+        const sessionStartTs =
+          typeof remoteTimerState.sessionStartTs === "number"
+            ? remoteTimerState.sessionStartTs
+            : remoteTimerState.endTs - durationSec * 1000;
+        const endTs = remoteTimerState.endTs;
+        if (endTs > sessionStartTs) {
+          const newSession: FocusSession = {
+            id: `focus-${endTs}`,
+            startTs: sessionStartTs,
+            endTs,
+            durationSec: Math.floor((endTs - sessionStartTs) / 1000),
+          };
+          const nextSessions = [...(remoteFocusSessions || []), newSession];
+          setFocusSessions(nextSessions);
+          await saveState(FOCUS_SESSIONS_KEY, nextSessions);
+        }
+        const resetState: FocusTimerState = {
+          ...getDefaultTimerState(),
+          durationSec,
+          timeLeft: durationSec,
+        };
+        normalizedTimerState = resetState;
+        localStorage.removeItem(LEGACY_FOCUS_TIMER_END_KEY);
+        await saveState(FOCUS_TIMER_KEY, resetState);
+      }
+
       setTimeLeft(normalizedTimerState.timeLeft);
       setIsTimerRunning(normalizedTimerState.isRunning);
       setTimerEndTs(normalizedTimerState.endTs);
+      setTimerSessionStartTs(normalizedTimerState.sessionStartTs);
+      setFocusDurationSeconds(normalizedTimerState.durationSec);
+      setFocusDurationInput(Math.round(normalizedTimerState.durationSec / 60));
     };
 
     fetchData();
@@ -356,7 +454,15 @@ export default function ProcrastinationMatrix() {
   useEffect(() => {
     computeDriverState();
     rotateMonkeyQuote(tasks, activityLogs);
-  }, [tasks, activityLogs, isTimerRunning, timeLeft]);
+  }, [
+    tasks,
+    activityLogs,
+    isTimerRunning,
+    timeLeft,
+    focusSessions,
+    timerSessionStartTs,
+    timerEndTs,
+  ]);
 
   const persistTimerState = async (nextState: FocusTimerState) => {
     if (nextState.endTs) {
@@ -369,6 +475,45 @@ export default function ProcrastinationMatrix() {
     }
     await saveState(FOCUS_TIMER_KEY, nextState);
   };
+
+  const appendFocusSession = async (startTs: number, endTs: number) => {
+    if (!startTs || endTs <= startTs) return;
+    const newSession: FocusSession = {
+      id: `focus-${endTs}`,
+      startTs,
+      endTs,
+      durationSec: Math.floor((endTs - startTs) / 1000),
+    };
+    setFocusSessions((prev) => {
+      const nextSessions = [...prev, newSession];
+      void saveState(FOCUS_SESSIONS_KEY, nextSessions);
+      return nextSessions;
+    });
+  };
+
+  const updateFocusDurationMinutes = async (minutes: number) => {
+    if (Number.isNaN(minutes)) return;
+    const clampedMinutes = Math.min(Math.max(Math.round(minutes), 5), 300);
+    const durationSec = clampedMinutes * 60;
+    setFocusDurationSeconds(durationSec);
+
+    if (!isTimerRunning) {
+      setTimeLeft(durationSec);
+      setTimerEndTs(null);
+      setTimerSessionStartTs(null);
+      await persistTimerState({
+        endTs: null,
+        timeLeft: durationSec,
+        isRunning: false,
+        durationSec,
+        sessionStartTs: null,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setFocusDurationInput(Math.round(focusDurationSeconds / 60));
+  }, [focusDurationSeconds]);
 
   // countdown timer logic
   useEffect(() => {
@@ -395,10 +540,22 @@ export default function ProcrastinationMatrix() {
     if (!isTimerRunning || timeLeft > 0) return;
 
     const finalizeTimer = async () => {
+      const endTs = timerEndTs ?? Date.now();
+      const startTs =
+        timerSessionStartTs ?? endTs - focusDurationSeconds * 1000;
+      await appendFocusSession(startTs, endTs);
+
       setIsTimerRunning(false);
       setTimerEndTs(null);
-      setTimeLeft(DEFAULT_FOCUS_SECONDS);
-      await persistTimerState(getDefaultTimerState());
+      setTimerSessionStartTs(null);
+      setTimeLeft(focusDurationSeconds);
+      await persistTimerState({
+        endTs: null,
+        timeLeft: focusDurationSeconds,
+        isRunning: false,
+        durationSec: focusDurationSeconds,
+        sessionStartTs: null,
+      });
       // Auto-log a deep work session upon completion
       logActivityDirect("Deep Work (Focus Hour Completed)");
       alert(
@@ -407,33 +564,65 @@ export default function ProcrastinationMatrix() {
     };
 
     void finalizeTimer();
-  }, [isTimerRunning, timeLeft]);
+  }, [
+    isTimerRunning,
+    timeLeft,
+    timerEndTs,
+    timerSessionStartTs,
+    focusDurationSeconds,
+  ]);
 
   // Timer controls
   const toggleTimer = async () => {
     if (!isTimerRunning) {
-      const effectiveTimeLeft = timeLeft > 0 ? timeLeft : DEFAULT_FOCUS_SECONDS;
-      const endTs = Date.now() + effectiveTimeLeft * 1000;
+      const effectiveTimeLeft = timeLeft > 0 ? timeLeft : focusDurationSeconds;
+      const sessionStartTs = Date.now();
+      const endTs = sessionStartTs + effectiveTimeLeft * 1000;
       setTimeLeft(effectiveTimeLeft);
       setIsTimerRunning(true);
       setTimerEndTs(endTs);
+      setTimerSessionStartTs(sessionStartTs);
       await persistTimerState({
         endTs,
         timeLeft: effectiveTimeLeft,
         isRunning: true,
+        durationSec: focusDurationSeconds,
+        sessionStartTs,
       });
     } else {
+      const pauseTs = Date.now();
+      if (timerSessionStartTs) {
+        await appendFocusSession(timerSessionStartTs, pauseTs);
+      }
       setIsTimerRunning(false);
       setTimerEndTs(null);
-      await persistTimerState({ endTs: null, timeLeft, isRunning: false });
+      setTimerSessionStartTs(null);
+      await persistTimerState({
+        endTs: null,
+        timeLeft,
+        isRunning: false,
+        durationSec: focusDurationSeconds,
+        sessionStartTs: null,
+      });
     }
   };
 
   const resetTimer = async () => {
+    const resetTs = Date.now();
+    if (timerSessionStartTs) {
+      await appendFocusSession(timerSessionStartTs, resetTs);
+    }
     setIsTimerRunning(false);
     setTimerEndTs(null);
-    setTimeLeft(DEFAULT_FOCUS_SECONDS);
-    await persistTimerState(getDefaultTimerState());
+    setTimerSessionStartTs(null);
+    setTimeLeft(focusDurationSeconds);
+    await persistTimerState({
+      endTs: null,
+      timeLeft: focusDurationSeconds,
+      isRunning: false,
+      durationSec: focusDurationSeconds,
+      sessionStartTs: null,
+    });
   };
 
   // Logic to determine who is currently driving the wheel
@@ -545,6 +734,29 @@ export default function ProcrastinationMatrix() {
     }
   };
 
+  const updateTaskFocusTimeDraft = (id: string, focusTime: number) => {
+    if (Number.isNaN(focusTime)) return;
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, focusTime } : t)),
+    );
+  };
+
+  const updateTaskFocusTime = async (id: string, focusTime: number) => {
+    if (Number.isNaN(focusTime)) return;
+    const clamped = Math.min(Math.max(Math.round(focusTime), 5), 300);
+    const updated = tasks.map((t) =>
+      t.id === id
+        ? {
+            ...t,
+            focusTime: clamped,
+          }
+        : t,
+    );
+    setTasks(updated);
+    localStorage.setItem("brain-tasks", JSON.stringify(updated));
+    await saveState("properrr-brain-tasks", updated);
+  };
+
   // Delete Task
   const deleteTask = async (id: string) => {
     const updated = tasks.filter((t) => t.id !== id);
@@ -578,11 +790,32 @@ export default function ProcrastinationMatrix() {
   // Calculate scorecard metrics
   const calculateScorecard = () => {
     const todayStr = new Date().toISOString().split("T")[0];
+    const todayStart = new Date(`${todayStr}T00:00:00`).getTime();
+    const nowMs = Date.now();
+
     const todayLogs = activityLogs
       .filter((l) => l.time.startsWith(todayStr))
       .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
 
-    if (todayLogs.length === 0) {
+    const focusIntervals = focusSessions
+      .map((session) => ({ start: session.startTs, end: session.endTs }))
+      .filter((interval) => interval.end >= todayStart)
+      .map((interval) => ({
+        start: Math.max(interval.start, todayStart),
+        end: Math.min(interval.end, nowMs),
+      }));
+
+    if (isTimerRunning && timerSessionStartTs) {
+      const activeEnd = timerEndTs && timerEndTs < nowMs ? timerEndTs : nowMs;
+      if (activeEnd > timerSessionStartTs) {
+        focusIntervals.push({
+          start: Math.max(timerSessionStartTs, todayStart),
+          end: Math.min(activeEnd, nowMs),
+        });
+      }
+    }
+
+    if (todayLogs.length === 0 && focusIntervals.length === 0) {
       setScoreStats({ rational: 15, monkey: 80, panic: 5, isDefault: true });
       return;
     }
@@ -591,11 +824,21 @@ export default function ProcrastinationMatrix() {
     let monkeyCount = 0;
     let panicCount = 0;
 
-    const startTime = new Date(todayLogs[0].time).getTime();
-    const endTime = Date.now();
+    const startTime = todayStart;
+    const endTime = nowMs;
     const step = 5 * 60 * 1000; // 5 min increments
 
+    const isWithinFocus = (t: number) =>
+      focusIntervals.some(
+        (interval) => t >= interval.start && t <= interval.end,
+      );
+
     for (let t = startTime; t <= endTime; t += step) {
+      if (isWithinFocus(t)) {
+        rdmCount++;
+        continue;
+      }
+
       const activeLog = [...todayLogs]
         .reverse()
         .find((l) => new Date(l.time).getTime() <= t);
@@ -1054,6 +1297,31 @@ export default function ProcrastinationMatrix() {
           background-color: var(--wbw-pink);
         }
 
+        .focus-timer-config {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-top: 6px;
+          font-size: 0.75rem;
+          font-weight: 800;
+        }
+
+        .focus-duration-input {
+          border: 2px solid var(--wbw-dark);
+          padding: 4px;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          text-align: center;
+          width: 70px;
+          font-family: inherit;
+        }
+
+        .focus-duration-input:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
         /* Task input and list */
         .task-form {
           display: flex;
@@ -1152,6 +1420,23 @@ export default function ProcrastinationMatrix() {
           display: flex;
           justify-content: space-between;
           align-items: center;
+        }
+
+        .task-time-edit {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-weight: 800;
+        }
+
+        .task-time-input {
+          border: 2px solid var(--wbw-dark);
+          padding: 2px 4px;
+          border-radius: 6px;
+          font-size: 0.75rem;
+          text-align: center;
+          width: 60px;
+          font-family: inherit;
         }
 
         .task-action-btns {
@@ -2270,6 +2555,21 @@ export default function ProcrastinationMatrix() {
               ⏱️ Rational Focus Lock
             </div>
             <div className="digital-clock">{formatTime(timeLeft)}</div>
+            <div className="focus-timer-config">
+              <span>Duration (min)</span>
+              <input
+                type="number"
+                className="focus-duration-input"
+                min="5"
+                max="300"
+                value={focusDurationInput}
+                onChange={(e) => setFocusDurationInput(Number(e.target.value))}
+                onBlur={() =>
+                  void updateFocusDurationMinutes(focusDurationInput)
+                }
+                disabled={isTimerRunning}
+              />
+            </div>
             <div className="timer-btn-row">
               <button
                 className={`timer-btn ${isTimerRunning ? "active" : ""}`}
@@ -2363,7 +2663,29 @@ export default function ProcrastinationMatrix() {
                       </div>
                     </div>
                     <div className="task-card-meta">
-                      <span>Est: {task.focusTime}m</span>
+                      <label className="task-time-edit">
+                        <span>Est</span>
+                        <input
+                          type="number"
+                          className="task-time-input"
+                          min="5"
+                          max="300"
+                          value={task.focusTime}
+                          onChange={(e) =>
+                            updateTaskFocusTimeDraft(
+                              task.id,
+                              Number(e.target.value),
+                            )
+                          }
+                          onBlur={(e) =>
+                            void updateTaskFocusTime(
+                              task.id,
+                              Number(e.currentTarget.value),
+                            )
+                          }
+                        />
+                        <span>m</span>
+                      </label>
                       {task.completed && (
                         <span style={{ color: "#2e7d32", fontWeight: 700 }}>
                           Done!

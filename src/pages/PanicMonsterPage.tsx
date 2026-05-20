@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Plus, CheckCircle, Trash2, ShieldAlert, CalendarClock } from "lucide-react";
+import {
+  Plus,
+  CheckCircle,
+  Trash2,
+  ShieldAlert,
+  CalendarClock,
+} from "lucide-react";
 import { saveState, loadState } from "../lib/redis";
 
 export interface PanicDeadline {
@@ -16,9 +22,13 @@ const STORAGE_KEY = "properrr-panic-deadlines-v2";
 export default function PanicMonsterPage() {
   const [deadlines, setDeadlines] = useState<PanicDeadline[]>([]);
   const [taskName, setTaskName] = useState("");
-  const [taskDate, setTaskDate] = useState(new Date().toISOString().split("T")[0]);
+  const [taskDate, setTaskDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
   const [taskTime, setTaskTime] = useState("18:00");
-  const [monsterState, setMonsterState] = useState<"sleeping" | "active" | "happy">("sleeping");
+  const [monsterState, setMonsterState] = useState<
+    "sleeping" | "active" | "happy"
+  >("sleeping");
 
   // Load deadlines on mount
   useEffect(() => {
@@ -31,11 +41,17 @@ export default function PanicMonsterPage() {
 
   // Compute monster state
   useEffect(() => {
-    if (deadlines.length === 0) { setMonsterState("sleeping"); return; }
+    if (deadlines.length === 0) {
+      setMonsterState("sleeping");
+      return;
+    }
     const now = new Date();
-    const incomplete = deadlines.filter(d => !d.completed);
-    if (incomplete.length === 0) { setMonsterState("happy"); return; }
-    const isUrgent = incomplete.some(d => {
+    const incomplete = deadlines.filter((d) => !d.completed);
+    if (incomplete.length === 0) {
+      setMonsterState("happy");
+      return;
+    }
+    const isUrgent = incomplete.some((d) => {
       const deadlineMs = new Date(`${d.date}T${d.time}`).getTime();
       const diffMs = deadlineMs - now.getTime();
       return diffMs > 0 && diffMs <= 12 * 60 * 60 * 1000;
@@ -60,17 +76,32 @@ export default function PanicMonsterPage() {
   };
 
   const toggleDeadline = async (id: string) => {
-    const updated = deadlines.map(d => {
+    const updated = deadlines.map((d) => {
       if (d.id !== id) return d;
       const completed = !d.completed;
-      return { ...d, completed, completedAt: completed ? new Date().toISOString() : undefined };
+      return {
+        ...d,
+        completed,
+        completedAt: completed ? new Date().toISOString() : undefined,
+      };
     });
     setDeadlines(updated);
     await saveState(STORAGE_KEY, updated);
   };
 
   const deleteDeadline = async (id: string) => {
-    const updated = deadlines.filter(d => d.id !== id);
+    const updated = deadlines.filter((d) => d.id !== id);
+    setDeadlines(updated);
+    await saveState(STORAGE_KEY, updated);
+  };
+
+  const updateDeadline = async (
+    id: string,
+    updates: Partial<PanicDeadline>,
+  ) => {
+    const updated = deadlines.map((d) =>
+      d.id === id ? { ...d, ...updates } : d,
+    );
     setDeadlines(updated);
     await saveState(STORAGE_KEY, updated);
   };
@@ -99,10 +130,15 @@ export default function PanicMonsterPage() {
 
   // Group deadlines
   const todayStr = new Date().toISOString().split("T")[0];
-  const overdue = deadlines.filter(d => !d.completed && new Date(`${d.date}T${d.time}`).getTime() < Date.now());
-  const today = deadlines.filter(d => d.date === todayStr && !overdue.includes(d));
-  const upcoming = deadlines.filter(d => d.date > todayStr && !d.completed);
-  const done = deadlines.filter(d => d.completed);
+  const overdue = deadlines.filter(
+    (d) =>
+      !d.completed && new Date(`${d.date}T${d.time}`).getTime() < Date.now(),
+  );
+  const today = deadlines.filter(
+    (d) => d.date === todayStr && !overdue.includes(d),
+  );
+  const upcoming = deadlines.filter((d) => d.date > todayStr && !d.completed);
+  const done = deadlines.filter((d) => d.completed);
 
   return (
     <div className="panic-monster-page">
@@ -225,6 +261,8 @@ export default function PanicMonsterPage() {
         .deadline-name { font-weight: 800; font-size: 0.95rem; }
         .deadline-name.line-through { text-decoration: line-through; }
         .deadline-time-badge { font-size: 0.72rem; color: #666; font-weight: 700; display: flex; gap: 6px; align-items: center; }
+        .deadline-edit-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+        .deadline-edit-input { font-size: 0.7rem; padding: 4px 6px; }
         .urgency-chip { font-weight: 800; font-size: 0.72rem; }
         .actions-cell { display: flex; gap: 8px; }
         .action-icon-btn {
@@ -238,7 +276,9 @@ export default function PanicMonsterPage() {
 
       <div className="page-header">
         <h1 className="page-title">PANIC MONSTER COMMAND</h1>
-        <div className="page-subtitle">Set deadlines (any date!) — the monster wakes when they're near</div>
+        <div className="page-subtitle">
+          Set deadlines (any date!) — the monster wakes when they're near
+        </div>
       </div>
 
       {deadlines.length === 0 && (
@@ -246,8 +286,9 @@ export default function PanicMonsterPage() {
           <ShieldAlert size={48} color="#ff4d4d" />
           <h2 className="morning-prompt-title">NO DEADLINES SET!</h2>
           <p className="morning-prompt-desc">
-            Sam, the cockpit is in snooze mode. Add your deadlines below — any date, not just today.
-            The Panic Monster activates when a deadline is within 12 hours!
+            Sam, the cockpit is in snooze mode. Add your deadlines below — any
+            date, not just today. The Panic Monster activates when a deadline is
+            within 12 hours!
           </p>
         </div>
       )}
@@ -255,7 +296,18 @@ export default function PanicMonsterPage() {
       <div className="page-layout">
         {/* Deadlines Panel */}
         <div className="deadlines-card">
-          <h3 style={{ fontFamily: "'Permanent Marker', cursive", fontSize: "1.3rem", marginTop: 0, borderBottom: "2px solid #1e1e1e", paddingBottom: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
+          <h3
+            style={{
+              fontFamily: "'Permanent Marker', cursive",
+              fontSize: "1.3rem",
+              marginTop: 0,
+              borderBottom: "2px solid #1e1e1e",
+              paddingBottom: "6px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
             <CalendarClock size={20} /> Deadline Targets
           </h3>
 
@@ -265,7 +317,7 @@ export default function PanicMonsterPage() {
               className="deadline-input-text"
               placeholder="What must be completed?..."
               value={taskName}
-              onChange={e => setTaskName(e.target.value)}
+              onChange={(e) => setTaskName(e.target.value)}
               required
             />
             <div className="deadline-form-row">
@@ -273,14 +325,14 @@ export default function PanicMonsterPage() {
                 type="date"
                 className="deadline-input-date"
                 value={taskDate}
-                onChange={e => setTaskDate(e.target.value)}
+                onChange={(e) => setTaskDate(e.target.value)}
                 required
               />
               <input
                 type="time"
                 className="deadline-input-time"
                 value={taskTime}
-                onChange={e => setTaskTime(e.target.value)}
+                onChange={(e) => setTaskTime(e.target.value)}
                 required
               />
               <button type="submit" className="deadline-add-btn">
@@ -292,20 +344,61 @@ export default function PanicMonsterPage() {
           {/* Overdue */}
           {overdue.length > 0 && (
             <div>
-              <div className="deadline-group-label label-overdue">🔴 Overdue ({overdue.length})</div>
+              <div className="deadline-group-label label-overdue">
+                🔴 Overdue ({overdue.length})
+              </div>
               <div className="deadline-list">
-                {overdue.map(d => (
-                  <div key={d.id} className="deadline-item overdue" style={{ backgroundColor: getUrgencyColor(d) }}>
+                {overdue.map((d) => (
+                  <div
+                    key={d.id}
+                    className="deadline-item overdue"
+                    style={{ backgroundColor: getUrgencyColor(d) }}
+                  >
                     <div className="deadline-info">
                       <span className="deadline-name">{d.name}</span>
                       <div className="deadline-time-badge">
                         📅 {d.date} at {d.time}
-                        <span className="urgency-chip" style={{ color: "#d32f2f" }}>{formatDeadline(d)}</span>
+                        <span
+                          className="urgency-chip"
+                          style={{ color: "#d32f2f" }}
+                        >
+                          {formatDeadline(d)}
+                        </span>
+                      </div>
+                      <div className="deadline-edit-row">
+                        <input
+                          type="date"
+                          className="deadline-input-date deadline-edit-input"
+                          value={d.date}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { date: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
+                        <input
+                          type="time"
+                          className="deadline-input-time deadline-edit-input"
+                          value={d.time}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { time: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
                       </div>
                     </div>
                     <div className="actions-cell">
-                      <button className="action-icon-btn check" onClick={() => toggleDeadline(d.id)}><CheckCircle size={18} style={{ color: "#888" }} /></button>
-                      <button className="action-icon-btn delete" onClick={() => deleteDeadline(d.id)}><Trash2 size={16} /></button>
+                      <button
+                        className="action-icon-btn check"
+                        onClick={() => toggleDeadline(d.id)}
+                      >
+                        <CheckCircle size={18} style={{ color: "#888" }} />
+                      </button>
+                      <button
+                        className="action-icon-btn delete"
+                        onClick={() => deleteDeadline(d.id)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -316,20 +409,61 @@ export default function PanicMonsterPage() {
           {/* Today */}
           {today.length > 0 && (
             <div>
-              <div className="deadline-group-label label-today">⏰ Today ({today.length})</div>
+              <div className="deadline-group-label label-today">
+                ⏰ Today ({today.length})
+              </div>
               <div className="deadline-list">
-                {today.map(d => (
-                  <div key={d.id} className="deadline-item" style={{ backgroundColor: getUrgencyColor(d) }}>
+                {today.map((d) => (
+                  <div
+                    key={d.id}
+                    className="deadline-item"
+                    style={{ backgroundColor: getUrgencyColor(d) }}
+                  >
                     <div className="deadline-info">
                       <span className="deadline-name">{d.name}</span>
                       <div className="deadline-time-badge">
                         🕐 Due at {d.time}
-                        <span className="urgency-chip" style={{ color: "#e65100" }}>{formatDeadline(d)}</span>
+                        <span
+                          className="urgency-chip"
+                          style={{ color: "#e65100" }}
+                        >
+                          {formatDeadline(d)}
+                        </span>
+                      </div>
+                      <div className="deadline-edit-row">
+                        <input
+                          type="date"
+                          className="deadline-input-date deadline-edit-input"
+                          value={d.date}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { date: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
+                        <input
+                          type="time"
+                          className="deadline-input-time deadline-edit-input"
+                          value={d.time}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { time: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
                       </div>
                     </div>
                     <div className="actions-cell">
-                      <button className="action-icon-btn check" onClick={() => toggleDeadline(d.id)}><CheckCircle size={18} style={{ color: "#888" }} /></button>
-                      <button className="action-icon-btn delete" onClick={() => deleteDeadline(d.id)}><Trash2 size={16} /></button>
+                      <button
+                        className="action-icon-btn check"
+                        onClick={() => toggleDeadline(d.id)}
+                      >
+                        <CheckCircle size={18} style={{ color: "#888" }} />
+                      </button>
+                      <button
+                        className="action-icon-btn delete"
+                        onClick={() => deleteDeadline(d.id)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -340,20 +474,61 @@ export default function PanicMonsterPage() {
           {/* Upcoming */}
           {upcoming.length > 0 && (
             <div>
-              <div className="deadline-group-label label-upcoming">📅 Upcoming ({upcoming.length})</div>
+              <div className="deadline-group-label label-upcoming">
+                📅 Upcoming ({upcoming.length})
+              </div>
               <div className="deadline-list">
-                {upcoming.map(d => (
-                  <div key={d.id} className="deadline-item" style={{ backgroundColor: getUrgencyColor(d) }}>
+                {upcoming.map((d) => (
+                  <div
+                    key={d.id}
+                    className="deadline-item"
+                    style={{ backgroundColor: getUrgencyColor(d) }}
+                  >
                     <div className="deadline-info">
                       <span className="deadline-name">{d.name}</span>
                       <div className="deadline-time-badge">
                         📅 {d.date} at {d.time}
-                        <span className="urgency-chip" style={{ color: "#2e7d32" }}>{formatDeadline(d)}</span>
+                        <span
+                          className="urgency-chip"
+                          style={{ color: "#2e7d32" }}
+                        >
+                          {formatDeadline(d)}
+                        </span>
+                      </div>
+                      <div className="deadline-edit-row">
+                        <input
+                          type="date"
+                          className="deadline-input-date deadline-edit-input"
+                          value={d.date}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { date: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
+                        <input
+                          type="time"
+                          className="deadline-input-time deadline-edit-input"
+                          value={d.time}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { time: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
                       </div>
                     </div>
                     <div className="actions-cell">
-                      <button className="action-icon-btn check" onClick={() => toggleDeadline(d.id)}><CheckCircle size={18} style={{ color: "#888" }} /></button>
-                      <button className="action-icon-btn delete" onClick={() => deleteDeadline(d.id)}><Trash2 size={16} /></button>
+                      <button
+                        className="action-icon-btn check"
+                        onClick={() => toggleDeadline(d.id)}
+                      >
+                        <CheckCircle size={18} style={{ color: "#888" }} />
+                      </button>
+                      <button
+                        className="action-icon-btn delete"
+                        onClick={() => deleteDeadline(d.id)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -364,17 +539,57 @@ export default function PanicMonsterPage() {
           {/* Done */}
           {done.length > 0 && (
             <div>
-              <div className="deadline-group-label label-done">✅ Completed ({done.length})</div>
+              <div className="deadline-group-label label-done">
+                ✅ Completed ({done.length})
+              </div>
               <div className="deadline-list">
-                {done.map(d => (
-                  <div key={d.id} className="deadline-item completed" style={{ backgroundColor: "#e8f5e9" }}>
+                {done.map((d) => (
+                  <div
+                    key={d.id}
+                    className="deadline-item completed"
+                    style={{ backgroundColor: "#e8f5e9" }}
+                  >
                     <div className="deadline-info">
-                      <span className="deadline-name line-through">{d.name}</span>
-                      <div className="deadline-time-badge">📅 {d.date} at {d.time}</div>
+                      <span className="deadline-name line-through">
+                        {d.name}
+                      </span>
+                      <div className="deadline-time-badge">
+                        📅 {d.date} at {d.time}
+                      </div>
+                      <div className="deadline-edit-row">
+                        <input
+                          type="date"
+                          className="deadline-input-date deadline-edit-input"
+                          value={d.date}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { date: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
+                        <input
+                          type="time"
+                          className="deadline-input-time deadline-edit-input"
+                          value={d.time}
+                          onChange={(e) =>
+                            updateDeadline(d.id, { time: e.target.value })
+                          }
+                          disabled={d.completed}
+                        />
+                      </div>
                     </div>
                     <div className="actions-cell">
-                      <button className="action-icon-btn check" onClick={() => toggleDeadline(d.id)}><CheckCircle size={18} style={{ color: "#2e7d32" }} /></button>
-                      <button className="action-icon-btn delete" onClick={() => deleteDeadline(d.id)}><Trash2 size={16} /></button>
+                      <button
+                        className="action-icon-btn check"
+                        onClick={() => toggleDeadline(d.id)}
+                      >
+                        <CheckCircle size={18} style={{ color: "#2e7d32" }} />
+                      </button>
+                      <button
+                        className="action-icon-btn delete"
+                        onClick={() => deleteDeadline(d.id)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -382,63 +597,266 @@ export default function PanicMonsterPage() {
             </div>
           )}
 
-          {deadlines.length === 0 && <div className="empty-state">No deadlines set yet. Add one above!</div>}
+          {deadlines.length === 0 && (
+            <div className="empty-state">
+              No deadlines set yet. Add one above!
+            </div>
+          )}
         </div>
 
         {/* Panic Monster SVG Display */}
-        <div className="monster-display-card" style={{ borderColor: monsterState === "active" ? "#ff4d4d" : "#1e1e1e" }}>
+        <div
+          className="monster-display-card"
+          style={{
+            borderColor: monsterState === "active" ? "#ff4d4d" : "#1e1e1e",
+          }}
+        >
           <div className="monster-state-badge">State: {monsterState}</div>
           <div className="monster-speech-bubble">
-            {monsterState === "sleeping" && "💤 (Zzz... Snore... Monkey has control...)"}
-            {monsterState === "happy" && "📰 (Calmly reading news. Deadlines under control.)"}
-            {monsterState === "active" && "🚨 A DEADLINE IS COMING! WAKE UP! START WORKING!"}
+            {monsterState === "sleeping" &&
+              "💤 (Zzz... Snore... Monkey has control...)"}
+            {monsterState === "happy" &&
+              "📰 (Calmly reading news. Deadlines under control.)"}
+            {monsterState === "active" &&
+              "🚨 A DEADLINE IS COMING! WAKE UP! START WORKING!"}
           </div>
           <div className="monster-svg-box">
-            <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" className={monsterState === "active" ? "panic-monster-active" : ""}>
+            <svg
+              viewBox="0 0 300 300"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={
+                monsterState === "active" ? "panic-monster-active" : ""
+              }
+            >
               {(monsterState === "sleeping" || monsterState === "happy") && (
-                <path d="M 110,210 L 190,210 L 190,280 M 110,210 L 110,280 M 115,160 L 115,210" stroke="#888" strokeWidth="4" strokeLinecap="round" />
+                <path
+                  d="M 110,210 L 190,210 L 190,280 M 110,210 L 110,280 M 115,160 L 115,210"
+                  stroke="#888"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
               )}
               {monsterState === "sleeping" ? (
                 <g>
-                  <path d="M 150,110 L 155,118 L 163,114 L 164,122 L 172,120 L 170,128 L 178,130 L 172,137 L 178,143 L 170,147 L 174,155 L 165,156 L 166,164 L 158,162 L 156,170 L 150,165 L 144,170 L 142,162 L 134,164 L 135,156 L 126,155 L 130,147 L 122,143 L 128,137 L 122,130 L 130,128 L 128,120 L 136,122 L 137,114 L 145,118 Z" fill="#ff8080" stroke="#111" strokeWidth="3.5" />
-                  <path d="M 134,142 Q 138,145 142,142" stroke="#111" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  <path d="M 148,142 Q 152,145 156,142" stroke="#111" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path
+                    d="M 150,110 L 155,118 L 163,114 L 164,122 L 172,120 L 170,128 L 178,130 L 172,137 L 178,143 L 170,147 L 174,155 L 165,156 L 166,164 L 158,162 L 156,170 L 150,165 L 144,170 L 142,162 L 134,164 L 135,156 L 126,155 L 130,147 L 122,143 L 128,137 L 122,130 L 130,128 L 128,120 L 136,122 L 137,114 L 145,118 Z"
+                    fill="#ff8080"
+                    stroke="#111"
+                    strokeWidth="3.5"
+                  />
+                  <path
+                    d="M 134,142 Q 138,145 142,142"
+                    stroke="#111"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M 148,142 Q 152,145 156,142"
+                    stroke="#111"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
                   <circle cx="145" cy="154" r="3.5" fill="#111" />
-                  <text x="175" y="100" fontFamily="Permanent Marker" fontSize="18" fill="#ff8080" fontWeight="bold">Z</text>
-                  <text x="188" y="85" fontFamily="Permanent Marker" fontSize="14" fill="#ff8080" fontWeight="bold">z</text>
-                  <text x="198" y="75" fontFamily="Permanent Marker" fontSize="11" fill="#ff8080" fontWeight="bold">z</text>
-                  <path d="M 130,162 L 160,162 L 160,185 L 130,185 Z" fill="#fff" stroke="#111" strokeWidth="2" />
-                  <line x1="135" y1="168" x2="155" y2="168" stroke="#666" strokeWidth="1.5" />
-                  <line x1="135" y1="174" x2="155" y2="174" stroke="#666" strokeWidth="1.5" />
-                  <line x1="135" y1="180" x2="148" y2="180" stroke="#666" strokeWidth="1.5" />
+                  <text
+                    x="175"
+                    y="100"
+                    fontFamily="Permanent Marker"
+                    fontSize="18"
+                    fill="#ff8080"
+                    fontWeight="bold"
+                  >
+                    Z
+                  </text>
+                  <text
+                    x="188"
+                    y="85"
+                    fontFamily="Permanent Marker"
+                    fontSize="14"
+                    fill="#ff8080"
+                    fontWeight="bold"
+                  >
+                    z
+                  </text>
+                  <text
+                    x="198"
+                    y="75"
+                    fontFamily="Permanent Marker"
+                    fontSize="11"
+                    fill="#ff8080"
+                    fontWeight="bold"
+                  >
+                    z
+                  </text>
+                  <path
+                    d="M 130,162 L 160,162 L 160,185 L 130,185 Z"
+                    fill="#fff"
+                    stroke="#111"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="135"
+                    y1="168"
+                    x2="155"
+                    y2="168"
+                    stroke="#666"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="135"
+                    y1="174"
+                    x2="155"
+                    y2="174"
+                    stroke="#666"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="135"
+                    y1="180"
+                    x2="148"
+                    y2="180"
+                    stroke="#666"
+                    strokeWidth="1.5"
+                  />
                 </g>
               ) : monsterState === "happy" ? (
                 <g>
-                  <path d="M 150,110 L 155,118 L 163,114 L 164,122 L 172,120 L 170,128 L 178,130 L 172,137 L 178,143 L 170,147 L 174,155 L 165,156 L 166,164 L 158,162 L 156,170 L 150,165 L 144,170 L 142,162 L 134,164 L 135,156 L 126,155 L 130,147 L 122,143 L 128,137 L 122,130 L 130,128 L 128,120 L 136,122 L 137,114 L 145,118 Z" fill="#ff6666" stroke="#111" strokeWidth="3.5" />
-                  <circle cx="138" cy="140" r="4.5" fill="#fff" stroke="#111" strokeWidth="1.5" />
-                  <circle cx="152" cy="140" r="4.5" fill="#fff" stroke="#111" strokeWidth="1.5" />
+                  <path
+                    d="M 150,110 L 155,118 L 163,114 L 164,122 L 172,120 L 170,128 L 178,130 L 172,137 L 178,143 L 170,147 L 174,155 L 165,156 L 166,164 L 158,162 L 156,170 L 150,165 L 144,170 L 142,162 L 134,164 L 135,156 L 126,155 L 130,147 L 122,143 L 128,137 L 122,130 L 130,128 L 128,120 L 136,122 L 137,114 L 145,118 Z"
+                    fill="#ff6666"
+                    stroke="#111"
+                    strokeWidth="3.5"
+                  />
+                  <circle
+                    cx="138"
+                    cy="140"
+                    r="4.5"
+                    fill="#fff"
+                    stroke="#111"
+                    strokeWidth="1.5"
+                  />
+                  <circle
+                    cx="152"
+                    cy="140"
+                    r="4.5"
+                    fill="#fff"
+                    stroke="#111"
+                    strokeWidth="1.5"
+                  />
                   <circle cx="138" cy="140" r="1.5" fill="#111" />
                   <circle cx="152" cy="140" r="1.5" fill="#111" />
-                  <path d="M 141,151 Q 145,155 149,151" stroke="#111" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                  <path d="M 125,155 Q 115,165 130,175" stroke="#111" strokeWidth="3" fill="none" />
-                  <path d="M 165,155 Q 175,165 160,175" stroke="#111" strokeWidth="3" fill="none" />
-                  <path d="M 128,160 L 162,160 L 162,185 L 128,185 Z" fill="#fff" stroke="#111" strokeWidth="2" />
-                  <line x1="133" y1="166" x2="157" y2="166" stroke="#666" strokeWidth="1.5" />
-                  <line x1="133" y1="172" x2="157" y2="172" stroke="#666" strokeWidth="1.5" />
-                  <line x1="133" y1="178" x2="148" y2="178" stroke="#666" strokeWidth="1.5" />
+                  <path
+                    d="M 141,151 Q 145,155 149,151"
+                    stroke="#111"
+                    strokeWidth="2.5"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M 125,155 Q 115,165 130,175"
+                    stroke="#111"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                  <path
+                    d="M 165,155 Q 175,165 160,175"
+                    stroke="#111"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                  <path
+                    d="M 128,160 L 162,160 L 162,185 L 128,185 Z"
+                    fill="#fff"
+                    stroke="#111"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="133"
+                    y1="166"
+                    x2="157"
+                    y2="166"
+                    stroke="#666"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="133"
+                    y1="172"
+                    x2="157"
+                    y2="172"
+                    stroke="#666"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="133"
+                    y1="178"
+                    x2="148"
+                    y2="178"
+                    stroke="#666"
+                    strokeWidth="1.5"
+                  />
                 </g>
               ) : (
                 <g>
-                  <path d="M 132,190 Q 120,225 128,265" fill="none" stroke="#111" strokeWidth="4" strokeLinecap="round" />
-                  <path d="M 168,190 Q 180,225 172,265" fill="none" stroke="#111" strokeWidth="4" strokeLinecap="round" />
-                  <path d="M 150,90 L 157,102 L 168,96 L 170,108 L 181,106 L 178,118 L 189,121 L 182,130 L 191,139 L 181,144 L 186,155 L 174,157 L 176,169 L 165,167 L 163,179 L 150,172 L 137,179 L 135,167 L 124,169 L 126,157 L 114,155 L 119,144 L 109,139 L 118,130 L 111,121 L 122,118 L 119,106 L 130,108 L 132,96 L 143,102 Z" fill="#ff4d4d" stroke="#111" strokeWidth="4" />
-                  <circle cx="138" cy="128" r="9" fill="#fff" stroke="#111" strokeWidth="2.5" />
-                  <circle cx="162" cy="128" r="9" fill="#fff" stroke="#111" strokeWidth="2.5" />
+                  <path
+                    d="M 132,190 Q 120,225 128,265"
+                    fill="none"
+                    stroke="#111"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M 168,190 Q 180,225 172,265"
+                    fill="none"
+                    stroke="#111"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M 150,90 L 157,102 L 168,96 L 170,108 L 181,106 L 178,118 L 189,121 L 182,130 L 191,139 L 181,144 L 186,155 L 174,157 L 176,169 L 165,167 L 163,179 L 150,172 L 137,179 L 135,167 L 124,169 L 126,157 L 114,155 L 119,144 L 109,139 L 118,130 L 111,121 L 122,118 L 119,106 L 130,108 L 132,96 L 143,102 Z"
+                    fill="#ff4d4d"
+                    stroke="#111"
+                    strokeWidth="4"
+                  />
+                  <circle
+                    cx="138"
+                    cy="128"
+                    r="9"
+                    fill="#fff"
+                    stroke="#111"
+                    strokeWidth="2.5"
+                  />
+                  <circle
+                    cx="162"
+                    cy="128"
+                    r="9"
+                    fill="#fff"
+                    stroke="#111"
+                    strokeWidth="2.5"
+                  />
                   <circle cx="138" cy="128" r="3.5" fill="#111" />
                   <circle cx="162" cy="128" r="3.5" fill="#111" />
-                  <path d="M 140,147 Q 150,135 160,147 Q 150,158 140,147 Z" fill="#111" stroke="#111" strokeWidth="2.5" />
-                  <path d="M 116,134 Q 85,115 100,90" fill="none" stroke="#111" strokeWidth="4.5" strokeLinecap="round" />
-                  <path d="M 184,134 Q 215,115 200,90" fill="none" stroke="#111" strokeWidth="4.5" strokeLinecap="round" />
+                  <path
+                    d="M 140,147 Q 150,135 160,147 Q 150,158 140,147 Z"
+                    fill="#111"
+                    stroke="#111"
+                    strokeWidth="2.5"
+                  />
+                  <path
+                    d="M 116,134 Q 85,115 100,90"
+                    fill="none"
+                    stroke="#111"
+                    strokeWidth="4.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M 184,134 Q 215,115 200,90"
+                    fill="none"
+                    stroke="#111"
+                    strokeWidth="4.5"
+                    strokeLinecap="round"
+                  />
                 </g>
               )}
             </svg>

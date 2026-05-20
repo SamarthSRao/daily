@@ -6,9 +6,11 @@ import {
   Settings2, 
   Lock, 
   Unlock,
-  AlertCircle 
+  AlertCircle,
+  ShieldAlert
 } from "lucide-react";
 import { saveState, loadState } from "../lib/redis";
+import type { PanicDeadline } from "./PanicMonsterPage";
 import "../index.css";
 
 const DEFAULT_CATEGORIES = [
@@ -37,6 +39,7 @@ export default function Dashboard() {
   const [now, setNow] = useState(new Date()); 
   const [activityPrompt, setActivityPrompt] = useState(false);
   const [activityLog, setActivityLog] = useState("");
+  const [panicDeadlines, setPanicDeadlines] = useState<PanicDeadline[]>([]);
 
   useEffect(() => {
     const checkPrompt = () => {
@@ -66,8 +69,13 @@ export default function Dashboard() {
     const fetchData = async () => {
       const data = await loadState("properrr-categories", DEFAULT_CATEGORIES);
       setCategories(data);
+      const deadlines = await loadState("properrr-panic-deadlines-v2", []);
+      setPanicDeadlines(deadlines || []);
     };
     fetchData();
+    // refresh every 30s
+    const interval = setInterval(fetchData, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const updateCategories = (newCats: any[]) => {
@@ -160,6 +168,24 @@ export default function Dashboard() {
   const dayRemM = Math.floor((dailyRemainingS % 3600) / 60);
   const dayRemS = Math.floor(dailyRemainingS % 60);
 
+  // Compute panic deadline alerts
+  const nowMs = Date.now();
+  const unfinishedDeadlines = panicDeadlines.filter(d => {
+    if (d.completed) return false;
+    const dt = new Date(`${d.date}T${d.time}`).getTime();
+    // show if overdue OR within next 48h
+    return dt < nowMs || dt - nowMs <= 48 * 3600000;
+  }).sort((a, b) => new Date(`${a.date}T${a.time}`).getTime() - new Date(`${b.date}T${b.time}`).getTime());
+
+  const formatCountdown = (d: PanicDeadline) => {
+    const dt = new Date(`${d.date}T${d.time}`).getTime();
+    const diff = dt - nowMs;
+    if (diff < 0) return "OVERDUE";
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    return h > 0 ? `${h}h ${m}m` : `${m}m`;
+  };
+
   return (
     <div className="dashboard-container pro-timers">
       <header className="timers-header">
@@ -186,6 +212,50 @@ export default function Dashboard() {
            </div>
         </div>
       </header>
+
+      {/* Panic Monster Deadline Strip */}
+      {unfinishedDeadlines.length > 0 && (
+        <section style={{ marginBottom: "20px" }}>
+          <div style={{
+            background: "linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%)",
+            border: "1px solid rgba(255,77,77,0.4)",
+            borderRadius: "12px",
+            padding: "16px 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px"
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+              <ShieldAlert size={16} color="#ff4d4d" />
+              <span style={{ color: "#ff6b6b", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                Panic Monster — {unfinishedDeadlines.length} unfinished deadline{unfinishedDeadlines.length > 1 ? "s" : ""}
+              </span>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              {unfinishedDeadlines.map(d => {
+                const isOverdue = new Date(`${d.date}T${d.time}`).getTime() < nowMs;
+                return (
+                  <div key={d.id} style={{
+                    background: isOverdue ? "rgba(255,77,77,0.15)" : "rgba(255,200,0,0.1)",
+                    border: `1px solid ${isOverdue ? "rgba(255,77,77,0.5)" : "rgba(255,200,0,0.35)"}`,
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "2px",
+                    minWidth: "160px"
+                  }}>
+                    <span style={{ color: "#fff", fontSize: "0.82rem", fontWeight: 700 }}>{d.name}</span>
+                    <span style={{ color: isOverdue ? "#ff6b6b" : "#ffd166", fontSize: "0.72rem", fontWeight: 800 }}>
+                      {isOverdue ? "🔴 " : "⏳ "}{formatCountdown(d)} · {d.date} {d.time}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="allocation-overview">
          <div className="section-header-compact">

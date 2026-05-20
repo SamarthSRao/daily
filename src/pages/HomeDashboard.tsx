@@ -4,6 +4,7 @@ import dsaDataImport from "../data/dsa.json";
 const dsaData = dsaDataImport as any;
 import nineMonthData from "../data/nine_month_plan.json";
 import biweeklyData from "../data/biweekly.json";
+import ProcrastinationMatrix from "../components/ProcrastinationMatrix";
 
 const DEFAULT_CATEGORIES = [
   { id: "commission", name: "Commission", color: "#3b82f6", w: 8, h: 1, locked: false },
@@ -134,6 +135,8 @@ export default function HomeDashboard() {
           <div className="meridian-stat-pill">{stats.yearProgress.toFixed(2)}% passed</div>
         </div>
       </div>
+
+      <ProcrastinationMatrix />
 
       <div className="meridian-bottom-grid">
         <div className="meridian-weekly-box">

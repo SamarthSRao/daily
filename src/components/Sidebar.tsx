@@ -1,4 +1,4 @@
-import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database } from "lucide-react";
+import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database, Calendar, Flame } from "lucide-react";
 
 export default function Sidebar({ activeTab, onTabSelect }: any) {
   return (
@@ -7,6 +7,12 @@ export default function Sidebar({ activeTab, onTabSelect }: any) {
         <h4 className="meridian-sidebar-header">OVERVIEW</h4>
         <NavItem id="home" label="Dashboard" activeTab={activeTab} onTabSelect={onTabSelect} icon={Grid} />
         <NavItem id="timer" label="Timers" activeTab={activeTab} onTabSelect={onTabSelect} icon={Sun} badge="Active" />
+      </div>
+
+      <div className="meridian-sidebar-section">
+        <h4 className="meridian-sidebar-header">MIND COCKPIT</h4>
+        <NavItem id="panic-monster" label="Panic Monster" activeTab={activeTab} onTabSelect={onTabSelect} icon={Flame} />
+        <NavItem id="life-calendar" label="Life Calendar" activeTab={activeTab} onTabSelect={onTabSelect} icon={Calendar} />
       </div>
       
       <div className="meridian-sidebar-section">

@@ -8,10 +8,12 @@ import NineMonthPlanPage from "./pages/NineMonthPlanPage";
 import SystemPage from "./pages/SystemPage";
 import Dashboard from "./pages/Dashboard";
 import QuestionsPage from "./pages/QuestionsPage";
+import LifeCalendarPage from "./pages/LifeCalendarPage";
+import PanicMonsterPage from "./pages/PanicMonsterPage";
 import "./index.css";
 import "./meridian.css";
 
-type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions";
+type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "life-calendar" | "panic-monster";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -36,15 +38,17 @@ export default function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "home"      : return <HomeDashboard />;
-      case "daily"     : return <DailyPage />;
-      case "nine-month": return <NineMonthPlanPage />;
-      case "dsa"       : return <DsaPage />;
-      case "biweekly"  : return <BiweeklyPage />;
-      case "system"    : return <SystemPage />;
-      case "timer"     : return <Dashboard />;
-      case "questions" : return <QuestionsPage />;
-      default          : return <HomeDashboard />;
+      case "home"          : return <HomeDashboard />;
+      case "daily"         : return <DailyPage />;
+      case "nine-month"    : return <NineMonthPlanPage />;
+      case "dsa"           : return <DsaPage />;
+      case "biweekly"      : return <BiweeklyPage />;
+      case "system"        : return <SystemPage />;
+      case "timer"         : return <Dashboard />;
+      case "questions"     : return <QuestionsPage />;
+      case "life-calendar" : return <LifeCalendarPage />;
+      case "panic-monster" : return <PanicMonsterPage />;
+      default              : return <HomeDashboard />;
     }
   };
 

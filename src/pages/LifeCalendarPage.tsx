@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Calendar, User, Compass, Hourglass, BookOpen, X, ExternalLink } from "lucide-react";
+import {
+  Calendar,
+  User,
+  Compass,
+  Hourglass,
+  BookOpen,
+  X,
+  ExternalLink,
+} from "lucide-react";
 import { saveState, loadState } from "../lib/redis";
 
 interface SelectedWeek {
@@ -10,19 +18,40 @@ interface SelectedWeek {
 
 const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
+const pad2 = (value: number) => value.toString().padStart(2, "0");
+
+const formatLocalDate = (date: Date) =>
+  `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
+
+const parseLocalDate = (dateStr: string) => {
+  const [yearStr, monthStr, dayStr] = dateStr.split("-");
+  const year = Number(yearStr);
+  const month = Number(monthStr);
+  const day = Number(dayStr);
+  if (!year || !month || !day) return new Date(dateStr);
+  return new Date(year, month - 1, day);
+};
+
 export default function LifeCalendarPage() {
   const [birthdate, setBirthdate] = useState("1998-05-20");
   const [weeksLived, setWeeksLived] = useState(0);
-  const [hoveredWeek, setHoveredWeek] = useState<{ year: number; week: number } | null>(null);
+  const [hoveredWeek, setHoveredWeek] = useState<{
+    year: number;
+    week: number;
+  } | null>(null);
   const [selectedWeek, setSelectedWeek] = useState<SelectedWeek | null>(null);
   const [vaultName, setVaultName] = useState("My Vault");
+  const [vaultPath, setVaultPath] = useState("");
+  const [dailyFolder, setDailyFolder] = useState("");
+  const [dailyNoteExt, setDailyNoteExt] = useState(".md");
 
   // Load birthdate + vault name on mount
   useEffect(() => {
     const fetchData = async () => {
       const savedBirth = await loadState("properrr-birthdate", "1998-05-20");
       setBirthdate(savedBirth);
-      const savedVault = localStorage.getItem("obsidian-vault-name") || "My Vault";
+      const savedVault =
+        localStorage.getItem("obsidian-vault-name") || "My Vault";
       setVaultName(savedVault);
     };
     fetchData();
@@ -31,14 +60,24 @@ export default function LifeCalendarPage() {
   // Compute weeks lived
   useEffect(() => {
     if (!birthdate) return;
-    const birth = new Date(birthdate);
+    const birth = parseLocalDate(birthdate);
     const now = new Date();
-    const diffMs = now.getTime() - birth.getTime();
-    if (diffMs < 0) { setWeeksLived(0); return; }
+    const todayLocal = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+    );
+    const diffMs = todayLocal.getTime() - birth.getTime();
+    if (diffMs < 0) {
+      setWeeksLived(0);
+      return;
+    }
     setWeeksLived(Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7)));
   }, [birthdate]);
 
-  const handleBirthdateChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBirthdateChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const val = e.target.value;
     setBirthdate(val);
     await saveState("properrr-birthdate", val);
@@ -52,13 +91,14 @@ export default function LifeCalendarPage() {
 
   // Click a week block — compute 7 actual calendar dates
   const handleWeekClick = (year: number, week: number) => {
-    const birth = new Date(birthdate);
+    const birth = parseLocalDate(birthdate);
     const absoluteWeek = year * 52 + week;
-    const weekStartMs = birth.getTime() + absoluteWeek * 7 * 24 * 60 * 60 * 1000;
+    const weekStartMs =
+      birth.getTime() + absoluteWeek * 7 * 24 * 60 * 60 * 1000;
 
     const days = DAY_NAMES.map((label, i) => {
       const d = new Date(weekStartMs + i * 24 * 60 * 60 * 1000);
-      const dateStr = d.toISOString().split("T")[0];
+      const dateStr = formatLocalDate(d);
       return { date: d, dateStr, label };
     });
 
@@ -67,9 +107,14 @@ export default function LifeCalendarPage() {
 
   const openObsidian = (dateStr: string) => {
     const url = `obsidian://open?vault=${encodeURIComponent(vaultName)}&file=${encodeURIComponent(dateStr)}`;
-    // Custom URI schemes don't work with window.open — use an anchor click instead
+    if (typeof window !== "undefined") {
+      window.location.href = url;
+    }
+    // Fallback for browsers that ignore custom schemes on location change
     const a = document.createElement("a");
     a.href = url;
+    a.target = "_self";
+    a.rel = "noreferrer";
     a.style.display = "none";
     document.body.appendChild(a);
     a.click();
@@ -77,7 +122,11 @@ export default function LifeCalendarPage() {
   };
 
   const totalWeeks = 90 * 52;
-  const percentageLived = Math.min(100, Math.max(0, (weeksLived / totalWeeks) * 100));
+  const todayStr = formatLocalDate(new Date());
+  const percentageLived = Math.min(
+    100,
+    Math.max(0, (weeksLived / totalWeeks) * 100),
+  );
 
   const getEraColor = (year: number) => {
     if (year < 5) return "#ffecb3";
@@ -437,11 +486,13 @@ export default function LifeCalendarPage() {
 
       <div className="calendar-header">
         <h1 className="calendar-title">YOUR LIFE IN WEEKS</h1>
-        <div className="calendar-subtitle">Every square = one week of a 90-year life. Click any week to see its 7 days and open in Obsidian.</div>
+        <div className="calendar-subtitle">
+          Every square = one week of a 90-year life. Click any week to see its 7
+          days and open in Obsidian.
+        </div>
       </div>
 
       <div className="calendar-layout">
-
         {/* Left: Grid + Expansion Panel */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <div className="grid-card">
@@ -454,22 +505,33 @@ export default function LifeCalendarPage() {
               {Array.from({ length: 90 }).map((_, yearIdx) => {
                 const isDecadeEnd = yearIdx > 0 && yearIdx % 10 === 0;
                 return (
-                  <div key={yearIdx} className={`grid-row ${isDecadeEnd ? "decade-separator" : ""}`}>
+                  <div
+                    key={yearIdx}
+                    className={`grid-row ${isDecadeEnd ? "decade-separator" : ""}`}
+                  >
                     <span className="row-label">{yearIdx}</span>
                     <div className="weeks-row">
                       {Array.from({ length: 52 }).map((_, weekIdx) => {
                         const absIdx = yearIdx * 52 + weekIdx;
                         const isLived = absIdx < weeksLived;
                         const isCurrent = absIdx === weeksLived;
-                        const isSelected = selectedWeek?.year === yearIdx && selectedWeek?.week === weekIdx;
+                        const isSelected =
+                          selectedWeek?.year === yearIdx &&
+                          selectedWeek?.week === weekIdx;
                         const eraColor = getEraColor(yearIdx);
 
                         return (
                           <div
                             key={weekIdx}
                             className={`week-box ${isLived ? "lived" : ""} ${isCurrent ? "current" : ""} ${isSelected ? "selected" : ""}`}
-                            style={!isLived && !isCurrent ? { backgroundColor: eraColor } : {}}
-                            onMouseEnter={() => setHoveredWeek({ year: yearIdx, week: weekIdx })}
+                            style={
+                              !isLived && !isCurrent
+                                ? { backgroundColor: eraColor }
+                                : {}
+                            }
+                            onMouseEnter={() =>
+                              setHoveredWeek({ year: yearIdx, week: weekIdx })
+                            }
                             onMouseLeave={() => setHoveredWeek(null)}
                             onClick={() => handleWeekClick(yearIdx, weekIdx)}
                             title={`Age ${yearIdx}, Week ${weekIdx + 1} — click to expand`}
@@ -490,21 +552,48 @@ export default function LifeCalendarPage() {
                 <h3 className="expansion-title">
                   🗓️ Age {selectedWeek.year}, Week {selectedWeek.week + 1}
                   &nbsp;—&nbsp;
-                  {selectedWeek.days[0].dateStr} → {selectedWeek.days[6].dateStr}
+                  {selectedWeek.days[0].dateStr} →{" "}
+                  {selectedWeek.days[6].dateStr}
                 </h3>
-                <button className="expansion-close-btn" onClick={() => setSelectedWeek(null)}>
+                <button
+                  className="expansion-close-btn"
+                  onClick={() => setSelectedWeek(null)}
+                >
                   <X size={16} />
                 </button>
               </div>
 
               {/* Quick Today Button */}
-              {selectedWeek.days.some(d => d.dateStr === new Date().toISOString().split("T")[0]) && (
-                <div style={{ marginBottom: "14px", display: "flex", alignItems: "center", gap: "10px", background: "#fff0f3", border: "2px solid #ff4081", borderRadius: "8px", padding: "10px 14px" }}>
-                  <span style={{ fontFamily: "'Permanent Marker', cursive", color: "#ff4081", fontSize: "1rem" }}>📅 Today is in this week!</span>
+              {selectedWeek.days.some((d) => d.dateStr === todayStr) && (
+                <div
+                  style={{
+                    marginBottom: "14px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    background: "#fff0f3",
+                    border: "2px solid #ff4081",
+                    borderRadius: "8px",
+                    padding: "10px 14px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Permanent Marker', cursive",
+                      color: "#ff4081",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    📅 Today is in this week!
+                  </span>
                   <button
                     className="obsidian-btn"
-                    style={{ background: "#ff4081", marginTop: 0, marginLeft: "auto" }}
-                    onClick={() => openObsidian(new Date().toISOString().split("T")[0])}
+                    style={{
+                      background: "#ff4081",
+                      marginTop: 0,
+                      marginLeft: "auto",
+                    }}
+                    onClick={() => openObsidian(todayStr)}
                   >
                     <BookOpen size={12} />
                     <ExternalLink size={10} />
@@ -516,20 +605,31 @@ export default function LifeCalendarPage() {
               <div className="days-grid">
                 {selectedWeek.days.map((day, i) => {
                   const isWeekend = i >= 5;
-                  const isToday = day.dateStr === new Date().toISOString().split("T")[0];
+                  const isToday = day.dateStr === todayStr;
                   const dayNum = day.date.getDate();
-                  const monthName = day.date.toLocaleString("default", { month: "short" });
+                  const monthName = day.date.toLocaleString("default", {
+                    month: "short",
+                  });
                   const yearNum = day.date.getFullYear();
 
                   return (
-                    <div key={i} className={`day-card ${isWeekend ? "weekend" : ""} ${isToday ? "today-card" : ""}`}>
+                    <div
+                      key={i}
+                      className={`day-card ${isWeekend ? "weekend" : ""} ${isToday ? "today-card" : ""}`}
+                    >
                       {isToday && <div className="today-badge">TODAY</div>}
                       <div className="day-label">{day.label}</div>
                       <div className="day-date-main">{dayNum}</div>
-                      <div className="day-date-full">{monthName} {yearNum}</div>
+                      <div className="day-date-full">
+                        {monthName} {yearNum}
+                      </div>
                       <button
                         className="obsidian-btn"
-                        style={isToday ? { background: "#ff4081", borderColor: "#ff4081" } : {}}
+                        style={
+                          isToday
+                            ? { background: "#ff4081", borderColor: "#ff4081" }
+                            : {}
+                        }
                         onClick={() => openObsidian(day.dateStr)}
                         title={`Open ${day.dateStr} in Obsidian`}
                       >
@@ -542,14 +642,17 @@ export default function LifeCalendarPage() {
                 })}
               </div>
 
-              <div style={{
-                marginTop: "14px",
-                fontSize: "0.78rem",
-                color: "#888",
-                fontWeight: 700,
-                textAlign: "center"
-              }}>
-                ☝️ Buttons open Obsidian vault <strong>"{vaultName}"</strong> to that date's daily note. Change vault name in the sidebar.
+              <div
+                style={{
+                  marginTop: "14px",
+                  fontSize: "0.78rem",
+                  color: "#888",
+                  fontWeight: 700,
+                  textAlign: "center",
+                }}
+              >
+                ☝️ Buttons open Obsidian vault <strong>"{vaultName}"</strong> to
+                that date's daily note. Change vault name in the sidebar.
               </div>
             </div>
           )}
@@ -577,8 +680,12 @@ export default function LifeCalendarPage() {
               onChange={handleVaultChange}
             />
             <div className="vault-hint">
-              Used to build the deep link:<br />
-              <code>obsidian://open?vault=<em>{vaultName || "..."}</em>&amp;file=YYYY-MM-DD</code>
+              Used to build the deep link:
+              <br />
+              <code>
+                obsidian://open?vault=<em>{vaultName || "..."}</em>
+                &amp;file=YYYY-MM-DD
+              </code>
             </div>
           </div>
 
@@ -600,7 +707,9 @@ export default function LifeCalendarPage() {
               <div className="stat-pill">
                 <Hourglass size={18} />
                 <span>Weeks Left</span>
-                <span className="stat-val">{Math.max(0, totalWeeks - weeksLived)}</span>
+                <span className="stat-val">
+                  {Math.max(0, totalWeeks - weeksLived)}
+                </span>
               </div>
               <div className="stat-pill">
                 <Calendar size={18} />
@@ -614,36 +723,53 @@ export default function LifeCalendarPage() {
             <h4 className="sidebar-section-title">🎨 ERA LEGEND</h4>
             <div className="era-legend">
               <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: "#ffecb3" }} />
+                <div
+                  className="legend-color"
+                  style={{ backgroundColor: "#ffecb3" }}
+                />
                 <span>0–5 (Child)</span>
               </div>
               <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: "#c8e6c9" }} />
+                <div
+                  className="legend-color"
+                  style={{ backgroundColor: "#c8e6c9" }}
+                />
                 <span>5–18 (School)</span>
               </div>
               <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: "#bbdefb" }} />
+                <div
+                  className="legend-color"
+                  style={{ backgroundColor: "#bbdefb" }}
+                />
                 <span>18–22 (College)</span>
               </div>
               <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: "#e0e0e0" }} />
+                <div
+                  className="legend-color"
+                  style={{ backgroundColor: "#e0e0e0" }}
+                />
                 <span>22–90 (Career)</span>
               </div>
             </div>
           </div>
 
           {hoveredWeek && !selectedWeek && (
-            <div style={{
-              background: "#1e1e1e",
-              color: "#fff",
-              padding: "10px",
-              borderRadius: "6px",
-              fontSize: "0.8rem",
-              fontWeight: 800,
-              textAlign: "center"
-            }}>
-              🔍 Age {hoveredWeek.year}, Week {hoveredWeek.week + 1}<br />
-              <span style={{ fontSize: "0.7rem", opacity: 0.7 }}>Click to expand days</span>
+            <div
+              style={{
+                background: "#1e1e1e",
+                color: "#fff",
+                padding: "10px",
+                borderRadius: "6px",
+                fontSize: "0.8rem",
+                fontWeight: 800,
+                textAlign: "center",
+              }}
+            >
+              🔍 Age {hoveredWeek.year}, Week {hoveredWeek.week + 1}
+              <br />
+              <span style={{ fontSize: "0.7rem", opacity: 0.7 }}>
+                Click to expand days
+              </span>
             </div>
           )}
 
@@ -653,7 +779,6 @@ export default function LifeCalendarPage() {
               : `🐒 ${percentageLived.toFixed(0)}% of your squares used. The Monkey wants you on Reddit.`}
           </div>
         </div>
-
       </div>
     </div>
   );

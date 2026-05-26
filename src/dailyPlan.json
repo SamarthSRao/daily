@@ -1,0 +1,215 @@
+[
+  {
+    "title": "GUIDE & PHILOSOPHY",
+    "weeks": [
+      {
+        "title": "Overview",
+        "days": [
+          {
+            "title": "Introduction",
+            "tasks": [
+              "# Backend Engineering Mastery Plan — 2026 Edition",
+              "### Focus: DBMS Internals · Distributed Systems · Backend 2026 Roadmap",
+              "### Target: Infraspec · AI-First Product Engineering · Backend at Scale",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "MASTER CONCEPT CHECKLIST",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "### Stage 1 — Fundamentals",
+              "| Concept | Covered By |",
+              "|---|---|",
+              "| HTTP/HTTPS — Methods, Status Codes, Headers, HTTP/2, TLS | All APIs |",
+              "| DNS — A, CNAME, MX, TXT, TTL, Resolution Path | Biweekly 04 (resolver) |",
+              "| TCP/UDP — Handshake, Time_Wait, Window Scaling | Biweekly 02 (pgpool) |",
+              "### Stage 5 — DBMS Deep (The Priority)",
+              "| Concept | Covered By |",
+              "|---|---|",
+              "| WAL (Write-Ahead Log) — Durability, Checkpoints, fsync | Biweekly 01 (vault) |",
+              "| MVCC (Multi-Version Concurrency Control) — Readers don't block writers | PayCore (Ledger) |",
+              "| B-Tree vs LSM-Tree — Split/Merge, Sequential vs Random I/O | Biweekly 05 (lsm) |",
+              "| Connection Pooling — Transaction vs Session Mode | Biweekly 02 (pgpool) |",
+              "| Indexing — GIN, BRIN, Partial, Composite column order | RouteMaster (Elasticsearch) |",
+              "### Stage 14 — Distributed Systems Deep",
+              "| Concept | Covered By |",
+              "|---|---|",
+              "| Leader election — Redis SETNX + TTL + heartbeat | DungBeetle (cron leader), distributed locking logic |",
+              "| Distributed locks with fencing tokens | BookWise (seat lock), PayCore (idempotency), lsm (compaction lock) |",
+              "| Consistent hashing + virtual nodes | DungBeetle (job routing), OpenTrace (trace routing), RouteMaster (driver assignment) |",
+              "| Bloom filters — false positive rate, Redis BF | RouteMaster (web crawler dedup), lsm (per-SSTable) |",
+              "| CAP theorem — CP vs AP tradeoffs | All ADRs |",
+              "| Saga pattern — choreography + compensating transactions | PayCore, BookWise |",
+              "| Event sourcing — double-entry ledger | PayCore (transactions) |",
+              "### Stage 15 — Engineering Practices",
+              "| Concept | Covered By |",
+              "|---|---|",
+              "| RFC / ADR — One document per major decision | All 13 repositories |",
+              "| OTel — Tracing, Metrics, Logs | OpenTrace (native), All others (instrumented) |",
+              "| CI/CD — Lint, Test (Race), Build, Deploy | GitHub Actions (all repos) |",
+              "| Zero Seq Scans — Index-only hot paths | PostgreSQL `EXPLAIN ANALYZE` requirement |",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "THE MAIN PROJECT: OPENTRACE",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "### A Full Distributed Tracing System — Built Like Jaeger",
+              "OpenTrace is your final year project and your portfolio centrepiece. It is a complete open-source distributed tracing system — built in Go (backend) and TypeScript (frontend) — that mirrors Jaeger's architecture from the ground up.",
+              "| Component | Language | Mirrors | Built In |",
+              "|-----------|----------|---------|---------|",
+              "| **Collector** | Go | Jaeger Collector | Month 2 |",
+              "| **Pipeline Processor** | Go | Jaeger Ingester | Month 3 |",
+              "| **Storage Layer** | Go | ClickHouse Plugin | Month 5 |",
+              "| **Query Service** | Go | Jaeger Query Service | Month 6 |",
+              "| **API Gateway** | TypeScript | Switchboard Gateway | Month 6 |",
+              "| **OpenTrace UI** | TypeScript/React | Jaeger UI | Month 4 + 7 |",
+              "| **SDK** | Go + TypeScript | OTel SDK | Month 7 |",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "THE 5 PROJECTS — 5 SEPARATE REPOS",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "| Project | Role | Stack | What It Demonstrates |",
+              "|---------|------|-------|----------------------|",
+              "| **OpenTrace** | Portfolio Centrepiece | Go + TypeScript + ClickHouse + Kafka | Full distributed tracing system |",
+              "| **PayCore** | Financial Ledger | Go + PostgreSQL + Redis + Kafka | Idempotency, double-entry bookkeeping, Saga pattern |",
+              "| **DungBeetle** | Background Job Platform | Go + Kafka + PostgreSQL + Redis | Leader election, exactly-once cron, worker pools |",
+              "| **BookWise** | Distributed Booking | Go + PostgreSQL + Redis + Kafka | Distributed locking, double-booking prevention |",
+              "| **RouteMaster** | Logistics & Notifications | Next.js + Go + Elasticsearch + Kafka | Fan-out notifications, full-text search, tracking |",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "8–9 MONTH OVERVIEW — ALL 5 PROJECTS + BACKEND 2026 ROADMAP",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "| Month | Backend 2026 Focus | OpenTrace Milestone | Other Projects (Independent) |",
+              "|-------|-------------------|---------------------|------------------------------|",
+              "| **1** | Fundamentals + OS | OTLP Study, Proto definitions | Initialise 5 separate repos |",
+              "| **2** | Node.js + API Design | **Collector v0.1**: OTLP receiver | PayCore: Auth + Idempotency |",
+              "| **3** | Go Concurrency | **Pipeline**: Kafka consumer | DungBeetle: Job queue in Go |",
+              "| **4** | React + Next.js UI | **OpenTrace UI v0.1**: Waterfall | RouteMaster: Notifications |",
+              "| **5** | **DBMS Deep** | **Storage**: ClickHouse schema | PayCore: Ledger + Event sourcing |",
+              "| **6** | Infra + K8s | **Query Service**: gRPC streaming | BookWise: Reservation engine |",
+              "| **7** | **Dist. Systems Deep** | **OpenTrace UI v2 + SDK** | DungBeetle: Cron + HA Leader |",
+              "| **8** | Perf + AI Stack | **10M spans/sec load test** | AI features in all projects |",
+              "| **9** | Polish + LFX Prep | **LFX Application final** | Portfolio READMEs + Demos live |",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "BIWEEKLY PROJECTS — DATABASE + DISTRIBUTED SYSTEMS INTERNALS",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "| # | Name | Language | What It Teaches |",
+              "|---|---|---|---|",
+              "| 01 | **`vault`** | Go | WAL, crash recovery, log compaction |",
+              "| 02 | **`pgpool`** | Go | pgwire protocol, connection multiplexing |",
+              "| 03 | **`relay`** | Go | Redis pub/sub fan-out, distributed presence |",
+              "| 04 | **`resolver`** | Go | UDP DNS, binary protocol parsing, TTL cache |",
+              "| 05 | **`lsm`** | Go | MemTable, SSTable, Bloom filters, compaction |",
+              "| 06 | **`herald`** | TypeScript | Reliable delivery, outbox, multi-channel |",
+              "| 07 | **`gatekeeper`** | TypeScript | OTP lifecycle, hashed storage, rate limiting |",
+              "| 08 | **`switchboard`** | TypeScript | API gateway, JWT RS256, circuit breakers |",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "BOOKWISE — THE DISTRIBUTED BOOKING SYSTEM",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "BookWise is a production-grade distributed booking platform that handles 10K concurrent booking attempts with zero double-bookings.",
+              "**Core Mechanisms:**",
+              "- **Atomic Inventory**: Redis `DECR` with PostgreSQL fallback.",
+              "- **Distributed Locks**: Fencing tokens via Biweekly 07 (gatekeeper/mutex patterns).",
+              "- **Waitlist State Machine**: Kafka-driven automatic assignment when a booking is cancelled.",
+              "- **Payment Saga**: Reserve seat → Charge card → Confirm (compensating transactions if failed).",
+              "---"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "DAILY SCHEDULE",
+    "weeks": [
+      {
+        "title": "Activities",
+        "days": [
+          {
+            "title": "Curriculum",
+            "tasks": [
+              "| Block | Duration | Activity |",
+              "|-------|----------|----------|",
+              "| **Morning** | 2 hours | **Concept Deep Dive**: Read source code (not docs). Break things. |",
+              "| **Evening** | 2 hours | **Build**: Ship a named feature in OpenTrace, PayCore, or others. |",
+              "| **DSA** | 30 min | **Logic Ingestion**: 1 problem connected to systems reality. |",
+              "| **RFC/ADR** | 30 min | **Communication**: Document every major technical decision. |",
+              "| **Weekend** | 8 hours | **Capstone**: Wire everything together, benchmark with k6, and deploy. |"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

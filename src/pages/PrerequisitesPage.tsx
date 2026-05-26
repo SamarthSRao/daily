@@ -1,23 +1,22 @@
-import { Rocket } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rawMarkdown from "../../Backend_Engineering_Mastery_Plan_2026 (2).md?raw";
 import "../index.css";
 
-// Extract everything from "## The Main Project: OpenTrace" to the end
-const parts = rawMarkdown.split("## The Main Project: OpenTrace");
-const postSystemDesignText = parts.length > 1 ? "## The Main Project: OpenTrace" + parts[1] : "";
+// Extract the pre-requisite section up until "## The Main Project: OpenTrace"
+const prerequisiteText = rawMarkdown.split("## The Main Project: OpenTrace")[0];
 
-export default function NineMonthPlanPage() {
+export default function PrerequisitesPage() {
   return (
     <div className="tasks-container" style={{ padding: "32px", maxWidth: "1200px", margin: "0 auto", color: "var(--meridian-text)" }}>
       <div className="tasks-header" style={{ marginBottom: "40px" }}>
         <h1 className="tasks-title">
-          <Rocket className="icon-main" style={{ color: "#3b82f6" }} />
-          Projects & Execution Plan
+          <BookOpen className="icon-main" style={{ color: "#10b981" }} />
+          Curriculum Prerequisites
         </h1>
         <p className="tasks-subtitle">
-          OpenTrace Architecture, The Month That Opens CNCF Doors, and Project Breakdowns
+          Master Concept Checklist & Foundational Requirements
         </p>
       </div>
 
@@ -48,7 +47,7 @@ export default function NineMonthPlanPage() {
             td: ({node, ...props}) => <td style={{ padding: "12px", borderBottom: "1px solid var(--meridian-border)" }} {...props} />,
           }}
         >
-          {postSystemDesignText}
+          {prerequisiteText}
         </ReactMarkdown>
       </div>
     </div>

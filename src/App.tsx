@@ -8,12 +8,14 @@ import NineMonthPlanPage from "./pages/NineMonthPlanPage";
 import SystemPage from "./pages/SystemPage";
 import Dashboard from "./pages/Dashboard";
 import QuestionsPage from "./pages/QuestionsPage";
+import WeakestLinkPage from "./pages/WeakestLinkPage";
 import LifeCalendarPage from "./pages/LifeCalendarPage";
 import PanicMonsterPage from "./pages/PanicMonsterPage";
+import PrerequisitesPage from "./pages/PrerequisitesPage";
 import "./index.css";
 import "./meridian.css";
 
-type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "life-calendar" | "panic-monster";
+type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -46,8 +48,10 @@ export default function App() {
       case "system"        : return <SystemPage />;
       case "timer"         : return <Dashboard />;
       case "questions"     : return <QuestionsPage />;
+      case "weak-link"     : return <WeakestLinkPage />;
       case "life-calendar" : return <LifeCalendarPage />;
       case "panic-monster" : return <PanicMonsterPage />;
+      case "prerequisites" : return <PrerequisitesPage />;
       default              : return <HomeDashboard />;
     }
   };

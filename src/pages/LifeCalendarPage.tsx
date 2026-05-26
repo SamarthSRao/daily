@@ -16,8 +16,6 @@ interface SelectedWeek {
   days: { date: Date; dateStr: string; label: string }[];
 }
 
-const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
 const pad2 = (value: number) => value.toString().padStart(2, "0");
 
 const formatLocalDate = (date: Date) =>
@@ -32,18 +30,21 @@ const parseLocalDate = (dateStr: string) => {
   return new Date(year, month - 1, day);
 };
 
+const getCalendarWeek = (date: Date) => {
+  const jan1 = new Date(date.getFullYear(), 0, 1);
+  const diffMs = date.getTime() - jan1.getTime();
+  const week = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7));
+  return Math.min(week, 51);
+};
+
 export default function LifeCalendarPage() {
   const [birthdate, setBirthdate] = useState("1998-05-20");
-  const [weeksLived, setWeeksLived] = useState(0);
   const [hoveredWeek, setHoveredWeek] = useState<{
     year: number;
     week: number;
   } | null>(null);
   const [selectedWeek, setSelectedWeek] = useState<SelectedWeek | null>(null);
   const [vaultName, setVaultName] = useState("My Vault");
-  const [vaultPath, setVaultPath] = useState("");
-  const [dailyFolder, setDailyFolder] = useState("");
-  const [dailyNoteExt, setDailyNoteExt] = useState(".md");
 
   // Load birthdate + vault name on mount
   useEffect(() => {
@@ -56,24 +57,6 @@ export default function LifeCalendarPage() {
     };
     fetchData();
   }, []);
-
-  // Compute weeks lived
-  useEffect(() => {
-    if (!birthdate) return;
-    const birth = parseLocalDate(birthdate);
-    const now = new Date();
-    const todayLocal = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-    );
-    const diffMs = todayLocal.getTime() - birth.getTime();
-    if (diffMs < 0) {
-      setWeeksLived(0);
-      return;
-    }
-    setWeeksLived(Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7)));
-  }, [birthdate]);
 
   const handleBirthdateChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -89,20 +72,71 @@ export default function LifeCalendarPage() {
     localStorage.setItem("obsidian-vault-name", val);
   };
 
-  // Click a week block — compute 7 actual calendar dates
-  const handleWeekClick = (year: number, week: number) => {
-    const birth = parseLocalDate(birthdate);
-    const absoluteWeek = year * 52 + week;
-    const weekStartMs =
-      birth.getTime() + absoluteWeek * 7 * 24 * 60 * 60 * 1000;
+  const birth = parseLocalDate(birthdate);
+  const birthYear = birth.getFullYear();
+  const birthWeek = getCalendarWeek(birth);
+  
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentWeek = getCalendarWeek(today);
 
-    const days = DAY_NAMES.map((label, i) => {
+  let weeksLived = 0;
+  for (let y = 0; y < 90; y++) {
+    const cy = birthYear + y;
+    if (cy < currentYear) {
+      if (cy === birthYear) {
+        weeksLived += (52 - birthWeek);
+      } else {
+        weeksLived += 52;
+      }
+    } else if (cy === currentYear) {
+      if (cy === birthYear) {
+        weeksLived += Math.max(0, currentWeek - birthWeek + 1);
+      } else {
+        weeksLived += (currentWeek + 1);
+      }
+    }
+  }
+
+  let currentAge = currentYear - birthYear;
+  if (currentWeek < birthWeek) {
+    currentAge--;
+  }
+  let weeksSinceBirthday = currentWeek - birthWeek;
+  if (weeksSinceBirthday < 0) {
+    weeksSinceBirthday += 52;
+  }
+
+  const isLivedCell = (yearIdx: number, weekIdx: number) => {
+    const cy = birthYear + yearIdx;
+    if (cy < birthYear) return false;
+    if (cy === birthYear && weekIdx < birthWeek) return false;
+    
+    if (cy < currentYear) return true;
+    if (cy === currentYear && weekIdx <= currentWeek) return true;
+    
+    return false;
+  };
+
+  const isCurrentCell = (yearIdx: number, weekIdx: number) => {
+    const cy = birthYear + yearIdx;
+    return cy === currentYear && weekIdx === currentWeek;
+  };
+
+  // Click a week block — compute 7 actual calendar dates
+  const handleWeekClick = (yearIdx: number, weekIdx: number) => {
+    const cy = birthYear + yearIdx;
+    const jan1 = new Date(cy, 0, 1);
+    const weekStartMs = jan1.getTime() + weekIdx * 7 * 24 * 60 * 60 * 1000;
+
+    const days = Array.from({length: 7}).map((_, i) => {
       const d = new Date(weekStartMs + i * 24 * 60 * 60 * 1000);
       const dateStr = formatLocalDate(d);
+      const label = d.toLocaleDateString("en-US", { weekday: "short" });
       return { date: d, dateStr, label };
     });
 
-    setSelectedWeek({ year, week, days });
+    setSelectedWeek({ year: yearIdx, week: weekIdx, days });
   };
 
   const openObsidian = (dateStr: string) => {
@@ -512,9 +546,8 @@ export default function LifeCalendarPage() {
                     <span className="row-label">{yearIdx}</span>
                     <div className="weeks-row">
                       {Array.from({ length: 52 }).map((_, weekIdx) => {
-                        const absIdx = yearIdx * 52 + weekIdx;
-                        const isLived = absIdx < weeksLived;
-                        const isCurrent = absIdx === weeksLived;
+                        const isLived = isLivedCell(yearIdx, weekIdx);
+                        const isCurrent = isCurrentCell(yearIdx, weekIdx);
                         const isSelected =
                           selectedWeek?.year === yearIdx &&
                           selectedWeek?.week === weekIdx;
@@ -696,7 +729,7 @@ export default function LifeCalendarPage() {
                 <Compass size={18} />
                 <span>Current Age</span>
                 <span className="stat-val">
-                  {Math.floor(weeksLived / 52)}y {weeksLived % 52}w
+                  {currentAge}y {weeksSinceBirthday}w
                 </span>
               </div>
               <div className="stat-pill">

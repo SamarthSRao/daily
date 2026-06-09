@@ -1,11 +1,13 @@
-import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database, Calendar, Flame, BookOpen, RefreshCw } from "lucide-react";
+import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database, Calendar, Flame, BookOpen, RefreshCw, CheckCircle } from "lucide-react";
 
 export default function Sidebar({ activeTab, onTabSelect }: any) {
   return (
     <aside className="meridian-sidebar">
       <div className="meridian-sidebar-section">
+
         <h4 className="meridian-sidebar-header">OVERVIEW</h4>
         <NavItem id="home" label="Dashboard" activeTab={activeTab} onTabSelect={onTabSelect} icon={Grid} />
+        <NavItem id="deadline-goals" label="Deadline Goals" activeTab={activeTab} onTabSelect={onTabSelect} icon={CheckCircle} />
         <NavItem id="timer" label="Timers" activeTab={activeTab} onTabSelect={onTabSelect} icon={Sun} badge="Active" />
       </div>
 
@@ -14,7 +16,7 @@ export default function Sidebar({ activeTab, onTabSelect }: any) {
         <NavItem id="panic-monster" label="Panic Monster" activeTab={activeTab} onTabSelect={onTabSelect} icon={Flame} />
         <NavItem id="life-calendar" label="Life Calendar" activeTab={activeTab} onTabSelect={onTabSelect} icon={Calendar} />
       </div>
-      
+
       <div className="meridian-sidebar-section">
         <h4 className="meridian-sidebar-header">CURRICULUM</h4>
         <NavItem id="prerequisites" label="Prerequisites" activeTab={activeTab} onTabSelect={onTabSelect} icon={BookOpen} />

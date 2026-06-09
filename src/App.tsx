@@ -12,10 +12,11 @@ import WeakestLinkPage from "./pages/WeakestLinkPage";
 import LifeCalendarPage from "./pages/LifeCalendarPage";
 import PanicMonsterPage from "./pages/PanicMonsterPage";
 import PrerequisitesPage from "./pages/PrerequisitesPage";
+import DeadlineGoalsPage from "./pages/DeadlineGoalsPage";
 import "./index.css";
 import "./meridian.css";
 
-type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites";
+type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -29,7 +30,7 @@ export default function App() {
         setMarqueeMsg(`LAST LOG: ${l[l.length - 1].activity.toUpperCase()}`);
       }
     };
-    
+
     checkLogs();
     const timer = setInterval(() => {
       setNow(new Date());
@@ -40,36 +41,37 @@ export default function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "home"          : return <HomeDashboard />;
-      case "daily"         : return <DailyPage />;
-      case "nine-month"    : return <NineMonthPlanPage />;
-      case "dsa"           : return <DsaPage />;
-      case "biweekly"      : return <BiweeklyPage />;
-      case "system"        : return <SystemPage />;
-      case "timer"         : return <Dashboard />;
-      case "questions"     : return <QuestionsPage />;
-      case "weak-link"     : return <WeakestLinkPage />;
-      case "life-calendar" : return <LifeCalendarPage />;
-      case "panic-monster" : return <PanicMonsterPage />;
-      case "prerequisites" : return <PrerequisitesPage />;
-      default              : return <HomeDashboard />;
+      case "home": return <HomeDashboard />;
+      case "daily": return <DailyPage />;
+      case "nine-month": return <NineMonthPlanPage />;
+      case "dsa": return <DsaPage />;
+      case "biweekly": return <BiweeklyPage />;
+      case "system": return <SystemPage />;
+      case "timer": return <Dashboard />;
+      case "questions": return <QuestionsPage />;
+      case "weak-link": return <WeakestLinkPage />;
+      case "life-calendar": return <LifeCalendarPage />;
+      case "panic-monster": return <PanicMonsterPage />;
+      case "prerequisites": return <PrerequisitesPage />;
+      case "deadline-goals": return <DeadlineGoalsPage />;
+      default: return <HomeDashboard />;
     }
   };
 
   return (
     <div className="meridian-app">
       <header className="meridian-topbar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", overflow: "hidden", padding: "0" }}>
-        
+
         {/* Scrolling Marquee Background Layer */}
         <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "center", zIndex: 1, pointerEvents: "none" }}>
-           <div className="meridian-marquee-text" style={{ whiteSpace: "nowrap", color: "rgba(170,170,170,0.4)", fontSize: "0.75rem", letterSpacing: "2px", fontWeight: "600" }}>
-              <span>{marqueeMsg} • {marqueeMsg} • </span>
-              <span>{marqueeMsg} • {marqueeMsg} • </span>
-              <span>{marqueeMsg} • {marqueeMsg} • </span>
-              <span>{marqueeMsg} • {marqueeMsg} • </span>
-              <span>{marqueeMsg} • {marqueeMsg} • </span>
-              <span>{marqueeMsg} • {marqueeMsg} • </span>
-           </div>
+          <div className="meridian-marquee-text" style={{ whiteSpace: "nowrap", color: "rgba(170,170,170,0.4)", fontSize: "0.75rem", letterSpacing: "2px", fontWeight: "600" }}>
+            <span>{marqueeMsg} • {marqueeMsg} • </span>
+            <span>{marqueeMsg} • {marqueeMsg} • </span>
+            <span>{marqueeMsg} • {marqueeMsg} • </span>
+            <span>{marqueeMsg} • {marqueeMsg} • </span>
+            <span>{marqueeMsg} • {marqueeMsg} • </span>
+            <span>{marqueeMsg} • {marqueeMsg} • </span>
+          </div>
         </div>
 
         {/* Foreground Content */}
@@ -78,13 +80,13 @@ export default function App() {
         </div>
 
         <div style={{ zIndex: 2, background: "var(--meridian-black)", height: "100%", display: "flex", alignItems: "center", padding: "0 24px" }}>
-           {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })} &middot; {now.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}
+          {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })} &middot; {now.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}
         </div>
 
         <div style={{ zIndex: 2, background: "var(--meridian-black)", height: "100%", display: "flex", alignItems: "center", padding: "0 24px" }}>
-           <a href="https://samarthsrao.xyz" target="_blank" rel="noreferrer" style={{ color: "var(--meridian-bg)", textDecoration: "none" }}>
-             samarthsrao.xyz ↗
-           </a>
+          <a href="https://samarthsrao.xyz" target="_blank" rel="noreferrer" style={{ color: "var(--meridian-bg)", textDecoration: "none" }}>
+            samarthsrao.xyz ↗
+          </a>
         </div>
       </header>
       <div className="meridian-body">

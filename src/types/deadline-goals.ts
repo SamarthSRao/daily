@@ -1,7 +1,7 @@
-type DeadlineGoal = 'pending' | 'in-progress' | 'completed';
+type DeadlineGoalStatus = 'pending' | 'in-progress' | 'completed';
 
 
-interface Task {
+interface DeadlineGoal {
     id: string;
     title: string;
     status: TaskStatus;

@@ -58,6 +58,53 @@ const DEFAULT_CATEGORIES = [
 export default function HomeDashboard() {
   const [logs, setLogs] = useState<any[]>([]);
   const [now, setNow] = useState(new Date());
+  const [activeGoals, setActiveGoals] = useState<any[]>([]);
+  const [promptIndex, setPromptGoals] = useState(0);
+  const [logInput, setLogInput] = useState("");
+  const currentGoal = activeGoals[promptIndex];
+  
+  const handelSkip = () => {
+    setPromptGoals((prevIndex) => (prevIndex + 1) % activeGoals.length);
+  }
+  
+  const handleMarkCompleted = () => {
+    const data = JSON.parse(localStorage.getItem("properrr-deadline-goals") || "[]");
+
+    const mappedData = data.map((item: any) => {
+      if (item.id === currentGoal.id) {
+        return { ...item, status: "completed" };
+      }
+      return item;
+    });
+    localStorage.setItem("properrr-deadline-goals", JSON.stringify(mappedData));
+
+    const activeONly = mappedData.filter((item: any) => item.status === "active");
+    setActiveGoals(activeONly);
+    setPromptGoals(0);
+  }
+  
+  const handleLogProgress = () => {
+    if (!logInput.trim()) return;
+
+    const data = JSON.parse(localStorage.getItem("properrr-deadline-goals") || "[]");
+    
+    const mappedData = data.map((item: any) => {
+      if (item.id === currentGoal.id) {
+        return {
+          ...item,
+          logs: [...(item.logs || []), { date: new Date().toISOString(), text: logInput }]
+        };
+      }
+      return item;
+    });
+
+    localStorage.setItem("properrr-deadline-goals", JSON.stringify(mappedData));
+    const activeOnly = mappedData.filter((item: any) => item.status === "active");
+    setActiveGoals(activeOnly);
+    setPromptGoals(0);
+    setLogInput("");
+  }
+  
   const [stats, setStats] = useState({
     dsaDone: 0,
     dsaTotal: 0,
@@ -89,6 +136,11 @@ export default function HomeDashboard() {
 
   useEffect(() => {
     const fetchStats = async () => {
+      const read = localStorage.getItem("properrr-deadline-goals");
+      const deadlines = read ? JSON.parse(read) : [];
+      const activeOnly = deadlines.filter((user: any) => user.status === "active")
+      setActiveGoals(activeOnly);
+      
       const today = formatLocalDate(new Date());
 
       const dsaState = await loadState("properrr-dsa", {});
@@ -204,6 +256,28 @@ export default function HomeDashboard() {
           </div>
           <div className="meridian-stat-pill">milestones locked</div>
         </div>
+        
+        {/* CHECK-IN WIDGET */}
+        {activeGoals.length > 0 && (
+          <div style={{ padding: "20px", background: "var(--meridian-bg-elevated)", borderRadius: "16px", gridColumn: "1 / -1", marginBottom: "20px" }}>
+            <h2>Check in: {currentGoal.title}</h2>
+            <div style={{ display: "flex", gap: "10px", marginTop: "12px", marginBottom: "12px" }}>
+              <input 
+                type="text" 
+                value={logInput} 
+                onChange={(e) => setLogInput(e.target.value)} 
+                placeholder="Enter progress log..." 
+                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #555", background: "var(--meridian-black)", color: "var(--text-primary)", flex: 1 }}
+              />
+              <button onClick={handleLogProgress}>Log Progress</button>
+            </div>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <button onClick={handleMarkCompleted}>Mark Completed</button>
+              <button onClick={handelSkip}>Skip</button>
+            </div>
+          </div>
+        )}
+
         <div className="meridian-stat-box">
           <div className="meridian-stat-title">TIME VECTOR</div>
           <div className="meridian-stat-value" style={{ fontSize: "2.4rem" }}>
@@ -291,6 +365,6 @@ export default function HomeDashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

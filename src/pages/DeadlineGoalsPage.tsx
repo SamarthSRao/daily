@@ -16,47 +16,33 @@ function calculateDaysRemaining(targetDateStr: string): number {
     return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 }
 
-// PREMIUM STYLING TOKENS
-const theme = {
-    bg: "var(--meridian-bg, #0a0a0a)",
-    cardBg: "rgba(255, 255, 255, 0.03)",
-    cardBorder: "1px solid rgba(255, 255, 255, 0.08)",
-    primary: "#3b82f6",
-    primaryHover: "#2563eb",
-    danger: "#ef4444",
-    textMain: "#f8fafc",
-    textMuted: "#94a3b8",
-};
-
-const glassmorphism = {
-    background: theme.cardBg,
-    backdropFilter: "blur(12px)",
-    border: theme.cardBorder,
-    borderRadius: "16px",
-    color: theme.textMain,
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-};
-
 const inputStyle = {
-    padding: "10px 14px",
-    borderRadius: "8px",
-    border: theme.cardBorder,
-    background: "rgba(0, 0, 0, 0.2)",
-    color: theme.textMain,
+    padding: "8px 12px",
+    borderRadius: "0px",
+    border: "1px solid var(--meridian-border)",
+    background: "transparent",
+    color: "var(--meridian-text)",
+    fontFamily: "var(--meridian-font-mono)",
+    fontSize: "0.85rem",
     outline: "none",
-    transition: "border 0.2s ease",
 };
 
 const buttonStyle = {
-    padding: "10px 20px",
-    background: theme.primary,
-    color: "white",
-    borderRadius: "8px",
-    border: "none",
+    padding: "8px 16px",
+    background: "var(--meridian-black)",
+    color: "#f5f5f0",
+    borderRadius: "0px",
+    border: "1px solid var(--meridian-border)",
     cursor: "pointer",
-    fontWeight: "600",
-    transition: "all 0.2s ease",
-    boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)",
+    fontFamily: "var(--meridian-font-mono)",
+    fontSize: "0.85rem",
+    fontWeight: "bold",
+};
+
+const secondaryButtonStyle = {
+    ...buttonStyle,
+    background: "transparent",
+    color: "var(--meridian-text)",
 };
 
 export default function DeadlineGoals() {
@@ -118,61 +104,64 @@ export default function DeadlineGoals() {
     }
 
     const renderColumn = (title: string, period: string) => (
-        <div style={{ ...glassmorphism, padding: "24px", display: "flex", flexDirection: "column", gap: "16px" }}>
-            <h2 style={{ fontWeight: "700", fontSize: "1.2rem", letterSpacing: "1px", textTransform: "uppercase", borderBottom: theme.cardBorder, paddingBottom: "12px" }}>
-                {title}
-            </h2>
+        <div style={{ border: "1px solid var(--meridian-border)", padding: "24px", display: "flex", flexDirection: "column", gap: "16px", background: "var(--meridian-bg)" }}>
+            <div className="meridian-activity-header" style={{ borderBottom: "1px solid var(--meridian-border)", paddingBottom: "16px", marginBottom: "8px" }}>
+                <span className="meridian-stat-title">{title}</span>
+            </div>
+            
             {goals.filter(g => g.period === period).map(g => {
                 const daysRemaining = calculateDaysRemaining(g.targetDate);
                 const isOverdue = daysRemaining < 0;
-
+                
                 return (
-                    <div key={g.id} style={{
-                        background: "rgba(255,255,255,0.02)",
-                        border: theme.cardBorder,
-                        padding: "20px",
-                        borderRadius: "12px",
+                    <div key={g.id} style={{ 
+                        border: "1px solid var(--meridian-border)", 
+                        padding: "16px", 
+                        background: "transparent",
                         position: "relative",
-                        overflow: "hidden"
                     }}>
-                        {/* Status Indicator Bar */}
-                        <div style={{ position: "absolute", top: 0, left: 0, width: "4px", height: "100%", background: g.status === "completed" ? theme.primary : (isOverdue ? theme.danger : "#10b981") }} />
-
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
-                            <h4 style={{ fontWeight: "600", fontSize: "1.1rem", margin: 0, textDecoration: g.status === "completed" ? "line-through" : "none", color: g.status === "completed" ? theme.textMuted : theme.textMain }}>
+                        
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+                            <h4 style={{ 
+                                fontFamily: "var(--meridian-font-serif)", 
+                                fontSize: "1.3rem", 
+                                margin: 0, 
+                                textDecoration: g.status === "completed" ? "line-through" : "none", 
+                                color: g.status === "completed" ? "var(--meridian-text-muted)" : "var(--meridian-text)" 
+                            }}>
                                 {g.title}
                             </h4>
-                            <span style={{ fontSize: "0.8rem", padding: "4px 8px", borderRadius: "12px", background: "rgba(255,255,255,0.1)", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                            <span className="meridian-stat-pill" style={{ background: g.status === "completed" ? "var(--meridian-black)" : "transparent", color: g.status === "completed" ? "#f5f5f0" : "inherit" }}>
                                 {g.status}
                             </span>
                         </div>
 
-                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", color: theme.textMuted, marginBottom: "16px" }}>
-                            <span>Target: {g.targetDate}</span>
-                            <span style={{ fontWeight: "600", color: isOverdue && g.status !== "completed" ? theme.danger : theme.textMuted }}>
-                                {daysRemaining} days left
+                        <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--meridian-font-mono)", fontSize: "0.75rem", color: "var(--meridian-text-muted)", marginBottom: "16px" }}>
+                            <span>TGT: {g.targetDate}</span>
+                            <span style={{ fontWeight: "bold", color: isOverdue && g.status !== "completed" ? "#dc2626" : "inherit" }}>
+                                {daysRemaining} DAYS REMAINING
                             </span>
                         </div>
 
                         {g.logs.length > 0 && (
-                            <div style={{ background: "rgba(0,0,0,0.3)", padding: "12px", borderRadius: "8px", marginBottom: "16px", fontSize: "0.85rem" }}>
+                            <div style={{ border: "1px dotted var(--meridian-border)", padding: "12px", marginBottom: "16px", fontFamily: "var(--meridian-font-mono)", fontSize: "0.75rem" }}>
                                 {g.logs.map((log, idx) => (
-                                    <div key={idx} style={{ marginBottom: "8px", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "4px" }}>
-                                        <span style={{ color: theme.primary, marginRight: "8px" }}>{new Date(log.date).toLocaleDateString()}</span>
-                                        <span style={{ color: theme.textMuted }}>{log.text}</span>
+                                    <div key={idx} style={{ marginBottom: "8px" }}>
+                                        <span style={{ fontWeight: "bold", marginRight: "8px" }}>{new Date(log.date).toLocaleDateString()}</span>
+                                        <span style={{ color: "var(--meridian-text-muted)" }}>{log.text}</span>
                                     </div>
                                 ))}
                             </div>
                         )}
 
-                        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "16px", borderTop: "1px dotted var(--meridian-border)", paddingTop: "16px" }}>
                             {g.status !== "completed" && (
                                 <>
-                                    <button onClick={() => handleMarkFunction(g.id)} style={{ padding: "6px 12px", fontSize: "0.85rem", background: "rgba(16, 185, 129, 0.2)", color: "#10b981", border: "1px solid rgba(16, 185, 129, 0.4)", borderRadius: "6px", cursor: "pointer" }}>Mark Done</button>
-                                    <button onClick={() => handleAddLog(g.id)} style={{ padding: "6px 12px", fontSize: "0.85rem", background: "rgba(59, 130, 246, 0.2)", color: theme.primary, border: "1px solid rgba(59, 130, 246, 0.4)", borderRadius: "6px", cursor: "pointer" }}>Add Log</button>
+                                    <button onClick={() => handleMarkFunction(g.id)} style={secondaryButtonStyle}>Mark Done</button>
+                                    <button onClick={() => handleAddLog(g.id)} style={secondaryButtonStyle}>Add Log</button>
                                 </>
                             )}
-                            <button onClick={() => handleDeleteGoal(g.id)} style={{ padding: "6px 12px", fontSize: "0.85rem", background: "rgba(239, 68, 68, 0.1)", color: theme.danger, border: "1px solid rgba(239, 68, 68, 0.3)", borderRadius: "6px", cursor: "pointer", marginLeft: "auto" }}>Delete</button>
+                            <button onClick={() => handleDeleteGoal(g.id)} style={{...secondaryButtonStyle, color: "#dc2626", border: "1px solid #dc2626", marginLeft: "auto" }}>Delete</button>
                         </div>
                     </div>
                 );
@@ -181,23 +170,24 @@ export default function DeadlineGoals() {
     );
 
     return (
-        <div style={{ padding: "40px 24px", maxWidth: "1600px", margin: "0 auto", background: theme.bg, minHeight: "100vh", color: theme.textMain }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "40px" }}>
-                <div>
-                    <h1 style={{ fontSize: "2.5rem", fontWeight: "800", letterSpacing: "-1px", margin: 0, background: "linear-gradient(90deg, #fff, #94a3b8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                        DEADLINE GOALS
-                    </h1>
-                    <p style={{ color: theme.textMuted, marginTop: "8px", fontSize: "1.1rem" }}>{goals.length} Active Objectives</p>
+        <div className="meridian-home">
+            <div className="meridian-home-header">
+                <div className="meridian-title-area">
+                    <h1>DEADLINE GOALS</h1>
+                    <h1 className="italic">tactical board</h1>
+                </div>
+                <div className="meridian-date-area">
+                    <div>{goals.length} ACTIVE OBJECTIVES</div>
                 </div>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ ...glassmorphism, padding: "32px", marginBottom: "40px", display: "flex", gap: "20px", alignItems: "flex-end", flexWrap: "wrap" }}>
-                <div style={{ display: "flex", flexDirection: "column", flex: "1", minWidth: "250px" }}>
-                    <label style={{ fontSize: "0.9rem", color: theme.textMuted, marginBottom: "8px", fontWeight: "500" }}>Goal Title</label>
+            <form onSubmit={handleSubmit} style={{ border: "1px solid var(--meridian-border)", padding: "24px", marginBottom: "48px", display: "flex", gap: "20px", alignItems: "flex-end", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", flexDirection: "column", flex: "1", minWidth: "200px" }}>
+                    <label style={{ fontFamily: "var(--meridian-font-mono)", fontSize: "0.75rem", color: "var(--meridian-text-muted)", marginBottom: "8px" }}>OBJECTIVE TITLE</label>
                     <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter strategy objective..." style={inputStyle} />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", minWidth: "150px" }}>
-                    <label style={{ fontSize: "0.9rem", color: theme.textMuted, marginBottom: "8px", fontWeight: "500" }}>Period</label>
+                    <label style={{ fontFamily: "var(--meridian-font-mono)", fontSize: "0.75rem", color: "var(--meridian-text-muted)", marginBottom: "8px" }}>PERIOD</label>
                     <select name="period" value={formData.period} onChange={handleChange} style={inputStyle}>
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
@@ -206,17 +196,17 @@ export default function DeadlineGoals() {
                     </select>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", minWidth: "150px" }}>
-                    <label style={{ fontSize: "0.9rem", color: theme.textMuted, marginBottom: "8px", fontWeight: "500" }}>Target Date</label>
+                    <label style={{ fontFamily: "var(--meridian-font-mono)", fontSize: "0.75rem", color: "var(--meridian-text-muted)", marginBottom: "8px" }}>TARGET DATE</label>
                     <input type="date" name="targetDate" value={formData.targetDate} onChange={handleChange} style={inputStyle} />
                 </div>
-                <button type="submit" style={buttonStyle}>Deploy Goal</button>
+                <button type="submit" style={buttonStyle}>DEPLOY GOAL</button>
             </form>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
-                {renderColumn("Weekly Sprints", "weekly")}
-                {renderColumn("Monthly Targets", "monthly")}
-                {renderColumn("Quarterly OKRs", "quarterly")}
-                {renderColumn("Yearly Vision", "yearly")}
+                {renderColumn("WEEKLY SPRINTS", "weekly")}
+                {renderColumn("MONTHLY TARGETS", "monthly")}
+                {renderColumn("QUARTERLY OKRS", "quarterly")}
+                {renderColumn("YEARLY VISION", "yearly")}
             </div>
         </div>
     );

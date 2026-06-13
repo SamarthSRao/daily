@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import dsaDataImport from "../data/dsa.json";
+import dsaDataImport from "../data/dsa_v2.json";
 const dsaData = dsaDataImport as any as Level[];
 import { 
   Binary, 
@@ -14,7 +14,9 @@ import {
   Globe,
   Building2,
   Library,
-  History as HistoryIcon
+  History as HistoryIcon,
+  Database,
+  Server
 } from "lucide-react";
 import { saveState, loadState } from "../lib/redis";
 import "../styles/DsaPremium.css";
@@ -24,7 +26,8 @@ interface Problem {
   title: string;
   pattern?: string;
   prerequisite?: string;
-  company?: string;
+  company?: string[] | string;
+  co?: string[] | string;
   cluster?: string;
   striver_covered?: boolean;
   note?: string;
@@ -32,6 +35,8 @@ interface Problem {
   representation_decision?: string;
   is_duplicate?: boolean;
   duplicate_ref?: string;
+  diff?: string;
+  lc?: string;
 }
 
 interface Level {
@@ -39,8 +44,10 @@ interface Level {
   problems: Problem[];
 }
 
+const COMPANIES = ["All", "Uber", "DoorDash", "Databricks", "Razorpay", "Stripe", "Rakuten", "PlanetScale"];
+
 export default function DsaPage() {
-  const [activeLevel, setActiveLevel] = useState(0);
+  const [activeCompany, setActiveCompany] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [completedDsa, setCompletedDsa] = useState<Record<string, boolean>>({});
   const [expandedProblemId, setExpandedProblemId] = useState<string | null>(null);
@@ -66,19 +73,46 @@ export default function DsaPage() {
     setExpandedProblemId(prev => (prev === id ? null : id));
   };
 
+  const allProblems = useMemo(() => {
+    const map = new Map<string, Problem>();
+    dsaData.forEach(level => {
+      level.problems.forEach(p => {
+        if (!map.has(p.id)) {
+          map.set(p.id, p);
+        }
+      });
+    });
+    return Array.from(map.values());
+  }, []);
+
   const filteredProblems = useMemo(() => {
-    const problems = (dsaData[activeLevel] as Level).problems;
-    if (!searchQuery) return problems;
+    let problems = allProblems;
     
-    const query = searchQuery.toLowerCase();
-    return problems.filter(p => 
-      p.title.toLowerCase().includes(query) || 
-      p.id.toLowerCase().includes(query) ||
-      p.pattern?.toLowerCase().includes(query) ||
-      p.cluster?.toLowerCase().includes(query) ||
-      p.company?.toLowerCase().includes(query)
-    );
-  }, [activeLevel, searchQuery]);
+    if (activeCompany !== "All") {
+      problems = problems.filter(p => {
+        const coList = Array.isArray(p.co) ? p.co : (p.co ? [p.co] : []);
+        const companyList = Array.isArray(p.company) ? p.company : (p.company ? [p.company] : []);
+        const combined = [...coList, ...companyList].map(c => c.toLowerCase());
+        return combined.includes(activeCompany.toLowerCase());
+      });
+    }
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      problems = problems.filter(p => {
+        const coList = Array.isArray(p.co) ? p.co.join(' ') : (p.co || '');
+        const companyList = Array.isArray(p.company) ? p.company.join(' ') : (p.company || '');
+        const coStr = `${coList} ${companyList}`;
+        return p.title.toLowerCase().includes(query) || 
+        p.id.toLowerCase().includes(query) ||
+        p.pattern?.toLowerCase().includes(query) ||
+        p.cluster?.toLowerCase().includes(query) ||
+        coStr.toLowerCase().includes(query);
+      });
+    }
+    
+    return problems;
+  }, [allProblems, activeCompany, searchQuery]);
 
   const groupedProblems = useMemo(() => {
     const groups: Record<string, Problem[]> = {};
@@ -91,27 +125,28 @@ export default function DsaPage() {
   }, [filteredProblems]);
 
   const stats = useMemo(() => {
-    const level = dsaData[activeLevel] as Level;
-    const total = level.problems.length;
-    const completed = level.problems.filter(p => completedDsa[`dsa-${p.id}`]).length;
+    const total = filteredProblems.length;
+    const completed = filteredProblems.filter(p => completedDsa[`dsa-${p.id}`]).length;
     const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
     
     return { total, completed, percentage };
-  }, [activeLevel, completedDsa]);
+  }, [filteredProblems, completedDsa]);
 
-  const getLevelIcon = (index: number) => {
-    switch(index) {
-      case 0: return <Zap className="w-5 h-5" />;
-      case 1: return <Brain className="w-5 h-5" />;
-      case 2: return <Rocket className="w-5 h-5" />;
-      case 3: return <Globe className="w-5 h-5" />;
-      case 4: return <Library className="w-5 h-5" />;
-      default: return <Binary className="w-5 h-5" />;
+  const getCompanyIcon = (company: string) => {
+    switch(company.toLowerCase()) {
+      case 'uber': return <Rocket className="w-5 h-5" />;
+      case 'doordash': return <Zap className="w-5 h-5" />;
+      case 'databricks': return <Database className="w-5 h-5" />;
+      case 'razorpay': return <Building2 className="w-5 h-5" />;
+      case 'stripe': return <Globe className="w-5 h-5" />;
+      case 'rakuten': return <Brain className="w-5 h-5" />;
+      case 'planetscale': return <Server className="w-5 h-5" />;
+      default: return <Library className="w-5 h-5" />;
     }
   };
 
   return (
-    <div className={`dsa-page-container level-${activeLevel}`}>
+    <div className={`dsa-page-container active-company-${activeCompany.toLowerCase()}`}>
       <header className="dsa-header-premium">
         <h1 className="dsa-title-premium">DSA Mastery</h1>
         <p className="dsa-subtitle-premium">
@@ -129,16 +164,16 @@ export default function DsaPage() {
           />
         </div>
 
-        <nav className="level-tabs">
-          {dsaData.map((_, idx) => (
+        <nav className="level-tabs" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+          {COMPANIES.map((co) => (
             <button
-              key={idx}
-              className={`level-tab ${activeLevel === idx ? "active" : ""}`}
-              onClick={() => setActiveLevel(idx)}
+              key={co}
+              className={`level-tab ${activeCompany === co ? "active" : ""}`}
+              onClick={() => setActiveCompany(co)}
             >
               <div className="flex items-center gap-2">
-                {getLevelIcon(idx)}
-                <span>Level {idx + 1}</span>
+                {getCompanyIcon(co)}
+                <span>{co}</span>
               </div>
             </button>
           ))}
@@ -147,7 +182,7 @@ export default function DsaPage() {
         <div className="dsa-progress-summary">
           <div className="progress-info">
             <div className="progress-label-wrap">
-              <span className="font-bold">{dsaData[activeLevel].title}</span>
+              <span className="font-bold">{activeCompany === "All" ? "Overall Progress" : `${activeCompany} Readiness`}</span>
               <span className="progress-percentage">{stats.percentage}% Complete</span>
             </div>
             <div className="progress-bar-bg">
@@ -175,6 +210,10 @@ export default function DsaPage() {
                 const taskId = `dsa-${prob.id}`;
                 const isDone = !!completedDsa[taskId];
                 const isExpanded = expandedProblemId === prob.id;
+                
+                const combinedCompany = Array.isArray(prob.co) 
+                  ? prob.co.join(', ') 
+                  : (prob.co || (Array.isArray(prob.company) ? prob.company.join(', ') : prob.company));
 
                 return (
                   <div 
@@ -205,10 +244,19 @@ export default function DsaPage() {
                             {prob.pattern}
                           </span>
                         )}
-                        {prob.company && (
-                          <span className="dsa-tag company">
+                        {prob.diff && (
+                          <span className={`dsa-tag diff-${prob.diff} font-bold text-xs px-2 py-0.5 rounded-full border border-current`} style={{
+                            color: prob.diff === 'E' ? '#4ade80' : prob.diff === 'M' ? '#fbbf24' : '#f87171',
+                            borderColor: prob.diff === 'E' ? '#4ade8055' : prob.diff === 'M' ? '#fbbf2455' : '#f8717155',
+                            backgroundColor: prob.diff === 'E' ? '#4ade8011' : prob.diff === 'M' ? '#fbbf2411' : '#f8717111',
+                          }}>
+                            {prob.diff === 'E' ? 'Easy' : prob.diff === 'M' ? 'Medium' : prob.diff === 'H' ? 'Hard' : prob.diff === 'D' ? 'Design' : prob.diff}
+                          </span>
+                        )}
+                        {combinedCompany && (
+                          <span className="dsa-tag company" style={{ textTransform: 'capitalize' }}>
                             <Building2 size={10} className="mr-1 inline" />
-                            {prob.company}
+                            {combinedCompany}
                           </span>
                         )}
                         {prob.striver_covered && (
@@ -248,6 +296,15 @@ export default function DsaPage() {
                             <div className="dsa-prereq-box">{prob.prerequisite}</div>
                           </div>
                         )}
+                        
+                        {prob.lc && (
+                          <div className="mt-3">
+                            <a href={`https://leetcode.com/problems/${prob.lc}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-blue-400 bg-blue-900/30 hover:bg-blue-800/40 border border-blue-500/30 rounded-lg transition-colors no-underline">
+                              <Globe size={12} />
+                              Open on LeetCode
+                            </a>
+                          </div>
+                        )}
 
                         {(prob.representation_note || prob.representation_decision) && (
                           <div className="mt-2 p-3 bg-blue-950/30 rounded-lg border border-blue-500/20">
@@ -278,7 +335,7 @@ export default function DsaPage() {
         <div className="text-center py-20 bg-slate-900/20 rounded-3xl border border-dashed border-slate-800">
           <Globe className="w-12 h-12 text-slate-700 mx-auto mb-4" />
           <h3 className="text-xl font-bold text-slate-500">No matches found</h3>
-          <p className="text-slate-600">Try adjusting your search query or level Filter</p>
+          <p className="text-slate-600">Try adjusting your search query or company filter</p>
         </div>
       )}
     </div>

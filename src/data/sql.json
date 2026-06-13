@@ -1,0 +1,5445 @@
+[
+  {
+    "title": "1. 🛒 E-Commerce SQL",
+    "problems": [
+      {
+        "id": "1",
+        "title": "List all customers from Bengaluru who signed up after January 2023.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "2",
+        "title": "Find all products with price between ₹500 and ₹2000 in the Electronics category.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "3",
+        "title": "Show all orders placed in the last 30 days with status 'delivered'.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "4",
+        "title": "Retrieve all distinct product categories available on the platform.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "5",
+        "title": "List all customers whose email ends with 'gmail.com'.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "6",
+        "title": "Find all products that are currently out of stock (stock_qty = 0).",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "7",
+        "title": "Show the top 10 most expensive products sorted by price descending.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "8",
+        "title": "List all orders where discount is greater than 0.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "9",
+        "title": "Find all customers who registered in the month of December.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "10",
+        "title": "Retrieve all sellers based in Mumbai with a rating above 4.0.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "11",
+        "title": "List all products from the 'Nike' brand priced below ₹3000.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "12",
+        "title": "Find all orders with payment method 'Cash on Delivery'.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "13",
+        "title": "Show all returned items with reason 'defective'.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "14",
+        "title": "List all coupons that are currently active (expiry_date > today).",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "15",
+        "title": "Find all Gold-tier customers sorted by created_at.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "16",
+        "title": "Show all products with stock quantity less than 10 (low stock alert).",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "17",
+        "title": "List all orders placed by a specific customer (customer_id = 101).",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "18",
+        "title": "Find products whose name contains the word 'wireless'.",
+        "pattern": "LIKE",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "19",
+        "title": "Show all sellers who joined the platform in 2023.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "20",
+        "title": "Find all orders with total_amount greater than ₹10,000.",
+        "pattern": "SELECT",
+        "cluster": "1.1 Basic SELECT & Filtering"
+      },
+      {
+        "id": "21",
+        "title": "Find the total revenue generated per product category.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "22",
+        "title": "Calculate the average order value across all orders.",
+        "pattern": "AGG",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "23",
+        "title": "Count the number of orders placed per month for the current year.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "24",
+        "title": "Find the average product rating per category.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "25",
+        "title": "Get the total number of returns grouped by return reason.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "26",
+        "title": "Find the seller with the highest number of products listed.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "27",
+        "title": "Calculate total revenue and total order count per payment method.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "28",
+        "title": "Find the top 5 cities by number of registered customers.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "29",
+        "title": "Count how many orders each customer has placed.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "30",
+        "title": "Find all categories where the average product price is above ₹1000.",
+        "pattern": "HAVING",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "31",
+        "title": "Calculate total discount given across all orders per month.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "32",
+        "title": "Find the total quantity of each product sold across all orders.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "33",
+        "title": "Count the number of reviews per product and show only products with more than 10 reviews.",
+        "pattern": "HAVING",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "34",
+        "title": "Find the maximum and minimum order value per customer tier.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "35",
+        "title": "Calculate the total refund amount processed per month.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "36",
+        "title": "Count orders by status (pending, delivered, cancelled) per city.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "37",
+        "title": "Find the brand with the highest number of products listed.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "38",
+        "title": "Calculate average rating given by each customer across all their reviews.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "39",
+        "title": "Find the number of unique customers who ordered in each month.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "40",
+        "title": "Calculate total sales (unit_price × quantity) per order.",
+        "pattern": "GROUP BY",
+        "cluster": "1.2 Aggregations & GROUP BY"
+      },
+      {
+        "id": "41",
+        "title": "List each order along with the customer's name and city.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "42",
+        "title": "Show all products with their seller's name and seller's rating.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "43",
+        "title": "List each order item with product name, quantity, and unit price.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "44",
+        "title": "Show all reviews with the reviewer's name and the product name.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "45",
+        "title": "Find all orders with customer name and payment method used.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "46",
+        "title": "Get each seller's total revenue from their products.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "47",
+        "title": "Show all order items with the corresponding order date and status.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "48",
+        "title": "List all products along with their category name.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "49",
+        "title": "Show all returns with the customer name and product name.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "50",
+        "title": "Find all orders placed by Gold-tier customers.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "51",
+        "title": "List all wishlisted products with the customer name and product price.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "52",
+        "title": "Show each product with its brand and current stock quantity.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "53",
+        "title": "Get the total number of orders per seller.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "54",
+        "title": "List all order items where the product category is 'Clothing'.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "55",
+        "title": "Show all reviews with rating 5 and the product name.",
+        "pattern": "JOIN",
+        "cluster": "1.3 INNER JOINs"
+      },
+      {
+        "id": "56",
+        "title": "Find all customers who have never placed an order.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "57",
+        "title": "Find all products that have never been ordered.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "58",
+        "title": "List all sellers who have no products listed.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "59",
+        "title": "Find products that have never been reviewed.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "60",
+        "title": "List customers who have never used a coupon.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "61",
+        "title": "Find products that exist in the catalog but have never been wishlisted.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "62",
+        "title": "List sellers who have no returns on any of their products.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "63",
+        "title": "Find all customers who have placed orders but never left a review.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "64",
+        "title": "List all categories with no products assigned to them.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "65",
+        "title": "Find products that are wishlisted but have never been purchased.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.4 LEFT JOINs (Find Missing / Unmatched)"
+      },
+      {
+        "id": "66",
+        "title": "Find all customers who have spent more than the average order amount.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "67",
+        "title": "Get products whose price is above the average price in their category.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "68",
+        "title": "Find the most recent order for each customer.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "69",
+        "title": "List products that have never been returned.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "70",
+        "title": "Find the seller with the highest average product rating.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "71",
+        "title": "Get the customer who placed the highest single order by value.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "72",
+        "title": "Find all orders where the total_amount is above the monthly average.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "73",
+        "title": "List products cheaper than the cheapest product in the Electronics category.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "74",
+        "title": "Find customers whose total spending is above the platform average.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "75",
+        "title": "Get the top 3 most reviewed products.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "76",
+        "title": "Find all orders that contain more than 5 different products.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "77",
+        "title": "List sellers whose average product price is below ₹500.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "78",
+        "title": "Find the product with the most returns.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "79",
+        "title": "Get all customers who ordered in the same month they registered.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "80",
+        "title": "Find categories where no product has been returned.",
+        "pattern": "Subquery",
+        "cluster": "1.5 Subqueries"
+      },
+      {
+        "id": "81",
+        "title": "Use a CTE to find the top 5 customers by total lifetime spend.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "82",
+        "title": "Write a CTE to calculate total revenue per month and display with month name.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "83",
+        "title": "Use CTE to find sellers ranked by total revenue from their products.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "84",
+        "title": "CTE to find the best-selling product in each category.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "85",
+        "title": "Use CTE to compute average order value per city and rank cities.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "86",
+        "title": "Write a CTE to calculate the return rate per product (returns / orders).",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "87",
+        "title": "Use CTE to find customers who placed orders in 3 or more consecutive months.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "88",
+        "title": "CTE to identify products with more returns than sales in the last 30 days.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "89",
+        "title": "Use CTE to find the top 3 products by revenue per seller.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "90",
+        "title": "Write a CTE to compute the repeat purchase rate per product.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "91",
+        "title": "Use CTE to find the monthly active customer count for the last 6 months.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "92",
+        "title": "CTE to calculate the refund-to-revenue ratio per category.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "93",
+        "title": "Use CTE to list sellers at risk (no orders on their products in last 30 days).",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "94",
+        "title": "Write a CTE to find the category with the fastest sales velocity.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "95",
+        "title": "Use CTE to compute total discount given per customer tier per month.",
+        "pattern": "CTE",
+        "cluster": "1.6 CTEs (Common Table Expressions)"
+      },
+      {
+        "id": "96",
+        "title": "Rank customers by total spend using RANK() and DENSE_RANK().",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "97",
+        "title": "Calculate the running total of daily revenue ordered by date.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "98",
+        "title": "Find each customer's most recent order using ROW_NUMBER() OVER (PARTITION BY customer_id).",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "99",
+        "title": "Use LAG() to find the previous month's revenue and compute month-over-month change.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "100",
+        "title": "Use LEAD() to find the next order date for each customer.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "101",
+        "title": "Find the top 3 products by revenue in each category using RANK().",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "102",
+        "title": "Compute the percentage of total revenue each product contributes using SUM() OVER().",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "103",
+        "title": "Use NTILE(4) to segment customers into 4 spending quartiles.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "104",
+        "title": "Find each seller's rank by total revenue using DENSE_RANK() OVER (PARTITION BY city).",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "105",
+        "title": "Use FIRST_VALUE() to get the first product each customer ever purchased.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "106",
+        "title": "Calculate the 3-month moving average of monthly order count.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "107",
+        "title": "Use ROW_NUMBER() to deduplicate reviews, keeping only the latest per customer per product.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "108",
+        "title": "Find the top 2 customers by spend per city using RANK().",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "109",
+        "title": "Compute each product's revenue share within its category using SUM() OVER(PARTITION BY).",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "110",
+        "title": "Use LAST_VALUE() to find the most recent return reason for each product.",
+        "pattern": "Window",
+        "cluster": "1.7 Window Functions"
+      },
+      {
+        "id": "111",
+        "title": "Find the total revenue per month for the current year.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "112",
+        "title": "List the top 5 best-selling products by quantity sold.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "113",
+        "title": "Find customers who have placed more than 5 orders.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "114",
+        "title": "Calculate the average rating per seller based on their products.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "115",
+        "title": "Find the most common payment method used in each city.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "116",
+        "title": "Get the month with the highest number of returns.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "117",
+        "title": "Find products that were ordered but never reviewed.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "118",
+        "title": "Calculate the average time between order_date and return_date for returned items.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "119",
+        "title": "List the top 3 sellers by number of 5-star product reviews.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "120",
+        "title": "Find customers who placed an order every month for the last 3 months.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "121",
+        "title": "Calculate how many orders each coupon code was applied to.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "122",
+        "title": "Find the city with the highest average order value.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "123",
+        "title": "List products that have been purchased by more than 100 distinct customers.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "124",
+        "title": "Find the return rate (returns/orders) per product category.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "125",
+        "title": "Calculate total commission earned from each seller this month.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "126",
+        "title": "Find the average number of items per order per customer.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "127",
+        "title": "List sellers who have both a high rating (>4.5) and high revenue (top 20%).",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "128",
+        "title": "Find products where stock is below the average sales per day (will run out soon).",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "129",
+        "title": "Calculate the percentage of orders that had a discount applied.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "130",
+        "title": "Find the most popular product in each state.",
+        "pattern": "Analytics",
+        "cluster": "1.8 Commonly Asked Interview Scenarios"
+      },
+      {
+        "id": "131",
+        "title": "Find the average number of days between a customer's first and second order.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "132",
+        "title": "List all products with more 1-star reviews than 5-star reviews.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "133",
+        "title": "Calculate the basket size distribution: orders with 1, 2, 3, 4, 5+ items.",
+        "pattern": "CASE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "134",
+        "title": "Find all orders placed and cancelled on the same day.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "135",
+        "title": "Get each seller's month-over-month revenue change using LAG().",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "136",
+        "title": "Find customers who used the same coupon code more than once.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "137",
+        "title": "List all products that have a higher return rate than the category average.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "138",
+        "title": "Find the top 5 products by wishlist additions that have never been purchased.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "139",
+        "title": "Calculate the average review score per brand.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "140",
+        "title": "Find all sellers with commission earned above ₹50,000 this month.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "141",
+        "title": "Get the number of distinct products each customer has ever ordered.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "142",
+        "title": "Find categories where every product has at least one review.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "143",
+        "title": "List the top 3 most returned products per category.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "144",
+        "title": "Calculate average discount per customer tier.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "145",
+        "title": "Find products added to a wishlist in the last 7 days that are currently on sale.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "146",
+        "title": "Count new customers acquired per month (first order month).",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "147",
+        "title": "Find the most active hour of day for order placements.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "148",
+        "title": "List products with no reviews but with at least 10 orders.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "149",
+        "title": "Calculate the revenue contribution of each city as a % of total.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "150",
+        "title": "Find all orders where the applied discount made the profit negative.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "151",
+        "title": "List customers who have reviewed every product they ordered.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "152",
+        "title": "Find the seller who has the widest price range (max price - min price) of products.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "153",
+        "title": "Calculate return rate by payment method.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "154",
+        "title": "Find the top 3 categories by unique customer count.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "155",
+        "title": "List products priced within 10% of the category average.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "156",
+        "title": "Find all repeat customers (more than 1 order) per city.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "157",
+        "title": "Calculate the total weight of orders (using product weight column if available).",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "158",
+        "title": "Find the day of the week with the highest order volume.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "159",
+        "title": "List all coupons that generated more than ₹1,00,000 in discount.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "160",
+        "title": "Find products that have been continuously in stock for the last 30 days.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "161",
+        "title": "Find the average order value per day of week.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "162",
+        "title": "List customers who placed an order within 1 hour of registering.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "163",
+        "title": "Calculate each product's rank by number of wishlists it appears in.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "164",
+        "title": "Find sellers who have never had a return on any product.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "165",
+        "title": "Calculate the total platform revenue (sum of all order amounts minus discounts).",
+        "pattern": "AGG",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "166",
+        "title": "Find customers whose average order value increased between Q1 and Q2.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "167",
+        "title": "List the top 5 most used coupon codes by discount amount.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "168",
+        "title": "Find orders where the number of items exceeds the customer's average basket size.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "169",
+        "title": "Calculate the share of wallet per category for each customer.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "170",
+        "title": "Find products that are in the top 10% by price in their category.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "171",
+        "title": "List all sellers with at least one product in stock and at least one out of stock.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "172",
+        "title": "Find the month with the most new customer registrations.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "173",
+        "title": "Calculate total revenue from each customer tier.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "174",
+        "title": "List all orders that contained both Electronics and Clothing items.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "175",
+        "title": "Find the average age of orders currently in 'pending' status.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "176",
+        "title": "Calculate the % of revenue from the top 10 products.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "177",
+        "title": "Find customers who spent more in December than any other month.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "178",
+        "title": "List all products where price is lower than the average for their brand.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "179",
+        "title": "Calculate the on-time delivery rate per city (delivered before promised date).",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "180",
+        "title": "Find all sellers who earned more than ₹1,00,000 in a single month.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "181",
+        "title": "Get the total number of items returned per seller.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "182",
+        "title": "Find the customer with the most diverse purchase history (most categories).",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "183",
+        "title": "Calculate the coupon utilization rate (used_count / usage_limit).",
+        "pattern": "SELECT",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "184",
+        "title": "Find the most popular product per age group of customer (if age available).",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "185",
+        "title": "List all products where the seller rating is below 3.5.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "186",
+        "title": "Calculate the average time between restock events per product.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "187",
+        "title": "Find all orders where total_amount does not match the sum of order_items.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "188",
+        "title": "List the top 3 cities by total discount amount given.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "189",
+        "title": "Find all customers who have a wishlist but no orders.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "190",
+        "title": "Calculate the monthly growth rate of total orders using LAG().",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "191",
+        "title": "Find products that appear together in the same order more than 50 times.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "192",
+        "title": "List all sellers with both highest and lowest rated products.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "193",
+        "title": "Calculate the refund amount as a percentage of original order value.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "194",
+        "title": "Find customers who always choose the same payment method.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "195",
+        "title": "List the top 10 products by net revenue (revenue - refunds).",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "196",
+        "title": "Find the average rating of products by seller city.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "197",
+        "title": "Calculate the order volume change between this week and last week.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "198",
+        "title": "Find customers who have never made a return despite ordering 10+ times.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "199",
+        "title": "List all products that have been in the top 10 sellers for 3+ months.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "200",
+        "title": "Find the most common order size (₹0-500, ₹500-2000, ₹2000+) per city.",
+        "pattern": "CASE+GROUP",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "201",
+        "title": "Get the cumulative revenue per seller ordered by month.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "202",
+        "title": "Find categories where the total stock value (price × stock_qty) exceeds ₹10,00,000.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "203",
+        "title": "List all orders with a discount above 50% of the product's cost price.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "204",
+        "title": "Find customers who only ever ordered from one seller.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "205",
+        "title": "Calculate the average number of days a product stays wishlisted before being purchased.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "206",
+        "title": "Find all products where the review count is 0 but return count is > 0.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "207",
+        "title": "List the top 5 brands by total customer reviews.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "208",
+        "title": "Find the seller with the most consistent rating (lowest standard deviation in product ratings).",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "209",
+        "title": "Calculate week-over-week revenue growth using CTEs and LAG().",
+        "pattern": "CTE+Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "210",
+        "title": "List all customers who placed their first order using a coupon.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "211",
+        "title": "Find products that have been ordered in all 12 months of the current year.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "212",
+        "title": "Calculate the revenue lost to returns per seller per month.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "213",
+        "title": "Find all orders where the same product appears more than once as a line item.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "214",
+        "title": "List cities where the average order value has grown month over month for 3 months.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "215",
+        "title": "Find the top seller in each product category by revenue.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "216",
+        "title": "Calculate the median order value per customer tier using PERCENTILE_CONT.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "217",
+        "title": "Find all customers who referred another customer who then made a purchase.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "218",
+        "title": "List products that have a higher average review score from verified buyers.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "219",
+        "title": "Find the percentage of orders that resulted in at least one item being returned.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "220",
+        "title": "Calculate the seller performance score = avg_rating × 0.5 + on_time_rate × 0.5.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "221",
+        "title": "Find all products with exactly 0 stock that have pending orders.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "222",
+        "title": "List the top 5 days of the year by total revenue.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "223",
+        "title": "Find customers who changed their delivery city across consecutive orders.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "224",
+        "title": "Calculate the percentage of revenue generated during weekends.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "225",
+        "title": "Find the earliest and latest order date per seller.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "226",
+        "title": "List all products where the return rate improved (decreased) over the last 3 months.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "227",
+        "title": "Find customers whose order value is always above ₹2000.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "228",
+        "title": "Calculate the customer acquisition trend (new customers per week) for the last month.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "229",
+        "title": "Find all sellers who have received both a 1-star and 5-star product review in the same month.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "230",
+        "title": "List the top 3 coupon codes by revenue saved for customers.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "231",
+        "title": "Find products that sold more than their stock quantity (data inconsistency check).",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "232",
+        "title": "Calculate monthly active sellers (sellers with at least one order on their product).",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "233",
+        "title": "Find customers who ordered the same product more than twice.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "234",
+        "title": "List all sellers where commission_pct is above the platform average.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "235",
+        "title": "Find the average discount amount given per order in each city.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "236",
+        "title": "Calculate the revenue per active seller per month.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "237",
+        "title": "Find products whose price is in the top 10% but rating is in the bottom 10%.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "238",
+        "title": "List customers with the most diverse payment method usage.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "239",
+        "title": "Find the seller with the fastest inventory turnover.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "240",
+        "title": "Calculate the number of orders per customer for their first 30 days on the platform.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "241",
+        "title": "Find all orders that contain only one unique product.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "242",
+        "title": "List the top 5 product categories by return rate.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "243",
+        "title": "Calculate each seller's rank by return rate using RANK().",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "244",
+        "title": "Find customers who have used every available payment method.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "245",
+        "title": "List all products with positive stock but zero orders in the last 60 days.",
+        "pattern": "LEFT JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "246",
+        "title": "Find the average order value per day of month (1st, 2nd, etc.).",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "247",
+        "title": "Calculate total revenue per quarter for the last 2 years.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "248",
+        "title": "Find all customers whose first order was above ₹5000.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "249",
+        "title": "List sellers with an increasing trend in monthly revenue over the last 3 months.",
+        "pattern": "CTE+Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "250",
+        "title": "Find the product that generates the highest revenue per review.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "251",
+        "title": "Calculate the share of orders using digital payment methods per city.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "252",
+        "title": "Find all products in the same category as the most returned product.",
+        "pattern": "Subquery",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "253",
+        "title": "List customers who ordered within 24 hours of a product going on sale.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "254",
+        "title": "Find the most popular category per customer tier.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "255",
+        "title": "Calculate the average price drop at time of return for returned items.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "256",
+        "title": "Find all orders where the discount was applied but the coupon was expired.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "257",
+        "title": "List the top 3 sellers by total number of distinct customers served.",
+        "pattern": "GROUP BY",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "258",
+        "title": "Find products with a consistent weekly sales pattern (same qty each week).",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "259",
+        "title": "Calculate the compounding monthly growth rate of the platform's GMV.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "260",
+        "title": "Find all customers who rated a product 5 stars and also returned it.",
+        "pattern": "JOIN",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "261",
+        "title": "List the top 3 cities by revenue in each quarter.",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "262",
+        "title": "Find the average time from order placement to delivery per seller.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "263",
+        "title": "Calculate total platform-wide GMV and compare Q1 vs Q2 using CTEs.",
+        "pattern": "CTE",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "264",
+        "title": "Find products that are in high demand (top 20% orders) but low stock (bottom 20%).",
+        "pattern": "Window",
+        "cluster": "1.9 Additional Practice"
+      },
+      {
+        "id": "265",
+        "title": "List all sellers who improved their average rating by more than 0.5 over the past 6 months.",
+        "pattern": "Analytics",
+        "cluster": "1.9 Additional Practice"
+      }
+    ]
+  },
+  {
+    "title": "2. 🚗 Ride-Sharing SQL (Uber / Ola)",
+    "problems": [
+      {
+        "id": "266",
+        "title": "List all active drivers in Bengaluru city.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "267",
+        "title": "Find all trips completed on a specific date.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "268",
+        "title": "Show all cancelled trips with their cancellation reason.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "269",
+        "title": "Find all drivers with a rating below 3.5.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "270",
+        "title": "List all trips with surge multiplier greater than 1.5.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "271",
+        "title": "Find all riders who signed up using a referral code.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "272",
+        "title": "Show all trips longer than 20 km.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "273",
+        "title": "List all cash payment trips in a given city.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "274",
+        "title": "Find all drivers whose vehicle type is 'SUV'.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "275",
+        "title": "Find all trips that took more than 60 minutes.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "276",
+        "title": "List all riders registered in the last 7 days.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "277",
+        "title": "Find all trips with a fare above ₹500.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "278",
+        "title": "Show all promo codes that have expired.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "279",
+        "title": "Find all drivers with status 'offline'.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "280",
+        "title": "List all trips where the rider cancelled the trip.",
+        "pattern": "SELECT",
+        "cluster": "2.1 Basic Queries"
+      },
+      {
+        "id": "281",
+        "title": "Calculate total revenue per city per month.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "282",
+        "title": "Find the average trip distance per vehicle type.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "283",
+        "title": "Count total trips, completed and cancelled, per driver.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "284",
+        "title": "Find the peak hour (0–23) with the most trip requests.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "285",
+        "title": "Calculate average surge multiplier per pickup area.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "286",
+        "title": "Find the top 10 drivers by total earnings this month.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "287",
+        "title": "Calculate the cancellation rate (cancelled / total) per city.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "288",
+        "title": "Find the average rating given by riders vs. given by drivers.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "289",
+        "title": "Count how many riders used each payment method.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "290",
+        "title": "Find the average trip duration per pickup area.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "291",
+        "title": "Calculate total platform revenue (sum of platform_cut) per month.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "292",
+        "title": "Find the top 5 pickup areas by number of trips.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "293",
+        "title": "Count the number of unique riders per driver.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "294",
+        "title": "Calculate the average fare per kilometre per vehicle type.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "295",
+        "title": "Find the day of week with the highest number of trips.",
+        "pattern": "GROUP BY",
+        "cluster": "2.2 Aggregations"
+      },
+      {
+        "id": "296",
+        "title": "Show each trip with rider name, driver name, fare, and distance.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "297",
+        "title": "Find drivers who have never completed a trip.",
+        "pattern": "LEFT JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "298",
+        "title": "Show all ratings with trip details and the name of the person who gave the rating.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "299",
+        "title": "List all trips with applicable surge zone info at the time of booking.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "300",
+        "title": "Find riders who have never given a rating after a trip.",
+        "pattern": "LEFT JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "301",
+        "title": "Show driver earnings alongside their trip fare and platform cut.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "302",
+        "title": "Find all trips where a promo code was applied.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "303",
+        "title": "List drivers with unverified documents.",
+        "pattern": "LEFT JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "304",
+        "title": "Get cancellation details with rider name and penalty amount.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "305",
+        "title": "Find riders who have taken trips with more than 3 different drivers.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "306",
+        "title": "List all trips along with the pickup and drop area names.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "307",
+        "title": "Find drivers who have completed more than 100 trips but have a rating below 4.0.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "308",
+        "title": "Show each driver's total net earnings with their name and city.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "309",
+        "title": "Find the trips that generated the highest platform revenue per city.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "310",
+        "title": "List all riders who used a promo code on their first trip.",
+        "pattern": "JOIN",
+        "cluster": "2.3 JOINs"
+      },
+      {
+        "id": "311",
+        "title": "Use CTE to find the top 5 riders by number of trips this month.",
+        "pattern": "CTE",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "312",
+        "title": "Rank drivers by total earnings per city using DENSE_RANK().",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "313",
+        "title": "Use ROW_NUMBER() to get each driver's most recent trip.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "314",
+        "title": "CTE to calculate driver churn (no trips in last 14 days).",
+        "pattern": "CTE",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "315",
+        "title": "Calculate cumulative daily revenue using SUM() OVER (ORDER BY date).",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "316",
+        "title": "Use LAG() to compare each driver's current vs. previous trip fare.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "317",
+        "title": "Find the median trip fare per city using PERCENTILE_CONT.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "318",
+        "title": "Rank pickup areas by trip volume per hour using RANK().",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "319",
+        "title": "Use LEAD() to find idle time between consecutive driver trips.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "320",
+        "title": "CTE to find the top driver per city by earnings.",
+        "pattern": "CTE",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "321",
+        "title": "Use ROW_NUMBER() OVER(PARTITION BY rider_id) to find each rider's first trip.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "322",
+        "title": "Calculate 7-day rolling average of daily trips using AVG() OVER.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "323",
+        "title": "Use CTE to compute the daily trip completion rate for the last 30 days.",
+        "pattern": "CTE",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "324",
+        "title": "Rank drivers by rating per vehicle type using RANK().",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "325",
+        "title": "Use LAG() to compute day-over-day change in city revenue.",
+        "pattern": "Window",
+        "cluster": "2.4 CTEs & Window Functions"
+      },
+      {
+        "id": "326",
+        "title": "Find drivers who are consistently rated below 4.0 in their last 10 trips.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "327",
+        "title": "Identify riders who cancel more than 30% of their trip requests.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "328",
+        "title": "Calculate the platform's net revenue after driver payouts per month.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "329",
+        "title": "Find the most popular pickup-to-drop area pair (most frequent route).",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "330",
+        "title": "Find drivers who had back-to-back trips with zero idle time.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "331",
+        "title": "Find the most efficient drivers by revenue earned per kilometre.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "332",
+        "title": "Find the top 5 earning drivers per vehicle type.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "333",
+        "title": "Find the day of week with the lowest cancellation rate.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "334",
+        "title": "List riders who referred others and the count of successful referrals.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "335",
+        "title": "Calculate the average distance per trip by vehicle type.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "336",
+        "title": "Find drivers who received a 5-star rating on more than 80% of their trips.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "337",
+        "title": "Calculate the revenue per trip by surge zone.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "338",
+        "title": "Find the longest trip by duration in each city.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "339",
+        "title": "List riders who only book trips late at night (11pm–4am).",
+        "pattern": "SELECT",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "340",
+        "title": "Calculate the % of trips paid by cash vs. digital per city.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "341",
+        "title": "Find the average tip amount per trip by vehicle type.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "342",
+        "title": "Calculate the cancellation fee revenue per city per month.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "343",
+        "title": "Find the city with the highest driver-to-rider ratio.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "344",
+        "title": "Find the average rating given to drivers in each city.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "345",
+        "title": "Calculate the total earnings for each driver for the current month.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "346",
+        "title": "Find riders whose total spending is in the top 10% of all riders.",
+        "pattern": "Window",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "347",
+        "title": "Calculate the % of trips that were surge-priced per city.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "348",
+        "title": "Find the most frequently paired driver-rider combination.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "349",
+        "title": "Calculate gross merchandise value (GMV) per vehicle type per quarter.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "350",
+        "title": "Find riders who used promo codes on every single trip.",
+        "pattern": "Subquery",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "351",
+        "title": "Calculate the average wait time (request to driver accept) per area.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "352",
+        "title": "Find drivers who completed more than 10 trips in a single day.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "353",
+        "title": "Find the trip with the highest fare in each city for each month.",
+        "pattern": "Window",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "354",
+        "title": "Find the % of night trips (10pm–6am) per driver.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "355",
+        "title": "Calculate the day each driver earned their highest income.",
+        "pattern": "Window",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "356",
+        "title": "Find the city with the highest average trip fare.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "357",
+        "title": "Calculate the total promo discount given per city per month.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "358",
+        "title": "Find drivers who have maintained a 4.5+ average rating.",
+        "pattern": "Subquery",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "359",
+        "title": "List all drivers who completed their first trip within 24 hours of joining.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "360",
+        "title": "Find the average number of trips per rider per month.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "361",
+        "title": "List all riders who have spent more than ₹10,000 total on the platform.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "362",
+        "title": "Find the surge zone that generated the most additional revenue.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "363",
+        "title": "Calculate the driver utilization rate (trips completed vs. available hours).",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "364",
+        "title": "Find the most common cancellation reason per city.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "365",
+        "title": "List all drivers who have a penalty on any cancelled trip.",
+        "pattern": "JOIN",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "366",
+        "title": "Calculate the average earnings per trip for each driver.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "367",
+        "title": "Find the month with the highest number of new rider signups.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "368",
+        "title": "List riders who have completed trips in more than 3 different cities.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "369",
+        "title": "Find the driver who earned the most from surge pricing.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "370",
+        "title": "Calculate the platform's take rate (platform_cut / fare) per vehicle type.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "371",
+        "title": "Find riders who used the same promo code more than once.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "372",
+        "title": "List trips where the driver and rider are from the same city.",
+        "pattern": "JOIN",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "373",
+        "title": "Calculate the revenue impact of cancellations (lost fare) per month.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "374",
+        "title": "Find all drivers who have driven for more than 1 year on the platform.",
+        "pattern": "SELECT",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "375",
+        "title": "List the top 3 pickup areas by average fare per trip.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "376",
+        "title": "Find riders who signed up on the same day and made their first trip on the same day.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "377",
+        "title": "Calculate total driver earnings per city per quarter.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "378",
+        "title": "Find trips where the actual distance was significantly more than average for that route.",
+        "pattern": "Subquery",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "379",
+        "title": "List all promo codes that have reached their usage limit.",
+        "pattern": "SELECT",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "380",
+        "title": "Find the average trip count per driver per week.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "381",
+        "title": "Calculate the revenue contribution of each vehicle type as a % of total.",
+        "pattern": "Window",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "382",
+        "title": "Find drivers who accepted trips outside their registered city.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "383",
+        "title": "List all riders whose last trip was more than 30 days ago.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "384",
+        "title": "Find the top 3 drivers by rider satisfaction score (average rating received).",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "385",
+        "title": "Calculate the trip completion rate per driver.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "386",
+        "title": "Find all trips where surge was applied but fare was below the city average.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "387",
+        "title": "List all cities where the cancellation rate is above 20%.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "388",
+        "title": "Find riders who consistently give low ratings to drivers.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "389",
+        "title": "Calculate the average revenue per new driver in their first month.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "390",
+        "title": "Find the most popular drop-off zone for airport trips.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "391",
+        "title": "List all drivers who drove more than 300 km in a single day.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "392",
+        "title": "Find the peak day of month for trip requests.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "393",
+        "title": "Calculate the average fare per km by time of day.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "394",
+        "title": "Find all trips where rider and driver are in each other's ratings table.",
+        "pattern": "JOIN",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "395",
+        "title": "List the top 5 cities by total revenue this quarter.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "396",
+        "title": "Find drivers who earned more from surge than non-surge trips.",
+        "pattern": "CTE",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "397",
+        "title": "Calculate the year-over-year trip volume growth per city using CTE.",
+        "pattern": "CTE",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "398",
+        "title": "Find the first trip ever completed on the platform.",
+        "pattern": "SELECT",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "399",
+        "title": "List all riders with zero cancelled trips but 10+ total trips.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "400",
+        "title": "Find the average rating received by drivers from riders in each city.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "401",
+        "title": "Calculate the platform's net margin (platform_cut - operational cost proxy) per month.",
+        "pattern": "Analytics",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "402",
+        "title": "Find riders who have referred more than 5 others successfully.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "403",
+        "title": "List drivers with an improving rating trend over their last 20 trips.",
+        "pattern": "Window",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "404",
+        "title": "Find the route (pickup → drop) with the lowest average rider rating.",
+        "pattern": "GROUP BY",
+        "cluster": "2.5 Interview Scenarios"
+      },
+      {
+        "id": "405",
+        "title": "Calculate the monthly retention rate of active drivers.",
+        "pattern": "CTE",
+        "cluster": "2.5 Interview Scenarios"
+      }
+    ]
+  },
+  {
+    "title": "3. 🛵 Food & Package Delivery SQL",
+    "problems": [
+      {
+        "id": "406",
+        "title": "List all active restaurants in a given city.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "407",
+        "title": "Find all veg menu items priced below ₹200.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "408",
+        "title": "Show all orders with 'delayed' status in the last 7 days.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "409",
+        "title": "List delivery agents currently available (status = 'active').",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "410",
+        "title": "Find all orders where a discount was applied.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "411",
+        "title": "List restaurants with an average rating above 4.2.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "412",
+        "title": "Find all orders paid via UPI.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "413",
+        "title": "Show all SLA breaches for a specific restaurant.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "414",
+        "title": "Find customers who ordered more than once today.",
+        "pattern": "GROUP BY",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "415",
+        "title": "List all menu items that are currently unavailable.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "416",
+        "title": "Find all orders where delivery_fee was waived (delivery_fee = 0).",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "417",
+        "title": "List restaurants that serve 'Italian' cuisine.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "418",
+        "title": "Find all agents with a rating below 3.0.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "419",
+        "title": "List all orders that are still in 'pending' status.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "420",
+        "title": "Find all menu items in the 'Desserts' category.",
+        "pattern": "SELECT",
+        "cluster": "3.1 Basic Queries"
+      },
+      {
+        "id": "421",
+        "title": "Calculate total revenue per restaurant per month.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "422",
+        "title": "Find the average delivery time per city.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "423",
+        "title": "Count orders per delivery agent and their average delivery time.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "424",
+        "title": "Find the top 5 most ordered menu items overall.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "425",
+        "title": "Calculate total SLA breaches per restaurant.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "426",
+        "title": "Find peak ordering hours across all restaurants.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "427",
+        "title": "Calculate total discount given per payment method.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "428",
+        "title": "Find restaurants with the highest average order value.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "429",
+        "title": "Count how many customers ordered from more than 3 different restaurants.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "430",
+        "title": "Find the average prep time per cuisine type.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "431",
+        "title": "Calculate total delivery fee revenue per city per month.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "432",
+        "title": "Count number of active menu items per restaurant.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "433",
+        "title": "Find restaurants with the most cancelled orders.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "434",
+        "title": "Calculate average order value per customer.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "435",
+        "title": "Find the city with the most SLA breaches.",
+        "pattern": "GROUP BY",
+        "cluster": "3.2 Aggregations"
+      },
+      {
+        "id": "436",
+        "title": "Show each order with customer name, restaurant name, and agent name.",
+        "pattern": "JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "437",
+        "title": "List all orders with their individual items and prices.",
+        "pattern": "JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "438",
+        "title": "Find restaurants that have had no orders in the last 30 days.",
+        "pattern": "LEFT JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "439",
+        "title": "Show all SLA-breached orders with restaurant name and breach reason.",
+        "pattern": "JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "440",
+        "title": "Find customers who have never used a discount.",
+        "pattern": "LEFT JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "441",
+        "title": "Get each agent's most recent delivery with agent name.",
+        "pattern": "JOIN+Window",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "442",
+        "title": "List all menu items with the count of how many times they've been ordered.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "443",
+        "title": "Show restaurant reviews with customer name and restaurant name.",
+        "pattern": "JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "444",
+        "title": "Find restaurants with commission owed to the platform this month.",
+        "pattern": "JOIN+Analytics",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "445",
+        "title": "List all orders with total delivery time (order_time to delivered_time).",
+        "pattern": "JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "446",
+        "title": "Find menu items that have never been ordered.",
+        "pattern": "LEFT JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "447",
+        "title": "Show all agents with the count of SLA-breached orders assigned to them.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "448",
+        "title": "List all orders with both restaurant name and delivery zone info.",
+        "pattern": "JOIN",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "449",
+        "title": "Find customers who have ordered from the same restaurant 5+ times.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "450",
+        "title": "Show the top 3 menu items per restaurant by order count.",
+        "pattern": "Window",
+        "cluster": "3.3 JOINs"
+      },
+      {
+        "id": "451",
+        "title": "CTE to compute the on-time delivery rate per agent.",
+        "pattern": "CTE",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "452",
+        "title": "Use ROW_NUMBER() to find each customer's most expensive order.",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "453",
+        "title": "CTE to identify restaurants with SLA breach rate above 20%.",
+        "pattern": "CTE",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "454",
+        "title": "Rank restaurants by revenue per city using DENSE_RANK().",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "455",
+        "title": "Use LAG() to find the delay between order placement and restaurant acceptance.",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "456",
+        "title": "Identify top customers per city by order count using RANK().",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "457",
+        "title": "CTE to find agents with a declining rating over their last 10 deliveries.",
+        "pattern": "CTE",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "458",
+        "title": "Calculate each restaurant's revenue as % of city total revenue using SUM() OVER().",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "459",
+        "title": "Use LEAD() to find downtime between agent deliveries.",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "460",
+        "title": "CTE to find the top 3 restaurants per cuisine type by revenue.",
+        "pattern": "CTE",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "461",
+        "title": "Use ROW_NUMBER() to deduplicate repeat order records.",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "462",
+        "title": "Calculate the 7-day rolling average of daily orders per city.",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "463",
+        "title": "CTE to find the month with the highest SLA breach count.",
+        "pattern": "CTE",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "464",
+        "title": "Rank menu items by revenue within each restaurant using RANK().",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "465",
+        "title": "Use LAG() to identify restaurants with declining monthly revenue.",
+        "pattern": "Window",
+        "cluster": "3.4 CTEs & Window Functions"
+      },
+      {
+        "id": "466",
+        "title": "Find customers with the highest repeat order rate from the same restaurant.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "467",
+        "title": "Calculate platform commission earned per city per month.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "468",
+        "title": "Find menu items with high order count but low restaurant rating.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "469",
+        "title": "Find agents who delivered to the same customer multiple times.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "470",
+        "title": "Calculate revenue lost due to cancelled orders per restaurant.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "471",
+        "title": "Find the optimal ordering window per city with maximum orders.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "472",
+        "title": "Calculate the % of orders delivered within the promised time per agent.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "473",
+        "title": "Find the most popular menu item per cuisine type.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "474",
+        "title": "List restaurants with an increasing trend in monthly orders.",
+        "pattern": "CTE+Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "475",
+        "title": "Calculate the average number of items per order per restaurant.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "476",
+        "title": "Find restaurants that get the most reorders from the same customer.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "477",
+        "title": "List agents who have never had an SLA breach.",
+        "pattern": "LEFT JOIN",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "478",
+        "title": "Find the cuisine type with the highest average order value.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "479",
+        "title": "Calculate the delivery fee as a % of total order value per city.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "480",
+        "title": "Find menu items that are frequently ordered as combos (appear together).",
+        "pattern": "JOIN",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "481",
+        "title": "Calculate prep time accuracy per restaurant.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "482",
+        "title": "Find restaurants with all menu items priced above ₹300.",
+        "pattern": "Subquery",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "483",
+        "title": "Calculate total orders per agent per time slot (morning/afternoon/night).",
+        "pattern": "CASE+GROUP",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "484",
+        "title": "Find the cuisine type with the highest SLA breach count.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "485",
+        "title": "List restaurants that attract primarily first-time customers.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "486",
+        "title": "Find the top 3 agents by customer satisfaction rating per city.",
+        "pattern": "Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "487",
+        "title": "Calculate the average order value per cuisine type per city.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "488",
+        "title": "Find restaurants that received 5-star ratings within their first week.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "489",
+        "title": "Calculate the breakeven order value for free delivery per city.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "490",
+        "title": "List the most loyal customers per restaurant (ordered 10+ times).",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "491",
+        "title": "Find the day of week with the most delivery SLA breaches.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "492",
+        "title": "Calculate the average number of restaurants a customer orders from per month.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "493",
+        "title": "Find the top 5 revenue-generating agents by city.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "494",
+        "title": "List all orders where delivery time exceeded 2× the promised time.",
+        "pattern": "SELECT",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "495",
+        "title": "Calculate the platform's net revenue after agent payouts and restaurant commission.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "496",
+        "title": "Find restaurants that are consistently in the top 10 by city.",
+        "pattern": "Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "497",
+        "title": "List customers who have ordered every cuisine type available in their city.",
+        "pattern": "Subquery",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "498",
+        "title": "Find the menu item with the highest revenue per restaurant.",
+        "pattern": "Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "499",
+        "title": "Calculate the monthly active restaurant count for the last 6 months.",
+        "pattern": "CTE",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "500",
+        "title": "Find the agent who completed the most deliveries in a single day.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "501",
+        "title": "List all restaurants where the majority of orders are delivered with a discount.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "502",
+        "title": "Calculate the average discount per cuisine type.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "503",
+        "title": "Find all orders where agent GPS tracking stopped mid-delivery.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "504",
+        "title": "List restaurants that increased prices on more than 50% of menu items last month.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "505",
+        "title": "Find the restaurant with the fastest average prep time per cuisine type.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "506",
+        "title": "Calculate the % of orders delivered on time per delivery zone.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "507",
+        "title": "Find customers who consistently give 5-star ratings to agents.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "508",
+        "title": "List all orders with a total time under 20 minutes from placement to delivery.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "509",
+        "title": "Find the top 3 most ordered items on weekends vs. weekdays.",
+        "pattern": "CASE+Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "510",
+        "title": "Calculate the cumulative delivery revenue per agent over time.",
+        "pattern": "Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "511",
+        "title": "Find restaurants with the highest proportion of veg menu items.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "512",
+        "title": "List all cities where no restaurant has an average rating above 4.0.",
+        "pattern": "Subquery",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "513",
+        "title": "Find the most common SLA breach reason per city.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "514",
+        "title": "Calculate the average delivery fee collected per order per city.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "515",
+        "title": "Find agents who completed deliveries in the shortest average time.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "516",
+        "title": "List all orders where the customer ordered within 10 minutes of the last order.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "517",
+        "title": "Find the restaurant with the widest price range in its menu.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "518",
+        "title": "Calculate total orders per customer per quarter.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "519",
+        "title": "Find the top 5 customers by total delivery fees paid.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "520",
+        "title": "List restaurants with a better weekend rating than weekday rating.",
+        "pattern": "CTE",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "521",
+        "title": "Find all agents who joined in the last month and already have 50+ deliveries.",
+        "pattern": "SELECT",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "522",
+        "title": "Calculate the platform revenue trend month over month using CTEs.",
+        "pattern": "CTE+Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "523",
+        "title": "Find the top 3 restaurants per area by total orders.",
+        "pattern": "Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "524",
+        "title": "List all customers who have a running streak of on-time deliveries.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "525",
+        "title": "Find the average time from order placement to agent assignment.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "526",
+        "title": "Calculate the SLA breach cost to the platform per restaurant.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "527",
+        "title": "Find restaurants whose rating went up by 0.5 points in the last 30 days.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "528",
+        "title": "List all menu items that have been available for more than 1 year without a price change.",
+        "pattern": "SELECT",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "529",
+        "title": "Find the delivery zone with the highest average order value.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "530",
+        "title": "Calculate the year-over-year growth in total orders per city.",
+        "pattern": "CTE",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "531",
+        "title": "List agents ranked by total distance covered in a month.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "532",
+        "title": "Find orders where the restaurant did not accept within 5 minutes.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "533",
+        "title": "Calculate the % of orders where delivery_fee was the highest in the city.",
+        "pattern": "Window",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "534",
+        "title": "Find the top restaurant per area by customer retention rate.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "535",
+        "title": "List all agents whose rating improved in the last 30 days.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "536",
+        "title": "Find customers who switched their most-ordered restaurant in the last 3 months.",
+        "pattern": "CTE",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "537",
+        "title": "Calculate the average commission per cuisine type.",
+        "pattern": "GROUP BY",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "538",
+        "title": "Find agents who worked in more than one delivery zone in a day.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "539",
+        "title": "List restaurants with zero SLA breaches for the entire last month.",
+        "pattern": "LEFT JOIN",
+        "cluster": "3.5 Interview Scenarios"
+      },
+      {
+        "id": "540",
+        "title": "Calculate the % of revenue coming from restaurants with rating > 4.5.",
+        "pattern": "Analytics",
+        "cluster": "3.5 Interview Scenarios"
+      }
+    ]
+  },
+  {
+    "title": "4. 💳 Payments & Fintech SQL",
+    "problems": [
+      {
+        "id": "541",
+        "title": "Find all failed transactions in the last 24 hours.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "542",
+        "title": "List all users with KYC status 'pending'.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "543",
+        "title": "Show all refunds initiated in the last 7 days.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "544",
+        "title": "Find all transactions with amount greater than ₹50,000.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "545",
+        "title": "List all active merchants in the 'retail' category.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "546",
+        "title": "Find all frozen wallets and their current balance.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "547",
+        "title": "Show all UPI transactions in the last 30 days.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "548",
+        "title": "List all payment methods added by users in the last month.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "549",
+        "title": "Find all payouts with status 'pending'.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "550",
+        "title": "List all transactions flagged for fraud.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "551",
+        "title": "Find all accounts with balance below ₹100.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "552",
+        "title": "List all users who have not made any transaction in 90 days.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "553",
+        "title": "Find all refunds with status 'completed'.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "554",
+        "title": "List all merchants that are currently inactive.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "555",
+        "title": "Find all transactions where from_account and to_account are in the same currency.",
+        "pattern": "SELECT",
+        "cluster": "4.1 Basic Queries"
+      },
+      {
+        "id": "556",
+        "title": "Calculate total transaction volume per day for the last 30 days.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "557",
+        "title": "Find total refunds issued per merchant per month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "558",
+        "title": "Count successful vs. failed transactions per gateway.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "559",
+        "title": "Find the average transaction amount per currency.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "560",
+        "title": "Calculate total platform fee earned per merchant category.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "561",
+        "title": "Find merchants with the highest refund count.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "562",
+        "title": "Calculate total payout amounts per settlement cycle.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "563",
+        "title": "Find the most used payment method type by transaction count.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "564",
+        "title": "Find users with the highest total transaction value this month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "565",
+        "title": "Calculate the number of transactions per hour of day.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "566",
+        "title": "Find the average number of transactions per user per month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "567",
+        "title": "Calculate total revenue (fees earned) per merchant.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "568",
+        "title": "Find the payment method with the highest average transaction amount.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "569",
+        "title": "Count the number of fraud flags per flag type.",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "570",
+        "title": "Calculate average refund processing time (initiated_at to completed_at).",
+        "pattern": "GROUP BY",
+        "cluster": "4.2 Aggregations"
+      },
+      {
+        "id": "571",
+        "title": "Show each transaction with sender name, receiver name, and amount.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "572",
+        "title": "List all fraud-flagged transactions with the user's name and email.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "573",
+        "title": "Show all refunds with original transaction details and merchant name.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "574",
+        "title": "Find merchants with pending payouts and their total outstanding amount.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "575",
+        "title": "List all ledger entries with account holder name and balance.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "576",
+        "title": "Find users who have multiple payment methods but none set as default.",
+        "pattern": "LEFT JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "577",
+        "title": "Show all high-risk transactions (risk_score > 0.8) with user details.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "578",
+        "title": "List payouts with bank account details for each merchant.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "579",
+        "title": "Find all users whose wallet balance does not match ledger sum.",
+        "pattern": "JOIN+Analytics",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "580",
+        "title": "Show all refunded transactions with refund reason and merchant name.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "581",
+        "title": "List all transactions between users in the same city.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "582",
+        "title": "Find merchants who have never had a refund.",
+        "pattern": "LEFT JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "583",
+        "title": "Show each user's total sent and received amounts.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "584",
+        "title": "Find all failed transactions where a refund was still processed.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "585",
+        "title": "List all accounts with their associated payment methods.",
+        "pattern": "JOIN",
+        "cluster": "4.3 JOINs"
+      },
+      {
+        "id": "586",
+        "title": "CTE to calculate rolling 3-day average transaction failure rate.",
+        "pattern": "CTE+Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "587",
+        "title": "Use ROW_NUMBER() to get the latest transaction per user.",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "588",
+        "title": "CTE to identify users with a sudden spike in transaction volume.",
+        "pattern": "CTE",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "589",
+        "title": "Rank merchants by total settlement amount using DENSE_RANK().",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "590",
+        "title": "Use LAG() to compare each day's failed transactions with the previous day.",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "591",
+        "title": "CTE to compute cumulative balance changes in the ledger per account.",
+        "pattern": "CTE+Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "592",
+        "title": "Calculate each merchant's revenue contribution as % of total using SUM() OVER().",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "593",
+        "title": "Use LEAD() to find time between consecutive transactions per user.",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "594",
+        "title": "CTE to find users who transact only during business hours.",
+        "pattern": "CTE",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "595",
+        "title": "Use ROW_NUMBER() to identify the first transaction for each user.",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "596",
+        "title": "Rank users by total spending per month using RANK().",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "597",
+        "title": "CTE to find merchants with consistently declining monthly revenue.",
+        "pattern": "CTE",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "598",
+        "title": "Calculate the running total of payouts per merchant using SUM() OVER().",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "599",
+        "title": "Use NTILE(5) to segment users by transaction volume into 5 buckets.",
+        "pattern": "Window",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "600",
+        "title": "CTE to find accounts with zero transactions in the last 60 days but positive balance.",
+        "pattern": "CTE",
+        "cluster": "4.4 CTEs & Window Functions"
+      },
+      {
+        "id": "601",
+        "title": "Write a double-entry ledger validation: total debits must equal total credits per txn.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "602",
+        "title": "Detect velocity fraud: same user, more than 5 transactions within 10 minutes.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "603",
+        "title": "Calculate the exact settlement amount owed to each merchant after fees and refunds.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "604",
+        "title": "Find accounts whose balance went below zero at any point in the ledger history.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "605",
+        "title": "Calculate the refund rate per payment method type.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "606",
+        "title": "Find the top 10 merchants by gross transaction value this quarter.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "607",
+        "title": "Identify dormant accounts (no transactions in 180 days but positive balance).",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "608",
+        "title": "Calculate the average settlement delay per merchant category.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "609",
+        "title": "Find all transactions with duplicate reference_ids (processing error check).",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "610",
+        "title": "Calculate the average time to complete a refund per merchant category.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "611",
+        "title": "Find users who make transactions exclusively between midnight and 3am.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "612",
+        "title": "List merchants who have not received a payout in more than 14 days.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "613",
+        "title": "Find the most common failure reason for rejected transactions.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "614",
+        "title": "Calculate the total transaction volume per hour of day.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "615",
+        "title": "Find inactive wallets that still hold a balance above ₹100.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "616",
+        "title": "List payment methods with the highest failure rate.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "617",
+        "title": "Find accounts created on the same day as their first transaction.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "618",
+        "title": "Calculate the chargeback rate (refunds / total transactions) per gateway.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "619",
+        "title": "Find high-value transactions settled within 1 minute.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "620",
+        "title": "List all transactions processed by a now-deactivated gateway.",
+        "pattern": "JOIN",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "621",
+        "title": "Calculate total platform revenue per transaction type per month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "622",
+        "title": "Find all users with wallet balance inconsistent with the ledger total.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "623",
+        "title": "List merchants with the highest transaction success rate.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "624",
+        "title": "Calculate the P95 transaction amount per merchant category using PERCENTILE_CONT.",
+        "pattern": "Window",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "625",
+        "title": "Find all UPI transactions above ₹1,00,000 (regulatory reporting).",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "626",
+        "title": "List the top 10 merchants by unique customer count.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "627",
+        "title": "Find all refunds where the refund amount exceeds the original transaction.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "628",
+        "title": "Calculate the net balance change per account per week.",
+        "pattern": "CTE+Window",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "629",
+        "title": "Find users who changed their default payment method more than twice.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "630",
+        "title": "Calculate the lifetime revenue from each merchant to the platform.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "631",
+        "title": "Find all accounts with only incoming transactions (never sent money).",
+        "pattern": "Subquery",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "632",
+        "title": "List all transactions that took more than 5 minutes to settle.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "633",
+        "title": "Find the top 5 users by number of distinct merchants they transacted with.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "634",
+        "title": "Calculate the monthly active user count based on at least 1 transaction.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "635",
+        "title": "Find the average number of payment methods per active user.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "636",
+        "title": "List all users who completed KYC but made no transaction in 30 days.",
+        "pattern": "LEFT JOIN",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "637",
+        "title": "Calculate the dispute resolution time per merchant.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "638",
+        "title": "Find all merchants with zero refunds in the last 6 months.",
+        "pattern": "LEFT JOIN",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "639",
+        "title": "Calculate the average risk score of transactions per merchant category.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "640",
+        "title": "Find users who had 3 or more failed transactions before a successful one.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "641",
+        "title": "List all accounts where balance changed by more than 50% in a single transaction.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "642",
+        "title": "Find the day of week with the most fraud flags.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "643",
+        "title": "Calculate the cumulative payout per merchant over 6 months.",
+        "pattern": "Window",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "644",
+        "title": "Find all merchants with both the highest fee and highest refund rate.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "645",
+        "title": "List the top 3 payment methods by total transaction value per city.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "646",
+        "title": "Calculate the average transaction amount by account_type.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "647",
+        "title": "Find all users who have transacted in more than one currency.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "648",
+        "title": "Calculate the total number of active payment methods per user.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "649",
+        "title": "Find the month with the highest fraud flag count.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "650",
+        "title": "Calculate the average monthly spend per user for the last 3 months.",
+        "pattern": "CTE",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "651",
+        "title": "Find all accounts that were active last month but inactive this month.",
+        "pattern": "CTE",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "652",
+        "title": "List all merchants sorted by their settlement cycle in ascending order.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "653",
+        "title": "Find users who transacted on every single day of last month.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "654",
+        "title": "Calculate the average number of retried transactions per day.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "655",
+        "title": "Find the top 5 most transacted-with merchants by unique users.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "656",
+        "title": "List all wallets that have been frozen for more than 30 days.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "657",
+        "title": "Calculate revenue concentration: % of revenue from top 10 merchants.",
+        "pattern": "Window",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "658",
+        "title": "Find all users with more incoming than outgoing transactions this month.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "659",
+        "title": "List all transactions where the fee was 0 (fee waiver cases).",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "660",
+        "title": "Find the average balance per account_type.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "661",
+        "title": "Calculate the monthly new user activation rate (KYC done + first transaction).",
+        "pattern": "CTE",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "662",
+        "title": "Find the most popular transaction type by volume and by value.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "663",
+        "title": "List all merchants with a pending payout older than their settlement cycle.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "664",
+        "title": "Calculate the total amount in frozen wallets per currency.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "665",
+        "title": "Find all refunds that took more than 7 days to complete.",
+        "pattern": "SELECT",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "666",
+        "title": "List the top 3 users by number of distinct payment methods used.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "667",
+        "title": "Calculate the transaction success rate per gateway per month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "668",
+        "title": "Find all transactions where the amount is exactly equal to the account balance.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "669",
+        "title": "List all users who made their first transaction within 1 hour of registration.",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "670",
+        "title": "Calculate the average payout amount per merchant per month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "671",
+        "title": "Find merchants whose fee_pct is above the platform average.",
+        "pattern": "Subquery",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "672",
+        "title": "List the top 5 users by net money received (total in - total out).",
+        "pattern": "Analytics",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "673",
+        "title": "Find the most common txn_type for high-value transactions (> ₹1,00,000).",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "674",
+        "title": "Calculate the total refund amount processed per week for the last month.",
+        "pattern": "GROUP BY",
+        "cluster": "4.5 Interview Scenarios"
+      },
+      {
+        "id": "675",
+        "title": "Find all users who have never had a failed transaction.",
+        "pattern": "LEFT JOIN",
+        "cluster": "4.5 Interview Scenarios"
+      }
+    ]
+  },
+  {
+    "title": "5. 👥 HR & Employee SQL",
+    "problems": [
+      {
+        "id": "676",
+        "title": "Find the second highest salary among all employees.",
+        "pattern": "Subquery",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "677",
+        "title": "List all employees who earn more than their manager's salary.",
+        "pattern": "SELF JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "678",
+        "title": "Find all departments with no employees assigned.",
+        "pattern": "LEFT JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "679",
+        "title": "List all employees with their manager's name using a self join.",
+        "pattern": "SELF JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "680",
+        "title": "Find employees who have never taken a leave.",
+        "pattern": "LEFT JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "681",
+        "title": "Get the department with the highest average salary.",
+        "pattern": "GROUP BY",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "682",
+        "title": "Find employees earning above the average salary of their own department.",
+        "pattern": "Subquery",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "683",
+        "title": "List all managers who directly manage more than 5 employees.",
+        "pattern": "GROUP BY",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "684",
+        "title": "Find the Nth highest salary — write it for N = 3.",
+        "pattern": "Subquery",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "685",
+        "title": "Find employees who joined in the same year as their manager.",
+        "pattern": "SELF JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "686",
+        "title": "List employees with no performance reviews in the last 12 months.",
+        "pattern": "LEFT JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "687",
+        "title": "Find departments where every employee's salary is above ₹50,000.",
+        "pattern": "Subquery",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "688",
+        "title": "List all employees with the same salary as at least one other employee.",
+        "pattern": "Subquery",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "689",
+        "title": "Find the department with the most employees.",
+        "pattern": "GROUP BY",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "690",
+        "title": "List all employees who report to the same manager as a given employee (peers).",
+        "pattern": "SELF JOIN",
+        "cluster": "5.1 Classic Must-Know HR Questions"
+      },
+      {
+        "id": "691",
+        "title": "Calculate total payroll cost per department.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "692",
+        "title": "Find the top 3 earners in each department using DENSE_RANK().",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "693",
+        "title": "Calculate year-over-year salary growth per employee using LAG().",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "694",
+        "title": "Find employees who took more than 10 days of leave this year.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "695",
+        "title": "Identify employees assigned to more than 2 active projects simultaneously.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "696",
+        "title": "Write a recursive CTE to display the full management hierarchy.",
+        "pattern": "Recursive CTE",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "697",
+        "title": "Calculate the department budget utilization rate (payroll / budget).",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "698",
+        "title": "Find the project with the highest number of assigned employees.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "699",
+        "title": "Compute the average training score per department.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "700",
+        "title": "Find the median salary per job title using PERCENTILE_CONT.",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "701",
+        "title": "Find employees due for a review (no review in the last 6 months).",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "702",
+        "title": "List all projects that are currently over budget.",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "703",
+        "title": "Calculate the total hours allocated per project.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "704",
+        "title": "Find employees whose salary is in the top 10% company-wide.",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "705",
+        "title": "List all employees who have completed every available training course.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "706",
+        "title": "Find the manager with the highest average team performance rating.",
+        "pattern": "JOIN+GROUP",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "707",
+        "title": "Calculate the salary percentile for each employee within their department.",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "708",
+        "title": "Find departments with the largest salary spread (max - min salary).",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "709",
+        "title": "List all employees who have been with the company for more than 5 years.",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "710",
+        "title": "Calculate the average headcount per department per quarter.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "711",
+        "title": "Find employees who have never been assigned to any project.",
+        "pattern": "LEFT JOIN",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "712",
+        "title": "List all employees with a performance rating below 2 in the last review.",
+        "pattern": "JOIN",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "713",
+        "title": "Find the employee who worked on the most unique projects.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "714",
+        "title": "Calculate the total leave days taken per department per year.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "715",
+        "title": "Find employees earning less than any employee in the Engineering department.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "716",
+        "title": "List the top 5 performers per department by their average review rating.",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "717",
+        "title": "Find all employees who took maternity or paternity leave this year.",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "718",
+        "title": "Calculate total training cost per department (assume fixed cost per course).",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "719",
+        "title": "Find the longest-serving employee in each department.",
+        "pattern": "Window",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "720",
+        "title": "List all employees who changed their job title in the last year.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "721",
+        "title": "Calculate the span of control per manager (number of direct reports).",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "722",
+        "title": "Find employees who have a salary higher than any employee in the HR department.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "723",
+        "title": "List all employees who received a perfect performance rating (5.0) in the last review.",
+        "pattern": "JOIN",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "724",
+        "title": "Calculate the average time-to-hire per department (job posted to hire_date).",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "725",
+        "title": "Find projects with only 1 assigned employee.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "726",
+        "title": "List all employees whose training score is below the department average.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "727",
+        "title": "Find the top 3 job titles by average salary.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "728",
+        "title": "Calculate the annual bonus estimate (salary × rating/5 × 0.1) for each employee.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "729",
+        "title": "Find all employees who submitted a leave request on their hire anniversary.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "730",
+        "title": "List departments where the manager's salary is below the department average.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "731",
+        "title": "Find employees who share the same hire date.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "732",
+        "title": "Calculate the average number of projects per employee.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "733",
+        "title": "Find all employees currently on leave (leave_start <= today <= leave_end).",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "734",
+        "title": "List all employees with no manager (top-level executives).",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "735",
+        "title": "Calculate the total sick leave days used per employee this year.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "736",
+        "title": "Find employees who got a raise in the last salary update.",
+        "pattern": "LAG",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "737",
+        "title": "List all projects ending in the next 30 days that are still in progress.",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "738",
+        "title": "Find the department with the best average training score.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "739",
+        "title": "List all employees who took leave immediately after joining (within 30 days).",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "740",
+        "title": "Calculate the effective hourly rate for each employee based on hours allocated.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "741",
+        "title": "Find all job titles where the average salary is below ₹40,000.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "742",
+        "title": "List employees who have both the most projects and the highest rating.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "743",
+        "title": "Calculate the turnover rate per department (if resigned_date column exists).",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "744",
+        "title": "Find the most common leave type per department.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "745",
+        "title": "List all employees whose salary was not updated in the last 2 years.",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "746",
+        "title": "Find departments where training completion rate is above 80%.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "747",
+        "title": "Calculate the average review rating per year per department.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "748",
+        "title": "Find all employees who have both a project assignment and an active leave.",
+        "pattern": "JOIN",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "749",
+        "title": "List managers who approved more than 20 leave requests this year.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "750",
+        "title": "Find the employee with the widest salary gap compared to their department average.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "751",
+        "title": "Calculate the total number of training hours per employee.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "752",
+        "title": "Find all employees with a higher salary than the company average but a lower rating than the company average.",
+        "pattern": "Subquery",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "753",
+        "title": "List all employees who completed a certification course.",
+        "pattern": "SELECT",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "754",
+        "title": "Find the department that hired the most employees last year.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "755",
+        "title": "Calculate the average tenure (years) of employees per job title.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "756",
+        "title": "Find all employees with more leave days pending than used.",
+        "pattern": "Analytics",
+        "cluster": "5.2 Aggregations & Analytics"
+      },
+      {
+        "id": "757",
+        "title": "List the top 3 cities with the most employees.",
+        "pattern": "GROUP BY",
+        "cluster": "5.2 Aggregations & Analytics"
+      }
+    ]
+  },
+  {
+    "title": "6. 📱 Social Media SQL",
+    "problems": [
+      {
+        "id": "758",
+        "title": "Find the top 10 posts by likes count in the last 7 days.",
+        "pattern": "SELECT",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "759",
+        "title": "List all users who follow each other (mutual follows).",
+        "pattern": "SELF JOIN",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "760",
+        "title": "Find users who liked a post but don't follow the post's author.",
+        "pattern": "JOIN",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "761",
+        "title": "Calculate total engagement (likes + comments + shares) per post.",
+        "pattern": "SELECT",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "762",
+        "title": "Find the most used hashtag this week.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "763",
+        "title": "List users with more followers than accounts they follow.",
+        "pattern": "SELECT",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "764",
+        "title": "Calculate daily active users (DAU) for the last 30 days.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "765",
+        "title": "Find the top 5 users by total post engagement this month.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "766",
+        "title": "Find posts that got more than 1000 likes within 24 hours of posting.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "767",
+        "title": "Calculate the ad click-through rate (CTR) per user segment.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "768",
+        "title": "Find the average number of posts per user per month.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "769",
+        "title": "List all users who have never posted anything.",
+        "pattern": "LEFT JOIN",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "770",
+        "title": "Find the most commented post in the last 30 days.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "771",
+        "title": "Calculate the follower-to-following ratio per user.",
+        "pattern": "SELECT",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "772",
+        "title": "Find users who have been following an account for more than 1 year.",
+        "pattern": "SELECT",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "773",
+        "title": "List the top 5 hashtags by number of posts.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "774",
+        "title": "Find users who liked every post from a specific user this month.",
+        "pattern": "Subquery",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "775",
+        "title": "Calculate the average time between when a post is published and when it gets its first like.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "776",
+        "title": "Find users who unfollowed more than 5 accounts in the last 7 days.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "777",
+        "title": "List all posts with more shares than likes.",
+        "pattern": "SELECT",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "778",
+        "title": "Find the most active hour of day for post creation.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "779",
+        "title": "Calculate the ad conversion rate per city.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "780",
+        "title": "Find users who have followers but have never posted.",
+        "pattern": "LEFT JOIN",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "781",
+        "title": "List the top 5 content creators by average likes per post.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "782",
+        "title": "Calculate the average message thread length per user pair.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "783",
+        "title": "Find the most replied-to comment in the platform's history.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "784",
+        "title": "List accounts that were created and immediately followed 50+ accounts (potential bots).",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "785",
+        "title": "Find the best day of week for maximum engagement per user.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "786",
+        "title": "Calculate the % of messages read within 5 minutes.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "787",
+        "title": "Find all users who posted every day for the last 7 days.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "788",
+        "title": "List hashtags used in 100+ posts this month.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "789",
+        "title": "Find the top 3 users by follower growth in the last 30 days.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "790",
+        "title": "Calculate the share of voice (% of total posts) per hashtag.",
+        "pattern": "Window",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "791",
+        "title": "Find posts that received more than 5 comments from the same user.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "792",
+        "title": "List users who posted the same content (duplicate posts) in the same week.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "793",
+        "title": "Find the top 5 users by total likes received across all posts.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "794",
+        "title": "Calculate the weekly retention rate of active users.",
+        "pattern": "CTE",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "795",
+        "title": "Find all users who have liked more posts than they've created.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "796",
+        "title": "List the top 3 cities by average engagement rate per post.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "797",
+        "title": "Find posts that trended (sudden spike in likes compared to the user's average).",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "798",
+        "title": "Calculate the unread message rate per user.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "799",
+        "title": "Find the most popular media type (photo/video/text) by likes.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "800",
+        "title": "Find the average follower count per city.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "801",
+        "title": "List users who have never liked any post.",
+        "pattern": "LEFT JOIN",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "802",
+        "title": "Find the top 5 hashtags by engagement rate (likes + comments per post using that tag).",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "803",
+        "title": "Calculate the correlation between posting frequency and follower count.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "804",
+        "title": "Find users whose follower_count in the users table doesn't match the count in the follows table.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "805",
+        "title": "List all posts that were deleted within 24 hours of posting.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "806",
+        "title": "Find the % of ad impressions that led to a conversion.",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "807",
+        "title": "Calculate the average number of hashtags per post per user.",
+        "pattern": "GROUP BY",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "808",
+        "title": "Find users who commented on a post but did not like it.",
+        "pattern": "JOIN",
+        "cluster": "6.1 Core Social Queries"
+      },
+      {
+        "id": "809",
+        "title": "List accounts with the highest engagement rate (likes+comments / followers).",
+        "pattern": "Analytics",
+        "cluster": "6.1 Core Social Queries"
+      }
+    ]
+  },
+  {
+    "title": "7. 📚 Core SQL Concepts",
+    "problems": [
+      {
+        "id": "810",
+        "title": "Write a query using COALESCE to replace NULL delivery times with the average delivery time.",
+        "pattern": "NULL",
+        "cluster": "7.1 NULL Handling"
+      },
+      {
+        "id": "811",
+        "title": "Use NULLIF to avoid division-by-zero when calculating the order conversion rate.",
+        "pattern": "NULL",
+        "cluster": "7.1 NULL Handling"
+      },
+      {
+        "id": "812",
+        "title": "Find all rows where a column is NULL vs. an empty string — how do you differentiate?",
+        "pattern": "NULL",
+        "cluster": "7.1 NULL Handling"
+      },
+      {
+        "id": "813",
+        "title": "Find all employees with NULL manager_id (top-level managers).",
+        "pattern": "NULL",
+        "cluster": "7.1 NULL Handling"
+      },
+      {
+        "id": "814",
+        "title": "Use COALESCE to return the first non-null value from phone, email, or user_id as a contact identifier.",
+        "pattern": "NULL",
+        "cluster": "7.1 NULL Handling"
+      },
+      {
+        "id": "815",
+        "title": "Find all transactions where the settled_at timestamp is NULL (still pending).",
+        "pattern": "NULL",
+        "cluster": "7.1 NULL Handling"
+      },
+      {
+        "id": "816",
+        "title": "Write a CASE to classify customers as 'High', 'Medium', or 'Low' spenders based on total spend.",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "817",
+        "title": "Use CASE inside COUNT to count only delivered orders without a WHERE clause.",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "818",
+        "title": "Write a CASE to label trip duration as 'Short' (<10 min), 'Medium' (10–30), or 'Long' (>30).",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "819",
+        "title": "Create a histogram of order values using CASE: ₹0–500, ₹500–2000, ₹2000+.",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "820",
+        "title": "Use CASE to convert a numeric rating (1–5) to text: 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'.",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "821",
+        "title": "Write a CASE to flag transactions as 'Domestic' or 'International' based on currency.",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "822",
+        "title": "Use CASE to classify employees as 'Junior', 'Mid', or 'Senior' based on salary.",
+        "pattern": "CASE",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "823",
+        "title": "Write a query to pivot monthly sales into columns (Jan, Feb, Mar) using CASE + SUM.",
+        "pattern": "CASE+Pivot",
+        "cluster": "7.2 CASE Statements"
+      },
+      {
+        "id": "824",
+        "title": "Extract the domain name from email addresses using SUBSTRING and POSITION.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "825",
+        "title": "Concatenate first_name and last_name with a space in between.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "826",
+        "title": "Find all products whose name starts with 'Pro' using LIKE.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "827",
+        "title": "Convert all customer email addresses to lowercase.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "828",
+        "title": "Use TRIM to clean leading/trailing whitespace from city names.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "829",
+        "title": "Find all phone numbers that do not follow the format +91XXXXXXXXXX using LIKE or REGEXP.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "830",
+        "title": "Use STRING_AGG to create a comma-separated list of product names per order.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "831",
+        "title": "Replace all occurrences of 'Old Brand' with 'New Brand' in product names using REPLACE.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "832",
+        "title": "Find the length of each product description and sort by longest.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "833",
+        "title": "Mask the last 4 digits of a credit card number stored as text.",
+        "pattern": "String",
+        "cluster": "7.3 String Functions"
+      },
+      {
+        "id": "834",
+        "title": "Find all orders placed in the current month.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "835",
+        "title": "Calculate the number of days between order_date and delivered_date.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "836",
+        "title": "Extract the day of the week for each transaction.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "837",
+        "title": "Calculate the age of each account in years from created_at to today.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "838",
+        "title": "Find all transactions that occurred on weekends.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "839",
+        "title": "Truncate timestamps to the hour level for hourly aggregation.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "840",
+        "title": "Find all records created in the first week of each month.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "841",
+        "title": "Calculate the number of business days between two dates (excluding weekends).",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "842",
+        "title": "Find the first and last day of the previous month dynamically.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "843",
+        "title": "Use DATE_TRUNC to group revenue by week.",
+        "pattern": "Date",
+        "cluster": "7.4 Date & Time Functions"
+      },
+      {
+        "id": "844",
+        "title": "Use UNION to combine customer lists from two regional tables into one.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "845",
+        "title": "Use INTERSECT to find customers who placed both online and offline orders.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "846",
+        "title": "Use EXCEPT to find products that are in the catalog but have never been ordered.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "847",
+        "title": "Explain the difference between UNION and UNION ALL — write an example query.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "848",
+        "title": "Use UNION ALL then deduplicate with ROW_NUMBER() to merge two customer tables.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "849",
+        "title": "Use INTERSECT to find drivers who are also registered as riders.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "850",
+        "title": "Use EXCEPT to find menu items available last month but removed this month.",
+        "pattern": "Set",
+        "cluster": "7.5 Set Operations"
+      },
+      {
+        "id": "851",
+        "title": "When would a full table scan be faster than using an index? (Answer + example).",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "852",
+        "title": "What is a composite index? Write a query that benefits from one.",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "853",
+        "title": "Explain the difference between a clustered and non-clustered index.",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "854",
+        "title": "How does EXPLAIN ANALYZE help optimize a slow JOIN query?",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "855",
+        "title": "When should you use a partial index? Give a practical example.",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "856",
+        "title": "What is index selectivity and why does it matter for query performance?",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "857",
+        "title": "Write a query using EXISTS instead of IN and explain when EXISTS is faster.",
+        "pattern": "Performance",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "858",
+        "title": "How does a covering index work? Write an example query that benefits from one.",
+        "pattern": "Theory",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "859",
+        "title": "Use keyset pagination instead of OFFSET to paginate large result sets efficiently.",
+        "pattern": "Performance",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "860",
+        "title": "Write a query to efficiently count rows in a large table without a full scan.",
+        "pattern": "Performance",
+        "cluster": "7.6 Indexes & Performance Theory"
+      },
+      {
+        "id": "861",
+        "title": "Explain dirty read, non-repeatable read, and phantom read with a SQL example each.",
+        "pattern": "Theory",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "862",
+        "title": "Write a SQL transaction that transfers money safely between two accounts.",
+        "pattern": "Transaction",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "863",
+        "title": "What isolation level prevents phantom reads? Give an example of when you need it.",
+        "pattern": "Theory",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "864",
+        "title": "Explain the difference between COMMIT and ROLLBACK with a real-world example.",
+        "pattern": "Theory",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "865",
+        "title": "Write a query using SELECT FOR UPDATE to prevent double-booking of a seat.",
+        "pattern": "Transaction",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "866",
+        "title": "What is a deadlock? How do you detect and prevent it in PostgreSQL?",
+        "pattern": "Theory",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "867",
+        "title": "Explain SAVEPOINT and when to use it in a complex transaction.",
+        "pattern": "Transaction",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "868",
+        "title": "What is the difference between READ COMMITTED and REPEATABLE READ?",
+        "pattern": "Theory",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "869",
+        "title": "Write a transaction that inserts an order and deducts stock atomically.",
+        "pattern": "Transaction",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "870",
+        "title": "Explain two-phase locking with a simple SQL example.",
+        "pattern": "Theory",
+        "cluster": "7.7 Transactions & ACID"
+      },
+      {
+        "id": "871",
+        "title": "Use ARRAY_AGG to collect all ordered product names per order into one row.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "872",
+        "title": "Write a query using JSON_AGG to return order details as a JSON object.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "873",
+        "title": "Use GENERATE_SERIES to create a complete list of dates for the last 30 days.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "874",
+        "title": "Use a LATERAL JOIN to get the last 3 orders for each customer.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "875",
+        "title": "Write a query to detect gaps in sequential order IDs (missing IDs).",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "876",
+        "title": "Use GROUPING SETS to produce revenue breakdowns at the category and city level.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "877",
+        "title": "Use ROLLUP to generate subtotals and a grand total in a sales report.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "878",
+        "title": "Write a query to merge overlapping session time ranges into consolidated blocks.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "879",
+        "title": "Use a FILTER clause inside an aggregate instead of a CASE expression.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "880",
+        "title": "Use STRING_AGG with ORDER BY to create an ordered list of products per order.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "881",
+        "title": "Write a query to find all circular references in a hierarchical employees table.",
+        "pattern": "Recursive CTE",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "882",
+        "title": "Use CROSS JOIN to create a date × product combination for a sales forecast template.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "883",
+        "title": "Write a query using VALUES clause to inline a small lookup table.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "884",
+        "title": "Use DISTINCT ON (PostgreSQL) to get the latest record per group.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "885",
+        "title": "Write a query to compute a running mode (most frequent value so far) using window functions.",
+        "pattern": "Window",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "886",
+        "title": "Use CTEs to find the shortest dependency chain between two tasks in a project.",
+        "pattern": "Recursive CTE",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "887",
+        "title": "Write a query to detect and report all orphaned records (missing FK reference).",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "888",
+        "title": "Use JSONB operators in PostgreSQL to query nested fields in a JSON column.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "889",
+        "title": "Write a query using WINDOW FUNCTION to detect sudden spikes in daily counts.",
+        "pattern": "Window",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "890",
+        "title": "Write a query to calculate a cumulative moving sum that resets at the start of each month.",
+        "pattern": "Window",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "891",
+        "title": "Use ROW_NUMBER() + DELETE to remove duplicate rows keeping only the latest per key.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "892",
+        "title": "Write a gaps-and-islands query to find consecutive login streaks per user.",
+        "pattern": "Window",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "893",
+        "title": "Use TABLESAMPLE BERNOULLI(10) to sample 10% of a large table for analysis.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "894",
+        "title": "Write a query to count rows added in the last 24 hours per table (using information_schema).",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "895",
+        "title": "Use a CTE + INSERT to upsert (insert or update) records into a target table.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "896",
+        "title": "Write a query to compute a Fibonacci sequence using a recursive CTE.",
+        "pattern": "Recursive CTE",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "897",
+        "title": "Use WINDOW FUNCTION RANGE BETWEEN to compute a sum of the current and previous rows.",
+        "pattern": "Window",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "898",
+        "title": "Write a query to find the top-N records per group without using RANK() or ROW_NUMBER().",
+        "pattern": "Subquery",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "899",
+        "title": "Use EXPLAIN to compare a query with and without an index and interpret the output.",
+        "pattern": "Performance",
+        "cluster": "7.8 Advanced SQL Patterns"
+      },
+      {
+        "id": "900",
+        "title": "Write a query to validate that all foreign key constraints are satisfied in a given schema.",
+        "pattern": "Advanced",
+        "cluster": "7.8 Advanced SQL Patterns"
+      }
+    ]
+  },
+  {
+    "title": "💡 Quick Reference: SQL Concept Index",
+    "problems": []
+  },
+  {
+    "title": "🎯 Interview Study Plan",
+    "problems": []
+  }
+]

@@ -1,0 +1,3419 @@
+[
+  {
+    "title": "Level 1: Foundation",
+    "problems": [
+      {
+        "id": "1",
+        "title": "Two Sum",
+        "diff": "E",
+        "pattern": "Key match / hashing",
+        "co": [
+          "uber",
+          "doordash",
+          "rakuten"
+        ],
+        "lc": "two-sum",
+        "cluster": "General"
+      },
+      {
+        "id": "2",
+        "title": "Valid Parentheses",
+        "diff": "E",
+        "pattern": "Stack matching",
+        "co": [
+          "stripe",
+          "rakuten",
+          "doordash"
+        ],
+        "lc": "valid-parentheses",
+        "cluster": "General"
+      },
+      {
+        "id": "3",
+        "title": "Climbing Stairs",
+        "diff": "E",
+        "pattern": "Fibonacci / DP",
+        "co": [
+          "rakuten",
+          "databricks"
+        ],
+        "lc": "climbing-stairs",
+        "cluster": "General"
+      },
+      {
+        "id": "4",
+        "title": "Maximum Depth of Binary Tree",
+        "diff": "E",
+        "pattern": "Recursive depth",
+        "co": [
+          "uber",
+          "doordash",
+          "databricks",
+          "stripe"
+        ],
+        "lc": "maximum-depth-of-binary-tree",
+        "cluster": "General"
+      },
+      {
+        "id": "5",
+        "title": "Invert Binary Tree",
+        "diff": "E",
+        "pattern": "Recursive swap",
+        "co": [
+          "uber",
+          "databricks"
+        ],
+        "lc": "invert-binary-tree",
+        "cluster": "General"
+      },
+      {
+        "id": "6",
+        "title": "Balanced Binary Tree",
+        "diff": "E",
+        "pattern": "Depth audit",
+        "co": [
+          "uber",
+          "databricks"
+        ],
+        "lc": "balanced-binary-tree",
+        "cluster": "General"
+      },
+      {
+        "id": "7",
+        "title": "Same Tree",
+        "diff": "E",
+        "pattern": "Consistency check",
+        "co": [
+          "uber",
+          "doordash"
+        ],
+        "lc": "same-tree",
+        "cluster": "General"
+      },
+      {
+        "id": "8",
+        "title": "Symmetric Tree",
+        "diff": "E",
+        "pattern": "Redundancy verify",
+        "co": [
+          "databricks"
+        ],
+        "lc": "symmetric-tree",
+        "cluster": "General"
+      },
+      {
+        "id": "9",
+        "title": "Maximum Subarray",
+        "diff": "M",
+        "pattern": "Kadane's principle",
+        "co": [
+          "razorpay",
+          "rakuten"
+        ],
+        "lc": "maximum-subarray",
+        "cluster": "General"
+      },
+      {
+        "id": "10",
+        "title": "Best Time to Buy and Sell Stock",
+        "diff": "E",
+        "pattern": "One-pass trend",
+        "co": [
+          "uber",
+          "rakuten"
+        ],
+        "lc": "best-time-to-buy-and-sell-stock",
+        "cluster": "General"
+      },
+      {
+        "id": "11",
+        "title": "Find All Anagrams in a String",
+        "diff": "M",
+        "pattern": "Sliding window / hashing",
+        "co": [
+          "databricks",
+          "stripe"
+        ],
+        "lc": "find-all-anagrams-in-a-string",
+        "cluster": "General"
+      },
+      {
+        "id": "12",
+        "title": "Group Anagrams",
+        "diff": "M",
+        "pattern": "Categorisation (hashing)",
+        "co": [
+          "rakuten",
+          "databricks"
+        ],
+        "lc": "group-anagrams",
+        "cluster": "General"
+      },
+      {
+        "id": "13",
+        "title": "Valid Anagram",
+        "diff": "E",
+        "pattern": "Character counting",
+        "co": [
+          "doordash",
+          "rakuten"
+        ],
+        "lc": "valid-anagram",
+        "cluster": "General"
+      },
+      {
+        "id": "14",
+        "title": "First Unique Character in a String",
+        "diff": "E",
+        "pattern": "Frequency hashing",
+        "co": [
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "first-unique-character-in-a-string",
+        "cluster": "General"
+      },
+      {
+        "id": "15",
+        "title": "Missing Number",
+        "diff": "E",
+        "pattern": "Cyclic index",
+        "co": [
+          "razorpay",
+          "rakuten"
+        ],
+        "lc": "missing-number",
+        "cluster": "General"
+      },
+      {
+        "id": "16",
+        "title": "Move Zeroes",
+        "diff": "E",
+        "pattern": "In-place two pointers",
+        "co": [
+          "razorpay",
+          "rakuten"
+        ],
+        "lc": "move-zeroes",
+        "cluster": "General"
+      },
+      {
+        "id": "17",
+        "title": "Valid Palindrome II",
+        "diff": "E",
+        "pattern": "Two pointers",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "valid-palindrome-ii",
+        "cluster": "General"
+      },
+      {
+        "id": "18",
+        "title": "Valid Word Abbreviation",
+        "diff": "E",
+        "pattern": "Pointer tracking",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "valid-word-abbreviation",
+        "cluster": "General"
+      },
+      {
+        "id": "19",
+        "title": "Implement Queue using Stacks",
+        "diff": "E",
+        "pattern": "LIFO simulation",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "implement-queue-using-stacks",
+        "cluster": "General"
+      },
+      {
+        "id": "20",
+        "title": "Implement Stack using Queues",
+        "diff": "E",
+        "pattern": "FIFO simulation",
+        "co": [
+          "doordash"
+        ],
+        "lc": "implement-stack-using-queues",
+        "cluster": "General"
+      },
+      {
+        "id": "21",
+        "title": "Sort Colors",
+        "diff": "M",
+        "pattern": "Dutch flag / two ptrs",
+        "co": [
+          "uber",
+          "doordash"
+        ],
+        "lc": "sort-colors",
+        "cluster": "General"
+      },
+      {
+        "id": "22",
+        "title": "Logger Rate Limiter",
+        "diff": "E",
+        "pattern": "De-duplication (hashing)",
+        "co": [
+          "stripe",
+          "databricks"
+        ],
+        "lc": "logger-rate-limiter",
+        "cluster": "General"
+      },
+      {
+        "id": "23",
+        "title": "Insert Delete GetRandom O(1)",
+        "diff": "M",
+        "pattern": "Constant time set",
+        "co": [
+          "stripe",
+          "planetscale"
+        ],
+        "lc": "insert-delete-getrandom-o1",
+        "cluster": "General"
+      },
+      {
+        "id": "24",
+        "title": "Find Center of Star Graph",
+        "diff": "E",
+        "pattern": "Star topology hub",
+        "co": [],
+        "lc": "find-center-of-star-graph",
+        "cluster": "General"
+      },
+      {
+        "id": "25",
+        "title": "Find if Path Exists in Graph",
+        "diff": "E",
+        "pattern": "Basic reachability",
+        "co": [
+          "doordash"
+        ],
+        "lc": "find-if-path-exists-in-graph",
+        "cluster": "General"
+      },
+      {
+        "id": "26",
+        "title": "Flood Fill",
+        "diff": "E",
+        "pattern": "DFS foundations",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "flood-fill",
+        "cluster": "General"
+      },
+      {
+        "id": "27",
+        "title": "Binary Search",
+        "diff": "E",
+        "pattern": "Logarithmic search",
+        "co": [
+          "databricks",
+          "rakuten"
+        ],
+        "lc": "binary-search",
+        "cluster": "General"
+      },
+      {
+        "id": "28",
+        "title": "Search Insert Position",
+        "diff": "E",
+        "pattern": "Binary search boundary",
+        "co": [
+          "databricks"
+        ],
+        "lc": "search-insert-position",
+        "cluster": "General"
+      },
+      {
+        "id": "29",
+        "title": "Reverse Linked List",
+        "diff": "E",
+        "pattern": "Iterative pointer reversal",
+        "co": [
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "reverse-linked-list",
+        "cluster": "General"
+      },
+      {
+        "id": "30",
+        "title": "Palindrome Linked List",
+        "diff": "E",
+        "pattern": "Two ptrs + reverse",
+        "co": [
+          "databricks"
+        ],
+        "lc": "palindrome-linked-list",
+        "cluster": "General"
+      },
+      {
+        "id": "31",
+        "title": "Merge Sorted Array",
+        "diff": "E",
+        "pattern": "Two pointers",
+        "co": [
+          "databricks"
+        ],
+        "lc": "merge-sorted-array",
+        "cluster": "General"
+      },
+      {
+        "id": "32",
+        "title": "Plus One",
+        "diff": "E",
+        "pattern": "Array math / carry",
+        "co": [
+          "doordash"
+        ],
+        "lc": "plus-one",
+        "cluster": "General"
+      },
+      {
+        "id": "33",
+        "title": "Squares of a Sorted Array",
+        "diff": "E",
+        "pattern": "Two pointers",
+        "co": [
+          "uber"
+        ],
+        "lc": "squares-of-a-sorted-array",
+        "cluster": "General"
+      },
+      {
+        "id": "34",
+        "title": "Is Subsequence",
+        "diff": "E",
+        "pattern": "Two pointers / greedy",
+        "co": [
+          "doordash"
+        ],
+        "lc": "is-subsequence",
+        "cluster": "General"
+      },
+      {
+        "id": "35",
+        "title": "Check if Two Strings are Equivalent on a Swap",
+        "diff": "E",
+        "pattern": "Swap verification",
+        "co": [
+          "doordash"
+        ],
+        "lc": "check-if-two-string-arrays-are-equivalent",
+        "cluster": "General"
+      },
+      {
+        "id": "36",
+        "title": "Buddy Strings",
+        "diff": "E",
+        "pattern": "Match permutation",
+        "co": [
+          "doordash"
+        ],
+        "lc": "buddy-strings",
+        "cluster": "General"
+      },
+      {
+        "id": "37",
+        "title": "Cheapest Flights Within K Stops",
+        "diff": "M",
+        "pattern": "State-based BFS / Bellman",
+        "co": [
+          "uber"
+        ],
+        "lc": "cheapest-flights-within-k-stops",
+        "cluster": "General"
+      },
+      {
+        "id": "38",
+        "title": "Reconstruct Itinerary",
+        "diff": "H",
+        "pattern": "Eulerian path (DFS)",
+        "co": [
+          "uber"
+        ],
+        "lc": "reconstruct-itinerary",
+        "cluster": "General"
+      },
+      {
+        "id": "39",
+        "title": "Remove Letter to Equalize Frequency",
+        "diff": "E",
+        "pattern": "Frequency hashing",
+        "co": [
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "remove-letter-to-equalize-frequency",
+        "cluster": "General"
+      },
+      {
+        "id": "40",
+        "title": "Check if Word Occurs as Prefix",
+        "diff": "E",
+        "pattern": "String two-pointer",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence",
+        "cluster": "General"
+      },
+      {
+        "id": "41",
+        "title": "Final Array State After K Operations",
+        "diff": "E",
+        "pattern": "Simulation + heap",
+        "co": [
+          "databricks"
+        ],
+        "lc": "final-array-state-after-k-multiplication-operations-i",
+        "cluster": "General"
+      },
+      {
+        "id": "42",
+        "title": "Zero Array Transformation I",
+        "diff": "M",
+        "pattern": "Prefix sum difference",
+        "co": [
+          "databricks"
+        ],
+        "lc": "zero-array-transformation-i",
+        "cluster": "General"
+      },
+      {
+        "id": "43",
+        "title": "Rotate Image",
+        "diff": "M",
+        "pattern": "In-place matrix",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "rotate-image",
+        "cluster": "General"
+      },
+      {
+        "id": "44",
+        "title": "Minimum Array Sum",
+        "diff": "M",
+        "pattern": "Greedy / DP",
+        "co": [
+          "databricks"
+        ],
+        "lc": "minimum-array-sum",
+        "cluster": "General"
+      },
+      {
+        "id": "45",
+        "title": "Two Sum II (Input Sorted)",
+        "diff": "M",
+        "pattern": "Dual converging pointers",
+        "co": [
+          "databricks"
+        ],
+        "lc": "two-sum-ii-input-array-is-sorted",
+        "cluster": "General"
+      },
+      {
+        "id": "46",
+        "title": "Hamming Distance",
+        "diff": "E",
+        "pattern": "Bit XOR counting",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "hamming-distance",
+        "cluster": "General"
+      },
+      {
+        "id": "47",
+        "title": "Number of 1 Bits",
+        "diff": "E",
+        "pattern": "Bit manipulation count",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "number-of-1-bits",
+        "cluster": "General"
+      },
+      {
+        "id": "48",
+        "title": "Power of Two",
+        "diff": "E",
+        "pattern": "Bit AND trick",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "power-of-two",
+        "cluster": "General"
+      },
+      {
+        "id": "49",
+        "title": "Excel Sheet Column Title",
+        "diff": "E",
+        "pattern": "Base conversion math",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "excel-sheet-column-title",
+        "cluster": "General"
+      }
+    ]
+  },
+  {
+    "title": "Level 2: Synthesis",
+    "problems": [
+      {
+        "id": "101",
+        "title": "Number of Islands",
+        "diff": "M",
+        "pattern": "Geospatial DFS",
+        "co": [
+          "uber",
+          "databricks",
+          "doordash"
+        ],
+        "lc": "number-of-islands",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "102",
+        "title": "Rotting Oranges",
+        "diff": "M",
+        "pattern": "Multi-source BFS",
+        "co": [
+          "uber",
+          "databricks"
+        ],
+        "lc": "rotting-oranges",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "103",
+        "title": "Clone Graph",
+        "diff": "M",
+        "pattern": "Relational replication",
+        "co": [
+          "stripe",
+          "razorpay"
+        ],
+        "lc": "clone-graph",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "104",
+        "title": "Is Graph Bipartite?",
+        "diff": "M",
+        "pattern": "Bipartite coloring",
+        "co": [],
+        "lc": "is-graph-bipartite",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "105",
+        "title": "Graph Valid Tree",
+        "diff": "M",
+        "pattern": "Structure verification",
+        "co": [
+          "doordash"
+        ],
+        "lc": "graph-valid-tree",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "106",
+        "title": "Snake and Ladder",
+        "diff": "M",
+        "pattern": "State transition BFS",
+        "co": [],
+        "lc": "snakes-and-ladders",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "107",
+        "title": "Open the Lock",
+        "diff": "M",
+        "pattern": "State change BFS",
+        "co": [],
+        "lc": "open-the-lock",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "108",
+        "title": "All Paths From Source to Target",
+        "diff": "M",
+        "pattern": "DAG enumeration",
+        "co": [
+          "stripe"
+        ],
+        "lc": "all-paths-from-source-to-target",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "109",
+        "title": "Shortest Path in Binary Matrix",
+        "diff": "M",
+        "pattern": "4-dir BFS",
+        "co": [
+          "doordash"
+        ],
+        "lc": "shortest-path-in-binary-matrix",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "110",
+        "title": "Number of Provinces",
+        "diff": "M",
+        "pattern": "Union-Find / DFS",
+        "co": [],
+        "lc": "number-of-provinces",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "111",
+        "title": "All Nodes Distance K (Tree BFS)",
+        "diff": "M",
+        "pattern": "Tree BFS (rerooted)",
+        "co": [
+          "doordash",
+          "databricks"
+        ],
+        "lc": "all-nodes-distance-k-in-binary-tree",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "112",
+        "title": "Word Search",
+        "diff": "M",
+        "pattern": "Backtracking DFS",
+        "co": [
+          "uber",
+          "rakuten"
+        ],
+        "lc": "word-search",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "113",
+        "title": "Pacific Atlantic Water Flow",
+        "diff": "M",
+        "pattern": "Multi-source DFS/BFS",
+        "co": [],
+        "lc": "pacific-atlantic-water-flow",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "114",
+        "title": "Spiral Matrix",
+        "diff": "M",
+        "pattern": "Matrix simulation",
+        "co": [
+          "uber"
+        ],
+        "lc": "spiral-matrix",
+        "cluster": "Graphs"
+      },
+      {
+        "id": "115",
+        "title": "Binary Tree Level Order Traversal",
+        "diff": "M",
+        "pattern": "Layered broadcast BFS",
+        "co": [
+          "uber",
+          "doordash",
+          "stripe"
+        ],
+        "lc": "binary-tree-level-order-traversal",
+        "cluster": "Trees"
+      },
+      {
+        "id": "116",
+        "title": "Binary Tree Right Side View",
+        "diff": "M",
+        "pattern": "Snapshot logic",
+        "co": [
+          "stripe"
+        ],
+        "lc": "binary-tree-right-side-view",
+        "cluster": "Trees"
+      },
+      {
+        "id": "117",
+        "title": "Binary Tree Vertical Order Traversal",
+        "diff": "M",
+        "pattern": "Columnar logic",
+        "co": [
+          "databricks",
+          "stripe"
+        ],
+        "lc": "binary-tree-vertical-order-traversal",
+        "cluster": "Trees"
+      },
+      {
+        "id": "118",
+        "title": "Binary Tree Zigzag Level Order",
+        "diff": "M",
+        "pattern": "Balancing traversal",
+        "co": [],
+        "lc": "binary-tree-zigzag-level-order-traversal",
+        "cluster": "Trees"
+      },
+      {
+        "id": "119",
+        "title": "Path Sum II",
+        "diff": "M",
+        "pattern": "Valid root-to-leaf sequences",
+        "co": [
+          "stripe"
+        ],
+        "lc": "path-sum-ii",
+        "cluster": "Trees"
+      },
+      {
+        "id": "120",
+        "title": "Sum Root to Leaf Numbers",
+        "diff": "M",
+        "pattern": "Weight totaling",
+        "co": [
+          "stripe"
+        ],
+        "lc": "sum-root-to-leaf-numbers",
+        "cluster": "Trees"
+      },
+      {
+        "id": "121",
+        "title": "Binary Tree Paths",
+        "diff": "E",
+        "pattern": "Route mapping (DFS)",
+        "co": [],
+        "lc": "binary-tree-paths",
+        "cluster": "Trees"
+      },
+      {
+        "id": "122",
+        "title": "Flatten Binary Tree to Linked List",
+        "diff": "M",
+        "pattern": "Hierarchical shift",
+        "co": [],
+        "lc": "flatten-binary-tree-to-linked-list",
+        "cluster": "Trees"
+      },
+      {
+        "id": "123",
+        "title": "Populating Next Right Pointers",
+        "diff": "M",
+        "pattern": "Horizontal scaling BFS",
+        "co": [],
+        "lc": "populating-next-right-pointers-in-each-node",
+        "cluster": "Trees"
+      },
+      {
+        "id": "124",
+        "title": "Lowest Common Ancestor of BST",
+        "diff": "M",
+        "pattern": "Origin identification",
+        "co": [
+          "databricks"
+        ],
+        "lc": "lowest-common-ancestor-of-a-binary-search-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "125",
+        "title": "Lowest Common Ancestor of Binary Tree",
+        "diff": "M",
+        "pattern": "DFS LCA",
+        "co": [
+          "stripe"
+        ],
+        "lc": "lowest-common-ancestor-of-a-binary-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "126",
+        "title": "Validate BST",
+        "diff": "M",
+        "pattern": "Index integrity",
+        "co": [],
+        "lc": "validate-binary-search-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "127",
+        "title": "Delete Node in a BST",
+        "diff": "M",
+        "pattern": "In-place removal",
+        "co": [],
+        "lc": "delete-node-in-a-bst",
+        "cluster": "Trees"
+      },
+      {
+        "id": "128",
+        "title": "Convert Sorted List to BST",
+        "diff": "M",
+        "pattern": "Stream balancing",
+        "co": [],
+        "lc": "convert-sorted-list-to-binary-search-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "129",
+        "title": "Binary Tree Inorder Traversal (Iterative)",
+        "diff": "E",
+        "pattern": "Stack-based traversal",
+        "co": [],
+        "lc": "binary-tree-inorder-traversal",
+        "cluster": "Trees"
+      },
+      {
+        "id": "130",
+        "title": "Subtree of Another Tree",
+        "diff": "E",
+        "pattern": "Partial matching",
+        "co": [],
+        "lc": "subtree-of-another-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "131",
+        "title": "Construct Quad Tree",
+        "diff": "M",
+        "pattern": "Spatial partitioning",
+        "co": [
+          "uber"
+        ],
+        "lc": "construct-quad-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "132",
+        "title": "Serialize and Deserialize Binary Tree",
+        "diff": "H",
+        "pattern": "Tree persistence",
+        "co": [
+          "stripe",
+          "rakuten",
+          "planetscale"
+        ],
+        "lc": "serialize-and-deserialize-binary-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "133",
+        "title": "Find Leaves of Binary Tree",
+        "diff": "M",
+        "pattern": "Post-order level grouping",
+        "co": [
+          "databricks"
+        ],
+        "lc": "find-leaves-of-binary-tree",
+        "cluster": "Trees"
+      },
+      {
+        "id": "134",
+        "title": "Add Two Numbers (Linked List)",
+        "diff": "M",
+        "pattern": "Carry propagation",
+        "co": [
+          "databricks"
+        ],
+        "lc": "add-two-numbers",
+        "cluster": "Trees"
+      },
+      {
+        "id": "135",
+        "title": "Binary Search Tree Iterator",
+        "diff": "M",
+        "pattern": "In-order stack iterator",
+        "co": [
+          "databricks"
+        ],
+        "lc": "binary-search-tree-iterator",
+        "cluster": "Trees"
+      },
+      {
+        "id": "136",
+        "title": "Delete Leaves With a Given Value",
+        "diff": "M",
+        "pattern": "Post-order pruning",
+        "co": [],
+        "lc": "delete-leaves-with-a-given-value",
+        "cluster": "Trees"
+      },
+      {
+        "id": "137",
+        "title": "Sort Integers by Power Value",
+        "diff": "M",
+        "pattern": "BFS simulation + heap",
+        "co": [
+          "databricks"
+        ],
+        "lc": "sort-integers-by-the-power-value",
+        "cluster": "Trees"
+      },
+      {
+        "id": "138",
+        "title": "LRU Cache",
+        "diff": "M",
+        "pattern": "Local cache policy",
+        "co": [
+          "uber",
+          "stripe",
+          "planetscale",
+          "rakuten"
+        ],
+        "lc": "lru-cache",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "139",
+        "title": "Design Hit Counter",
+        "diff": "M",
+        "pattern": "Sliding window time",
+        "co": [
+          "uber",
+          "databricks"
+        ],
+        "lc": "design-hit-counter",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "140",
+        "title": "Min Stack",
+        "diff": "M",
+        "pattern": "Monitor retrieval",
+        "co": [
+          "uber",
+          "doordash",
+          "stripe"
+        ],
+        "lc": "min-stack",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "141",
+        "title": "Top K Frequent Elements",
+        "diff": "M",
+        "pattern": "Popularity tracking (heap)",
+        "co": [
+          "uber",
+          "stripe"
+        ],
+        "lc": "top-k-frequent-elements",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "142",
+        "title": "K Closest Points to Origin",
+        "diff": "M",
+        "pattern": "Geospatial heap",
+        "co": [
+          "databricks"
+        ],
+        "lc": "k-closest-points-to-origin",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "143",
+        "title": "Kth Largest Element in Array",
+        "diff": "M",
+        "pattern": "Rank selection (QuickSelect)",
+        "co": [
+          "stripe"
+        ],
+        "lc": "kth-largest-element-in-an-array",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "144",
+        "title": "Task Scheduler",
+        "diff": "M",
+        "pattern": "Priority resource (max-heap)",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "task-scheduler",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "145",
+        "title": "Meeting Rooms II",
+        "diff": "M",
+        "pattern": "Resource concurrency",
+        "co": [
+          "doordash",
+          "razorpay"
+        ],
+        "lc": "meeting-rooms-ii",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "146",
+        "title": "Merge Intervals",
+        "diff": "M",
+        "pattern": "Data de-duplication",
+        "co": [
+          "razorpay",
+          "stripe"
+        ],
+        "lc": "merge-intervals",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "147",
+        "title": "Insert Interval",
+        "diff": "M",
+        "pattern": "Dynamic interval update",
+        "co": [],
+        "lc": "insert-interval",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "148",
+        "title": "Random Pick with Weight",
+        "diff": "M",
+        "pattern": "A/B sampling (prefix BS)",
+        "co": [
+          "uber"
+        ],
+        "lc": "random-pick-with-weight",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "149",
+        "title": "Random Pick Index",
+        "diff": "M",
+        "pattern": "Reservoir sampling",
+        "co": [],
+        "lc": "random-pick-index",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "150",
+        "title": "Design Browser History",
+        "diff": "M",
+        "pattern": "Transactional stack",
+        "co": [],
+        "lc": "design-browser-history",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "151",
+        "title": "Design Circular Queue",
+        "diff": "M",
+        "pattern": "Buffer indexing",
+        "co": [],
+        "lc": "design-circular-queue",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "152",
+        "title": "Design Circular Deque",
+        "diff": "M",
+        "pattern": "Fixed buffer",
+        "co": [],
+        "lc": "design-circular-deque",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "153",
+        "title": "Majority Element II",
+        "diff": "M",
+        "pattern": "Voting consensus (Boyer-Moore)",
+        "co": [],
+        "lc": "majority-element-ii",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "154",
+        "title": "Design Underground System",
+        "diff": "M",
+        "pattern": "ETA tracking (hashing)",
+        "co": [],
+        "lc": "design-underground-system",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "155",
+        "title": "Design Twitter (Basic)",
+        "diff": "M",
+        "pattern": "Feeds fan-out",
+        "co": [
+          "planetscale"
+        ],
+        "lc": "design-twitter",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "156",
+        "title": "Find the Celebrity",
+        "diff": "M",
+        "pattern": "Graph in-degree reduction",
+        "co": [
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "find-the-celebrity",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "157",
+        "title": "Insert into Sorted Circular Linked List",
+        "diff": "M",
+        "pattern": "Linked list insert",
+        "co": [
+          "doordash"
+        ],
+        "lc": "insert-into-a-sorted-circular-linked-list",
+        "cluster": "Design & Heaps"
+      },
+      {
+        "id": "158",
+        "title": "Search in Rotated Sorted Array",
+        "diff": "M",
+        "pattern": "Logarithmic search",
+        "co": [],
+        "lc": "search-in-rotated-sorted-array",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "159",
+        "title": "Find Minimum in Rotated Sorted Array",
+        "diff": "M",
+        "pattern": "Pivot binary search",
+        "co": [],
+        "lc": "find-minimum-in-rotated-sorted-array",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "160",
+        "title": "Ship Packages Within D Days",
+        "diff": "M",
+        "pattern": "Load balancing (BS on answer)",
+        "co": [
+          "databricks",
+          "doordash"
+        ],
+        "lc": "capacity-to-ship-packages-within-d-days",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "161",
+        "title": "Koko Eating Bananas",
+        "diff": "M",
+        "pattern": "Speed-time trade-off",
+        "co": [
+          "doordash"
+        ],
+        "lc": "koko-eating-bananas",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "162",
+        "title": "Find First and Last Position",
+        "diff": "M",
+        "pattern": "Boundary binary search",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "find-first-and-last-position-of-element-in-sorted-array",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "163",
+        "title": "Fraction to Recurring Decimal",
+        "diff": "M",
+        "pattern": "Hashing + long division",
+        "co": [
+          "databricks"
+        ],
+        "lc": "fraction-to-recurring-decimal",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "164",
+        "title": "Shortest Word Distance II",
+        "diff": "M",
+        "pattern": "Hashing + binary search",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "shortest-word-distance-ii",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "165",
+        "title": "Friends of Appropriate Ages",
+        "diff": "M",
+        "pattern": "Sorting + binary search",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "friends-of-appropriate-ages",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "166",
+        "title": "Interval List Intersections",
+        "diff": "M",
+        "pattern": "Two pointer interval",
+        "co": [
+          "databricks"
+        ],
+        "lc": "interval-list-intersections",
+        "cluster": "Binary Search"
+      },
+      {
+        "id": "167",
+        "title": "Longest Substring Without Repeating Chars",
+        "diff": "M",
+        "pattern": "Sliding window",
+        "co": [
+          "stripe",
+          "razorpay"
+        ],
+        "lc": "longest-substring-without-repeating-characters",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "168",
+        "title": "Max Consecutive Ones III",
+        "diff": "M",
+        "pattern": "Sliding window flip",
+        "co": [
+          "doordash"
+        ],
+        "lc": "max-consecutive-ones-iii",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "169",
+        "title": "Longest Repeating Character Replacement",
+        "diff": "M",
+        "pattern": "Local dominance window",
+        "co": [
+          "doordash",
+          "razorpay"
+        ],
+        "lc": "longest-repeating-character-replacement",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "170",
+        "title": "Subarray Sum Equals K",
+        "diff": "M",
+        "pattern": "Interval retrieval (prefix)",
+        "co": [
+          "stripe"
+        ],
+        "lc": "subarray-sum-equals-k",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "171",
+        "title": "Jump Game",
+        "diff": "M",
+        "pattern": "Reachability / greedy",
+        "co": [
+          "doordash",
+          "rakuten"
+        ],
+        "lc": "jump-game",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "172",
+        "title": "Longest Palindrome",
+        "diff": "E",
+        "pattern": "Frequency hashing",
+        "co": [],
+        "lc": "longest-palindrome",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "173",
+        "title": "Max Sum of Distinct Subarrays of Length K",
+        "diff": "M",
+        "pattern": "Sliding window",
+        "co": [
+          "doordash"
+        ],
+        "lc": "maximum-sum-of-distinct-subarrays-with-length-k",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "174",
+        "title": "Palindromic Substrings",
+        "diff": "M",
+        "pattern": "Expand around center",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "palindromic-substrings",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "175",
+        "title": "Reveal Cards in Increasing Order",
+        "diff": "M",
+        "pattern": "Queue simulation",
+        "co": [
+          "doordash"
+        ],
+        "lc": "reveal-cards-in-increasing-order",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "176",
+        "title": "Simplify Path",
+        "diff": "M",
+        "pattern": "Stack / string",
+        "co": [
+          "doordash"
+        ],
+        "lc": "simplify-path",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "177",
+        "title": "Minimum Remove to Make Valid Parens",
+        "diff": "M",
+        "pattern": "Stack / string",
+        "co": [
+          "doordash"
+        ],
+        "lc": "minimum-remove-to-make-valid-parentheses",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "178",
+        "title": "Remove All Occurrences of a Substring",
+        "diff": "M",
+        "pattern": "Stack / string",
+        "co": [
+          "doordash"
+        ],
+        "lc": "remove-all-occurrences-of-a-substring",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "179",
+        "title": "Buildings With an Ocean View",
+        "diff": "M",
+        "pattern": "Monotonic stack",
+        "co": [
+          "doordash"
+        ],
+        "lc": "buildings-with-an-ocean-view",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "180",
+        "title": "Asteroid Collision",
+        "diff": "M",
+        "pattern": "State stack simulation",
+        "co": [
+          "doordash",
+          "databricks"
+        ],
+        "lc": "asteroid-collision",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "181",
+        "title": "Longest Common Prefix",
+        "diff": "E",
+        "pattern": "Trie / string",
+        "co": [
+          "doordash"
+        ],
+        "lc": "longest-common-prefix",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "182",
+        "title": "Decode String",
+        "diff": "M",
+        "pattern": "Stack / string recursion",
+        "co": [
+          "databricks"
+        ],
+        "lc": "decode-string",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "183",
+        "title": "String Compression",
+        "diff": "M",
+        "pattern": "Two pointers",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "string-compression",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "184",
+        "title": "Generate Parentheses",
+        "diff": "M",
+        "pattern": "Backtracking",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "generate-parentheses",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "185",
+        "title": "Maximum Swap",
+        "diff": "M",
+        "pattern": "Greedy digit manipulation",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "maximum-swap",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "186",
+        "title": "Combination Sum II",
+        "diff": "M",
+        "pattern": "Backtracking + dedup",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "combination-sum-ii",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "187",
+        "title": "Min Diff in Sums After Removal",
+        "diff": "H",
+        "pattern": "Prefix + suffix heaps",
+        "co": [
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "minimum-difference-in-sums-after-removal-of-elements",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "188",
+        "title": "Design Tic-Tac-Toe",
+        "diff": "M",
+        "pattern": "State tracking matrix",
+        "co": [
+          "doordash",
+          "databricks"
+        ],
+        "lc": "design-tic-tac-toe",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "198",
+        "title": "Minimum Window Substring",
+        "diff": "H",
+        "pattern": "Sliding window + hashing",
+        "co": [
+          "razorpay",
+          "uber"
+        ],
+        "lc": "minimum-window-substring",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "199",
+        "title": "Permutation in String",
+        "diff": "M",
+        "pattern": "Sliding window frequency",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "permutation-in-string",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "200",
+        "title": "Minimum Size Subarray Sum",
+        "diff": "M",
+        "pattern": "Two pointer sliding",
+        "co": [
+          "doordash"
+        ],
+        "lc": "minimum-size-subarray-sum",
+        "cluster": "Sliding Window & Strings"
+      },
+      {
+        "id": "215",
+        "title": "Longest Common Subsequence",
+        "diff": "M",
+        "pattern": "2D DP strings",
+        "co": [
+          "razorpay",
+          "databricks"
+        ],
+        "lc": "longest-common-subsequence",
+        "cluster": "String DP & Fundamentals"
+      },
+      {
+        "id": "216",
+        "title": "Edit Distance",
+        "diff": "M",
+        "pattern": "DP transformation",
+        "co": [
+          "razorpay",
+          "databricks"
+        ],
+        "lc": "edit-distance",
+        "cluster": "String DP & Fundamentals"
+      },
+      {
+        "id": "217",
+        "title": "Word Break",
+        "diff": "M",
+        "pattern": "DP + prefix hashing",
+        "co": [
+          "razorpay",
+          "databricks"
+        ],
+        "lc": "word-break",
+        "cluster": "String DP & Fundamentals"
+      },
+      {
+        "id": "218",
+        "title": "Word Break II",
+        "diff": "H",
+        "pattern": "DP + backtracking",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "word-break-ii",
+        "cluster": "String DP & Fundamentals"
+      },
+      {
+        "id": "219",
+        "title": "Permutations",
+        "diff": "M",
+        "pattern": "Backtracking enumeration",
+        "co": [
+          "razorpay",
+          "databricks"
+        ],
+        "lc": "permutations",
+        "cluster": "Backtracking Fundamentals"
+      },
+      {
+        "id": "220",
+        "title": "Combinations",
+        "diff": "M",
+        "pattern": "Backtracking with index",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "combinations",
+        "cluster": "Backtracking Fundamentals"
+      },
+      {
+        "id": "221",
+        "title": "Letter Combinations of Phone",
+        "diff": "M",
+        "pattern": "Backtracking enumeration",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "letter-combinations-of-a-phone-number",
+        "cluster": "Backtracking Fundamentals"
+      },
+      {
+        "id": "222",
+        "title": "Next Permutation",
+        "diff": "M",
+        "pattern": "In-place arrangement",
+        "co": [
+          "razorpay",
+          "uber"
+        ],
+        "lc": "next-permutation",
+        "cluster": "Backtracking Fundamentals"
+      },
+      {
+        "id": "223",
+        "title": "Number of Connected Components",
+        "diff": "M",
+        "pattern": "DSU / DFS",
+        "co": [
+          "razorpay",
+          "uber"
+        ],
+        "lc": "number-of-connected-components-in-an-undirected-graph",
+        "cluster": "Graph Expansion (Razorpay & Uber)"
+      },
+      {
+        "id": "189",
+        "title": "Find Pivot Index",
+        "diff": "E",
+        "pattern": "Prefix sum balance",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "find-pivot-index",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "190",
+        "title": "Container With Most Water",
+        "diff": "M",
+        "pattern": "Two pointers optimization",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "container-with-most-water",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "191",
+        "title": "3Sum",
+        "diff": "M",
+        "pattern": "Two pointers + sorting",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "3sum",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "192",
+        "title": "Majority Element",
+        "diff": "E",
+        "pattern": "Boyer-Moore voting",
+        "co": [
+          "rakuten",
+          "doordash"
+        ],
+        "lc": "majority-element",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "193",
+        "title": "Roman to Integer",
+        "diff": "E",
+        "pattern": "Character mapping",
+        "co": [
+          "doordash",
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "roman-to-integer",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "194",
+        "title": "Integer to Roman",
+        "diff": "M",
+        "pattern": "Greedy representation",
+        "co": [
+          "razorpay",
+          "rakuten"
+        ],
+        "lc": "integer-to-roman",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "195",
+        "title": "Implement atoi",
+        "diff": "M",
+        "pattern": "String parsing edge-cases",
+        "co": [
+          "databricks",
+          "rakuten"
+        ],
+        "lc": "string-to-integer-atoi",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "196",
+        "title": "Search a 2D Matrix",
+        "diff": "M",
+        "pattern": "Binary search 2D grid",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "search-a-2d-matrix",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "197",
+        "title": "Median of Two Sorted Arrays",
+        "diff": "H",
+        "pattern": "Binary search partition",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "median-of-two-sorted-arrays",
+        "cluster": "Fundamentals (Rakuten & Gaps)"
+      }
+    ]
+  },
+  {
+    "title": "Level 3: Optimization",
+    "problems": [
+      {
+        "id": "201",
+        "title": "Bus Routes",
+        "diff": "H",
+        "pattern": "Shortest transfers (BFS)",
+        "co": [
+          "uber"
+        ],
+        "lc": "bus-routes",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "202",
+        "title": "Alien Dictionary",
+        "diff": "H",
+        "pattern": "Topological sort (Kahn's)",
+        "co": [
+          "uber",
+          "stripe"
+        ],
+        "lc": "alien-dictionary",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "203",
+        "title": "Number of Islands II",
+        "diff": "H",
+        "pattern": "Dynamic clustering (DSU)",
+        "co": [
+          "uber",
+          "doordash"
+        ],
+        "lc": "number-of-islands-ii",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "204",
+        "title": "Course Schedule II",
+        "diff": "M",
+        "pattern": "Dependency pipeline",
+        "co": [
+          "databricks"
+        ],
+        "lc": "course-schedule-ii",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "205",
+        "title": "Word Ladder",
+        "diff": "H",
+        "pattern": "State-space BFS",
+        "co": [
+          "uber"
+        ],
+        "lc": "word-ladder",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "206",
+        "title": "Network Delay Time",
+        "diff": "M",
+        "pattern": "Dijkstra path",
+        "co": [
+          "uber"
+        ],
+        "lc": "network-delay-time",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "207",
+        "title": "Critical Connections in a Network",
+        "diff": "H",
+        "pattern": "Tarjan's bridge detection",
+        "co": [],
+        "lc": "critical-connections-in-a-network",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "208",
+        "title": "Minimum Height Trees",
+        "diff": "M",
+        "pattern": "Network root (trim leaves)",
+        "co": [],
+        "lc": "minimum-height-trees",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "209",
+        "title": "Redundant Connection",
+        "diff": "M",
+        "pattern": "Cycle detection (DSU)",
+        "co": [],
+        "lc": "redundant-connection",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "210",
+        "title": "Min Cost to Connect All Points",
+        "diff": "M",
+        "pattern": "MST (Prim's/Kruskal's)",
+        "co": [],
+        "lc": "min-cost-to-connect-all-points",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "211",
+        "title": "Path With Minimum Effort",
+        "diff": "M",
+        "pattern": "Stress path (Dijkstra)",
+        "co": [],
+        "lc": "path-with-minimum-effort",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "212",
+        "title": "Find Eventual Safe States",
+        "diff": "M",
+        "pattern": "Infinite loop avoid",
+        "co": [],
+        "lc": "find-eventual-safe-states",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "213",
+        "title": "Accounts Merge",
+        "diff": "M",
+        "pattern": "DSU deduplication",
+        "co": [
+          "doordash"
+        ],
+        "lc": "accounts-merge",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "214",
+        "title": "Possible Bipartition",
+        "diff": "M",
+        "pattern": "Conflict detection",
+        "co": [],
+        "lc": "possible-bipartition",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "215",
+        "title": "Minimum Knight Moves",
+        "diff": "M",
+        "pattern": "Pattern search BFS",
+        "co": [],
+        "lc": "minimum-knight-moves",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "216",
+        "title": "Reorder Routes",
+        "diff": "M",
+        "pattern": "Central data center",
+        "co": [],
+        "lc": "reorder-routes-to-make-all-paths-lead-to-the-city-zero",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "217",
+        "title": "Shortest Bridge",
+        "diff": "M",
+        "pattern": "Sparse clustering (MS-BFS)",
+        "co": [],
+        "lc": "shortest-bridge",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "218",
+        "title": "Find City With Smallest Neighbors",
+        "diff": "M",
+        "pattern": "Floyd-Warshall / Dijkstra",
+        "co": [],
+        "lc": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "219",
+        "title": "Detonate the Maximum Bombs",
+        "diff": "M",
+        "pattern": "Chain reaction (dir. graph)",
+        "co": [],
+        "lc": "detonate-the-maximum-bombs",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "220",
+        "title": "Longest Increasing Path in Matrix",
+        "diff": "H",
+        "pattern": "Grid optimisation (memo DFS)",
+        "co": [
+          "doordash"
+        ],
+        "lc": "longest-increasing-path-in-a-matrix",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "221",
+        "title": "Evaluate Division",
+        "diff": "M",
+        "pattern": "Unit conversion (weighted)",
+        "co": [
+          "stripe",
+          "uber"
+        ],
+        "lc": "evaluate-division",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "222",
+        "title": "Largest Color Value in Directed Graph",
+        "diff": "H",
+        "pattern": "DAG state tracking",
+        "co": [],
+        "lc": "largest-color-value-in-a-directed-graph",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "223",
+        "title": "Parallel Courses III",
+        "diff": "H",
+        "pattern": "Project duration (topo+DP)",
+        "co": [],
+        "lc": "parallel-courses-iii",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "224",
+        "title": "Sequence Reconstruction",
+        "diff": "M",
+        "pattern": "Unique orderings",
+        "co": [],
+        "lc": "sequence-reconstruction",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "225",
+        "title": "Path With Maximum Probability",
+        "diff": "M",
+        "pattern": "Stochastic routing (Dijkstra)",
+        "co": [
+          "uber"
+        ],
+        "lc": "path-with-maximum-probability",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "226",
+        "title": "Minimum Genetic Mutation",
+        "diff": "M",
+        "pattern": "Constrained transition BFS",
+        "co": [],
+        "lc": "minimum-genetic-mutation",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "227",
+        "title": "Number of Restricted Paths",
+        "diff": "M",
+        "pattern": "Weighted path count (D+DP)",
+        "co": [],
+        "lc": "number-of-restricted-paths-from-first-to-last-node",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "228",
+        "title": "Count Unreachable Pairs",
+        "diff": "M",
+        "pattern": "Fragmented count",
+        "co": [],
+        "lc": "count-unreachable-pairs-of-nodes-in-an-undirected-graph",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "229",
+        "title": "Min Cost to Reach Destination in Time",
+        "diff": "H",
+        "pattern": "Time-cost Dijkstra",
+        "co": [],
+        "lc": "minimum-cost-to-reach-destination-in-time",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "230",
+        "title": "Word Ladder II",
+        "diff": "H",
+        "pattern": "All shortest paths",
+        "co": [],
+        "lc": "word-ladder-ii",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "231",
+        "title": "Flower Planting with No Adjacent",
+        "diff": "M",
+        "pattern": "Graph coloring",
+        "co": [],
+        "lc": "flower-planting-with-no-adjacent",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "232",
+        "title": "Maximize Amount — Currency Conversions",
+        "diff": "M",
+        "pattern": "Weighted graph DP",
+        "co": [
+          "uber",
+          "databricks"
+        ],
+        "lc": "maximize-amount-after-two-days-of-conversions",
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "233",
+        "title": "Consistent Hashing Ring (LLD)",
+        "diff": "D",
+        "pattern": "Key-to-node ring mapping",
+        "co": [
+          "doordash"
+        ],
+        "lc": null,
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "234",
+        "title": "Health-Aware Round-Robin Router (LLD)",
+        "diff": "D",
+        "pattern": "Thread-safe balancing",
+        "co": [
+          "doordash"
+        ],
+        "lc": null,
+        "cluster": "Advanced Graphs"
+      },
+      {
+        "id": "235",
+        "title": "Binary Tree Maximum Path Sum",
+        "diff": "H",
+        "pattern": "Global hierarchy opt.",
+        "co": [],
+        "lc": "binary-tree-maximum-path-sum",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "236",
+        "title": "Kth Smallest Element in BST",
+        "diff": "M",
+        "pattern": "Rank retrieval (in-order)",
+        "co": [],
+        "lc": "kth-smallest-element-in-a-bst",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "237",
+        "title": "Diameter of Binary Tree",
+        "diff": "E",
+        "pattern": "Span calculation",
+        "co": [
+          "doordash"
+        ],
+        "lc": "diameter-of-binary-tree",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "238",
+        "title": "Construct Tree from Pre+Inorder",
+        "diff": "M",
+        "pattern": "Index recovery",
+        "co": [],
+        "lc": "construct-binary-tree-from-preorder-and-inorder-traversal",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "239",
+        "title": "Recover BST",
+        "diff": "M",
+        "pattern": "Self-healing index",
+        "co": [],
+        "lc": "recover-binary-search-tree",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "240",
+        "title": "Path Sum III",
+        "diff": "M",
+        "pattern": "Prefix-sum path",
+        "co": [],
+        "lc": "path-sum-iii",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "241",
+        "title": "Boundary of Binary Tree",
+        "diff": "M",
+        "pattern": "Perimeter data",
+        "co": [],
+        "lc": "boundary-of-binary-tree",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "242",
+        "title": "Binary Tree Cameras",
+        "diff": "H",
+        "pattern": "Surveillance minimum",
+        "co": [],
+        "lc": "binary-tree-cameras",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "243",
+        "title": "LCA of N-ary Tree",
+        "diff": "M",
+        "pattern": "Parent hub",
+        "co": [],
+        "lc": "lowest-common-ancestor-of-a-binary-tree-iv",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "244",
+        "title": "Maximum BST Subtree",
+        "diff": "H",
+        "pattern": "Valid sub-index",
+        "co": [],
+        "lc": "maximum-sum-bst-in-binary-tree",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "245",
+        "title": "House Robber III",
+        "diff": "M",
+        "pattern": "Tree DP",
+        "co": [],
+        "lc": "house-robber-iii",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "246",
+        "title": "Amount of Time to Infect Binary Tree",
+        "diff": "M",
+        "pattern": "Failure spread (BFS)",
+        "co": [],
+        "lc": "amount-of-time-for-binary-tree-to-be-infected",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "247",
+        "title": "Unique Binary Search Trees II",
+        "diff": "M",
+        "pattern": "Index configurations (Catalan)",
+        "co": [],
+        "lc": "unique-binary-search-trees-ii",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "248",
+        "title": "Binary Tree Maximum Width",
+        "diff": "M",
+        "pattern": "Concurrency max (BFS idx)",
+        "co": [],
+        "lc": "maximum-width-of-binary-tree",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "249",
+        "title": "Count Complete Tree Nodes",
+        "diff": "M",
+        "pattern": "O(log²N) binary search",
+        "co": [],
+        "lc": "count-complete-tree-nodes",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "250",
+        "title": "LCA IV (Multiple Nodes)",
+        "diff": "M",
+        "pattern": "k-node LCA",
+        "co": [],
+        "lc": "lowest-common-ancestor-of-a-binary-tree-iv",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "251",
+        "title": "Range Sum of BST",
+        "diff": "E",
+        "pattern": "Efficient interval (BST prune)",
+        "co": [
+          "planetscale"
+        ],
+        "lc": "range-sum-of-bst",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "252",
+        "title": "All Nodes Distance K (Advanced)",
+        "diff": "M",
+        "pattern": "Hierarchical BFS",
+        "co": [
+          "doordash"
+        ],
+        "lc": "all-nodes-distance-k-in-binary-tree",
+        "cluster": "Advanced Trees"
+      },
+      {
+        "id": "253",
+        "title": "Implement Trie (Prefix Tree)",
+        "diff": "M",
+        "pattern": "Prefix autocomplete",
+        "co": [
+          "databricks",
+          "stripe",
+          "rakuten",
+          "planetscale"
+        ],
+        "lc": "implement-trie-prefix-tree",
+        "cluster": "Trie"
+      },
+      {
+        "id": "254",
+        "title": "Map Sum Pairs",
+        "diff": "M",
+        "pattern": "Prefix tree aggregation",
+        "co": [],
+        "lc": "map-sum-pairs",
+        "cluster": "Trie"
+      },
+      {
+        "id": "255",
+        "title": "Design Search Autocomplete System",
+        "diff": "H",
+        "pattern": "Planet-scale prefix (Trie+Heap)",
+        "co": [
+          "databricks",
+          "stripe"
+        ],
+        "lc": "design-search-autocomplete-system",
+        "cluster": "Trie"
+      },
+      {
+        "id": "256",
+        "title": "Add and Search Word",
+        "diff": "M",
+        "pattern": "Wildcard trie + DFS",
+        "co": [],
+        "lc": "design-add-and-search-words-data-structure",
+        "cluster": "Trie"
+      },
+      {
+        "id": "257",
+        "title": "Replace Words",
+        "diff": "M",
+        "pattern": "Prefix replacement trie",
+        "co": [],
+        "lc": "replace-words",
+        "cluster": "Trie"
+      },
+      {
+        "id": "258",
+        "title": "Top K Frequent Words",
+        "diff": "M",
+        "pattern": "Data analytics (Trie+Heap)",
+        "co": [
+          "databricks"
+        ],
+        "lc": "top-k-frequent-words",
+        "cluster": "Trie"
+      },
+      {
+        "id": "259",
+        "title": "Design In-Memory File System",
+        "diff": "H",
+        "pattern": "Metadata MKDIR",
+        "co": [
+          "doordash",
+          "planetscale"
+        ],
+        "lc": "design-in-memory-file-system",
+        "cluster": "Trie"
+      },
+      {
+        "id": "260",
+        "title": "Implement Trie with Count",
+        "diff": "M",
+        "pattern": "Prefix count tracking",
+        "co": [],
+        "lc": "implement-trie-prefix-tree",
+        "cluster": "Trie"
+      },
+      {
+        "id": "261",
+        "title": "Range Sum Query (Mutable)",
+        "diff": "M",
+        "pattern": "Dynamic range (Fenwick)",
+        "co": [
+          "databricks",
+          "planetscale"
+        ],
+        "lc": "range-sum-query-mutable",
+        "cluster": "Segment Tree / BIT"
+      },
+      {
+        "id": "262",
+        "title": "Count of Smaller Numbers After Self",
+        "diff": "H",
+        "pattern": "Advanced rank (BIT)",
+        "co": [],
+        "lc": "count-of-smaller-numbers-after-self",
+        "cluster": "Segment Tree / BIT"
+      },
+      {
+        "id": "263",
+        "title": "Range Frequency Queries",
+        "diff": "M",
+        "pattern": "Sub-range count (seg tree)",
+        "co": [],
+        "lc": "range-frequency-queries",
+        "cluster": "Segment Tree / BIT"
+      },
+      {
+        "id": "264",
+        "title": "Snapshot Array",
+        "diff": "M",
+        "pattern": "Point-in-time recovery",
+        "co": [],
+        "lc": "snapshot-array",
+        "cluster": "Segment Tree / BIT"
+      },
+      {
+        "id": "265",
+        "title": "Range Module",
+        "diff": "H",
+        "pattern": "Complex interval tree",
+        "co": [],
+        "lc": "range-module",
+        "cluster": "Segment Tree / BIT"
+      },
+      {
+        "id": "266",
+        "title": "Range Sum Query 2D (Mutable)",
+        "diff": "H",
+        "pattern": "Spatial pre-calc",
+        "co": [],
+        "lc": "range-sum-query-2d-mutable",
+        "cluster": "Segment Tree / BIT"
+      },
+      {
+        "id": "267",
+        "title": "LFU Cache",
+        "diff": "H",
+        "pattern": "Hot data eviction",
+        "co": [
+          "planetscale",
+          "stripe"
+        ],
+        "lc": "lfu-cache",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "268",
+        "title": "Median from Data Stream",
+        "diff": "H",
+        "pattern": "Dual heap balancing",
+        "co": [],
+        "lc": "find-median-from-data-stream",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "269",
+        "title": "Merge K Sorted Lists",
+        "diff": "H",
+        "pattern": "Distributed shards",
+        "co": [
+          "stripe"
+        ],
+        "lc": "merge-k-sorted-lists",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "270",
+        "title": "Sliding Window Maximum",
+        "diff": "H",
+        "pattern": "Peak detection (mono queue)",
+        "co": [
+          "razorpay",
+          "databricks"
+        ],
+        "lc": "sliding-window-maximum",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "271",
+        "title": "Task Scheduler II",
+        "diff": "M",
+        "pattern": "Priority scheduling",
+        "co": [
+          "doordash"
+        ],
+        "lc": "task-scheduler-ii",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "272",
+        "title": "Single-Threaded CPU",
+        "diff": "M",
+        "pattern": "Priority scheduling (heap)",
+        "co": [
+          "doordash"
+        ],
+        "lc": "single-threaded-cpu",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "273",
+        "title": "Smallest Range Covering K Lists",
+        "diff": "H",
+        "pattern": "Global sorted interval",
+        "co": [],
+        "lc": "smallest-range-covering-elements-from-k-lists",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "274",
+        "title": "Sliding Window Median",
+        "diff": "H",
+        "pattern": "Order windowing (dual heaps)",
+        "co": [],
+        "lc": "sliding-window-median",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "275",
+        "title": "Stock Price Fluctuation",
+        "diff": "M",
+        "pattern": "High-frequency update",
+        "co": [],
+        "lc": "stock-price-fluctuation",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "276",
+        "title": "Design Food Rating System",
+        "diff": "M",
+        "pattern": "Dynamic category",
+        "co": [],
+        "lc": "design-a-food-rating-system",
+        "cluster": "Heap / Priority Queue (Advanced)"
+      },
+      {
+        "id": "277",
+        "title": "0/1 Knapsack",
+        "diff": "M",
+        "pattern": "Resource capacity",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "278",
+        "title": "Partition Equal Subset Sum",
+        "diff": "M",
+        "pattern": "Data load balance (knapsack)",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "partition-equal-subset-sum",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "279",
+        "title": "Coin Change",
+        "diff": "M",
+        "pattern": "Optimal denomination",
+        "co": [
+          "uber",
+          "rakuten"
+        ],
+        "lc": "coin-change",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "280",
+        "title": "Coin Change II",
+        "diff": "M",
+        "pattern": "Counting denominations",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "coin-change-ii",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "281",
+        "title": "Word Break",
+        "diff": "M",
+        "pattern": "Log segmentation (DP)",
+        "co": [
+          "databricks",
+          "stripe",
+          "rakuten"
+        ],
+        "lc": "word-break",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "282",
+        "title": "Word Break II",
+        "diff": "H",
+        "pattern": "All segmentations (DP+BT)",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "word-break-ii",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "283",
+        "title": "Decode Ways",
+        "diff": "M",
+        "pattern": "Stream interpretation (DP)",
+        "co": [
+          "stripe",
+          "rakuten"
+        ],
+        "lc": "decode-ways",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "284",
+        "title": "Longest Increasing Subsequence",
+        "diff": "M",
+        "pattern": "Logistics trends (DP+BS)",
+        "co": [
+          "databricks"
+        ],
+        "lc": "longest-increasing-subsequence",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "285",
+        "title": "Edit Distance",
+        "diff": "M",
+        "pattern": "Measuring divergence (str DP)",
+        "co": [
+          "databricks",
+          "rakuten"
+        ],
+        "lc": "edit-distance",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "286",
+        "title": "Interleaving String",
+        "diff": "M",
+        "pattern": "Multi-stream verification",
+        "co": [],
+        "lc": "interleaving-string",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "287",
+        "title": "Unique Paths",
+        "diff": "M",
+        "pattern": "Grid routing (DP)",
+        "co": [],
+        "lc": "unique-paths",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "288",
+        "title": "Maximum Product Subarray",
+        "diff": "M",
+        "pattern": "Positive/neg trend",
+        "co": [],
+        "lc": "maximum-product-subarray",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "289",
+        "title": "House Robber",
+        "diff": "M",
+        "pattern": "Proximity allocation (1D DP)",
+        "co": [],
+        "lc": "house-robber",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "290",
+        "title": "House Robber II (Circular)",
+        "diff": "M",
+        "pattern": "Circular 1D DP",
+        "co": [],
+        "lc": "house-robber-ii",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "291",
+        "title": "Matrix Chain Multiplication",
+        "diff": "H",
+        "pattern": "Pipeline ordering (interval DP)",
+        "co": [],
+        "lc": null,
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "292",
+        "title": "Burst Balloons",
+        "diff": "H",
+        "pattern": "Interval gain (interval DP)",
+        "co": [],
+        "lc": "burst-balloons",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "293",
+        "title": "Longest Palindromic Subsequence",
+        "diff": "M",
+        "pattern": "String DP (2D)",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "longest-palindromic-subsequence",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "294",
+        "title": "Longest Common Subsequence",
+        "diff": "M",
+        "pattern": "String DP (2D)",
+        "co": [
+          "databricks"
+        ],
+        "lc": "longest-common-subsequence",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "295",
+        "title": "Valid Palindrome III",
+        "diff": "H",
+        "pattern": "Edit distance variant",
+        "co": [
+          "databricks"
+        ],
+        "lc": "valid-palindrome-iii",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "296",
+        "title": "Continuous Subarray Sum",
+        "diff": "M",
+        "pattern": "Modular periodicity",
+        "co": [
+          "razorpay",
+          "doordash"
+        ],
+        "lc": "continuous-subarray-sum",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "297",
+        "title": "Split Array Largest Sum",
+        "diff": "H",
+        "pattern": "Minimax partition (BS)",
+        "co": [],
+        "lc": "split-array-largest-sum",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "298",
+        "title": "Shortest Visiting Path (TSP)",
+        "diff": "H",
+        "pattern": "DP + bitmask (TSP)",
+        "co": [],
+        "lc": "shortest-path-visiting-all-nodes",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "299",
+        "title": "Job Scheduling",
+        "diff": "H",
+        "pattern": "Weighted job selection",
+        "co": [],
+        "lc": "job-scheduling",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "300",
+        "title": "Text Justification",
+        "diff": "H",
+        "pattern": "Greedy text formatting",
+        "co": [
+          "databricks"
+        ],
+        "lc": "text-justification",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "301",
+        "title": "Longest Continuous Subarray (Abs Diff ≤ Limit)",
+        "diff": "M",
+        "pattern": "Monotonic queue DP",
+        "co": [
+          "uber",
+          "razorpay"
+        ],
+        "lc": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "302",
+        "title": "Longest Substring with K Distinct Chars",
+        "diff": "M",
+        "pattern": "Memory windowing",
+        "co": [],
+        "lc": "longest-substring-with-at-most-k-distinct-characters",
+        "cluster": "Dynamic Programming"
+      },
+      {
+        "id": "303",
+        "title": "Trapping Rain Water",
+        "diff": "H",
+        "pattern": "Metric calculation (mono stack)",
+        "co": [
+          "stripe",
+          "databricks",
+          "razorpay"
+        ],
+        "lc": "trapping-rain-water",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "304",
+        "title": "Largest Rectangle in Histogram",
+        "diff": "H",
+        "pattern": "Area optimisation",
+        "co": [
+          "doordash"
+        ],
+        "lc": "largest-rectangle-in-histogram",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "305",
+        "title": "Maximal Rectangle",
+        "diff": "H",
+        "pattern": "Binary grid area",
+        "co": [
+          "doordash"
+        ],
+        "lc": "maximal-rectangle",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "306",
+        "title": "Product of Array Except Self",
+        "diff": "M",
+        "pattern": "Parallel aggregation",
+        "co": [],
+        "lc": "product-of-array-except-self",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "307",
+        "title": "First Missing Positive",
+        "diff": "H",
+        "pattern": "In-place memory opt (cyclic)",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "first-missing-positive",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "308",
+        "title": "Find the Duplicate Number",
+        "diff": "M",
+        "pattern": "Cycle in array (Floyd's)",
+        "co": [],
+        "lc": "find-the-duplicate-number",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "309",
+        "title": "Daily Temperatures",
+        "diff": "M",
+        "pattern": "Next greater element",
+        "co": [],
+        "lc": "daily-temperatures",
+        "cluster": "Monotonic Stack & Array Tricks"
+      },
+      {
+        "id": "310",
+        "title": "Design Parking Lot (OOD)",
+        "diff": "M",
+        "pattern": "Resource OO model",
+        "co": [
+          "databricks"
+        ],
+        "lc": null,
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "311",
+        "title": "Time-Based Key-Value Store",
+        "diff": "M",
+        "pattern": "Timestamp index",
+        "co": [
+          "planetscale",
+          "stripe"
+        ],
+        "lc": "time-based-key-value-store",
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "312",
+        "title": "Design Spreadsheet (Cell Dependencies)",
+        "diff": "H",
+        "pattern": "Dependency update (graph)",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "313",
+        "title": "Distributed ID Generator (Snowflake)",
+        "diff": "H",
+        "pattern": "Unique ID logic",
+        "co": [
+          "stripe",
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "314",
+        "title": "Disjoint Interval Stream",
+        "diff": "M",
+        "pattern": "Continuous range (sorted map)",
+        "co": [],
+        "lc": "data-stream-as-disjoint-intervals",
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "315",
+        "title": "Distributed Rate Limiter (Token Bucket)",
+        "diff": "H",
+        "pattern": "Sharded bucket",
+        "co": [
+          "stripe",
+          "doordash"
+        ],
+        "lc": null,
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "316",
+        "title": "Text Editor with Undo/Redo",
+        "diff": "M",
+        "pattern": "State recovery",
+        "co": [],
+        "lc": "design-a-text-editor",
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "317",
+        "title": "Settle Debt (Min Transactions)",
+        "diff": "H",
+        "pattern": "P2P balancing",
+        "co": [],
+        "lc": "optimal-account-balancing",
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "318",
+        "title": "Valid Sudoku",
+        "diff": "M",
+        "pattern": "Constraint validation",
+        "co": [],
+        "lc": "valid-sudoku",
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "319",
+        "title": "Sparse Matrix Multiplication",
+        "diff": "M",
+        "pattern": "Empty data opt (CSR)",
+        "co": [],
+        "lc": "sparse-matrix-multiplication",
+        "cluster": "LLD & System Design"
+      },
+      {
+        "id": "320",
+        "title": "Document Access Service (OOD)",
+        "diff": "D",
+        "pattern": "In-memory permission map",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding"
+      },
+      {
+        "id": "321",
+        "title": "In-Memory SQL-like Database",
+        "diff": "D",
+        "pattern": "DB constraint validation",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding"
+      },
+      {
+        "id": "322",
+        "title": "Survey Rating Aggregator",
+        "diff": "D",
+        "pattern": "Weighted avg + concurrency",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding"
+      },
+      {
+        "id": "323",
+        "title": "In-Memory Search Engine (Inverted Index)",
+        "diff": "D",
+        "pattern": "Dynamic index catalog",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding"
+      },
+      {
+        "id": "324",
+        "title": "Guaranteed Webhook Dispatcher",
+        "diff": "D",
+        "pattern": "FIFO + dead-letter queues",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding"
+      },
+      {
+        "id": "325",
+        "title": "Idempotent Payment Ledger",
+        "diff": "D",
+        "pattern": "Key dedup + WAL + row locking",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation"
+      },
+      {
+        "id": "326",
+        "title": "Recurring Payment Scheduler",
+        "diff": "D",
+        "pattern": "Time-bound cron + double-entry",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation"
+      },
+      {
+        "id": "327",
+        "title": "Parse Transaction Stream & Aggregate",
+        "diff": "D",
+        "pattern": "Deduplicated report",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation"
+      },
+      {
+        "id": "328",
+        "title": "Multi-Currency Conversion Graph",
+        "diff": "D",
+        "pattern": "Directed weighted BFS",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation"
+      },
+      {
+        "id": "329",
+        "title": "Edge-case Robust API Endpoint",
+        "diff": "D",
+        "pattern": "Null/empty/timeout guard",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation"
+      },
+      {
+        "id": "330",
+        "title": "Design Rate Limiter (Token Bucket)",
+        "diff": "M",
+        "pattern": "Token bucket + queue",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Practical Design"
+      },
+      {
+        "id": "331",
+        "title": "Design Cache with Expiry",
+        "diff": "M",
+        "pattern": "TTL + lazy deletion",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Practical Design"
+      },
+      {
+        "id": "332",
+        "title": "Design Reservation System",
+        "diff": "M",
+        "pattern": "Availability + blocking",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Practical Design"
+      },
+      {
+        "id": "333",
+        "title": "Design API Key Authorization",
+        "diff": "M",
+        "pattern": "Permission checking + scope",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Practical Design"
+      },
+      {
+        "id": "334",
+        "title": "Design File System",
+        "diff": "M",
+        "pattern": "Trie + metadata",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Practical Design"
+      },
+      {
+        "id": "340",
+        "title": "Russian Doll Envelopes",
+        "diff": "H",
+        "pattern": "DP + binary search",
+        "co": [
+          "databricks"
+        ],
+        "lc": "russian-doll-envelopes",
+        "cluster": "Advanced DP (Razorpay & Databricks)"
+      },
+      {
+        "id": "341",
+        "title": "Longest Increasing Subsequence",
+        "diff": "M",
+        "pattern": "DP + binary search",
+        "co": [
+          "databricks"
+        ],
+        "lc": "longest-increasing-subsequence",
+        "cluster": "Advanced DP (Razorpay & Databricks)"
+      },
+      {
+        "id": "342",
+        "title": "Word Ladder II",
+        "diff": "H",
+        "pattern": "BFS backtracking",
+        "co": [
+          "uber",
+          "razorpay"
+        ],
+        "lc": "word-ladder-ii",
+        "cluster": "Advanced Graphs - Continued (Uber & Razorpay)"
+      },
+      {
+        "id": "343",
+        "title": "Minimum Height Trees",
+        "diff": "M",
+        "pattern": "Graph center finding",
+        "co": [
+          "uber"
+        ],
+        "lc": "minimum-height-trees",
+        "cluster": "Advanced Graphs - Continued (Uber & Razorpay)"
+      },
+      {
+        "id": "344",
+        "title": "Critical Connections in Network",
+        "diff": "H",
+        "pattern": "Bridge finding / Tarjan",
+        "co": [
+          "uber"
+        ],
+        "lc": "critical-connections-in-a-network",
+        "cluster": "Advanced Graphs - Continued (Uber & Razorpay)"
+      },
+      {
+        "id": "345",
+        "title": "Course Schedule III",
+        "diff": "H",
+        "pattern": "Greedy + topological sort",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "course-schedule-iii",
+        "cluster": "Advanced Graphs - Continued (Uber & Razorpay)"
+      },
+      {
+        "id": "350",
+        "title": "Base -2 Representation / Interpretation",
+        "diff": "H",
+        "pattern": "Binary basis remapping",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "convert-to-base-2",
+        "cluster": "Math & Bit Manipulation"
+      },
+      {
+        "id": "351",
+        "title": "Sum of Floored Pairs",
+        "diff": "H",
+        "pattern": "Prefix sum modulo (sifting)",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "sum-of-floored-pairs",
+        "cluster": "Math & Bit Manipulation"
+      },
+      {
+        "id": "352",
+        "title": "Single Number (I / II / III)",
+        "diff": "M",
+        "pattern": "XOR / bit counting",
+        "co": [],
+        "lc": "single-number",
+        "cluster": "Math & Bit Manipulation"
+      },
+      {
+        "id": "353",
+        "title": "Reverse Bits",
+        "diff": "E",
+        "pattern": "Bit shifting",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "reverse-bits",
+        "cluster": "Math & Bit Manipulation"
+      },
+      {
+        "id": "354",
+        "title": "Number of 1 Bits (Hamming Weight)",
+        "diff": "E",
+        "pattern": "Popcount",
+        "co": [
+          "rakuten"
+        ],
+        "lc": "number-of-1-bits",
+        "cluster": "Math & Bit Manipulation"
+      },
+      {
+        "id": "355",
+        "title": "Power of Two",
+        "diff": "E",
+        "pattern": "Log-based bit check",
+        "co": [],
+        "lc": "power-of-two",
+        "cluster": "Math & Bit Manipulation"
+      }
+    ]
+  },
+  {
+    "title": "Level 4: Architecture",
+    "problems": [
+      {
+        "id": "401",
+        "title": "Paxos vs Raft Comparison",
+        "diff": "D",
+        "pattern": "Theoretical consensus",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "402",
+        "title": "Vector Clocks Logic",
+        "diff": "D",
+        "pattern": "Conflict resolution",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "403",
+        "title": "Gossip Protocol Design",
+        "diff": "D",
+        "pattern": "Node discovery",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "404",
+        "title": "Hinted Handoff Pattern",
+        "diff": "D",
+        "pattern": "Failure handling",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "405",
+        "title": "Distributed Locking (Redlock)",
+        "diff": "D",
+        "pattern": "Cluster mutexes",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "406",
+        "title": "Idempotency API Gateway",
+        "diff": "D",
+        "pattern": "Financial-grade state machine",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "407",
+        "title": "Distributed Rate Limiter (Cluster)",
+        "diff": "D",
+        "pattern": "Sharded token bucket",
+        "co": [
+          "stripe",
+          "doordash"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "408",
+        "title": "Consistent Hashing (Full Design)",
+        "diff": "D",
+        "pattern": "Key-to-node ring mapping",
+        "co": [
+          "doordash"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "409",
+        "title": "CRDT Design",
+        "diff": "D",
+        "pattern": "Merge-friendly state (CRDT)",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "410",
+        "title": "Write-Ahead Log (WAL) Design",
+        "diff": "D",
+        "pattern": "Durability log",
+        "co": [
+          "planetscale",
+          "databricks"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "411",
+        "title": "Vitess-Style Shard Router",
+        "diff": "D",
+        "pattern": "Range / hash sharding",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "412",
+        "title": "Two-Phase Commit (2PC)",
+        "diff": "D",
+        "pattern": "Distributed atomicity",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "413",
+        "title": "Saga Pattern (Choreography vs Orchestration)",
+        "diff": "D",
+        "pattern": "Long-running transaction",
+        "co": [
+          "stripe",
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "General"
+      },
+      {
+        "id": "414",
+        "title": "Event Sourcing + CQRS",
+        "diff": "D",
+        "pattern": "Immutable event log",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "General"
+      }
+    ]
+  }
+]

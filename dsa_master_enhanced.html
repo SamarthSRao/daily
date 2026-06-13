@@ -1,0 +1,725 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.app{padding:1rem 0;font-family:var(--font-sans)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.hdr{margin-bottom:1.25rem}
+.hdr h2{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+.hdr p{font-size:13px;color:var(--color-text-secondary);margin-top:3px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
+.pill{padding:5px 12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);font-size:12px;cursor:pointer;background:var(--color-background-primary);color:var(--color-text-secondary);transition:all .12s;white-space:nowrap}
+.pill:hover{background:var(--color-background-secondary)}
+.pill.on{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)}
+.pill.co-uber.on{background:#E6F1FB;color:#042C53;border-color:#378ADD}
+.pill.co-doordash.on{background:#FCEBEB;color:#501313;border-color:#E24B4A}
+.pill.co-databricks.on{background:#FAEEDA;color:#412402;border-color:#EF9F27}
+.pill.co-razorpay.on{background:#EEEDFE;color:#26215C;border-color:#7F77DD}
+.pill.co-stripe.on{background:#E1F5EE;color:#04342C;border-color:#1D9E75}
+.pill.co-rakuten.on{background:#FAECE7;color:#4A1B0C;border-color:#D85A30}
+.pill.co-planetscale.on{background:#FBEAF0;color:#4B1528;border-color:#D4537E}
+.pill.co-all.on{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)}
+.divider{width:1px;height:24px;background:var(--color-border-tertiary)}
+.stats{display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap}
+.stat{flex:1;min-width:72px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.stat-n{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.stat-l{font-size:11px;color:var(--color-text-secondary);margin-top:1px}
+.level-section{margin-bottom:1.75rem}
+.ls-hdr{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--border-radius-md);margin-bottom:10px;cursor:pointer;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.ls-hdr:hover{background:var(--color-background-primary)}
+.ls-title{font-size:14px;font-weight:500;color:var(--color-text-primary);flex:1}
+.ls-count{font-size:12px;color:var(--color-text-secondary)}
+.ls-chevron{font-size:14px;color:var(--color-text-secondary);transition:transform .15s}
+.ls-chevron.open{transform:rotate(180deg)}
+.sub-section{margin-bottom:12px}
+.sub-title{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;padding:0 2px;text-transform:uppercase;letter-spacing:0.05em}
+.prob-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:6px}
+.prob-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 10px;background:var(--color-background-primary);display:flex;gap:8px;align-items:flex-start}
+.prob-card:hover{border-color:var(--color-border-secondary);background:var(--color-background-secondary)}
+.prob-id{font-size:10px;color:var(--color-text-secondary);min-width:22px;margin-top:1px}
+.prob-body{flex:1;min-width:0}
+.prob-title{font-size:13px;color:var(--color-text-primary);line-height:1.35;margin-bottom:3px}
+.prob-meta{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.badge{font-size:10px;padding:1px 6px;border-radius:4px}
+.diff-E{background:#EAF3DE;color:#3B6D11}
+.diff-M{background:#FAEEDA;color:#854F0B}
+.diff-H{background:#FCEBEB;color:#A32D2D}
+.diff-D{background:#E1F5EE;color:#0F6E56}
+.pattern-tag{font-size:10px;color:var(--color-text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.co-dots{display:flex;gap:2px;margin-left:auto}
+.co-dot{width:7px;height:7px;border-radius:50%}
+.lc-btn{font-size:10px;padding:1px 6px;border-radius:4px;background:var(--color-background-secondary);color:var(--color-text-info);border:0.5px solid var(--color-border-secondary);cursor:pointer;text-decoration:none}
+.lc-btn:hover{background:var(--color-background-info)}
+.empty{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:13px}
+.paradigm-section{margin-bottom:1.75rem}
+.paradigm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.para-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 12px;background:var(--color-background-primary)}
+.para-name{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.para-desc{font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-bottom:6px}
+.para-cos{display:flex;flex-wrap:wrap;gap:3px}
+.para-co{font-size:10px;padding:1px 5px;border-radius:3px;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.math-section{margin-bottom:1.75rem}
+.math-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px;background:var(--color-background-primary);margin-bottom:8px}
+.math-title{font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-primary)}
+.math-company{font-size:10px;padding:1px 6px;border-radius:4px;background:#FAEEDA;color:#854F0B;margin-left:6px}
+.math-body{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.math-formula{font-family:var(--font-mono);font-size:11px;background:var(--color-background-secondary);padding:6px 10px;border-radius:var(--border-radius-md);margin:6px 0;color:var(--color-text-primary);overflow-x:auto;white-space:pre-wrap;word-break:break-all}
+.lld-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px;background:var(--color-background-primary);margin-bottom:8px}
+.lld-title{font-size:13px;font-weight:500;margin-bottom:4px;color:var(--color-text-primary)}
+.lld-co{font-size:10px;padding:1px 6px;border-radius:4px;background:#EEEDFE;color:#534AB7;margin-left:6px}
+.lld-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
+.lld-col{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+.lld-col-hdr{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.nav-tabs{display:flex;gap:6px;margin-bottom:1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:10px;overflow-x:auto}
+.nav-tab{padding:6px 14px;border:0.5px solid transparent;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;color:var(--color-text-secondary);background:transparent;white-space:nowrap}
+.nav-tab:hover{background:var(--color-background-secondary)}
+.nav-tab.active{border-color:var(--color-border-info);background:var(--color-background-info);color:var(--color-text-info)}
+.priority-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px;background:var(--color-background-primary);margin-bottom:8px}
+.priority-co{font-size:14px;font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.priority-steps{display:flex;flex-direction:column;gap:4px}
+.priority-step{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--color-text-secondary)}
+.step-num{min-width:18px;height:18px;border-radius:50%;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:var(--color-text-primary);margin-top:1px}
+</style>
+
+<div class="app">
+<h2 class="sr-only">Company-wise DSA master plan for Uber, DoorDash, Databricks, Razorpay, Stripe, Rakuten, PlanetScale — 350+ problems across 4 levels</h2>
+
+<div class="hdr">
+  <h2>Company-wise DSA master plan</h2>
+  <p>350+ problems · 4 levels · 7 companies · all paradigms from the Technical Assessment Framework</p>
+</div>
+
+<div class="nav-tabs" id="navTabs"></div>
+<div id="mainContent"></div>
+</div>
+
+<script>
+const CO_COLORS = {
+  uber:        {bg:'#E6F1FB',color:'#042C53',dot:'#378ADD'},
+  doordash:    {bg:'#FCEBEB',color:'#501313',dot:'#E24B4A'},
+  databricks:  {bg:'#FAEEDA',color:'#412402',dot:'#EF9F27'},
+  razorpay:    {bg:'#EEEDFE',color:'#26215C',dot:'#7F77DD'},
+  stripe:      {bg:'#E1F5EE',color:'#04342C',dot:'#1D9E75'},
+  rakuten:     {bg:'#FAECE7',color:'#4A1B0C',dot:'#D85A30'},
+  planetscale: {bg:'#FBEAF0',color:'#4B1528',dot:'#D4537E'},
+};
+
+const PARADIGMS = [
+  {name:'Graph BFS/DFS',desc:'Island problems, shortest path, connectivity, multi-source expansions',cos:['uber','doordash','databricks','razorpay']},
+  {name:'Topological Sort',desc:'DAG ordering, course schedules, alien dictionary, parallel courses',cos:['uber','databricks','stripe']},
+  {name:'Union-Find (DSU)',desc:'Dynamic clustering, cycle detection, accounts merge, islands II',cos:['uber','doordash','razorpay']},
+  {name:'Dijkstra / Weighted Graphs',desc:'Network delay, cheapest flights, currency conversions, max probability',cos:['uber','doordash','stripe']},
+  {name:'Tree Traversal (DFS/BFS)',desc:'All tree problems, LCA, path sum, serialize/deserialize',cos:['uber','doordash','databricks','stripe','rakuten']},
+  {name:'Binary Search on Answer',desc:'Ship packages, Koko, split array, min effort',cos:['databricks','doordash','rakuten']},
+  {name:'Dynamic Programming',desc:'Knapsack, LIS, edit distance, grid paths, interval DP',cos:['razorpay','databricks','rakuten','uber']},
+  {name:'Sliding Window',desc:'Substrings, max window, frequency tracking, deduplication',cos:['uber','doordash','stripe','databricks','razorpay']},
+  {name:'Monotonic Stack/Queue',desc:'Histogram, rain water, next greater element, sliding max',cos:['doordash','databricks','razorpay']},
+  {name:'Heap / Priority Queue',desc:'Top-K, merge K lists, median stream, task scheduler',cos:['uber','stripe','doordash','databricks']},
+  {name:'Trie',desc:'Prefix tree, autocomplete, word break, add & search word',cos:['databricks','stripe','rakuten','planetscale']},
+  {name:'Segment Tree / BIT',desc:'Range queries, mutable sums, snapshot array, range module',cos:['databricks','planetscale']},
+  {name:'LLD / OOD',desc:'Caches, schedulers, document access, consistent hashing',cos:['razorpay','stripe','doordash','databricks']},
+  {name:'Distributed Systems',desc:'Rate limiter, idempotency, consensus, WAL, vector clocks',cos:['stripe','doordash','planetscale']},
+  {name:'Math / Bit Manipulation',desc:'Base -2, floored pairs, XOR tricks, power checks',cos:['rakuten']},
+  {name:'Engineering Simulation',desc:'Collaborative debugging, refactoring, edge-case robustness',cos:['stripe','razorpay','planetscale']},
+];
+
+const MATH_FORMULAS = [
+  {title:'Retry Backoff with Jitter',company:'DoorDash · Stripe',desc:'Prevents retry-amplification cascades in microservice grids. Randomised jitter disperses retry frequencies.',formula:'T_backoff(i) = min(T_cap, T_base × 2^i) + Uniform(0, T_jitter)'},
+  {title:'Negative Radix Arithmetic — Base -2',company:'Rakuten',desc:'Integers mapped into base -2 without sign bit. For ceiling division ⌈X/2⌉, adjust quotient-remainder to ensure positive remainder.',formula:'X = Σ (i=0..M-1) A[i] × (−2)^i\nIf r < 0:  q\' = q + 1,  r\' = r + 2'},
+  {title:'Sum of Floored Pairs (Modular Sifting)',company:'Rakuten',desc:'Optimised from O(N²) to O(N + U log U) using prefix frequency array.',formula:'S = Σ(d=1..U) F[d] × Σ(k=1..⌊U/d⌋) k × (P[min(U,(k+1)d−1)] − P[kd−1])'},
+  {title:'Consistent Hashing Ring',company:'DoorDash',desc:'Virtual node allocation (200 per server) prevents hotspots. Clockwise lookup via binary search.',formula:'Node_assigned = argmin { hash(n) : n ∈ N, hash(n) ≥ hash(K) }'},
+  {title:'Quorum Consensus',company:'PlanetScale',desc:'Strong consistency guarantee across distributed nodes.',formula:'W + R > N,  where W ≥ ⌊N/2⌋ + 1'},
+  {title:'Vector Clock Update Rules',company:'PlanetScale',desc:'Causal ordering without centralised physical clock.',formula:'Before event on Pi:   V_i[i] = V_i[i] + 1\nReceive msg at Pj:    V_j[k] = max(V_j[k], V_msg[k]) ∀k\n                      V_j[j] = V_j[j] + 1'},
+];
+
+const LLD_PATTERNS = [
+  {title:'Stripe Idempotent Payment Gateway',company:'stripe',cols:[
+    {hdr:'Request flow',items:['Check KV cache for idempotency key','COMPLETED → return cached response','PROCESSING → 409 Conflict / block','MISS → acquire atomic lease lock','Execute → store response (long TTL)','Release lock']},
+    {hdr:'Concurrency pattern',items:['Pessimistic row-level locking','Database-level transaction retry','Idempotency-Key header required','Long-lived TTL cache entry','Atomic lease prevents double-exec']},
+    {hdr:'Failure vectors',items:['Duplicate execution keys','Network timeout mid-charge','Partial database writes','Clock skew on distributed nodes','Retry amplification storms']},
+  ]},
+  {title:'Razorpay Document Access Service',company:'razorpay',cols:[
+    {hdr:'Access levels',items:['OWNER (rank 3) — full control','EDITOR (rank 2) — read + write','READER (rank 1) — read only','canWrite() ← rank ≥ EDITOR','canRead()  ← rank ≥ READER']},
+    {hdr:'Concurrency pattern',items:['ConcurrentHashMap for permissions','synchronized on read/write methods','Only owner can grant access','SecurityException on violation','AtomicInteger for doc IDs']},
+    {hdr:'Failure vectors',items:['Unauthorised reads/writes','Memory leaks on high doc volume','Race on concurrent grants','Null user permissions lookup']},
+  ]},
+  {title:'DoorDash Consistent Hashing Router',company:'doordash',cols:[
+    {hdr:'Ring design',items:['Hash space: 0 to 2³²−1','200 virtual nodes per server','Clockwise target lookup','Binary search on sorted ring','Wrap-around for last segment']},
+    {hdr:'Concurrency pattern',items:['Atomic CAS for node state','Read-write reentrant lock','Health probe thread-safe flag','Async health check interval']},
+    {hdr:'Failure vectors',items:['Dynamic node unhealthiness','Routing skew on small rings','Synchronisation deadlocks','Hot key collisions','Node add/remove redistribution']},
+  ]},
+];
+
+const PRIORITIES = [
+  {co:'uber',label:'Uber',steps:['Level 2 Graphs (Number of Islands, BFS Rotting Oranges)','Level 3A: Bus Routes → Alien Dictionary → Dijkstra (Network Delay)','Level 3F: Coin Change, Word Ladder, Min Window Substring','Level 3H: LRU Cache, Design Hit Counter','Expect: 59% M / 27% H — multi-step graph + routing']},
+  {co:'doordash',label:'DoorDash',steps:['Level 2E: Sliding Window (Max Consecutive Ones III, Subarray Sum)','Level 3A: Consistent Hashing LLD, Accounts Merge (DSU)','Level 3G: Monotonic Stack (Histogram, Maximal Rectangle)','Level 3H: Single-Threaded CPU, Parking Lot OOD','Expect: 34% H — deep DFS, multi-source BFS, dispatch logic']},
+  {co:'databricks',label:'Databricks',steps:['Level 2D: Binary Search on Answer (Ship Packages, Koko)','Level 2B: Tree Traversal (Vertical Order, Find Leaves, BST Iterator)','Level 3F: DP — LIS, Edit Distance, LCS, Word Break','Level 3C: Trie (Autocomplete, Add & Search Word)','Level 3J: Text Justification (Hard)','Add: Concurrency round — Design Hit Counter variant']},
+  {co:'razorpay',label:'Razorpay',steps:['Level 2E: Strings + Intervals (Merge, Palindromic Substrings)','Level 3F: DP — Coin Change II, Partition Equal Subset, Word Break II','Level 3I Machine Coding: Document Access, In-Memory SQL, Survey Engine','Level 4: Saga pattern, 2PC, Kafka webhook dispatcher','Expect 90-min local IDE sessions in Java — focus clean OOD + tests']},
+  {co:'stripe',label:'Stripe',steps:['Level 3H: LRU Cache, Rate Limiter (Token Bucket), File System','Level 3C: Trie + Autocomplete','Level 3J: Idempotency Ledger, Stream Parser, Multi-currency Graph','Level 4: Idempotency Gateway, Distributed Locking (Redlock)','No standard LeetCode grind — practice multi-step API problems with edge cases']},
+  {co:'rakuten',label:'Rakuten',steps:['Level 1: Arrays, Strings, Hashing, DP basics (Two Sum, Group Anagrams)','Level 2: Merge Intervals, Tree traversals, BST, Sliding Window','Level 3K: Base -2 Interpretation, Sum of Floored Pairs','Level 3F: Edit Distance, LIS, LCS, Decode Ways','Core CS fundamentals — OOP, polymorphism, SQL also tested']},
+  {co:'planetscale',label:'PlanetScale',steps:['Level 3H: Time-Based KV Store, LFU Cache, Trie, Spreadsheet Cell Deps','Level 4: Raft vs Paxos, Vector Clocks, WAL Design','Level 4: Vitess-style Shard Router, CRDT, 2PC','ZERO DSA grind — collaborative project sessions','Focus: debugging real codebases, refactoring under review, systems thinking']},
+];
+
+const PROBLEMS = {
+  L1: [
+    {id:1,  title:'Two Sum',                              diff:'E',pattern:'Key match / hashing',          co:['uber','doordash','rakuten'],lc:'two-sum'},
+    {id:2,  title:'Valid Parentheses',                    diff:'E',pattern:'Stack matching',               co:['stripe','rakuten','doordash'],lc:'valid-parentheses'},
+    {id:3,  title:'Climbing Stairs',                      diff:'E',pattern:'Fibonacci / DP',               co:['rakuten','databricks'],lc:'climbing-stairs'},
+    {id:4,  title:'Maximum Depth of Binary Tree',         diff:'E',pattern:'Recursive depth',              co:['uber','doordash','databricks','stripe'],lc:'maximum-depth-of-binary-tree'},
+    {id:5,  title:'Invert Binary Tree',                   diff:'E',pattern:'Recursive swap',               co:['uber','databricks'],lc:'invert-binary-tree'},
+    {id:6,  title:'Balanced Binary Tree',                 diff:'E',pattern:'Depth audit',                  co:['uber','databricks'],lc:'balanced-binary-tree'},
+    {id:7,  title:'Same Tree',                            diff:'E',pattern:'Consistency check',            co:['uber','doordash'],lc:'same-tree'},
+    {id:8,  title:'Symmetric Tree',                       diff:'E',pattern:'Redundancy verify',            co:['databricks'],lc:'symmetric-tree'},
+    {id:9,  title:'Maximum Subarray',                     diff:'M',pattern:"Kadane's principle",           co:['razorpay','rakuten'],lc:'maximum-subarray'},
+    {id:10, title:'Best Time to Buy and Sell Stock',      diff:'E',pattern:'One-pass trend',               co:['uber','rakuten'],lc:'best-time-to-buy-and-sell-stock'},
+    {id:11, title:'Find All Anagrams in a String',        diff:'M',pattern:'Sliding window / hashing',     co:['databricks','stripe'],lc:'find-all-anagrams-in-a-string'},
+    {id:12, title:'Group Anagrams',                       diff:'M',pattern:'Categorisation (hashing)',     co:['rakuten','databricks'],lc:'group-anagrams'},
+    {id:13, title:'Valid Anagram',                        diff:'E',pattern:'Character counting',           co:['doordash','rakuten'],lc:'valid-anagram'},
+    {id:14, title:'First Unique Character in a String',   diff:'E',pattern:'Frequency hashing',            co:['databricks','razorpay'],lc:'first-unique-character-in-a-string'},
+    {id:15, title:'Missing Number',                       diff:'E',pattern:'Cyclic index',                 co:['razorpay','rakuten'],lc:'missing-number'},
+    {id:16, title:'Move Zeroes',                          diff:'E',pattern:'In-place two pointers',        co:['razorpay','rakuten'],lc:'move-zeroes'},
+    {id:17, title:'Valid Palindrome II',                  diff:'E',pattern:'Two pointers',                 co:['razorpay'],lc:'valid-palindrome-ii'},
+    {id:18, title:'Valid Word Abbreviation',              diff:'E',pattern:'Pointer tracking',             co:['razorpay'],lc:'valid-word-abbreviation'},
+    {id:19, title:'Implement Queue using Stacks',         diff:'E',pattern:'LIFO simulation',              co:['razorpay'],lc:'implement-queue-using-stacks'},
+    {id:20, title:'Implement Stack using Queues',         diff:'E',pattern:'FIFO simulation',              co:['doordash'],lc:'implement-stack-using-queues'},
+    {id:21, title:'Sort Colors',                          diff:'M',pattern:'Dutch flag / two ptrs',        co:['uber','doordash'],lc:'sort-colors'},
+    {id:22, title:'Logger Rate Limiter',                  diff:'E',pattern:'De-duplication (hashing)',     co:['stripe','databricks'],lc:'logger-rate-limiter'},
+    {id:23, title:'Insert Delete GetRandom O(1)',         diff:'M',pattern:'Constant time set',            co:['stripe','planetscale'],lc:'insert-delete-getrandom-o1'},
+    {id:24, title:'Find Center of Star Graph',            diff:'E',pattern:'Star topology hub',            co:[],lc:'find-center-of-star-graph'},
+    {id:25, title:'Find if Path Exists in Graph',         diff:'E',pattern:'Basic reachability',           co:['doordash'],lc:'find-if-path-exists-in-graph'},
+    {id:26, title:'Flood Fill',                           diff:'E',pattern:'DFS foundations',              co:['razorpay'],lc:'flood-fill'},
+    {id:27, title:'Binary Search',                        diff:'E',pattern:'Logarithmic search',           co:['databricks','rakuten'],lc:'binary-search'},
+    {id:28, title:'Search Insert Position',               diff:'E',pattern:'Binary search boundary',       co:['databricks'],lc:'search-insert-position'},
+    {id:29, title:'Reverse Linked List',                  diff:'E',pattern:'Iterative pointer reversal',   co:['databricks','razorpay'],lc:'reverse-linked-list'},
+    {id:30, title:'Palindrome Linked List',               diff:'E',pattern:'Two ptrs + reverse',           co:['databricks'],lc:'palindrome-linked-list'},
+    {id:31, title:'Merge Sorted Array',                   diff:'E',pattern:'Two pointers',                 co:['databricks'],lc:'merge-sorted-array'},
+    {id:32, title:'Plus One',                             diff:'E',pattern:'Array math / carry',           co:['doordash'],lc:'plus-one'},
+    {id:33, title:'Squares of a Sorted Array',            diff:'E',pattern:'Two pointers',                 co:['uber'],lc:'squares-of-a-sorted-array'},
+    {id:34, title:'Is Subsequence',                       diff:'E',pattern:'Two pointers / greedy',        co:['doordash'],lc:'is-subsequence'},
+    {id:35, title:'Check if Two Strings are Equivalent on a Swap',diff:'E',pattern:'Swap verification',  co:['doordash'],lc:'check-if-two-string-arrays-are-equivalent'},
+    {id:36, title:'Buddy Strings',                        diff:'E',pattern:'Match permutation',            co:['doordash'],lc:'buddy-strings'},
+    {id:37, title:'Cheapest Flights Within K Stops',      diff:'M',pattern:'State-based BFS / Bellman',   co:['uber'],lc:'cheapest-flights-within-k-stops'},
+    {id:38, title:'Reconstruct Itinerary',                diff:'H',pattern:'Eulerian path (DFS)',          co:['uber'],lc:'reconstruct-itinerary'},
+    {id:39, title:'Remove Letter to Equalize Frequency',  diff:'E',pattern:'Frequency hashing',            co:['databricks','razorpay'],lc:'remove-letter-to-equalize-frequency'},
+    {id:40, title:'Check if Word Occurs as Prefix',       diff:'E',pattern:'String two-pointer',           co:['razorpay'],lc:'check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence'},
+    {id:41, title:'Final Array State After K Operations', diff:'E',pattern:'Simulation + heap',            co:['databricks'],lc:'final-array-state-after-k-multiplication-operations-i'},
+    {id:42, title:'Zero Array Transformation I',          diff:'M',pattern:'Prefix sum difference',        co:['databricks'],lc:'zero-array-transformation-i'},
+    {id:43, title:'Rotate Image',                         diff:'M',pattern:'In-place matrix',              co:['rakuten'],lc:'rotate-image'},
+    {id:44, title:'Minimum Array Sum',                    diff:'M',pattern:'Greedy / DP',                  co:['databricks'],lc:'minimum-array-sum'},
+    {id:45, title:'Two Sum II (Input Sorted)',            diff:'M',pattern:'Dual converging pointers',     co:['databricks'],lc:'two-sum-ii-input-array-is-sorted'},
+    {id:46, title:'Hamming Distance',                      diff:'E',pattern:'Bit XOR counting',              co:['rakuten'],lc:'hamming-distance'},
+    {id:47, title:'Number of 1 Bits',                      diff:'E',pattern:'Bit manipulation count',       co:['rakuten'],lc:'number-of-1-bits'},
+    {id:48, title:'Power of Two',                          diff:'E',pattern:'Bit AND trick',                co:['rakuten'],lc:'power-of-two'},
+    {id:49, title:'Excel Sheet Column Title',              diff:'E',pattern:'Base conversion math',         co:['rakuten'],lc:'excel-sheet-column-title'},
+  ],
+  L2: {
+    'Graphs': [
+      {id:101,title:'Number of Islands',                  diff:'M',pattern:'Geospatial DFS',              co:['uber','databricks','doordash'],lc:'number-of-islands'},
+      {id:102,title:'Rotting Oranges',                    diff:'M',pattern:'Multi-source BFS',            co:['uber','databricks'],lc:'rotting-oranges'},
+      {id:103,title:'Clone Graph',                        diff:'M',pattern:'Relational replication',      co:['stripe','razorpay'],lc:'clone-graph'},
+      {id:104,title:'Is Graph Bipartite?',                diff:'M',pattern:'Bipartite coloring',          co:[],lc:'is-graph-bipartite'},
+      {id:105,title:'Graph Valid Tree',                   diff:'M',pattern:'Structure verification',      co:['doordash'],lc:'graph-valid-tree'},
+      {id:106,title:'Snake and Ladder',                   diff:'M',pattern:'State transition BFS',        co:[],lc:'snakes-and-ladders'},
+      {id:107,title:'Open the Lock',                      diff:'M',pattern:'State change BFS',            co:[],lc:'open-the-lock'},
+      {id:108,title:'All Paths From Source to Target',    diff:'M',pattern:'DAG enumeration',             co:['stripe'],lc:'all-paths-from-source-to-target'},
+      {id:109,title:'Shortest Path in Binary Matrix',     diff:'M',pattern:'4-dir BFS',                   co:['doordash'],lc:'shortest-path-in-binary-matrix'},
+      {id:110,title:'Number of Provinces',                diff:'M',pattern:'Union-Find / DFS',            co:[],lc:'number-of-provinces'},
+      {id:111,title:'All Nodes Distance K (Tree BFS)',    diff:'M',pattern:'Tree BFS (rerooted)',          co:['doordash','databricks'],lc:'all-nodes-distance-k-in-binary-tree'},
+      {id:112,title:'Word Search',                        diff:'M',pattern:'Backtracking DFS',            co:['uber','rakuten'],lc:'word-search'},
+      {id:113,title:'Pacific Atlantic Water Flow',        diff:'M',pattern:'Multi-source DFS/BFS',        co:[],lc:'pacific-atlantic-water-flow'},
+      {id:114,title:'Spiral Matrix',                      diff:'M',pattern:'Matrix simulation',           co:['uber'],lc:'spiral-matrix'},
+    ],
+    'Trees': [
+      {id:115,title:'Binary Tree Level Order Traversal',  diff:'M',pattern:'Layered broadcast BFS',       co:['uber','doordash','stripe'],lc:'binary-tree-level-order-traversal'},
+      {id:116,title:'Binary Tree Right Side View',        diff:'M',pattern:'Snapshot logic',              co:['stripe'],lc:'binary-tree-right-side-view'},
+      {id:117,title:'Binary Tree Vertical Order Traversal',diff:'M',pattern:'Columnar logic',             co:['databricks','stripe'],lc:'binary-tree-vertical-order-traversal'},
+      {id:118,title:'Binary Tree Zigzag Level Order',     diff:'M',pattern:'Balancing traversal',         co:[],lc:'binary-tree-zigzag-level-order-traversal'},
+      {id:119,title:'Path Sum II',                        diff:'M',pattern:'Valid root-to-leaf sequences', co:['stripe'],lc:'path-sum-ii'},
+      {id:120,title:'Sum Root to Leaf Numbers',           diff:'M',pattern:'Weight totaling',             co:['stripe'],lc:'sum-root-to-leaf-numbers'},
+      {id:121,title:'Binary Tree Paths',                  diff:'E',pattern:'Route mapping (DFS)',          co:[],lc:'binary-tree-paths'},
+      {id:122,title:'Flatten Binary Tree to Linked List', diff:'M',pattern:'Hierarchical shift',          co:[],lc:'flatten-binary-tree-to-linked-list'},
+      {id:123,title:'Populating Next Right Pointers',     diff:'M',pattern:'Horizontal scaling BFS',      co:[],lc:'populating-next-right-pointers-in-each-node'},
+      {id:124,title:'Lowest Common Ancestor of BST',      diff:'M',pattern:'Origin identification',       co:['databricks'],lc:'lowest-common-ancestor-of-a-binary-search-tree'},
+      {id:125,title:'Lowest Common Ancestor of Binary Tree',diff:'M',pattern:'DFS LCA',                  co:['stripe'],lc:'lowest-common-ancestor-of-a-binary-tree'},
+      {id:126,title:'Validate BST',                       diff:'M',pattern:'Index integrity',             co:[],lc:'validate-binary-search-tree'},
+      {id:127,title:'Delete Node in a BST',               diff:'M',pattern:'In-place removal',            co:[],lc:'delete-node-in-a-bst'},
+      {id:128,title:'Convert Sorted List to BST',         diff:'M',pattern:'Stream balancing',            co:[],lc:'convert-sorted-list-to-binary-search-tree'},
+      {id:129,title:'Binary Tree Inorder Traversal (Iterative)',diff:'E',pattern:'Stack-based traversal', co:[],lc:'binary-tree-inorder-traversal'},
+      {id:130,title:'Subtree of Another Tree',            diff:'E',pattern:'Partial matching',            co:[],lc:'subtree-of-another-tree'},
+      {id:131,title:'Construct Quad Tree',                diff:'M',pattern:'Spatial partitioning',        co:['uber'],lc:'construct-quad-tree'},
+      {id:132,title:'Serialize and Deserialize Binary Tree',diff:'H',pattern:'Tree persistence',          co:['stripe','rakuten','planetscale'],lc:'serialize-and-deserialize-binary-tree'},
+      {id:133,title:'Find Leaves of Binary Tree',         diff:'M',pattern:'Post-order level grouping',   co:['databricks'],lc:'find-leaves-of-binary-tree'},
+      {id:134,title:'Add Two Numbers (Linked List)',       diff:'M',pattern:'Carry propagation',          co:['databricks'],lc:'add-two-numbers'},
+      {id:135,title:'Binary Search Tree Iterator',        diff:'M',pattern:'In-order stack iterator',     co:['databricks'],lc:'binary-search-tree-iterator'},
+      {id:136,title:'Delete Leaves With a Given Value',   diff:'M',pattern:'Post-order pruning',          co:[],lc:'delete-leaves-with-a-given-value'},
+      {id:137,title:'Sort Integers by Power Value',       diff:'M',pattern:'BFS simulation + heap',       co:['databricks'],lc:'sort-integers-by-the-power-value'},
+    ],
+    'Design & Heaps': [
+      {id:138,title:'LRU Cache',                          diff:'M',pattern:'Local cache policy',          co:['uber','stripe','planetscale','rakuten'],lc:'lru-cache'},
+      {id:139,title:'Design Hit Counter',                 diff:'M',pattern:'Sliding window time',         co:['uber','databricks'],lc:'design-hit-counter'},
+      {id:140,title:'Min Stack',                          diff:'M',pattern:'Monitor retrieval',           co:['uber','doordash','stripe'],lc:'min-stack'},
+      {id:141,title:'Top K Frequent Elements',            diff:'M',pattern:'Popularity tracking (heap)',  co:['uber','stripe'],lc:'top-k-frequent-elements'},
+      {id:142,title:'K Closest Points to Origin',         diff:'M',pattern:'Geospatial heap',             co:['databricks'],lc:'k-closest-points-to-origin'},
+      {id:143,title:'Kth Largest Element in Array',       diff:'M',pattern:'Rank selection (QuickSelect)',co:['stripe'],lc:'kth-largest-element-in-an-array'},
+      {id:144,title:'Task Scheduler',                     diff:'M',pattern:'Priority resource (max-heap)',co:['razorpay'],lc:'task-scheduler'},
+      {id:145,title:'Meeting Rooms II',                   diff:'M',pattern:'Resource concurrency',        co:['doordash','razorpay'],lc:'meeting-rooms-ii'},
+      {id:146,title:'Merge Intervals',                    diff:'M',pattern:'Data de-duplication',         co:['razorpay','stripe'],lc:'merge-intervals'},
+      {id:147,title:'Insert Interval',                    diff:'M',pattern:'Dynamic interval update',     co:[],lc:'insert-interval'},
+      {id:148,title:'Random Pick with Weight',            diff:'M',pattern:'A/B sampling (prefix BS)',    co:['uber'],lc:'random-pick-with-weight'},
+      {id:149,title:'Random Pick Index',                  diff:'M',pattern:'Reservoir sampling',          co:[],lc:'random-pick-index'},
+      {id:150,title:'Design Browser History',             diff:'M',pattern:'Transactional stack',         co:[],lc:'design-browser-history'},
+      {id:151,title:'Design Circular Queue',              diff:'M',pattern:'Buffer indexing',             co:[],lc:'design-circular-queue'},
+      {id:152,title:'Design Circular Deque',              diff:'M',pattern:'Fixed buffer',                co:[],lc:'design-circular-deque'},
+      {id:153,title:'Majority Element II',                diff:'M',pattern:'Voting consensus (Boyer-Moore)',co:[],lc:'majority-element-ii'},
+      {id:154,title:'Design Underground System',          diff:'M',pattern:'ETA tracking (hashing)',      co:[],lc:'design-underground-system'},
+      {id:155,title:'Design Twitter (Basic)',             diff:'M',pattern:'Feeds fan-out',               co:['planetscale'],lc:'design-twitter'},
+      {id:156,title:'Find the Celebrity',                 diff:'M',pattern:'Graph in-degree reduction',   co:['databricks','razorpay'],lc:'find-the-celebrity'},
+      {id:157,title:'Insert into Sorted Circular Linked List',diff:'M',pattern:'Linked list insert',     co:['doordash'],lc:'insert-into-a-sorted-circular-linked-list'},
+    ],
+    'Binary Search': [
+      {id:158,title:'Search in Rotated Sorted Array',     diff:'M',pattern:'Logarithmic search',          co:[],lc:'search-in-rotated-sorted-array'},
+      {id:159,title:'Find Minimum in Rotated Sorted Array',diff:'M',pattern:'Pivot binary search',        co:[],lc:'find-minimum-in-rotated-sorted-array'},
+      {id:160,title:'Ship Packages Within D Days',        diff:'M',pattern:'Load balancing (BS on answer)',co:['databricks','doordash'],lc:'capacity-to-ship-packages-within-d-days'},
+      {id:161,title:'Koko Eating Bananas',                diff:'M',pattern:'Speed-time trade-off',        co:['doordash'],lc:'koko-eating-bananas'},
+      {id:162,title:'Find First and Last Position',       diff:'M',pattern:'Boundary binary search',      co:['razorpay'],lc:'find-first-and-last-position-of-element-in-sorted-array'},
+      {id:163,title:'Fraction to Recurring Decimal',      diff:'M',pattern:'Hashing + long division',     co:['databricks'],lc:'fraction-to-recurring-decimal'},
+      {id:164,title:'Shortest Word Distance II',          diff:'M',pattern:'Hashing + binary search',     co:['razorpay'],lc:'shortest-word-distance-ii'},
+      {id:165,title:'Friends of Appropriate Ages',        diff:'M',pattern:'Sorting + binary search',     co:['razorpay'],lc:'friends-of-appropriate-ages'},
+      {id:166,title:'Interval List Intersections',        diff:'M',pattern:'Two pointer interval',        co:['databricks'],lc:'interval-list-intersections'},
+    ],
+    'Sliding Window & Strings': [
+      {id:167,title:'Longest Substring Without Repeating Chars',diff:'M',pattern:'Sliding window',       co:['stripe','razorpay'],lc:'longest-substring-without-repeating-characters'},
+      {id:168,title:'Max Consecutive Ones III',           diff:'M',pattern:'Sliding window flip',         co:['doordash'],lc:'max-consecutive-ones-iii'},
+      {id:169,title:'Longest Repeating Character Replacement',diff:'M',pattern:'Local dominance window', co:['doordash','razorpay'],lc:'longest-repeating-character-replacement'},
+      {id:170,title:'Subarray Sum Equals K',              diff:'M',pattern:'Interval retrieval (prefix)', co:['stripe'],lc:'subarray-sum-equals-k'},
+      {id:171,title:'Jump Game',                          diff:'M',pattern:'Reachability / greedy',       co:['doordash','rakuten'],lc:'jump-game'},
+      {id:172,title:'Longest Palindrome',                 diff:'E',pattern:'Frequency hashing',           co:[],lc:'longest-palindrome'},
+      {id:173,title:'Max Sum of Distinct Subarrays of Length K',diff:'M',pattern:'Sliding window',       co:['doordash'],lc:'maximum-sum-of-distinct-subarrays-with-length-k'},
+      {id:174,title:'Palindromic Substrings',             diff:'M',pattern:'Expand around center',        co:['razorpay'],lc:'palindromic-substrings'},
+      {id:175,title:'Reveal Cards in Increasing Order',   diff:'M',pattern:'Queue simulation',            co:['doordash'],lc:'reveal-cards-in-increasing-order'},
+      {id:176,title:'Simplify Path',                      diff:'M',pattern:'Stack / string',              co:['doordash'],lc:'simplify-path'},
+      {id:177,title:'Minimum Remove to Make Valid Parens',diff:'M',pattern:'Stack / string',              co:['doordash'],lc:'minimum-remove-to-make-valid-parentheses'},
+      {id:178,title:'Remove All Occurrences of a Substring',diff:'M',pattern:'Stack / string',           co:['doordash'],lc:'remove-all-occurrences-of-a-substring'},
+      {id:179,title:'Buildings With an Ocean View',       diff:'M',pattern:'Monotonic stack',             co:['doordash'],lc:'buildings-with-an-ocean-view'},
+      {id:180,title:'Asteroid Collision',                 diff:'M',pattern:'State stack simulation',      co:['doordash','databricks'],lc:'asteroid-collision'},
+      {id:181,title:'Longest Common Prefix',              diff:'E',pattern:'Trie / string',               co:['doordash'],lc:'longest-common-prefix'},
+      {id:182,title:'Decode String',                      diff:'M',pattern:'Stack / string recursion',    co:['databricks'],lc:'decode-string'},
+      {id:183,title:'String Compression',                 diff:'M',pattern:'Two pointers',                co:['razorpay'],lc:'string-compression'},
+      {id:184,title:'Generate Parentheses',               diff:'M',pattern:'Backtracking',                co:['razorpay'],lc:'generate-parentheses'},
+      {id:185,title:'Maximum Swap',                       diff:'M',pattern:'Greedy digit manipulation',   co:['razorpay'],lc:'maximum-swap'},
+      {id:186,title:'Combination Sum II',                 diff:'M',pattern:'Backtracking + dedup',        co:['razorpay'],lc:'combination-sum-ii'},
+      {id:187,title:'Min Diff in Sums After Removal',     diff:'H',pattern:'Prefix + suffix heaps',       co:['databricks','razorpay'],lc:'minimum-difference-in-sums-after-removal-of-elements'},
+      {id:188,title:'Design Tic-Tac-Toe',                 diff:'M',pattern:'State tracking matrix',       co:['doordash','databricks'],lc:'design-tic-tac-toe'},
+      {id:198,title:'Minimum Window Substring',           diff:'H',pattern:'Sliding window + hashing',    co:['razorpay','uber'],lc:'minimum-window-substring'},
+      {id:199,title:'Permutation in String',              diff:'M',pattern:'Sliding window frequency',    co:['razorpay'],lc:'permutation-in-string'},
+      {id:200,title:'Minimum Size Subarray Sum',          diff:'M',pattern:'Two pointer sliding',         co:['doordash'],lc:'minimum-size-subarray-sum'},
+    ],
+    'String DP & Fundamentals': [
+      {id:215,title:'Longest Common Subsequence',         diff:'M',pattern:'2D DP strings',               co:['razorpay','databricks'],lc:'longest-common-subsequence'},
+      {id:216,title:'Edit Distance',                      diff:'M',pattern:'DP transformation',           co:['razorpay','databricks'],lc:'edit-distance'},
+      {id:217,title:'Word Break',                         diff:'M',pattern:'DP + prefix hashing',         co:['razorpay','databricks'],lc:'word-break'},
+      {id:218,title:'Word Break II',                      diff:'H',pattern:'DP + backtracking',           co:['razorpay'],lc:'word-break-ii'},
+    ],
+    'Backtracking Fundamentals': [
+      {id:219,title:'Permutations',                       diff:'M',pattern:'Backtracking enumeration',    co:['razorpay','databricks'],lc:'permutations'},
+      {id:220,title:'Combinations',                       diff:'M',pattern:'Backtracking with index',     co:['razorpay'],lc:'combinations'},
+      {id:221,title:'Letter Combinations of Phone',       diff:'M',pattern:'Backtracking enumeration',    co:['razorpay'],lc:'letter-combinations-of-a-phone-number'},
+      {id:222,title:'Next Permutation',                   diff:'M',pattern:'In-place arrangement',        co:['razorpay','uber'],lc:'next-permutation'},
+    ],
+    'Graph Expansion (Razorpay & Uber)': [
+      {id:223,title:'Number of Connected Components',     diff:'M',pattern:'DSU / DFS',                   co:['razorpay','uber'],lc:'number-of-connected-components-in-an-undirected-graph'},
+    ],
+    'Fundamentals (Rakuten & Gaps)': [
+      {id:189,title:'Find Pivot Index',                  diff:'E',pattern:'Prefix sum balance',          co:['rakuten'],lc:'find-pivot-index'},
+      {id:190,title:'Container With Most Water',        diff:'M',pattern:'Two pointers optimization',   co:['rakuten'],lc:'container-with-most-water'},
+      {id:191,title:'3Sum',                              diff:'M',pattern:'Two pointers + sorting',      co:['rakuten'],lc:'3sum'},
+      {id:192,title:'Majority Element',                 diff:'E',pattern:'Boyer-Moore voting',          co:['rakuten','doordash'],lc:'majority-element'},
+      {id:193,title:'Roman to Integer',                 diff:'E',pattern:'Character mapping',           co:['doordash','databricks','razorpay'],lc:'roman-to-integer'},
+      {id:194,title:'Integer to Roman',                 diff:'M',pattern:'Greedy representation',       co:['razorpay','rakuten'],lc:'integer-to-roman'},
+      {id:195,title:'Implement atoi',                   diff:'M',pattern:'String parsing edge-cases',   co:['databricks','rakuten'],lc:'string-to-integer-atoi'},
+      {id:196,title:'Search a 2D Matrix',               diff:'M',pattern:'Binary search 2D grid',       co:['rakuten'],lc:'search-a-2d-matrix'},
+      {id:197,title:'Median of Two Sorted Arrays',      diff:'H',pattern:'Binary search partition',     co:['rakuten'],lc:'median-of-two-sorted-arrays'},
+    ],
+  },
+  L3: {
+    'Advanced Graphs': [
+      {id:201,title:'Bus Routes',                         diff:'H',pattern:'Shortest transfers (BFS)',    co:['uber'],lc:'bus-routes'},
+      {id:202,title:'Alien Dictionary',                   diff:'H',pattern:'Topological sort (Kahn\'s)',  co:['uber','stripe'],lc:'alien-dictionary'},
+      {id:203,title:'Number of Islands II',               diff:'H',pattern:'Dynamic clustering (DSU)',    co:['uber','doordash'],lc:'number-of-islands-ii'},
+      {id:204,title:'Course Schedule II',                 diff:'M',pattern:'Dependency pipeline',         co:['databricks'],lc:'course-schedule-ii'},
+      {id:205,title:'Word Ladder',                        diff:'H',pattern:'State-space BFS',             co:['uber'],lc:'word-ladder'},
+      {id:206,title:'Network Delay Time',                 diff:'M',pattern:'Dijkstra path',               co:['uber'],lc:'network-delay-time'},
+      {id:207,title:'Critical Connections in a Network',  diff:'H',pattern:'Tarjan\'s bridge detection',  co:[],lc:'critical-connections-in-a-network'},
+      {id:208,title:'Minimum Height Trees',               diff:'M',pattern:'Network root (trim leaves)',  co:[],lc:'minimum-height-trees'},
+      {id:209,title:'Redundant Connection',               diff:'M',pattern:'Cycle detection (DSU)',       co:[],lc:'redundant-connection'},
+      {id:210,title:'Min Cost to Connect All Points',     diff:'M',pattern:"MST (Prim's/Kruskal's)",      co:[],lc:'min-cost-to-connect-all-points'},
+      {id:211,title:'Path With Minimum Effort',           diff:'M',pattern:'Stress path (Dijkstra)',      co:[],lc:'path-with-minimum-effort'},
+      {id:212,title:'Find Eventual Safe States',          diff:'M',pattern:'Infinite loop avoid',         co:[],lc:'find-eventual-safe-states'},
+      {id:213,title:'Accounts Merge',                     diff:'M',pattern:'DSU deduplication',           co:['doordash'],lc:'accounts-merge'},
+      {id:214,title:'Possible Bipartition',               diff:'M',pattern:'Conflict detection',          co:[],lc:'possible-bipartition'},
+      {id:215,title:'Minimum Knight Moves',               diff:'M',pattern:'Pattern search BFS',          co:[],lc:'minimum-knight-moves'},
+      {id:216,title:'Reorder Routes',                     diff:'M',pattern:'Central data center',         co:[],lc:'reorder-routes-to-make-all-paths-lead-to-the-city-zero'},
+      {id:217,title:'Shortest Bridge',                    diff:'M',pattern:'Sparse clustering (MS-BFS)',   co:[],lc:'shortest-bridge'},
+      {id:218,title:'Find City With Smallest Neighbors',  diff:'M',pattern:'Floyd-Warshall / Dijkstra',   co:[],lc:'find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance'},
+      {id:219,title:'Detonate the Maximum Bombs',         diff:'M',pattern:'Chain reaction (dir. graph)', co:[],lc:'detonate-the-maximum-bombs'},
+      {id:220,title:'Longest Increasing Path in Matrix',  diff:'H',pattern:'Grid optimisation (memo DFS)',co:['doordash'],lc:'longest-increasing-path-in-a-matrix'},
+      {id:221,title:'Evaluate Division',                  diff:'M',pattern:'Unit conversion (weighted)',  co:['stripe','uber'],lc:'evaluate-division'},
+      {id:222,title:'Largest Color Value in Directed Graph',diff:'H',pattern:'DAG state tracking',       co:[],lc:'largest-color-value-in-a-directed-graph'},
+      {id:223,title:'Parallel Courses III',               diff:'H',pattern:'Project duration (topo+DP)', co:[],lc:'parallel-courses-iii'},
+      {id:224,title:'Sequence Reconstruction',            diff:'M',pattern:'Unique orderings',            co:[],lc:'sequence-reconstruction'},
+      {id:225,title:'Path With Maximum Probability',      diff:'M',pattern:'Stochastic routing (Dijkstra)',co:['uber'],lc:'path-with-maximum-probability'},
+      {id:226,title:'Minimum Genetic Mutation',           diff:'M',pattern:'Constrained transition BFS',  co:[],lc:'minimum-genetic-mutation'},
+      {id:227,title:'Number of Restricted Paths',         diff:'M',pattern:'Weighted path count (D+DP)',  co:[],lc:'number-of-restricted-paths-from-first-to-last-node'},
+      {id:228,title:'Count Unreachable Pairs',            diff:'M',pattern:'Fragmented count',            co:[],lc:'count-unreachable-pairs-of-nodes-in-an-undirected-graph'},
+      {id:229,title:'Min Cost to Reach Destination in Time',diff:'H',pattern:'Time-cost Dijkstra',       co:[],lc:'minimum-cost-to-reach-destination-in-time'},
+      {id:230,title:'Word Ladder II',                     diff:'H',pattern:'All shortest paths',          co:[],lc:'word-ladder-ii'},
+      {id:231,title:'Flower Planting with No Adjacent',   diff:'M',pattern:'Graph coloring',              co:[],lc:'flower-planting-with-no-adjacent'},
+      {id:232,title:'Maximize Amount — Currency Conversions',diff:'M',pattern:'Weighted graph DP',       co:['uber','databricks'],lc:'maximize-amount-after-two-days-of-conversions'},
+      {id:233,title:'Consistent Hashing Ring (LLD)',      diff:'D',pattern:'Key-to-node ring mapping',   co:['doordash'],lc:null},
+      {id:234,title:'Health-Aware Round-Robin Router (LLD)',diff:'D',pattern:'Thread-safe balancing',    co:['doordash'],lc:null},
+    ],
+    'Advanced Trees': [
+      {id:235,title:'Binary Tree Maximum Path Sum',       diff:'H',pattern:'Global hierarchy opt.',       co:[],lc:'binary-tree-maximum-path-sum'},
+      {id:236,title:'Kth Smallest Element in BST',        diff:'M',pattern:'Rank retrieval (in-order)',   co:[],lc:'kth-smallest-element-in-a-bst'},
+      {id:237,title:'Diameter of Binary Tree',            diff:'E',pattern:'Span calculation',            co:['doordash'],lc:'diameter-of-binary-tree'},
+      {id:238,title:'Construct Tree from Pre+Inorder',    diff:'M',pattern:'Index recovery',              co:[],lc:'construct-binary-tree-from-preorder-and-inorder-traversal'},
+      {id:239,title:'Recover BST',                        diff:'M',pattern:'Self-healing index',          co:[],lc:'recover-binary-search-tree'},
+      {id:240,title:'Path Sum III',                       diff:'M',pattern:'Prefix-sum path',             co:[],lc:'path-sum-iii'},
+      {id:241,title:'Boundary of Binary Tree',            diff:'M',pattern:'Perimeter data',              co:[],lc:'boundary-of-binary-tree'},
+      {id:242,title:'Binary Tree Cameras',                diff:'H',pattern:'Surveillance minimum',        co:[],lc:'binary-tree-cameras'},
+      {id:243,title:'LCA of N-ary Tree',                  diff:'M',pattern:'Parent hub',                  co:[],lc:'lowest-common-ancestor-of-a-binary-tree-iv'},
+      {id:244,title:'Maximum BST Subtree',                diff:'H',pattern:'Valid sub-index',             co:[],lc:'maximum-sum-bst-in-binary-tree'},
+      {id:245,title:'House Robber III',                   diff:'M',pattern:'Tree DP',                     co:[],lc:'house-robber-iii'},
+      {id:246,title:'Amount of Time to Infect Binary Tree',diff:'M',pattern:'Failure spread (BFS)',       co:[],lc:'amount-of-time-for-binary-tree-to-be-infected'},
+      {id:247,title:'Unique Binary Search Trees II',      diff:'M',pattern:'Index configurations (Catalan)',co:[],lc:'unique-binary-search-trees-ii'},
+      {id:248,title:'Binary Tree Maximum Width',          diff:'M',pattern:'Concurrency max (BFS idx)',   co:[],lc:'maximum-width-of-binary-tree'},
+      {id:249,title:'Count Complete Tree Nodes',          diff:'M',pattern:'O(log²N) binary search',      co:[],lc:'count-complete-tree-nodes'},
+      {id:250,title:'LCA IV (Multiple Nodes)',            diff:'M',pattern:'k-node LCA',                  co:[],lc:'lowest-common-ancestor-of-a-binary-tree-iv'},
+      {id:251,title:'Range Sum of BST',                   diff:'E',pattern:'Efficient interval (BST prune)',co:['planetscale'],lc:'range-sum-of-bst'},
+      {id:252,title:'All Nodes Distance K (Advanced)',    diff:'M',pattern:'Hierarchical BFS',            co:['doordash'],lc:'all-nodes-distance-k-in-binary-tree'},
+    ],
+    'Trie': [
+      {id:253,title:'Implement Trie (Prefix Tree)',        diff:'M',pattern:'Prefix autocomplete',         co:['databricks','stripe','rakuten','planetscale'],lc:'implement-trie-prefix-tree'},
+      {id:254,title:'Map Sum Pairs',                      diff:'M',pattern:'Prefix tree aggregation',     co:[],lc:'map-sum-pairs'},
+      {id:255,title:'Design Search Autocomplete System',  diff:'H',pattern:'Planet-scale prefix (Trie+Heap)',co:['databricks','stripe'],lc:'design-search-autocomplete-system'},
+      {id:256,title:'Add and Search Word',                diff:'M',pattern:'Wildcard trie + DFS',         co:[],lc:'design-add-and-search-words-data-structure'},
+      {id:257,title:'Replace Words',                      diff:'M',pattern:'Prefix replacement trie',     co:[],lc:'replace-words'},
+      {id:258,title:'Top K Frequent Words',               diff:'M',pattern:'Data analytics (Trie+Heap)',  co:['databricks'],lc:'top-k-frequent-words'},
+      {id:259,title:'Design In-Memory File System',       diff:'H',pattern:'Metadata MKDIR',              co:['doordash','planetscale'],lc:'design-in-memory-file-system'},
+      {id:260,title:'Implement Trie with Count',          diff:'M',pattern:'Prefix count tracking',       co:[],lc:'implement-trie-prefix-tree'},
+    ],
+    'Segment Tree / BIT': [
+      {id:261,title:'Range Sum Query (Mutable)',           diff:'M',pattern:'Dynamic range (Fenwick)',     co:['databricks','planetscale'],lc:'range-sum-query-mutable'},
+      {id:262,title:'Count of Smaller Numbers After Self',diff:'H',pattern:'Advanced rank (BIT)',         co:[],lc:'count-of-smaller-numbers-after-self'},
+      {id:263,title:'Range Frequency Queries',            diff:'M',pattern:'Sub-range count (seg tree)',  co:[],lc:'range-frequency-queries'},
+      {id:264,title:'Snapshot Array',                     diff:'M',pattern:'Point-in-time recovery',      co:[],lc:'snapshot-array'},
+      {id:265,title:'Range Module',                       diff:'H',pattern:'Complex interval tree',       co:[],lc:'range-module'},
+      {id:266,title:'Range Sum Query 2D (Mutable)',        diff:'H',pattern:'Spatial pre-calc',           co:[],lc:'range-sum-query-2d-mutable'},
+    ],
+    'Heap / Priority Queue (Advanced)': [
+      {id:267,title:'LFU Cache',                          diff:'H',pattern:'Hot data eviction',           co:['planetscale','stripe'],lc:'lfu-cache'},
+      {id:268,title:'Median from Data Stream',            diff:'H',pattern:'Dual heap balancing',         co:[],lc:'find-median-from-data-stream'},
+      {id:269,title:'Merge K Sorted Lists',               diff:'H',pattern:'Distributed shards',         co:['stripe'],lc:'merge-k-sorted-lists'},
+      {id:270,title:'Sliding Window Maximum',             diff:'H',pattern:'Peak detection (mono queue)',  co:['razorpay','databricks'],lc:'sliding-window-maximum'},
+      {id:271,title:'Task Scheduler II',                  diff:'M',pattern:'Priority scheduling',         co:['doordash'],lc:'task-scheduler-ii'},
+      {id:272,title:'Single-Threaded CPU',                diff:'M',pattern:'Priority scheduling (heap)',  co:['doordash'],lc:'single-threaded-cpu'},
+      {id:273,title:'Smallest Range Covering K Lists',    diff:'H',pattern:'Global sorted interval',      co:[],lc:'smallest-range-covering-elements-from-k-lists'},
+      {id:274,title:'Sliding Window Median',              diff:'H',pattern:'Order windowing (dual heaps)', co:[],lc:'sliding-window-median'},
+      {id:275,title:'Stock Price Fluctuation',            diff:'M',pattern:'High-frequency update',       co:[],lc:'stock-price-fluctuation'},
+      {id:276,title:'Design Food Rating System',          diff:'M',pattern:'Dynamic category',            co:[],lc:'design-a-food-rating-system'},
+    ],
+    'Dynamic Programming': [
+      {id:277,title:'0/1 Knapsack',                       diff:'M',pattern:'Resource capacity',           co:['razorpay'],lc:null},
+      {id:278,title:'Partition Equal Subset Sum',         diff:'M',pattern:'Data load balance (knapsack)',co:['razorpay'],lc:'partition-equal-subset-sum'},
+      {id:279,title:'Coin Change',                        diff:'M',pattern:'Optimal denomination',        co:['uber','rakuten'],lc:'coin-change'},
+      {id:280,title:'Coin Change II',                     diff:'M',pattern:'Counting denominations',      co:['razorpay'],lc:'coin-change-ii'},
+      {id:281,title:'Word Break',                         diff:'M',pattern:'Log segmentation (DP)',        co:['databricks','stripe','rakuten'],lc:'word-break'},
+      {id:282,title:'Word Break II',                      diff:'H',pattern:'All segmentations (DP+BT)',   co:['razorpay'],lc:'word-break-ii'},
+      {id:283,title:'Decode Ways',                        diff:'M',pattern:'Stream interpretation (DP)',   co:['stripe','rakuten'],lc:'decode-ways'},
+      {id:284,title:'Longest Increasing Subsequence',     diff:'M',pattern:'Logistics trends (DP+BS)',    co:['databricks'],lc:'longest-increasing-subsequence'},
+      {id:285,title:'Edit Distance',                      diff:'M',pattern:'Measuring divergence (str DP)',co:['databricks','rakuten'],lc:'edit-distance'},
+      {id:286,title:'Interleaving String',                diff:'M',pattern:'Multi-stream verification',   co:[],lc:'interleaving-string'},
+      {id:287,title:'Unique Paths',                       diff:'M',pattern:'Grid routing (DP)',            co:[],lc:'unique-paths'},
+      {id:288,title:'Maximum Product Subarray',           diff:'M',pattern:'Positive/neg trend',          co:[],lc:'maximum-product-subarray'},
+      {id:289,title:'House Robber',                       diff:'M',pattern:'Proximity allocation (1D DP)',co:[],lc:'house-robber'},
+      {id:290,title:'House Robber II (Circular)',         diff:'M',pattern:'Circular 1D DP',              co:[],lc:'house-robber-ii'},
+      {id:291,title:'Matrix Chain Multiplication',        diff:'H',pattern:'Pipeline ordering (interval DP)',co:[],lc:null},
+      {id:292,title:'Burst Balloons',                     diff:'H',pattern:'Interval gain (interval DP)', co:[],lc:'burst-balloons'},
+      {id:293,title:'Longest Palindromic Subsequence',    diff:'M',pattern:'String DP (2D)',               co:['razorpay'],lc:'longest-palindromic-subsequence'},
+      {id:294,title:'Longest Common Subsequence',         diff:'M',pattern:'String DP (2D)',               co:['databricks'],lc:'longest-common-subsequence'},
+      {id:295,title:'Valid Palindrome III',               diff:'H',pattern:'Edit distance variant',        co:['databricks'],lc:'valid-palindrome-iii'},
+      {id:296,title:'Continuous Subarray Sum',            diff:'M',pattern:'Modular periodicity',          co:['razorpay','doordash'],lc:'continuous-subarray-sum'},
+      {id:297,title:'Split Array Largest Sum',            diff:'H',pattern:'Minimax partition (BS)',       co:[],lc:'split-array-largest-sum'},
+      {id:298,title:'Shortest Visiting Path (TSP)',       diff:'H',pattern:'DP + bitmask (TSP)',           co:[],lc:'shortest-path-visiting-all-nodes'},
+      {id:299,title:'Job Scheduling',                     diff:'H',pattern:'Weighted job selection',       co:[],lc:'job-scheduling'},
+      {id:300,title:'Text Justification',                 diff:'H',pattern:'Greedy text formatting',       co:['databricks'],lc:'text-justification'},
+      {id:301,title:'Longest Continuous Subarray (Abs Diff ≤ Limit)',diff:'M',pattern:'Monotonic queue DP',co:['uber','razorpay'],lc:'longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit'},
+      {id:302,title:'Longest Substring with K Distinct Chars',diff:'M',pattern:'Memory windowing',        co:[],lc:'longest-substring-with-at-most-k-distinct-characters'},
+    ],
+    'Monotonic Stack & Array Tricks': [
+      {id:303,title:'Trapping Rain Water',                diff:'H',pattern:'Metric calculation (mono stack)',co:['stripe','databricks','razorpay'],lc:'trapping-rain-water'},
+      {id:304,title:'Largest Rectangle in Histogram',    diff:'H',pattern:'Area optimisation',            co:['doordash'],lc:'largest-rectangle-in-histogram'},
+      {id:305,title:'Maximal Rectangle',                 diff:'H',pattern:'Binary grid area',             co:['doordash'],lc:'maximal-rectangle'},
+      {id:306,title:'Product of Array Except Self',      diff:'M',pattern:'Parallel aggregation',         co:[],lc:'product-of-array-except-self'},
+      {id:307,title:'First Missing Positive',            diff:'H',pattern:'In-place memory opt (cyclic)',  co:['rakuten'],lc:'first-missing-positive'},
+      {id:308,title:'Find the Duplicate Number',         diff:'M',pattern:'Cycle in array (Floyd\'s)',    co:[],lc:'find-the-duplicate-number'},
+      {id:309,title:'Daily Temperatures',                diff:'M',pattern:'Next greater element',         co:[],lc:'daily-temperatures'},
+    ],
+    'LLD & System Design': [
+      {id:310,title:'Design Parking Lot (OOD)',           diff:'M',pattern:'Resource OO model',            co:['databricks'],lc:null},
+      {id:311,title:'Time-Based Key-Value Store',         diff:'M',pattern:'Timestamp index',              co:['planetscale','stripe'],lc:'time-based-key-value-store'},
+      {id:312,title:'Design Spreadsheet (Cell Dependencies)',diff:'H',pattern:'Dependency update (graph)',  co:['planetscale'],lc:null},
+      {id:313,title:'Distributed ID Generator (Snowflake)',diff:'H',pattern:'Unique ID logic',             co:['stripe','planetscale'],lc:null},
+      {id:314,title:'Disjoint Interval Stream',           diff:'M',pattern:'Continuous range (sorted map)',co:[],lc:'data-stream-as-disjoint-intervals'},
+      {id:315,title:'Distributed Rate Limiter (Token Bucket)',diff:'H',pattern:'Sharded bucket',           co:['stripe','doordash'],lc:null},
+      {id:316,title:'Text Editor with Undo/Redo',         diff:'M',pattern:'State recovery',               co:[],lc:'design-a-text-editor'},
+      {id:317,title:'Settle Debt (Min Transactions)',     diff:'H',pattern:'P2P balancing',                co:[],lc:'optimal-account-balancing'},
+      {id:318,title:'Valid Sudoku',                       diff:'M',pattern:'Constraint validation',        co:[],lc:'valid-sudoku'},
+      {id:319,title:'Sparse Matrix Multiplication',       diff:'M',pattern:'Empty data opt (CSR)',         co:[],lc:'sparse-matrix-multiplication'},
+    ],
+    'Razorpay Machine Coding': [
+      {id:320,title:'Document Access Service (OOD)',      diff:'D',pattern:'In-memory permission map',    co:['razorpay'],lc:null},
+      {id:321,title:'In-Memory SQL-like Database',        diff:'D',pattern:'DB constraint validation',   co:['razorpay'],lc:null},
+      {id:322,title:'Survey Rating Aggregator',           diff:'D',pattern:'Weighted avg + concurrency',  co:['razorpay'],lc:null},
+      {id:323,title:'In-Memory Search Engine (Inverted Index)',diff:'D',pattern:'Dynamic index catalog',  co:['razorpay'],lc:null},
+      {id:324,title:'Guaranteed Webhook Dispatcher',      diff:'D',pattern:'FIFO + dead-letter queues',   co:['razorpay'],lc:null},
+    ],
+    'Stripe Engineering Simulation': [
+      {id:325,title:'Idempotent Payment Ledger',          diff:'D',pattern:'Key dedup + WAL + row locking',co:['stripe'],lc:null},
+      {id:326,title:'Recurring Payment Scheduler',        diff:'D',pattern:'Time-bound cron + double-entry',co:['stripe'],lc:null},
+      {id:327,title:'Parse Transaction Stream & Aggregate',diff:'D',pattern:'Deduplicated report',        co:['stripe'],lc:null},
+      {id:328,title:'Multi-Currency Conversion Graph',    diff:'D',pattern:'Directed weighted BFS',       co:['stripe'],lc:null},
+      {id:329,title:'Edge-case Robust API Endpoint',      diff:'D',pattern:'Null/empty/timeout guard',    co:['stripe'],lc:null},
+    ],
+    'Stripe Practical Design': [
+      {id:330,title:'Design Rate Limiter (Token Bucket)', diff:'M',pattern:'Token bucket + queue',         co:['stripe'],lc:null},
+      {id:331,title:'Design Cache with Expiry',          diff:'M',pattern:'TTL + lazy deletion',          co:['stripe'],lc:null},
+      {id:332,title:'Design Reservation System',         diff:'M',pattern:'Availability + blocking',      co:['stripe'],lc:null},
+      {id:333,title:'Design API Key Authorization',      diff:'M',pattern:'Permission checking + scope',  co:['stripe'],lc:null},
+      {id:334,title:'Design File System',                diff:'M',pattern:'Trie + metadata',              co:['stripe'],lc:null},
+    ],
+    'Advanced DP (Razorpay & Databricks)': [
+      {id:340,title:'Russian Doll Envelopes',            diff:'H',pattern:'DP + binary search',           co:['databricks'],lc:'russian-doll-envelopes'},
+      {id:341,title:'Longest Increasing Subsequence',    diff:'M',pattern:'DP + binary search',           co:['databricks'],lc:'longest-increasing-subsequence'},
+    ],
+    'Advanced Graphs - Continued (Uber & Razorpay)': [
+      {id:342,title:'Word Ladder II',                    diff:'H',pattern:'BFS backtracking',             co:['uber','razorpay'],lc:'word-ladder-ii'},
+      {id:343,title:'Minimum Height Trees',              diff:'M',pattern:'Graph center finding',         co:['uber'],lc:'minimum-height-trees'},
+      {id:344,title:'Critical Connections in Network',   diff:'H',pattern:'Bridge finding / Tarjan',      co:['uber'],lc:'critical-connections-in-a-network'},
+      {id:345,title:'Course Schedule III',               diff:'H',pattern:'Greedy + topological sort',    co:['razorpay'],lc:'course-schedule-iii'},
+    ],
+    'Math & Bit Manipulation': [
+      {id:350,title:'Base -2 Representation / Interpretation',diff:'H',pattern:'Binary basis remapping',  co:['rakuten'],lc:'convert-to-base-2'},
+      {id:351,title:'Sum of Floored Pairs',               diff:'H',pattern:'Prefix sum modulo (sifting)', co:['rakuten'],lc:'sum-of-floored-pairs'},
+      {id:352,title:'Single Number (I / II / III)',        diff:'M',pattern:'XOR / bit counting',          co:[],lc:'single-number'},
+      {id:353,title:'Reverse Bits',                       diff:'E',pattern:'Bit shifting',                 co:['rakuten'],lc:'reverse-bits'},
+      {id:354,title:'Number of 1 Bits (Hamming Weight)',  diff:'E',pattern:'Popcount',                    co:['rakuten'],lc:'number-of-1-bits'},
+      {id:355,title:'Power of Two',                       diff:'E',pattern:'Log-based bit check',          co:[],lc:'power-of-two'},
+    ],
+  },
+  L4: [
+    {id:401,title:'Paxos vs Raft Comparison',             diff:'D',pattern:'Theoretical consensus',       co:['planetscale'],lc:null},
+    {id:402,title:'Vector Clocks Logic',                  diff:'D',pattern:'Conflict resolution',         co:['planetscale'],lc:null},
+    {id:403,title:'Gossip Protocol Design',               diff:'D',pattern:'Node discovery',              co:['planetscale'],lc:null},
+    {id:404,title:'Hinted Handoff Pattern',               diff:'D',pattern:'Failure handling',            co:['planetscale'],lc:null},
+    {id:405,title:'Distributed Locking (Redlock)',        diff:'D',pattern:'Cluster mutexes',             co:['stripe'],lc:null},
+    {id:406,title:'Idempotency API Gateway',              diff:'D',pattern:'Financial-grade state machine',co:['stripe'],lc:null},
+    {id:407,title:'Distributed Rate Limiter (Cluster)',   diff:'D',pattern:'Sharded token bucket',        co:['stripe','doordash'],lc:null},
+    {id:408,title:'Consistent Hashing (Full Design)',     diff:'D',pattern:'Key-to-node ring mapping',    co:['doordash'],lc:null},
+    {id:409,title:'CRDT Design',                          diff:'D',pattern:'Merge-friendly state (CRDT)',  co:['planetscale'],lc:null},
+    {id:410,title:'Write-Ahead Log (WAL) Design',         diff:'D',pattern:'Durability log',              co:['planetscale','databricks'],lc:null},
+    {id:411,title:'Vitess-Style Shard Router',            diff:'D',pattern:'Range / hash sharding',       co:['planetscale'],lc:null},
+    {id:412,title:'Two-Phase Commit (2PC)',                diff:'D',pattern:'Distributed atomicity',       co:['stripe'],lc:null},
+    {id:413,title:'Saga Pattern (Choreography vs Orchestration)',diff:'D',pattern:'Long-running transaction',co:['stripe','razorpay'],lc:null},
+    {id:414,title:'Event Sourcing + CQRS',                diff:'D',pattern:'Immutable event log',         co:['razorpay'],lc:null},
+  ]
+};
+
+let activeTab = 'problems';
+let activeCo = 'all';
+let openSections = {L1:true, L2:true, L3:false, L4:false};
+
+const TABS = [
+  {id:'problems',label:'All problems'},
+  {id:'paradigms',label:'Paradigm index'},
+  {id:'formulas',label:'Math formulas'},
+  {id:'lld',label:'LLD patterns'},
+  {id:'priority',label:'Study roadmap'},
+];
+
+function coStyle(id){
+  const c=CO_COLORS[id]||{};
+  return `background:${c.bg||''};color:${c.color||''}`;
+}
+function coDot(id){
+  const c=CO_COLORS[id]||{};
+  return `<span class="co-dot" style="background:${c.dot||'#888'}" title="${id}"></span>`;
+}
+function lcLink(lc){
+  if(!lc) return '';
+  return `<a class="lc-btn" href="https://leetcode.com/problems/${lc}" target="_blank">LC <i class="ti ti-external-link" style="font-size:10px" aria-hidden="true"></i></a>`;
+}
+
+function filterProblems(arr, co){
+  if(co==='all') return arr;
+  return arr.filter(p=>p.co.includes(co));
+}
+
+function renderProbCard(p){
+  const dots = p.co.map(c=>coDot(c)).join('');
+  return `<div class="prob-card">
+    <span class="prob-id">${p.id}</span>
+    <div class="prob-body">
+      <div class="prob-title">${p.title}</div>
+      <div class="prob-meta">
+        <span class="badge diff-${p.diff}">${p.diff==='D'?'Design':p.diff==='E'?'Easy':p.diff==='M'?'Medium':'Hard'}</span>
+        <span class="pattern-tag">${p.pattern}</span>
+        ${lcLink(p.lc)}
+        <span class="co-dots">${dots}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function countFiltered(co){
+  let n=0;
+  const l1=filterProblems(PROBLEMS.L1,co).length;
+  let l2=0; Object.values(PROBLEMS.L2).forEach(a=>{l2+=filterProblems(a,co).length;});
+  let l3=0; Object.values(PROBLEMS.L3).forEach(a=>{l3+=filterProblems(a,co).length;});
+  const l4=filterProblems(PROBLEMS.L4,co).length;
+  return {l1,l2,l3,l4,total:l1+l2+l3+l4};
+}
+
+function renderSection(title,problems,levelKey){
+  const fp=filterProblems(problems,activeCo);
+  if(!fp.length) return '';
+  const open=openSections[levelKey];
+  return `<div class="sub-section">
+    <div class="sub-title">${title} <span style="font-weight:400;letter-spacing:0">(${fp.length})</span></div>
+    <div class="prob-grid">${fp.map(p=>renderProbCard(p)).join('')}</div>
+  </div>`;
+}
+
+function renderLevelBlock(key,label,desc,color){
+  const open=openSections[key];
+  let inner='';
+  if(key==='L1'){
+    const fp=filterProblems(PROBLEMS.L1,activeCo);
+    if(!fp.length) return '';
+    inner=`<div class="prob-grid">${fp.map(p=>renderProbCard(p)).join('')}</div>`;
+  } else if(key==='L4'){
+    const fp=filterProblems(PROBLEMS.L4,activeCo);
+    if(!fp.length) return '';
+    inner=`<div class="prob-grid">${fp.map(p=>renderProbCard(p)).join('')}</div>`;
+  } else {
+    const dict=PROBLEMS[key];
+    inner=Object.entries(dict).map(([sub,arr])=>renderSection(sub,arr,key)).join('');
+    if(!inner.trim()) return '';
+  }
+  const totalInLevel = key==='L1'?filterProblems(PROBLEMS.L1,activeCo).length
+    :key==='L4'?filterProblems(PROBLEMS.L4,activeCo).length
+    :Object.values(PROBLEMS[key]).reduce((s,a)=>s+filterProblems(a,activeCo).length,0);
+  return `<div class="level-section">
+    <div class="ls-hdr" onclick="toggleSection('${key}')">
+      <span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></span>
+      <span class="ls-title">${label}</span>
+      <span class="ls-count">${totalInLevel} problems · ${desc}</span>
+      <i class="ti ti-chevron-down ls-chevron${open?' open':''}" aria-hidden="true"></i>
+    </div>
+    ${open?`<div>${inner}</div>`:''}
+  </div>`;
+}
+
+window.toggleSection=function(k){openSections[k]=!openSections[k];renderMain();}
+
+function renderProblemsTab(){
+  const c=countFiltered(activeCo);
+  let html=`<div class="stats">
+    <div class="stat"><div class="stat-n">${c.total}</div><div class="stat-l">Shown</div></div>
+    <div class="stat"><div class="stat-n">${c.l1}</div><div class="stat-l">Level 1</div></div>
+    <div class="stat"><div class="stat-n">${c.l2}</div><div class="stat-l">Level 2</div></div>
+    <div class="stat"><div class="stat-n">${c.l3}</div><div class="stat-l">Level 3</div></div>
+    <div class="stat"><div class="stat-n">${c.l4}</div><div class="stat-l">Level 4</div></div>
+  </div>`;
+  html+=renderLevelBlock('L1','Level 1 — Foundation','Hashing · Arrays · Basic Trees · Two Pointers','#1D9E75');
+  html+=renderLevelBlock('L2','Level 2 — Synthesis','Graphs · Trees · Design · Binary Search · Sliding Window','#378ADD');
+  html+=renderLevelBlock('L3','Level 3 — Optimization','Advanced Graph · Trie · DP · Segment Tree · LLD · Machine Coding','#EF9F27');
+  html+=renderLevelBlock('L4','Level 4 — Architecture','Distributed Systems · Consensus · Idempotency · CRDT · WAL','#E24B4A');
+  return html;
+}
+
+function renderParadigmsTab(){
+  return `<div class="paradigm-section">
+    <div class="paradigm-grid">
+      ${PARADIGMS.map(p=>`<div class="para-card">
+        <div class="para-name">${p.name}</div>
+        <div class="para-desc">${p.desc}</div>
+        <div class="para-cos">${p.cos.map(c=>`<span class="para-co" style="${coStyle(c)}">${c}</span>`).join('')}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderFormulasTab(){
+  return MATH_FORMULAS.map(f=>`<div class="math-card">
+    <div class="math-title">${f.title}<span class="math-company">${f.company}</span></div>
+    <div class="math-body">${f.desc}</div>
+    <div class="math-formula">${f.formula}</div>
+  </div>`).join('');
+}
+
+function renderLLDTab(){
+  return LLD_PATTERNS.map(p=>`<div class="lld-card">
+    <div class="lld-title">${p.title}<span class="lld-co">${p.company}</span></div>
+    <div class="lld-grid">
+      ${p.cols.map(col=>`<div class="lld-col">
+        <div class="lld-col-hdr">${col.hdr}</div>
+        ${col.items.map(i=>`<div>· ${i}</div>`).join('')}
+      </div>`).join('')}
+    </div>
+  </div>`).join('');
+}
+
+function renderPriorityTab(){
+  const target = activeCo==='all'?null:activeCo;
+  const items = target ? PRIORITIES.filter(p=>p.co===target) : PRIORITIES;
+  return items.map(p=>`<div class="priority-card">
+    <div class="priority-co">
+      <span style="width:10px;height:10px;border-radius:50%;background:${CO_COLORS[p.co].dot}"></span>
+      <span>${p.label}</span>
+      ${CO_COLORS[p.co]?`<span style="font-size:11px;font-weight:400;padding:2px 8px;border-radius:4px;background:${CO_COLORS[p.co].bg};color:${CO_COLORS[p.co].color}">${p.co==='planetscale'?'Zero-DSA Collab':p.co==='stripe'?'Engineering Simulation':p.co==='razorpay'?'Machine Coding':'Algorithmic Filter'}</span>`:''}
+    </div>
+    <div class="priority-steps">
+      ${p.steps.map((s,i)=>`<div class="priority-step"><span class="step-num">${i+1}</span><span>${s}</span></div>`).join('')}
+    </div>
+  </div>`).join('');
+}
+
+function renderToolbar(){
+  const t=document.getElementById('navTabs');
+  if(!t) return;
+  t.innerHTML=TABS.map(tab=>`<button class="nav-tab${activeTab===tab.id?' active':''}" onclick="switchTab('${tab.id}')">${tab.label}</button>`).join('');
+}
+
+function renderMain(){
+  const el=document.getElementById('mainContent');
+  if(!el) return;
+  let toolbar=`<div class="toolbar">
+    <button class="pill co-all${activeCo==='all'?' on':''}" onclick="setCo('all')">All companies</button>
+    <div class="divider"></div>
+    ${Object.keys(CO_COLORS).map(id=>`<button class="pill co-${id}${activeCo===id?' on':''}" onclick="setCo('${id}')">${id.charAt(0).toUpperCase()+id.slice(1)}</button>`).join('')}
+  </div>`;
+  let body='';
+  if(activeTab==='problems') body=renderProblemsTab();
+  else if(activeTab==='paradigms') body=renderParadigmsTab();
+  else if(activeTab==='formulas') body=renderFormulasTab();
+  else if(activeTab==='lld') body=renderLLDTab();
+  else if(activeTab==='priority') body=renderPriorityTab();
+  el.innerHTML = toolbar + body;
+}
+
+window.switchTab=function(id){activeTab=id;renderToolbar();renderMain();}
+window.setCo=function(id){activeCo=id;renderMain();}
+
+renderToolbar();
+renderMain();
+</script>

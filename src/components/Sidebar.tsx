@@ -28,6 +28,7 @@ export default function Sidebar({ activeTab, onTabSelect }: any) {
       <div className="meridian-sidebar-section">
         <h4 className="meridian-sidebar-header">PRACTICE</h4>
         <NavItem id="dsa" label="DSA Tracker" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} />
+        <NavItem id="sql" label="SQL Tracker" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} />
         <NavItem id="questions" label="Knowledge Bank" activeTab={activeTab} onTabSelect={onTabSelect} icon={MessageSquare} badge="4k+" />
         <NavItem id="weak-link" label="Weakest Link" activeTab={activeTab} onTabSelect={onTabSelect} icon={RefreshCw} />
       </div>

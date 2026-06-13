@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import HomeDashboard from "./pages/HomeDashboard";
 import DailyPage from "./pages/DailyPage";
 import DsaPage from "./pages/DsaPage";
+import SqlPage from "./pages/SqlPage";
 import BiweeklyPage from "./pages/BiweeklyPage";
 import NineMonthPlanPage from "./pages/NineMonthPlanPage";
 import SystemPage from "./pages/SystemPage";
@@ -16,7 +17,7 @@ import DeadlineGoalsPage from "./pages/DeadlineGoalsPage";
 import "./index.css";
 import "./meridian.css";
 
-type Tab = "home" | "daily" | "dsa" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
+type Tab = "home" | "daily" | "dsa" | "sql" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -45,6 +46,7 @@ export default function App() {
       case "daily": return <DailyPage />;
       case "nine-month": return <NineMonthPlanPage />;
       case "dsa": return <DsaPage />;
+      case "sql": return <SqlPage />;
       case "biweekly": return <BiweeklyPage />;
       case "system": return <SystemPage />;
       case "timer": return <Dashboard />;

@@ -73,54 +73,32 @@ export default function LifeCalendarPage() {
   };
 
   const birth = parseLocalDate(birthdate);
-  const birthYear = birth.getFullYear();
-  const birthWeek = getCalendarWeek(birth);
-  
   const today = new Date();
-  const currentYear = today.getFullYear();
-  const currentWeek = getCalendarWeek(today);
 
-  let weeksLived = 0;
-  for (let y = 0; y < 90; y++) {
-    const cy = birthYear + y;
-    if (cy < currentYear) {
-      if (cy === birthYear) {
-        weeksLived += (52 - birthWeek);
-      } else {
-        weeksLived += 52;
-      }
-    } else if (cy === currentYear) {
-      if (cy === birthYear) {
-        weeksLived += Math.max(0, currentWeek - birthWeek + 1);
-      } else {
-        weeksLived += (currentWeek + 1);
-      }
-    }
-  }
+  // Calculate total weeks lived from raw ms difference (most accurate)
+  const msPerWeek = 1000 * 60 * 60 * 24 * 7;
+  const msSinceBirth = today.getTime() - birth.getTime();
+  const totalWeeksLived = Math.floor(Math.max(0, msSinceBirth) / msPerWeek);
 
-  let currentAge = currentYear - birthYear;
-  if (currentWeek < birthWeek) {
-    currentAge--;
-  }
-  let weeksSinceBirthday = currentWeek - birthWeek;
-  if (weeksSinceBirthday < 0) {
-    weeksSinceBirthday += 52;
-  }
+  // In the grid: row = yearIdx (0-indexed year of life), col = week within that year
+  const currentAgeYearIdx = Math.floor(totalWeeksLived / 52);
+  const currentAgeWeekIdx = totalWeeksLived % 52;
+
+  // Displayed stats
+  const currentAge = currentAgeYearIdx;
+  const weeksSinceBirthday = currentAgeWeekIdx;
+  const weeksLived = totalWeeksLived;
+
+  // For click handler: compute calendar date of a given grid cell
+  const birthYear = birth.getFullYear();
 
   const isLivedCell = (yearIdx: number, weekIdx: number) => {
-    const cy = birthYear + yearIdx;
-    if (cy < birthYear) return false;
-    if (cy === birthYear && weekIdx < birthWeek) return false;
-    
-    if (cy < currentYear) return true;
-    if (cy === currentYear && weekIdx <= currentWeek) return true;
-    
-    return false;
+    const cellWeekNumber = yearIdx * 52 + weekIdx;
+    return cellWeekNumber < totalWeeksLived;
   };
 
   const isCurrentCell = (yearIdx: number, weekIdx: number) => {
-    const cy = birthYear + yearIdx;
-    return cy === currentYear && weekIdx === currentWeek;
+    return yearIdx === currentAgeYearIdx && weekIdx === currentAgeWeekIdx;
   };
 
   // Click a week block — compute 7 actual calendar dates

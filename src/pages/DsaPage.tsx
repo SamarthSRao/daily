@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import dsaDataImport from "../data/dsa_v2.json";
 const dsaData = dsaDataImport as any as Level[];
 import { 
-  Binary, 
   Search, 
   CheckCircle2, 
   Circle, 

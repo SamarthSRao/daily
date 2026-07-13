@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
+import MainPage from "./pages/MainPage";
 import HomeDashboard from "./pages/HomeDashboard";
 import DailyPage from "./pages/DailyPage";
 import DsaPage from "./pages/DsaPage";
@@ -17,7 +18,7 @@ import DeadlineGoalsPage from "./pages/DeadlineGoalsPage";
 import "./index.css";
 import "./meridian.css";
 
-type Tab = "home" | "daily" | "dsa" | "sql" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
+type Tab = "home" | "second-dashboard" | "daily" | "dsa" | "sql" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -42,7 +43,8 @@ export default function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "home": return <HomeDashboard />;
+      case "home": return <MainPage />;
+      case "second-dashboard": return <HomeDashboard />;
       case "daily": return <DailyPage />;
       case "nine-month": return <NineMonthPlanPage />;
       case "dsa": return <DsaPage />;
@@ -56,7 +58,7 @@ export default function App() {
       case "panic-monster": return <PanicMonsterPage />;
       case "prerequisites": return <PrerequisitesPage />;
       case "deadline-goals": return <DeadlineGoalsPage />;
-      default: return <HomeDashboard />;
+      default: return <MainPage />;
     }
   };
 

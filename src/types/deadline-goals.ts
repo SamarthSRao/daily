@@ -1,10 +1,9 @@
-type DeadlineGoalStatus = 'pending' | 'in-progress' | 'completed';
+export type DeadlineGoalStatus = 'pending' | 'in-progress' | 'completed';
 
-
-interface DeadlineGoal {
+export interface DeadlineGoal {
     id: string;
     title: string;
-    status: TaskStatus;
+    status: DeadlineGoalStatus;
     comments: TaskComment[];
 
     assignedTo?: string;

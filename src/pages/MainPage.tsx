@@ -132,10 +132,10 @@ export default function MainPage() {
   const getHeatmapColor = (dateStr: string) => {
     const dayData = heatmapData[dateStr] || {};
     const count = Object.values(dayData).filter(Boolean).length;
-    if (count === 0) return "rgba(255, 255, 255, 0.05)"; // empty/no streak
+    if (count === 0) return "rgba(0, 0, 0, 0.1)"; // empty/no streak (visible on light background)
     if (count === TOPICS.length) return "#10b981"; // full green
     // Gradient based on how many done
-    const intensity = 0.2 + (count / TOPICS.length) * 0.6;
+    const intensity = 0.3 + (count / TOPICS.length) * 0.7;
     return `rgba(16, 185, 129, ${intensity})`;
   };
 
@@ -176,20 +176,20 @@ export default function MainPage() {
       </div>
 
       {/* Heatmap Section */}
-      <div style={{ background: "var(--meridian-bg-elevated)", padding: "30px", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ background: "var(--meridian-bg-elevated)", padding: "30px", borderRadius: "16px", border: "1px solid var(--text-muted, rgba(0,0,0,0.1))" }}>
         <h2 style={{ marginBottom: "20px", fontSize: "1.2rem", color: "var(--text-primary)", fontFamily: "var(--meridian-font-mono)", letterSpacing: "1px", textTransform: "uppercase" }}>
           Daily Interview Streak
         </h2>
         
         <div style={{ 
           display: "grid", 
-          gridTemplateColumns: "repeat(52, 1fr)", 
+          gridTemplateColumns: "repeat(52, 16px)", 
+          gridTemplateRows: "repeat(7, 16px)",
           gridAutoFlow: "column",
-          gridTemplateRows: "repeat(7, 1fr)",
           gap: "6px",
           width: "100%",
           overflowX: "auto",
-          paddingBottom: "10px"
+          paddingBottom: "20px"
         }}>
           {heatmapDays.map((dateStr) => (
             <div
@@ -215,21 +215,21 @@ export default function MainPage() {
       {selectedDate && (
         <div style={{
           position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-          background: "rgba(0,0,0,0.8)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000
+          background: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000
         }}>
           <div style={{
-            background: "var(--meridian-bg)", padding: "30px", borderRadius: "16px", width: "400px", border: "1px solid rgba(255,255,255,0.1)", zIndex: 1001
+            background: "var(--meridian-bg)", padding: "30px", borderRadius: "16px", width: "400px", border: "1px solid var(--text-muted, rgba(0,0,0,0.1))", zIndex: 1001, color: "var(--text-primary)"
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
               <h2 style={{ fontFamily: "var(--meridian-font-mono)", fontSize: "1.2rem", margin: 0 }}>Interviewed on {selectedDate}?</h2>
-              <button onClick={() => setSelectedDate(null)} style={{ background: "transparent", border: "none", color: "white", cursor: "pointer", fontSize: "1.5rem", lineHeight: 1 }}>×</button>
+              <button onClick={() => setSelectedDate(null)} style={{ background: "transparent", border: "none", color: "var(--text-primary)", cursor: "pointer", fontSize: "1.5rem", lineHeight: 1 }}>×</button>
             </div>
             
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {TOPICS.map((topic) => {
                 const isChecked = heatmapData[selectedDate]?.[topic] || false;
                 return (
-                  <label key={topic} style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer", padding: "10px", background: "rgba(255,255,255,0.02)", borderRadius: "8px" }}>
+                  <label key={topic} style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer", padding: "10px", background: "var(--meridian-bg-elevated, rgba(0,0,0,0.02))", borderRadius: "8px" }}>
                     <input 
                       type="checkbox" 
                       checked={isChecked}

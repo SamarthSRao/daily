@@ -6,7 +6,8 @@ export default function Sidebar({ activeTab, onTabSelect }: any) {
       <div className="meridian-sidebar-section">
 
         <h4 className="meridian-sidebar-header">OVERVIEW</h4>
-        <NavItem id="home" label="Dashboard" activeTab={activeTab} onTabSelect={onTabSelect} icon={Grid} />
+        <NavItem id="home" label="Main Base" activeTab={activeTab} onTabSelect={onTabSelect} icon={Grid} />
+        <NavItem id="second-dashboard" label="Secondary Dashboard" activeTab={activeTab} onTabSelect={onTabSelect} icon={Activity} />
         <NavItem id="deadline-goals" label="Deadline Goals" activeTab={activeTab} onTabSelect={onTabSelect} icon={CheckCircle} />
         <NavItem id="timer" label="Timers" activeTab={activeTab} onTabSelect={onTabSelect} icon={Sun} badge="Active" />
       </div>

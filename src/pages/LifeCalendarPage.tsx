@@ -30,12 +30,7 @@ const parseLocalDate = (dateStr: string) => {
   return new Date(year, month - 1, day);
 };
 
-const getCalendarWeek = (date: Date) => {
-  const jan1 = new Date(date.getFullYear(), 0, 1);
-  const diffMs = date.getTime() - jan1.getTime();
-  const week = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7));
-  return Math.min(week, 51);
-};
+
 
 export default function LifeCalendarPage() {
   const [birthdate, setBirthdate] = useState("1998-05-20");

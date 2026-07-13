@@ -176,8 +176,8 @@ export default function MainPage() {
       </div>
 
       {/* Heatmap Section */}
-      <div style={{ background: "var(--meridian-bg-elevated)", padding: "30px", borderRadius: "16px", border: "1px solid var(--text-muted, rgba(0,0,0,0.1))" }}>
-        <h2 style={{ marginBottom: "20px", fontSize: "1.2rem", color: "var(--text-primary)", fontFamily: "var(--meridian-font-mono)", letterSpacing: "1px", textTransform: "uppercase" }}>
+      <div style={{ background: "var(--meridian-bg-elevated)", padding: "20px", borderRadius: "16px", border: "1px solid var(--text-muted, rgba(0,0,0,0.1))", boxSizing: "border-box" }}>
+        <h2 style={{ marginBottom: "16px", fontSize: "1.2rem", color: "var(--text-primary)", fontFamily: "var(--meridian-font-mono)", letterSpacing: "1px", textTransform: "uppercase" }}>
           Daily Interview Streak
         </h2>
         
@@ -189,7 +189,8 @@ export default function MainPage() {
           gap: "6px",
           width: "100%",
           overflowX: "auto",
-          paddingBottom: "20px"
+          paddingBottom: "16px",
+          WebkitOverflowScrolling: "touch"
         }}>
           {heatmapDays.map((dateStr) => (
             <div
@@ -215,10 +216,10 @@ export default function MainPage() {
       {selectedDate && (
         <div style={{
           position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-          background: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000
+          background: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000, padding: "16px", boxSizing: "border-box"
         }}>
           <div style={{
-            background: "var(--meridian-bg)", padding: "30px", borderRadius: "16px", width: "400px", border: "1px solid var(--text-muted, rgba(0,0,0,0.1))", zIndex: 1001, color: "var(--text-primary)"
+            background: "var(--meridian-bg)", padding: "24px", borderRadius: "16px", width: "100%", maxWidth: "400px", border: "1px solid var(--text-muted, rgba(0,0,0,0.1))", zIndex: 1001, color: "var(--text-primary)", boxSizing: "border-box"
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
               <h2 style={{ fontFamily: "var(--meridian-font-mono)", fontSize: "1.2rem", margin: 0 }}>Interviewed on {selectedDate}?</h2>
@@ -234,7 +235,7 @@ export default function MainPage() {
                       type="checkbox" 
                       checked={isChecked}
                       onChange={() => handleTopicToggle(topic)}
-                      style={{ width: "18px", height: "18px", accentColor: "#10b981" }}
+                      style={{ width: "18px", height: "18px", accentColor: "#10b981", flexShrink: 0 }}
                     />
                     <span style={{ textTransform: "capitalize", fontSize: "1.1rem" }}>{topic}</span>
                   </label>

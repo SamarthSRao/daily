@@ -563,6 +563,30 @@
         ],
         "lc": "excel-sheet-column-title",
         "cluster": "General"
+      },
+      {
+        "id": "50",
+        "title": "CSV Header & Field Validator",
+        "diff": "E",
+        "pattern": "String parsing & rules",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation",
+        "note": "Defensive string splitting, null checks, non-empty header constraints, and clear field validation over evolving CSV requirements."
+      },
+      {
+        "id": "51",
+        "title": "Multiply Strings",
+        "diff": "M",
+        "pattern": "String / array math",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "multiply-strings",
+        "cluster": "General",
+        "note": "Big-integer multiplication simulation via character array manipulation without converting to native integers."
       }
     ]
   },
@@ -611,7 +635,10 @@
         "title": "Is Graph Bipartite?",
         "diff": "M",
         "pattern": "Bipartite coloring",
-        "co": [],
+        "co": [
+          "razorpay",
+          "adobe"
+        ],
         "lc": "is-graph-bipartite",
         "cluster": "Graphs"
       },
@@ -631,7 +658,10 @@
         "title": "Snake and Ladder",
         "diff": "M",
         "pattern": "State transition BFS",
-        "co": [],
+        "co": [
+          "uber",
+          "doordash"
+        ],
         "lc": "snakes-and-ladders",
         "cluster": "Graphs"
       },
@@ -750,7 +780,8 @@
         "pattern": "Columnar logic",
         "co": [
           "databricks",
-          "stripe"
+          "stripe",
+          "razorpay"
         ],
         "lc": "binary-tree-vertical-order-traversal",
         "cluster": "Trees"
@@ -830,7 +861,9 @@
         "diff": "M",
         "pattern": "DFS LCA",
         "co": [
-          "stripe"
+          "stripe",
+          "adobe",
+          "databricks"
         ],
         "lc": "lowest-common-ancestor-of-a-binary-tree",
         "cluster": "Trees"
@@ -1070,7 +1103,9 @@
         "title": "Insert Interval",
         "diff": "M",
         "pattern": "Dynamic interval update",
-        "co": [],
+        "co": [
+          "doordash"
+        ],
         "lc": "insert-interval",
         "cluster": "Design & Heaps"
       },
@@ -1178,7 +1213,10 @@
         "title": "Search in Rotated Sorted Array",
         "diff": "M",
         "pattern": "Logarithmic search",
-        "co": [],
+        "co": [
+          "razorpay",
+          "databricks"
+        ],
         "lc": "search-in-rotated-sorted-array",
         "cluster": "Binary Search"
       },
@@ -1310,7 +1348,8 @@
         "diff": "M",
         "pattern": "Interval retrieval (prefix)",
         "co": [
-          "stripe"
+          "stripe",
+          "databricks"
         ],
         "lc": "subarray-sum-equals-k",
         "cluster": "Sliding Window & Strings"
@@ -1522,7 +1561,8 @@
         "pattern": "Sliding window + hashing",
         "co": [
           "razorpay",
-          "uber"
+          "uber",
+          "stripe"
         ],
         "lc": "minimum-window-substring",
         "cluster": "Sliding Window & Strings"
@@ -1757,6 +1797,90 @@
         ],
         "lc": "median-of-two-sorted-arrays",
         "cluster": "Fundamentals (Rakuten & Gaps)"
+      },
+      {
+        "id": "360",
+        "title": "Shipping Rate Lookup Engine",
+        "diff": "M",
+        "pattern": "Directed graph search",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation",
+        "note": "Model text shipping rules into a directed graph and compute single-hop origin→destination rates from structured CSV/JSON inputs."
+      },
+      {
+        "id": "361",
+        "title": "Request Replaying & Dedup",
+        "diff": "M",
+        "pattern": "JSON parsing & hashing",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation",
+        "note": "Compare structured payload equality, replay HTTP requests, and consolidate duplicates so the same event is not processed twice."
+      },
+      {
+        "id": "362",
+        "title": "Two Best Non-Overlapping Events",
+        "diff": "M",
+        "pattern": "DP + binary search",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "two-best-non-overlapping-events",
+        "cluster": "Design & Heaps",
+        "note": "Interval selection maximizing value under non-overlap constraints using sort + binary search + DP."
+      },
+      {
+        "id": "363",
+        "title": "Delivery Cost Tracker",
+        "diff": "M",
+        "pattern": "Object-oriented domain",
+        "co": [
+          "rippling"
+        ],
+        "lc": null,
+        "cluster": "Rippling Backend Simulation",
+        "note": "Build a live delivery cost-tracking microservice: parse log events, aggregate costs, and keep clean domain boundaries."
+      },
+      {
+        "id": "364",
+        "title": "Most Beautiful Item for Each Query",
+        "diff": "M",
+        "pattern": "Sorting + binary search",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "most-beautiful-item-for-each-query",
+        "cluster": "Binary Search",
+        "note": "Bounded price querying via sorted arrays and prefix-max + binary search."
+      },
+      {
+        "id": "365",
+        "title": "Thread-Safe Rating Service",
+        "diff": "M",
+        "pattern": "State pattern & thread safety",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding",
+        "note": "Write thread-safe business classes with modular boundaries, HTTP/CLI endpoints, and custom exception hierarchies."
+      },
+      {
+        "id": "366",
+        "title": "Round-Robin Load Balancer",
+        "diff": "M",
+        "pattern": "Atomic counters & HTTP",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding",
+        "note": "Expose HTTP endpoints, route requests evenly with atomic counters, and handle server health without tight coupling."
       }
     ]
   },
@@ -1781,7 +1905,8 @@
         "pattern": "Topological sort (Kahn's)",
         "co": [
           "uber",
-          "stripe"
+          "stripe",
+          "razorpay"
         ],
         "lc": "alien-dictionary",
         "cluster": "Advanced Graphs"
@@ -1804,7 +1929,9 @@
         "diff": "M",
         "pattern": "Dependency pipeline",
         "co": [
-          "databricks"
+          "databricks",
+          "razorpay",
+          "uber"
         ],
         "lc": "course-schedule-ii",
         "cluster": "Advanced Graphs"
@@ -1815,7 +1942,8 @@
         "diff": "H",
         "pattern": "State-space BFS",
         "co": [
-          "uber"
+          "uber",
+          "razorpay"
         ],
         "lc": "word-ladder",
         "cluster": "Advanced Graphs"
@@ -1826,7 +1954,8 @@
         "diff": "M",
         "pattern": "Dijkstra path",
         "co": [
-          "uber"
+          "uber",
+          "databricks"
         ],
         "lc": "network-delay-time",
         "cluster": "Advanced Graphs"
@@ -1836,7 +1965,9 @@
         "title": "Critical Connections in a Network",
         "diff": "H",
         "pattern": "Tarjan's bridge detection",
-        "co": [],
+        "co": [
+          "databricks"
+        ],
         "lc": "critical-connections-in-a-network",
         "cluster": "Advanced Graphs"
       },
@@ -2094,7 +2225,8 @@
         "diff": "D",
         "pattern": "Thread-safe balancing",
         "co": [
-          "doordash"
+          "doordash",
+          "razorpay"
         ],
         "lc": null,
         "cluster": "Advanced Graphs"
@@ -2123,7 +2255,8 @@
         "diff": "E",
         "pattern": "Span calculation",
         "co": [
-          "doordash"
+          "doordash",
+          "adobe"
         ],
         "lc": "diameter-of-binary-tree",
         "cluster": "Advanced Trees"
@@ -2276,7 +2409,8 @@
           "databricks",
           "stripe",
           "rakuten",
-          "planetscale"
+          "planetscale",
+          "razorpay"
         ],
         "lc": "implement-trie-prefix-tree",
         "cluster": "Trie"
@@ -2416,7 +2550,8 @@
         "pattern": "Hot data eviction",
         "co": [
           "planetscale",
-          "stripe"
+          "stripe",
+          "razorpay"
         ],
         "lc": "lfu-cache",
         "cluster": "Heap / Priority Queue (Advanced)"
@@ -2426,7 +2561,10 @@
         "title": "Median from Data Stream",
         "diff": "H",
         "pattern": "Dual heap balancing",
-        "co": [],
+        "co": [
+          "databricks",
+          "uber"
+        ],
         "lc": "find-median-from-data-stream",
         "cluster": "Heap / Priority Queue (Advanced)"
       },
@@ -2436,7 +2574,8 @@
         "diff": "H",
         "pattern": "Distributed shards",
         "co": [
-          "stripe"
+          "stripe",
+          "razorpay"
         ],
         "lc": "merge-k-sorted-lists",
         "cluster": "Heap / Priority Queue (Advanced)"
@@ -2448,7 +2587,8 @@
         "pattern": "Peak detection (mono queue)",
         "co": [
           "razorpay",
-          "databricks"
+          "databricks",
+          "uber"
         ],
         "lc": "sliding-window-maximum",
         "cluster": "Heap / Priority Queue (Advanced)"
@@ -2801,7 +2941,8 @@
         "diff": "H",
         "pattern": "Area optimisation",
         "co": [
-          "doordash"
+          "doordash",
+          "razorpay"
         ],
         "lc": "largest-rectangle-in-histogram",
         "cluster": "Monotonic Stack & Array Tricks"
@@ -3251,6 +3392,188 @@
         "co": [],
         "lc": "power-of-two",
         "cluster": "Math & Bit Manipulation"
+      },
+      {
+        "id": "380",
+        "title": "Open-Source Repo Bug Squash",
+        "diff": "H",
+        "pattern": "IDE debugging & tracing",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation",
+        "note": "Navigate a large unfamiliar repo (failing tests + issue reports), isolate the regression with a debugger, and ship a modular fix plus regression tests."
+      },
+      {
+        "id": "381",
+        "title": "Shipping Route with Intermediate Hubs",
+        "diff": "H",
+        "pattern": "Multi-hop graph search",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation",
+        "note": "Find optimal multi-step shipping/currency paths through directed weighted networks with intermediate transit hubs."
+      },
+      {
+        "id": "382",
+        "title": "CSV Circular Dependency Detection",
+        "diff": "H",
+        "pattern": "Directed graph DFS cycle",
+        "co": [
+          "stripe"
+        ],
+        "lc": null,
+        "cluster": "Stripe Engineering Simulation",
+        "note": "Detect cycles in user-defined schema/field dependencies using DFS color states over a directed graph built from CSV columns."
+      },
+      {
+        "id": "383",
+        "title": "Shortest Path in Grid with Obstacles Elimination",
+        "diff": "H",
+        "pattern": "State-based BFS",
+        "co": [
+          "doordash"
+        ],
+        "lc": "shortest-path-in-a-grid-with-obstacles-elimination",
+        "cluster": "Advanced Graphs",
+        "note": "Pathfinding with a k-obstacle elimination budget — BFS over (r, c, remaining) state."
+      },
+      {
+        "id": "384",
+        "title": "Cherry Pickup",
+        "diff": "H",
+        "pattern": "Grid graph / 3D DP",
+        "co": [
+          "databricks",
+          "doordash"
+        ],
+        "lc": "cherry-pickup",
+        "cluster": "Dynamic Programming",
+        "note": "Simultaneous dual-path grid collection optimized with 3D DP instead of two independent greedy walks."
+      },
+      {
+        "id": "385",
+        "title": "Constrained Subsequence Sum",
+        "diff": "H",
+        "pattern": "Monotonic deque DP",
+        "co": [
+          "uber",
+          "doordash"
+        ],
+        "lc": "constrained-subsequence-sum",
+        "cluster": "Dynamic Programming",
+        "note": "DP transitions of the form max(dp[j]) + nums[i] accelerated by a monotonic max deque over a sliding window."
+      },
+      {
+        "id": "386",
+        "title": "Wildcard Matching",
+        "diff": "H",
+        "pattern": "2D string DP",
+        "co": [
+          "razorpay"
+        ],
+        "lc": "wildcard-matching",
+        "cluster": "Dynamic Programming",
+        "note": "DP matrix matching over wildcard characters * and ? with empty-prefix base cases."
+      },
+      {
+        "id": "387",
+        "title": "Minimum Score String Partition",
+        "diff": "H",
+        "pattern": "String / greedy / DP",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Dynamic Programming",
+        "note": "Partition by character occurrence bounds to minimize the sum of squared partition lengths."
+      },
+      {
+        "id": "388",
+        "title": "2D Constrained Knapsack (Chip Packets)",
+        "diff": "H",
+        "pattern": "Multi-constraint DP",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Dynamic Programming",
+        "note": "Bounded multi-variable DP: maximize one objective (e.g. happiness) under a second constraint (weight/capacity)."
+      },
+      {
+        "id": "389",
+        "title": "Minimum Cost to Make Arrays Unequal",
+        "diff": "H",
+        "pattern": "Array / greedy swaps",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Dynamic Programming",
+        "note": "Resolve index collisions so paired arrays differ, minimizing total element swap cost."
+      },
+      {
+        "id": "390",
+        "title": "Payment Retry System LLD",
+        "diff": "H",
+        "pattern": "Fault-tolerant OOP design",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay Machine Coding",
+        "note": "Backoff + jitter strategy pattern, payment state transitions, and circuit breakers around downstream outages."
+      },
+      {
+        "id": "391",
+        "title": "Flight Booking System LLD",
+        "diff": "H",
+        "pattern": "Concurrent inventory OOD",
+        "co": [
+          "adobe"
+        ],
+        "lc": null,
+        "cluster": "Adobe Machine Coding",
+        "note": "Seat inventory with optimistic/pessimistic locks, atomic fare updates, and clean reservation state transitions."
+      },
+      {
+        "id": "392",
+        "title": "CricHeroes Scorekeeper LLD",
+        "diff": "H",
+        "pattern": "Atomic thread safety",
+        "co": [
+          "adobe"
+        ],
+        "lc": null,
+        "cluster": "Adobe Machine Coding",
+        "note": "Concurrent ball-by-ball score updates with atomic parameter changes and encapsulated match state."
+      },
+      {
+        "id": "393",
+        "title": "Music Analytics Engine",
+        "diff": "H",
+        "pattern": "Sliding window sets",
+        "co": [
+          "rippling"
+        ],
+        "lc": null,
+        "cluster": "Rippling Backend Simulation",
+        "note": "Unique listeners over high-throughput sliding time windows — stream parsing, window eviction, and exact distinct counts."
+      },
+      {
+        "id": "394",
+        "title": "Expense Rules Processing Engine",
+        "diff": "H",
+        "pattern": "Strategy pattern & OCP",
+        "co": [
+          "rippling"
+        ],
+        "lc": null,
+        "cluster": "Rippling Backend Simulation",
+        "note": "Register new expense/policy rules without editing core code — Strategy + Open-Closed Principle on a validation pipeline."
       }
     ]
   },
@@ -3413,6 +3736,92 @@
         ],
         "lc": null,
         "cluster": "General"
+      },
+      {
+        "id": "415",
+        "title": "Scalable Async Notification Engine",
+        "diff": "D",
+        "pattern": "Queue routing / DLQ / Kafka",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay HLD",
+        "note": "Multi-channel delivery (email/SMS/push) with per-channel rate limiters, priority queues, and dead-letter handling."
+      },
+      {
+        "id": "416",
+        "title": "Self-Service Database Provisioning Platform",
+        "diff": "D",
+        "pattern": "Async orchestration pipeline",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay HLD",
+        "note": "On-demand Cassandra/MySQL instance creation across environments with async job orchestration and status APIs."
+      },
+      {
+        "id": "417",
+        "title": "Distributed Task Scheduler",
+        "diff": "D",
+        "pattern": "Time-wheel / partitioned storage",
+        "co": [
+          "razorpay",
+          "doordash"
+        ],
+        "lc": null,
+        "cluster": "Razorpay HLD",
+        "note": "Schedule delayed/recurring tasks across a cluster of timer nodes with partition ownership and at-least-once dispatch."
+      },
+      {
+        "id": "418",
+        "title": "Real-Time Fraud & Anomaly Engine",
+        "diff": "D",
+        "pattern": "Streaming analytics (Kafka/Flink)",
+        "co": [
+          "razorpay"
+        ],
+        "lc": null,
+        "cluster": "Razorpay HLD",
+        "note": "Low-latency transaction anomaly detection using sliding windows over a Kafka/Flink pipeline."
+      },
+      {
+        "id": "419",
+        "title": "Multi-Tenant News Aggregator",
+        "diff": "D",
+        "pattern": "Ingestion workflows & ranking",
+        "co": [
+          "rippling"
+        ],
+        "lc": null,
+        "cluster": "Rippling System Design",
+        "note": "High-throughput feed ingestion, ranking, and localized caching for a Google News-style aggregator."
+      },
+      {
+        "id": "420",
+        "title": "Distributed Web Crawler & Ranking Pipeline",
+        "diff": "D",
+        "pattern": "Frontier queues & DNS cache",
+        "co": [
+          "adobe",
+          "rippling"
+        ],
+        "lc": null,
+        "cluster": "Rippling System Design",
+        "note": "High-throughput crawling with politeness control, DNS caching, frontier queues, and a downstream ranking pipeline."
+      },
+      {
+        "id": "421",
+        "title": "Horizontally Scalable Chat Platform",
+        "diff": "D",
+        "pattern": "Stateful WebSockets & pub/sub",
+        "co": [
+          "planetscale"
+        ],
+        "lc": null,
+        "cluster": "PlanetScale Collaborative",
+        "note": "Persistent socket connections, message delivery logs, and horizontal fan-out without losing ordering per conversation."
       }
     ]
   }

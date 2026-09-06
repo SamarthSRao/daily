@@ -1,4 +1,4 @@
-import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database, Calendar, Flame, BookOpen, RefreshCw, CheckCircle } from "lucide-react";
+import { Grid, Activity, FileText, Users, MessageSquare, Settings, Sun, Database, Calendar, Flame, BookOpen, RefreshCw, CheckCircle, Code2 } from "lucide-react";
 
 export default function Sidebar({ activeTab, onTabSelect }: any) {
   return (
@@ -29,6 +29,7 @@ export default function Sidebar({ activeTab, onTabSelect }: any) {
       <div className="meridian-sidebar-section">
         <h4 className="meridian-sidebar-header">PRACTICE</h4>
         <NavItem id="dsa" label="DSA Tracker" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} />
+        <NavItem id="machine-coding" label="Machine Coding" activeTab={activeTab} onTabSelect={onTabSelect} icon={Code2} badge="440" />
         <NavItem id="sql" label="SQL Tracker" activeTab={activeTab} onTabSelect={onTabSelect} icon={Database} />
         <NavItem id="questions" label="Knowledge Bank" activeTab={activeTab} onTabSelect={onTabSelect} icon={MessageSquare} badge="4k+" />
         <NavItem id="weak-link" label="Weakest Link" activeTab={activeTab} onTabSelect={onTabSelect} icon={RefreshCw} />

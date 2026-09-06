@@ -1,0 +1,4563 @@
+{
+  "companies": [
+    {
+      "id": "uber",
+      "name": "Uber",
+      "focus": "Geospatial dispatch, event streaming, and real-time systems. High-concurrency ingestion, spatial partitioning, dynamic pricing, and low-latency matching."
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "focus": "Financial ledgers, distributed idempotency, and developer infrastructure. Maintainable APIs, defensive types, and structured error propagation."
+    },
+    {
+      "id": "razorpay",
+      "name": "Razorpay",
+      "focus": "Payment gateways, webhook orchestration, and high-integrity ledgers. UPI pipelines, nodal settlement, integer money, concurrent merchant debits."
+    },
+    {
+      "id": "flipkart",
+      "name": "Flipkart",
+      "focus": "India-scale e-commerce, in-memory domain engines, and modular OOP. SOLID, Strategy/Factory/Observer, working driver programs without external DBs."
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "focus": "Unified lakehouse engines, Spark internals, and runtime metrics. WAL, CIDR tries, nested aggregation, columnar buffers, Delta ACID."
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "focus": "Cloud warehouses, micro-partition pruning, and Snowsight tooling. Decoupled compute/storage, predicate pushdown, accessible data grids."
+    },
+    {
+      "id": "pierre",
+      "name": "The Pierre Computer Company",
+      "focus": "Content-addressed code storage, path-first file trees, and high-performance diff rendering. Git objects, 3PC quorum, virtual hierarchies."
+    },
+    {
+      "id": "tml",
+      "name": "Thinking Machines Lab",
+      "focus": "Distributed training infrastructure, RL abstractions, and Tinker. Async client futures, LoRA memory, rollout buffers, GPU worker pools."
+    }
+  ],
+  "items": [
+    {
+      "id": "UB-MC-01",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Real-Time Trip Status Tracker",
+      "stack": "React / TypeScript",
+      "level": "Basic",
+      "mechanics": "State machine transition table; WebSocket event binding; decoupled view rendering",
+      "variant": "Uber Driver/Rider Web Client Live Coding"
+    },
+    {
+      "id": "UB-MC-02",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Fare Estimate Comparison Slider",
+      "stack": "React / CSS",
+      "level": "Basic",
+      "mechanics": "Controlled inputs; memoized price multiplier calculation; accessible radio-group",
+      "variant": "Uber Rider Web Booking Flow Screen"
+    },
+    {
+      "id": "UB-MC-03",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Driver Document Upload Stepper",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Multi-step state persistence; mime-type client validation; optimistic upload progress",
+      "variant": "Uber Driver Onboarding Frontend Loop"
+    },
+    {
+      "id": "UB-MC-04",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Vehicle Type Selector Carousel",
+      "stack": "React / DOM",
+      "level": "Basic",
+      "mechanics": "Keyboard ARIA accessibility; touch swipe calculation; scroll snap alignment",
+      "variant": "Uber Eats / Rides Product Selection"
+    },
+    {
+      "id": "UB-MC-05",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Real-Time ETA Countdown Clock",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Drift-corrected setInterval; background tab synchronization via requestAnimationFrame",
+      "variant": "Trip Dispatch Active HUD"
+    },
+    {
+      "id": "UB-MC-06",
+      "kind": "mc",
+      "company": "uber",
+      "title": "In-Memory Sliding Window Rate Limiter",
+      "stack": "Go / Concurrency",
+      "level": "Basic",
+      "mechanics": "Mutex-protected ring buffer; timestamp eviction; atomic request counter",
+      "variant": "Uber L4 Core Services Machine Coding"
+    },
+    {
+      "id": "UB-MC-07",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Thread-Safe In-Memory Key-Value Store",
+      "stack": "Go / Mutexes",
+      "level": "Basic",
+      "mechanics": "RWMutex read/write splitting; TTL background cleaner goroutine; race detector",
+      "variant": "Uber Gateway Platform Screening"
+    },
+    {
+      "id": "UB-MC-08",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Trip Cancellation Reason Selector",
+      "stack": "React / Forms",
+      "level": "Basic",
+      "mechanics": "Dynamic conditional textarea; debounced submission payload; dirty state check",
+      "variant": "Rider Post-Booking Cancellation Flow"
+    },
+    {
+      "id": "UB-MC-09",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Driver Earnings Dynamic Bar Chart",
+      "stack": "React / SVG",
+      "level": "Basic",
+      "mechanics": "Pure SVG coordinate mapping; linear scaling functions; hover tooltip portals",
+      "variant": "Uber Driver Earnings Dashboard"
+    },
+    {
+      "id": "UB-MC-10",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Basic Pub-Sub Event Bus",
+      "stack": "TypeScript / Node",
+      "level": "Basic",
+      "mechanics": "Map-based subscriber registry; exception-isolated synchronous delivery; unsubscribe token",
+      "variant": "Uber Web Core Foundations Round"
+    },
+    {
+      "id": "UB-MC-11",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Geospatial Coordinate Interpolator",
+      "stack": "TypeScript / Canvas",
+      "level": "Medium",
+      "mechanics": "Linear coordinate interpolation (Lerp); bearing angle computation; requestAnimationFrame",
+      "variant": "Live Vehicle Marker Movement Loop"
+    },
+    {
+      "id": "UB-MC-12",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Dynamic Surge Heatmap Canvas",
+      "stack": "React / HTML5 Canvas",
+      "level": "Medium",
+      "mechanics": "2D spatial grid rendering; color ramp interpolation; off-screen canvas buffering",
+      "variant": "Uber Operations Heatmap Interface"
+    },
+    {
+      "id": "UB-MC-13",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Virtualized Driver Trip History List",
+      "stack": "React / Virtual DOM",
+      "level": "Medium",
+      "mechanics": "Fixed window element recycling; dynamic row offset; scroll event throttling",
+      "variant": "Driver Ledger Web Portal"
+    },
+    {
+      "id": "UB-MC-14",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Multi-Segment Route Polyline Editor",
+      "stack": "React / Leaflet",
+      "level": "Medium",
+      "mechanics": "Waypoint insertion/deletion; drag event debouncing; turn-by-turn re-indexing",
+      "variant": "Freight Route Planning Console"
+    },
+    {
+      "id": "UB-MC-15",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Autocomplete Address Search Box",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Request cancellation via AbortController; LRU query caching; key navigation",
+      "variant": "Location Search Bar CoderPad"
+    },
+    {
+      "id": "UB-MC-16",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Recurring Task Scheduler Daemon",
+      "stack": "Java / Concurrency",
+      "level": "Medium",
+      "mechanics": "PriorityBlockingQueue; worker thread pool; task execution re-enqueueing",
+      "variant": "Uber L4 Machine Coding Round"
+    },
+    {
+      "id": "UB-MC-17",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Driver Location Ingestion Buffer",
+      "stack": "Go / Channels",
+      "level": "Medium",
+      "mechanics": "Buffered channels; periodic batch flush worker; non-blocking drop policy",
+      "variant": "Location Pipeline Ingestion Node"
+    },
+    {
+      "id": "UB-MC-18",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Geospatial Radius Matcher (H3/Geohash)",
+      "stack": "Python / Math",
+      "level": "Medium",
+      "mechanics": "Spatial cell boundary matching; distance threshold filtering; sorted neighbor retrieval",
+      "variant": "Driver-Rider Pairing Engine"
+    },
+    {
+      "id": "UB-MC-19",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Token-Bucket Traffic Shaper",
+      "stack": "Go / Goroutines",
+      "level": "Medium",
+      "mechanics": "Continuous token replenishment via elapsed time; burst tolerance; atomic channel read",
+      "variant": "Edge Proxy Gateway Live Coding"
+    },
+    {
+      "id": "UB-MC-20",
+      "kind": "mc",
+      "company": "uber",
+      "title": "In-Memory Connection Manager",
+      "stack": "Node.js / WS",
+      "level": "Medium",
+      "mechanics": "Heartbeat ping-pong; stale connection sweeper; broadcast pub-sub registry",
+      "variant": "Push Notification WebSocket Gateway"
+    },
+    {
+      "id": "UB-MC-21",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Trip Lifecycle Event State Machine",
+      "stack": "Go / Interfaces",
+      "level": "Medium",
+      "mechanics": "State pattern transitions; atomic CAS status verification; illegal state guards",
+      "variant": "Trip Management Service"
+    },
+    {
+      "id": "UB-MC-22",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Concurrent Batch Request Aggregator",
+      "stack": "Go / Sync",
+      "level": "Medium",
+      "mechanics": "Sync.WaitGroup coordination; channel timeout multiplexing; partial success handling",
+      "variant": "Multi-Service Aggregator Engine"
+    },
+    {
+      "id": "UB-MC-23",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Priority Queue Delivery Matcher",
+      "stack": "Java / Generics",
+      "level": "Medium",
+      "mechanics": "Custom Comparator; dynamic surge priority weights; thread-safe polling",
+      "variant": "Uber Eats Dispatch Allocator"
+    },
+    {
+      "id": "UB-MC-24",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Dynamic Surge Multiplier Calculator",
+      "stack": "Python / OOP",
+      "level": "Medium",
+      "mechanics": "Moving supply-demand ratio; historical decay factor; bounding clamp",
+      "variant": "Surge Pricing Core Engine"
+    },
+    {
+      "id": "UB-MC-25",
+      "kind": "mc",
+      "company": "uber",
+      "title": "High-Frequency Telemetry Debouncer",
+      "stack": "TypeScript / RxJS",
+      "level": "Medium",
+      "mechanics": "Lossy sliding window debouncing; maximum emission latency cap; trailing event preservation",
+      "variant": "Telematics Ingestion Layer"
+    },
+    {
+      "id": "UB-MC-26",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Rider Splitting Split-Fare Calculator",
+      "stack": "React / Context",
+      "level": "Medium",
+      "mechanics": "Floating-point rounding guard; transaction delta distribution; participant status",
+      "variant": "Shared Ride Booking UI"
+    },
+    {
+      "id": "UB-MC-27",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Resilient Polling Hook with Backoff",
+      "stack": "React / Custom Hook",
+      "level": "Medium",
+      "mechanics": "Exponential backoff with jitter; window focus revalidation; aborted cleanup",
+      "variant": "Driver Dispatch Polling Client"
+    },
+    {
+      "id": "UB-MC-28",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Real-Time Chat Bubble Component",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Optimistic message injection; delivery state tracking; auto-scroll stick-to-bottom",
+      "variant": "In-App Rider-Driver Messenger"
+    },
+    {
+      "id": "UB-MC-29",
+      "kind": "mc",
+      "company": "uber",
+      "title": "In-Memory Distributed Lock Simulator",
+      "stack": "Go / Mutex",
+      "level": "Medium",
+      "mechanics": "Mutex lease expiration; periodic heartbeat extension; fence token generation",
+      "variant": "Distributed State Machine Mock"
+    },
+    {
+      "id": "UB-MC-30",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Circuit Breaker Middleware",
+      "stack": "Go / HTTP",
+      "level": "Medium",
+      "mechanics": "Trip state counter (Closed, Open, Half-Open); failure rate threshold; recovery probe",
+      "variant": "Acquirer Gateway Proxy"
+    },
+    {
+      "id": "UB-MC-31",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Real-Time Driver Supply Density Grid",
+      "stack": "React / Canvas",
+      "level": "Advanced",
+      "mechanics": "WebGL/2D context point rendering; spatial quadtree hover lookups; memory pooling",
+      "variant": "Operations Command Center"
+    },
+    {
+      "id": "UB-MC-32",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Dynamic Form Engine for Driver KYC",
+      "stack": "React / TS",
+      "level": "Advanced",
+      "mechanics": "Recursive JSON schema parser; asynchronous validation engine; field dependency graph",
+      "variant": "Global Regulatory Driver Onboarding"
+    },
+    {
+      "id": "UB-MC-33",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Fault-Tolerant Event Stream Pipeline",
+      "stack": "Go / Channels",
+      "level": "Advanced",
+      "mechanics": "Multi-worker fan-out/fan-in; graceful drain on SIGINT; dead-letter queue routing",
+      "variant": "Telemetry Event Pipe"
+    },
+    {
+      "id": "UB-MC-34",
+      "kind": "mc",
+      "company": "uber",
+      "title": "High-Concurrency Order Matcher",
+      "stack": "Java / Locks",
+      "level": "Advanced",
+      "mechanics": "ReentrantLock condition variables; bidirectional matching engine; lock-free CAS queues",
+      "variant": "Uber Freight Load Board"
+    },
+    {
+      "id": "UB-MC-35",
+      "kind": "mc",
+      "company": "uber",
+      "title": "Real-Time Route Deviation Detector",
+      "stack": "Python / Geometry",
+      "level": "Advanced",
+      "mechanics": "Cross-track error distance; threshold window moving average; alert trigger",
+      "variant": "Safety & Telematics Anomaly Engine"
+    },
+    {
+      "id": "UB-LLD-01",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Multi-Threaded Task & Ride Match Scheduler",
+      "entities": "RideRequest, DriverMatchQueue, SchedulePlan, ExecutionWorker",
+      "invariants": "Thread-safe priority polling; tasks must not starvation-lock; cancelation propagation",
+      "patterns": "Strategy Pattern, Worker Pool, Command Pattern"
+    },
+    {
+      "id": "UB-LLD-02",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Geospatial Index Quadtree Engine",
+      "entities": "Point, BoundingBox, QuadNode, SpatialIndex",
+      "invariants": "Max 100 objects per leaf before subdivision; atomic coordinate insertion; concurrent read-locks",
+      "patterns": "Composite Pattern, Visitor Pattern"
+    },
+    {
+      "id": "UB-LLD-03",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Real-Time Surge Pricing Engine",
+      "entities": "Zone, SupplyCounter, DemandCounter, SurgeStrategy",
+      "invariants": "Sliding time decay on historical demand; multiplier clamped between 1.0x and 5.0x",
+      "patterns": "Strategy Pattern, Observer Pattern"
+    },
+    {
+      "id": "UB-LLD-04",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Trip Lifecycle State Machine",
+      "entities": "Trip, TripEvent, State, TransitionGuard",
+      "invariants": "Progressive states (REQUESTED → MATCHED → ARRIVED → IN_PROGRESS → COMPLETED); atomic rollback",
+      "patterns": "State Pattern, Finite State Machine (FSM)"
+    },
+    {
+      "id": "UB-LLD-05",
+      "kind": "lld",
+      "company": "uber",
+      "title": "In-Memory Token Bucket Rate Limiter",
+      "entities": "Bucket, RateRule, TokenRefillStrategy",
+      "invariants": "Atomic CAS on token balance; zero thread blocking on rejection",
+      "patterns": "Decorator Pattern, Factory Pattern"
+    },
+    {
+      "id": "UB-LLD-06",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Driver Dispatch Allocator & Offers",
+      "entities": "DispatchSession, CandidateList, OfferTimeout, OfferStatus",
+      "invariants": "Exactly one active driver offer per trip; 15-second TTL per offer; sequential fallback",
+      "patterns": "Chain of Responsibility, State Pattern"
+    },
+    {
+      "id": "UB-LLD-07",
+      "kind": "lld",
+      "company": "uber",
+      "title": "In-App Chat & Notification Router",
+      "entities": "Session, Channel, Participant, MessagePayload",
+      "invariants": "FIFO message sequencing; delivery receipt reconciliation; decoupled push workers",
+      "patterns": "Observer Pattern, Mediator Pattern"
+    },
+    {
+      "id": "UB-LLD-08",
+      "kind": "lld",
+      "company": "uber",
+      "title": "In-Memory Vehicle Telematics Ring Buffer",
+      "entities": "TelemetryPoint, CircularBuffer, WindowAggregator",
+      "invariants": "Overwrite-oldest behavior without memory reallocation; lock-free read pointers",
+      "patterns": "Circular Buffer Pattern, Iterator Pattern"
+    },
+    {
+      "id": "UB-LLD-09",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Fare Computation & Split Engine",
+      "entities": "BaseFare, DistanceTier, DurationFactor, SplitLedger",
+      "invariants": "Decimal-safe currency calculations; multi-rider sum equals total fare minus discounts",
+      "patterns": "Builder Pattern, Strategy Pattern"
+    },
+    {
+      "id": "UB-LLD-10",
+      "kind": "lld",
+      "company": "uber",
+      "title": "Driver Document Verification Workflow",
+      "entities": "Document, VerifierRule, ValidationPipeline, ApprovalResult",
+      "invariants": "Halting on blocking validation failure; async callback handling; deterministic audit logs",
+      "patterns": "Pipeline Pattern, Chain of Responsibility"
+    },
+    {
+      "id": "UB-HLD-01",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Global Real-Time Ride Matching Architecture",
+      "scope": "Geospatial driver lookup, low-latency match dispatch, accept/reject orchestration",
+      "constraints": "1M active drivers, 100k requests/sec, matching latency P99 <1000ms",
+      "stack": "Google S2 / Uber H3, Apache Kafka, Redis Cluster, Envoy"
+    },
+    {
+      "id": "UB-HLD-02",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Real-Time Driver Location Ingestion Pipeline",
+      "scope": "Ingestion of driver GPS coordinates every 4 seconds; coordinate map-matching",
+      "constraints": "2.5M writes/sec; write latency <50ms; durable stream retention",
+      "stack": "Netty TCP Gateway, Apache Flink, Cassandra / ScyllaDB, Kafka"
+    },
+    {
+      "id": "UB-HLD-03",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Real-Time Dynamic Surge Pricing Platform",
+      "scope": "Continuous supply-demand aggregation per spatial cell; dynamic multiplier publication",
+      "constraints": "Sub-minute aggregation windows; eventual consistency bounded by 10 seconds",
+      "stack": "Flink sliding window streaming, H3 spatial grid indexing, Redis pub-sub"
+    },
+    {
+      "id": "UB-HLD-04",
+      "kind": "hld",
+      "company": "uber",
+      "title": "High-Availability Heatmap Generation Engine",
+      "scope": "Live driver density and demand intensity rendering for rider and driver apps",
+      "constraints": "Global delivery; client-side vector tile compression; maximum cache age 5s",
+      "stack": "Quadtree tile generator, Redis Geo, CDN edge caching"
+    },
+    {
+      "id": "UB-HLD-05",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Real-Time ETA Prediction Engine",
+      "scope": "Routing calculation, traffic overlay ingestion, deep learning ETA inference",
+      "constraints": "Graph traversal over tens of millions of road segments; inference time <30ms",
+      "stack": "Contraction Hierarchies, C++ Routing Core, Triton Inference Server"
+    },
+    {
+      "id": "UB-HLD-06",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Schemaless Distributed Datastore Architecture",
+      "scope": "Append-only entity storage over relational backends (MySQL shards)",
+      "constraints": "Petabyte scale; linear scale-out; immutable cell revision history",
+      "stack": "Uber Schemaless, MySQL shards, ZooKeeper coordination"
+    },
+    {
+      "id": "UB-HLD-07",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Distributed Webhook & Event Push Gateway",
+      "scope": "Real-time state push to millions of connected mobile apps via persistent sockets",
+      "constraints": "10M concurrent persistent WebSocket connections; graceful edge failover",
+      "stack": "Go WebSocket Edge, Redis Session Store, gRPC routing"
+    },
+    {
+      "id": "UB-HLD-08",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Cross-Region Active-Active Trip Coordination",
+      "scope": "Multi-datacenter deployment preventing split-brain trip mutations",
+      "constraints": "Zero data loss on regional outage; strict idempotency on trip status mutations",
+      "stack": "Raft-backed coordinator, CockroachDB / Spanner primitives, Envoy"
+    },
+    {
+      "id": "UB-HLD-09",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Uber Eats Batch Delivery & Courier Routing",
+      "scope": "Multi-order batch bundling; kitchen prep time alignment; courier routing",
+      "constraints": "Dynamic TSP (Traveling Salesperson) optimization in sub-second timelines",
+      "stack": "VRP solvers, Redis state cache, Kafka event triggers"
+    },
+    {
+      "id": "UB-HLD-10",
+      "kind": "hld",
+      "company": "uber",
+      "title": "Real-Time City Operations Analytics Dashboard",
+      "scope": "OLAP slice-and-dice of active trips, driver utilization, cancellations, and earnings",
+      "constraints": "Query response <500ms over billions of historical and real-time records",
+      "stack": "Apache Pinot, Apache Kafka, Presto / Trino query layer"
+    },
+    {
+      "id": "ST-MC-01",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Card Number Input Mask & Luhn Validator",
+      "stack": "React / TS",
+      "level": "Basic",
+      "mechanics": "Formatted spacing; regex masking; Modulo-10 checksum validation on change",
+      "variant": "Stripe Elements Form Field UI"
+    },
+    {
+      "id": "ST-MC-02",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Expiry Date & CVC Field Auto-Advancer",
+      "stack": "React / Ref",
+      "level": "Basic",
+      "mechanics": "Ref forwarding; dynamic focus jump on input length; backspace boundary check",
+      "variant": "Stripe Elements Embedded Checkout"
+    },
+    {
+      "id": "ST-MC-03",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Currency Symbol Prefix Formatter",
+      "stack": "TypeScript / DOM",
+      "level": "Basic",
+      "mechanics": "Unicode currency formatting; unformatted numerical state extraction",
+      "variant": "Dashboard Payment Intent Form"
+    },
+    {
+      "id": "ST-MC-04",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Webhook Delivery Status Badge",
+      "stack": "React / CSS",
+      "level": "Basic",
+      "mechanics": "Pure status pill mapping; animated retry spinner; accessible title tooltip",
+      "variant": "Stripe Developer Webhook HUD"
+    },
+    {
+      "id": "ST-MC-05",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Multi-Part String ID Parser & Matcher",
+      "stack": "Python / Text",
+      "level": "Basic",
+      "mechanics": "String tokenization; prefix set matching; validation against allowed prefixes",
+      "variant": "Stripe Phone Screen Round 1"
+    },
+    {
+      "id": "ST-MC-06",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Subscription Plan Pricing Calculator",
+      "stack": "TypeScript / Math",
+      "level": "Basic",
+      "mechanics": "Integer cent precision; tax percentage addition; tier threshold branching",
+      "variant": "Billing Configuration Engine"
+    },
+    {
+      "id": "ST-MC-07",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Merchant API Key Masker & Copy Button",
+      "stack": "React / Clipboard",
+      "level": "Basic",
+      "mechanics": "Secret key obfuscation; async navigator.clipboard write; auto-dismissing banner",
+      "variant": "Developer Portal API HUD"
+    },
+    {
+      "id": "ST-MC-08",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "In-Memory Token Bucket Limiter",
+      "stack": "Go / Locks",
+      "level": "Basic",
+      "mechanics": "Mutex lock; sliding credit calculation; discrete integer rejection",
+      "variant": "Core Infrastructure Screen"
+    },
+    {
+      "id": "ST-MC-09",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Bank Routing Number Validator",
+      "stack": "TypeScript / Logic",
+      "level": "Basic",
+      "mechanics": "ABA routing transit number checksum algorithm; boundary length gating",
+      "variant": "Stripe Financial Connections UI"
+    },
+    {
+      "id": "ST-MC-10",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Event Payload Pretty Printer",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Recursive JSON object formatting; collapsible nested nodes; syntax color pills",
+      "variant": "Stripe Dashboard Event Log"
+    },
+    {
+      "id": "ST-MC-11",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Idempotent HTTP Request Deduplicator",
+      "stack": "Go / HTTP",
+      "level": "Medium",
+      "mechanics": "SHA-256 payload hashing; atomic in-memory cache lookup; duplicate response replay",
+      "variant": "Stripe Integration Coding Round"
+    },
+    {
+      "id": "ST-MC-12",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Subscription Email Scheduler",
+      "stack": "Python / Datetime",
+      "level": "Medium",
+      "mechanics": "Rule-based date calculation; recurring intervals; timezone/leap year handling",
+      "variant": "Stripe Coding Round (Email Schedule)"
+    },
+    {
+      "id": "ST-MC-13",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "CSV Transaction Parser with Filter Rules",
+      "stack": "Go / Streaming",
+      "level": "Medium",
+      "mechanics": "Line-by-line CSV reader; predicate chaining; structural record validation",
+      "variant": "Stripe Multi-Part Technical Screen"
+    },
+    {
+      "id": "ST-MC-14",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Live Webhook Event Log Virtualizer",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Virtualized window rendering; auto-scroll stickiness with pause-on-wheel",
+      "variant": "Dashboard Live Logs Stream"
+    },
+    {
+      "id": "ST-MC-15",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Payment Intent State Machine UI",
+      "stack": "React / XState",
+      "level": "Medium",
+      "mechanics": "Explicit transitions (RequiresPayment → Processing → Succeeded); lock on pending",
+      "variant": "Stripe Payment Intent React SDK"
+    },
+    {
+      "id": "ST-MC-16",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Nested JSON Diff Viewer",
+      "stack": "TypeScript / Algo",
+      "level": "Medium",
+      "mechanics": "Deep recursive object comparison; key path generation; addition/deletion tags",
+      "variant": "Audit Trail Inspector UI"
+    },
+    {
+      "id": "ST-MC-17",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Bug Bash: Template Render Engine",
+      "stack": "Python / Debug",
+      "level": "Medium",
+      "mechanics": "Locating edge cases in template variable interpolation; fixing stack overflow",
+      "variant": "Stripe Bug Squash Onsite Round"
+    },
+    {
+      "id": "ST-MC-18",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Multi-Currency Ledger Account Balancer",
+      "stack": "Java / BigDec",
+      "level": "Medium",
+      "mechanics": "Strict double-entry debit=credit balance; integer cent validation; immutable logs",
+      "variant": "Stripe Core Accounting Live Coding"
+    },
+    {
+      "id": "ST-MC-19",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Async Job Queue with Dead-Letter Handling",
+      "stack": "Go / Channels",
+      "level": "Medium",
+      "mechanics": "Worker pool; exponential backoff retries; maximum failure diversion",
+      "variant": "Webhook Dispatch Engine"
+    },
+    {
+      "id": "ST-MC-20",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Proration Billing Engine",
+      "stack": "Python / Time",
+      "level": "Medium",
+      "mechanics": "Mid-month tier upgrade proration; second-level exact usage calculation",
+      "variant": "Stripe Billing Team Machine Coding"
+    },
+    {
+      "id": "ST-MC-21",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Dynamic Payment Method Sorter",
+      "stack": "TypeScript / Sort",
+      "level": "Medium",
+      "mechanics": "Historical conversion rate scoring; localized payment method rank order",
+      "variant": "Elements Dynamic Payment Methods"
+    },
+    {
+      "id": "ST-MC-22",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Merchant Payout Balance Ledger",
+      "stack": "Go / Goroutines",
+      "level": "Medium",
+      "mechanics": "Concurrent account transfers; mutex-guarded account state; deadlock avoidance",
+      "variant": "Transfers & Connect Live Coding"
+    },
+    {
+      "id": "ST-MC-23",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Filterable Developer API Request Inspector",
+      "stack": "React / Context",
+      "level": "Medium",
+      "mechanics": "Multi-predicate filtering (status, path, duration); debounced search query",
+      "variant": "Dashboard API Request Explorer"
+    },
+    {
+      "id": "ST-MC-24",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Bug Bash: Distributed Graph Traversal",
+      "stack": "Java / Debug",
+      "level": "Medium",
+      "mechanics": "Debugging race conditions in concurrent task dependency runner",
+      "variant": "Stripe Onsite Bug Squash"
+    },
+    {
+      "id": "ST-MC-25",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Micro-Deposit Verification Form",
+      "stack": "React / State",
+      "level": "Medium",
+      "mechanics": "Dual-input numerical validation; attempt count lockout; error boundary",
+      "variant": "ACH Manual Verification Dialog"
+    },
+    {
+      "id": "ST-MC-26",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Sliding-Window Fraud Velocity Limiter",
+      "stack": "Go / Atomic",
+      "level": "Medium",
+      "mechanics": "Sliding window timestamp array; atomic check-and-add; window eviction",
+      "variant": "Radar Live Coding Screen"
+    },
+    {
+      "id": "ST-MC-27",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Custom Test Fixture Generator",
+      "stack": "TypeScript / FS",
+      "level": "Medium",
+      "mechanics": "Declarative mock schema engine; deterministic fake data creation; JSON export",
+      "variant": "Integration Testing CLI Tool"
+    },
+    {
+      "id": "ST-MC-28",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Multi-Party Escrow Release Controller",
+      "stack": "Python / FSM",
+      "level": "Medium",
+      "mechanics": "Multi-signature release state machine; dispute freeze; timeout expiry",
+      "variant": "Connect Marketplace Engine"
+    },
+    {
+      "id": "ST-MC-29",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Accessible Data Table with Inline Edit",
+      "stack": "React / ARIA",
+      "level": "Medium",
+      "mechanics": "Keyboard cell navigation; optimistic inline updating; blur commit handling",
+      "variant": "Stripe Dashboard Line Items Editor"
+    },
+    {
+      "id": "ST-MC-30",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "API Metering Event Collector",
+      "stack": "Go / RingBuffer",
+      "level": "Medium",
+      "mechanics": "Lock-free ring buffer; high-throughput metric incrementing; periodic snapshot",
+      "variant": "Usage-Based Billing Ingestion"
+    },
+    {
+      "id": "ST-MC-31",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Interactive Invoice PDF Previewer",
+      "stack": "React / Canvas",
+      "level": "Advanced",
+      "mechanics": "Virtualized PDF canvas page rendering; zoom/pan transforms; selection bounding",
+      "variant": "Dashboard Invoicing Suite"
+    },
+    {
+      "id": "ST-MC-32",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Distributed Lock with Fencing Tokens",
+      "stack": "Java / Concurrency",
+      "level": "Advanced",
+      "mechanics": "Distributed lock simulation; monotonic fencing token checks; expired lease handling",
+      "variant": "Ledger Consensus Live Coding"
+    },
+    {
+      "id": "ST-MC-33",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Zero-Allocation JSON Field Extractor",
+      "stack": "Go / Bytes",
+      "level": "Advanced",
+      "mechanics": "In-place byte scanning without allocations; matching keys via state machine",
+      "variant": "High-Performance Gateway Parser"
+    },
+    {
+      "id": "ST-MC-34",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Real-Time Fraud Rule Evaluator",
+      "stack": "Python / AST",
+      "level": "Advanced",
+      "mechanics": "Abstract Syntax Tree evaluation of user-defined boolean fraud rules; short-circuit",
+      "variant": "Radar Rules Machine Coding"
+    },
+    {
+      "id": "ST-MC-35",
+      "kind": "mc",
+      "company": "stripe",
+      "title": "Resilient Multi-Acquirer Gateway Switch",
+      "stack": "Go / Resilience",
+      "level": "Advanced",
+      "mechanics": "Latency-weighted round-robin; dynamic circuit tripping; health probe loop",
+      "variant": "Core Card Processing Network"
+    },
+    {
+      "id": "ST-LLD-01",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Double-Entry Ledger Transaction Engine",
+      "entities": "Account, Transaction, Entry (Debit/Credit), Balance",
+      "invariants": "Sum of debits strictly equals sum of credits; balances never float",
+      "patterns": "Command Pattern, Unit of Work"
+    },
+    {
+      "id": "ST-LLD-02",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Idempotency Key Coordination Service",
+      "entities": "IdempotencyRecord, LockLease, ResponseCache, Hasher",
+      "invariants": "Requests with identical key and differing payloads abort with HTTP 400",
+      "patterns": "Proxy Pattern, Interceptor Pattern"
+    },
+    {
+      "id": "ST-LLD-03",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Webhook Dispatcher with Exponential Backoff",
+      "entities": "WebhookEndpoint, Event, DeliveryAttempt, RetryPolicy",
+      "invariants": "Guaranteed at-least-once delivery; exponential backoff with jitter",
+      "patterns": "Strategy Pattern, Observer Pattern"
+    },
+    {
+      "id": "ST-LLD-04",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Card Vault Tokenization Service",
+      "entities": "CardMetadata, Token, EncryptionEnvelope, Vault",
+      "invariants": "Primary Account Number (PAN) never logged or stored in plain text",
+      "patterns": "Adapter Pattern, Repository Pattern"
+    },
+    {
+      "id": "ST-LLD-05",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Subscription Lifecycle & Proration Engine",
+      "entities": "Subscription, Phase, ProrationCredit, InvoiceSchedule",
+      "invariants": "Plan upgrades calculate second-level accurate debits and credits",
+      "patterns": "State Pattern, Builder Pattern"
+    },
+    {
+      "id": "ST-LLD-06",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Fraud Pipeline Rule Evaluator",
+      "entities": "TransactionContext, FraudRule, RiskScore, EvaluationResult",
+      "invariants": "Evaluation executes within sub-5ms latency budgets; short-circuit validation",
+      "patterns": "Chain of Responsibility, Composite"
+    },
+    {
+      "id": "ST-LLD-07",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Payment Routing & Acquirer Switch",
+      "entities": "PaymentIntent, AcquirerRoute, HealthScore, FeeTier",
+      "invariants": "Traffic dynamically bypasses degraded banking rails based on success rates",
+      "patterns": "Strategy Pattern, Circuit Breaker"
+    },
+    {
+      "id": "ST-LLD-08",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "In-Memory Metering Aggregator",
+      "entities": "MeterRecord, AggregationWindow, BillableMetric",
+      "invariants": "Thread-safe metric increments; zero loss during periodic snapshot flushes",
+      "patterns": "Aggregator Pattern, Flyweight"
+    },
+    {
+      "id": "ST-LLD-09",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Chargeback & Dispute Workflow Coordinator",
+      "entities": "Dispute, EvidenceFile, EvidenceDeadline, ReviewStatus",
+      "invariants": "Evidence locked after bank deadline; deterministic state progression",
+      "patterns": "State Pattern, Template Method"
+    },
+    {
+      "id": "ST-LLD-10",
+      "kind": "lld",
+      "company": "stripe",
+      "title": "Multi-Currency Quotation Cache",
+      "entities": "CurrencyPair, ExchangeRate, QuoteLease, SpreadMargin",
+      "invariants": "Quoted exchange rate locked for 60 seconds; automatic rate refresh on expiry",
+      "patterns": "Cache-Aside Pattern, Factory Pattern"
+    },
+    {
+      "id": "ST-HLD-01",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Global Idempotent Payment Intent Gateway",
+      "scope": "Public API endpoint terminating millions of checkout payment attempts with idempotency",
+      "constraints": "100,000 req/sec; P99 <150ms; strict exactly-once payment semantics",
+      "stack": "Envoy, Redis (Idempotency cache), CockroachDB, Kafka"
+    },
+    {
+      "id": "ST-HLD-02",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Double-Entry General Ledger System",
+      "scope": "Immutable recording of all financial transfers, debits, credits, and payouts",
+      "constraints": "Durability guarantee; zero discrepancy; auditability across 10 years",
+      "stack": "Distributed Relational Store (Spanner/PostgreSQL Shards), Raft, Kafka"
+    },
+    {
+      "id": "ST-HLD-03",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Real-Time Fraud Detection Engine (Stripe Radar)",
+      "scope": "Pre-scoring every transaction via ML inference and user heuristics",
+      "constraints": "Scoring execution budget <80ms; streaming feature extraction across billions of events",
+      "stack": "Flink, Triton Inference Server, Aerospike Feature Store"
+    },
+    {
+      "id": "ST-HLD-04",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Distributed Webhook Ingestion & Delivery Service",
+      "scope": "Guaranteed delivery of system events (payment_intent.succeeded) to external URLs",
+      "constraints": "50M events daily; resilient retry schedule spanning 72 hours",
+      "stack": "SQS / Kafka, Step Functions / Custom Go Dispatchers, Redis"
+    },
+    {
+      "id": "ST-HLD-05",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Global Multi-Tenant Billing System",
+      "scope": "Flexible invoicing, usage metering, automatic payment collection, tax computation",
+      "constraints": "Hundreds of thousands of daily invoice generations; batch billing windows",
+      "stack": "Distributed Scheduler, Temporal Workflow Engine, Amazon Aurora"
+    },
+    {
+      "id": "ST-HLD-06",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "PCI-DSS Compliant Isolated Card Tokenization Vault",
+      "scope": "Isolation, encryption, storage, and tokenized retrieval of raw card data",
+      "constraints": "HSM-backed cryptographic operations; zero cleartext ingress to general network",
+      "stack": "Hardware Security Modules (HSM), Enclave Containers, Vault"
+    },
+    {
+      "id": "ST-HLD-07",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Multi-Acquirer Payment Routing & Circuit Breaking",
+      "scope": "Directing authorization requests to global acquiring banks based on uptime and fees",
+      "constraints": "Dynamic switching within 10ms of acquirer degradation",
+      "stack": "Redis Cluster, Consul, Go Routing Service, ClickHouse for telemetry"
+    },
+    {
+      "id": "ST-HLD-08",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "High-Throughput Usage-Based Metering System",
+      "scope": "Streaming ingestion of API calls and compute consumption from developers",
+      "constraints": "1M events/sec; deduplication over 24-hour sliding windows",
+      "stack": "Kafka, Apache Druid, RocksDB embedded aggregators"
+    },
+    {
+      "id": "ST-HLD-09",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Daily Bank Reconciliation and Settlement Engine",
+      "scope": "Ingestion of multi-bank clearing files (NACHA, MT940), reconciling ledger entries",
+      "constraints": "Multi-gigabyte file parsing in parallel; automated mismatch flagging",
+      "stack": "Apache Spark, Airflow, Object Storage (S3), PostgreSQL"
+    },
+    {
+      "id": "ST-HLD-10",
+      "kind": "hld",
+      "company": "stripe",
+      "title": "Cross-Region Multi-Cloud Disaster Recovery",
+      "scope": "Replication of payment processing state across clouds without split-brain risk",
+      "constraints": "RPO = 0; RTO <30s under multi-region cloud failure",
+      "stack": "Global Spanner, Multi-cloud DNS routing, Envoy Service Mesh"
+    },
+    {
+      "id": "RP-MC-01",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "UPI VPA Input Formatter & Validator",
+      "stack": "React / TS",
+      "level": "Basic",
+      "mechanics": "Virtual Payment Address regex validation; auto-suffix handle insertion (@okhdfcbank)",
+      "variant": "Razorpay Standard Checkout SDK"
+    },
+    {
+      "id": "RP-MC-02",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Payment Link Expiry Countdown Timer",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Driftless interval polling; expiry event emission; action disabling",
+      "variant": "Razorpay Invoicing & Links Web"
+    },
+    {
+      "id": "RP-MC-03",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Currency Integer Amount Formatter",
+      "stack": "TypeScript / Math",
+      "level": "Basic",
+      "mechanics": "Paisa to Rupee formatting; standard comma formatting; zero truncation",
+      "variant": "Merchant Checkout Core"
+    },
+    {
+      "id": "RP-MC-04",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Netbanking Bank Selector Grid",
+      "stack": "React / CSS",
+      "level": "Basic",
+      "mechanics": "Searchable bank tile grid; radio selection state; popular bank quick-access",
+      "variant": "Standard Checkout Payment Modes"
+    },
+    {
+      "id": "RP-MC-05",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Merchant API Signature Verifier",
+      "stack": "Go / Crypto",
+      "level": "Basic",
+      "mechanics": "HMAC-SHA256 signature verification over payment attributes",
+      "variant": "Webhook Security Validator"
+    },
+    {
+      "id": "RP-MC-06",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "OTP Input Field Group",
+      "stack": "React / Refs",
+      "level": "Basic",
+      "mechanics": "Individual single-character fields; paste string distribution; backspace focus",
+      "variant": "Razorpay OTP Auto-Read Form"
+    },
+    {
+      "id": "RP-MC-07",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Thread-Safe Currency Balance Vault",
+      "stack": "Go / Mutex",
+      "level": "Basic",
+      "mechanics": "Atomic balance checks; balance debits preventing overdrafts",
+      "variant": "Merchant Pre-funded Wallet"
+    },
+    {
+      "id": "RP-MC-08",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Payment Status Progress Stepper",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Dynamic status stepper (Initiated → Pending → Captured); failure state",
+      "variant": "Standard Checkout State Machine"
+    },
+    {
+      "id": "RP-MC-09",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Rate Limiter via Leaky Bucket",
+      "stack": "Java / Concurrency",
+      "level": "Basic",
+      "mechanics": "Constant leak drain rate; synchronized queue capacity bounds",
+      "variant": "Payment API Rate Controller"
+    },
+    {
+      "id": "RP-MC-10",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Card Brand Identifier from BIN",
+      "stack": "TypeScript / Logic",
+      "level": "Basic",
+      "mechanics": "Prefix matching against Bank Identification Numbers (Visa, Mastercard, RuPay)",
+      "variant": "Checkout Card Form Component"
+    },
+    {
+      "id": "RP-MC-11",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Embeddable Checkout Modal SDK",
+      "stack": "TypeScript / DOM",
+      "level": "Medium",
+      "mechanics": "Iframe generation; window.postMessage cross-origin event handshake; lifecycle teardown",
+      "variant": "Core Razorpay Checkout JS"
+    },
+    {
+      "id": "RP-MC-12",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Dynamic UPI QR Code Poller",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Long-polling fallback; WebSocket stream; countdown bar; success redirect",
+      "variant": "UPI Desktop Flow Screen"
+    },
+    {
+      "id": "RP-MC-13",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Webhook Dispatcher with Jittered Retry",
+      "stack": "Go / Channels",
+      "level": "Medium",
+      "mechanics": "Worker pool; exponential backoff formula with full jitter; payload signing",
+      "variant": "Razorpay Webhook Ingestion Engine"
+    },
+    {
+      "id": "RP-MC-14",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Dynamic Acquirer Route Switcher",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Priority selection based on health score and acquiring bank success rate",
+      "variant": "Payment Switching Engine"
+    },
+    {
+      "id": "RP-MC-15",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Double-Entry Merchant Balance Ledger",
+      "stack": "Go / Sync",
+      "level": "Medium",
+      "mechanics": "Transaction isolation; simultaneous ledger credit and customer debit; atomic locks",
+      "variant": "Razorpay Settlement Engine"
+    },
+    {
+      "id": "RP-MC-16",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Virtualized Transaction Statement Table",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Virtualized windowing; dynamic column sorting; date-range filtering",
+      "variant": "Merchant Dashboard Ledger"
+    },
+    {
+      "id": "RP-MC-17",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Payment Intent State Machine Engine",
+      "stack": "Go / Interfaces",
+      "level": "Medium",
+      "mechanics": "FSM guarding transitions: Created, Authorized, Captured, Refunded",
+      "variant": "Razorpay Core Payment State"
+    },
+    {
+      "id": "RP-MC-18",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Refund Transaction Allocator",
+      "stack": "Python / Math",
+      "level": "Medium",
+      "mechanics": "Fractional refund allocation against available balance; zero double-refund",
+      "variant": "Refund Processing Core"
+    },
+    {
+      "id": "RP-MC-19",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Multi-Tenancy API Request Authenticator",
+      "stack": "Go / Middleware",
+      "level": "Medium",
+      "mechanics": "SHA-256 API key hashing; role permission evaluation; context injection",
+      "variant": "Merchant API Gateway"
+    },
+    {
+      "id": "RP-MC-20",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Resilient Polling Hook with Network Check",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Navigator.onLine listeners; exponential backoff; cache revalidation",
+      "variant": "Offline-Tolerant Mobile Checkout"
+    },
+    {
+      "id": "RP-MC-21",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "In-Memory Card Token Cache",
+      "stack": "Java / Locks",
+      "level": "Medium",
+      "mechanics": "LRU eviction policy; thread-safe concurrent read/writes; TTL expiration",
+      "variant": "Card Tokenization Rail"
+    },
+    {
+      "id": "RP-MC-22",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Merchant Settlement Batch Scheduler",
+      "stack": "Go / Time",
+      "level": "Medium",
+      "mechanics": "Cutoff time aggregation; fee deduction; settlement file record builder",
+      "variant": "Daily Settlement Daemon"
+    },
+    {
+      "id": "RP-MC-23",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "EMI Interest and Schedule Calculator",
+      "stack": "TypeScript / Math",
+      "level": "Medium",
+      "mechanics": "Amortization schedule calculation; monthly split view; bank discount application",
+      "variant": "Checkout EMI Options Component"
+    },
+    {
+      "id": "RP-MC-24",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Async Event Broker Simulator",
+      "stack": "Go / Goroutines",
+      "level": "Medium",
+      "mechanics": "Buffered fan-out channels; subscriber group partitions; offset acknowledgment",
+      "variant": "Event Processing Core"
+    },
+    {
+      "id": "RP-MC-25",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Fraud Velocity Rule Evaluator",
+      "stack": "Python / Logic",
+      "level": "Medium",
+      "mechanics": "Sliding window frequency threshold; card number and IP binding; alert generation",
+      "variant": "Razorpay Thirdwatch Screen"
+    },
+    {
+      "id": "RP-MC-26",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Collapsible Fee Breakdown Card",
+      "stack": "React / CSS",
+      "level": "Medium",
+      "mechanics": "Dynamic GST (tax) and MDR computation; animated drawer; accessible toggle",
+      "variant": "Merchant Pricing Preview"
+    },
+    {
+      "id": "RP-MC-27",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Bulk Payout CSV Stream Parser",
+      "stack": "Node.js / Stream",
+      "level": "Medium",
+      "mechanics": "Chunked streaming upload; record-by-record schema validation; error aggregation",
+      "variant": "RazorpayX Payout Batch Engine"
+    },
+    {
+      "id": "RP-MC-28",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Dynamic Card CVV Re-Prompt Dialog",
+      "stack": "React / Focus",
+      "level": "Medium",
+      "mechanics": "Focus trap trapping; security pin masking; auto-dismiss on complete",
+      "variant": "Saved Card Quick Checkout"
+    },
+    {
+      "id": "RP-MC-29",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "In-Memory Distributed Job Locker",
+      "stack": "Go / Sync",
+      "level": "Medium",
+      "mechanics": "Lock lease issuance; TTL heartbeat renewal; safe lock release guard",
+      "variant": "Settlement Worker Coordinator"
+    },
+    {
+      "id": "RP-MC-30",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Merchant Onboarding Verification Stepper",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Local storage form caching; asynchronous document upload verification",
+      "variant": "Razorpay Merchant Activation"
+    },
+    {
+      "id": "RP-MC-31",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Cross-Window PostMessage Event Bus",
+      "stack": "TypeScript / Core",
+      "level": "Advanced",
+      "mechanics": "Handshake acknowledgement; origin whitelist verification; response promise map",
+      "variant": "Razorpay Checkout SDK Bridge"
+    },
+    {
+      "id": "RP-MC-32",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "High-Throughput UPI Callback Ingestion",
+      "stack": "Go / Channels",
+      "level": "Advanced",
+      "mechanics": "Non-blocking ring buffer ingestion; fast worker pool dispatch; DB batching",
+      "variant": "UPI S2S Callback Node"
+    },
+    {
+      "id": "RP-MC-33",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Concurrent Escrow Account Splitter",
+      "stack": "Java / Threads",
+      "level": "Advanced",
+      "mechanics": "ReentrantLock account locking; circular wait deadlock prevention",
+      "variant": "Razorpay Route Marketplace Split"
+    },
+    {
+      "id": "RP-MC-34",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "Real-Time Transaction Anomaly Detector",
+      "stack": "Go / Streaming",
+      "level": "Advanced",
+      "mechanics": "Rolling mean and standard deviation computation; threshold deviation flag",
+      "variant": "Core Risk & Fraud Engine"
+    },
+    {
+      "id": "RP-MC-35",
+      "kind": "mc",
+      "company": "razorpay",
+      "title": "High-Performance Zero-Copy Payload Router",
+      "stack": "Go / Net",
+      "level": "Advanced",
+      "mechanics": "Custom HTTP header scanner; payload dispatch without heap allocations",
+      "variant": "Gateway Edge Dispatcher"
+    },
+    {
+      "id": "RP-LLD-01",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Payment Gateway Routing Engine",
+      "entities": "PaymentRequest, AcquirerSwitch, RouteRule, BankHealth",
+      "invariants": "Dynamic routing based on real-time success metrics; failure rerouting",
+      "patterns": "Strategy Pattern, Chain of Responsibility"
+    },
+    {
+      "id": "RP-LLD-02",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "UPI Intent & Collect Lifecycle Manager",
+      "entities": "UpiOrder, VpaAddress, CollectRequest, StatusMonitor",
+      "invariants": "UPI session expiry strictly enforced at 10 minutes; atomic callback handling",
+      "patterns": "State Pattern, Observer Pattern"
+    },
+    {
+      "id": "RP-LLD-03",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Webhook Delivery and Retries Engine",
+      "entities": "WebhookEvent, DestinationEndpoint, RetryPolicy, DeadLetterStore",
+      "invariants": "Monotonically increasing backoff delays; signature verification guarantees",
+      "patterns": "Decorator Pattern, Worker Pool"
+    },
+    {
+      "id": "RP-LLD-04",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Merchant Settlement Ledger Engine",
+      "entities": "MerchantAccount, SettlementBatch, BalanceAdjustment, PayoutFile",
+      "invariants": "Balances resolve to zero sum; strict non-floating integer arithmetic",
+      "patterns": "Command Pattern, Visitor Pattern"
+    },
+    {
+      "id": "RP-LLD-05",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Real-Time Fraud & Card Velocity Engine",
+      "entities": "TransactionContext, VelocityWindow, RiskCriterion, Verdict",
+      "invariants": "Halting on risk violation; sliding time-window frequency checks",
+      "patterns": "Specification Pattern, Strategy Pattern"
+    },
+    {
+      "id": "RP-LLD-06",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Marketplace Split Engine (Razorpay Route)",
+      "entities": "OrderPayment, VendorSplit, CommissionDeduction, HoldPolicy",
+      "invariants": "Total sub-splits plus commission exactly equals authorized charge; rollback on split failure",
+      "patterns": "Composite Pattern, Builder Pattern"
+    },
+    {
+      "id": "RP-LLD-07",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "In-Memory Card Tokenization Vault",
+      "entities": "CardRecord, NetworkToken, CryptographicContext, TokenStore",
+      "invariants": "PAN data never stored in plaintext; thread-safe concurrent token lookup",
+      "patterns": "Proxy Pattern, Singleton Pattern"
+    },
+    {
+      "id": "RP-LLD-08",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Recurring Mandates Engine (UPI AutoPay)",
+      "entities": "Mandate, ExecutionSchedule, PreDebitNotification, DebitAttempt",
+      "invariants": "24-hour mandatory pre-debit SMS/notification window verification",
+      "patterns": "Observer Pattern, State Pattern"
+    },
+    {
+      "id": "RP-LLD-09",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Automated Refund Orchestrator",
+      "entities": "RefundOrder, SourcePayment, GatewayRefundHandler, LedgerReversal",
+      "invariants": "Refund cannot exceed captured charge; instantaneous balance hold",
+      "patterns": "Template Method Pattern, Unit of Work"
+    },
+    {
+      "id": "RP-LLD-10",
+      "kind": "lld",
+      "company": "razorpay",
+      "title": "Payment Link Access Controller",
+      "entities": "PaymentLink, AccessPolicy, PaymentSession, ShortUrl",
+      "invariants": "Atomic access counting; automatic invalidation on max payment count",
+      "patterns": "Factory Pattern, Decorator Pattern"
+    },
+    {
+      "id": "RP-HLD-01",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "High-Volume UPI Processing Infrastructure",
+      "scope": "Peak UPI transactions per second, collect requests, and bank switches",
+      "constraints": "10,000 TPS burst; callback resolution time <1s",
+      "stack": "Go S2S workers, Redis Cluster, Apache Kafka, ScyllaDB"
+    },
+    {
+      "id": "RP-HLD-02",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "India-Scale Merchant Settlement Platform (RazorpayX)",
+      "scope": "Daily automated netting, nodal account transfers, and NEFT/RTGS/IMPS integrations",
+      "constraints": "Daily settlement across millions of accounts; multi-million dollar correctness",
+      "stack": "Temporal Workflow Engine, PostgreSQL Shards, Apache Spark"
+    },
+    {
+      "id": "RP-HLD-03",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Multi-Bank Payment Route Switching System",
+      "scope": "Dynamic transaction routing across acquiring banks using real-time machine learning telemetry",
+      "constraints": "Latency overhead <10ms; immediate failover on bank degradation",
+      "stack": "Envoy Service Mesh, Redis, ClickHouse for stream analytics"
+    },
+    {
+      "id": "RP-HLD-04",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Scalable Multi-Tenant Webhook Dispatch Platform",
+      "scope": "Delivery of payment events to merchant webhooks",
+      "constraints": "100M events/day; 99.99% delivery or permanent DLQ archival",
+      "stack": "Apache Kafka, Custom Go Dispatcher Workers, MongoDB"
+    },
+    {
+      "id": "RP-HLD-05",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Real-Time Fraud Detection Platform",
+      "scope": "Pre-authorization scoring of transactions for identity theft and velocity fraud",
+      "constraints": "Decision latency <50ms at 5,000 requests/sec",
+      "stack": "Apache Flink, Redis, Python Inference Microservice, Cassandra"
+    },
+    {
+      "id": "RP-HLD-06",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "High-Availability Payment Links Service",
+      "scope": "Short-link generation, custom domain routing, mobile-optimized checkout pages",
+      "constraints": "Global edge availability; flash sale load spikes (100k views/min)",
+      "stack": "Cloudflare Workers, Redis, Aurora MySQL"
+    },
+    {
+      "id": "RP-HLD-07",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Standard Checkout Embeddable SDK Delivery Network",
+      "scope": "CDN-served JavaScript bundle powering checkout on merchant domains",
+      "constraints": "Sub-50KB bundle; global latency <100ms; 99.999% CDN uptime",
+      "stack": "AWS CloudFront / Fastly, Rollup bundler, S3 origin, SRI"
+    },
+    {
+      "id": "RP-HLD-08",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Real-Time Merchant Analytics Engine",
+      "scope": "Live GMV, transaction success rates, and customer cohorts on merchant dashboards",
+      "constraints": "Query response <200ms across billions of historical transactions",
+      "stack": "Apache Pinot, Apache Flink, Trino, PostgreSQL"
+    },
+    {
+      "id": "RP-HLD-09",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Tokenized Card Vault Infrastructure",
+      "scope": "Provisioning, storing, and referencing CoF (Card-on-File) network tokens across networks",
+      "constraints": "Hardware Security Module encryption; zero storage of plain card data",
+      "stack": "Dedicated HSM, Kubernetes isolated enclaves, HashiCorp Vault"
+    },
+    {
+      "id": "RP-HLD-10",
+      "kind": "hld",
+      "company": "razorpay",
+      "title": "Automated Dispute Resolution Portal",
+      "scope": "Managing financial claims, auto-routing disputes to bank systems, evidence lifecycle",
+      "constraints": "Multi-institution workflow engine; document image processing",
+      "stack": "PostgreSQL, S3, Camunda / Temporal workflow engine"
+    },
+    {
+      "id": "FK-MC-01",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Multi-Tiered In-Memory Cache (L1/L2/L3)",
+      "stack": "Java / Collections",
+      "level": "Medium",
+      "mechanics": "Hierarchical read-through; capacity-based LRU eviction per tier; dynamic tier scaling",
+      "variant": "Flipkart Signature Machine Coding"
+    },
+    {
+      "id": "FK-MC-02",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Flight Booking System (Fliptrip)",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Directed route graph; fewest-hops search; lowest-cost search; meal filters",
+      "variant": "Flipkart SDE-2 Machine Coding"
+    },
+    {
+      "id": "FK-MC-03",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Doctor Appointment System (FlipMed)",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "30-min slot management; ranking strategy; waitlist promotion on cancellation",
+      "variant": "Flipkart SDE-2 Machine Coding"
+    },
+    {
+      "id": "FK-MC-04",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Online Auction Bidding (SuperBidder)",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Seller item listings; highest-bid tracking; balance validation; auction close",
+      "variant": "Flipkart SDE Machine Coding"
+    },
+    {
+      "id": "FK-MC-05",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Distributed Queue / Pub-Sub Engine",
+      "stack": "Java / Concurrency",
+      "level": "Medium",
+      "mechanics": "Topic partitioning; consumer group offset tracking; concurrent message pull",
+      "variant": "Flipkart Machine Coding Round"
+    },
+    {
+      "id": "FK-MC-06",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Pluggable Logging Library (SLF4J)",
+      "stack": "Java / Design",
+      "level": "Medium",
+      "mechanics": "Log level hierarchy; sink routing (Console, File); log message formatting",
+      "variant": "Flipkart Machine Coding Round"
+    },
+    {
+      "id": "FK-MC-07",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Expense Sharing Engine (Splitwise)",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "User balances; equal, percentage, and exact splits; balance simplification",
+      "variant": "Flipkart Core Machine Coding"
+    },
+    {
+      "id": "FK-MC-08",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Multi-Floor Parking Lot System",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Multi-vehicle spot allocation; nearest spot strategy; ticket fee calculation",
+      "variant": "Flipkart Signature Round"
+    },
+    {
+      "id": "FK-MC-09",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Snake and Ladder Board Game Engine",
+      "stack": "Java / OOP",
+      "level": "Basic",
+      "mechanics": "Configurable board size; snake/ladder maps; multi-player turns; win condition",
+      "variant": "Flipkart Standard Machine Coding"
+    },
+    {
+      "id": "FK-MC-10",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "E-Commerce Cart & Promotional Coupon",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Percentage and flat cart discounts; coupon exclusions; item subtotaling",
+      "variant": "Flipkart Checkout Machine Coding"
+    },
+    {
+      "id": "FK-MC-11",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Flash Sale Product Counter & Gauge",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Live countdown timer; stock remaining percentage bar; button disable on zero",
+      "variant": "Big Billion Days Flash Sale UI"
+    },
+    {
+      "id": "FK-MC-12",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "E-Commerce Faceted Search Filter Drawer",
+      "stack": "React / State",
+      "level": "Basic",
+      "mechanics": "Multi-select checkboxes; price slider; URL query synchronization; clear-all",
+      "variant": "Flipkart Search Page UI"
+    },
+    {
+      "id": "FK-MC-13",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Product Image Zoom & Thumbnail Slider",
+      "stack": "React / DOM",
+      "level": "Basic",
+      "mechanics": "Active thumbnail selection; mouse position magnification overlay calculation",
+      "variant": "Product Display Page Component"
+    },
+    {
+      "id": "FK-MC-14",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Pincode Delivery Availability Checker",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Input validation; mock asynchronous availability lookup; estimated SLA display",
+      "variant": "Delivery Address Validation Component"
+    },
+    {
+      "id": "FK-MC-15",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Delivery Slot Time-Window Picker",
+      "stack": "React / State",
+      "level": "Basic",
+      "mechanics": "Grouped dates; selectable 2-hour morning/evening slots; capacity lockouts",
+      "variant": "Grocery Delivery Slot Flow"
+    },
+    {
+      "id": "FK-MC-16",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Food Ordering System (FlipFood)",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Restaurant menu management; cart building; lowest delivery cost assignment",
+      "variant": "Flipkart Machine Coding Practice"
+    },
+    {
+      "id": "FK-MC-17",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Ride Sharing Vehicle Matching",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Driver location registration; ride requests; shortest distance pairing",
+      "variant": "Flipkart Machine Coding Practice"
+    },
+    {
+      "id": "FK-MC-18",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Stock Portfolio Tracker",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Real-time buy/sell execution; weighted average cost basis; profit/loss reporting",
+      "variant": "Flipkart Machine Coding Practice"
+    },
+    {
+      "id": "FK-MC-19",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Digital Wallet & Passbook System",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Wallet-to-wallet transfers; transactional balance guards; historical passbook statements",
+      "variant": "Flipkart SuperMoney Round"
+    },
+    {
+      "id": "FK-MC-20",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Trello-like Task Management Board",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "Boards, lists, and cards; card movement between states; assignees and tags",
+      "variant": "Flipkart Machine Coding Practice"
+    },
+    {
+      "id": "FK-MC-21",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Dynamic Inventory Reservation Lock",
+      "stack": "Go / Mutex",
+      "level": "Medium",
+      "mechanics": "Item reservation with 10-minute lock TTL; background expiry replenishment",
+      "variant": "Flash Sale Inventory Worker"
+    },
+    {
+      "id": "FK-MC-22",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Sticky Notes Collaboration Board",
+      "stack": "React / DOM",
+      "level": "Medium",
+      "mechanics": "Absolute drag-and-drop position calculation; note creation; z-index ordering",
+      "variant": "Web Whiteboard Interview"
+    },
+    {
+      "id": "FK-MC-23",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Star Rating Input with Hover Preview",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Hover state feedback; fractional half-star selection; accessible ARIA radios",
+      "variant": "Reviews and Ratings UI"
+    },
+    {
+      "id": "FK-MC-24",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Customer Notification Aggregator",
+      "stack": "Java / Design",
+      "level": "Medium",
+      "mechanics": "Notification channels (SMS, Email, Push); opt-out preferences; rate throttling",
+      "variant": "User Communication Engine"
+    },
+    {
+      "id": "FK-MC-25",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "In-Memory Key-Value Store with TTL",
+      "stack": "Go / Sync",
+      "level": "Medium",
+      "mechanics": "RWLock synchronization; active scanning plus lazy eviction on retrieval",
+      "variant": "Core Platform Live Coding"
+    },
+    {
+      "id": "FK-MC-26",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Multi-Criteria Product Ranking Engine",
+      "stack": "Java / Streams",
+      "level": "Medium",
+      "mechanics": "Comparator chaining (price, customer rating, delivery speed); dynamic sorting",
+      "variant": "Catalog Search Sorter"
+    },
+    {
+      "id": "FK-MC-27",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Infinite Scrolling Review Feed",
+      "stack": "React / Intersection",
+      "level": "Medium",
+      "mechanics": "IntersectionObserver API integration; page buffer fetching; skeleton loader",
+      "variant": "Product Reviews Scroll"
+    },
+    {
+      "id": "FK-MC-28",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Dynamic Nested Comments Thread",
+      "stack": "React / Recursion",
+      "level": "Medium",
+      "mechanics": "Recursive component tree; reply input inline toggling; upvote counter",
+      "variant": "User Community QA Component"
+    },
+    {
+      "id": "FK-MC-29",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "In-Memory Sliding Window Counter",
+      "stack": "Java / Concurrency",
+      "level": "Medium",
+      "mechanics": "AtomicLong array; thread-safe time bucket rotation; aggregate load metric",
+      "variant": "Edge Traffic Throttler"
+    },
+    {
+      "id": "FK-MC-30",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Order Cancellation & Refund State Machine",
+      "stack": "Java / OOP",
+      "level": "Medium",
+      "mechanics": "FSM guarding transition states: Placed, Packed, Shipped, Delivered",
+      "variant": "Order Management Core"
+    },
+    {
+      "id": "FK-MC-31",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "High-Concurrency Flash Sale Inventory Gate",
+      "stack": "Go / Channels",
+      "level": "Advanced",
+      "mechanics": "Channel-based queue; fixed-stock reservation; immediate out-of-stock rejection",
+      "variant": "Big Billion Days Flash Sale"
+    },
+    {
+      "id": "FK-MC-32",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Thread-Safe Event Bus with Pattern Sub",
+      "stack": "Java / Threads",
+      "level": "Advanced",
+      "mechanics": "Regex topic subscription; thread pool event dispatch; non-blocking delivery",
+      "variant": "Core Messaging Infrastructure"
+    },
+    {
+      "id": "FK-MC-33",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Directed Acyclic Graph Workflow Engine",
+      "stack": "Java / Graphs",
+      "level": "Advanced",
+      "mechanics": "Cycle detection; topological dependency execution; task failure backtracking",
+      "variant": "Order Fulfillment Pipeline"
+    },
+    {
+      "id": "FK-MC-34",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Real-Time Live Bidding Dashboard",
+      "stack": "React / WS",
+      "level": "Advanced",
+      "mechanics": "High-frequency bid stream; optimistic user bid injection; auction timer",
+      "variant": "Flipkart Live Auction UI"
+    },
+    {
+      "id": "FK-MC-35",
+      "kind": "mc",
+      "company": "flipkart",
+      "title": "Virtualized E-Commerce Product Grid",
+      "stack": "React / Canvas",
+      "level": "Advanced",
+      "mechanics": "Custom virtual row/column coordinate rendering; image lazy loading pipeline",
+      "variant": "Catalog Search Result View"
+    },
+    {
+      "id": "FK-LLD-01",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Multi-Level In-Memory Cache System",
+      "entities": "CacheLevel, EvictionPolicy, CacheEntry, CacheManager",
+      "invariants": "Cascading read-through promotion; strict level capacity enforcement",
+      "patterns": "Chain of Responsibility, Strategy Pattern"
+    },
+    {
+      "id": "FK-LLD-02",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Flight Route Optimization Engine (Fliptrip)",
+      "entities": "Flight, Airline, RouteGraph, BookingRequest",
+      "invariants": "BFS/Dijkstra traversal; filter validation (meals, stops)",
+      "patterns": "Strategy Pattern, Facade Pattern"
+    },
+    {
+      "id": "FK-LLD-03",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Doctor Appointment Scheduling (FlipMed)",
+      "entities": "Doctor, Speciality, TimeSlot, WaitlistQueue",
+      "invariants": "No overlapping doctor/patient slots; FIFO waitlist promotion upon cancellation",
+      "patterns": "Observer Pattern, Factory Pattern"
+    },
+    {
+      "id": "FK-LLD-04",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Real-Time Bidding System (SuperBidder)",
+      "entities": "AuctionItem, Bidder, Bid, AuctionRule",
+      "invariants": "Bids must exceed current highest bid; user balance verified before bid registration",
+      "patterns": "State Pattern, Observer Pattern"
+    },
+    {
+      "id": "FK-LLD-05",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "In-Memory Message Broker & Pub-Sub",
+      "entities": "Topic, Partition, ConsumerGroup, OffsetManager",
+      "invariants": "Partition ordering preserved; multiple consumer groups maintain isolated offsets",
+      "patterns": "Observer Pattern, Iterator Pattern"
+    },
+    {
+      "id": "FK-LLD-06",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Configurable Logging Framework",
+      "entities": "Logger, LogLevel, LogSink, LogFormatter",
+      "invariants": "Hierarchical level gating (DEBUG < INFO < WARN < ERROR); non-blocking sinks",
+      "patterns": "Strategy Pattern, Decorator Pattern"
+    },
+    {
+      "id": "FK-LLD-07",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Expense Sharing Platform (Splitwise)",
+      "entities": "User, Expense, SplitStrategy, BalanceSheet",
+      "invariants": "Sum of split allocations equals total transaction amount",
+      "patterns": "Strategy Pattern, Composite Pattern"
+    },
+    {
+      "id": "FK-LLD-08",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Multi-Floor Parking Lot Engine",
+      "entities": "ParkingFloor, ParkingSpot, Vehicle, Ticket",
+      "invariants": "Vehicle size fits spot type; nearest spot allocation",
+      "patterns": "Factory Method, Strategy Pattern"
+    },
+    {
+      "id": "FK-LLD-09",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Promotional Coupon Engine",
+      "entities": "Cart, Product, Coupon, DiscountStrategy",
+      "invariants": "Mutual coupon exclusivity; minimum cart threshold evaluation",
+      "patterns": "Strategy Pattern, Builder Pattern"
+    },
+    {
+      "id": "FK-LLD-10",
+      "kind": "lld",
+      "company": "flipkart",
+      "title": "Flash Sale Inventory Locker",
+      "entities": "InventoryItem, LockLease, CartReservation",
+      "invariants": "Atomic decrement on lock acquisition; automatic replenishment on TTL timeout",
+      "patterns": "Proxy Pattern, State Pattern"
+    },
+    {
+      "id": "FK-HLD-01",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Big Billion Days Flash Sale Architecture",
+      "scope": "Real-time inventory reservation, queue gating, and checkout processing",
+      "constraints": "500,000 req/sec on hot items; zero overselling",
+      "stack": "Redis Cluster (Lua scripts), Kafka, Cassandra"
+    },
+    {
+      "id": "FK-HLD-02",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Distributed Order Management System (OMS)",
+      "scope": "Order placement, status updates, warehouse dispatch, and returns",
+      "constraints": "10M orders/day; ACID consistency on checkout",
+      "stack": "Spanner / CockroachDB, Temporal, Kafka"
+    },
+    {
+      "id": "FK-HLD-03",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Real-Time E-Commerce Product Search",
+      "scope": "Search across hundreds of millions of product SKUs with category filtering",
+      "constraints": "50,000 search QPS; index refresh latency <2s",
+      "stack": "Elasticsearch / Apache Solr cluster, Kafka, Redis"
+    },
+    {
+      "id": "FK-HLD-04",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "India-Scale Warehouse & Inventory Allocation",
+      "scope": "Routing orders to fulfillment centers based on stock and SLA",
+      "constraints": "Dynamic optimization over hundreds of hubs and dark stores",
+      "stack": "Graph DBs (Neo4j), PostgreSQL, Flink"
+    },
+    {
+      "id": "FK-HLD-05",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Real-Time Dynamic Repricing Engine",
+      "scope": "Continuous competitor price tracking and instant catalog repricing",
+      "constraints": "Repricing pipeline evaluating 100M SKUs hourly",
+      "stack": "Apache Spark, Apache Hudi Lakehouse, Redis"
+    },
+    {
+      "id": "FK-HLD-06",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Reviews & Ratings Ingestion Pipeline",
+      "scope": "Ingestion of customer media, spam detection, and aggregate rating calculation",
+      "constraints": "Asynchronous media resizing; eventual consistency for star score aggregates",
+      "stack": "S3-compatible Store, Apache Flink, Cassandra, Kafka"
+    },
+    {
+      "id": "FK-HLD-07",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Reverse Logistics & Return Tracking",
+      "scope": "Orchestrating product pick-up, quality checks, return routing, and instant refunds",
+      "constraints": "Real-time tracking across 10,000 delivery agents",
+      "stack": "Go Microservices, RabbitMQ, PostgreSQL"
+    },
+    {
+      "id": "FK-HLD-08",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Personalized Homepage Feed Engine",
+      "scope": "Real-time product recommendations and widget delivery based on user intent",
+      "constraints": "Recommendation retrieval <50ms; 100M daily active users",
+      "stack": "Vector Search (Milvus/Pinecone), Redis Feature Store, Ray"
+    },
+    {
+      "id": "FK-HLD-09",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Delivery Slot Booking & Fleet Dispatch",
+      "scope": "Capacity management for grocery delivery windows; route clustering",
+      "constraints": "Dynamic cut-offs when delivery slot capacities are reached",
+      "stack": "Redis bit-arrays, PostgreSQL, OSRM"
+    },
+    {
+      "id": "FK-HLD-10",
+      "kind": "hld",
+      "company": "flipkart",
+      "title": "Cross-Region Disaster Recovery Datastore",
+      "scope": "Replication of user cart and payment state across Indian data centers",
+      "constraints": "RPO = 0, RTO <60s under datacenter isolation",
+      "stack": "Raft state machines, Global Anycast Routing, ZooKeeper"
+    },
+    {
+      "id": "DB-MC-01",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Instrumented Map with Rolling Load (5-min)",
+      "stack": "Go / Sync",
+      "level": "Medium",
+      "mechanics": "Sliding window circular bucket ring; atomic call increment; thread-safe rate calculation",
+      "variant": "Databricks Signature Machine Coding"
+    },
+    {
+      "id": "DB-MC-02",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Nested Customer Referral Revenue Service",
+      "stack": "Python / OOP",
+      "level": "Medium",
+      "mechanics": "Multi-level referral tree lookup; depth-bounded aggregation; sorted lowest-K",
+      "variant": "Databricks SDE Live Coding"
+    },
+    {
+      "id": "DB-MC-03",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "CIDR & IP Access Rule Matcher",
+      "stack": "Java / Bitwise",
+      "level": "Medium",
+      "mechanics": "Trie-based IP bitmask matching; longest prefix match; allow/deny resolution",
+      "variant": "Databricks Onsite Algorithms"
+    },
+    {
+      "id": "DB-MC-04",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Generalized Tic-Tac-Toe (M×N, K win)",
+      "stack": "Python / Arrays",
+      "level": "Medium",
+      "mechanics": "Row, column, and diagonal sliding counter validation; O(1) move verification",
+      "variant": "Databricks Live Coding"
+    },
+    {
+      "id": "DB-MC-05",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Spark Job DAG Stage Visualizer",
+      "stack": "React / SVG",
+      "level": "Medium",
+      "mechanics": "Topological node layout; stage dependency polyline rendering; status colors",
+      "variant": "Databricks Spark UI Dashboard"
+    },
+    {
+      "id": "DB-MC-06",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Virtualized Columnar Data Table",
+      "stack": "React / TS",
+      "level": "Medium",
+      "mechanics": "Virtualized windowing; horizontal column virtualization; sticky schema headers",
+      "variant": "Databricks SQL Query Result Viewer"
+    },
+    {
+      "id": "DB-MC-07",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Interactive Notebook Cell Runner UI",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Cell execution queuing; output stream appending; markdown/code toggling",
+      "variant": "Databricks Workspace UI"
+    },
+    {
+      "id": "DB-MC-08",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Cluster Autoscaling Worker Slider",
+      "stack": "React / State",
+      "level": "Basic",
+      "mechanics": "Dual thumb bounds; spot-instance checkbox guard; memory ratio preview",
+      "variant": "Compute Cluster Settings UI"
+    },
+    {
+      "id": "DB-MC-09",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "String Cover Deletion Engine",
+      "stack": "Python / Strings",
+      "level": "Medium",
+      "mechanics": "Interval cover representation; deletion index mapping; interval re-merging",
+      "variant": "Databricks Phone Screen Round"
+    },
+    {
+      "id": "DB-MC-10",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "In-Memory Priority Queue via Linked List",
+      "stack": "Java / Pointers",
+      "level": "Medium",
+      "mechanics": "Singly linked list insertion maintaining order; operation cost tradeoff analysis",
+      "variant": "Databricks Live Coding"
+    },
+    {
+      "id": "DB-MC-11",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Single-Machine Write-Ahead Log (WAL)",
+      "stack": "Go / IO",
+      "level": "Medium",
+      "mechanics": "Append-only binary disk log; record checksumming; crash recovery parser",
+      "variant": "Databricks Durable KV Design"
+    },
+    {
+      "id": "DB-MC-12",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Friendship Timeline Connectivity Tracker",
+      "stack": "Python / UnionFind",
+      "level": "Medium",
+      "mechanics": "Incremental union-find with path compression; timestamp tracking",
+      "variant": "Databricks SWE Screen"
+    },
+    {
+      "id": "DB-MC-13",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Multi-List General Merge K-Way Sorter",
+      "stack": "Java / Heaps",
+      "level": "Medium",
+      "mechanics": "PriorityQueue heap tracking; iterator exhaustion checks; memory bounds",
+      "variant": "Databricks Data Processing Round"
+    },
+    {
+      "id": "DB-MC-14",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Delta Lake Parquet Metadata Parser",
+      "stack": "Python / JSON",
+      "level": "Basic",
+      "mechanics": "Transaction log JSON action parser (add, remove, commitInfo)",
+      "variant": "Delta Lake Engine Live Coding"
+    },
+    {
+      "id": "DB-MC-15",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "SQL Query Syntax Highlighter Component",
+      "stack": "React / RegEx",
+      "level": "Basic",
+      "mechanics": "Lexical tokenization; keyword coloring; string literal handling",
+      "variant": "Workspace SQL Worksheet"
+    },
+    {
+      "id": "DB-MC-16",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Column Statistics Min-Max Pruning Engine",
+      "stack": "Go / Structs",
+      "level": "Medium",
+      "mechanics": "Metadata bounding checks against query WHERE predicates; file elimination",
+      "variant": "Lakehouse Query Engine"
+    },
+    {
+      "id": "DB-MC-17",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Metric Streaming Live Line Chart",
+      "stack": "React / Canvas",
+      "level": "Medium",
+      "mechanics": "Rolling 60-second time series; canvas buffer blitting; memory leak mitigation",
+      "variant": "Cluster CPU/Memory Ganglia UI"
+    },
+    {
+      "id": "DB-MC-18",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "High-Concurrency Thread-Safe Counter Ring",
+      "stack": "Java / Atomic",
+      "level": "Medium",
+      "mechanics": "LongAdder stripes; modulo window bucketing; uncontended increments",
+      "variant": "Core Platform Metrics"
+    },
+    {
+      "id": "DB-MC-19",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Fibonacci Tree Shortest Path Finder",
+      "stack": "Python / Trees",
+      "level": "Medium",
+      "mechanics": "K-th order Fibonacci tree traversal; shortest path coordinate calculation",
+      "variant": "Databricks Technical Phone Screen"
+    },
+    {
+      "id": "DB-MC-20",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "In-Memory Columnar Chunk Buffer",
+      "stack": "C++ / Arrays",
+      "level": "Medium",
+      "mechanics": "Contiguous memory allocation; bitmask null vectors; vectorized scan",
+      "variant": "Vectorized Query Engine"
+    },
+    {
+      "id": "DB-MC-21",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Notebook Cell Dependency Graph Resolver",
+      "stack": "TypeScript / Graph",
+      "level": "Medium",
+      "mechanics": "Topological sort of cell references; cycle detection; invalidation propagation",
+      "variant": "Reactive Notebook Execution"
+    },
+    {
+      "id": "DB-MC-22",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Delta Lake Compaction Simulator",
+      "stack": "Python / Files",
+      "level": "Medium",
+      "mechanics": "Small file bin-packing into target chunk sizes; metadata rewrite",
+      "variant": "Delta Optimization Core"
+    },
+    {
+      "id": "DB-MC-23",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Resilient Polling Worker for Query Status",
+      "stack": "React / Custom Hook",
+      "level": "Basic",
+      "mechanics": "Query execution state polling; cancel on unmount; failure retry",
+      "variant": "Databricks SQL Query Runner"
+    },
+    {
+      "id": "DB-MC-24",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Spark Shuffle Memory Spiller",
+      "stack": "Java / Memory",
+      "level": "Medium",
+      "mechanics": "Heap threshold monitoring; in-memory sort; spilling sorted runs to disk",
+      "variant": "Spark Core Execution Round"
+    },
+    {
+      "id": "DB-MC-25",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Schema Evolution Validator",
+      "stack": "Go / Schemas",
+      "level": "Medium",
+      "mechanics": "Backward compatibility checks (column additions, promotions); forbidden drops",
+      "variant": "Unity Catalog Live Coding"
+    },
+    {
+      "id": "DB-MC-26",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Collapsible Schema Catalog Tree View",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Recursive table/column hierarchy; lazy fetching on branch expand",
+      "variant": "Unity Catalog Asset Tree"
+    },
+    {
+      "id": "DB-MC-27",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Sliding Window Anagram Substring Finder",
+      "stack": "Go / TwoPointers",
+      "level": "Basic",
+      "mechanics": "Frequency hash map sliding window; matches count tracking",
+      "variant": "Databricks SWE Screen"
+    },
+    {
+      "id": "DB-MC-28",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Multi-Tenant Warehouse Quota Enforcer",
+      "stack": "Python / Locks",
+      "level": "Medium",
+      "mechanics": "Token bucket allocation per workspace; thread-safe borrowing",
+      "variant": "Resource Management Layer"
+    },
+    {
+      "id": "DB-MC-29",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "In-Memory LRU Cache with Intrusive Pointers",
+      "stack": "C++ / Structs",
+      "level": "Medium",
+      "mechanics": "Doubly linked list nodes embedded within hash table buckets; zero allocation",
+      "variant": "Buffer Pool Machine Coding"
+    },
+    {
+      "id": "DB-MC-30",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Breadth-First Search Grid Path Finder",
+      "stack": "Java / BFS",
+      "level": "Medium",
+      "mechanics": "Multi-modal travel time pathfinding with cost tie-breaking",
+      "variant": "Databricks Coding Round"
+    },
+    {
+      "id": "DB-MC-31",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Real-Time Cluster Metric Tile Matrix",
+      "stack": "React / Grid",
+      "level": "Advanced",
+      "mechanics": "Virtualized tile layout; high-frequency WebSocket updates; DOM recycling",
+      "variant": "Large Fleet Operations HUD"
+    },
+    {
+      "id": "DB-MC-32",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Zero-Copy Byte Array Deserializer",
+      "stack": "Go / Unsafe",
+      "level": "Advanced",
+      "mechanics": "Scanning raw memory buffers into columnar structures without copying",
+      "variant": "Photon Vector Engine"
+    },
+    {
+      "id": "DB-MC-33",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Concurrent Multi-Version Delta Log Reader",
+      "stack": "Java / Concurrency",
+      "level": "Advanced",
+      "mechanics": "ReentrantReadWriteLock synchronization; snapshot reconstruction from JSON checkpoints",
+      "variant": "Delta Lake Core Round"
+    },
+    {
+      "id": "DB-MC-34",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "High-Throughput Sliding Window Load Monitor",
+      "stack": "Go / Atomics",
+      "level": "Advanced",
+      "mechanics": "Striped ring buffers; fractional second time quantization; lock-free reads",
+      "variant": "Databricks Core Systems"
+    },
+    {
+      "id": "DB-MC-35",
+      "kind": "mc",
+      "company": "databricks",
+      "title": "Distributed Task Dependency Scheduler",
+      "stack": "Java / Queues",
+      "level": "Advanced",
+      "mechanics": "DAG stage progression; executor heartbeat monitoring; worker reassignment",
+      "variant": "Spark Scheduler Live Coding"
+    },
+    {
+      "id": "DB-LLD-01",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Durable Key-Value Store with WAL",
+      "entities": "MemTable, WALWriter, DiskSegment, SSTable",
+      "invariants": "Append to disk before updating in-memory map; binary recovery scan",
+      "patterns": "Write-Ahead Log Pattern, Strategy"
+    },
+    {
+      "id": "DB-LLD-02",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Instrumented Store with Rolling Load",
+      "entities": "TimeBucketRing, AtomicCounter, MapStorage, LoadCalc",
+      "invariants": "Atomic increments; non-blocking time-window quantization",
+      "patterns": "Flyweight Pattern, Decorator Pattern"
+    },
+    {
+      "id": "DB-LLD-03",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "CIDR and IP Access Control Engine",
+      "entities": "TrieNode, CIDRBlock, RuleEntry, AccessResult",
+      "invariants": "Longest bitwise prefix matching; deterministic rule resolution",
+      "patterns": "Composite Pattern, Chain of Responsibility"
+    },
+    {
+      "id": "DB-LLD-04",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Spark Stage DAG Execution Coordinator",
+      "entities": "DAGStage, TaskSet, ExecutorHandle, DependencyGraph",
+      "invariants": "Topological stage execution; stages triggered only after parent shuffle completes",
+      "patterns": "Observer Pattern, Command Pattern"
+    },
+    {
+      "id": "DB-LLD-05",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "In-Memory Columnar Chunk Buffer",
+      "entities": "ColumnVector, ChunkMetadata, TypeDescriptor, BitNulls",
+      "invariants": "Off-heap contiguous memory; vector iterations without boxing",
+      "patterns": "Iterator Pattern, Flyweight Pattern"
+    },
+    {
+      "id": "DB-LLD-06",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Delta Lake Transaction Log File Parser",
+      "entities": "CommitLog, LogAction, CheckpointSnapshot, VersionResolver",
+      "invariants": "Monotonically increasing zero-padded commit IDs; checkpoint compaction",
+      "patterns": "Builder Pattern, Factory Pattern"
+    },
+    {
+      "id": "DB-LLD-07",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Nested Referral Revenue Tracker",
+      "entities": "CustomerNode, RevenueRecord, ReferralTree, KMinHeap",
+      "invariants": "Bounded-depth DFS aggregation; minimum revenue filtering",
+      "patterns": "Composite Pattern, Visitor Pattern"
+    },
+    {
+      "id": "DB-LLD-08",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "In-Memory Clock Eviction Buffer Pool",
+      "entities": "BufferPage, ClockHand, FrameTable, PageDescriptor",
+      "invariants": "Usage-bit sweep without queue shifting; atomic pin-counting during scans",
+      "patterns": "Iterator Pattern, Proxy Pattern"
+    },
+    {
+      "id": "DB-LLD-09",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Cluster Autoscaler Workload Evaluator",
+      "entities": "WorkerFleet, TaskBacklog, ScalingPolicy, CooldownTimer",
+      "invariants": "Hysteresis window preventing rapid scale-up/down thrashing",
+      "patterns": "State Pattern, Strategy Pattern"
+    },
+    {
+      "id": "DB-LLD-10",
+      "kind": "lld",
+      "company": "databricks",
+      "title": "Multi-Tenant Workspace Quota Manager",
+      "entities": "Workspace, ResourceTokenBucket, AllocationLease",
+      "invariants": "Maximum concurrent driver cores and memory per workspace",
+      "patterns": "Interceptor Pattern, Singleton Pattern"
+    },
+    {
+      "id": "DB-HLD-01",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Delta Lake Storage Engine & ACID Protocol",
+      "scope": "Serialized ACID transactions over cloud object storage (S3/Azure/GCS)",
+      "constraints": "Millions of write operations; zero data corruption; handling eventual consistency",
+      "stack": "Parquet, Delta Log JSON/Checkpoints, S3 Conditional Writes"
+    },
+    {
+      "id": "DB-HLD-02",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Unity Catalog Lakehouse Governance",
+      "scope": "Fine-grained access control, lineage tracking, and audit logging across tables",
+      "constraints": "Sub-10ms authorization overhead; cross-cloud catalog federation",
+      "stack": "Distributed Metadata Engine (Spanner/Aurora), gRPC"
+    },
+    {
+      "id": "DB-HLD-03",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Distributed Spark Shuffle Service",
+      "scope": "Partitioning, shuffle exchange, and task scheduling across thousands of nodes",
+      "constraints": "Petabytes shuffled per query; handling executor loss without job failure",
+      "stack": "Apache Spark, Netty-based External Shuffle Service"
+    },
+    {
+      "id": "DB-HLD-04",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Serverless SQL Warehouse Control Plane",
+      "scope": "Rapid provisioning and automatic scaling of SQL clusters in sub-10 seconds",
+      "constraints": "Thousands of customer tenants; warm VM pool management",
+      "stack": "Kubernetes Operator, WireGuard mesh, etcd, Envoy"
+    },
+    {
+      "id": "DB-HLD-05",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Streaming Ingestion (Delta Live Tables)",
+      "scope": "Declarative ETL pipeline orchestration with automatic lineage and quality monitoring",
+      "constraints": "Exactly-once processing guarantees; micro-batch and continuous low-latency modes",
+      "stack": "Spark Structured Streaming, RocksDB state store, Kafka"
+    },
+    {
+      "id": "DB-HLD-06",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Collaborative Notebook Workspace Platform",
+      "scope": "Collaborative Python/SQL/Scala notebook kernel sessions with live streaming",
+      "constraints": "100k concurrent notebooks; tenant sandbox isolation",
+      "stack": "WebSockets, Jupyter Kernel Gateway, Firecracker MicroVMs"
+    },
+    {
+      "id": "DB-HLD-07",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Lakehouse Time Travel & Snapshot Manager",
+      "scope": "Point-in-time querying and zero-copy historical rollback across dataset versions",
+      "constraints": "Instantaneous snapshot resolution over millions of Parquet files",
+      "stack": "Delta Log indexing, S3 versioning, RocksDB checkpoint cache"
+    },
+    {
+      "id": "DB-HLD-08",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Vector Search Engine for Lakehouse AI",
+      "scope": "Embedding index generation, similarity search, and real-time retrieval over Delta",
+      "constraints": "Billions of vector embeddings; sub-20ms search latency",
+      "stack": "HNSW / IVF-PQ index algorithms, GPU-accelerated nodes"
+    },
+    {
+      "id": "DB-HLD-09",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Change Data Capture (CDC) Lakehouse Pipe",
+      "scope": "Streaming CDC log ingestion from OLTP databases directly into Delta tables",
+      "constraints": "Handling schema drift, row out-of-order arrival, and deduplication",
+      "stack": "Debezium, Apache Kafka, Spark Streaming Merge"
+    },
+    {
+      "id": "DB-HLD-10",
+      "kind": "hld",
+      "company": "databricks",
+      "title": "Global Fleet Metric Telemetry Aggregator",
+      "scope": "Ingestion and visualization of executor CPU, memory, GC, and spill metrics",
+      "constraints": "Tens of millions of metrics per second from global compute clusters",
+      "stack": "Apache Pinot, OpenTelemetry, Kafka, VictoriaMetrics"
+    },
+    {
+      "id": "SF-MC-01",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "In-Memory Posix File System Hierarchy",
+      "stack": "Python / Trees",
+      "level": "Medium",
+      "mechanics": "Path splitting; recursive directory/file node tree; ls, mkdir, cat",
+      "variant": "Snowflake Signature Live Coding"
+    },
+    {
+      "id": "SF-MC-02",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Document Predicate Filtering Engine",
+      "stack": "Java / Logic",
+      "level": "Medium",
+      "mechanics": "Document tokenization; boolean predicate expression evaluation (AND, OR, NOT)",
+      "variant": "Snowflake SDE Algorithms"
+    },
+    {
+      "id": "SF-MC-03",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Query Statistics & Object Usage Tracker",
+      "stack": "Python / Hash",
+      "level": "Medium",
+      "mechanics": "Access frequency tracking; unaccessed table/column detection over time window",
+      "variant": "Snowflake Core Data Screen"
+    },
+    {
+      "id": "SF-MC-04",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Micro-Partition Min-Max Pruning Simulator",
+      "stack": "Go / Structs",
+      "level": "Medium",
+      "mechanics": "Column value bounds checking against WHERE predicates; file pruning",
+      "variant": "Snowflake Storage Engine Screen"
+    },
+    {
+      "id": "SF-MC-05",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Configurable Matrix Checkerboard UI",
+      "stack": "React / CSS",
+      "level": "Basic",
+      "mechanics": "2D cell coordinate rendering; alternating background math; keyboard nav",
+      "variant": "Snowflake Frontend Screen"
+    },
+    {
+      "id": "SF-MC-06",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Virtualized Query Result Data Table",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Virtualized window rendering; column sort comparator; dynamic column resize",
+      "variant": "Snowsight Results Component"
+    },
+    {
+      "id": "SF-MC-07",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Multi-Tab SQL Worksheet Manager UI",
+      "stack": "React / State",
+      "level": "Medium",
+      "mechanics": "Tab state isolation (draft query, results cache); keyboard execution shortcut",
+      "variant": "Snowsight Worksheet Workspace"
+    },
+    {
+      "id": "SF-MC-08",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Autocomplete Typeahead for SQL Tokens",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Trie-backed token matching; active caret coordinate calculation; key binds",
+      "variant": "Snowsight SQL Editor"
+    },
+    {
+      "id": "SF-MC-09",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Robot Grid Navigation Simulator UI",
+      "stack": "React / State",
+      "level": "Basic",
+      "mechanics": "Coordinate boundary collision checking; movement action dispatcher; score HUD",
+      "variant": "Snowflake UI Live Coding"
+    },
+    {
+      "id": "SF-MC-10",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Typed Event Emitter Implementation",
+      "stack": "TypeScript / Core",
+      "level": "Basic",
+      "mechanics": "Listener registry; event unsubscription token; exception isolation",
+      "variant": "Snowflake JavaScript Core Screen"
+    },
+    {
+      "id": "SF-MC-11",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Deep Object Clone & Recursive Serializer",
+      "stack": "TypeScript / Logic",
+      "level": "Basic",
+      "mechanics": "Recursive cycle detection via WeakSet; type handling (dates, arrays, objects)",
+      "variant": "Frontend Fundamentals Round"
+    },
+    {
+      "id": "SF-MC-12",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Command Pattern Undo/Redo Engine",
+      "stack": "TypeScript / State",
+      "level": "Basic",
+      "mechanics": "Dual command stacks; execute/undo state mutation; stack invalidation",
+      "variant": "Snowsight Editor History"
+    },
+    {
+      "id": "SF-MC-13",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Deep-Copy Linked List with Random Pointers",
+      "stack": "Java / Pointers",
+      "level": "Medium",
+      "mechanics": "Interleaving node copies or hash map mapping; pointer preservation",
+      "variant": "Snowflake CoderPad Screen"
+    },
+    {
+      "id": "SF-MC-14",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Undirected Graph 3-Coloring Validator",
+      "stack": "Python / Graphs",
+      "level": "Medium",
+      "mechanics": "Backtracking traversal; adjacent vertex color conflict verification",
+      "variant": "Snowflake Algorithm Round"
+    },
+    {
+      "id": "SF-MC-15",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Office Desk to Bathroom Distance Matrix",
+      "stack": "Java / BFS",
+      "level": "Medium",
+      "mechanics": "Multi-source BFS traversal; distance matrix propagation across grid",
+      "variant": "Snowflake Onsite Coding"
+    },
+    {
+      "id": "SF-MC-16",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Virtual Warehouse Credit Consumption Meter",
+      "stack": "Go / Sync",
+      "level": "Medium",
+      "mechanics": "Second-level credit consumption calculation; cluster size scaling multiplier",
+      "variant": "Snowflake Compute Management"
+    },
+    {
+      "id": "SF-MC-17",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Query Result Cache with Version Invalidation",
+      "stack": "Go / Mutex",
+      "level": "Medium",
+      "mechanics": "Canonical SQL string hashing; table version tracking; cache hit resolution",
+      "variant": "Query Result Cache Engine"
+    },
+    {
+      "id": "SF-MC-18",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Multi-Level Directory Expansion Tree",
+      "stack": "React / Recursion",
+      "level": "Basic",
+      "mechanics": "Collapsible node branches; path string keys; directory toggle state",
+      "variant": "Schema Tree Navigator"
+    },
+    {
+      "id": "SF-MC-19",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Sliding Window Maximum Stream Aggregator",
+      "stack": "Java / Deque",
+      "level": "Medium",
+      "mechanics": "Monotonic decreasing deque; sliding window maximum extraction",
+      "variant": "Data Warehouse Stream Processing"
+    },
+    {
+      "id": "SF-MC-20",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Basic SQL Lexer and Token Streamer",
+      "stack": "Python / Text",
+      "level": "Medium",
+      "mechanics": "Lexical state scanner; keyword, identifier, and string literal isolation",
+      "variant": "Query Compiler Screen"
+    },
+    {
+      "id": "SF-MC-21",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Snowpipe Continuous File Queue Ingester",
+      "stack": "Go / Channels",
+      "level": "Medium",
+      "mechanics": "S3 notification event parser; deduplication cache; chunked stage loading",
+      "variant": "Snowpipe Ingestion Core"
+    },
+    {
+      "id": "SF-MC-22",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Interactive Database Role Permissions Matrix",
+      "stack": "React / Context",
+      "level": "Medium",
+      "mechanics": "Role-to-Privilege boolean checkbox grid; inheritance hierarchy propagation",
+      "variant": "Snowflake Access Control UI"
+    },
+    {
+      "id": "SF-MC-23",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Priority-Based Query Queue Coordinator",
+      "stack": "Java / Concurrency",
+      "level": "Medium",
+      "mechanics": "PriorityBlockingQueue; warehouse concurrency limit gating; task preemption",
+      "variant": "Warehouse Query Scheduler"
+    },
+    {
+      "id": "SF-MC-24",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "JSON Semi-Structured Variant Flattener",
+      "stack": "Python / Recursion",
+      "level": "Medium",
+      "mechanics": "Nested JSON object traversal; dot-notation column path flattening",
+      "variant": "Variant Data Type Core"
+    },
+    {
+      "id": "SF-MC-25",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Resilient WebSocket Query Execution Hook",
+      "stack": "React / Custom Hook",
+      "level": "Medium",
+      "mechanics": "Connection lifecycle; query progress percentage stream; cancelation",
+      "variant": "Snowsight Execution HUD"
+    },
+    {
+      "id": "SF-MC-26",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "In-Memory Dictionary-Encoded Column Store",
+      "stack": "C++ / Structs",
+      "level": "Medium",
+      "mechanics": "Distinct string vocabulary dictionary; integer index vector representation",
+      "variant": "Columnar Storage Core"
+    },
+    {
+      "id": "SF-MC-27",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Zero-Copy Table Clone Metadata Simulator",
+      "stack": "Go / Structs",
+      "level": "Medium",
+      "mechanics": "Pointer mapping to existing micro-partitions; copy-on-write fork tracking",
+      "variant": "Zero-Copy Clone Engine"
+    },
+    {
+      "id": "SF-MC-28",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Dynamic Data Masking Rule Evaluator",
+      "stack": "Python / Strings",
+      "level": "Medium",
+      "mechanics": "Role-based column value masking (regex redaction, full hash substitution)",
+      "variant": "Security & Governance Core"
+    },
+    {
+      "id": "SF-MC-29",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Debounced Search Input with Cancellation",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Custom hook combining debounce timer with fetch AbortController",
+      "variant": "Snowsight Global Search Bar"
+    },
+    {
+      "id": "SF-MC-30",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Circular Ring Buffer Query History Log",
+      "stack": "Go / RingBuffer",
+      "level": "Basic",
+      "mechanics": "Fixed capacity buffer; overwrite oldest on saturation; concurrent reads",
+      "variant": "System Query Log Collector"
+    },
+    {
+      "id": "SF-MC-31",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Virtualized Infinite Matrix Grid Canvas",
+      "stack": "React / Canvas",
+      "level": "Advanced",
+      "mechanics": "Custom virtualized canvas rendering millions of cells without DOM nodes",
+      "variant": "High-Scale Data Grid UI"
+    },
+    {
+      "id": "SF-MC-32",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Columnar Vector SIMD Predicate Evaluator",
+      "stack": "C++ / Vector",
+      "level": "Advanced",
+      "mechanics": "Vectorized SIMD comparison over contiguous integer arrays; match bitmask",
+      "variant": "Query Vector Processing Core"
+    },
+    {
+      "id": "SF-MC-33",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "High-Concurrency Micro-Partition Lock Pool",
+      "stack": "Java / Concurrency",
+      "level": "Advanced",
+      "mechanics": "Fine-grained partition read/write locks; deadlock-free lock ordering",
+      "variant": "Multi-Cluster Shared Data Core"
+    },
+    {
+      "id": "SF-MC-34",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Real-Time Memory Spillage Coordinator",
+      "stack": "Go / Memory",
+      "level": "Advanced",
+      "mechanics": "Monitoring memory thresholds; spilling temporary partition runs to disk",
+      "variant": "Compute Spilling System"
+    },
+    {
+      "id": "SF-MC-35",
+      "kind": "mc",
+      "company": "snowflake",
+      "title": "Distributed Query Execution Token Graph",
+      "stack": "Java / DirectedGraph",
+      "level": "Advanced",
+      "mechanics": "Node-to-node exchange operator plan; vectorized pipeline step execution",
+      "variant": "Distributed Query Engine"
+    },
+    {
+      "id": "SF-LLD-01",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "In-Memory POSIX File System",
+      "entities": "FSNode, Directory, FileLeaf, PathResolver",
+      "invariants": "Atomic path traversal; sorted directory listings",
+      "patterns": "Composite Pattern, Interpreter"
+    },
+    {
+      "id": "SF-LLD-02",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Query Result Cache with Version Invalidation",
+      "entities": "CacheKey (Hash of AST + Schema), ResultPage, VersionTracker",
+      "invariants": "DML on tables invalidates matching cached keys",
+      "patterns": "Observer Pattern, Cache-Aside"
+    },
+    {
+      "id": "SF-LLD-03",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Document Index with Predicate Pushdown",
+      "entities": "Document, InvertedIndex, PredicateTree, DocEvaluator",
+      "invariants": "Short-circuit evaluation for nested boolean expressions",
+      "patterns": "Composite Pattern, Strategy Pattern"
+    },
+    {
+      "id": "SF-LLD-04",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Virtual Warehouse Credit Metering",
+      "entities": "ComputeCluster, SizeMultiplier, CreditCounter, Lease",
+      "invariants": "Credit charges correspond to exact cluster active seconds",
+      "patterns": "Strategy Pattern, Factory Pattern"
+    },
+    {
+      "id": "SF-LLD-05",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Micro-Partition Pruning Metadata Index",
+      "entities": "MicroPartition, ColumnStat (Min, Max, Nulls), Pruner",
+      "invariants": "Partitions bypassed when literals lie outside [min,max]",
+      "patterns": "Flyweight Pattern, Specification"
+    },
+    {
+      "id": "SF-LLD-06",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Column-Oriented Block Reader",
+      "entities": "DictBlock, SymbolTable, OffsetArray, VectorIterator",
+      "invariants": "Zero allocation string checks via integer token comparisons",
+      "patterns": "Iterator Pattern, Flyweight"
+    },
+    {
+      "id": "SF-LLD-07",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Snowsight Multi-Tab Worksheet Manager",
+      "entities": "WorksheetTab, QueryBuffer, ExecutionSession, DraftStore",
+      "invariants": "Tab state changes isolated; background auto-save without blocking",
+      "patterns": "Memento Pattern, State Pattern"
+    },
+    {
+      "id": "SF-LLD-08",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Command History Undo/Redo Engine",
+      "entities": "Command, EditOperation, HistoryStack, CaretTracker",
+      "invariants": "Redo stack cleared on new mutation; symmetric execution",
+      "patterns": "Command Pattern"
+    },
+    {
+      "id": "SF-LLD-09",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "SQL Autocomplete Tokenizer",
+      "entities": "TokenStream, TrieLexicon, ContextScope, CompletionProposal",
+      "invariants": "Context-aware prefix lookups (tables after FROM, columns after SELECT)",
+      "patterns": "State Pattern, Builder Pattern"
+    },
+    {
+      "id": "SF-LLD-10",
+      "kind": "lld",
+      "company": "snowflake",
+      "title": "Warehouse Concurrency Gate",
+      "entities": "QueryTask, ConcurrencyGate, QueuePriorityQueue, WorkerChannel",
+      "invariants": "Running query count never exceeds cluster slot capacity",
+      "patterns": "Semaphore Pattern, Producer-Consumer"
+    },
+    {
+      "id": "SF-HLD-01",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Multi-Cluster Shared-Data Architecture",
+      "scope": "Decoupling storage (object store) and compute (stateless virtual warehouses)",
+      "constraints": "Independent scaling; zero resource contention between warehouses",
+      "stack": "S3 / Azure Blob, Stateless EC2 Workers, FoundationDB"
+    },
+    {
+      "id": "SF-HLD-02",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Micro-Partition Storage & Metadata Engine",
+      "scope": "Immutable columnar micro-partition creation (50-500MB) with pruning metadata",
+      "constraints": "Hundreds of billions of partitions; instant catalog lookups",
+      "stack": "Cloud Object Store, Paxos/Raft Metadata Service"
+    },
+    {
+      "id": "SF-HLD-03",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Distributed Query Result Cache",
+      "scope": "Multi-tenant cached query result retrieval bypassing compute warehouses",
+      "constraints": "100,000 queries/min; sub-10ms response on cache hits",
+      "stack": "Redis / DynamoDB metadata, S3 result objects"
+    },
+    {
+      "id": "SF-HLD-04",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Snowpipe: Continuous Data Ingestion",
+      "scope": "Serverless micro-batch loading triggered via cloud storage events",
+      "constraints": "Ingestion latency <3s; automated file deduplication",
+      "stack": "SQS / SNS / EventBridge, Serverless Compute"
+    },
+    {
+      "id": "SF-HLD-05",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Zero-Copy Database Cloning Infrastructure",
+      "scope": "Cloning entire schemas and databases without physical data duplication",
+      "constraints": "Clone operation latency <2s regardless of petabyte scale",
+      "stack": "Metadata pointer replication, copy-on-write tracking"
+    },
+    {
+      "id": "SF-HLD-06",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Database Time Travel and Fail-Safe System",
+      "scope": "Historical point-in-time state querying and table resurrection up to 90 days",
+      "constraints": "Immutable historical partition tracking; automated lifecycle purging",
+      "stack": "Metadata history graph, retention managers"
+    },
+    {
+      "id": "SF-HLD-07",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Secure Data Sharing Mesh across Clouds",
+      "scope": "Cross-account, cross-cloud live data sharing without ETL data movement",
+      "constraints": "Zero physical data replication; unified access control across AWS/Azure/GCP",
+      "stack": "Global metadata federation, cross-cloud tokens"
+    },
+    {
+      "id": "SF-HLD-08",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Multi-Tenant RBAC & Data Masking Engine",
+      "scope": "Centralized security evaluating row access and column masking policies",
+      "constraints": "Sub-millisecond policy compile time during query parsing",
+      "stack": "AST rewriting rules, secure view virtualization"
+    },
+    {
+      "id": "SF-HLD-09",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Distributed Spilling & Local SSD Caching",
+      "scope": "NVMe SSD cache on warehouse nodes, spilling to object storage on OOM",
+      "constraints": "Sustaining query execution across data volumes far exceeding RAM",
+      "stack": "NVMe kernel caching, remote chunk spilling daemons"
+    },
+    {
+      "id": "SF-HLD-10",
+      "kind": "hld",
+      "company": "snowflake",
+      "title": "Snowsight Web Workspaces Architecture",
+      "scope": "Multi-tenant web platform for SQL editing, profiling, and chart generation",
+      "constraints": "Rendering millions of table rows; collaborative state sync",
+      "stack": "React, WebAssembly data parsing, WebSockets, CDN"
+    },
+    {
+      "id": "PC-MC-01",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Path-First Canonical Tree Model",
+      "stack": "TypeScript / Logic",
+      "level": "Basic",
+      "mechanics": "Ingestion of flat path arrays (['src/index.ts']); canonical directory splitting",
+      "variant": "Trees by Pierre Model Architecture"
+    },
+    {
+      "id": "PC-MC-02",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Compact Chained Folder Flattener",
+      "stack": "TypeScript / Algo",
+      "level": "Basic",
+      "mechanics": "Compacting single-child directory chains (.github/workflows) into single row",
+      "variant": "@pierre/trees Flatten Engine"
+    },
+    {
+      "id": "PC-MC-03",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Collapsible File Tree Row Component",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Expansion chevron toggle; path selection state; icon mapping (file vs folder)",
+      "variant": "Trees React Entry Layer"
+    },
+    {
+      "id": "PC-MC-04",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Unified Diff Line Tokenizer",
+      "stack": "TypeScript / RegEx",
+      "level": "Basic",
+      "mechanics": "Parsing unified diff lines; identifying markers (+, -, @@ -l,s +l,s @@)",
+      "variant": "Diffs by Pierre Core Parser"
+    },
+    {
+      "id": "PC-MC-05",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Split Diff Side-by-Side Line Aligner",
+      "stack": "TypeScript / Arrays",
+      "level": "Medium",
+      "mechanics": "Synchronizing old and new line numbers; blank placeholder injection on additions",
+      "variant": "@pierre/diffs Split View Engine"
+    },
+    {
+      "id": "PC-MC-06",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "In-Memory Virtual File System (VFS)",
+      "stack": "TypeScript / Map",
+      "level": "Medium",
+      "mechanics": "Materializing file paths in memory; staging additions and deletions",
+      "variant": "@pierre/just-code-storage VFS Core"
+    },
+    {
+      "id": "PC-MC-07",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Git Blob SHA-1 Content Addresser",
+      "stack": "Go / Crypto",
+      "level": "Basic",
+      "mechanics": "blob <size>\\0<content> byte formatting; SHA-1 digest calculation",
+      "variant": "Code Storage Object Serialization"
+    },
+    {
+      "id": "PC-MC-08",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Commit from Unified Diff Text",
+      "stack": "TypeScript / Logic",
+      "level": "Medium",
+      "mechanics": "Single-pass diff parsing; extracting file hunks; constructing modified files",
+      "variant": "repo.createCommitFromDiff SDK"
+    },
+    {
+      "id": "PC-MC-09",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Fast Glob Path Pattern Matcher",
+      "stack": "Go / Strings",
+      "level": "Basic",
+      "mechanics": "Glob matching (**/*.ts, !dist/**); wildcard path resolution",
+      "variant": "Code Storage Glob Archive Engine"
+    },
+    {
+      "id": "PC-MC-10",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Ephemeral Branch Namespace Manager",
+      "stack": "Go / Mutex",
+      "level": "Medium",
+      "mechanics": "Ephemeral branch pointer generation; lease TTL expiration; ref updates",
+      "variant": "Code Storage Ephemeral Branches"
+    },
+    {
+      "id": "PC-MC-11",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Codebase Grep Regex Scanning Engine",
+      "stack": "Go / Workers",
+      "level": "Medium",
+      "mechanics": "Multithreaded file tree traversal; regex pattern matching across blobs",
+      "variant": "Code Storage Grep API"
+    },
+    {
+      "id": "PC-MC-12",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Virtualized File Tree Viewport",
+      "stack": "React / DOM",
+      "level": "Medium",
+      "mechanics": "Recycled row rendering; path-first row keys; keyboard arrow navigation",
+      "variant": "@pierre/trees/react Virtualizer"
+    },
+    {
+      "id": "PC-MC-13",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Git Tree Object Binary Serializer",
+      "stack": "Go / Bytes",
+      "level": "Medium",
+      "mechanics": "Formatting mode, path, and raw 20-byte SHA into canonical Git tree entries",
+      "variant": "Git Low-Level Storage Layer"
+    },
+    {
+      "id": "PC-MC-14",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Multi-File Staging and Discard UI",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Checkbox selection of files; stage/unstage dispatch; optimistic tree update",
+      "variant": "Agent Commit Builder UI"
+    },
+    {
+      "id": "PC-MC-15",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Diff Syntax Highlighting Tokenizer",
+      "stack": "TypeScript / Shiki",
+      "level": "Medium",
+      "mechanics": "Language grammar injection; syntax token span generation; cache hit reuse",
+      "variant": "@pierre/diffs Syntax Pipeline"
+    },
+    {
+      "id": "PC-MC-16",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Three-Phase Commit Quorum Coordinator",
+      "stack": "Go / Channels",
+      "level": "Advanced",
+      "mechanics": "Phase 1 Pre-Commit, Phase 2 Prepare, Phase 3 Commit; majority ACK verification",
+      "variant": "Code Storage Spoke Quorum Layer"
+    },
+    {
+      "id": "PC-MC-17",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Git Packfile Index (IDX) Parser",
+      "stack": "C++ / Binary",
+      "level": "Advanced",
+      "mechanics": "Parsing fan-out table, SHA table, CRC32 table, and packfile byte offsets",
+      "variant": "High-Speed Git Engine"
+    },
+    {
+      "id": "PC-MC-18",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Fast Working Tree Diff Computer",
+      "stack": "Go / Pointers",
+      "level": "Medium",
+      "mechanics": "Comparing two Git tree objects; generating added, modified, deleted delta lists",
+      "variant": "Code Storage Native Diff Service"
+    },
+    {
+      "id": "PC-MC-19",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Git Ref Log and History Traverser",
+      "stack": "TypeScript / OOP",
+      "level": "Medium",
+      "mechanics": "Resolving branch ref to HEAD commit; traversing parent commit pointers",
+      "variant": "@pierre/just-code-storage Log"
+    },
+    {
+      "id": "PC-MC-20",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Inline Comment Thread on Diff Lines",
+      "stack": "React / State",
+      "level": "Medium",
+      "mechanics": "Anchoring discussion components to specific diff line numbers and side",
+      "variant": "DiffsHub Collaboration Layer"
+    },
+    {
+      "id": "PC-MC-21",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Cold Storage Tier Migration Worker",
+      "stack": "Go / Time",
+      "level": "Medium",
+      "mechanics": "Tracking repository idle read time; archiving inactive repos after 7 days",
+      "variant": "Code Storage Cold Storage Tier"
+    },
+    {
+      "id": "PC-MC-22",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Branch Merge Conflict Matrix Detector",
+      "stack": "Python / Logic",
+      "level": "Medium",
+      "mechanics": "Three-way merge calculation (Base, Ours, Theirs); conflict hunk labeling",
+      "variant": "Git Storage Merge Engine"
+    },
+    {
+      "id": "PC-MC-23",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Path-First Rename and Move Handler",
+      "stack": "TypeScript / Model",
+      "level": "Medium",
+      "mechanics": "Updating canonical paths across tree children; emitting atomic rename event",
+      "variant": "@pierre/trees Model Actions"
+    },
+    {
+      "id": "PC-MC-24",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Git LFS Pointer Creator & Ingester",
+      "stack": "Go / Crypto",
+      "level": "Medium",
+      "mechanics": "Hashing large binary payloads; formatting Git LFS pointer text; blob routing",
+      "variant": "Code Storage Git LFS Mirroring"
+    },
+    {
+      "id": "PC-MC-25",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Git Commit DAG Revision Visualizer",
+      "stack": "React / SVG",
+      "level": "Medium",
+      "mechanics": "Calculating branch swimlanes; rendering merge bezier curves; commit nodes",
+      "variant": "Pierre Visual Commit Graph"
+    },
+    {
+      "id": "PC-MC-26",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Hot-to-Cold Object Store Eviction Engine",
+      "stack": "Go / Storage",
+      "level": "Medium",
+      "mechanics": "S3/R2 multi-part upload of repository tarballs; local disk freeing",
+      "variant": "Tiered Storage Architecture"
+    },
+    {
+      "id": "PC-MC-27",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Incremental Tree Invalidation Cache",
+      "stack": "TypeScript / Cache",
+      "level": "Medium",
+      "mechanics": "Invalidating only ancestor path segments upon child leaf addition",
+      "variant": "Trees Model Reactivity"
+    },
+    {
+      "id": "PC-MC-28",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Custom Theme Token CSS Variable Bridge",
+      "stack": "React / CSS",
+      "level": "Basic",
+      "mechanics": "Injecting Pierre color variables into Shiki and code tokens",
+      "variant": "@pierre/theme Integrator"
+    },
+    {
+      "id": "PC-MC-29",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "In-Memory Git Tag Reference Index",
+      "stack": "Go / Sync",
+      "level": "Basic",
+      "mechanics": "Mapping lightweight tags and annotated tag objects to commit SHAs",
+      "variant": "Ref Management Subsystem"
+    },
+    {
+      "id": "PC-MC-30",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Asynchronous Native Git Protocol Bridge",
+      "stack": "Go / Net",
+      "level": "Advanced",
+      "mechanics": "Custom TCP handler serving Git Smart HTTP protocol (/info/refs, git-upload-pack)",
+      "variant": "Code Storage Edge Git Gateway"
+    },
+    {
+      "id": "PC-MC-31",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Virtualized Multi-File Diff Canvas",
+      "stack": "React / Canvas",
+      "level": "Advanced",
+      "mechanics": "Virtualized rendering of thousands of diff hunks across hundreds of files",
+      "variant": "Large Pull Request Diff View"
+    },
+    {
+      "id": "PC-MC-32",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Zero-Allocation Git Object Streamer",
+      "stack": "Go / IO",
+      "level": "Advanced",
+      "mechanics": "Streaming Git blob objects straight to HTTP writer without buffering in RAM",
+      "variant": "Code Storage Stream Service"
+    },
+    {
+      "id": "PC-MC-33",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "Concurrent Spoke Replica Synchronizer",
+      "stack": "Go / Channels",
+      "level": "Advanced",
+      "mechanics": "Multi-worker parallel catchup replication across distributed spoke nodes",
+      "variant": "Spoke Replication Mesh"
+    },
+    {
+      "id": "PC-MC-34",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "AST-Aware Code Difference Matcher",
+      "stack": "TypeScript / AST",
+      "level": "Advanced",
+      "mechanics": "Matching moved and refactored code blocks across diffs via node hashing",
+      "variant": "Diffs Advanced Diffing Mode"
+    },
+    {
+      "id": "PC-MC-35",
+      "kind": "mc",
+      "company": "pierre",
+      "title": "High-Scale Agent Memory File Store",
+      "stack": "Go / Sharding",
+      "level": "Advanced",
+      "mechanics": "Optimized content-addressed storage for billions of tiny agent memory snippets",
+      "variant": "Code Storage Agent Memory Layer"
+    },
+    {
+      "id": "PC-LLD-01",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Content-Addressed Git Object Store",
+      "entities": "GitBlob, GitTree, GitCommit, GitRef, ObjectHasher",
+      "invariants": "Immutable SHA-1/SHA-256 addressing; canonical serialization",
+      "patterns": "Factory Pattern, Repository Pattern"
+    },
+    {
+      "id": "PC-LLD-02",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Path-First File Tree Model Engine",
+      "entities": "TreeModel, TreeNode, PathResolver, ChainedFolderCompactor",
+      "invariants": "Canonical path addresses every node; idempotent directory expansion",
+      "patterns": "Composite Pattern, Iterator Pattern"
+    },
+    {
+      "id": "PC-LLD-03",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Unified Diff Streaming Parser",
+      "entities": "DiffHunk, LineRecord, ChangeType, PatchEngine",
+      "invariants": "Line numbers preserve exact mapping between source and dest",
+      "patterns": "Builder Pattern, Interpreter Pattern"
+    },
+    {
+      "id": "PC-LLD-04",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Virtual File System Session Workspace",
+      "entities": "VFSWorktree, StagingIndex, VFSNode, ConflictDescriptor",
+      "invariants": "In-memory staging operations match POSIX filesystem semantics",
+      "patterns": "Facade Pattern, Unit of Work"
+    },
+    {
+      "id": "PC-LLD-05",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Three-Phase Commit Spoke Node Coordinator",
+      "entities": "CoordinationSession, CohortSpoke, VoteRecord, CommitBarrier",
+      "invariants": "Non-blocking abort on timeout; quorum consensus verification",
+      "patterns": "State Pattern, Mediator Pattern"
+    },
+    {
+      "id": "PC-LLD-06",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Codebase In-Memory Grep Pattern Matcher",
+      "entities": "GrepWorker, RegexMatcher, MatchOccurrence, SearchScope",
+      "invariants": "Parallel blob evaluation; line-offset tracking; zero copy scanning",
+      "patterns": "Worker Pool, Strategy Pattern"
+    },
+    {
+      "id": "PC-LLD-07",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Ephemeral Branch Reference Lease Manager",
+      "entities": "EphemeralRef, LeaseTTL, HeartbeatRenewal, RefCleaner",
+      "invariants": "Automatic ref tombstoning on TTL expiration; thread-safe atomic swaps",
+      "patterns": "Proxy Pattern, Observer Pattern"
+    },
+    {
+      "id": "PC-LLD-08",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Hot-to-Cold Tiered Storage Migration Daemon",
+      "entities": "RepositoryMetadata, AccessLog, ArchivalPacker, StorageBridge",
+      "invariants": "Inactive repos after 7 days safely compacted and flushed to cold storage",
+      "patterns": "State Pattern, Strategy Pattern"
+    },
+    {
+      "id": "PC-LLD-09",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Git LFS Chunked Hash Allocation Engine",
+      "entities": "LFSObject, ChunkDescriptor, OidVerification, LfsPointer",
+      "invariants": "SHA-256 integrity check; raw binary stream bypass of commit objects",
+      "patterns": "Chain of Responsibility, Adapter"
+    },
+    {
+      "id": "PC-LLD-10",
+      "kind": "lld",
+      "company": "pierre",
+      "title": "Syntax Highlighting Token Cache",
+      "entities": "TokenCacheKey, SyntaxTokenStream, GrammarDefinition",
+      "invariants": "Cache key includes text hash and grammar state; LRU eviction",
+      "patterns": "Flyweight Pattern, Cache-Aside"
+    },
+    {
+      "id": "PC-HLD-01",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Ultra-Low Latency Git Storage (code.storage)",
+      "scope": "White-label, distributed Git infrastructure for AI codegen platforms",
+      "constraints": "Millions of new repos daily; read/write ∼60× faster than S3/R2",
+      "stack": "Spoke quorum cluster, NVMe write engine, Git 3PC, Cloudflare"
+    },
+    {
+      "id": "PC-HLD-02",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Spoke Distributed Git Replica Cluster",
+      "scope": "Quorum-based replication ensuring durability across Git spoke nodes",
+      "constraints": "N/2+1 majority quorum write ACKs; transparent failover",
+      "stack": "Go Spoke daemons, Raft coordination, custom TCP transport"
+    },
+    {
+      "id": "PC-HLD-03",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Tiered Code Storage (Hot SSD to Cold Object)",
+      "scope": "Migration of idle agent repositories to cold object storage with fast rehydration",
+      "constraints": "Cold tier storage cost optimization with sub-second unarchival",
+      "stack": "S3 / Cloudflare R2, RocksDB metadata, zstd compression"
+    },
+    {
+      "id": "PC-HLD-04",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "AI Agent Repository Spawner (1M+ Repos/Day)",
+      "scope": "Programmatic creation of Git repositories for agent execution environments",
+      "constraints": "Repo provisioning latency <20ms; zero rate limits",
+      "stack": "Copy-on-write ref namespaces, distributed Spoke allocation"
+    },
+    {
+      "id": "PC-HLD-05",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Global Codebase Grep & Content Indexing",
+      "scope": "Regex code search and glob-based filtering across machine-generated repos",
+      "constraints": "Search response time <100ms over gigabyte repositories",
+      "stack": "Trigram inverted indices, memory-mapped blob scanning, Go"
+    },
+    {
+      "id": "PC-HLD-06",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Programmable Git Protocol Edge Gateway",
+      "scope": "Exposing native Git transport (git clone, git push) alongside REST and SDKs",
+      "constraints": "Terminating tens of thousands of concurrent Git packfile transfers",
+      "stack": "Go Git HTTP/SSH edge server, Envoy proxy, eBPF routing"
+    },
+    {
+      "id": "PC-HLD-07",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "External Git Sync Engine (GitHub/GitLab)",
+      "scope": "Automated synchronization between code.storage and external Git remotes",
+      "constraints": "Webhook ingestion; conflict detection; transparent push mirroring",
+      "stack": "Redis sync queue, Worker Pool, GitHub App OAuth"
+    },
+    {
+      "id": "PC-HLD-08",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Real-Time Collaborative VFS Mesh",
+      "scope": "Synchronizing in-memory virtual file trees across agents and browser sessions",
+      "constraints": "Sub-10ms patch broadcasting; CRDT document merging",
+      "stack": "WebSockets, Yjs / Automerge CRDTs, Bun/TypeScript backend"
+    },
+    {
+      "id": "PC-HLD-09",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Git Large File Storage (LFS) Vault",
+      "scope": "Streaming storage and deduplication for multi-gigabyte ML weights and assets",
+      "constraints": "Multi-part streaming direct to object storage; SHA-256 verification",
+      "stack": "S3-compatible cold tier, Redis chunk tracking, Go chunk streamer"
+    },
+    {
+      "id": "PC-HLD-10",
+      "kind": "hld",
+      "company": "pierre",
+      "title": "Multi-Tenant Cryptographic Audit Ledger",
+      "scope": "Per-tenant encryption, SOC2 Type II compliance, and fine-grained agent action logging",
+      "constraints": "Tamper-evident cryptographic log generation on every commit and ref update",
+      "stack": "Merkle Tree audit chains, AWS KMS envelope encryption, PostgreSQL"
+    },
+    {
+      "id": "TM-MC-01",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Training Client Future with Jittered Retry",
+      "stack": "Python / Async",
+      "level": "Basic",
+      "mechanics": "Polling future status; exponential backoff on transient errors; unwrap result",
+      "variant": "Tinker Python SDK Core Pattern"
+    },
+    {
+      "id": "TM-MC-02",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Structured Message-to-Token Renderer",
+      "stack": "Python / Text",
+      "level": "Basic",
+      "mechanics": "Converting role-based chat messages into formatted token strings; special tokens",
+      "variant": "Tinker Cookbook tml-renderers"
+    },
+    {
+      "id": "TM-MC-03",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Training Loss & Learning Rate Tracker",
+      "stack": "Python / Math",
+      "level": "Basic",
+      "mechanics": "Tracking step losses; rolling average calculation; learning rate warmup",
+      "variant": "Tinker Fine-Tuning Execution"
+    },
+    {
+      "id": "TM-MC-04",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Live Metric Streaming Canvas HUD",
+      "stack": "React / Canvas",
+      "level": "Basic",
+      "mechanics": "Real-time step loss curve; auto-scaling Y-axis; high-frequency coordinate draw",
+      "variant": "Tinker Console Training Dashboard"
+    },
+    {
+      "id": "TM-MC-05",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Training Run Experiment Filter Table",
+      "stack": "React / Hooks",
+      "level": "Basic",
+      "mechanics": "Filter runs by base model, status, LoRA rank; search input; sorting",
+      "variant": "Tinker Cloud Management Console"
+    },
+    {
+      "id": "TM-MC-06",
+      "kind": "mc",
+      "company": "tml",
+      "title": "In-Memory Checkpoint Metadata Indexer",
+      "stack": "Go / Mutex",
+      "level": "Basic",
+      "mechanics": "Mapping step IDs to remote checkpoint archive URLs; atomic updates",
+      "variant": "Checkpoint Archival Service"
+    },
+    {
+      "id": "TM-MC-07",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Model Parameter Scale & Rank Formatter",
+      "stack": "TypeScript / Math",
+      "level": "Basic",
+      "mechanics": "Formatting 1B to 1T+ parameter numbers; LoRA rank memory multiplier preview",
+      "variant": "Tinker Run Launcher Dialog"
+    },
+    {
+      "id": "TM-MC-08",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Token Counter and Context Window Gauge",
+      "stack": "React / State",
+      "level": "Basic",
+      "mechanics": "Token estimation from character count; maximum context percentage bar",
+      "variant": "Prompt Construction UI"
+    },
+    {
+      "id": "TM-MC-09",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Benchmark Score Matrix Heatmap",
+      "stack": "React / SVG",
+      "level": "Basic",
+      "mechanics": "Rendering evaluation scores across benchmarks (GSM8K, MATH-500, IFEval)",
+      "variant": "Tinker Benchmark Suite HUD"
+    },
+    {
+      "id": "TM-MC-10",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Hardware Node Heartbeat Sweeper",
+      "stack": "Python / Time",
+      "level": "Basic",
+      "mechanics": "Identifying GPU nodes exceeding 10-second heartbeat timeout; marking degraded",
+      "variant": "Cluster Heartbeat Daemon"
+    },
+    {
+      "id": "TM-MC-11",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Asynchronous Training Client Dispatcher",
+      "stack": "Python / OOP",
+      "level": "Medium",
+      "mechanics": "Implementing ServiceClient, TrainingClient, and SamplingClient interfaces",
+      "variant": "Tinker SDK Architecture"
+    },
+    {
+      "id": "TM-MC-12",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Dynamic LoRA Rank Parameter Calculator",
+      "stack": "Python / Torch",
+      "level": "Medium",
+      "mechanics": "Computing trainable parameter counts for low-rank adapters (A×B matrices)",
+      "variant": "LoRA Fine-Tuning Engine"
+    },
+    {
+      "id": "TM-MC-13",
+      "kind": "mc",
+      "company": "tml",
+      "title": "RL Rollout Trajectory Buffer with Clipping",
+      "stack": "Python / NumPy",
+      "level": "Medium",
+      "mechanics": "Storing rollout steps; computing clipped importance ratios; advantage bounds",
+      "variant": "Tinker RL Trajectory Recipe"
+    },
+    {
+      "id": "TM-MC-14",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Checkpoint Archive Streaming Downloader",
+      "stack": "Python / IO",
+      "level": "Medium",
+      "mechanics": "Streaming multi-part tarball chunks from Tinker path to local disk file",
+      "variant": "get_checkpoint_archive_url SDK"
+    },
+    {
+      "id": "TM-MC-15",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Live Loss Curve Virtualized Data Stream",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Handling 100 Hz step emissions via batching; web worker offloading",
+      "variant": "Tinker Live Training Monitor"
+    },
+    {
+      "id": "TM-MC-16",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Priority GPU Job Queue Scheduler",
+      "stack": "Go / Concurrency",
+      "level": "Medium",
+      "mechanics": "Priority-based job scheduling; preemption of evaluation runs by training runs",
+      "variant": "Distributed Scheduler Core"
+    },
+    {
+      "id": "TM-MC-17",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Token-Level Logprob Visualizer UI",
+      "stack": "React / CSS",
+      "level": "Medium",
+      "mechanics": "Coloring token spans based on logprob values; hover tooltips for alternatives",
+      "variant": "Model Sampling Inspector"
+    },
+    {
+      "id": "TM-MC-18",
+      "kind": "mc",
+      "company": "tml",
+      "title": "DPO Preference Pair Tensor Batcher",
+      "stack": "Python / Torch",
+      "level": "Medium",
+      "mechanics": "Batching chosen vs rejected prompt completions; padding mask alignment",
+      "variant": "DPO Post-Training Pipeline"
+    },
+    {
+      "id": "TM-MC-19",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Dynamic Batch Size Accumulator",
+      "stack": "Python / Yield",
+      "level": "Medium",
+      "mechanics": "Yielding variable-sized micro-batches to match token budget; padding reduction",
+      "variant": "Training Data Loader"
+    },
+    {
+      "id": "TM-MC-20",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Model Checkpoint Pruner and Retention",
+      "stack": "Go / Time",
+      "level": "Medium",
+      "mechanics": "Retaining only top-K checkpoints based on evaluation metrics; purging disk",
+      "variant": "Model Registry Lifecycle"
+    },
+    {
+      "id": "TM-MC-21",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Speculative Sampling Output Verifier",
+      "stack": "Python / Strings",
+      "level": "Medium",
+      "mechanics": "Matching draft model speculative tokens against target model verification",
+      "variant": "High-Throughput Sampling Core"
+    },
+    {
+      "id": "TM-MC-22",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Cluster GPU Memory Pressure Alarm UI",
+      "stack": "React / Hooks",
+      "level": "Medium",
+      "mechanics": "Polling VRAM utilization; rendering threshold warning banners; throttle warning",
+      "variant": "Cluster Infrastructure Health"
+    },
+    {
+      "id": "TM-MC-23",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Distributed Optimizer Step Synchronizer",
+      "stack": "Go / Channels",
+      "level": "Medium",
+      "mechanics": "Barrier synchronization waiting for all rank gradients before allowing step",
+      "variant": "Cluster Engine Coordinator"
+    },
+    {
+      "id": "TM-MC-24",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Trajectory Reward Signal Aggregator",
+      "stack": "Python / Math",
+      "level": "Medium",
+      "mechanics": "Calculating compound rewards (document recall + token efficiency penalty)",
+      "variant": "Context-1 Agent Post-Training"
+    },
+    {
+      "id": "TM-MC-25",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Resilient Server-Sent Event (SSE) Consumer",
+      "stack": "React / Custom Hook",
+      "level": "Medium",
+      "mechanics": "Reconnecting SSE client; event deduplication by ID; buffer flushing",
+      "variant": "Remote Training Log Streamer"
+    },
+    {
+      "id": "TM-MC-26",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Multimodal Image Tensor Normalizer",
+      "stack": "Python / Imaging",
+      "level": "Medium",
+      "mechanics": "Resizing vision tokens; patch flattening; bounding box tensor alignment",
+      "variant": "VLM Rendering Pipeline"
+    },
+    {
+      "id": "TM-MC-27",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Distributed Lock Lease for Model Weights",
+      "stack": "Go / Mutex",
+      "level": "Medium",
+      "mechanics": "Heartbeat lease renewal; preventing dual-writer checkpoint corruptions",
+      "variant": "Model Weight Registry"
+    },
+    {
+      "id": "TM-MC-28",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Benchmark Run Orchestration Harness",
+      "stack": "Python / Asyncio",
+      "level": "Medium",
+      "mechanics": "Executing parallel evaluations across benchmarks; aggregating accuracy metrics",
+      "variant": "run_benchmarks Harness"
+    },
+    {
+      "id": "TM-MC-29",
+      "kind": "mc",
+      "company": "tml",
+      "title": "In-Memory Sliding Gradient Ring Buffer",
+      "stack": "C++ / Arrays",
+      "level": "Medium",
+      "mechanics": "Circular storage of historical gradient norms; detecting gradient explosions",
+      "variant": "Numerical Stability Monitor"
+    },
+    {
+      "id": "TM-MC-30",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Interactive Hyperparameter Tuning Form",
+      "stack": "React / Forms",
+      "level": "Medium",
+      "mechanics": "Synchronized learning rate, LoRA rank, and warmup step inputs; validation",
+      "variant": "Experiment Configuration UI"
+    },
+    {
+      "id": "TM-MC-31",
+      "kind": "mc",
+      "company": "tml",
+      "title": "High-Frequency Real-Time Telemetry Canvas",
+      "stack": "React / WebGL",
+      "level": "Advanced",
+      "mechanics": "Visualizing 10,000 live step loss curves across parallel distributed trials",
+      "variant": "Frontier Scale Experiment UI"
+    },
+    {
+      "id": "TM-MC-32",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Zero-Copy Distributed Tensor Deserializer",
+      "stack": "C++ / SharedMem",
+      "level": "Advanced",
+      "mechanics": "Shared memory tensor deserialization directly into PyTorch CUDA tensors",
+      "variant": "Ultra-Low Latency Inference"
+    },
+    {
+      "id": "TM-MC-33",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Fault-Tolerant Step Recovery Coordinator",
+      "stack": "Python / Network",
+      "level": "Advanced",
+      "mechanics": "Detecting GPU node failure; rolling back to step N−1; replaying micro-batch",
+      "variant": "Cluster Fault Tolerance Engine"
+    },
+    {
+      "id": "TM-MC-34",
+      "kind": "mc",
+      "company": "tml",
+      "title": "Off-Policy PPO Trajectory Weight Calculator",
+      "stack": "Python / Vector",
+      "level": "Advanced",
+      "mechanics": "Computing importance weights with clipped importance ratios and capped advantages",
+      "variant": "Stable RL Training Core"
+    },
+    {
+      "id": "TM-MC-35",
+      "kind": "mc",
+      "company": "tml",
+      "title": "High-Throughput Remote Token Streaming Engine",
+      "stack": "Go / Net",
+      "level": "Advanced",
+      "mechanics": "Multiplexing token generation streams across thousands of connected clients",
+      "variant": "Sampling Gateway Service"
+    },
+    {
+      "id": "TM-LLD-01",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Training & Sampling Session Manager",
+      "entities": "ServiceClient, LoraTrainingClient, SamplingClient, Session",
+      "invariants": "Model switching via base string; state parity between training and sampling",
+      "patterns": "Factory Pattern, Facade Pattern"
+    },
+    {
+      "id": "TM-LLD-02",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Remote Execution Future with Backoff",
+      "entities": "RemoteFuture, PollerThread, RetryContext, ResultEnvelope",
+      "invariants": "Non-blocking resolution; transparent handling of transient cluster errors",
+      "patterns": "Future/Promise Pattern, Strategy"
+    },
+    {
+      "id": "TM-LLD-03",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Chat Template Tokenizer & Renderer",
+      "entities": "ChatMessage, TokenStream, SpecialTokenMap, Renderer",
+      "invariants": "Bidirectional conversion idempotency; special role token safety",
+      "patterns": "Builder Pattern, Interpreter"
+    },
+    {
+      "id": "TM-LLD-04",
+      "kind": "lld",
+      "company": "tml",
+      "title": "LoRA Matrix Memory Allocator",
+      "entities": "AdapterMatrix, RankConfig, AlphaScalar, WeightBuffer",
+      "invariants": "Memory scaling by rank r≪d; initialization B=0, A∼N(0,σ²)",
+      "patterns": "Flyweight Pattern, Prototype"
+    },
+    {
+      "id": "TM-LLD-05",
+      "kind": "lld",
+      "company": "tml",
+      "title": "RL Rollout Trajectory Buffer",
+      "entities": "TrajectoryStep, Observation, ActionLogprob, RewardSignal",
+      "invariants": "Storage of off-policy importance ratios; advantage capping to prevent collapse",
+      "patterns": "Circular Buffer Pattern, Collector"
+    },
+    {
+      "id": "TM-LLD-06",
+      "kind": "lld",
+      "company": "tml",
+      "title": "GPU Failure Detector & Heartbeat Monitor",
+      "entities": "GPUNode, HeartbeatLease, NodeHealth, ClusterRebalancer",
+      "invariants": "Nodes silent for >10s evicted; automatic reassignment of rank partitions",
+      "patterns": "Observer Pattern, State Pattern"
+    },
+    {
+      "id": "TM-LLD-07",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Learning Rate & Hyperparameter Scaler",
+      "entities": "Scheduler, WarmupSchedule, CosineDecay, RankScaleFactor",
+      "invariants": "LR scaled inversely with LoRA rank; step counter determinism",
+      "patterns": "Strategy Pattern"
+    },
+    {
+      "id": "TM-LLD-08",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Benchmark Evaluation Suite Harness",
+      "entities": "BenchmarkTask (GSM8K, IFEval), Worker, AccuracyMetric",
+      "invariants": "Deterministic sampling temperature (T=0); strict regex answer extraction",
+      "patterns": "Template Method, Strategy Pattern"
+    },
+    {
+      "id": "TM-LLD-09",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Model Checkpoint Packager",
+      "entities": "CheckpointArchive, TarballStream, RegistryEntry",
+      "invariants": "Checkpoint includes weights and optimizer states; SHA-256 verification",
+      "patterns": "Builder Pattern, Proxy Pattern"
+    },
+    {
+      "id": "TM-LLD-10",
+      "kind": "lld",
+      "company": "tml",
+      "title": "Multimodal VLM Tensor Batching Pipeline",
+      "entities": "VisionToken, ImageTensor, BoundingBox, BatchCollator",
+      "invariants": "Tensor padding aligned to 64-byte boundaries; interleaved text/image tensors",
+      "patterns": "Pipeline Pattern, Adapter Pattern"
+    },
+    {
+      "id": "TM-HLD-01",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Tinker Distributed Training Platform",
+      "scope": "Decoupled CPU-based user training loop over managed GPU clusters",
+      "constraints": "Models from 1B to 1T+ parameters; transparent hardware recovery",
+      "stack": "Custom Cluster Orchestrator, gRPC, PyTorch / CUDA, Ray"
+    },
+    {
+      "id": "TM-HLD-02",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Multi-Tenant LoRA Compute Multiplexer",
+      "scope": "Multiplexing multiple user LoRA jobs onto shared base model GPU weights",
+      "constraints": "10× improvement in GPU utilization; total tenant memory isolation",
+      "stack": "Custom CUDA kernels, NVIDIA MIG, vLLM"
+    },
+    {
+      "id": "TM-HLD-03",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Distributed Sampling & Speculative Decoding",
+      "scope": "Rollout generation for RL and evaluation workloads",
+      "constraints": "Tens of thousands of tokens/sec; KV-cache reuse across trajectory iterations",
+      "stack": "Triton Inference Server, vLLM, FlashAttention, Ray Serve"
+    },
+    {
+      "id": "TM-HLD-04",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Transparent Hardware Failure Recovery Engine",
+      "scope": "Live migration of in-flight training runs upon GPU hardware fault",
+      "constraints": "Rollback to step snapshot; recovery time <30s without script crash",
+      "stack": "Kubernetes Operator, InfiniBand monitoring, S3 streams"
+    },
+    {
+      "id": "TM-HLD-05",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Real-Time RL Rollout & Gradient Pipeline",
+      "scope": "Generating rollouts, computing reward signals, aggregating gradients",
+      "constraints": "Low-latency on-policy and stabilized off-policy RL execution",
+      "stack": "NCCL, ZeroMQ, Redis Streams"
+    },
+    {
+      "id": "TM-HLD-06",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Checkpoint Archival & Global Snapshot Mesh",
+      "scope": "Saving and retrieval of checkpoint tarballs across cloud storage regions",
+      "constraints": "Terabytes written per hour; multi-region replication",
+      "stack": "Cloud Object Storage (S3/GCS), Ceph, P2P cluster mesh"
+    },
+    {
+      "id": "TM-HLD-07",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Automated Evaluation & Benchmark Scoring Grid",
+      "scope": "Inline validation running 12+ benchmarks (GSM8K, MATH-500, SWE-bench)",
+      "constraints": "Dynamic worker allocation without starving primary training runs",
+      "stack": "Celery / Temporal, Docker Sandboxes, ClickHouse"
+    },
+    {
+      "id": "TM-HLD-08",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Real-Time Training Telemetry Platform",
+      "scope": "Ingestion and streaming of step loss, learning rate, gradient norms, and VRAM",
+      "constraints": "100k events/sec; sub-second browser dashboard rendering via WebSockets/SSE",
+      "stack": "Kafka, TimescaleDB / ClickHouse, WebSockets Gateway"
+    },
+    {
+      "id": "TM-HLD-09",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Secure Sandbox for Code Reasoning Rollouts",
+      "scope": "Isolated execution environments for training models on coding tasks",
+      "constraints": "Sub-50ms container startup; full network and syscall isolation",
+      "stack": "Firecracker MicroVMs, gVisor, Linux cgroups"
+    },
+    {
+      "id": "TM-HLD-10",
+      "kind": "hld",
+      "company": "tml",
+      "title": "Multimodal Model Post-Training Ingestion",
+      "scope": "Parallel tokenization, image patch embedding, and audio tokenization",
+      "constraints": "Gigabytes of multimodal data per minute without GPU starvation",
+      "stack": "Ray Data, Apache Arrow, Shared Memory IPC"
+    }
+  ],
+  "references": [
+    {
+      "title": "Mastering the Stripe Software Engineer Interview",
+      "site": "leetcodewizard.io",
+      "url": "https://leetcodewizard.io/blog/stripe-software-engineer-interview"
+    },
+    {
+      "title": "Flipkart Interview Process 2026: Machine Coding, DSA Questions",
+      "site": "ophyai.com",
+      "url": "https://ophyai.com/blog/flipkart-interview-process"
+    },
+    {
+      "title": "Top 33 Razorpay Interview Questions And Answers 2025",
+      "site": "techprep.app",
+      "url": "https://www.techprep.app/blogs/razorpay-interview-questions"
+    },
+    {
+      "title": "Databricks Coding & Algorithms interview questions",
+      "site": "prachub.com",
+      "url": "https://prachub.com/databricks-coding-interview-questions"
+    },
+    {
+      "title": "Code Storage — Git Infrastructure at Scale",
+      "site": "code.storage",
+      "url": "https://code.storage"
+    },
+    {
+      "title": "Thinking Machines Lab Business Breakdown & Founding Story",
+      "site": "research.contrary.com",
+      "url": "https://research.contrary.com/company/thinking-machines"
+    },
+    {
+      "title": "Just had Stripe First Coding Round",
+      "site": "reddit.com",
+      "url": "https://www.reddit.com/r/leetcode/comments/just_had_stripe_first_coding_round/"
+    },
+    {
+      "title": "Prepare and practice for Flipkart Machine Coding Round",
+      "site": "github.com",
+      "url": "https://github.com/topics/flipkart-machine-coding"
+    },
+    {
+      "title": "Databricks SWE Interview: Algorithms Guide",
+      "site": "coditioning.com",
+      "url": "https://www.coditioning.com/databricks-swe-interview"
+    },
+    {
+      "title": "Uber Frontend Engineer Interview Questions (with answers)",
+      "site": "frontendlead.com",
+      "url": "https://www.frontendlead.com/interviews/uber"
+    },
+    {
+      "title": "Snowflake Frontend Interview Questions: Prep Guide for 2026",
+      "site": "greatfrontend.com",
+      "url": "https://www.greatfrontend.com/blog/snowflake-frontend-interview-questions"
+    },
+    {
+      "title": "Uber | L4 | Bangalore | Oct-Nov 2020 [Reject]",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience/uber"
+    },
+    {
+      "title": "FAANG-Coding-Interview-Questions",
+      "site": "github.com",
+      "url": "https://github.com/ombharatiya/FAANG-Coding-Interview-Questions"
+    },
+    {
+      "title": "Razorpay-Style Machine Coding Round: Format, Tips & Practice",
+      "site": "gronex.org",
+      "url": "https://gronex.org/razorpay-machine-coding-round"
+    },
+    {
+      "title": "Databricks Interview Questions & Experiences 2026",
+      "site": "codingkaro.in",
+      "url": "https://codingkaro.in/databricks-interview-questions"
+    },
+    {
+      "title": "Top 10 Databricks Interview Questions and Answers for 2026",
+      "site": "blog.theinterviewguys.com",
+      "url": "https://blog.theinterviewguys.com/databricks-interview-questions/"
+    },
+    {
+      "title": "15 Common Snowflake Interview Questions",
+      "site": "dataengineeracademy.com",
+      "url": "https://dataengineeracademy.com/blog/snowflake-interview-questions/"
+    },
+    {
+      "title": "Trees docs",
+      "site": "trees.software",
+      "url": "https://trees.software"
+    },
+    {
+      "title": "Tinker: a training API for researchers and developers",
+      "site": "tinker-docs.thinkingmachines.ai",
+      "url": "https://tinker-docs.thinkingmachines.ai"
+    },
+    {
+      "title": "Machine Coding Round: Flipkart SDE-II Interview",
+      "site": "medium.com",
+      "url": "https://medium.com/tag/machine-coding-round"
+    },
+    {
+      "title": "Uber Technical Interview Questions: Complete Guide (2026)",
+      "site": "jobright.ai",
+      "url": "https://jobright.ai/blog/uber-technical-interview-questions"
+    },
+    {
+      "title": "Uber Interview Process: (Step-by-Step Guide)",
+      "site": "codinginterview.com",
+      "url": "https://www.codinginterview.com/guide/uber-interview"
+    },
+    {
+      "title": "Uber | SDE-2 | Offer | Bangalore",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience?query=uber"
+    },
+    {
+      "title": "Stripe Software Engineer Interview Guides",
+      "site": "prepfully.com",
+      "url": "https://prepfully.com/interview-guides/stripe-software-engineer"
+    },
+    {
+      "title": "Stripe [No offer] — Discuss",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience?query=stripe"
+    },
+    {
+      "title": "Stripe - Backend Engineer Interview Experience",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-question?query=stripe"
+    },
+    {
+      "title": "Stripe Onsite Interview (Hopeful pass)",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience?query=stripe%20onsite"
+    },
+    {
+      "title": "Stripe New Grad Interview Experience 2026",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience?query=stripe%20new%20grad"
+    },
+    {
+      "title": "Razorpay Interview Process: SDE Rounds Explained",
+      "site": "finalroundai.com",
+      "url": "https://www.finalroundai.com/blog/razorpay-interview-process"
+    },
+    {
+      "title": "Flipkart Low Level Design Interview Questions from Recent Machine Coding",
+      "site": "reddit.com",
+      "url": "https://www.reddit.com/r/developersIndia/comments/flipkart-lld/"
+    },
+    {
+      "title": "Flipkart Interview Experience for SDE-2 (3.5 years experienced)",
+      "site": "geeksforgeeks.org",
+      "url": "https://www.geeksforgeeks.org/flipkart-interview-experience-for-sde-2/"
+    },
+    {
+      "title": "FlipFin/FlipMed — Asked in Flipkart Machine Coding Round",
+      "site": "github.com",
+      "url": "https://github.com/topics/flipmed"
+    },
+    {
+      "title": "shubhamharitash/SuperBidder — Flipkart Machine Coding",
+      "site": "github.com",
+      "url": "https://github.com/shubhamharitash/SuperBidder"
+    },
+    {
+      "title": "machinecoding GitHub Topics",
+      "site": "github.com",
+      "url": "https://github.com/topics/machinecoding"
+    },
+    {
+      "title": "Devtools-Tech-Team/front-end-interview-questions",
+      "site": "github.com",
+      "url": "https://github.com/Devtools-Tech-Team/front-end-interview-questions"
+    },
+    {
+      "title": "react-interview-questions GitHub Topics",
+      "site": "github.com",
+      "url": "https://github.com/topics/react-interview-questions"
+    },
+    {
+      "title": "Top 42 Databricks Interview Questions And Answers 2025",
+      "site": "techprep.app",
+      "url": "https://www.techprep.app/blogs/databricks-interview-questions"
+    },
+    {
+      "title": "Databricks Interview SDE — Discuss",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience?query=databricks"
+    },
+    {
+      "title": "Trees.software",
+      "site": "trees.software",
+      "url": "https://trees.software"
+    },
+    {
+      "title": "Snowflake's Interview Process (2026)",
+      "site": "techprep.app",
+      "url": "https://www.techprep.app/blogs/snowflake-interview-process"
+    },
+    {
+      "title": "Snowflake Interview Process 2026 — Coding, System Design",
+      "site": "ophyai.com",
+      "url": "https://ophyai.com/blog/snowflake-interview-process"
+    },
+    {
+      "title": "Snowflake Senior Software Engineer Phone Screen",
+      "site": "leetcode.com",
+      "url": "https://leetcode.com/discuss/interview-experience?query=snowflake"
+    },
+    {
+      "title": "Snowflake Coding & Algorithms Questions (Updated 2026)",
+      "site": "prachub.com",
+      "url": "https://prachub.com/snowflake-coding-interview-questions"
+    },
+    {
+      "title": "Snowflake Software Engineer (SWE) Interview Guide",
+      "site": "tryexponent.com",
+      "url": "https://www.tryexponent.com/guides/snowflake-software-engineer-interview"
+    },
+    {
+      "title": "Snowflake Coding Interview Questions (90 Problems Reported)",
+      "site": "stealthcoder.app",
+      "url": "https://stealthcoder.app/snowflake-coding-interview-questions"
+    },
+    {
+      "title": "Pierre Computer Company",
+      "site": "pierre.computer",
+      "url": "https://pierre.computer"
+    },
+    {
+      "title": "just-bash supports git command, backed by code.storage",
+      "site": "github.com",
+      "url": "https://github.com/search?q=just-bash+code.storage"
+    },
+    {
+      "title": "Code Storage by the Pierre Computer Company",
+      "site": "daily.dev",
+      "url": "https://app.daily.dev/posts/code-storage-by-the-pierre-computer-company"
+    },
+    {
+      "title": "Code Storage by the Pierre Computer Company",
+      "site": "news.ycombinator.com",
+      "url": "https://news.ycombinator.com/item?id=code-storage"
+    },
+    {
+      "title": "INTRODUCING CODE.STORAGE",
+      "site": "code.storage",
+      "url": "https://code.storage"
+    },
+    {
+      "title": "The Pierre Computer Company",
+      "site": "github.com",
+      "url": "https://github.com/pierre"
+    },
+    {
+      "title": "Thinking Machines' first official product is here: meet Tinker",
+      "site": "venturebeat.com",
+      "url": "https://venturebeat.com/ai/thinking-machines-tinker"
+    },
+    {
+      "title": "thinking-machines-lab/tinker-cookbook",
+      "site": "github.com",
+      "url": "https://github.com/thinking-machines-lab/tinker-cookbook"
+    },
+    {
+      "title": "Tinker Tutorial: Fine-Tuning LLMs With Thinking Machines Lab",
+      "site": "datacamp.com",
+      "url": "https://www.datacamp.com/tutorial/tinker-thinking-machines"
+    },
+    {
+      "title": "Tinker — Thinking Machines Lab",
+      "site": "thinkingmachines.ai",
+      "url": "https://thinkingmachines.ai/tinker"
+    }
+  ]
+}

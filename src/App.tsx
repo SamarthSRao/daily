@@ -15,10 +15,11 @@ import LifeCalendarPage from "./pages/LifeCalendarPage";
 import PanicMonsterPage from "./pages/PanicMonsterPage";
 import PrerequisitesPage from "./pages/PrerequisitesPage";
 import DeadlineGoalsPage from "./pages/DeadlineGoalsPage";
+import MachineCodingPage from "./pages/MachineCodingPage";
 import "./index.css";
 import "./meridian.css";
 
-type Tab = "home" | "second-dashboard" | "daily" | "dsa" | "sql" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
+type Tab = "home" | "second-dashboard" | "daily" | "dsa" | "sql" | "machine-coding" | "nine-month" | "timer" | "system" | "biweekly" | "questions" | "weak-link" | "life-calendar" | "panic-monster" | "prerequisites" | "deadline-goals";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -49,6 +50,7 @@ export default function App() {
       case "nine-month": return <NineMonthPlanPage />;
       case "dsa": return <DsaPage />;
       case "sql": return <SqlPage />;
+      case "machine-coding": return <MachineCodingPage />;
       case "biweekly": return <BiweeklyPage />;
       case "system": return <SystemPage />;
       case "timer": return <Dashboard />;

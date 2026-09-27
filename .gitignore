@@ -25,5 +25,23 @@ dist-ssr
 
 .vercel
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.*
+id_dsa
+id_dsa.*
+id_ed25519
+id_ed25519.*
+*.keystore
+credentials.json
+serviceAccount*.json
+service-account*.json
+secrets.json
+*.secret
 
 .vercel

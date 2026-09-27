@@ -1,9 +1,16 @@
 import urllib.request
 import json
 import os
+import sys
 
-url_base = "https://delicate-corgi-77067.upstash.io"
-token = "gQAAAAAAAS0LAAIncDI0MTU4ZTdiOGFkYjI0NmE1OWY0NjQwMWY4NDMzNGJkYnAyNzcwNjc"
+url_base = os.environ.get("UPSTASH_REDIS_REST_URL", "").strip().strip("\"'")
+token = os.environ.get("UPSTASH_REDIS_REST_TOKEN", "").strip().strip("\"'")
+if not url_base or not token:
+    print(
+        "Error: UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN must be set.",
+        file=sys.stderr,
+    )
+    sys.exit(1)
 
 req = urllib.request.Request(f"{url_base}/get/properrr-panic-deadlines-v2")
 req.add_header("Authorization", f"Bearer {token}")

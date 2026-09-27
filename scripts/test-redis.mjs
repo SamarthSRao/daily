@@ -1,7 +1,15 @@
 import { Redis } from "@upstash/redis";
+
+const url = (process.env.UPSTASH_REDIS_REST_URL || "").trim().replace(/^['"]|['"]$/g, "");
+const token = (process.env.UPSTASH_REDIS_REST_TOKEN || "").trim().replace(/^['"]|['"]$/g, "");
+if (!url || !token) {
+    console.error("Error: UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN must be set.");
+    process.exit(1);
+}
+
 const redis = new Redis({
-    url: "https://delicate-corgi-77067.upstash.io",
-    token: "gQAAAAAAAS0LAAIncDI0MTU4ZTdiOGFkYjI0NmE1OWY0NjQwMWY4NDMzNGJkYnAyNzcwNjc",
+    url,
+    token,
 });
 
 async function test() {

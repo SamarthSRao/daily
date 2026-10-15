@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { HelpCircle, Terminal, Book, Database, Search, Hash } from "lucide-react";
+import { HelpCircle, Terminal, Book, Database, Search, Hash, Calendar } from "lucide-react";
 import questionsData from "../data/questions.json";
 import "../styles/Questions.css";
 import "../index.css";
@@ -13,7 +13,7 @@ interface Question {
   subSection: string;
 }
 
-type BankType = "backend" | "clrs" | "sql";
+type BankType = "backend" | "clrs" | "sql" | "daily";
 
 const getShortSectionName = (sec: string, bank: BankType) => {
   if (!sec) return "";
@@ -26,6 +26,9 @@ const getShortSectionName = (sec: string, bank: BankType) => {
   }
   if (bank === "sql") {
     return `Ch ${sec.split(':')[0]}`; // e.g. "Ch 1", "Ch 2"
+  }
+  if (bank === "daily") {
+    return sec;
   }
   return sec;
 };
@@ -164,6 +167,13 @@ export default function QuestionsPage() {
           >
             <Database size={16} />
             SQL Practice
+          </button>
+          <button
+            className={`bank-btn ${activeBank === "daily" ? "active" : ""}`}
+            onClick={() => setActiveBank("daily")}
+          >
+            <Calendar size={16} />
+            Daily Interview
           </button>
         </div>
       </header>

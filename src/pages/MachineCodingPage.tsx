@@ -6,6 +6,8 @@ import {
   Circle,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   Brain,
   Rocket,
   Zap,
@@ -79,6 +81,20 @@ const KIND_TABS: { id: "all" | Kind; label: string }[] = [
   { id: "hld", label: "HLD" },
 ];
 const LEVELS = ["All", "Basic", "Medium", "Advanced"];
+const ITEMS_PER_PAGE = 24;
+
+function pageNumbers(page: number, total: number): (number | "ellipsis")[] {
+  if (total <= 9) return Array.from({ length: total }, (_, i) => i + 1);
+  const wanted = new Set([1, total, page - 2, page - 1, page, page + 1, page + 2]);
+  const nums = [...wanted].filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+  const out: (number | "ellipsis")[] = [];
+  for (const n of nums) {
+    const last = out[out.length - 1];
+    if (typeof last === "number" && n - last > 1) out.push("ellipsis");
+    out.push(n);
+  }
+  return out;
+}
 const KIND_LABEL: Record<Kind, string> = {
   mc: "MC",
   lld: "LLD",
@@ -103,6 +119,8 @@ const getCompanyIcon = (company: string) => {
       return <Code2 className="w-5 h-5" />;
     case "tml":
       return <Brain className="w-5 h-5" />;
+    case "daily":
+      return <Calendar className="w-5 h-5" />;
     default:
       return <Library className="w-5 h-5" />;
   }
@@ -120,6 +138,7 @@ export default function MachineCodingPage() {
   const [revisions, setRevisions] = useState<Record<string, RevisionState>>({});
   const [activeRevTab, setActiveRevTab] = useState<"due" | "upcoming" | "mastered">("due");
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -212,15 +231,31 @@ export default function MachineCodingPage() {
     });
   }, [activeKind, activeCompany, activeLevel, searchQuery, showLevelChips]);
 
+  useEffect(() => {
+    setPage(1);
+    setExpandedId(null);
+  }, [activeKind, activeCompany, activeLevel, searchQuery]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / ITEMS_PER_PAGE));
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  const paginatedItems = useMemo(() => {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    return filteredItems.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredItems, page]);
+
   const groupedItems = useMemo(() => {
     const groups: Record<string, CatalogItem[]> = {};
-    filteredItems.forEach((item) => {
+    paginatedItems.forEach((item) => {
       const key = companyName(item.company);
       if (!groups[key]) groups[key] = [];
       groups[key].push(item);
     });
     return groups;
-  }, [filteredItems]);
+  }, [paginatedItems]);
 
   const stats = useMemo(() => {
     const total = filteredItems.length;
@@ -274,13 +309,122 @@ export default function MachineCodingPage() {
 
   const activeCompanyMeta = catalog.companies.find((c) => c.id === activeCompany);
 
+  const goToPage = (next: number) => {
+    const clamped = Math.min(totalPages, Math.max(1, next));
+    setPage(clamped);
+    setExpandedId(null);
+    document.getElementById("mc-catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const rangeStart = filteredItems.length === 0 ? 0 : (page - 1) * ITEMS_PER_PAGE + 1;
+  const rangeEnd = Math.min(page * ITEMS_PER_PAGE, filteredItems.length);
+
+  const renderCategoryFilters = () => (
+    <div className="mc-categories">
+      <p className="mc-category-label">Categories</p>
+      <nav className="level-tabs">
+        {KIND_TABS.map((tab) => (
+          <button
+            key={tab.id}
+            className={`level-tab ${activeKind === tab.id ? "active" : ""}`}
+            onClick={() => {
+              setActiveKind(tab.id);
+              if (tab.id === "lld" || tab.id === "hld") setActiveLevel("All");
+            }}
+          >
+            <div className="flex items-center gap-2">
+              {tab.id === "mc" ? <Code2 className="w-4 h-4" /> : tab.id === "lld" ? <Boxes className="w-4 h-4" /> : tab.id === "hld" ? <Network className="w-4 h-4" /> : <Layers className="w-4 h-4" />}
+              <span>{tab.label}</span>
+            </div>
+          </button>
+        ))}
+      </nav>
+
+      <nav className="level-tabs">
+        <button
+          className={`level-tab ${activeCompany === "all" ? "active" : ""}`}
+          onClick={() => setActiveCompany("all")}
+        >
+          <div className="flex items-center gap-2">
+            <Library className="w-5 h-5" />
+            <span>All</span>
+          </div>
+        </button>
+        {catalog.companies.map((co) => (
+          <button
+            key={co.id}
+            className={`level-tab ${activeCompany === co.id ? "active" : ""}`}
+            onClick={() => setActiveCompany(co.id)}
+          >
+            <div className="flex items-center gap-2">
+              {getCompanyIcon(co.id)}
+              <span>{co.name}</span>
+            </div>
+          </button>
+        ))}
+      </nav>
+
+      {showLevelChips && (
+        <nav className="level-tabs">
+          {LEVELS.map((level) => (
+            <button
+              key={level}
+              className={`level-tab ${activeLevel === level ? "active" : ""}`}
+              onClick={() => setActiveLevel(level)}
+            >
+              {level}
+            </button>
+          ))}
+        </nav>
+      )}
+    </div>
+  );
+
+  const renderPaginationBar = () => (
+    <div className="mc-pagination">
+      <span className="mc-pagination-meta">
+        Showing {rangeStart}–{rangeEnd} of {filteredItems.length}
+      </span>
+      {totalPages > 1 && (
+        <div className="mc-pagination-controls">
+          <button type="button" className="mc-page-btn" disabled={page === 1} onClick={() => goToPage(page - 1)} aria-label="Previous page">
+            <ChevronLeft size={16} />
+            Previous
+          </button>
+          {pageNumbers(page, totalPages).map((entry, idx) =>
+            entry === "ellipsis" ? (
+              <span key={`e-${idx}`} className="mc-page-ellipsis">
+                …
+              </span>
+            ) : (
+              <button
+                key={entry}
+                type="button"
+                className={`mc-page-btn ${page === entry ? "active" : ""}`}
+                onClick={() => goToPage(entry)}
+              >
+                {entry}
+              </button>
+            ),
+          )}
+          <button type="button" className="mc-page-btn" disabled={page === totalPages} onClick={() => goToPage(page + 1)} aria-label="Next page">
+            Next
+            <ChevronRight size={16} />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className={`dsa-page-container active-company-${activeCompany}`}>
       <header className="dsa-header-premium">
         <h1 className="dsa-title-premium">Machine Coding</h1>
         <p className="dsa-subtitle-premium">
-          Live coding, LLD, and HLD catalogs across Uber, Stripe, Razorpay, Flipkart, Databricks, Snowflake, Pierre, and Thinking Machines Lab.
+          Live coding, LLD, and HLD catalogs across Uber, Stripe, Razorpay, Flipkart, Databricks, Snowflake, Pierre, Thinking Machines Lab, and Daily drills.
         </p>
+
+        {renderCategoryFilters()}
 
         <div className="dsa-search-wrap">
           <Search className="dsa-search-icon" size={20} />
@@ -292,62 +436,6 @@ export default function MachineCodingPage() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-
-        <nav className="level-tabs">
-          {KIND_TABS.map((tab) => (
-            <button
-              key={tab.id}
-              className={`level-tab ${activeKind === tab.id ? "active" : ""}`}
-              onClick={() => {
-                setActiveKind(tab.id);
-                if (tab.id === "lld" || tab.id === "hld") setActiveLevel("All");
-              }}
-            >
-              <div className="flex items-center gap-2">
-                {tab.id === "mc" ? <Code2 className="w-4 h-4" /> : tab.id === "lld" ? <Boxes className="w-4 h-4" /> : tab.id === "hld" ? <Network className="w-4 h-4" /> : <Layers className="w-4 h-4" />}
-                <span>{tab.label}</span>
-              </div>
-            </button>
-          ))}
-        </nav>
-
-        <nav className="level-tabs">
-          <button
-            className={`level-tab ${activeCompany === "all" ? "active" : ""}`}
-            onClick={() => setActiveCompany("all")}
-          >
-            <div className="flex items-center gap-2">
-              <Library className="w-5 h-5" />
-              <span>All</span>
-            </div>
-          </button>
-          {catalog.companies.map((co) => (
-            <button
-              key={co.id}
-              className={`level-tab ${activeCompany === co.id ? "active" : ""}`}
-              onClick={() => setActiveCompany(co.id)}
-            >
-              <div className="flex items-center gap-2">
-                {getCompanyIcon(co.id)}
-                <span>{co.name}</span>
-              </div>
-            </button>
-          ))}
-        </nav>
-
-        {showLevelChips && (
-          <nav className="level-tabs">
-            {LEVELS.map((level) => (
-              <button
-                key={level}
-                className={`level-tab ${activeLevel === level ? "active" : ""}`}
-                onClick={() => setActiveLevel(level)}
-              >
-                {level}
-              </button>
-            ))}
-          </nav>
-        )}
 
         {activeCompanyMeta && (
           <p className="dsa-subtitle-premium" style={{ marginTop: 0 }}>
@@ -503,7 +591,11 @@ export default function MachineCodingPage() {
         </div>
       </section>
 
-      <div className="dsa-clusters-wrap">
+      <section id="mc-catalog" className="mc-catalog">
+        {renderCategoryFilters()}
+        {renderPaginationBar()}
+
+        <div className="dsa-clusters-wrap">
         {Object.entries(groupedItems).map(([clusterName, items]) => (
           <div key={clusterName} style={{ marginBottom: "48px" }}>
             <h2
@@ -643,7 +735,10 @@ export default function MachineCodingPage() {
             </div>
           </div>
         ))}
-      </div>
+        </div>
+
+        {filteredItems.length > 0 && renderPaginationBar()}
+      </section>
 
       {filteredItems.length === 0 && (
         <div className="text-center py-20 bg-slate-900/20 rounded-3xl border border-dashed border-slate-800">

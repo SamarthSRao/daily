@@ -43122,5 +43122,4287 @@
       "section": "PART VIII — More Selected Topics",
       "subSection": "Approximation Algorithms (Q71–Q100)"
     }
-  ]
+  ],
+  "daily": [
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the difference between a goroutine and an OS thread?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Buffered vs unbuffered channel: what's the difference?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you send on a closed channel?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you receive from a closed channel?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does sync.WaitGroup do?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Mutex vs RWMutex: when do you use each?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a data race, and how do you detect one?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does select do when no case is ready and there's a default?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is context used for?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does defer do, and in what order do multiple defers run?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the difference between make and new?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Slice vs array: what's the difference?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to a slice's capacity when append goes past it?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you handle a panic in Go?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is an interface, and how is it satisfied?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is an interface holding a nil pointer not equal to nil?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's a goroutine leak? Give one way it happens.",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Value receiver vs pointer receiver: when do you use each?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does sync.Once do?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you stop a goroutine from outside it?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does GOMAXPROCS control?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Is map access in Go thread-safe?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is errgroup used for?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does %w do in fmt.Errorf?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you set a timeout on an HTTP request in Go?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "a := []int{1,2,3}; b := a[:2]; b = append(b, 9). What's in a now?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you write to a nil map? And when you read from one?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does a send block on a buffered vs an unbuffered channel?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "10k goroutines share a pool of 20 DB connections. What happens?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "WaitGroup vs errgroup?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to a goroutine that never checks ctx.Done()?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens with concurrent map writes?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does a value receiver fail to change your struct?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does for i := 0; i < 3; i++ { defer fmt.Println(i) } print?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does Go run 10k goroutines on 8 threads?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does select with a default do a non-blocking send?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens with 1M messages a second into a buffer of 100?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does a select loop exit after ctx is cancelled?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "sync.Once vs a mutex plus a flag?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What goes wrong when you copy a struct that contains a mutex?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Ranging over a nil map vs sending on a nil channel?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is time.After inside a loop a leak?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does an interface cost on a hot path?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to the process on an unrecovered panic?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "make([]int,0,8) vs new([]int)?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What are s and t after t := append(s[:1], 9) when cap is 2?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is string to []byte conversion expensive?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why annotate channel directions?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 49,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "errors.Is vs ==?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 50,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when 2 goroutines close the same channel?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 51,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does a variable escape to the heap?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 52,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does GOMAXPROCS(1) change?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 53,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does embedding pass interfaces through to the outer type?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 54,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When do you use sync.Pool?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 55,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why reuse one http.Client?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 56,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Decoder vs Unmarshal?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 57,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does a defer inside a loop run?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 58,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you handle a read that returns n>0 together with EOF?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 59,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does sort.Search return when every element is smaller?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 60,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when a range-over-channel never gets closed?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 61,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Can a deferred function see a named return error?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 62,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Heap profile or goroutine profile for stuck goroutines?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 63,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is context the first argument in Go functions?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 64,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you close a Go channel twice?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 65,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's wrong with defer f.Close() inside a loop?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 66,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "sync.Map vs a map with an RWMutex?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 67,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What leaks when a goroutine blocks forever on a send?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 68,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is select with a default in a tight loop bad?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 69,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does recover catch a panic in another goroutine?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 70,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does a channel buffer just hide a slow consumer?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 71,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Typed-nil vs nil interface: predict err != nil, then give the fix.",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 72,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Trace a := make([]int,3,5); b := append(a,1); c := append(a,2). What is b[3]?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 73,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the fix for a typed-nil error?",
+        "section": "Go",
+        "subSection": "Go"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the event loop?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Microtask vs macrotask: which runs first?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Promise.all vs Promise.allSettled: what's the difference?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Promise.race vs Promise.any: what's the difference?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does async/await do under the hood?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if you forget await on a promise that rejects?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does fetch reject on a 404? Why or why not?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you cancel a fetch request?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Debounce vs throttle: what's the difference?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a closure? Give one use.",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "let vs var vs const: what's the difference?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is hoisting?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "== vs ===: what's the difference?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does this refer to inside an arrow function?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is CORS, and who enforces it?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does try/catch behave with async code?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the output: console.log(1); setTimeout(()=>console.log(2)); Promise.resolve().then(()=>console.log(3)); console.log(4)?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a callback hell, and how do promises fix it?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How would you limit 100 fetches to 5 at a time, in one line?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Shallow copy vs deep copy: what's the difference?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does JSON.parse do with invalid input?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a memory leak in a browser app? Give one cause.",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does Node.js use for its non-blocking I/O?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "process.nextTick vs setImmediate: which runs first?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's an HTTP 429, and how should a client react?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does [] == false give?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Promise.all vs allSettled when 2 calls fail?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "var vs let in a setTimeout loop?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a CPU-heavy request do to Node?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is this in an arrow function vs a regular function?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "null vs undefined, and what does typeof null print?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does typeof NaN give, and is NaN === NaN?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does async return, and what happens if you forget await?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does Node do on an unhandled rejection?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does b.push do to a.length if a and b share the same array?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why not call Promise.all on 100 APIs at once?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What order do setTimeout, queueMicrotask and console.log run in?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does {...obj} copy?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "map vs forEach vs reduce?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does [1,2,3] + [4,5] give?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the prototype chain?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "A Node service's memory climbs over a day. Name two causes and how you'd find them.",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Is 0.1 + 0.2 === 0.3? How do you compare safely?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "call vs apply vs bind?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "await in a loop vs Promise.all: when is the loop right?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "You set o.x = 1 on a frozen object. What happens in non-strict mode, and what about strict?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Map vs plain object: when do you pick Map?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is event delegation cheaper for 1,000 items?",
+        "section": "JavaScript",
+        "subSection": "JavaScript"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a Flask route?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you read JSON from a request body in Flask?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you return a 404 with a JSON body in Flask?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a Flask blueprint for?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does @app.errorhandler do?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the difference between request.args and request.form?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Is the Flask dev server okay for production? What do you use instead?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the GIL, and how does it affect threads?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Threads vs processes in Python: when do you use each?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you validate input in a Flask endpoint?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you add pagination to a list endpoint?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does requests.get(url, timeout=2) protect against?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is middleware, and how do you add it in Flask?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "GET vs POST vs PUT vs PATCH: when do you use each?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does \"idempotent\" mean for an API?",
+        "section": "Python Flask",
+        "subSection": "Python Flask"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does synchronized do?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does volatile guarantee?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "ExecutorService vs creating threads by hand?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a CompletableFuture?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "HashMap vs ConcurrentHashMap?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if you never call shutdown() on an executor?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Checked vs unchecked exceptions?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a deadlock? How do you avoid one?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does AtomicInteger give you over an int?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you set a timeout on an HttpClient request?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does a HashMap place a key in a bucket, and when does it resize?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What breaks when equals matches but hashCode differs?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain young gen vs old gen, and what promotion means.",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "HashMap vs TreeMap: what's the difference?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is check-then-act unsafe even with a ConcurrentHashMap?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does CopyOnWriteArrayList make sense?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a big long-lived cache do to GC?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "thenApply vs thenCompose: what's the difference?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "synchronized vs ReentrantLock: when do you pick the lock?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is a plain HashMap unsafe across threads?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why use StringBuilder instead of + in a loop?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does volatile guarantee, and why is count++ still unsafe?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Thread pool vs a new thread per request?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is Integer 127 == 127 true but 128 == 128 false?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does try-with-resources do when the body throws?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "ArrayList vs LinkedList for get(i)?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does an OutOfMemoryError in one thread kill the JVM?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What makes a class immutable?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Optional vs null: what's the difference?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What leaks when you use ThreadLocal in a thread pool?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Should you filter before map or map before filter?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "CountDownLatch vs CyclicBarrier?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you submit a task after shutdown()?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you make an LRU cache with LinkedHashMap?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "SoftReference vs WeakReference?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What goes wrong with a parallel stream writing to a shared array?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Record vs POJO?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "== vs .equals() for Strings?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you remove items inside a for-each loop?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does final on a List stop someone from adding items?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is a cached thread pool risky under a burst?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Comparable vs Comparator?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why do you call wait() inside a while loop?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Interface with default methods vs abstract class?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens with a static cache that never evicts?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the risk of calling Future.get() with no timeout?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why override both equals and hashCode?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why must equal objects have equal hashCodes?",
+        "section": "Java",
+        "subSection": "Java"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is RAII?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "unique_ptr vs shared_ptr: what's the difference?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a weak_ptr for?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Stack vs heap: what's the difference?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a dangling pointer?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a memory leak in C++? How do you find one?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does std::mutex do?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "lock_guard vs unique_lock: what's the difference?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a condition variable used for?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a spurious wakeup?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does std::atomic guarantee?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if a std::thread is destroyed without join() or detach()?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "join() vs detach()?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a race condition?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does std::move actually do?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Copy constructor vs move constructor?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the rule of three or five?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does new do that malloc doesn't?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is undefined behavior? Give one example.",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is std::async used for?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a false sharing problem?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is delete on an array allocated with new[] wrong?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does const on a member function mean?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a virtual destructor, and when do you need one?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a smart pointer do when it goes out of scope?",
+        "section": "C++",
+        "subSection": "C++"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a lexer do?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a parser produce?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is an AST?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Compiler vs interpreter?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a JIT compiler?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is constant folding?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is dead code elimination?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a linker do?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Static vs dynamic typing?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is bytecode?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is garbage collection?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Stack-based vs register-based VM?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a symbol table?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Docker image vs container?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a Dockerfile layer, and why does order matter?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Pod vs Deployment in Kubernetes?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a Kubernetes Service do?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Liveness probe vs readiness probe?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "ConfigMap vs Secret?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a rolling update?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does kubectl logs show, and what about a crashed container?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is Terraform used for?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is CI/CD?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a load balancer?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Horizontal vs vertical scaling?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does a parser handle precedence in 1+2*3?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Liveness vs readiness probe: which one removes a pod from traffic?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to a rolling update when new pods never become ready?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a phi node in SSA?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Lexer vs parser: which one rejects 1 + * 2?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is CPU autoscaling bad for an IO-bound service?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "429 vs 503: what's the difference?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does an OOMKilled container mean?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "In x = 2*3 + y, what gets constant-folded?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Should a REPL interpret the AST or bytecode first?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Blue-green vs canary deploys?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a peephole optimizer do?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Queue-depth autoscaling vs CPU autoscaling?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What cost does an interpreter pay on every loop iteration?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens at the CPU limit vs the memory limit?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a symbol table catch?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a symbol table store?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why health-check /ready instead of /?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to traffic when readiness never passes?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Recursive descent vs Pratt parsing?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What tokens does 123abc produce?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you handle left recursion?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you build a symbol table for nested scopes?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 49,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Deployment vs StatefulSet?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 50,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "HPA vs VPA?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 51,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Lexing vs parsing?",
+        "section": "Compilers and Infra",
+        "subSection": "Compilers and Infra"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is a B+ tree lookup only about 3\u20134 IOs even on 10M rows?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is the WAL written before the data page?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Nested-loop join vs hash join: when do you use each?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a dirty read?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does MVCC let readers and writers do?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does an index help on a column with only 3 distinct values? Why?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to an UPDATE when the WHERE column has no index?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "A query is fast alone but slow under load. What do you check first?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a covering index?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a checkpoint do?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Clustered vs non-clustered index: what's the difference?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why do databases keep their own buffer pool instead of relying on the OS cache?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "LSM tree vs B+ tree: which one is better for heavy writes?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a phantom read, and which isolation level stops it?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why doesn't an index on (a, b) help WHERE b = 5?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When is a sort-merge join better than a hash join?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why isn't COUNT(*) instant in Postgres?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does a database handle a deadlock?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Row store vs column store: when do you use each?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if VACUUM never runs?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a partial index, and when is it useful?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why use prepared statements instead of string concatenation?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "BRIN vs B-tree: when does BRIN win?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when two transactions insert the same unique key?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you tell that the connection pool is the bottleneck?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does an LSM tree use Bloom filters?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to a FOR UPDATE lock when the transaction crashes before commit?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a HOT update in Postgres?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Materialized view vs live query: when do you use each?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the risk of fsync=off?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a B+ tree page split?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "EXPLAIN vs EXPLAIN ANALYZE: what's the difference?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is a big OFFSET slow, and what's the alternative?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What grows when a read transaction stays open for hours?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Optimistic vs pessimistic locking: when do you use each?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the N+1 problem, and how do you fix it?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Does an index on email help WHERE LOWER(email) = ...?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Auto-increment vs UUID primary key: which inserts faster?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a user see after an edit when the replica lags?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "VACUUM vs VACUUM FULL?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is an index, and why does it speed up reads?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What are the ACID properties?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a transaction?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "SQL vs NoSQL: when do you use each?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is connection pooling?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain B+ tree index vs hash index, and how many IOs each takes for one lookup.",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "On a 1M-row table where status has 3 values, why can an index lose to a full scan?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain why the WAL is written before data pages, and what \"redo\" means after a crash.",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 49,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does T1 see under READ COMMITTED vs REPEATABLE READ when T2 changes a row in between T1's two reads?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 50,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How many IOs for a B+ tree lookup vs a hash lookup?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 51,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Which anomaly can snapshot isolation still allow?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 52,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Dirty read vs non-repeatable read?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 53,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is an index-only scan?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 54,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When does a secondary index cost an extra IO?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 55,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Which one shows actual row counts, EXPLAIN or EXPLAIN ANALYZE?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 56,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a covering index save you?",
+        "section": "Databases",
+        "subSection": "Databases"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "In pair-sum on a sorted array, when do you move the left pointer and when the right?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does a sliding window make \"longest substring with at most k distinct characters\" O(n)?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why write lo + (hi-lo)/2 instead of (lo+hi)/2?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the time complexity of heap insert and extract-min?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "BFS or DFS for the shortest path in an unweighted graph?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "If every edge weight is 1, what can replace Dijkstra?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you detect a cycle in a directed graph?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Top-k frequent elements: sort vs heap. Which is faster for a big n and a small k?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What are the time and space costs of merging 2 sorted lists?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does path compression do in Union-Find?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the worst case of quicksort vs merge sort?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Trie vs hash set for prefix search: which one fits better?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is dynamic array push O(1) amortized?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a monotonic stack keep?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do prefix sums speed up range-sum queries?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to a hash table at load factor 0.95?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "In Kahn's algorithm, what do leftover nodes mean?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Memoized recursion vs bottom-up DP: what breaks first when n is large?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Lower-bound binary search: what does it return when the target is bigger than every element?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Which two structures make an O(1) LRU cache?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does Kadane's algorithm work?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you merge overlapping intervals?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you find where a cycle starts in a linked list?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is \"binary search on the answer\"?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why do valid parentheses need a stack instead of a counter?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does Dijkstra fail with negative edges?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Which pointers do you keep when reversing a linked list?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When is counting sort better than comparison sort?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the maximum queue size in BFS on a complete binary tree?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does XOR find the one unique number?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Two-sum: hash map vs two pointers?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the fastest way to find the kth largest element?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What breaks first when you recurse 1e6 deep?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does inorder traversal of a BST give you?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How big is the knapsack DP table?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is building a heap O(n)?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Find the duplicate number: hash set vs Floyd?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "BFS on a grid: how many cells does it visit?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's quicksort's cost on a sorted array with a first-element pivot?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How many subsets does a 20-element set have?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain two pointers vs sliding window, with one problem for each.",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Top 10 of 1M: sort vs heap?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's quicksort's worst case?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When would you pick a BST over a hash map?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you detect a linked-list cycle in O(1) space?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the classic mid bug in binary search?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "BFS vs Dijkstra?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Trie vs hash set for autocomplete?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 49,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a monotonic stack?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 50,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Two-sum: brute force vs hash map?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 51,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Merge sort vs quicksort: stability and memory?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 52,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you check balanced brackets?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 53,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Adjacency list vs matrix?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 54,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a topological sort, and what happens with a cycle?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 55,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "DP vs plain recursion for Fibonacci?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 56,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What do path compression and union by rank buy you?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 57,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you search a sorted matrix?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 58,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Longest substring with no repeating characters: brute-force cost vs sliding window?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 59,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the worst case for a hash map lookup, and when does it happen?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 60,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "BFS vs DFS: which uses a queue and which a stack?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 61,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Reversing a 1M-node list: what's the risk with recursion?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 62,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Inserting into a sorted array vs a balanced BST: what does each cost?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 63,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does greedy fail for coins 1, 3, 4 and amount 6?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 64,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Merging k lists with N items: min-heap vs merging one by one?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 65,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Binary search for 2 in [1,2,2,2,3]: which index can it return, and how do you find the first 2?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 66,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a prefix sum make O(1)?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 67,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Dijkstra vs BFS when every weight is 1?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 68,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Two pointers vs nested loops for pair-sum?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 69,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Sliding window or two pointers for \"at most k distinct\"?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 70,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the amortized cost of Union-Find?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 71,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What's the two-pointer invariant?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 72,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Top-k: heap vs sort?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 73,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does BFS find the shortest path in an unweighted graph and DFS doesn't?",
+        "section": "DSA",
+        "subSection": "DSA"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "A 3-node cluster loses 1 node. Can it still take writes? What about 2?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Leader-based vs leaderless replication?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is split brain, and how do Raft terms stop it?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens in 2PC when the coordinator crashes after everyone votes YES?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Give one feature that needs strong consistency and one that's fine with eventual.",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "With N=5, W=3, R=3, does a read see the latest write?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why are wall clocks unsafe for ordering events?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you debug a lost update between replicas?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is exactly-once delivery hard?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "The heartbeat timeout is 150 ms but the RTT p99 is 200 ms. What happens?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Vector clocks vs Lamport clocks?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Under a partition, should a shopping cart pick C or A?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does gossip spread news of a failure?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does an idempotent API need a request ID?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "The leader has [1,2,3] and a follower has [1,2]. What happens next?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why use virtual nodes in consistent hashing?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you guarantee read-your-writes?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if a lease holder pauses longer than the TTL?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a fencing token?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What can Raft give you that quorum replication alone can't?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a client need so a retry doesn't double-apply?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is it unsafe to order events by wall clock when clocks are skewed?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you fix a hot key?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Can a second leader appear during a GC pause longer than the lease?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When is anti-entropy enough?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Give one feature that needs linearizability and one where causal is enough.",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why does a minority partition refuse writes?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What do you lose by acking a write on the primary only?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What can a reader on replica B miss?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when two candidates split the vote?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What breaks when a client keeps talking to the old primary?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Under backpressure, should you drop or block?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What goes wrong if you remove a flapping node immediately?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When is log shipping enough?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Should followers serve stale reads during an election?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "With N=5, W=3, R=1, does a read see the latest write?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain Raft leader election with 5 nodes when 2 of them are partitioned off.",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain N=3, W=2, R=2, and one stale-read timeline for W=1, R=1.",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "With N=3, W=2, R=2, why does a read see the latest write?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does a fencing token stop a stale write?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the CAP theorem, in short?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Circuit breaker vs retry: when do you use each?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Circuit breaker vs timeout?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How does a circuit breaker stop a retry storm?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why do payments need an idempotency key?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when a client retries a POST the server already committed?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 47,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does a client send so a retried POST is safe?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 48,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How do you make a POST handler idempotent?",
+        "section": "Distributed systems",
+        "subSection": "Distributed systems"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What are the parts of an MDP?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Q-learning vs SARSA?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does gamma do?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Value iteration vs policy iteration?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "How big is the Q-table with 100 states and 4 actions?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is reward hacking?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why decay epsilon?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "When do you use policy gradient instead?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "In RLHF, what does the reward model learn from?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "V(s) vs Q(s,a)?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Epsilon-greedy vs softmax?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to the old Q value when alpha = 1?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why use experience replay?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Sparse vs shaped rewards?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a policy, and what does \"greedy w.r.t. Q\" mean?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does the actor learn in actor-critic, and what does the critic learn?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Bandits: explore-first vs epsilon-greedy?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if every reward is +1?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Is Q-learning on-policy or off-policy?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is credit assignment?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Model-based vs model-free?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What bug does Double Q-learning fix?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why use a target network?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why subtract a baseline (advantage)?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What do eligibility traces do?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why can linear Q diverge?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when epsilon = 0 from the start?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What goes wrong with epsilon = 0 in epsilon-greedy?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens if an RL agent never explores?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Episodic vs continuing tasks?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is bootstrapping?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens to softmax as tau goes to 0 vs infinity?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "UCB vs epsilon-greedy?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is partial observability?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is catastrophic forgetting?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 36,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Offline RL: what data does it use, and how does it fail?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 37,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does inverse RL recover?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 38,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Give one way +1-per-step reward shaping goes wrong.",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 39,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Write the Bellman optimality equation for Q* and label every term.",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 40,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain exploration vs exploitation, with one reward-hacking example.",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 41,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "TD(0) vs Monte Carlo?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 42,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Monte Carlo vs TD control?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 43,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when gamma = 0?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 44,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Give one example of reward hacking.",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 45,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does \u03b5-greedy do at \u03b5=0.1, and what goes wrong at \u03b5=0?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 46,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does the Bellman equation say, in one sentence?",
+        "section": "RL",
+        "subSection": "RL"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Process vs thread?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What do 10k threads with 1 MB stacks cost in memory?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Minor vs major page fault?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the TLB, and why do context switches hurt it?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What are the 4 deadlock conditions?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Mutex vs spinlock?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does fork() return, and what is copy-on-write?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does the OOM killer do?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why is a syscall slower than a normal function call?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens on read() when the page cache misses?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What goes wrong when a task never yields under cooperative scheduling?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does running 400 threads on 4 cores cost?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is thrashing?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a zombie process?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Semaphore vs mutex?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Why do databases avoid mmap?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is priority inversion?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 18,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Two threads run count++ 1M times each with no lock. What's the final value?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 19,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What stops user code from touching kernel memory?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 20,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does the kernel save during a context switch, and what does the switch cost the caches?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 21,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "With 10k idle connections, why is epoll cheaper than select?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 22,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Stack vs heap: what lives on each, and what happens on a stack overflow?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 23,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Hard link vs soft link: what happens to each when you delete the original?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 24,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "You write() 1 GB and the power dies a second later. Why can the data be gone, and what does fsync change?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 25,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is virtual memory?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 26,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you press Ctrl-C?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 27,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a file descriptor, and what happens when you hit the 1024 limit?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 28,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Internal vs external fragmentation: which one does paging cause?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 29,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "A program calls fork() twice, then printf(\"hi\\n\"). How many times does \"hi\" print?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 30,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a context switch?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 31,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a deadlock, and what are its four conditions?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 32,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a system call?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 33,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Explain a page fault, minor vs major.",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 34,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What are the steps of a page fault?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 35,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens on the first touch of a page under demand paging?",
+        "section": "OS",
+        "subSection": "OS"
+      },
+      {
+        "id": 1,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is caching? Give one cache invalidation problem.",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 2,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does Redis get used for?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 3,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is rate limiting?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 4,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "REST vs gRPC?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 5,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is a JWT?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 6,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Authentication vs authorization?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 7,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "TCP vs UDP?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 8,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What happens when you type a URL in the browser, in short?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 9,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What does DNS do?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 10,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is the TCP three-way handshake?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 11,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "HTTP vs HTTPS?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 12,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "What is keep-alive in HTTP?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 13,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Cache-aside: what happens when cache invalidation fails?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 14,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "JWT vs session: how do you log out instantly?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 15,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "TCP or UDP for game updates?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 16,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "Head-of-line blocking: HTTP/1.1 vs HTTP/2?",
+        "section": "Review",
+        "subSection": "Review"
+      },
+      {
+        "id": 17,
+        "type": "CONCEPT",
+        "tag": "Daily",
+        "text": "On paper: Lamport clocks for 3 processes, 6 events and 2 messages. Name one concurrent pair.",
+        "section": "Review",
+        "subSection": "Review"
+      }
+    ]
 }

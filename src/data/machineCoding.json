@@ -39,6 +39,11 @@
       "id": "tml",
       "name": "Thinking Machines Lab",
       "focus": "Distributed training infrastructure, RL abstractions, and Tinker. Async client futures, LoRA memory, rollout buffers, GPU worker pools."
+    },
+    {
+      "id": "daily",
+      "name": "Daily drills",
+      "focus": "5-minute AI-off drills: 67 Go, 79 JavaScript, 31 Python Flask. Worker pools, retries, HTTP handlers, and small utilities."
     }
   ],
   "items": [
@@ -4281,6 +4286,1776 @@
       "scope": "Parallel tokenization, image patch embedding, and audio tokenization",
       "constraints": "Gigabytes of multimodal data per minute without GPU starvation",
       "stack": "Ray Data, Apache Arrow, Shared Memory IPC"
+    },
+    {
+      "id": "DL-GO-01",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Call an API and retry up to 3 times with backoff.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-02",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Worker pool: 3 workers process jobs 1 to 10.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-03",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Run 5 HTTP calls in parallel and collect the results.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-04",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fan-in: merge 2 channels into 1.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-05",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Cancel a long-running goroutine with context.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-06",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A counter incremented by 100 goroutines, safely.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-07",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A timeout on a function call using select.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-08",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A rate limiter that allows 5 calls a second.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-09",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Producer-consumer with a buffered channel.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-10",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Print odd and even numbers from 2 goroutines, in order.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-11",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Use errgroup to run 3 tasks and return the first error.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-12",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A thread-safe in-memory cache with Get and Set.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-13",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Read a file line by line and count the words.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-14",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write a simple HTTP server with one GET endpoint.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-15",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An HTTP handler that returns JSON.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-16",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A middleware that logs the duration of each request.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-17",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Ping 10 URLs concurrently with at most 3 at a time.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-18",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Use sync.Once to initialize a config once.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-19",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A pipeline: generate, square, then print.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-20",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Graceful shutdown of an HTTP server on Ctrl+C.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-21",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A struct implementing the Stringer interface.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-22",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Custom error type plus checking it with errors.As.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-23",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Reverse a slice in place.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-24",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A ticker that prints every second and stops after 5.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-25",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A table-driven test for an Add function.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-26",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Retry with exponential backoff and jitter.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-27",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A bounded semaphore using a buffered channel.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-28",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A goroutine that stops cleanly when ctx is cancelled.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-29",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fan-out work to 4 workers, then fan-in the results.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-30",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Wait for the first of 3 calls to succeed.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-31",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A thread-safe map with sync.RWMutex.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-32",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Batch items from a channel every 100 ms or every 10 items, whichever comes first.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-33",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A heartbeat goroutine that pings every 2 seconds.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-34",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An HTTP client with a 3-second timeout.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-35",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A POST endpoint that decodes JSON and validates it.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-36",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A circuit breaker that opens after 3 failures.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-37",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Detect a data race with go test -race on a counter you write.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-38",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A select loop that reads from 2 channels until both close.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-39",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Limit concurrent HTTP handlers to 10 at a time.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-40",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A token bucket rate limiter.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-41",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A handler that stays idempotent using an Idempotency-Key header.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-42",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Reverse a linked list.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-43",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Binary search on []int.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-44",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Dedupe a []string, keeping the original order.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-45",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A middleware chain: logging, then auth, then the handler.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-46",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Copy from a Reader to a Writer and count the bytes.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-47",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A min-heap using container/heap.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-48",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Parse -n and -path flags.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-49",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A channel that keeps only the latest value.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-50",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write a temp file, then atomically rename it into place.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-51",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Detect a closed channel safely.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-52",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Singleflight-style coalescing.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-53",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A ring buffer.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-54",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Middleware that returns 413 for bodies over 1 MB.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-55",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Tee a channel into 2.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-56",
+      "kind": "mc",
+      "company": "daily",
+      "title": "sync.Cond broadcast.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-57",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Parse HH:MM.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-58",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Merge N sorted channels.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-59",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A request ID passed through context.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-60",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A drop-oldest channel.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-61",
+      "kind": "mc",
+      "company": "daily",
+      "title": "errors.Join.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-62",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Length-prefixed message framing.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-63",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A generic Map[T, U].",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-64",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A generic Stack[T]; Pop on empty returns false.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-65",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Top 3 word counts, with ties in a fixed order.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-66",
+      "kind": "mc",
+      "company": "daily",
+      "title": "ReadJSON(path, v) that wraps errors with %w.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-GO-67",
+      "kind": "mc",
+      "company": "daily",
+      "title": "WithTimeout(fn, d) with no goroutine leak.",
+      "stack": "Go",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-01",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fetch an API and retry up to 3 times.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-02",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fetch with a 2-second timeout using AbortController.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-03",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fetch 3 URLs in parallel with Promise.all.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-04",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fetch 3 URLs in parallel, and don't fail if one URL fails.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-05",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write debounce(fn, ms).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-06",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write throttle(fn, ms).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-07",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Run 20 async tasks with at most 3 at a time.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-08",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write sleep(ms) as a promise.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-09",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Convert a callback function into a promise.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-10",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write a simple Express GET endpoint.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-11",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An Express POST endpoint that validates its JSON body.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-12",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An Express error-handling middleware.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-13",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fetch paginated results until there are no more pages.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-14",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Cache a fetch result in memory for 60 seconds.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-15",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write once(fn).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-16",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write memoize(fn).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-17",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Deep clone an object without structuredClone.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-18",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Flatten a nested array.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-19",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Group an array of objects by a key.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-20",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write your own Promise.all.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-21",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Retry with exponential backoff and jitter.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-22",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An event emitter with on and emit.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-23",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Read a file in Node.js using fs/promises.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-24",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Count word frequencies in a string.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-25",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Remove duplicates from an array.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-26",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Poll an API every 2 seconds until status is \"done\".",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-27",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A queue that runs async jobs one at a time.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-28",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Retry only on 5xx and network errors, never on 4xx.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-29",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A fetch wrapper that throws on non-2xx responses.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-30",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Cancel the previous search request when a new one starts.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-31",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write Promise.allSettled yourself.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-32",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write Promise.race yourself.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-33",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Load 3 APIs in sequence, each using the previous result.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-34",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An Express rate limiter that allows 10 requests a minute per IP.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-35",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An Express route with query parameter pagination.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-36",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A timeout wrapper: withTimeout(promise, ms).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-37",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Cache in-flight requests so duplicate calls share one fetch.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-38",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Stream-read a large file in Node.js and count its lines.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-39",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write curry(fn).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-40",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write compose(...fns).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-41",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write a simple EventEmitter with off.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-42",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Convert an array of objects into a map by id.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-43",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Find the first non-repeating character in a string.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-44",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write chunk(array, size).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-45",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write retry(fn, times) that works for any async function.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-46",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Build a query string from an object, skipping null values.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-47",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Fetch 2 URLs in parallel and merge their JSON.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-48",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Process an array in batches of 10, one batch after another.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-49",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Retry on a 429 by waiting for the Retry-After header.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-50",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Flatten an array one level deep without .flat.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-51",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Zip 2 arrays into pairs.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-52",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Intersection of 2 arrays.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-53",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A localStorage JSON wrapper that never throws.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-54",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Binary search that handles an empty array and both ends.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-55",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Allow 5 calls per rolling second.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-56",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Parse one CSV line with quotes.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-57",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Timing middleware that logs how long each request took.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-58",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Retry with backoff plus an AbortSignal.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-59",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write pipeAsync(f, g, h).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-60",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Write pLimit(n).",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-61",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A deferred promise.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-62",
+      "kind": "mc",
+      "company": "daily",
+      "title": "GET /search?q= with validation.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-63",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Partition an array with a predicate.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-64",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A tiny router.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-65",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A generator of backoff delays.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-66",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Return the first successful fetch out of 2, using Promise.any.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-67",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Interleave 2 arrays.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-68",
+      "kind": "mc",
+      "company": "daily",
+      "title": "GET /time.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-69",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Sliding-window sum.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-70",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An LRU cache with a Map.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-71",
+      "kind": "mc",
+      "company": "daily",
+      "title": "pollUntil(fn, interval, timeout): reject after the timeout and stop polling.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-72",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Dedupe objects by id.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-73",
+      "kind": "mc",
+      "company": "daily",
+      "title": "pipe(...fns): pipe(add1, double)(3) should give 8.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-74",
+      "kind": "mc",
+      "company": "daily",
+      "title": "range(0, 10, 3) should give [0, 3, 6, 9].",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-75",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Deep isEqual, where key order doesn't matter.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-76",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Queue without Array.shift; dequeue on empty returns undefined.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-77",
+      "kind": "mc",
+      "company": "daily",
+      "title": "parseQuery('a=1&b=2&b=3') should give {a:'1', b:['2','3']}.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-78",
+      "kind": "mc",
+      "company": "daily",
+      "title": "fetchAll(urls): fetch in parallel and return results in input order.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-JS-79",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Count the lines in a file; a missing file gives a clear error.",
+      "stack": "JavaScript",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-01",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask GET /health endpoint that returns JSON.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-02",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask CRUD API for todos using an in-memory dict.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-03",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask POST endpoint that validates required fields.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-04",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A custom 404 JSON error handler in Flask.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-05",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask endpoint with ?page= and ?limit= pagination.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-06",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask endpoint that calls an upstream API with retry.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-07",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask before-request hook that logs the method and path.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-08",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A Flask endpoint that requires an API key header.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-09",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Call 5 URLs concurrently with ThreadPoolExecutor.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-10",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A retry decorator that tries 3 times.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-11",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A thread-safe counter with Lock.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-12",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Read a CSV and sum one column.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-13",
+      "kind": "mc",
+      "company": "daily",
+      "title": "An LRU cache with OrderedDict.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-14",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A producer-consumer with queue.Queue.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-15",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A timeout on a requests call, with error handling.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-16",
+      "kind": "mc",
+      "company": "daily",
+      "title": "DELETE /items/<id> that's safe to call twice.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-17",
+      "kind": "mc",
+      "company": "daily",
+      "title": "GET /health that checks an upstream with a 1-second timeout.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-18",
+      "kind": "mc",
+      "company": "daily",
+      "title": "GET /items?status= with filtering.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-19",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Rate limit to 5 requests per minute per IP.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-20",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Add an X-Request-Id header to every response.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-21",
+      "kind": "mc",
+      "company": "daily",
+      "title": "File upload with a 1 MB limit.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-22",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Call upstream with a 1-second timeout and return 502 on failure.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-23",
+      "kind": "mc",
+      "company": "daily",
+      "title": "PATCH /items/<id>.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-24",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Validate that name is 1 to 80 characters.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-25",
+      "kind": "mc",
+      "company": "daily",
+      "title": "Sort and order query params.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-26",
+      "kind": "mc",
+      "company": "daily",
+      "title": "POST /login: a missing field gets a 400 that names the field.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-27",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A /ready health check.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-28",
+      "kind": "mc",
+      "company": "daily",
+      "title": "GET /items?q=: case-insensitive match; an empty q returns all items.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-29",
+      "kind": "mc",
+      "company": "daily",
+      "title": "A JSON 500 handler that returns {\"error\":\"internal\"} with no stack trace.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-30",
+      "kind": "mc",
+      "company": "daily",
+      "title": "PUT /items/<id> that updates the name.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
+    },
+    {
+      "id": "DL-PY-31",
+      "kind": "mc",
+      "company": "daily",
+      "title": "GET /items/<int:id>.",
+      "stack": "Python Flask",
+      "level": "Basic",
+      "mechanics": "5 minutes, AI off",
+      "variant": "Daily drill"
     }
   ],
   "references": [
